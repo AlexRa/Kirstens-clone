@@ -1,0 +1,8 @@
+# For building instructions:
+# https://wiki.secondlife.com/wiki/Get_source_and_compile
+
+SLASSET_MD5=http://secondlife.com/developers/opensource/downloads/2008/12/md5sums-viewer_1-21-r101177.txt
+SLASSET_ART=http://secondlife.com/developers/opensource/downloads/2008/12/slviewer-artwork-viewer_1-21-r101177.zip
+SLASSET_LIBS_DARWIN=http://secondlife.com/developers/opensource/downloads/2008/12/slviewer-darwin-libs-viewer_1-21-r101177.tar.gz
+SLASSET_LIBS_WIN32=http://secondlife.com/developers/opensource/downloads/2008/12/slviewer-win32-libs-viewer_1-21-r101177.zip
+SLASSET_LIBS_LINUXI386=http://secondlife.com/developers/opensource/downloads/2008/12/slviewer-linux-libs-viewer_1-21-r101177.tar.gz

@@ -1,0 +1,20 @@
+The artwork, scanner etc is licensed under BSD (My work )
+DONT use the Latest LL KDU ( I have my own KDU )
+Skype only works on REX servers! you require Skype4com libs to build
+GCC on ubuntu 8.10 will require some minor changes to the code.
+Mac builds may require some modification of Nib and resource files 
+
+In BOTH cases don't expect clean and tidy builds!
+
+Keep the versionviewer the same otherwise tracking whats screwing up becomes difficult if the build number is not known !
+
+(this will also cause the Mac APP to screw up but can be worked around)
+
+Openjpeg will NOT make this viewer set the world on fire (if your after performance on Linux but can't bring yourself to used anything but GPL your wasting your time)
+
+This Build will compile (with some heavy tweaking) on MacOSX leopard, with Xcode & on Ubuntu 8.10
+
+And thanks to all the really helpful 'Community' Spirted sorts who have made my life a misery, enjoy the source.
+
+Love Kirsten
+

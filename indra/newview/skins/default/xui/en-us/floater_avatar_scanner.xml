@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater bottom="-380" can_close="true" can_drag_on_left="false" can_minimize="true"
+     can_resize="true" height="380" left="400" min_height="380" min_width="400"
+     mouse_opaque="true" name="scanner" title="Scanner" width="240">
+		
+	<button bottom_delta="-48" follows="top|right" font="SansSerif" halign="center"
+	     height="20" label="Scan" label_selected="Scan" left_delta="140"
+	     mouse_opaque="true" name="Find" scale_image="TRUE" width="80" />
+	<scroll_list background_visible="true" bottom_delta="-264" column_padding="5"
+	     draw_border="true" draw_heading="true" draw_stripes="true" search_column="0"
+	     follows="left|top|right" height="256" left="12" mouse_opaque="true"
+	     multi_select="true" name="Names" width="220" />
+	<column name="name" label="Name" dynamicwidth="true" />
+	<column name="distance" label="Distance" width="80"/>
+	
+	<button bottom_delta="-28" follows="left|bottom" font="SansSerif" halign="center"
+	     height="20" label="Close" label_selected="Close" mouse_opaque="true"
+	     name="Close" right="230" scale_image="TRUE" width="105" />
+	<button bottom_delta="0" follows="left|bottom" font="SansSerif" halign="center"
+	     height="20" label="Offer TP" label_selected="Offer TP" mouse_opaque="true"
+	     name="Select" right="119" scale_image="TRUE" width="105" />
+	
+</floater>

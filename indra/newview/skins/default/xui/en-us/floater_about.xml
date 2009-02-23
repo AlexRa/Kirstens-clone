@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater can_close="true" can_drag_on_left="false" can_minimize="true"
+     can_resize="false" height="440" min_height="100" min_width="100"
+     name="floater_about" rect_control="FloaterAboutRect"
+     title="About Second Life" width="470">
+	<text_editor bottom="-434" embedded_items="false"
+	     follows="left|top|right|bottom" font="SansSerifSmall" height="168" left="6"
+  max_length="65536" mouse_opaque="true" name="credits_editor" width="458"
+  word_wrap="true">
+  KirstensViewer S16 is brought to you  KirstenLee.
+  
+  S16 Special - SL Build -Version 16 - Build 90.
+  
+  3Dconnexion SDK Copyright (C) 1992-2007 3Dconnexion
+  APR Copyright (C) 2000-2004 The Apache Software Foundation
+  cURL Copyright (C) 1996-2002, Daniel Stenberg, (daniel@haxx.se)
+  expat Copyright (C) 1998, 1999, 2000 Thai Open Source Software Center Ltd.
+  FreeType Copyright (C) 1996-2002, The FreeType Project (www.freetype.org).
+  GL Copyright (C) 1999-2004 Brian Paul.
+  jpeg2000 Copyright (C) 2001, David Taubman, (UNSW)
+  jpeglib Copyright (C) 1991-1998, Thomas G. Lane.
+  ogg/vorbis Copyright (C) 2001, Xiphophorus
+  OpenSSL Copyright (C) 1998-2002 The OpenSSL Project.
+  SDL Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002 Sam Lantinga
+  SSLeay Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
+  xmlrpc-epi Copyright (C) 2000 Epinions, Inc.
+  zlib Copyright (C) 1995-2002 Jean-loup Gailly and Mark Adler.
+
+  All rights reserved.  See licenses.txt for details.
+
+  
+  Computers are like Old Testament gods; lots of rules and no mercy.</text_editor>
+
+	<text_editor bottom_delta="174" embedded_items="false"
+	     follows="left|top|right|bottom" font="SansSerif" height="238" left="6"
+	     max_length="65536" mouse_opaque="true" name="support_editor" width="458"
+	     word_wrap="true" />
+	<string name="you_are_at">
+		You are at [POSITION]
+	</string>
+</floater>
