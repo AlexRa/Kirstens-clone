@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater can_close="true" can_drag_on_left="false" can_minimize="false"
+     can_resize="false" height="100" min_height="100" min_width="350"
+     name="buy currency" title="Buy Currency" width="350">
+	<text bottom_delta="-48" follows="top|left" font="SansSerifHuge" height="24"
+	     left="16" name="info_buying" right="-20" >
+		Buying Currency:
+	</text>
+	
+		
+	<button bottom_delta="-28" follows="bottom|left" height="20" label="Go to website"
+	     left="202" name="error_web" width="120" />
+	
+	
+		
+</floater>
