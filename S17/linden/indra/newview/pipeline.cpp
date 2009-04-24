@@ -6448,7 +6448,7 @@ void LLPipeline::generateImpostor(LLVOAvatar* avatar)
 
 	if (muted)
 	{
-		mask  = 1 << LLPipeline::RENDER_TYPE_AVATAR;
+		mask  = 1 << LLPipeline::RENDER_TYPE_INVISIBLE; // Peachy ;)
 	}
 	else
 	{
