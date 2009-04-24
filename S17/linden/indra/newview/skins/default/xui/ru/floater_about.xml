@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="floater_about" title="About Second Life">
+	<text_editor name="credits_editor">
+		
+	</text_editor>
+	
+</floater>

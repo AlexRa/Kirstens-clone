@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="clothing" title="Одяг">
+	<scroll_list name="clothing_list">
+		<column label="" name="icon" />
+		<column label="Ім&apos;я" name="name" />
+	</scroll_list>
+	<button label="Зняти" name="take_off_btn" />
+	<button label="Одягти" name="wear_btn" />
+</floater>

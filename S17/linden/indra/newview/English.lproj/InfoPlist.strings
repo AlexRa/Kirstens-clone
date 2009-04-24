@@ -1,0 +1,7 @@
+/* Localized versions of Info.plist keys */
+
+CFBundleName = "Second Life";
+
+CFBundleShortVersionString = "Second Life version 1.24.0.117804";
+CFBundleGetInfoString = "Second Life version 1.24.0.117804, Copyright 2004-2008 Linden Research, Inc.";
+

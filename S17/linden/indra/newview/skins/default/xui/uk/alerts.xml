@@ -1,0 +1,4959 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<alerts>
+	<global name="skipnexttime">
+		Не показувати це знову
+	</global>
+	<global name="alwayschoose">
+		Завжди обирати цей пункт
+	</global>
+	<alert name="MissingAlert">
+		<message name="message">
+			[ALERT_NAME] відсутній alerts.xml!
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="FloaterNotFound">
+		<message name="message">
+			Помилка: неможливо знайти елемент:
+ 
+[CONTROLS]
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="TutorialNotFound">
+		<message name="message">
+			Підручник недоступний в даний момент.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="GenericAlert">
+		<message name="message">
+			[MESSAGE]
+		</message>
+	</alert>
+	<alert name="GenericAlertYesCancel">
+		<message name="message">
+			[MESSAGE]
+		</message>
+		<option name="Yes">
+			Так
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="GenericServerAlert">
+		<message name="message">
+			[MESSAGE]
+		</message>
+	</alert>
+	<alert name="ConnectTimeout">
+		<message name="message">
+			Неможливо з&apos;єднатися з [SECOND_LIFE].
+Система недоступна. Будь ласка спробуйте з&apos;єднатися 
+знову через декілька хвилин, або натисніть Допомога
+для поради і переходу до сторінки статусу системи.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Help">
+			Допомога
+		</option>
+	</alert>
+	<alert name="WearableSave">
+		<message name="message">
+			Зберегти зміни для поточної частини тіла/одягу?
+		</message>
+		<option name="Save">
+			Зберегти
+		</option>
+		<option name="Don&apos;tSave">
+			Не зберігати
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="CompileQueueSaveText">
+		<message name="message">
+			Помилка завантаження тексту в скрипт сталася через причину: [REASON]. Спробуйте ще раз пізніше, будь ласка.
+		</message>
+	</alert>
+	<alert name="CompileQueueSaveBytecode">
+		<message name="message">
+			Помилка завантаження скомпільованої програми сталася через причину: [REASON]. Спробуйте ще раз пізніше, будь ласка.
+		</message>
+	</alert>
+	<alert name="WriteAnimationFail">
+		<message name="message">
+			Помилка запису анімації. Спробуйте ще раз пізніше, будь ласка.
+		</message>
+	</alert>
+	<alert name="UploadAuctionSnapshotFail">
+		<message name="message">
+			Помилка завантаження знімку для аукціона сталася через причину: [REASON]
+		</message>
+	</alert>
+	<alert name="UnableToViewContentsMoreThanOne">
+		<message name="message">
+			Неможливо переглянути зміст декількох елементів одночасно.Будь ласка, оберіть тільки один елемент і спробуйте ще раз.
+		</message>
+	</alert>
+	<alert name="MustSupplyVoteProposal">
+		<message name="message">
+			Ви повинні мати можливість голосувати.
+Введіть короткий опис цілей групи.
+		</message>
+	</alert>
+	<alert name="InsufficientFunds">
+		<message name="message">
+			Недостатньо коштів.
+		</message>
+	</alert>
+	<alert name="CharacterSnapshotSaved">
+		<message name="message">
+			Знімок Вашого персонажа збережено.
+Відвідайте сторінку Студії, щоб його побачити.
+		</message>
+	</alert>
+	<alert name="SaveClothingBodyChanges">
+		<message name="message">
+			Зберегти зміни для частин тіла/одягу?
+		</message>
+		<option name="SaveAll">
+			Зберегти все
+		</option>
+		<option name="Don&apos;tSave">
+			Не зберігати
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="GrantModifyRights">
+		<message name="message">
+			Дає право іншому резиденту змінювати
+БУДЬ-ЯКІ Ваші об&apos;єкти в світі.
+Будьте ДУЖЕ обережні, коли присвоюєте такі права.
+Ви впевнені у передачі прав на зміну [FIRST_NAME] [LAST_NAME]?
+		</message>
+		<option name="Yes">
+			Так
+		</option>
+		<option name="No">
+			Ні
+		</option>
+	</alert>
+	<alert name="GrantModifyRightsMultiple">
+		<message name="message">
+			Дає право іншому резиденту змінювати
+БУДЬ-ЯКІ Ваші об&apos;єкти в світі.
+Будьте ДУЖЕ обережні,коли присвоюєте такі права.
+Ви впевнені в передачі прав на зміну обраним резидентам?
+		</message>
+		<option name="Yes">
+			Так
+		</option>
+		<option name="No">
+			Ні
+		</option>
+	</alert>
+	<alert name="RevokeModifyRights">
+		<message name="message">
+			Хочете відібрати право на зміну у [FIRST_NAME] [LAST_NAME]?
+		</message>
+		<option name="Yes">
+			Так
+		</option>
+		<option name="No">
+			Ні
+		</option>
+	</alert>
+	<alert name="RevokeModifyRightsMultiple">
+		<message name="message">
+			Хочете відібрати право на зміну у обраних резидентів?
+		</message>
+		<option name="Yes">
+			Так
+		</option>
+		<option name="No">
+			Ні
+		</option>
+	</alert>
+	<alert name="RemoveFriend">
+		<message name="message">
+			Ви хочете видалити [FIRST] [LAST] зі списку
+Ваших друзів?
+		</message>
+		<option name="Remove">
+			Видалити
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="GroupCreateSuccess">
+		<message name="message">
+			Групу створено успішно.
+		</message>
+	</alert>
+	<alert name="UnableToCreateGroup">
+		<message name="message">
+			Неможливо створити групу.
+[MESSAGE]
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="PanelGroupApply">
+		<message name="message">
+			[NEEDS_APPLY_MESSAGE]
+[WANT_APPLY_MESSAGE]
+		</message>
+		<option name="ApplyChanges">
+			Застосувати зміни
+		</option>
+		<option name="IgnoreChanges">
+			Ігнорувати зміни
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="CreateGroupCanAfford">
+		<message name="message">
+			Створення групи коштує L$[COST].
+Щоб підтримувати групу більше трьох днів, 
+Ви повинні набрати в неї двух або більше членів.
+ 
+Створити групу?
+		</message>
+		<option name="Create">
+			Створити
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="CreateGroupCannotAfford">
+		<message name="message">
+			Створення групи коштує L$[COST].
+У Вас недостатньо L$ для створення групи.
+		</message>
+	</alert>
+	<alert name="GroupNameTooShort">
+		<message name="message">
+			Ім&apos;я групи має містити мінімум 4 літери.
+		</message>
+	</alert>
+	<alert name="GroupNameUsesReservedWord">
+		<message name="message">
+			Ім&apos;я групи містить нецензурне слово. Будь ласка, 
+оберіть інше ім&apos;я.
+		</message>
+	</alert>
+	<alert name="MustSpecifyGroupNoticeSubject">
+		<message name="message">
+			Ви повинні вказати тему для відправці повідомлення групі.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="MustSupplyGroupCharter">
+		<message name="message">
+			Ви повинні підтримувати устав цієї групи.
+Введіть короткий опис цілей групи.
+		</message>
+	</alert>
+	<alert name="AddGroupOwnerWarning">
+		<message name="message">
+			Ви збираєтеся додавати членів групи до ролі [ROLE_NAME].
+Учасники не можуть бути видалені з цієї ролі.
+Учасники повинні піти з ролі самостійно.
+Ви впевнені в продовженні операції?
+		</message>
+		<ignore name="ignore">
+			При додаванні членів групи в роль власників
+		</ignore>
+		<option name="Yes">
+			Так
+		</option>
+		<option name="No">
+			Ні
+		</option>
+	</alert>
+	<alert name="AssignDangerousActionWarning">
+		<message name="message">
+			Ви збираєтеся додавати Здатність &apos;[ACTION_NAME]&apos; в Роль
+&apos;[ROLE_NAME]&apos;.
+
+ *ПОПЕРЕДЖЕННЯ*
+Будь-який Член в Ролі з цією Здатністю може призначати
+собі або будь-кому іншому Ролі, які мають більші
+повноваження, ніж вони мали до цього, потенційно
+підіймаючи їх рівень влади до рівня власника.
+Переконайтеся, що Ви дійсно хочете виконання операції,
+перед тим як виконаєте її.
+
+
+Додати Здатність до  &apos;[ROLE_NAME]&apos;?
+		</message>
+		<option name="Yes">
+			Так
+		</option>
+		<option name="No">
+			Ні
+		</option>
+	</alert>
+	<alert name="AssignDangerousAbilityWarning">
+		<message name="message">
+			Ви збираєтеся додавати Здатність &apos;[ACTION_NAME]&apos; до
+Ролі &apos;[ROLE_NAME]&apos;.
+
+ *ПОПЕРЕДЖЕННЯ*
+Будь-який Член в Ролі з цією Здатністю може призначати собі або будь-кому іншому всі Здатності, підіймаючи їх рівень влади до рівня власника.
+
+Додати Здатність до  &apos;[ROLE_NAME]&apos;?
+		</message>
+		<option name="Yes">
+			Так
+		</option>
+		<option name="No">
+			Ні
+		</option>
+	</alert>
+	<alert name="ClickPublishHelpGroup">
+		<message name="message">
+			Вибір опції &quot;Публікувати в Інтернет&quot; дозволяє нам
+видавати довідник імен груп, відзнак, уставів, титулів і фондів для вебсайту
+[SECOND_LIFE]. Ви відповідальні за те, що їх зміст не підпадає під категорію
+Для Дорослих у відповідності до Стандартів Товариства.
+Стандарти Товариства.
+		</message>
+	</alert>
+	<alert name="ClickPublishHelpLand">
+		<message name="message">
+			Вибір опції &quot;Публікувати в Пошуку&quot; дозволяє Вам
+показувати землю:
+ - в результатах пошуку
+ - в публічних об&apos;єктах
+ - земля у вебпошуку
+		</message>
+	</alert>
+	<alert name="ClickPublishHelpLandDisabled">
+		<message name="message">
+			Ви не можете показати ділянку в пошуку, т.я. цей
+регіон забороняє робити це
+		</message>
+	</alert>
+	<alert name="ClickPublishHelpPostcard">
+		<message name="message">
+			Вибір опції &quot;Публікувати в Інтернет&quot; дозволяє Вам
+опублікувати назву, опис, знімок і місцезнаходження цього регіона для сайту
+[SECOND_LIFE]. Ви відповідальні за те, що його зміст не підпадає під категорію
+Для Дорослих у відповідності до Стандартів Товариства.
+		</message>
+	</alert>
+	<alert name="ClickPublishHelpAvatar">
+		<message name="message">
+			Вибір опції &quot;Публікувати в Пошуку&quot; покаже:
+			- ваш профіль в результатах пошуку
+			- зв&apos;яже Ваш профіль з публічною сторінкою групи
+		</message>
+	</alert>
+	<alert name="ClickPartnerHelpAvatar">
+		<message name="message">
+			Ви можете пропонувати іншому Резиденту або розривати існуюче партнерство через вебсайт [SECOND_LIFE].
+
+Звернутися до вебсайту [SECOND_LIFE] для більш детальних відомостей про партнерство?
+		</message>
+		<option name="GotoPage">
+			Перейти на сторінку
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ClickWebProfileHelpAvatar">
+		<message name="message">
+			Якщо у цього резидента є вебсторінка, то Ви можете::
+ * Натиснути на &apos;&apos;Завантаження&apos;&apos;, щоб завантажити його профіль з допомогою вбудованого веб браузера.
+ * Натиснути &apos;&apos;Відкрити&apos;&apos; для перегляду профіля у зовнішньому веб браузері.
+ 
+При перегляді Вашого профіля Ви можете встановити будь-який URL в якості своєї вебсторінки.
+Резиденти можуть подивитися Вашу вебсторінку при перегляді Вашого профіля.
+		</message>
+	</alert>
+	<alert name="ClickWebProfileNoWebHelpAvatar">
+		<message name="message">
+			Якщо у цього резидента є вебсторінка, то Ви можете::
+ * Натиснути &apos;&apos;Відкрити&apos;&apos;.для перегляду у зовнішньому веб браузері.
+
+При перегляді Вашого профіля Ви можете встановити будь-який URL у якості своєї вебсторінки.
+Резиденти можуть подивитися Вашу вебсторінку при перегляді Вашого профіля.
+		</message>
+	</alert>
+	<alert name="ReputationMinGreaterThanMax">
+		<message name="message">
+			Мінімум Репутації вище, ніж максимум.
+Або знизьте мінімум, або підніміть максимум.
+		</message>
+	</alert>
+	<alert name="MoneyMinGreaterThanMax">
+		<message name="message">
+			Мінімум Грошей вище, ніж максимум.
+Або знизьте мінімум, або підніміть максимум.
+		</message>
+	</alert>
+	<alert name="OfficerTitleTooLong">
+		<message name="message">
+			Титул офіцера не може перевищувати 20 символів у довжину.
+Виберіть титул покоротше.
+		</message>
+	</alert>
+	<alert name="MemberTitleTooLong">
+		<message name="message">
+			Титул учасника не може перевищувати 20 символів у довжину.
+Виберіть титул покоротше.
+		</message>
+	</alert>
+	<alert name="RunningLocally">
+		<message name="message">
+			Грати локально...
+Не дає Вам даних.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="EjectNoMemberSelected">
+		<message name="message">
+			Не обраний учасник для виключення.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="ConfirmEject">
+		<message name="message">
+			Це виключить [MEMBER] з групи.
+Ви впевнені в продовженні операції?
+		</message>
+		<option name="Eject">
+			Виключити
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="JoinGroupCanAfford">
+		<message name="message">
+			Вступ в групу коштує L$[COST].
+Ви впевнені в продовженні операції?
+		</message>
+		<option name="Join">
+			Вступити
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="JoinGroupCannotAfford">
+		<message name="message">
+			Вступ в групу коштує L$[COST].
+У Вас не вистачає грошей на рахунку для вступу в групу.
+		</message>
+	</alert>
+	<alert name="LandBuyPass">
+		<message name="message">
+			За L$[COST] Ви можете увійти на (&apos;[PARCEL_NAME]&apos;)
+на [TIME] годин. Купити доступ?
+		</message>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="CannotStartAuctionAlreadyForSale">
+		<message name="message">
+			Ви не можете виставити на аукціон ділянку, яка вже продається.
+Зніміть її з продажу, якщо Ви впевнені
+в бажанні провести аукціон.
+		</message>
+	</alert>
+	<alert name="SalePriceRestriction">
+		<message name="message">
+			Ціна продажу має бути більше L$0, якщо Ви продаете це комусь.
+Будь ласка, оберіть когось, щоб продати це за L$0.
+		</message>
+	</alert>
+	<alert name="ConfirmLandSaleChange">
+		<message name="message">
+			Вибрані [LAND_SIZE] кв.м. землі виставлені на продаж.
+Ваша ціна продажу має бути L$[SALE_PRICE] і Ви повинні бути уповноважені для продажу в [NAME].
+		</message>
+		<option name="Continue">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ConfirmLandSaleToAnyoneChange">
+		<message name="message">
+			УВАГА: Установка &apos;&apos;продавати комусь&apos;&apos; зробить землю доступною для покупки всім людям, в т.ч. за межами цього регіона.
+
+			Вибрані [LAND_SIZE] кв.м. землі виставлені на продаж.
+Ваша ціна продажу має бути L$[SALE_PRICE] і Ви повинні бути уповноважені для продажу в [NAME].
+		</message>
+		<option name="Continue">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ReturnObjectsDeededToGroup">
+		<message name="message">
+			Ви впевнені в поверненні всіх об&apos;єктів з цієї ділянки
+спільних з групою &apos;[NAME]&apos;
+назад в інвентар їх попередніх власників?
+
+*ПОПЕРЕДЖЕННЯ* Це спричинить видалення всіх непередаваємих об&apos;єктів групи!
+
+
+Об&apos;єкти: [N]
+		</message>
+		<option name="Return">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ReturnObjectsOwnedByUser">
+		<message name="message">
+			Ви впевнені в поверненні всіх об&apos;єктів з цієї ділянки
+що належать резиденту &apos;[NAME]&apos;
+назад в його інвентар?
+
+Об&apos;єкти: [N]
+		</message>
+		<option name="Return">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ReturnObjectsOwnedBySelf">
+		<message name="message">
+			Ви впевнені в поверненні всіх об&apos;єктів з цієї ділянки, що належать Вам,
+в Ваш інвентар?
+
+
+Об&apos;єкти: [N]
+		</message>
+		<option name="Return">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ReturnObjectsNotOwnedBySelf">
+		<message name="message">
+			Ви впевнені в поверненні всіх об&apos;єктів з цієї ділянки, що Вам не належать,
+в інвентар їх власників?
+Передаваемые об&apos;єкти,що належать групі, повернуться їх попередніх власників.
+
+
+*ПОПЕРЕДЖЕННЯ* Це спричинить видалення всіх непередаваємих об&apos;єктів групи!
+
+Об&apos;єкти: [N]
+		</message>
+		<option name="Return">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ReturnObjectsNotOwnedByUser">
+		<message name="message">
+			Ви впевнені в поверненні всіх об&apos;єктів з цієї ділянки, що не належать [NAME], 
+			в інвентар їх власника?
+Об&apos;єкти, що можуть бути передані і належать групі, повернуться до їх попередніх власників.
+
+*ПОПЕРЕДЖЕННЯ* Це спричинить видалення всіх непередаваємих об&apos;єктів групи!
+
+Об&apos;єкти: [N]
+		</message>
+		<option name="Return">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ReturnAllTopObjects">
+		<message name="message">
+			Ви впевнені в поверненні всіх об&apos;єктів з цієї ділянки в інвентар їх власників?
+		</message>
+		<option name="Return">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="DisableAllTopObjects">
+		<message name="message">
+			Ви впевнені, що хочете вимкнути всі об&apos;єкти в цьому регіоні?
+		</message>
+		<option name="Disable">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ReturnObjectsNotOwnedByGroup">
+		<message name="message">
+			Повернути всі об&apos;єкти з цієї ділянки,
+що не належать групі [NAME]
+назад їх власникам?
+
+Об&apos;єкти: [N]
+		</message>
+		<option name="Return">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="UnableToDisableOutsideScripts">
+		<message name="message">
+			Неможливо вимкнути скрипти.
+Пошкодження в цьому регіоні увімкнені.
+Скрипти повинні бути дозволені, щоб зброя працювала.
+		</message>
+	</alert>
+	<alert name="MustBeInParcel">
+		<message name="message">
+			Ви повинні знаходитися всередині ділянки землі, 
+щоб призначити точку посадки.
+		</message>
+	</alert>
+	<alert name="PromptRecipientEmail">
+		<message name="message">
+			Будь ласка, вкажіть e-mail отримувача
+		</message>
+	</alert>
+	<alert name="PromptSelfEmail">
+		<message name="message">
+			Будь ласка, введіть Ваш e-mail
+		</message>
+	</alert>
+	<alert name="PromptMissingSubjMsg">
+		<message name="message">
+			Відправити листівку зі стандартною темою або повідомленням?
+		</message>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ErrorProcessingSnapshot">
+		<message name="message">
+			Помилка обробки знімку
+		</message>
+	</alert>
+	<alert name="ErrorEncodingSnapshot">
+		<message name="message">
+			Помилка кодування знімку
+		</message>
+	</alert>
+	<alert name="ErrorUploadingPostcard">
+		<message name="message">
+			Помилка завантаження візитки через причину: [REASON]
+		</message>
+	</alert>
+	<alert name="ErrorUploadingReportScreenshot">
+		<message name="message">
+			Помилка завантаження знімку звіту через причину: [REASON]
+		</message>
+	</alert>
+	<alert name="MustAgreeToLogIn">
+		<message name="message">
+			Ви повинні погодитися з Умовами обслуговування (TOS), щоб увійти в [SECOND_LIFE].
+		</message>
+	</alert>
+	<alert name="CouldNotPutOnOutfit">
+		<message name="message">
+			Неможливо вдягти комплект.
+Папка комплекту не містить частин тіла, одягу або пристосувань.
+		</message>
+	</alert>
+	<alert name="CannotWearTrash">
+		<message name="message">
+			Ви не можете вдягти одяг або частини тіла з кошику.
+		</message>
+	</alert>
+	<alert name="CannotWearInfoNotComplete">
+		<message name="message">
+			Ви не можете вдягти предмет, т.як він ще не завантажився. Спробуйте через хвилину.
+		</message>
+	</alert>
+	<alert name="MustHaveAccountToLogInNoLinks">
+		<message name="message">
+			Ви повинні мати аккаунт для з&apos;єднання з [SECOND_LIFE].
+		</message>
+		<option name="OK">
+			Закрити
+		</option>
+	</alert>
+	<alert name="MustHaveAccountToLogIn">
+		<message name="message">
+			Ви повинні мати аккаунт для з&apos;єднання з [SECOND_LIFE].
+Перейти на www.secondlife.com для створення аккаунта?
+		</message>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="AddClassified">
+		<message name="message">
+			Реклама з&apos;являється в секції &apos;Реклама&apos; каталога пошуку
+і на сайті www.secondlife.com протягом одного тижня.
+Заповніть рекламу, і натисніть &apos;Опублікувати...&apos; для внесення
+її в каталог.
+Вас спитають про вартість оплати, коли Ви натиснете кнопку &apos;Опублікувати&apos;.
+Чим більше Ви заплатите, тим вище з&apos;явиться Ваша реклама в каталозі
+і більша кількість людей зможе знайти її при пошуку по ключовим словам.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+		<ignore name="ignore">
+			Коли додаєте нову рекламу
+		</ignore>
+	</alert>
+	<alert name="DeleteClassified">
+		<message name="message">
+			Видалити рекламу &apos;[NAME]&apos;?
+Немає компенсації за витрачені гроші.
+		</message>
+		<option name="Delete">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ClassifiedSave">
+		<message name="message">
+			Зберегти зміни в рекламі [NAME]?
+		</message>
+		<option name="Save">
+			Зберегти
+		</option>
+		<option name="Don&apos;tSave">
+			Не зберігати
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="DeleteAvatarPick">
+		<message name="message">
+			Видалити вибір [PICK]?
+		</message>
+		<option name="Delete">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="DisplayChangeRestart">
+		<message name="message">
+			Деякі зроблені Вами зміни в настройках дисплея
+потребують негайного перезавантаження [SECOND_LIFE]
+що спричинить втрату робіт, що виконуються Вами в даний момент.
+
+Застосувати ці зміни і вийти.
+		</message>
+		<option name="ApplyandQuit">
+			Застосувати і вийти
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="PromptGoToEventsPage">
+		<message name="message">
+			Перейти на вебсторінку подій [SECOND_LIFE]?
+		</message>
+		<option name="GotoPage">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="MustSelectCandidate">
+		<message name="message">
+			Ви повинні обрати кандидата для голосування.
+		</message>
+	</alert>
+	<alert name="SelectItemToView">
+		<message name="message">
+			Виберіть пропозицію для перегляду.
+		</message>
+	</alert>
+	<alert name="SelectProposalToView">
+		<message name="message">
+			Виберіть пропозицію для перегляду.
+		</message>
+	</alert>
+	<alert name="SelectHistoryItemToView">
+		<message name="message">
+			Виберіть елемент з архіву для перегляду.
+		</message>
+	</alert>
+	<alert name="ResetShowNextTimeDialogs">
+		<message name="message">
+			Скинути всі діалоги&apos;Показати в наступний раз&apos;?
+		</message>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="SkipShowNextTimeDialogs">
+		<message name="message">
+			Вимкнути всі діалоги &apos;Показати в наступний раз&apos;?
+		</message>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="CacheWillClear">
+		<message name="message">
+			Кеш буде очищено після перезавантаження [SECOND_LIFE].
+		</message>
+	</alert>
+	<alert name="CacheWillBeMoved">
+		<message name="message">
+			Кеш буде переміщено після перезавантаження [SECOND_LIFE].
+Примітка: це очистити кеш.
+		</message>
+	</alert>
+	<alert name="ChangeConnectionPort">
+		<message name="message">
+			Настройки порту будуть прийняті після перезавантаження [SECOND_LIFE].
+		</message>
+	</alert>
+	<alert name="ChangeSkin">
+		<message name="message">
+			Новий скін з&apos;явиться після перезавантаження [SECOND_LIFE].
+		</message>
+	</alert>
+	<alert name="GoToAuctionPage">
+		<message name="message">
+			Перейти на вебсторінку [SECOND_LIFE] для перегляду деталей аукціона
+або зробити ставку?
+		</message>
+		<option name="GotoPage">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="SaveChanges">
+		<message name="message">
+			Зберегти зміни?
+		</message>
+		<option name="Save">
+			Зберегти
+		</option>
+		<option name="Don&apos;tSave">
+			Не зберігати
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="GestureSaveFailedTooManySteps">
+		<message name="message">
+			Помилка збереження жесту.
+Цей жест має дуже багато кроків.
+Видаліть деякі кроки і повторіть.
+		</message>
+	</alert>
+	<alert name="GestureSaveFailedTryAgain">
+		<message name="message">
+			Зірвалося збереження жесту.  Спробуйте ще раз через хвилину.
+		</message>
+	</alert>
+	<alert name="GestureSaveFailedObjectNotFound">
+		<message name="message">
+			Неможливо зберегти жест, т.як асоційований з ним об&apos;єкт в інвентарі не ззнайденийий.
+Об&apos;єкт знаходиться дуже далеко або вже видалений.
+		</message>
+	</alert>
+	<alert name="GestureSaveFailedReason">
+		<message name="message">
+			Помилка збереження жесту через причину:: [REASON].  Будь ласка, повторіть збереження пізніше.
+		</message>
+	</alert>
+	<alert name="SaveNotecardFailObjectNotFound">
+		<message name="message">
+			Неможливо зберегти замітку, т.як асоційований з нею об&apos;єкт в інвентарі не ззнайденийий.
+Об&apos;єкт знаходиться дуже далеко або вже видалений.
+		</message>
+	</alert>
+	<alert name="SaveNotecardFailReason">
+		<message name="message">
+			Помилка збереження замітки через причину: [REASON]. Будь ласка, повторіть збереження пізніше.
+		</message>
+	</alert>
+	<alert name="ScriptCannotUndo">
+		<message name="message">
+			Неможливо відмінити зміни в Вашій версії скрипта..
+Чи хочете Ви завантажити останню збережену версію з сервера?
+(**Попередження** Операцію неможливо відмінити.)
+		</message>
+		<option name="Yes">
+			OK
+		</option>
+		<option name="No">
+			Відміна
+		</option>
+	</alert>
+	<alert name="SaveScriptFailReason">
+		<message name="message">
+			Помилка збереження скрипта через причину:: [REASON].  Будь ласка, збережіть його ще раз пізніше.
+		</message>
+	</alert>
+	<alert name="SaveScriptFailObjectNotFound">
+		<message name="message">
+			Неможливо зберегти скрипт, т.як об&apos;єкт, в якому він знаходиться не ззнайденийий.
+Об&apos;єкт знаходиться дуже далеко або вже видалений.
+		</message>
+	</alert>
+	<alert name="SaveBytecodeFailReason">
+		<message name="message">
+			Проблема збереження скомпільованого скрипта: [REASON].  Спробуйте зберегти його ще раз пізніше.
+		</message>
+	</alert>
+	<alert name="CouldNotStartStopScript">
+		<message name="message">
+			Неможливо зупинити або запустити скрипт, т.як об&apos;єкт, в якому він знаходиться не знайдений.
+Об&apos;єкт знаходиться дуже далеко або вже видалений.
+		</message>
+	</alert>
+	<alert name="CannotDownloadFile">
+		<message name="message">
+			Неможливо скачати файл.
+		</message>
+	</alert>
+	<alert name="CannotWriteEncode">
+		<message name="message">
+			Неможливо кодувати файл [[FILE]]
+		</message>
+	</alert>
+	<alert name="CannotWriteFile">
+		<message name="message">
+			Неможливо записати файл [[FILE]]
+		</message>
+	</alert>
+	<alert name="CannotLoadWearable">
+		<message name="message">
+			Неможливо завантажити вдягаємі предмети.
+		</message>
+	</alert>
+	<alert name="ConfirmDeleteComplicated">
+		<message name="message">
+			Принаймні один об&apos;єкт з обраних заблоковано, його не можливо скомпілювати або він належить іншому.
+Ви впевнені у видаленні цих об&apos;єктів?
+		</message>
+		<option name="Yes">
+			Так
+		</option>
+		<option name="No">
+			Ні
+		</option>
+	</alert>
+	<alert name="DisplaySettingsSafe">
+		<message name="message">
+			Настройки дисплея виставлені в безпечний режим,
+т.як указана опція -safe.
+		</message>
+	</alert>
+	<alert name="UnsupportedGLRequirements">
+		<message name="message">
+			Ваше обладнання не підходить для Second Life. Необхідна OpenGL карта з мультитекстуруванням. Якщо це так, Ви повинні скачати і встановити останні драйвери на карту з сайта виробника.
+
+Якщо проблема не усунута перейдіть на сайт підтримки: http://www.secondlife.com/support
+		</message>
+	</alert>
+	<alert name="UnsupportedHardware">
+		<message name="message">
+			Попередження: Ваша система не відповідає мінімальним системним вимогам. Якщо Ви продовжите використання Second Life, Ви можете зіткнутися з поганою швидкістю програми.  Ви может продовжувати, але буде сильно гальмувати. Нажаль, ми також не зможемо надати технічну підтримку для такої системної конфігурації
+
+MINSPECS
+Хочете відвідати [_URL] для детальної інформації?
+		</message>
+		<ignore name="ignore">
+			Ігнорувати непідтримуване обладнання
+		</ignore>
+		<option name="Yes">
+			Так
+		</option>
+		<option name="No">
+			Ні
+		</option>
+	</alert>
+	<alert name="UnsupportedGPU">
+		<message name="message">
+			- Ваша графічна карта не відповідає мінімальним вимогам..
+		</message>
+	</alert>
+	<alert name="UnsupportedCPU">
+		<message name="message">
+			- Ваш процесор не відповідає мінімальним вимогам.
+		</message>
+	</alert>
+	<alert name="UnsupportedCPUAmount">
+		<message name="message">
+			796
+		</message>
+	</alert>
+	<alert name="UnsupportedRAM">
+		<message name="message">
+			- Ваша системна пам&apos;ять не відповідає мінімальним вимогам..
+		</message>
+	</alert>
+	<alert name="UnsupportedRAMAmount">
+		<message name="message">
+			510
+		</message>
+	</alert>
+	<alert name="UnknownGPU">
+		<message name="message">
+			Ваша система містить графічну карту, яка невідома нам на цей момент. Це трапляється з новим обладнанням, яке ми ще не встигли протестувати. Скоріше за все Second Life буде працювати нормально, але можливо Вам буде необхідно виконати відповідну настройку. (Правка - Настройки - Графіка).
+		</message>
+		<ignore name="ignore">
+			Ігнорувати невідому графічну карту
+		</ignore>
+	</alert>
+	<alert name="DisplaySettingsRecommended">
+		<message name="message">
+			Настройки відображення виставлені на оптимальний
+ для Вас режим.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="DisplaySettingsNoShaders">
+		<message name="message">
+			[SECOND_LIFE] зазнав краху при ініціалізації графічної підсистеми.
+Шейдери вимкнені із-за несумісності з драйвером відеокартки.
+Це виключає деякі графічні можливості.
+Рекомендується оновити драйвер відеокарти.
+Шейдери можуть бути увімкнені знову через Настройки Графіки
+		</message>
+	</alert>
+	<alert name="CannotRequestDomain">
+		<message name="message">
+			Неможливо з&apos;єднатися з сервером.
+Немає доступа до домену: [HOST]
+		</message>
+	</alert>
+	<alert name="CannotFindDomain">
+		<message name="message">
+			Не знайдений DNS.
+Це сталося через втрату зв&apos;язку з Інтернет
+або із-за проблем на сервері.
+Будь ласка, спробуйте через декілька хвилин або зверніться по допомогу
+до вебсторінки статусу.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Help">
+			Допомога
+		</option>
+	</alert>
+	<alert name="PromptSelectServer">
+		<message name="message">
+			Виберіть сервер.
+Неможливо під&apos;єднатися до серверу  [SERVER]
+		</message>
+	</alert>
+	<alert name="CannotConnectDNSError">
+		<message name="message">
+			Неможливо увійти в [SECOND_LIFE].
+DNS не може визначити ім&apos;я комп&apos;ютера.
+
+Будь ласка, перевірте Ваш зв&apos;язок з сайтом www.secondlife.com
+Якщо працює, але помилка всеодно повторюється, повідомте про свою проблему
+через адресу www.secondlife.com/support.
+		</message>
+	</alert>
+	<alert name="CannotConnectSecurityError">
+		<message name="message">
+			Неможливо встановити захищене з&apos;єднання з сервером авторизації.
+Перевірте, можливо Ваш системний час встановлено неправильно.
+
+Будь ласка, установіть поточну дату і час на своєму комп&apos;ютері.
+Якщо Ви продовжуєте отримувати помилки, зв&apos;яжіться з 
+www.secondlife.com/support
+і повідомте про проблему.
+		</message>
+	</alert>
+	<alert name="CannotConnectVerificationError">
+		<message name="message">
+			Неможливо увійти в [SECOND_LIFE].
+Аутентифікація не проходить через SSL.
+
+Якщо Ви продовжуєте отримувати помилки, зв&apos;яжіться з 
+www.secondlife.com/support
+і повідомте про проблему.
+		</message>
+	</alert>
+	<alert name="CannotConnectUnknownErrorWindows">
+		<message name="message">
+			Неможливо увійти в [SECOND_LIFE].
+Не дивлячись на наші зусилля, щось не так.
+
+Зв&apos;яжіться з www.secondlife.com/support
+і повідомте про проблему. Якщо це можливо, прикладіть
+лог-файл: C:\Documents and Settings\(name)\Application Data\SecondLife\logs
+Дякуємо.
+		</message>
+	</alert>
+	<alert name="CannotConnectUnknownErrorDarwin">
+		<message name="message">
+			Неможливо увійти в [SECOND_LIFE].
+Не дивлячись на наші зусилля, щось не так.
+
+Зв&apos;яжіться з www.secondlife.com/support
+і повідомте про проблему. Якщо можливо, прикладіть
+лог-файл: ~/Library/Application Support/SecondLife/logs
+Дякуємо.
+		</message>
+	</alert>
+	<alert name="CannotResolveLoginToken">
+		<message name="message">
+			Проблема аутентифікації Вашого логіна.
+Спробуйте залогінитися знову. Якщо не виходить,
+зв&apos;яжіться з www.secondlife.com/support
+і повідомте про проблему.
+		</message>
+	</alert>
+	<alert name="CannotConnectNoMessage">
+		<message name="message">
+			Невідома помилка при спробі входу.
+
+Будь ласка, спробуйте ще раз через декілька хвилин або зверніться за допомогою до вебсторінки статусу.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Help">
+			Допомога
+		</option>
+	</alert>
+	<alert name="CannotConnectNoReplyFromLogin">
+		<message name="message">
+			Неможливо увійти, помилка доступа до бази даних логінів..
+
+Будь ласка, спробуйте ще раз через декілька хвилин або
+зверніться за допомогою до вебсторінки статусу.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Help">
+			Допомога
+		</option>
+	</alert>
+	<alert name="CannotConnectLoginTimeout">
+		<message name="message">
+			Сплинув час Вашого знаходження на даному місці. Спробуйте ще раз.
+		</message>
+	</alert>
+	<alert name="FirstRunDialog">
+		<message name="message">
+			Установку [SECOND_LIFE] завершено.
+
+Якщо Ви вперше використовуєте [SECOND_LIFE], Вам спочатку потрібно створити аккаунт.
+Повернутися на www.secondlife.com для створення нового аккаунта?
+		</message>
+		<option name="NewAccount...">
+			Новий Аккаунт.
+		</option>
+		<option name="Continue">
+			Продовжити
+		</option>
+	</alert>
+	<alert name="ClothingStillDownloading">
+		<message name="message">
+			Ваш аватар ще завантажується.
+Ви можете використовувати [SECOND_LIFE] нормально, і інші
+резиденти побачать Вас коректно.
+		</message>
+	</alert>
+	<alert name="CannotResolveDomain">
+		<message name="message">
+			Неможливо з&apos;єднатися з сервером.
+Неможливо визначити ім&apos;я домена: [DOMAIN]
+
+Перевірте Ваше з&apos;єднання з Інтернет.
+		</message>
+	</alert>
+	<alert name="WelcomeToSecondLife">
+		<message name="message">
+			Ласкаво Просимо в [SECOND_LIFE]! 
+
+Використовуйте стрілки для руху
+Виберіть чоловічий або жіночий аватар.
+Можете потім змінити цей вибір.
+		</message>
+		<option name="Male">
+			Чоловік
+		</option>
+		<option name="Female">
+			Жінка
+		</option>
+	</alert>
+	<alert name="WelcomeToSecondLifeSimple">
+		<message name="message">
+			Ласкаво Просимо в [SECOND_LIFE]! 
+
+Використовуйте стрілки для руху
+Виберіть чоловічий або жіночий аватар.
+		</message>
+		<option name="Male">
+			Чоловік
+		</option>
+		<option name="Female">
+			Жінка
+		</option>
+	</alert>
+	<alert name="RegionNoTerraforming">
+		<message name="message">
+			Регіон [REGION] не підтримує правку ландшафту.
+		</message>
+	</alert>
+	<alert name="CannotCopyWarning">
+		<message name="message">
+			У Вас немає прав на копіювання
+цього елемента, і він буде втрачений з Вашого інвентаря, якщо Ви його віддасте. 
+Ви впевнені, що хочете віддати його?
+		</message>
+		<option name="Yes">
+			Так
+		</option>
+		<option name="No">
+			Ні
+		</option>
+	</alert>
+	<alert name="CannotGiveItem">
+		<message name="message">
+			Неможливо віддати предмет Інвентаря.
+		</message>
+	</alert>
+	<alert name="TransactionCancelled">
+		<message name="message">
+			Транзакція скасована.
+		</message>
+	</alert>
+	<alert name="TooManyItems">
+		<message name="message">
+			Неможна передати більше 42 елементів за 1 раз..
+		</message>
+	</alert>
+	<alert name="NoItems">
+		<message name="message">
+			У Вас немає прав на передачу
+			обраних елементів.
+		</message>
+	</alert>
+	<alert name="CannotCopyCountItems">
+		<message name="message">
+			У Вас немає права на копіювання [COUNT] з обраних елементів,
+і вони будуть втрачені з Вашого інвентаря, якщо Ви їх віддасте. 
+
+Ви впевнені, що хочете віддати їх?
+		</message>
+		<option name="Yes">
+			Так
+		</option>
+		<option name="No">
+			Ні
+		</option>
+	</alert>
+	<alert name="CannotGiveCategory">
+		<message name="message">
+			У Вас немає прав на передачу
+			обраного каталога.
+		</message>
+	</alert>
+	<alert name="FreezeAvatar">
+		<message name="message">
+			Заморозити аватара?
+Він або Вона тимчасово не зможуть рухатися, ходити і розмовляти з ким-небудь.
+		</message>
+		<option name="Freeze">
+			Заморозити
+		</option>
+		<option name="Unfreeze">
+			Розморозити
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="FreezeAvatarFullname">
+		<message name="message">
+			Заморозити аватара?
+Він або Вона тимчасово не зможуть ні рухатися, ні ходити, 
+ні розмовляти з ким-небудь.
+		</message>
+		<option name="Freeze">
+			Заморозити
+		</option>
+		<option name="Unfreeze">
+			Розморозити
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="EjectAvatar">
+		<message name="message">
+			Викинути аватара з Вашої землі?
+		</message>
+		<option name="Eject">
+			Викинути
+		</option>
+		<option name="EjectandBan">
+			Викинути і забанити
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="EjectAvatarFullname">
+		<message name="message">
+			Викинути [AVATAR_NAME] з Вашої землі?
+		</message>
+		<option name="Eject">
+			Викинути
+		</option>
+		<option name="EjectandBan">
+			Викинути і забанити
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="InvalidUUID">
+		<message name="message">
+			Неправильний UUID
+		</message>
+	</alert>
+	<alert name="AcquireErrorTooManyObjects">
+		<message name="message">
+			ПОМИЛКА ВИБОРУ: Дуже багато об&apos;єктів вибрано.
+		</message>
+	</alert>
+	<alert name="AcquireErrorObjectSpan">
+		<message name="message">
+			ПОМИЛКА ВИБОРУ: Об&apos;єкти лежать в декількох регіонах.
+Будь ласка, соберіть елементи в одному регіоні.
+		</message>
+	</alert>
+	<alert name="TakeLockedOrNotOwnedBy">
+		<message name="message">
+			Хоча б один об&apos;єкт заблокований або належить іншому.
+Якщо Ви взяли не свій об&apos;єкт, то на нього будуть діяти права наступного власника, 
+що можливо заборонить Вам його копіювати або передавати.
+
+
+Ви хочете взяти ці об&apos;єкти?
+		</message>
+		<option name="Yes">
+			OK
+		</option>
+		<option name="No">
+			Відміна
+		</option>
+	</alert>
+	<alert name="PromptGoToCurrencyPage">
+		<message name="message">
+			[EXTRA]
+
+Перейти на [URL] для довідки про покупку валюти?
+		</message>
+		<option name="GotoPage">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="UnableToLinkObjects">
+		<message name="message">
+			Неможна зв&apos;язати ці [COUNT] об&apos;єктів.
+Ви можете зв&apos;язати максимум [MAX] об&apos;єктів.
+		</message>
+	</alert>
+	<alert name="CannotLinkIncompleteSet">
+		<message name="message">
+			Ви можете зв&apos;язати тільки набір обраних об&apos;єктів,
+тому оберіть хоча б два об&apos;єкти.
+		</message>
+	</alert>
+	<alert name="CannotLinkModify">
+		<message name="message">
+			Неможна зв&apos;язати, т.як у Вас немає прав на зміну кожного з обраних об&apos;єктів.
+
+
+Переконайтеся, що всі вибрані об&apos;єкти Ваші і вони не заблоковані.
+		</message>
+	</alert>
+	<alert name="CannotLinkDifferentOwners">
+		<message name="message">
+			Неможна зв&apos;язати, т.як не все вибрані об&apos;єкти належать Вам. 
+
+
+Вибирайте тільки свої об&apos;єкти.
+		</message>
+	</alert>
+	<alert name="NoFileExtension">
+		<message name="message">
+			У файла &apos;[FILE]&apos; немає розширення. 
+Переконайтеся, що вибраний файл має коректне розширення
+		</message>
+	</alert>
+	<alert name="InvalidFileExtension">
+		<message name="message">
+			Неправильне розширення файла [EXTENSION]
+Очікується [VALIDS]
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="CannotUploadSoundFile">
+		<message name="message">
+			Неможливо відкрити завантажений звук для читання:
+[FILE]
+		</message>
+	</alert>
+	<alert name="SoundFileNotRIFF">
+		<message name="message">
+			Файл не являється RIFF WAVE файлом: 
+[FILE]
+		</message>
+	</alert>
+	<alert name="SoundFileNotPCM">
+		<message name="message">
+			Файл не являється PCM WAVE файлом: 
+[FILE]
+		</message>
+	</alert>
+	<alert name="SoundFileInvalidChannelCount">
+		<message name="message">
+			Звуковий файл має неправильне кількість каналів (не моно, і не стерео): 
+[FILE]
+		</message>
+	</alert>
+	<alert name="SoundFileInvalidSampleRate">
+		<message name="message">
+			Бітрейт файла не підтримується (має бути 44.1k): 
+[FILE]
+		</message>
+	</alert>
+	<alert name="SoundFileInvalidWordSize">
+		<message name="message">
+			Недопустима довжина слова (має бути 8 або 16 біт): 
+[FILE]
+		</message>
+	</alert>
+	<alert name="SoundFileInvalidHeader">
+		<message name="message">
+			Неправильний заголовок WAV: 
+[FILE]
+		</message>
+	</alert>
+	<alert name="SoundFileInvalidTooLong">
+		<message name="message">
+			Дуже довгий звук (максимум 10 сек): 
+[FILE]
+		</message>
+	</alert>
+	<alert name="ProblemWithFile">
+		<message name="message">
+			Помилка в файлі [FILE]:
+
+[ERROR]
+		</message>
+	</alert>
+	<alert name="CannotOpenTemporarySoundFile">
+		<message name="message">
+			Неможливо відкрити тимчасовий звуковий файл для запису: [FILE]
+		</message>
+	</alert>
+	<alert name="UnknownVorbisEncodeFailure">
+		<message name="message">
+			Невідомий кодек Vorbis: [FILE]
+		</message>
+	</alert>
+	<alert name="CorruptResourceFile">
+		<message name="message">
+			Файл пошкоджений: [FILE]
+		</message>
+	</alert>
+	<alert name="UnknownResourceFileVersion">
+		<message name="message">
+			Невідомий код Лінденів в файлі: [FILE]
+		</message>
+	</alert>
+	<alert name="UnableToCreateOutputFile">
+		<message name="message">
+			Неможливо створити вихідний файл: [FILE]
+		</message>
+	</alert>
+	<alert name="DoNotSupportBulkAnimationUpload">
+		<message name="message">
+			У нас ще немає підтримки пакетного завантаження відеороликів.
+		</message>
+	</alert>
+	<alert name="CannotAccessOutputFile">
+		<message name="message">
+			Немає доступу до вихідного файла: [FILE]
+		</message>
+	</alert>
+	<alert name="InsufficientFundsToUploadFile">
+		<message name="message">
+			Недостатньо L$ для завантаження файла: його ціна: L$[COST], Ваш баланс: L$[BALANCE]
+		</message>
+	</alert>
+	<alert name="InsufficientFundsToFinishUpload">
+		<message name="message">
+			Недостатньо L$ для закінчення завантаження файла: його ціна: L$[COST], Ваш баланс: L$[BALANCE]
+		</message>
+	</alert>
+	<alert name="CannotUploadReason">
+		<message name="message">
+			Помилка завантаження файла [FILE] через причину: [REASON]
+Будь ласка, спробуйте пізніше.
+		</message>
+	</alert>
+	<alert name="CannotCreateLandmarkNotOwner">
+		<message name="message">
+			Ви не можете створити тут закладку, 
+т.як власник землі забороняє це.
+		</message>
+	</alert>
+	<alert name="CannotRecompileSelectObjectsNoScripts">
+		<message name="message">
+			Неможливо перекомпілювати скрипт.
+Виберіть об&apos;єкт зі скриптом.
+		</message>
+	</alert>
+	<alert name="CannotRecompileSelectObjectsNoPermission">
+		<message name="message">
+			Неможливо перекомпілювати скрипт.
+
+Виберіть об&apos;єкти зі скриптами, які
+Ви маєте право змінювати.
+		</message>
+	</alert>
+	<alert name="CannotResetSelectObjectsNoScripts">
+		<message name="message">
+			Неможливо &apos;скинути&apos; скрипти
+
+Виберіть об&apos;єкти зі скриптами.
+		</message>
+	</alert>
+	<alert name="CannotResetSelectObjectsNoPermission">
+		<message name="message">
+			Неможливо &apos;скинути&apos; скрипти
+
+Виберіть об&apos;єкти зі скриптами, які
+Ви маєте право змінювати.
+		</message>
+	</alert>
+	<alert name="CannotSetRunningSelectObjectsNoScripts">
+		<message name="message">
+			Неможливо &apos;запустити&apos; скрипти
+
+Виберіть об&apos;єкти зі скриптами.
+		</message>
+	</alert>
+	<alert name="CannotSetRunningSelectObjectsNoPermission">
+		<message name="message">
+			Неможливо &apos;запустити&apos; скрипти
+
+Виберіть об&apos;єкти зі скриптами, які
+Ви маєте право змінювати.
+		</message>
+	</alert>
+	<alert name="CannotSetRunningNotSelectObjectsNoScripts">
+		<message name="message">
+			Неможливо &apos;зупинити&apos; скрипти
+
+Виберіть об&apos;єкти зі скриптами.
+		</message>
+	</alert>
+	<alert name="CannotSetRunningNotSelectObjectsNoPermission">
+		<message name="message">
+			Неможливо &apos;зупинити&apos; скрипти
+
+Виберіть об&apos;єкти зі скриптами, які
+Ви маєте право змінювати.
+		</message>
+	</alert>
+	<alert name="NoFrontmostFloater">
+		<message name="message">
+			No frontmost floater to save.
+		</message>
+	</alert>
+	<alert name="SeachFilteredOnShortWords">
+		<message name="message">
+			Ваш пошуковий запит змінений так, 
+що дуже короткі слова видалені.
+
+Пошук для: [FINALQUERY]
+		</message>
+	</alert>
+	<alert name="SeachFilteredOnShortWordsEmpty">
+		<message name="message">
+			Ваші пошукові слова дуже короткі
+і пошук не виконано.
+		</message>
+	</alert>
+	<alert name="ColladaExportFailedUnknownServerError">
+		<message name="message">
+			Collada export failed: Невідома помилка.
+		</message>
+	</alert>
+	<alert name="ColladaExportFailedInvalidPermissions">
+		<message name="message">
+			Collada export failed: Немає прав або об&apos;єкт заблоковано.
+		</message>
+	</alert>
+	<alert name="ColladaExportFailedUnknownError">
+		<message name="message">
+			Collada export failed: Невідома помилка.
+		</message>
+	</alert>
+	<alert name="ObjectImportFailedTransfer">
+		<message name="message">
+			Помилка імпорту об&apos;єктів. Неможливо передати файл.
+		</message>
+	</alert>
+	<alert name="ObjectImportFailedBadFormat">
+		<message name="message">
+			Помилка імпорту об&apos;єктів. Файл в невідомому форматі.
+		</message>
+	</alert>
+	<alert name="ObjectImportFailedUnknownError">
+		<message name="message">
+			Помилка імпорту об&apos;єктів. Невідома помилка.
+		</message>
+	</alert>
+	<alert name="CouldNotTeleportReason">
+		<message name="message">
+			Неможливо телепортуватися.
+[REASON]
+		</message>
+	</alert>
+	<alert name="CannotSetLandOwnerNothingSelected">
+		<message name="message">
+			Неможна встановити власника землі.
+Не обрано ділянку.
+		</message>
+	</alert>
+	<alert name="CannotSetLandOwnerMultipleRegions">
+		<message name="message">
+			Неможна встановити власника землі, т.як вибрані ділянки містяться в декількох регіонах.
+Виберіть область поменше і спробуйте ще раз.
+		</message>
+	</alert>
+	<alert name="ForceOwnerAuctionWarning">
+		<message name="message">
+			Цю ділянку підготовлено до аукціону.
+Установка права власності відмінить аукціон і потенційно може залишити невдоволеними учасників, що подали заявки. Ви впевнені у виконанні?
+		</message>
+		<option name="Force">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="CannotContentifyNothingSelected">
+		<message name="message">
+			Немає змісту:
+Не обрано ділянку.
+		</message>
+	</alert>
+	<alert name="CannotContentifyNoRegion">
+		<message name="message">
+			Немає змісту:
+Не обрано регіон.
+		</message>
+	</alert>
+	<alert name="CannotReleaseLandNothingSelected">
+		<message name="message">
+			Неможливо покинути регіон:
+Не обрано ділянку.
+		</message>
+	</alert>
+	<alert name="CannotReleaseLandNoRegion">
+		<message name="message">
+			Неможливо покинути регіон:
+Не знайдений регіон.
+		</message>
+	</alert>
+	<alert name="CannotBuyLandNothingSelected">
+		<message name="message">
+			Неможливо купити землю
+Не обрано ділянку.
+		</message>
+	</alert>
+	<alert name="CannotBuyLandNoRegion">
+		<message name="message">
+			Неможливо купити землю
+Не знайдений регіон з цієї землею.
+		</message>
+	</alert>
+	<alert name="CannotCloseFloaterBuyLand">
+		<message name="message">
+			Ви не можете закрити вікно Покупки землі до тих пір, доки Second Life не розрахує суму транзакції.
+		</message>
+	</alert>
+	<alert name="CannotDeedLandNothingSelected">
+		<message name="message">
+			Неможливо задіяти землю:
+Не обрано ділянку.
+		</message>
+	</alert>
+	<alert name="CannotDeedLandNoGroup">
+		<message name="message">
+			Неможливо задіяти землю:
+Не обрано Групу
+		</message>
+	</alert>
+	<alert name="CannotDeedLandNoRegion">
+		<message name="message">
+			Неможливо задіяти землю:
+Не знайдений регіон з цієї землею.
+Вик. Інструменти -&gt; Повідомити про помилку.
+		</message>
+	</alert>
+	<alert name="CannotDeedLandMultipleSelected">
+		<message name="message">
+			Неможливо задіяти землю:
+Вибрано декілька ділянок.
+
+Спробуйте обрати одну ділянку.
+		</message>
+	</alert>
+	<alert name="RegionNotFound">
+		<message name="message">
+			Регіон не знайдений
+		</message>
+	</alert>
+	<alert name="ParcelCanPlayMedia">
+		<message name="message">
+			Тут можна дивитися потокове відео. 
+Відео вимагає зв&apos;язок 768 кбіт/с або вище
+ 
+Грати потокове відео, якщо доступно?
+(Ви можете змінити цю опцію пізніше
+Настройки &gt; Аудіо і Відео.)
+		</message>
+		<option name="PlayMedia">
+			Грати медіа
+		</option>
+		<option name="Disable">
+			Вимкнути
+		</option>
+	</alert>
+	<alert name="CannotDeedLandWaitingForServer">
+		<message name="message">
+			Неможливо купити землю:
+Очікуємо відповідь від сервера через право на власність.
+
+Спробуйте ще раз.
+		</message>
+	</alert>
+	<alert name="CannotDeedLandNoTransfer">
+		<message name="message">
+			Неможливо задіяти землю:
+Регіон [REGION] не підтримує передачу землі.
+		</message>
+	</alert>
+	<alert name="CannotReleaseLandWatingForServer">
+		<message name="message">
+			Неможливо покинути землю:
+Очікуємо від сервера оновлення інформації про ділянку..
+
+Спробуйте ще раз через секунду.
+		</message>
+	</alert>
+	<alert name="CannotReleaseLandSelected">
+		<message name="message">
+			Неможливо покинути землю:
+Ви не власник деяких обраних ділянок.
+
+Виберіть одну ділянку.
+		</message>
+	</alert>
+	<alert name="CannotReleaseLandDontOwn">
+		<message name="message">
+			Неможливо покинути землю:
+У Вас немає прав на звільнення цієї ділянки.
+Ваші ділянки помічені зеленим.
+		</message>
+	</alert>
+	<alert name="CannotReleaseLandRegionNotFound">
+		<message name="message">
+			Неможливо покинути землю:
+Не знайдений регіон з цією землей.
+
+Використовуйте Інструменти -&gt; Повідомити про помилку.
+		</message>
+	</alert>
+	<alert name="CannotReleaseLandNoTransfer">
+		<message name="message">
+			Неможливо покинути землю:
+Регіон [REGION] не підтримує передачу землі.
+		</message>
+	</alert>
+	<alert name="CannotReleaseLandPartialSelection">
+		<message name="message">
+			Неможливо покинути землю:
+Ви повинні обрати цілу ділянку.
+
+Виберіть цілу ділянку, або спочатку розділіть свою.
+		</message>
+	</alert>
+	<alert name="ReleaseLandWarning">
+		<message name="message">
+			Ви хочете звільнити [AREA] кв.м. землі.
+Ця операція позбавить Вас обраної ділянки з
+Ваших володінь і не принесе L$.
+
+Звільнити цю землю?
+		</message>
+		<option name="Release">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="CannotDivideLandNothingSelected">
+		<message name="message">
+			Неможливо розбити землю:
+
+Не обрано ділянку.
+		</message>
+	</alert>
+	<alert name="CannotDivideLandPartialSelection">
+		<message name="message">
+			Неможливо розбити землю:
+
+Вибрано цілу ділянку.
+Спробуйте обрати її частину.
+		</message>
+	</alert>
+	<alert name="LandDivideWarning">
+		<message name="message">
+			Розділення ділянки розіб&apos;є її на 2 частини,
+кожна з яких буде зі своїми настройками.
+Деякі настройки стануть стандартними після цієї операції.
+
+Розділити землю?
+		</message>
+		<option name="Divide">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="CannotDivideLandNoRegion">
+		<message name="message">
+			Неможна розбити землю:
+Не знайдений регіон з цією землею.
+
+Використовуйте Інструменти -&gt; Повідомити про помилку.
+		</message>
+	</alert>
+	<alert name="CannotJoinLandNoRegion">
+		<message name="message">
+			Неможливо з&apos;єднати землю:
+Не знайдений регіон з цією землею.
+
+Використовуйте Інструменти -&gt; Повідомити про помилку.
+		</message>
+	</alert>
+	<alert name="CannotJoinLandNothingSelected">
+		<message name="message">
+			Неможливо з&apos;єднати землю:
+Не обрано ділянку.
+		</message>
+	</alert>
+	<alert name="CannotJoinLandEntireParcelSelected">
+		<message name="message">
+			Неможливо з&apos;єднати землю:
+Вибрано тільки одну ділянку.
+
+Виберіть обидві ділянки.
+		</message>
+	</alert>
+	<alert name="CannotJoinLandSelection">
+		<message name="message">
+			Неможливо з&apos;єднати землю:
+Потрібно обрати дві або більше ділянок.
+
+Виберіть обидві ділянки.
+		</message>
+	</alert>
+	<alert name="JoinLandWarning">
+		<message name="message">
+			Об&apos;єднання ділянок дасть один загальний
+з усіх ділянок у прямокутнику вибору.
+Ви повинні будете дати ім&apos;я і виставити 
+настройки нової ділянки.
+ 
+Об&apos;єднати землю?
+		</message>
+		<option name="Join">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ConfirmNotecardSave">
+		<message name="message">
+			Замітка має бути збережена перед переглядом або копіюванням елемента. Зберегти замітку?
+		</message>
+		<option name="Save">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ConfirmLandmarkCopy">
+		<message name="message">
+			Копіювати закладку в інвентар?
+		</message>
+		<option name="Copy">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ConfirmItemCopy">
+		<message name="message">
+			Копіювати цей елемент в інвентар?
+		</message>
+		<option name="Copy">
+			Копіювати
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ResolutionSwitchFail">
+		<message name="message">
+			Помилка зміни роздільної здатності [RESX] на [RESY]
+		</message>
+	</alert>
+	<alert name="ErrorUndefinedGrasses">
+		<message name="message">
+			Помилка: Невизн. трави: [SPECIES]
+		</message>
+	</alert>
+	<alert name="ErrorUndefinedTrees">
+		<message name="message">
+			Помилка: Невизн. дерева: [SPECIES]
+		</message>
+	</alert>
+	<alert name="CannotSaveWearableOutOfSpace">
+		<message name="message">
+			Не вийшло зберегти &apos;[NAME]&apos; в одягнутий файл.  
+Спочатку звільніть місце на комп&apos;ютері
+і спробуйте зберегти ще раз.
+		</message>
+	</alert>
+	<alert name="CannotSaveToAssetStore">
+		<message name="message">
+			Не вийшло зберегти [NAME] в центральному активі.
+Звичайно це тимчасова несправність.
+Настройте і збережіть придатний для носіння файл  
+знову через пару хвилин. 
+
+Якщо проблема залишилася, 
+увійдіть в &apos;Інструменти | Звіт про помилку&apos;
+і повідомте деталі Ваших мережевих настроєк.
+		</message>
+	</alert>
+	<alert name="AppEarlyExit">
+		<message name="message">
+			[MESSAGE]
+ 
+У Вас дивна проблема, і ми не знаємо як її усунути.
+
+Переустановіть SL-клієнт. Якщо нічого не вийшло,
+зверніться в службу підтримки через адресу:
+www.secondlife.com/support.
+		</message>
+		<option name="Quit">
+			Вихід
+		</option>
+	</alert>
+	<alert name="YouHaveBeenLoggedOut">
+		<message name="message">
+			Вас викинуло з [SECOND_LIFE]:
+[MESSAGE]
+ 
+Натисніть &apos;Продовжити&apos; для перегляду IM і чату.
+Ви не зможете робити ніяких операцій, тому
+негайно зробіть Вихід з [SECOND_LIFE].
+		</message>
+		<option name="Continue">
+			Продовжити
+		</option>
+		<option name="Quit">
+			Вихід
+		</option>
+	</alert>
+	<alert name="OnlyOfficerCanBuyLand">
+		<message name="message">
+			Неможна купити землю для групи:
+У Вас немає прав на покупку землі для Вашої активної групи.
+		</message>
+	</alert>
+	<alert name="AddFriend" title="Додати друга">
+		<message name="message">
+			Друзі можуть дозволити Вам бачити їх на 
+карті і отримувати повідомлення про їх статус
+онлайн.
+ 
+Запропонувати дружбу [NAME]?
+		</message>
+		<option name="Offer">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="RemoveFromFriends">
+		<message name="message">
+			Видалити [FIRST_NAME] [LAST_NAME] зі списку Друзів?
+		</message>
+		<option name="Remove">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="RemoveMultipleFromFriends">
+		<message name="message">
+			Ви хочете видалити декількох друзів зі списку Друзів?
+		</message>
+		<option name="Remove">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="GodDeleteAllScriptedPublicObjectsByUser">
+		<message name="message">
+			Ви впевнені у видаленні всіх скриптованих об&apos;єктів, що належать
+** [AVATAR_NAME] **
+на всій іншій землі сіма?
+		</message>
+		<option name="DELETE!!">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="GodDeleteAllScriptedObjectsByUser">
+		<message name="message">
+			Ви впевнені в видаленні ВСЕХ скриптованих об&apos;єктів, що належать
+** [AVATAR_NAME] **
+на ВСІЙ ЗЕМЛІ сіма?
+		</message>
+		<option name="!!DELETEALL!!">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="GodDeleteAllObjectsByUser">
+		<message name="message">
+			Ви впевнені в видаленні ВСІХ об&apos;єктів (зі скриптом і без), 
+що належать
+** [AVATAR_NAME] **
+на ВСІЙ ЗЕМЛІ сіма?
+		</message>
+		<option name="!!DELETEALL!!">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="PublishGroupInfoToWeb">
+		<message name="message">
+			Вибір &quot;Публікувати в Інтернет&quot; дозволить нам опублікувати
+ім&apos;я групи, відзнаки, устав, титули і засновника на 
+сайті [SECOND_LIFE]. Ви відповідаєте за те, що зміст публикації не містить
+ніяких матеріалів для дорослих згідно Стандартів
+Товариства.
+		</message>
+	</alert>
+	<alert name="BlankClassifiedName">
+		<message name="message">
+			Ви повинні вказати ім&apos;я Вашої реклами.
+		</message>
+	</alert>
+	<alert name="MinClassifiedPrice">
+		<message name="message">
+			Ціна оплати лістингу має бути мінімум L$[MIN_PRICE].
+ 
+Укажіть ціну повище.
+		</message>
+	</alert>
+	<alert name="CantLoadVertexShaders">
+		<message name="message">
+			Помилка завантаження піксельних шейдерів.
+		</message>
+	</alert>
+	<alert name="ConfirmObjectDeleteLock">
+		<message name="message">
+			Як мінімум один з обраних елементів заблоковано.
+
+Ви впевнені у видаленні цих елементів?
+		</message>
+		<option name="Yes">
+			OK
+		</option>
+		<option name="No">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ConfirmObjectDeleteNoCopy">
+		<message name="message">
+			Як мінімум один з обраних елементів не може бути скопійований.
+
+Ви впевнені у видаленні цих елементів?
+		</message>
+		<option name="Yes">
+			OK
+		</option>
+		<option name="No">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ConfirmObjectDeleteNoOwn">
+		<message name="message">
+			Як мінімум один з обраних елементів Вам не належить.
+
+Ви впевнені у видаленні цих елементів?
+		</message>
+		<option name="Yes">
+			OK
+		</option>
+		<option name="No">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ConfirmObjectDeleteLockNoCopy">
+		<message name="message">
+			Як мінімум один елемент заблоковано.
+Як мінімум один елемент не може бути скопійований.
+
+Ви впевнені в видаленні цих елементів?
+		</message>
+		<option name="Yes">
+			OK
+		</option>
+		<option name="No">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ConfirmObjectDeleteLockNoOwn">
+		<message name="message">
+			Як мінімум один елемент заблоковано.
+Як мінімум один елемент не Ваш.
+
+Ви впевнені в видаленні цих елементів?
+		</message>
+		<option name="Yes">
+			OK
+		</option>
+		<option name="No">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ConfirmObjectDeleteNoCopyNoOwn">
+		<message name="message">
+			Як мінімум один елемент не може бути скопійований.
+Як мінімум один елемент не Ваш.
+
+Ви впевнені в видаленні цих елементів?
+		</message>
+		<option name="Yes">
+			OK
+		</option>
+		<option name="No">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ConfirmObjectDeleteLockNoCopyNoOwn">
+		<message name="message">
+			Як мінімум один елемент заблоковано.
+			Як мінімум один елемент не може бути скопійований.
+Як мінімум один елемент не Ваш.
+
+Ви впевнені в видаленні цих елементів?
+		</message>
+		<option name="Yes">
+			OK
+		</option>
+		<option name="No">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ConfirmObjectTakeLock">
+		<message name="message">
+			Як мінімум один елемент заблоковано.
+
+Ви впевнені, що хочете взяти ці елементи?
+		</message>
+		<option name="Yes">
+			OK
+		</option>
+		<option name="No">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ConfirmObjectTakeNoOwn">
+		<message name="message">
+			Ви намагаєтесь взяти не свої об&apos;єкти,.
+якщо продовжите, вони успадкують права наст.власника
+з можливим обмеженням їх копіювання і 
+редагування.
+
+Ви впевнені, що хочете взяти ці елементи?
+		</message>
+		<option name="Yes">
+			OK
+		</option>
+		<option name="No">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ConfirmObjectTakeLockNoOwn">
+		<message name="message">
+			Як мінімум один елемент заблоковано.
+Ви намагаєтесь взяти не свої об&apos;єкти,.
+якщо продовжите, вони успадкують права наст.власника
+з можливим обмеженням їх копіювання і 
+редагування.
+Однак, Ви можете забрати вибране.
+
+Ви впевнені, що хочете взяти ці елементи?
+		</message>
+		<option name="Yes">
+			OK
+		</option>
+		<option name="No">
+			Відміна
+		</option>
+	</alert>
+	<alert name="CantBuyLandAcrossMultipleRegions">
+		<message name="message">
+			Неможна купити землю, т.як вибрано декілька регіонів.
+
+Виберіть ділянку поменше і повторіть.
+		</message>
+	</alert>
+	<alert name="DeedLandToGroup">
+		<message name="message">
+			Використання ділянки, потребує від групи
+платити більше грошей за землекористування.
+Ціна покупки цієї землі не платиться її власнику. Якщо використовану ділянку буде продано, то отримані від продажу кошти будуть розподілені між учасниками групи.
+
+Використовувати ділянку [AREA] кв.м для групи
+&apos;[GROUP_NAME]&apos;?
+		</message>
+		<option name="Deed">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="DeedLandToGroupWithContribution">
+		<message name="message">
+			Взяття ділянки у користування змусить групу 
+платити більше грошей за землекористування.
+Користування включає в себе сплату внесків групи від
+&apos;[FIRST_NAME] [LAST_NAME]&apos;.
+Ціна покупки цієї землі не платиться її власнику. Якщо використовану ділянку буде продано, то отримані від продажу кошти будуть розподілені між учасниками групи.
+
+Використовувати ділянку [AREA] кв.м для групи
+
+&apos;[GROUP_NAME]&apos;?
+		</message>
+		<option name="Deed">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="DisplaySetToSafe">
+		<message name="message">
+			Настройки дисплея виставлені в безпечний режим,
+т.як указана опція -safe.
+		</message>
+	</alert>
+	<alert name="DisplaySetToRecommended">
+		<message name="message">
+			Настройки дисплея виставлені в рекомендований режим,
+на основі Вашої системної конфігурації.
+		</message>
+	</alert>
+	<alert name="UnableToConnect">
+		<message name="message">
+			Неможливо з&apos;єднатися з сервером.
+Немає доступа до домену: [HOST_NAME]
+		</message>
+	</alert>
+	<alert name="CanNotFindServer">
+		<message name="message">
+			Не знайдений DNS.
+Це сталося із-за втрати зв&apos;язку з Інтернет
+або із-за проблем на сервері.
+
+Будь ласка, спробуйте ще раз через декілька хвилин або зверніться за допомогою
+до вебсторінки статусу.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Help">
+			Допомога
+		</option>
+	</alert>
+	<alert name="PleaseSelectServer">
+		<message name="message">
+			Виберіть сервер.
+Неможливо під&apos;єднатися до [IP_ADDRESS]
+		</message>
+	</alert>
+	<alert name="SystemMayBeDown">
+		<message name="message">
+			Неможливо увійти в [SECOND_LIFE].
+Система недоступна. 
+Будь ласка спробуйте з&apos;єднатися 
+знову через декілька хвилин, або натисніть Допомога
+для поради і переходу до web-сторінки статусу системи.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Help">
+			Допомога
+		</option>
+	</alert>
+	<alert name="ErrorMessage">
+		<message name="message">
+			[ERROR_MESSAGE]
+		</message>
+	</alert>
+	<alert name="QuickTimeOutOfDate">
+		<ignore name="ignore">
+			QuickTime застарів і не пригодний для використання
+		</ignore>
+		<message name="message">
+			Потоковое відео вимкнене, т.як у Вашій системі встановлена
+застаріла версія QuickTime.
+
+Відвідайте http://www.apple.com/quicktime/ для оновлення.
+		</message>
+	</alert>
+	<alert name="AvatarMoved">
+		<message name="message">
+			Ваша позиція [TYPE] тимчасово недоступна. [HELP] 
+Ви можете перейти в сусідній регіон.
+		</message>
+	</alert>
+	<alert name="ClothingLoading">
+		<message name="message">
+			Ваш одяг ще завантажується.
+Ви можете вести себе нормально, і інші
+резиденти побачать Вас коректно.
+		</message>
+		<ignore name="ignore">
+			Коли одягу необхідна більша кількість часу для завантаження
+		</ignore>
+	</alert>
+	<alert name="FirstRun">
+		<message name="message">
+			[SECOND_LIFE] установку завершено.
+
+Якщо Ви вперше використовуєте [SECOND_LIFE], перед входом Вам необхідно створити аккаунт.
+Повернутися на www.secondlife.com для створення нового аккаунта?
+		</message>
+		<option name="NewAccount...">
+			Новий аккаунт.
+		</option>
+		<option name="Continue">
+			Продовжити
+		</option>
+	</alert>
+	<alert name="SetByHostFail">
+		<message name="message">
+			Неможливо з&apos;єднатися з сервером.
+Неможливо визначити ім&apos;я домена: [HOST_NAME]
+
+Перевірте Ваше мережеве з&apos;єднання.
+		</message>
+	</alert>
+	<alert name="LoginPacketNeverReceived">
+		<message name="message">
+			Неможливо з&apos;єднатися. Пакети не доходять до сервера логіна.
+
+Будь ласка, спробуйте через декілька хвилин або зверніться за допомогою на вебсторінку підтримки, або спробуйте телепортуватися Додому.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Help">
+			Допомога
+		</option>
+		<option name="Teleport">
+			Телепорт
+		</option>
+	</alert>
+	<alert name="WelcomeNoClothes">
+		<message name="message">
+			Ваш персонаж з&apos;явиться через момент.
+ 
+Використовуйте стрілки для руху
+Використовуйте F1 кожен раз, коли Вам потрібна
+допомога або захочеться дізнатися більше про [SECOND_LIFE].
+		</message>
+	</alert>
+	<alert name="WelcomeChooseSex">
+		<message name="message">
+			Ваш персонаж з&apos;явиться через момент.
+ 
+Використовуйте стрілки для руху
+Використовуйте F1 кожен раз, коли Вам потрібна
+допомога або захочеться дізнатися більше про [SECOND_LIFE].
+Виберіть чоловічий або жіночий аватар.
+Можете потім змінити цей вибір.
+		</message>
+		<option name="Male">
+			Чоловік
+		</option>
+		<option name="Female">
+			Жінка
+		</option>
+	</alert>
+	<alert name="NotEnoughCurrency">
+		<message name="message">
+			[NAME] L$ [PRICE] У Вас недостатньо грошей для цього.
+		</message>
+	</alert>
+	<alert name="GrantedModifyRights">
+		<message name="message">
+			Вам дали право змінювати об&apos;єкти резидента [FIRST_NAME] [LAST_NAME].
+		</message>
+	</alert>
+	<alert name="RevokedModifyRights">
+		<message name="message">
+			У Вас відібрали право змінювати об&apos;єктів резидента [FIRST_NAME] [LAST_NAME]
+		</message>
+	</alert>
+	<alert name="FlushMapVisibilityCaches">
+		<message name="message">
+			Це скине кеш карти цього регіона.
+Це корисно виключно для налагодження.
+(Зачекайте 5 хвилин, і карта оновиться 
+у всіх після їх перезаходу в регіон.)
+		</message>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="OnlyCopyContentsOfSingleItem">
+		<message name="message">
+			Неможна копіювати зміст одразу двух і більше елементів.
+Виберіть тільки один об&apos;єкт і повторіть.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="KickUsersFromRegion">
+		<message name="message">
+			Телепортувати всіх резидентів в їх домашній регіон?
+		</message>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ReturnScriptedOnOthersLand">
+		<message name="message">
+			Ви впевнені в поверненні всіх скриптованих об&apos;єктів що належать
+** [USER_NAME] **
+зі всіх ділянок, що йому не належать?
+		</message>
+		<option name="Return">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ReturnScriptedOnAllLand">
+		<message name="message">
+			Ви впевнені в поверненні всіх скриптованих об&apos;єктів що належать
+** [USER_NAME] **
+зі ВСІЄЇ ЗЕМЛІ цього регіона?
+		</message>
+		<option name="Return">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="InvalidTerrainBitDepth">
+		<message name="message">
+			Неможливо встановити текстуру регіона: 
+Текстура регіона [TEXTURE_NUM] має неправильну глибину біта [TEXTURE_BIT_DEPTH].
+ 
+Замініть текстуру [TEXTURE_NUM] 24-бітним 512x512 або меньшим зображенням
+і натисніть &apos;Застосувати&apos; знову.
+		</message>
+	</alert>
+	<alert name="InvalidTerrainSize">
+		<message name="message">
+			Неможливо встановити текстуру регіона: 
+Текстура регіона [TEXTURE_NUM] дуже велика [TEXTURE_SIZE_X]x[TEXTURE_SIZE_Y]. 
+ 
+Замініть текстуру [TEXTURE_NUM] 24-бітним 512x512 або меньшим зображенням
+і натисніть &apos;Застосувати&apos; знову.
+		</message>
+	</alert>
+	<alert name="RawUploadStarted">
+		<message name="message">
+			Завантаження почалось. Це може зайняти до 2 хвилин, 
+в залежності від швидкості Вашого Інтернет-з&apos;єднання.
+		</message>
+	</alert>
+	<alert name="ConfirmBakeTerrain">
+		<message name="message">
+			Ви дійсно хочете скинути поточний ландшафт, 
+розмістивши його посередині між границями висоти і глибини,
+використовуючи стандарт для інструмента &apos;&apos;Повернення&apos;&apos;?
+		</message>
+		<option name="Bake">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="MaxAllowedAgentOnRegion">
+		<message name="message">
+			У Вас може бути [MAX_AGENTS] допущених резидентів.
+		</message>
+	</alert>
+	<alert name="MaxBannedAgentsOnRegion">
+		<message name="message">
+			У Вас може бути [MAX_BANNED] заблокованих резидентів.
+		</message>
+	</alert>
+	<alert name="MaxAgentOnRegionBatch">
+		<message name="message">
+			Помилка при спробі додати [NUM_ADDED] резидентів:
+Перевищує [MAX_AGENTS] [LIST_TYPE] ліміт на [NUM_EXCESS].
+		</message>
+	</alert>
+	<alert name="MaxAllowedGroupsOnRegion">
+		<message name="message">
+			У Вас може бути [MAX_GROUPS] Допущених Груп.
+		</message>
+		<option name="Bake">
+			Скинути
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="MaxManagersOnRegion">
+		<message name="message">
+			У вас може бути [MAX_MANAGER] Менеджерів Маєтку.
+		</message>
+	</alert>
+	<alert name="OwnerCanNotBeDenied">
+		<message name="message">
+			Неможна внести власника ділянки в список заблокованих резидентів.
+		</message>
+	</alert>
+	<alert name="CanNotChangeAppearanceUntilLoaded">
+		<message name="message">
+			Неможна редагувати зовнішній вигляд, доки не завантажаться одяг і форма.
+		</message>
+	</alert>
+	<alert name="ClassifiedMustBeAlphanumeric">
+		<message name="message">
+			Ім&apos;я реклами має починатися з літери 
+A-Z або цифри. Ніяких знаків пунктуації.
+		</message>
+	</alert>
+	<alert name="CantSetBuyObject">
+		<message name="message">
+			Неможна купити Об&apos;єкт, т.як він не для продажу.
+Виставте об&apos;єкт на продаж і спробуйте ще раз.
+		</message>
+	</alert>
+	<alert name="FinishedRawDownload">
+		<message name="message">
+			Завантаження raw-ландшафту завершено в : 
+[DOWNLOAD_PATH].
+		</message>
+	</alert>
+	<alert name="DownloadWindowsMandatory">
+		<message name="message">
+			Доступна нова версія [SECOND_LIFE].
+[MESSAGE]
+Вам необхідно скачати оновлення [SECOND_LIFE].
+		</message>
+		<option name="Download">
+			Скачати
+		</option>
+		<option name="Quit">
+			Вихід
+		</option>
+	</alert>
+	<alert name="DownloadWindows">
+		<message name="message">
+			Доступна нова версія [SECOND_LIFE].
+[MESSAGE]
+Установка нової версії не обов&apos;язкова, але рекомендується використовувати її для підвищення швидкодії і стабільності.
+		</message>
+		<option name="Download">
+			Скачати
+		</option>
+		<option name="Continue">
+			Продовжити
+		</option>
+	</alert>
+	<alert name="DownloadWindowsReleaseForDownload">
+		<message name="message">
+			Доступна нова версія [SECOND_LIFE].
+[MESSAGE]
+Установка нової версії не обов&apos;язкова, але рекомендується використовувати її для підвищення швидкодії і стабільності.
+		</message>
+		<option name="Download">
+			Скачати
+		</option>
+		<option name="Continue">
+			Продовжити
+		</option>
+	</alert>
+	<alert name="DownloadMacMandatory">
+		<message name="message">
+			Доступна нова версія [SECOND_LIFE].
+[MESSAGE]
+Вам необхідно скачати оновлення [SECOND_LIFE].
+ 
+Скачати її у Вашу папку для програм?
+		</message>
+		<option name="Download">
+			Скачати
+		</option>
+		<option name="Quit">
+			Вихід
+		</option>
+	</alert>
+	<alert name="DownloadMac">
+		<message name="message">
+			Доступна нова версія [SECOND_LIFE].
+[MESSAGE]
+Установка нової версії не обов&apos;язкова, але рекомендується використовувати її для підвищення швидкодії і стабільності.
+ 
+Скачати її у Вашу папку для програм?
+		</message>
+		<option name="Download">
+			Скачати
+		</option>
+		<option name="Continue">
+			Продовжити
+		</option>
+	</alert>
+	<alert name="DownloadMacReleaseForDownload">
+		<message name="message">
+			Доступна нова версія [SECOND_LIFE].
+[MESSAGE]
+Установка нової версії не обов&apos;язкова, але рекомендується використовувати її для підвищення швидкодії і стабільності.
+ 
+Скачати її у Вашу папку для програм?
+		</message>
+		<option name="Download">
+			Скачати
+		</option>
+		<option name="Continue">
+			Продовжити
+		</option>
+	</alert>
+	<alert name="DeedObjectToGroup">
+		<message name="message">
+			Використання цього об&apos;єкту дозволить групі 
+* Отримувати L$ з оплати цього об&apos;єкту
+		</message>
+		<ignore name="ignore">
+			При використанні об&apos;єктів групами
+		</ignore>
+		<option name="Deed">
+			Використовувати
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="WebLaunchExternalTarget">
+		<message name="message">
+			Відкрити браузер для перегляду змісту?
+		</message>
+		<ignore name="ignore">
+			Коли Ваша система збирається відкрити браузер
+		</ignore>
+		<option name="Open">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="WebLaunchJoinNow">
+		<message name="message">
+			Перейти на www.secondlife.com для управління Вашим аккаунтом?
+		</message>
+		<ignore name="ignore">
+			Запустіть браузер для управління Вашим аккаунтом
+		</ignore>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="WebLaunchBugReport101">
+		<message name="message">
+			Відвідайте [SECOND_LIFE] Wiki і навчіться правильно повідомляти про помилку.
+		</message>
+		<ignore name="ignore">
+			Запустіть браузер для перегляду Повідомлення про Помилку 101 Wiki
+		</ignore>
+		<option name="Gotopage">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="WebLaunchSecurityIssues">
+		<message name="message">
+			Відвідайте [SECOND_LIFE] Wiki і навчіться правильно повідомляти про проблеми безпеки.
+		</message>
+		<ignore name="ignore">
+			Запустіть браузер для перегляду Wiki з питань безпеки
+		</ignore>
+		<option name="Gotopage">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="WebLaunchQAWiki">
+		<message name="message">
+			Відвідайте [SECOND_LIFE] FAQ Wiki.
+		</message>
+		<ignore name="ignore">
+			При запуску браузера для перегляду FAQ Wiki
+		</ignore>
+		<option name="Gotopage">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="WebLaunchPublicIssue">
+		<message name="message">
+			Відвідайте [SECOND_LIFE] з питань про нові версії. Можете повідомити про помилки в них.
+		</message>
+		<ignore name="ignore">
+			Запустіть браузер для перегляду Wiki з приводу нових версій.
+		</ignore>
+		<option name="Gotopage">
+			Перейти на сторінку
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="WebLaunchPublicIssueHelp">
+		<message name="message">
+			Відвідайте [SECOND_LIFE] з питань про нові версії. Можете повідомити про помилки в них.
+		</message>
+		<ignore name="ignore">
+			Запустіть браузер для перегляду Wiki з приводу нових версій.
+		</ignore>
+		<option name="Gotopage">
+			Перейти на сторінку
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="WebLaunchForums">
+		<message name="message">
+			Пошук в [SECOND_LIFE] Базі Знань з приводу порад і трюків.
+		</message>
+		<ignore name="ignore">
+			Запустіть браузер для перегляду Бази Знань
+		</ignore>
+		<option name="Gotopage">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="WebLaunchSupport">
+		<message name="message">
+			Звернутися в службу підтримки [SECOND_LIFE].
+		</message>
+		<ignore name="ignore">
+			Запустіть браузер для контакта зі службою підтримки.
+		</ignore>
+		<option name="Gotopage">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="WebLaunchSupportWiki">
+		<message name="message">
+			Офіційний блог Linden Lab з новинами і інформацією.
+		</message>
+		<ignore name="ignore">
+			Запустіть браузер для перегляду блога Linden Lab.
+		</ignore>
+		<option name="Gotopage">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="WebLaunchLSLGuide">
+		<message name="message">
+			Перейти до посібника по скриптам?
+		</message>
+		<ignore name="ignore">
+			Запустіть браузер для перегляду посібника по скриптам.
+		</ignore>
+		<option name="Gotopage">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="WebLaunchLSLWiki">
+		<message name="message">
+			Перейти на Портал LSL для допомоги по скриптам?
+		</message>
+		<ignore name="ignore">
+			Запустіть браузер для перегляду Портала LSL
+		</ignore>
+		<option name="Gotopage">
+			Перейти на сторінку
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="WebLaunchReleaseNotes">
+		<message name="message">
+			Дивитися замітки версій [SECOND_LIFE]??
+		</message>
+		<ignore name="ignore">
+			Запустіть браузер для перегляду заміток версій [SECOND_LIFE]?
+		</ignore>
+		<option name="Gotopage">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ReturnToOwner">
+		<message name="message">
+			Ви впевнені у поверненні обраних 
+об&apos;єктів їх власникам? Об&apos;єкти, що використовуються
+повернуться до своїх старих власників.
+ 
+*ПОПЕРЕДЖЕННЯ* Використовувані об&apos;єкти, що не можуть бути передані, будуть видалені!
+		</message>
+		<ignore name="ignore">
+			Повернення об&apos;єктів їх власникам
+		</ignore>
+		<option name="Return">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ViewReleaseNotes">
+		<message name="message">
+			Перегляд заміток версій Second Life?
+		</message>
+		<ignore name="ignore">
+			Перегляд заміток версій
+		</ignore>
+		<option name="Gotopage">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="GroupLeaveConfirmOfficer">
+		<message name="message">
+			Ви офіцер групи [GROUP].
+Покинути Групу?
+		</message>
+		<option name="Leave">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="GroupLeaveConfirmMember">
+		<message name="message">
+			Ви учасник групи [GROUP].
+Покинути Групу?
+		</message>
+		<option name="Leave">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ConfirmKick">
+		<message name="message">
+			Ви ДІЙСНО хочете викинути всіх користувачів з регіона?
+		</message>
+		<option name="Kick">
+			Викинути всіх користувачів
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="MuteLinden">
+		<message name="message">
+			Вибачте, але Linden неможливо заглушити.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="MuteByNameFailed"
+	     title="Заглушити об&apos;єкт по імені не вдалося">
+		<message name="message">
+			Ви вже заглушили це ім&apos;я.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="RemoveItemWarn">
+		<message name="message">
+			Зтирання змісту може 
+пошкодити об&apos;єкт, хоча це і дозволено. Ви хочете видалити цей елемент?
+		</message>
+		<option name="Yes">
+			OK
+		</option>
+		<option name="No">
+			Відміна
+		</option>
+	</alert>
+	<alert name="CantRateOwnedByGroup">
+		<message name="message">
+			Неможна оцінити власника об&apos;єкту, об&apos;єкт належить групі.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="CantOfferCallingCard">
+		<message name="message">
+			Не вийшло отримати візитку, спробуйте ще раз через секунду..
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="CantOfferFriendship">
+		<message name="message">
+			Не вийшло запропонувати дружбу, спробуйте ще раз через секунду..
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="CantSetHome">
+		<message name="message">
+			Неможливо встановити Дім тут.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="BusyModeSet">
+		<message name="message">
+			Увімкнено режим &apos;&apos;Зайнятий&apos;&apos;.
+Чат і IM будуть сховані. IM отримають відповідь
+про зайнятість. Усі телепортації і пропозиції
+речей в інвентар будуть відхилятися.
+		</message>
+		<ignore name="ignore">
+			Установка режима &apos;&apos;Зайнятий&apos;&apos;
+		</ignore>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="NoPVPDetected">
+		<message name="message">
+			Не знайдено порушень гравець проти гравця (PvP)
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="NotecardAttachPermFail">
+		<message name="message">
+			К визитке можна прикрепить тільки предмети
+з неограниченными правами для наследования.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="JoinedTooManyGroupsMember">
+		<message name="message">
+			Ви вже член в максимальній кількості груп.
+Будь ласка покиньте хоча б одну з них, перед тим, як вступати в цю або відхиліть пропозицію.
+Щоб вийти з групи, оберіть &apos;Групы..&apos; з меню
+&apos;Правка&apos;.
+[NAME] запросив вас вступити в групу.
+[INVITE]
+		</message>
+		<option name="Join">
+			Вступити
+		</option>
+		<option name="Decline">
+			Відмовити
+		</option>
+	</alert>
+	<alert name="JoinedTooManyGroupsOfficer">
+		<message name="message">
+			Ви вже член в максимальній кількості груп.
+Будь ласка покиньте хоча б одну з них, перед тим, як вступати в цю або відхиліть пропозицію.
+Щоб вийти з групи, оберіть &apos;Групы..&apos; з меню
+&apos;Правка&apos;.
+[NAME] запросив вас вступити в групу в якості офіцера.
+[INVITE]
+		</message>
+		<option name="Join">
+			Вступити
+		</option>
+		<option name="Decline">
+			Відмовити
+		</option>
+	</alert>
+	<alert name="KickUser">
+		<message name="message">
+			З яким повідомленням викинути користувача?
+		</message>
+		<editline>
+			Адміністратор викинув Вас з Second Life.
+		</editline>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="KickAllUsers">
+		<message name="message">
+			З яким повідомленням викинути всіх з гріду?
+		</message>
+		<editline>
+			Адміністратор викинув Вас з Second Life.
+		</editline>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="FreezeUser">
+		<message name="message">
+			З яким повідомленням заморозити користувача?
+		</message>
+		<editline>
+			Адміністратор заморозив Вас. Ви не можете рухатися і спілкуватися. Адміністратор зв&apos;яжеться з Вами через IM.
+		</editline>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="UnFreezeUser">
+		<message name="message">
+			З яким повідомленням розморозити користувача?
+		</message>
+		<editline>
+			Тепер Ви розморожені.
+		</editline>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ExpungeUser">
+		<message name="message">
+			Введіть ID користувача, щоб його викреслити
+		</message>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="OfferTeleport">
+		<message name="message">
+			З яким повідомленням запропонувати телепорт до Вас?
+		</message>
+		<editline>
+			Приєднуйся до мене в [REGION]
+		</editline>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="OfferTeleportFromGod">
+		<message name="message">
+			Бог створив користувача тут?
+		</message>
+		<editline>
+			Приєднуйся до мене в [REGION]
+		</editline>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="TeleportFromLandmark">
+		<message name="message">
+			Ви впевнені, що хочете телепортуватися?
+		</message>
+		<ignore name="ignore">
+			Телепорт через закладку інвентаря
+		</ignore>
+		<option name="Teleport">
+			Телепорт
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="MessageEstate"
+	     title="Повідомлення кожному в маєтку">
+		<message name="message">
+			Наберіть невелике повідомлення для всіх
+присутніх у Вашому маєтку.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ChangeLindenEstate"
+	     title="Змінити ділянку Лінденів">
+		<message name="message">
+			Ви хочете змінити маєтки, що належать Лінденам (материк, дитячий Grid, остров орієнтації і т.д.).
+
+Це НАДЗВИЧАЙНО НЕБЕЗПЕЧНО, тому що це може суттєво
+вплинути на стан речей. На материку це може 
+змінити тисячі регіонів, і зіпсувати роботу серверів.
+ 
+Продовжити?
+		</message>
+		<option name="ChangeEstate">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ChangeLindenAccess"
+	     title="Змінити доступ до ділянки Лінденів">
+		<message name="message">
+			Ви хочете змінити маєтки, що належать Лінденам (материк, дитячий Grid, остров орієнтації і т.д.).	
+
+Це НАДЗВИЧАЙНО НЕБЕЗПЕЧНО і може використовуватися тільки для того,
+щоб викликати методи, що дозволять переміщати об&apos;єкти/L$ в/з Grid.
+Це може змінити тисячі регіонів, і 
+зіпсувати роботу серверів.
+		</message>
+		<option name="ChangeEstate">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="EstateAllowedAgentAdd" title="Обрати маєток">
+		<message name="message">
+			Додати в список дозволених цього маєтку або [ALL_ESTATES]?
+		</message>
+		<option name="ThisEstate">
+			Цей маєток
+		</option>
+		<option name="AllEstates">
+			Всі маєтки
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="EstateAllowedAgentRemove" title="Обрати маєток">
+		<message name="message">
+			Виключити зі списку дозволених для цього маєтку або для [ALL_ESTATES]?
+		</message>
+		<option name="ThisEstate">
+			Цей маєток
+		</option>
+		<option name="AllEstates">
+			Всі маєтки
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="EstateAllowedGroupAdd" title="Обрати маєток">
+		<message name="message">
+			Додати в список дозволених груп для цього маєткуй або для [ALL_ESTATES]?
+		</message>
+		<option name="ThisEstate">
+			Цей маєток
+		</option>
+		<option name="AllEstates">
+			Всі маєтки
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="EstateAllowedGroupRemove" title="Обрати маєток">
+		<message name="message">
+			Виключити зі списку дозволених груп для цього маєтку або для [ALL_ESTATES]?
+		</message>
+		<option name="ThisEstate">
+			Цей маєток
+		</option>
+		<option name="AllEstates">
+			Всі маєтки
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="EstateBannedAgentAdd" title="Обрати маєток">
+		<message name="message">
+			Заборонити доступ тільки до цього маєтку або до [ALL_ESTATES]?
+		</message>
+		<option name="ThisEstate">
+			Цей маєток
+		</option>
+		<option name="AllEstates">
+			Всі маєтки
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="EstateBannedAgentRemove" title="Обрати маєток">
+		<message name="message">
+			Видалити резидента з бан-листа тільки для цього маєтку або для [ALL_ESTATES]?
+		</message>
+		<option name="ThisEstate">
+			Цей маєток
+		</option>
+		<option name="AllEstates">
+			Все маєтки
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="EstateManagerAdd" title="Обрати маєток">
+		<message name="message">
+			Додати менеджера тільки для цього маєтку або для [ALL_ESTATES]?
+		</message>
+		<option name="ThisEstate">
+			Цей маєток
+		</option>
+		<option name="AllEstates">
+			Всі маєтки
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="EstateManagerRemove" title="Обрати маєток">
+		<message name="message">
+			Видалити менеджера тільки для цього маєтку або для [ALL_ESTATES]?
+		</message>
+		<option name="ThisEstate">
+			Цей маєток
+		</option>
+		<option name="AllEstates">
+			Всі маєтки
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="EstateCovenantChange" title="Обрати маєток">
+		<message name="message">
+			Змінити Угоду використання тільки для цього маєтку або [ALL_ESTATES]?
+		</message>
+		<option name="ThisEstate">
+			Цей маєток
+		</option>
+		<option name="AllEstates">
+			Всі маєтки
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="EstateKickUser" title="Підтвердити викидання">
+		<message name="message">
+			Викинути [EVIL_USER] з цього маєтку?
+		</message>
+		<option name="Kick">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="EstateChangeCovenant">
+		<message name="message">
+			Ви впевнені у зміні Угоди використання для цього маєтку?
+		</message>
+		<option name="Change">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ProblemImportingEstateCovenant">
+		<message name="message">
+			Проблема імпорту Угоди використання
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="ProblemAddingEstateManager">
+		<message name="message">
+			Помилка при додаванні нового менеджера маєтку.  Один або більше маєтків можливо має повний список.
+		</message>
+	</alert>
+	<alert name="ProblemAddingEstateGeneric">
+		<message name="message">
+			Помилка при додаванні нового менеджера маєтку.  Один або більше маєтків можливо має повний список.
+		</message>
+	</alert>
+	<alert name="UnableToLoadNotecard">
+		<message name="message">
+			Неможливо завантажити дані замітки.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="NotAllowedToViewNotecard">
+		<message name="message">
+			Немає прав для перегляду замітки з вказаним ID.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="MissingNotecardAssetID">
+		<message name="message">
+			Замітка з вказаним ID не знайдена в БД.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="PublishClassified">
+		<message name="message">
+			Запам&apos;ятайте: Оплата за рекламу не повертається.
+ 
+Публікувати рекламу за L$[AMOUNT]?
+		</message>
+		<option name="Publish">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="SetClassifiedMature">
+		<message name="message">
+			Чи містить ця реклама матеріали Для дорослих?
+		</message>
+		<option name="Mature">
+			Так
+		</option>
+		<option name="Not Mature">
+			Ні
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="SetGroupMature">
+		<message name="message">
+			Чи містить ця група матеріали Для дорослих?
+		</message>
+		<option name="Mature">
+			Так
+		</option>
+		<option name="Not Mature">
+			Ні
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ConfirmRestart" title="Підтвердити перезапуск">
+		<message name="message">
+			Ви впевнені у перезапуску регіона прот. 2 хвилин?
+		</message>
+		<option name="Restart">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="MessageRegion"
+	     title="Повідомлення кожному в цьому регіоні">
+		<message name="message">
+			Наберіть невелике повідомлення для всіх
+присутніх у Вашому маєтку.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="HelpRegionBlockTerraform"
+	     title="Блокувати правку ландшафту">
+		<message name="message">
+			Якщо ця опція увімкнена, то власник землі не зможе змінювати ландшафт
+незалежно від установок &apos;&apos;Правка Ландшафту&apos;&apos; в меню окремих ділянок.
+ 
+За замовчуванням: вимк.
+		</message>
+	</alert>
+	<alert name="HelpRegionBlockFly" title="Блокувати Політ">
+		<message name="message">
+			Якщо ця опція увімкнена, люди не зможуть літати тут
+незалежно від установок &apos;&apos;Політ&apos;&apos; в меню окремих ділянок.
+ 
+За замовчуванням: вимк.
+		</message>
+	</alert>
+	<alert name="HelpRegionAllowDamage" title="Дозволити Пошкодження">
+		<message name="message">
+			Якщо ця опція увімкнена, пошкодження будуть працювати однаково
+незалежно від установок &apos;&apos;Пошкодження&apos;&apos; в меню окремих ділянок.
+Якщо опція вимкнена, то Настройки на ділянках будуть приміняти 
+Пошкодження для кожної ділянки окремо.
+ 
+За замовчуванням: вимк.
+		</message>
+	</alert>
+	<alert name="HelpRegionAgentLimit" title="Ліміт резидентів">
+		<message name="message">
+			Установка максимального числа аватарів в регіоні.
+Швидкодія може залежати від числа 
+присутніх тут аватарів.
+ 
+За замовчуванням: 40
+		</message>
+	</alert>
+	<alert name="HelpRegionObjectBonus" title="Бонус об&apos;єктів">
+		<message name="message">
+			Бонуси об&apos;єктів задають кількість примів на кожну ділянку.
+Допустимий діапазон від 1 до 10. Установка &apos;1&apos;, на кожну ділянку 512 кв.м. 
+дозволяє 117 об&apos;єктів. &apos;2&apos; на 512 кв.м. ділянку
+ -- 234 об&apos;єкти, І так далі. Максимально 
+допустиме кількість об&apos;єктів складає 15 000.
+Будьте обережні з пониженням бонусу об&apos;єктів, т.як 
+це може видалити або повернути зайві об&apos;єкти.
+ 
+За замовчуванням: 1.0
+		</message>
+	</alert>
+	<alert name="HelpRegionMaturity" title="Для дорослих">
+		<message name="message">
+			Установка рейтингу Для дорослих на регіон, показується
+			зверху на екрані, і в підказці до карти.
+Установка опції може вплинути на пошук -- якщо резидент відключить показ 
+змісту Для дорослих.
+ 
+Може знадобитися деякий час для того, щоб зміни прийняли силу на карті.
+ 
+За замовчуванням: PG
+		</message>
+	</alert>
+	<alert name="HelpRegionRestrictPushObject"
+	     title="Заборонити штовхання">
+		<message name="message">
+			Ця опція ставить обмеження на штовхання для всього регіона..
+Коли вона увімкнена резиденти можуть штовхати тільки самі себе,
+або їх може штовхнути власник ділянки.
+(Поштовхи реалізуються через функцію llPushObject().)
+ 
+За замовчуванням: вимк.
+		</message>
+	</alert>
+	<alert name="HelpParcelChanges"
+	     title="Об&apos;єднати/Розділити ділянку">
+		<message name="message">
+			Ця опція визначає, чи можна розділяти і з&apos;єднувати ділянки регіона, які не належать власнику маєтку.
+Якщо опція вимкнена, то:
+ * Тільки власники і менеджери ділянок можуть їх ділити і об&apos;єднувати.
+ * Вони можуть робити це при відповідних на те правах їх самих, або їх груп.
+де вони мають відповідні групові повноваження
+Якщо опція увімкнена, то:
+ * Тільки власники ділянок можуть їх ділити і об&apos;єднувати.
+ * Для групових ділянок тільки учасники з відповідними правами 
+можуть ділити і об&apos;єднувати ділянки.
+ 
+За замовчуванням:увімк.
+		</message>
+	</alert>
+	<alert name="HelpRegionSearch" title="Не показувати в Пошуку">
+		<message name="message">
+			Вмикання заборонить власникам ділянок включати їх землю в пошук
+За замовчуванням:вимк.
+		</message>
+	</alert>
+	<alert name="HelpParcelSearch" title="Не показувати в Пошуку">
+		<message name="message">
+			Вмикання опції покаже
+ - ділянку в результатах пошуку
+ - публічні об&apos;єкти цієї ділянки
+		</message>
+	</alert>
+	<alert name="RegionMaturityChange"
+	     title="Змінити рейтинг Для дорослих регіона">
+		<message name="message">
+			Рейтинг Для дорослих для цього регіона оновлений.
+Може знадобитися деякий час для того, щоб зміни прийняли силу для відображення на карті.
+		</message>
+	</alert>
+	<alert name="HelpRegionLandResell" title="Перепродаж землі">
+		<message name="message">
+			Власники і менеджери ділянок можуть продавати ділянки, що належать власнику маєтку.
+Якщо опція вимкнена, то покупці не зможуть перепродавати ділянки цього регіона.
+Якщо ж увімкнена, то покупці зможуть перепродати свої землі.
+ 
+За замовчуванням: Заборонити
+		</message>
+	</alert>
+	<alert name="HelpEstateCovenantID" title="ID Угоди">
+		<message name="message">
+			Установіть ID замітки для угоди для цієї ділянки.
+
+ 
+За замовчуванням: 00000000-0000-0000-0000-000000000000 або немає
+		</message>
+	</alert>
+	<alert name="HelpRegionDisableScripts" title="Вимкнути скрипти">
+		<message name="message">
+			Коли продуктивність сіма падає, виною цьому можуть бути скрипти
+Відкрийте Статистику сіма (Ctrl-Shift-1) і подивіться на FPS фізики. 
+Якщо він нижче 45, відкрийте панель Часу знизу панелі статистики.
+Якщо скрипт читає 25 ms або вище, натисніть на виклик Топ Скриптів.
+І Ви отримаєте список скриптів, які можуть бути причиною 
+низької продуктивності сіма.
+ 
+Виберіть панель Вимкнення скриптів, потім натисніть
+кнопку Застосувати, щоб тимчасово вимкнути всі скрипти в регіоні.
+Після цього можливо Вам знадобиться перейти до місця знаходження проблемного скрипта
+через інформацію з панелі Топ Скриптів. 
+На місці Ви зможете прийняти рішення: зв&apos;язатися або з Власником скрипта
+або повернути або видалити об&apos;єкт з цим скриптом.
+Потім зніміть галочку з &apos;&apos;Вимкнення скриптів&apos;&apos;, і натисніть Застосувати 
+для активації всіх скриптів в регіоні.
+ 
+За замовчуванням: вимк.
+		</message>
+	</alert>
+	<alert name="HelpRegionDisableCollisions" title="Вимкнути зіткнення">
+		<message name="message">
+			Коли продуктивність сіма падає, виною цьому можуть бути фізичні об&apos;єкти
+Відкрийте Статистику сіма (Ctrl-Shift-1) і подивіться на FPS фізики. 
+Якщо він нижче 45, відкрийте панель Часу знизу панелі статистики.
+Якщо час Сіма складає 20 ms або вище, 
+натисніть на виклик Топ Колізій. І Ви отримаєте список
+фізичних об&apos;єктів, які можуть бути причиною 
+низької продуктивності сіма.
+
+Виберіть панель Вимкнення колізій, потім натисніть
+кнопку Застосувати, щоб тимчасово вимкнути всы зіткнення в регіоні.
+Після цього можливо Вам знадобиться перейти до місця знаходження проблемного об&apos;єкту
+через інформацію з панелі Топ Колізій. 
+На місці Ви зможете прийняти рішення: зв&apos;язатися або з Власником об&apos;єкту
+або повернути або видалити цей об&apos;єкт.
+Потім зніміть галочку з &apos;&apos;Вимкнення колізій&apos;&apos;, і натисніть Застосувати 
+для активації всіх колізій в регіоні.
+ 
+За замовчуванням: вимк.
+		</message>
+	</alert>
+	<alert name="HelpRegionDisablePhysics" title="Вимкнути фізику">
+		<message name="message">
+			Вимкнення фізики подібне до вимкнення колізій,
+але при цьому вся фізика в регіоні вимикається.
+Це дає не тільки вимкнення зіткнень, але і аватари не можуть рухатися.
+ 
+Це можна використовувати тільки якщо вимкнення колізій не дає ефекту
+і потрібно зрозуміти, що послугувало причиною зниження продуктивності: фізика або
+зіткнення.
+ 
+Не забудьте увімкнути фізику знову, коли закінчите, інакше
+аватари не зможуть пересуватися.
+ 
+За замовчуванням: вимк.
+		</message>
+	</alert>
+	<alert name="HelpRegionTopColliders" title="Топ зіткнень">
+		<message name="message">
+			Дає список об&apos;єктів, потенційно здатних на велику кількість 
+зіткнень один з одним. Ці об&apos;єкти можуть знизити
+швидкодію сіма. Виберіть &apos;&apos;Перегляд&apos;&apos; &gt; Панель статистики
+і подивіться на Час Симулятора (фізика),
+що більше 20 ms йде на фізику.
+		</message>
+	</alert>
+	<alert name="HelpRegionTopScripts" title="Топ скриптів">
+		<message name="message">
+			Дає список об&apos;єктів, що використовують дуже багато часу 
+на виконання скриптів. Ці об&apos;єкти можуть знизити
+швидкодію сіма. Виберіть &apos;&apos;Перегляд&apos;&apos; &gt; Панель статистики
+і подивіться на Час Скриптів,
+що більше 25 ms йде на скрипти.
+		</message>
+	</alert>
+	<alert name="HelpRegionRestart" title="Перезапуск регіона">
+		<message name="message">
+			Перезапуск сервера регіона відбудеться через 
+2 хвилини. Всі резиденти в цьому регіоні будуть відключені. 
+Регіон збереже всю інформацію, і повернеться назад
+протягом 90 секунд.
+ 
+Перезапуск регіона не вирішує проблем його продуктивності.
+І має використовуватися тільки за призначенням.
+		</message>
+	</alert>
+	<alert name="HelpRegionWaterHeight" title="Рівень води">
+		<message name="message">
+			Це відмітка рівня води в метрах.
+Якщо її значення відрізняється від 20, то 
+на межі з сусіднім регионом буде видно 
+невеликий проміжок.
+ 
+За замовчуванням: 20
+		</message>
+	</alert>
+	<alert name="HelpRegionTerrainRaise" title="Підйом ландшафту">
+		<message name="message">
+			Ця відстань визначає, наскільки висота Вашої ділянки
+підіймається над стандартним ландшафтом регіона.
+
+ 
+За замовчуванням: 4
+		</message>
+	</alert>
+	<alert name="HelpRegionTerrainLower" title="Зниження ландшафту">
+		<message name="message">
+			Це відстань визначає, наскільки висота Вашої ділянки
+понижується над стандартним ландшафтом регіона.
+
+ 
+За замовчуванням: -4
+		</message>
+	</alert>
+	<alert name="HelpRegionUploadRaw"
+	     title="Завантажити RAW ландшафту">
+		<message name="message">
+			Ця кнопка завантажує .RAW файл в регіон, де Ви знаходитесь. 
+Файл повинен мати коректні розміри (RGB, 256x256) 
+і 13 каналів. Найкращий спосіб створити
+файл ландшафту -- скачати RAW файл і змінити його.  
+Для початку -- червоний колір задає висоту, змінюючи його Ви отримаєте новий ландшафт
+і завантажити його.
+ 
+Завантаження може зайняти до 45 секунд. 
+Пам&apos;ятайте, що ландшафт *не змінить* ні положення об&apos;єктів, що лежать на ньому,
+ні права ділянок, що лежать на ньому.
+Він може лише покрити об&apos;єкти (вони підуть під землю).
+ 
+Для детальної інформації про правку висот полів регіона, натисніть F1.
+		</message>
+	</alert>
+	<alert name="HelpRegionDownloadRaw" title="Скачати RAW ландшафту">
+		<message name="message">
+			Ця кнопка дозволяє скачати інфо про висоти полів регіона,
+розмірах ділянок, їх статус на продаж і деякі права.
+Відкривши цей файл в програмі типу Photoshop, Ви повинні
+будете виставити розміри зображення на RGB 256x256, 13 каналів.  
+Файл ландшафту не може бути відкритий іншим способом.
+
+ 
+Для детальної інформації про правку висот полів регіона, натисніть F1.
+		</message>
+	</alert>
+	<alert name="HelpRegionUseEstateSun"
+	     title="Використовувати місцеве Сонце">
+		<message name="message">
+			Цей пункт задає позицію Сонця в регіоні 
+так, як на решті території маєтку.
+ 
+За замовчуванням: увімк.
+		</message>
+	</alert>
+	<alert name="HelpRegionFixedSun" title="Фіксоване Сонце">
+		<message name="message">
+			Ця опція фіксує позицію Сонця в заданій фазі  
+і забороняє Сонцю рухатися.
+ 
+За замовчуванням: вимк.
+		</message>
+	</alert>
+	<alert name="HelpRegionBakeTerrain" title="Скинути Ландшафт">
+		<message name="message">
+			Ця опція зберігає поточний вигляд ландшафту как 
+новий стандарт для регіона. Однажды испеченная  
+форма буде збережена, і повернеться, коли Ви або кто-то другой изменит 
+ландшафт, а потім нажмет кнопку &apos;&apos;Повернути&apos;&apos;. Ландшафт испекается
+посередині між разницей высот регіона.
+		</message>
+	</alert>
+	<alert name="HelpEstateEstateManager" title="Менеджери маєтку">
+		<message name="message">
+			Менеджер маєтку - це резидент, якому дано право
+контроля параметрів регіона і маєтку. Менеджер маєтку
+може змінювати будь-які Настройки, крім скачування, завантаження
+і скидання ландшафту. Також він може банити
+або відміняти бан для Резидентів цього маєтку.
+ 
+Менеджер маєтку може бути встановлений або зміщений тільки 
+власником маєтку і ніким іншим. Виберіть
+тільки одного резидента на цю посаду. Ви несете 
+відповідальність за цей вибір.
+		</message>
+	</alert>
+	<alert name="HelpEstateUseGlobalTime"
+	     title="Використовувати глобальний час">
+		<message name="message">
+			Ця опція примушує Сонце над Вашим маєтком вести себе 
+так само як і на материку Лінденів.
+
+ 
+За замовчуванням: увімк.
+		</message>
+	</alert>
+	<alert name="HelpEstateFixedSun" title="Фіксоване Сонце">
+		<message name="message">
+			Ця опція задає позицію Сонця в заданій фазі  
+і забороняє Сонцю рухатися.
+		</message>
+	</alert>
+	<alert name="HelpEstateExternallyVisible" title="Доступ для всіх">
+		<message name="message">
+			Ця опція визначає можливість Резидентів, не внесених в список, потрапити на ділянку.
+ 
+За замовчуванням: увімк.
+		</message>
+	</alert>
+	<alert name="HelpEstateAllowDirectTeleport"
+	     title="Дозволити прямий телепорт">
+		<message name="message">
+			Коли увімкнено, Резиденти можуть потрапити в будь-яке місце
+ Вашого маєтку. Якщо вимкнено - Резиденти потрапляють
+ до найближчого телехабу.
+ 
+За замовчуванням: вимк.
+		</message>
+	</alert>
+	<alert name="HelpEstateAllowResident" title="Дозволити доступ">
+		<message name="message">
+			Доступ відкритий для вказаних тут резидентів
+і груп нижче.
+Ця опція працює тільки, якщо 
+видимість з материка вимкнена.
+		</message>
+	</alert>
+	<alert name="HelpEstateAllowGroup"
+	     title="Дозволити груповий доступ">
+		<message name="message">
+			Доступ відкритий для вказаних тут груп
+і резидентів вище.
+Ця опція працює тільки, якщо 
+видимість з материка вимкнена.
+		</message>
+	</alert>
+	<alert name="HelpEstateAbuseEmailAddress"
+	     title="Заборонити e-mail адресу">
+		<message name="message">
+			Установка тут електронної адреси приведе
+до того, що повідомлення про порушення будуть приходити на нього.
+Залишіть це поле порожнім, щоб такі повідомлення
+приходили тільки до Лінденів.
+		</message>
+	</alert>
+	<alert name="HelpEstateBanResident" title="Заборонити доступ">
+		<message name="message">
+			Резиденти з цього списку не мають прав для входу
+незалежно від інших установок.
+		</message>
+	</alert>
+	<alert name="HelpEstateVoiceChat" title="Увімкнути голосовий чат">
+		<message name="message">
+			Ділянки цього маєтку мають право на свої
+канали голосу, на яких резиденти чують і 
+говорять поряд.
+
+За замовчуванням: вимк.
+		</message>
+	</alert>
+	<alert name="VoiceVersionMismatch"
+	     title="Версія голосу не сумісна">
+		<message name="message">
+			Ця версія SL не сумісна з Голосовим Чатом в регіоні. Для використання функцій Голосового чату оновіть клієнт.
+		</message>
+	</alert>
+	<alert name="HelpEstateCovenant" title="Угода землі">
+		<message name="message">
+			Установка Угоди маєтку дозволяє продавати
+ділянки цього маєтку. Без угоди Ви не зможете
+їх продавати. Замітка з Угодою може бути порожньою,
+якщо Ви не бажаєте приміняти ніяких спеціальних 
+правил або реклами для покупців.
+ 
+Угода може використовуватися, щоб повідомити правила, 
+керуючі принципи, культурну інформацію
+про Вашу землю. Платіжні відомості і багато іншого, 
+що Ви хотіли б повідомити новому власнику, і з чим він 
+має погодитися перед купівлею цієї замли.
+
+ 
+Покупець має погодитися з Угодою, поставивши
+галочку перед здійсненням покупки. Угоду
+маєтку завжди можна подивитися, на панелі &apos;&apos;Про землю&apos;&apos;.
+		</message>
+	</alert>
+	<alert name="BuyObjectOneOnly" title="Неможна купити об&apos;єкт">
+		<message name="message">
+			Неможна купити більше одного об&apos;єкту за раз.
+Виберіть один об&apos;єкт і повторіть знову.
+		</message>
+	</alert>
+	<alert name="BuyObjectOneOwner" title="Неможна купити об&apos;єкт">
+		<message name="message">
+			Неможна купувати об&apos;єкти у різних власників одночасно.
+Виберіть один об&apos;єкт і повторіть знову.
+		</message>
+	</alert>
+	<alert name="BuyContentsOneOnly" title="Неможна купити зміст">
+		<message name="message">
+			Неможна купити зміст більш ніж одного об&apos;єкту за раз.
+Виберіть один об&apos;єкт і повторіть знову.
+		</message>
+	</alert>
+	<alert name="BuyContentsOneOwner" title="Неможна купити зміст">
+		<message name="message">
+			Неможна купувати об&apos;єкти у різних власників одночасно.
+Виберіть один об&apos;єкт і повторіть знову.
+		</message>
+	</alert>
+	<alert name="PermYes">
+		<message name="message">
+			Так
+		</message>
+	</alert>
+	<alert name="PermNo">
+		<message name="message">
+			Ні
+		</message>
+	</alert>
+	<alert name="BuyOriginal">
+		<message name="message">
+			Купити оригінальний об&apos;єкт у [OWNER] за L$[PRICE]?
+Ви станете власником цього об&apos;єкту.
+Ви зможете:
+ Редагувати: [MODIFYPERM]
+ Копіювати: [COPYPERM]
+ Перепродати або віддати: [RESELLPERM]
+		</message>
+		<option name="Buy">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="BuyOriginalNoOwner">
+		<message name="message">
+			Купити оригінальний об&apos;єкт за L$[PRICE]?
+Ви станете власником цього об&apos;єкту.
+Ви зможете:
+ Редагувати: [MODIFYPERM]
+ Копіювати: [COPYPERM]
+ Перепродати або віддати: [RESELLPERM]
+		</message>
+		<option name="Buy">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="BuyCopy">
+		<message name="message">
+			Купити копію у [OWNER] за L$[PRICE]?
+Об&apos;єкт скопіюється в Ваш інвентар.
+Ви зможете:
+ Редагувати: [MODIFYPERM]
+ Копіювати: [COPYPERM]
+ Перепродати або віддати: [RESELLPERM]
+		</message>
+		<option name="Buy">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="BuyCopyNoOwner">
+		<message name="message">
+			Купити копію за L$[PRICE]?
+Об&apos;єкт скопіюється в Ваш інвентар.
+Ви зможете:
+ Редагувати: [MODIFYPERM]
+ Копіювати: [COPYPERM]
+ Перепродати або віддати: [RESELLPERM]
+		</message>
+		<option name="Buy">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="BuyContents">
+		<message name="message">
+			Купити зміст у [OWNER] за L$[PRICE]?
+Все це скопіюється в Ваш інвентар.
+		</message>
+		<option name="Buy">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="BuyContentsNoOwner">
+		<message name="message">
+			Купити зміст за L$[PRICE]?
+Все це скопіюється в Ваш інвентар.
+		</message>
+		<option name="Buy">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ConfirmPurchase">
+		<message name="message">
+			Транзакція буде:
+[ACTION]
+ 
+Ви впевнені у здійсненні цієї покупки?
+		</message>
+		<option name="Confirm">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ConfirmPurchasePassword">
+		<message name="message">
+			Транзакція буде:
+[ACTION]
+ 
+Ви впевнені в здійсненні цієї покупки?
+Введіть пароль ще раз і натисніть OK.
+		</message>
+		<option name="ConfirmPurchase">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="SetPickLocation">
+		<message name="message">
+			Примітка:
+Ви оновили положення вибору
+але інші деталі зберегли
+свої початкові значення.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="MoveInventoryFromObject">
+		<message name="message">
+			Ви вибрали елемент інвентаря, який не можна скопіювати.
+Ці предмети перемістяться в Ваш інвентар (не скопіюються)
+ 
+Перемістити елемент(и) інвентаря?
+		</message>
+		<ignore name="ignore">
+			Переміщення елементів, які не можна скопіювати, з об&apos;єктів
+		</ignore>
+		<option name="Move">
+			OK
+		</option>
+		<option name="Don&apos;tMove">
+			Відміна
+		</option>
+	</alert>
+	<alert name="MoveInventoryFromScriptedObject">
+		<message name="message">
+			Ви вибрали елемент інвентаря, який не можна скопіювати.
+Ці предмети перемістяться в Ваш інвентар (не скопіюються)
+Із-за того, що об&apos;єкт скриптований, переміщення
+елементів в інвентар може зіпсувати скрипт.
+ 
+Перемістити елемент(и) інвентаря?
+		</message>
+		<ignore name="ignore">
+			Переміщення елементів, які не можна скопіювати, з скриптованого об&apos;єкту
+		</ignore>
+		<option name="Move">
+			OK
+		</option>
+		<option name="Don&apos;tMove">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ClickActionNotPayable">
+		<message name="message">
+			Попередження: Оплата об&apos;єкту призначена, однак
+вона працює тільки, якщо призначена подія money().
+		</message>
+		<ignore name="ignore">
+			Установка &apos;Платити&apos; на об&apos;єктах без події money()
+		</ignore>
+	</alert>
+	<alert name="OpenObjectCannotCopy">
+		<message name="message">
+			В цьому об&apos;єкті немає елементів з правом копіювання для Вас
+		</message>
+	</alert>
+	<alert name="WebLaunchAccountHistory">
+		<message name="message">
+			Перейти на сайт SL для перегляду історії аккаунта?
+		</message>
+		<ignore name="ignore">
+			Завантаження історії аккаунта
+		</ignore>
+		<option name="Gotopage">
+			Перейти на сторінку
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ClickOpenF1Help">
+		<message name="message">
+			Відвідати сайт Second Life?
+		</message>
+		<ignore name="ignore">
+			Відвідати сторінку підтримки Second Life?
+		</ignore>
+		<option name="Gotopage">
+			Перейти
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="RetryFetchInventoryDescendents">
+		<message name="message">
+			Виклик інвентаря дуже затягнувся. Повторити?
+		</message>
+		<ignore name="ignore">
+			Повторити виклик даних інвентаря
+		</ignore>
+		<option name="Retry">
+			Повторити
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ConfirmQuit">
+		<message name="message">
+			Ви дійсно хочете вийти?
+		</message>
+		<ignore name="ignore">
+			При выході з гри
+		</ignore>
+		<option name="Quit">
+			Вийти
+		</option>
+		<option name="Continue">
+			Продовжити
+		</option>
+	</alert>
+	<alert name="HelpReportAbuseEmailLL">
+		<message name="message">
+			Використовуйте цю кнопку для скарги на порушення TOS  
+і правил поведінки в товаристві, см.:
+-
+http://secondlife.com/corporate/tos.php 
+http://secondlife.com/corporate/cs.php 
+-
+Всі скарги про порушення Умов Обслуговування (TOS) і Стандартів Товариства
+досліджуються і вирішуються. Ви отримаєте повідомлення через e-mail 
+про результати розслідування інциденту. А також побачите
+прийняте рішення по ньому від нашої Поліції.
+http://secondlife.com/community/blotter.php
+		</message>
+	</alert>
+	<alert name="HelpReportAbuseEmailEO">
+		<message name="message">
+			УВАГА: Цей звіт спочатку прийде власнику регіона
+де Ви зараз стоїте, а не в Linden Lab.
+-
+Як сервіс резидентів і гостей, власник регіона може
+приймати участь в прийомі і відправці усіх скарг тут.
+Linden Lab не роздивляється скарги з Ваших файлів.
+
+
+Власник регіона сам виносить рішення по скаргах, 
+базуючись на правилах маєтку.
+(Щоб побачити ці правила, натисніть зверху Про землю) 
+
+-
+Ваше рішення по скарзі приймається тільки в цьому регіоні.
+Резиденти з доступом з інших місць SL не будуть зачеплені
+Вашим рішенням. Тільки Ліндени можуть обмежити доступ
+резидентам на всій території Second Life.
+		</message>
+	</alert>
+	<alert name="HelpReportBug">
+		<message name="message">
+			Використовуйте цей засіб *тільки* для технічних скарг,
+описуючи стільки деталей, скільки зможете
+Ви можете відповісти на автовідповідач по e-mail і додати туди ще деталей по Вашій скарзі.
+
+
+Всі скарги про помилки розглядаються і обробляються. Ніяких відповідей через e-mail не присилається.
+
+Якщо Ви маєте технічні труднощі, зверніться в Службу підтримки:
+
+http://secondlife.com/community/support.php
+
+Примітка: Неповні звіти не приймаються.
+		</message>
+	</alert>
+	<alert name="HelpReportAbuseSelectCategory">
+		<message name="message">
+			Виберіть категорію скарги.
+Вибір категорії допоможе нам скоріше розібрати проблему.
+		</message>
+	</alert>
+	<alert name="HelpReportBugSelectCategory">
+		<message name="message">
+			Укажіть категорію помилки.
+Вибір категорії допоможе нам скоріше розібрати помилку.
+		</message>
+	</alert>
+	<alert name="HelpReportAbuseAbuserNameEmpty">
+		<message name="message">
+			Укажіть ім&apos;я порушника.
+Вводіть акуратні описи, щоб допомогти нам обробити скаргу.
+		</message>
+	</alert>
+	<alert name="HelpReportAbuseAbuserLocationEmpty">
+		<message name="message">
+			Укажіть місце порушення.
+Ввод правильної назви допоможе нам задокументувати і обробити скаргу.
+		</message>
+	</alert>
+	<alert name="HelpReportAbuseSummaryEmpty">
+		<message name="message">
+			Укажіть суть порушення, що мало місце.
+Вводіть акуратні описи, щоб допомогти нам обробити скаргу.
+		</message>
+	</alert>
+	<alert name="HelpReportBugSummaryEmpty">
+		<message name="message">
+			Укажіть суть помилки.
+Вводіть акуратні описи, щоб допомогти нам обробити скаргу.
+		</message>
+	</alert>
+	<alert name="HelpReportAbuseDetailsEmpty">
+		<message name="message">
+			Укажіть детальний опис порушення, що мало місце.
+Будьте точні наскільки можливо, вкажіть всі деталі
+інциденту.
+Вводіть акуратні описи, щоб допомогти нам обробити скаргу.
+		</message>
+	</alert>
+	<alert name="HelpReportBugDetailsEmpty">
+		<message name="message">
+			Укажіть детальний опис помилки.
+Постарайтеся точніше описати характер помилки, і 
+всі дії, що привели Вас до неї.
+Вводіть акуратні описи, щоб допомогти нам обробити скаргу.
+		</message>
+	</alert>
+	<alert name="HelpReportAbuseContainsCopyright">
+		<message name="message">
+			Шановний Резидент,
+ 
+звіти з приводу порушення авторського права можуть бути представлені
+як описано в http://secondlife.com/corporate/dmca.php.
+ 
+звіти відносно порушення авторського права будуть автоматично
+забраковані, якщо будуть відправлені через &apos;Відправити скаргу&apos;
+Якщо ваш звіт не торкається порушення авторського права,
+можете закрити це вікно і завершити відправку звіту.
+ 
+Дякуємо,
+ 
+Linden Lab
+		</message>
+	</alert>
+	<alert name="FailedRequirementsCheck">
+		<message name="message">
+			Наступний необхідний компонент відсутній в [FLOATER]:
+[COMPONENTS]
+		</message>
+	</alert>
+	<alert name="ReplaceAttachment"
+	     title="Замінити поточне прикріплення">
+		<message name="message">
+			У Вас вже прикріплений об&apos;єкт на цю частину тіла.
+Замінити його обраним об&apos;єктом?
+		</message>
+		<ignore name="ignore">
+			Заміна існуючого прикріплення
+		</ignore>
+		<option ignore="Replace Automatically" name="Yes">
+			OK
+		</option>
+		<option ignore="Never Replace" name="No">
+			Відміна
+		</option>
+	</alert>
+	<alert name="BusyModePay"
+	     title="Очікування закінчення зайнятості">
+		<message name="message">
+			Ви в режимі &apos;&apos;Зайнятий&apos;&apos;, тому не можете
+отримати ніяких предметів в обмін на цю оплату.
+
+ 
+Чи бажаєте Ви вийти з режима &apos;&apos;Зайнятий&apos;&apos; для
+здійснення цієї операції?
+		</message>
+		<ignore name="ignore">
+			Оплата персони або об&apos;єкта в режимі &apos;&apos;Зайнятий&apos;&apos;
+		</ignore>
+		<option ignore="Always leave Busy Mode" name="Yes">
+			OK
+		</option>
+		<option ignore="Never leave Busy Mode" name="No">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ConfirmEmptyTrash">
+		<message name="message">
+			Ви впевнені в очищенні Кошика 
+(цю операцію неможливо буде відмінити)?
+		</message>
+		<ignore name="ignore">
+			При очищенні кошику інвентаря
+		</ignore>
+		<option name="Yes">
+			OK
+		</option>
+		<option name="No">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ConfirmClearBrowserCache">
+		<message name="message">
+			Ви точно бажаєте очистити кеш браузера?
+		</message>
+		<option name="Yes">
+			Так
+		</option>
+		<option name="No">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ConfirmClearCookies">
+		<message name="message">
+			Ви точно хочете очистити Ваші &apos;cookies&apos;?
+		</message>
+		<option name="Yes">
+			Так
+		</option>
+		<option name="No">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ConfirmClearMediaUrlList">
+		<message name="message">
+			Ви впевнені в очищенні збережених URL-ів?
+		</message>
+		<option name="Yes">
+			Так
+		</option>
+		<option name="No">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ConfirmEmptyLostAndFound">
+		<message name="message">
+			Ви впевнені в очищенні &apos;&apos;Lost And Found&apos;&apos;
+(цю операцію неможливо буде відмінити)?
+		</message>
+		<ignore name="ignore">
+			Очищення папки інвентаря &apos;&apos;Lost And Found&apos;&apos;
+		</ignore>
+		<option name="Yes">
+			Так
+		</option>
+		<option name="No">
+			Ні
+		</option>
+	</alert>
+	<alert name="CopySLURL">
+		<message name="message">
+			Данный SLURL був скопійований у Ваш буфер обміну.
+			 [SLURL] 
+			
+			Помістіть це на вебсторінку, щоб легко було сюди потрапити,
+			або помістіть це в адресну стрічку Вашого веб-браузера.
+		</message>
+		<ignore name="ignore">
+			При копіюванні SLURL у буфер обміну
+		</ignore>
+	</alert>
+	<alert name="GraphicsPreferencesHelp">
+		<message name="message">
+			Ця панель контролює графічні можливості. Ви можете обирати чотири рівня графіки: низький, середній, високий і ультра. Кожний з них можна налаштувати по-своєму окремо через опції &apos;&apos;Настроїти&apos;&apos;.
+
+Шейдери: увімкнути або вимкнути різні їх типи.
+
+Відображення: різні рівні відображення води.
+
+Відображення аватара: визначає якість змалювання аватара.
+
+Дистанція: наскільки далеко Ваш аватар зможе бачити.
+
+Макс. Число частинок: скільки частинок Ви зможете побачити на екрані.
+
+Постобробка: установка опцій м&apos;якості картинки.
+
+Деталізація сітки: встановлює кількість трикутників, які використовуються при змалюванні певних об&apos;єктів. Велике значення довше відмальовується, але з більшою деталізацією.
+
+Деталізація освітлення: які типи освітлення Ви хочете бачити.
+
+Деталізація землі: наскільки детально Ви хочете бачити ландшафти.
+		</message>
+	</alert>
+	<alert name="WLSavePresetAlert">
+		<message name="message">
+			Ви бажаєте перезаписати збережені Настройки?
+		</message>
+		<option name="Save">
+			Так
+		</option>
+		<option name="Cancel">
+			Ні
+		</option>
+	</alert>
+	<alert name="WLDeletePresetAlert">
+		<message name="message">
+			Ви бажаєте видалити [SKY]?
+		</message>
+		<option name="Delete">
+			Так
+		</option>
+		<option name="Cancel">
+			Ні
+		</option>
+	</alert>
+	<alert name="WLNoEditDefault">
+		<message name="message">
+			Ви не можете редагувати або видаляти стандартний набір.
+		</message>
+	</alert>
+	<alert name="WLMissingSky">
+		<message name="message">
+			Цей файл неба вказує на неіснуючий файл неба: [SKY].
+		</message>
+	</alert>
+	<alert name="PPSaveEffectAlert">
+		<message name="message">
+			Ефекти постпроцесу вже є. Перезаписати?
+		</message>
+		<option name="Save">
+			Так
+		</option>
+		<option name="Cancel">
+			Ні
+		</option>
+	</alert>
+	<alert name="HelpEditSky">
+		<message name="message">
+			Редагуйте WindLight слайдер для створення або збереження настроєк неба.
+		</message>
+	</alert>
+	<alert name="HelpEditDayCycle">
+		<message name="message">
+			Виберіть небо для роботи на весь день.
+		</message>
+	</alert>
+	<alert name="EnvSettingsHelpButton">
+		<message name="message">
+			Ці Настройки регулюють роботу неба на Вашому комп&apos;ютері. Ваша карта має підтримувати шейдери, щоб Ви могли осягти всі нюанси настройки неба.
+ 
+Підганяйте слайдер Часу Дня для зміни фази локально в Вашому клієнті.
+ 
+Підганяйте слайдер Хмар для зміни щільності хмар в Вашому клієнті.
+ 
+Виберіть колір в &quot;Колір води&quot;, щоб змінити колір води.
+ 
+Редагуйте &quot;Водний туман&quot; для підводного виду.
+ 
+Натисніть &quot;Використовувати час маєтку&quot; щоб скинути час дня в регіоні на поточний.
+ 
+Натисніть &quot;Розширене небо&quot;, щоб налаштувати більше можливостей неба
+ 
+Натисніть &quot;Розширена вода&quot; для настрйоки можливостей відображення води.
+		</message>
+	</alert>
+	<alert name="HelpDayCycle">
+		<message name="message">
+			Редактор фаз дня дозволить управляти небом протягом дня. Цей цикл використовується базовим слайдером регулювання дня.
+
+Редактор дня працює з ключовими кадрами. Це вузли (представлені сірими шариками на шкалі часу), що мають Настройки неба для кожного з них. В процесі дня процесор WindLight інтерполює параметри неба між цими точками.
+
+Жовта стрілка над шкалою часу показує Ваш поточний вигляд. Натисніть і потягніть її, щоб побачити як буде змінюватися день. Також Ви можете вставити або видалити ключові кадри, натискаючи кнопки Додати і Видалити праворуч від шкали часу.
+
+Ви можете встановити позицію часу ключа або перемістити його на відповідне місце шкали, або введенням цифр. Також Ви можете зв&apos;язати ключовий кадр зі спеціальним пресетом клієнта.
+
+Довжина циклу задає тривалість дня. Якщо встановити це в 2 хвилини, то Ваш реальный 24-годинний день пролетить за 2 хвилини! Як тільки Ви будете задоволені тривалістю дня і ключовими кадрами, натискайте Грати і Стоп кнопки для попереднього перегляду. Пам&apos;ятайте, що Ви також можете рухати жовтий маркер над шкалою часу, щоб бачити ефекти інтерактивно. Використовуючи Настройки часу для маєтку, Ви зможете синхронізувати Вашу довжину дня з довжиною дня маєтку.
+
+Як тільки Ви закінчили настройку циклу дня, Ви можете зберегти свої Настройки в системі. Використовуйте кнопки Збереження і Завантаження. Однак зберегти можна тільки один цикл.
+		</message>
+	</alert>
+	<alert name="HelpBlueHorizon">
+		<message name="message">
+			Використовуйте червоний/зелений/синій (RGB) повзунки для підбору кольору неба. Можна також використовувати повзунок для зрушення тих трьох в один прийом.
+		</message>
+	</alert>
+	<alert name="HelpHazeHorizon">
+		<message name="message">
+			Туман горизонту це найважливіший параметр для
+підбору освітленості сцени. Це дає ефект багатьох настроєк
+експозиції сцени, таких як освітлення Сонця
+поріг темряви.
+		</message>
+	</alert>
+	<alert name="HelpBlueDensity">
+		<message name="message">
+			Синя Щільність діє на повну кольорову насиченість неба і туману. Якщо Ви переміщуєте повзунок інтенсивності (I) праворуч, то кольори стануть більш яскравими. Якщо ж ліворуч, кольори стануть більш тьмяними, в кінці кінців зникаючи до чорно-білого. Якщо Ви хочете прекрасного кольорового балансу неба, Ви можете управляти індивідуальними елементами насиченості, використовуючи Чер/Зел/Син (RGB) повзунки.
+		</message>
+	</alert>
+	<alert name="HelpHazeDensity">
+		<message name="message">
+			Щільність горизонту управляє рівнем тьмяного сірого
+туману в атмосфері. Це ефективно для 
+моделювання сцен з високим рівнем диму
+і штучних забруднюючих речовин. Це також ефективно
+для моделювання туману і містики.
+		</message>
+	</alert>
+	<alert name="HelpDensityMult">
+		<message name="message">
+			Множник щільності може використовуватися, щоб торкнутися повної атмосферної щільності. При більш низьких значеннях, це створює почуття тонкого повітря, а при більш високих значеннях це створює дуже тяжкий, задимлений ефект
+		</message>
+	</alert>
+	<alert name="HelpDistanceMult">
+		<message name="message">
+			Установка дистанції сприйняття. Нульове значення
+вимикає повітря навкруги землі і об&apos;єктів.
+Значення більше 1 моделює велику відстань, 
+за рахунок трюку з атмосферою.
+		</message>
+	</alert>
+	<alert name="HelpMaxAltitude">
+		<message name="message">
+			Максимальне значення висоти дозволяє WindLight
+розраховувати освітлення атмосфери.
+Це дуже зручно для представлення Сонця.
+		</message>
+	</alert>
+	<alert name="HelpSunlightColor">
+		<message name="message">
+			Регулювання кольору і інтенсивності прямого світла в сцені.
+		</message>
+	</alert>
+	<alert name="HelpSunAmbient">
+		<message name="message">
+			Регулювання кольору і інтенсивності розсіяного світла в сцені.
+		</message>
+	</alert>
+	<alert name="HelpSunGlow">
+		<message name="message">
+			Регулювання розміру Сонця.
+Цей повзунок змінює пляму Сонця в небі.
+		</message>
+	</alert>
+	<alert name="HelpSceneGamma">
+		<message name="message">
+			Регулювання границі світла і тіні.
+		</message>
+	</alert>
+	<alert name="HelpStarBrightness">
+		<message name="message">
+			Регулювання яскравості зірок.
+		</message>
+	</alert>
+	<alert name="HelpTimeOfDay">
+		<message name="message">
+			Управління положенням Сонця в небі.
+Подібне для висоти.
+		</message>
+	</alert>
+	<alert name="HelpEastAngle">
+		<message name="message">
+			Управління положенням Сонця в небі.
+Подібне для азімута.
+		</message>
+	</alert>
+	<alert name="HelpCloudColor">
+		<message name="message">
+			Правка кольору хмар. Рекомендується робити хмари
+белыми, але для жарту можете їх розмалювати як завгодно.
+		</message>
+	</alert>
+	<alert name="HelpCloudDetail">
+		<message name="message">
+			Контролює деталізацію малювання хмар.
+X і Y задає їх позицію. D (щільність) визначає наскільки
+вони виглядають щільними або прозорими.
+		</message>
+	</alert>
+	<alert name="HelpCloudDensity">
+		<message name="message">
+			Контролює деталізацію малювання хмар.
+X і Y задає їх позицію. D (щільність) визначає наскільки
+вони виглядають щільними або прозорими.
+		</message>
+	</alert>
+	<alert name="HelpCloudCoverage">
+		<message name="message">
+			Задає кількість хмар в небі.
+		</message>
+	</alert>
+	<alert name="HelpCloudScale">
+		<message name="message">
+			Задає розміри хмар в небі.
+		</message>
+	</alert>
+	<alert name="HelpCloudScrollX">
+		<message name="message">
+			Задає швидкість руху хмар через вісі X
+		</message>
+	</alert>
+	<alert name="HelpCloudScrollY">
+		<message name="message">
+			Задає швидкість руху хмар через вісі Y
+		</message>
+	</alert>
+	<alert name="HelpClassicClouds">
+		<message name="message">
+			Установка цієї опції включає малювання старих хмар SL до нових WindLight.
+		</message>
+	</alert>
+	<alert name="HelpWaterFogColor">
+		<message name="message">
+			Вибір кольору підводного туману.
+		</message>
+	</alert>
+	<alert name="HelpWaterFogDensity">
+		<message name="message">
+			Керує щільністю підводного світу і як далеко Ви зможете бачити під водою.
+		</message>
+	</alert>
+	<alert name="HelpUnderWaterFogMod">
+		<message name="message">
+			Керує щільністю підводного світу і як далеко Ви зможете бачити під водою.
+		</message>
+	</alert>
+	<alert name="HelpWaterGlow">
+		<message name="message">
+			Керує світінням води.
+		</message>
+	</alert>
+	<alert name="HelpWaterNormalScale">
+		<message name="message">
+			Керує трьома хвилями води.
+		</message>
+	</alert>
+	<alert name="HelpWaterFresnelScale">
+		<message name="message">
+			Керує кутами відображення світла на воді.
+		</message>
+	</alert>
+	<alert name="HelpWaterFresnelOffset">
+		<message name="message">
+			Керує яскравістю відображення світла на воді.
+		</message>
+	</alert>
+	<alert name="HelpWaterScaleAbove">
+		<message name="message">
+			Керує яскравістю заломленого над водою світла.
+		</message>
+	</alert>
+	<alert name="HelpWaterScaleBelow">
+		<message name="message">
+			Керує яскравістю заломленого під водою світла.
+		</message>
+	</alert>
+	<alert name="HelpWaterBlurMultiplier">
+		<message name="message">
+			Керує змішуванням хвиль і відображень.
+		</message>
+	</alert>
+	<alert name="HelpWaterNormalMap">
+		<message name="message">
+			Керує картою нормалей в воді з обліком відображень/заломлень.
+		</message>
+	</alert>
+	<alert name="HelpWaterWave1">
+		<message name="message">
+			Керує великою картою нормалей руху води в горизонтальній площині.
+		</message>
+	</alert>
+	<alert name="HelpWaterWave2">
+		<message name="message">
+			Керує малою картою нормалей руху води в горизонтальній площині.
+		</message>
+	</alert>
+	<alert name="NewSkyPreset">
+		<message name="message">
+			Як назвати нове небо.
+		</message>
+		<editline>
+			Новий набір.
+		</editline>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ExistsSkyPresetAlert">
+		<message name="message">
+			Набор вже існує!
+		</message>
+	</alert>
+	<alert name="NewWaterPreset">
+		<message name="message">
+			Дайте ім&apos;я новому водному набору.
+		</message>
+		<editline>
+			Новий набір
+		</editline>
+		<option name="OK">
+			OK
+		</option>
+		<option name="Cancel">
+			Відміна
+		</option>
+	</alert>
+	<alert name="ExistsWaterPresetAlert">
+		<message name="message">
+			Набор вже існує!
+		</message>
+	</alert>
+	<alert name="WaterNoEditDefault">
+		<message name="message">
+			Неможна редагувати або видалити стандартний набір.
+		</message>
+	</alert>
+	<alert name="ChatterBoxSessionStartError">
+		<message name="message">
+			Помилка створення нової IM сесії з [RECIPIENT].
+			[REASON]
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="ChatterBoxSessionStartNotVerified">
+		<message name="message">
+			Помилка створення нової IM сесії з [RECIPIENT].
+			[REASON]
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="ChatterBoxSessionEventError">
+		<message name="message">
+			Помилка [EVENT] [RECIPIENT].
+			[REASON]
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="ForceCloseChatterBoxSession">
+		<message name="message">
+			Ваша IM сесія з [NAME] має бути закрита через:
+            [REASON]
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="Cannot_Purchase_an_Attachment">
+		<message name="message">
+			Частини не можуть бути куплені, доки
+			вони є частиною прикріплення
+		</message>
+	</alert>
+	<alert name="DebitPermissionDetails"
+	     title="Запит на право Дебета ваших L$">
+		<message name="message">
+			Об&apos;єкт хочет отримати право розпоряджатися Вашим балансом (L$). Щоб відібрати у нього ці права необхідно або видалити об&apos;єкт, або перезапустити його скрипти.
+		</message>
+		<option name="OK">
+			OK
+		</option>
+	</alert>
+	<alert name="AutoWearNewClothing">
+		<message name="message">
+			Чи Ви хочете, щоб створений Вами одяг вдягався авт-но?
+		</message>
+		<ignore name="ignore">
+			Автоматично вдягати новий одяг
+		</ignore>
+		<option name="Yes">
+			Так
+		</option>
+		<option name="No">
+			Ні
+		</option>
+	</alert>
+	<alert name="BadURL">
+		<message name="message">
+			Second Life не знає як обробити цей лінк
+[SLURL]
+Більшість лінків схожі на:
+
+secondlife:///app/agent/0e346d8b-4433-4d66-a6b0-
+fd37083abc4c/about
+
+Перевірте написання і повторіть
+		</message>
+	</alert>
+	<alert name="NotAgeVerified">
+		<message name="message">
+			Необхідна перевірка на дорослість для доступу до ділянки..
+Чи Ви бажаєте відвідати вебсайт SL для перевірки Вашого віку?
+
+[_URL]
+		</message>
+		<ignore name="ignore">
+			Попередження про відсутність перевірки віку
+		</ignore>
+		<option name="Yes">
+			Так
+		</option>
+		<option name="No">
+			Ні
+		</option>
+	</alert>
+	<alert name="Cannot enter parcel: no payment info on file">
+		<message name="message">
+			Ця ділянка вимагає перевірки Вашої платоспроможності перед тим, як ви отримаєте доступ на неї.
+Чи Ви бажаєте відвідати вебсайт SL для запуску перевірки?
+
+[_URL]
+		</message>
+		<ignore name="ignore">
+			Попередження про відсутність інформації про платоспроможність.
+		</ignore>
+		<option name="Yes">
+			Так
+		</option>
+		<option name="No">
+			Ні
+		</option>
+	</alert>
+	<alert name="MissingString">
+		<message name="message">
+			Стрічка [STRING_NAME] відсутня в strings.xml
+		</message>
+	</alert>
+</alerts>
