@@ -126,6 +126,7 @@ set(viewer_SOURCE_FILES
     llfloateractivespeakers.cpp
     llfloateranimpreview.cpp
     llfloaterauction.cpp
+    llfloaterassetbrowser.cpp
     llfloateravatarinfo.cpp
     llfloateravatarpicker.cpp
     llfloateravatartextures.cpp
@@ -530,6 +531,7 @@ set(viewer_HEADER_FILES
     llfloateractivespeakers.h
     llfloateranimpreview.h
     llfloaterauction.h
+    llfloaterassetbrowser.h
     llfloateravatarinfo.h
     llfloateravatarpicker.h
     llfloateravatartextures.h

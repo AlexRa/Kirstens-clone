@@ -139,9 +139,9 @@ F32 gThrottleMaximumBPS[TC_EOF] =
 	170000.f, // TC_LAND
 	34000.f, // TC_WIND
 	34000.f, // TC_CLOUD
-	446000.f, // TC_TASK
-	446000.f, // TC_TEXTURE
-	220000.f, // TC_ASSET
+	972000.f, // TC_TASK
+	1200000.f, // TC_TEXTURE // These Settings may not work on every grid bandwidth is serverside KL
+	440000.f, // TC_ASSET
 };
 
 // Start low until viewer informs us of capability

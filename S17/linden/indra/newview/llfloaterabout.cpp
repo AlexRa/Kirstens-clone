@@ -114,8 +114,8 @@ LLFloaterAbout::LLFloaterAbout()
 	std::string version = LLAppViewer::instance()->getSecondLifeTitle()
 		+ llformat(" %d.%d.%d (%d) %s %s (%s)\n",
 				   LL_VERSION_MAJOR, LL_VERSION_MINOR, LL_VERSION_PATCH, LL_VIEWER_BUILD,
-				   __DATE__, __TIME__,
-				   gSavedSettings.getString("VersionChannelName").c_str());
+				   __DATE__, __TIME__,DX_CHANNEL);
+				  // Kirsten gets channel from version viewer header file !
 	support_widget->appendColoredText(version, FALSE, FALSE, gColors.getColor("TextFgReadOnlyColor"));
 	support_widget->appendStyledText(LLTrans::getString("ReleaseNotes"), false, false, viewer_link_style);
 
@@ -277,10 +277,11 @@ static std::string get_viewer_release_notes_url()
 	version << LL_VERSION_MAJOR << "."
 		<< LL_VERSION_MINOR << "."
 		<< LL_VERSION_PATCH << "."
-		<< LL_VERSION_BUILD;
+		<< LL_VERSION_BUILD << "."
+		<< DX_CHANNEL;
 
 	LLSD query;
-	query["channel"] = gSavedSettings.getString("VersionChannelName");
+	// query["channel"] = gSavedSettings.getString("VersionChannelName");
 	query["version"] = version.str();
 
 	std::ostringstream url;

@@ -214,8 +214,10 @@
 #include "llwaterparammanager.h"
 
 #include "lltexlayer.h"
+#include "llfloaterassetbrowser.h"
 
 using namespace LLVOAvatarDefines;
+
 void init_client_menu(LLMenuGL* menu);
 void init_server_menu(LLMenuGL* menu);
 
@@ -807,16 +809,13 @@ void init_client_menu(LLMenuGL* menu)
 	
 
 
-#ifdef TOGGLE_HACKED_GODLIKE_VIEWER
-	if (!LLViewerLogin::getInstance()->isInProductionGrid())
-	{
+
 		menu->append(new LLMenuItemCheckGL("Hacked Godmode",
 										   &handle_toggle_hacked_godmode,
 										   NULL,
 										   &check_toggle_hacked_godmode,
 										   (void*)"HackedGodmode"));
-	}
-#endif
+
 
 	menu->append(new LLMenuItemCallGL("Clear Group Cache", 
 									  LLGroupMgr::debugClearAllGroups));
@@ -5155,9 +5154,9 @@ class LLShowFloater : public view_listener_t
 		{
 			gViewerHtmlHelp.show();
 		}
-		else if (floater_name == "help tutorial")
+		else if (floater_name == "scanner")
 		{
-			LLFloaterHUD::showHUD();
+			LLFloaterHUD::show(NULL, NULL, FALSE, FALSE ); //kirsten Floater Scanner from tutorial HUD
 		}
 		else if (floater_name == "complaint reporter")
 		{
@@ -5202,6 +5201,10 @@ class LLShowFloater : public view_listener_t
 		{
 			LLFloaterPerms::toggleInstance(LLSD());
 		}
+		else if (floater_name == "asset browser")
+		{
+			LLFloaterAssetBrowser::show(NULL);
+		}        	  
 		return true;
 	}
 };

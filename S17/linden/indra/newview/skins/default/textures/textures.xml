@@ -9,7 +9,7 @@
   
   <texture name="button_enabled_32x128.tga" preload="true" scale_left="16" scale_top="16" scale_right="112" scale_bottom="16" />
   
-  <texture name="toolbar_btn_enabled.tga" scale_left="7" scale_top="32" scale_right="121" scale_bottom="0" /> 
+  <texture name="toolbar_btn_enabled.tga" scale_left="7" scale_top="50" scale_right="121" scale_bottom="0" /> 
 
   <texture name="toolbar_btn_disabled.tga" scale_left="7" scale_top="32" scale_right="121" scale_bottom="0" /> 
   
@@ -21,6 +21,9 @@
   <texture name="checkbox_disabled_true.tga"	preload="true"/>
   <texture name="checkbox_enabled_false.tga"	preload="true"/>
   <texture name="checkbox_enabled_true.tga"	preload="true"/>
+    <texture name="login_panel" file_name="loginpane.png" preload="true" />
+  <texture name="connect_btn" file_name="Connect120.png" preload="true" />
+  
   
   <texture name="close_in_blue.tga"	preload="true"/>
  
@@ -369,8 +372,8 @@
   
   <texture name="skin_thumbnail_default.png" preload="true" />
   <texture name="skin_thumbnail_silver.png" preload="true" />
-
-  <texture name="default_land_picture.j2c"/>
-  <texture name="default_profile_picture.j2c"/>
-  <texture name="locked_image.j2c"/>
+  
+  <3dxcreative.png preload="true"/>
+    <texture name="LogMeIn" file_name="restore.tga" preload="true" />
+	
 </textures>

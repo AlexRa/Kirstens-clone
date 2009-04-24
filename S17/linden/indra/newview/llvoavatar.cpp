@@ -47,6 +47,7 @@
 #include "lleditingmotion.h"
 #include "llemote.h"
 #include "llfirstuse.h"
+#include "llfloaterhud.h" //KL
 #include "llheadrotmotion.h"
 #include "llhudeffecttrail.h"
 #include "llhudmanager.h"
@@ -3332,6 +3333,7 @@ BOOL LLVOAvatar::updateCharacter(LLAgent &agent)
 {
 	LLMemType mt(LLMemType::MTYPE_AVATAR);
 	// update screen joint size
+	//
 
 	if (mScreenp)
 	{
@@ -3809,6 +3811,7 @@ BOOL LLVOAvatar::updateCharacter(LLAgent &agent)
 	}
 
 	mRoot.updateWorldMatrixChildren();
+	LLFloaterHUD::updater();
 
 	if (!mDebugText.size() && mText.notNull())
 	{

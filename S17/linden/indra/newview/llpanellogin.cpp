@@ -257,7 +257,9 @@ LLPanelLogin::LLPanelLogin(const LLRect &rect,
 
 	// childSetAction("quit_btn", onClickQuit, this);
 
-	std::string channel = gSavedSettings.getString("VersionChannelName");
+	std::string channel = llformat("(%s)",
+		DX_CHANNEL ); 
+	// Kirsten uses version Viewer headers not saved settings! for channel info.
 	std::string version = llformat("%d.%d.%d (%d)",
 		LL_VERSION_MAJOR,
 		LL_VERSION_MINOR,
@@ -291,12 +293,12 @@ LLPanelLogin::LLPanelLogin(const LLRect &rect,
 	// make links open in external browser
 	web_browser->setOpenInExternalBrowser( true );
 
-	// force the size to be correct (XML doesn't seem to be sufficient to do this) (with some padding so the other login screen doesn't show through)
+	// Kirsten force the size to be correct (XML doesn't seem to be sufficient to do this) (with some padding so the other login screen doesn't show through)
 	LLRect htmlRect = getRect();
 #if USE_VIEWER_AUTH
 	htmlRect.setCenterAndSize( getRect().getCenterX() - 2, getRect().getCenterY(), getRect().getWidth() + 6, getRect().getHeight());
 #else
-	htmlRect.setCenterAndSize( getRect().getCenterX() - 2, getRect().getCenterY() + 40, getRect().getWidth() + 6, getRect().getHeight() - 78 );
+	htmlRect.setCenterAndSize( getRect().getCenterX() - 2, getRect().getCenterY() + 80, getRect().getWidth() + 6, getRect().getHeight() - 200 ); // here!
 #endif
 	web_browser->setRect( htmlRect );
 	web_browser->reshape( htmlRect.getWidth(), htmlRect.getHeight(), TRUE );
@@ -678,8 +680,9 @@ void LLPanelLogin::refreshLocation( bool force_visible )
 	sInstance->childSetVisible("start_location_text", show_start);
 
 #if LL_RELEASE_FOR_DOWNLOAD
-	BOOL show_server = gSavedSettings.getBOOL("ForceShowGrid");
-	sInstance->childSetVisible("server_combo", show_server);
+	// BOOL show_server = gSavedSettings.getBOOL("ForceShowGrid");
+	// sInstance->childSetVisible("server_combo", show_server);
+    sInstance->childSetVisible("server_combo", TRUE);  // Kirsten Always show Grid Choices!
 #else
 	sInstance->childSetVisible("server_combo", TRUE);
 #endif
@@ -750,8 +753,9 @@ void LLPanelLogin::loadLoginPage()
 	// Channel and Version
 	std::string version = llformat("%d.%d.%d (%d)",
 						LL_VERSION_MAJOR, LL_VERSION_MINOR, LL_VERSION_PATCH, LL_VIEWER_BUILD);
+	std::string channel = llformat("%s",DX_CHANNEL); //Kirsten
 
-	char* curl_channel = curl_escape(gSavedSettings.getString("VersionChannelName").c_str(), 0);
+	char* curl_channel = curl_escape(channel.c_str(), 0);
 	char* curl_version = curl_escape(version.c_str(), 0);
 
 	oStr << "&channel=" << curl_channel;
