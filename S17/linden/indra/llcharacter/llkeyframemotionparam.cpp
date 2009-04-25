@@ -364,13 +364,18 @@ BOOL LLKeyframeMotionParam::loadMotions()
 	}
 
 	// allocate a text buffer
-	std::vector<char> text(fileSize+1);
+	char *text = new char[ fileSize+1 ];
+	if ( !text )
+	{
+		llinfos << "ERROR: can't allocated keyframe text buffer." << llendl;
+		return FALSE;
+	}
 
 	//-------------------------------------------------------------------------
 	// load data from file into buffer
 	//-------------------------------------------------------------------------
 	bool error = false;
-	char *p = &text[0];
+	char *p = text;
 	while ( 1 )
 	{
 		if (apr_file_eof(fp) == APR_EOF)
@@ -394,11 +399,12 @@ BOOL LLKeyframeMotionParam::loadMotions()
 	//-------------------------------------------------------------------------
 	// check for error
 	//-------------------------------------------------------------------------
-	llassert( p <= (&text[0] + fileSize) );
+	llassert( p <= (text+fileSize) );
 
 	if ( error )
 	{
 		llinfos << "ERROR: error while reading from " << path << llendl;
+		delete [] text;
 		return FALSE;
 	}
 
@@ -407,7 +413,7 @@ BOOL LLKeyframeMotionParam::loadMotions()
 	//-------------------------------------------------------------------------
 	// parse the text and build keyframe data structures
 	//-------------------------------------------------------------------------
-	p = &text[0];
+	p = text;
 	S32 num;
 	char strA[80]; /* Flawfinder: ignore */
 	char strB[80]; /* Flawfinder: ignore */
@@ -426,6 +432,7 @@ BOOL LLKeyframeMotionParam::loadMotions()
 		if ((num != 3))
 		{
 			llinfos << "WARNING: can't read parametric motion" << llendl;
+			delete [] text;
 			return FALSE;
 		}
 
@@ -446,6 +453,7 @@ BOOL LLKeyframeMotionParam::loadMotions()
 		num = sscanf(p, "%79s %79s %f", strA, strB, &floatA);	/* Flawfinder: ignore */
 	}
 
+	delete [] text;
 	return TRUE;
 }
 

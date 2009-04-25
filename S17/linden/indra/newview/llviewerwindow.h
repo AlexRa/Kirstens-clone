@@ -49,7 +49,6 @@
 #include "llstat.h"
 #include "llalertdialog.h"
 #include "llnotifications.h"
-#include "llmousehandler.h"
 
 class LLView;
 class LLViewerObject;
@@ -60,6 +59,7 @@ class LLVelocityBar;
 class LLTextBox;
 class LLImageRaw;
 class LLHUDIcon;
+class LLMouseHandler;
 
 #define PICK_HALF_WIDTH 5
 #define PICK_DIAMETER (2 * PICK_HALF_WIDTH + 1)
@@ -83,7 +83,7 @@ public:
 
 	static bool isFlora(LLViewerObject* object);
 
-	typedef enum
+	typedef enum e_pick_type
 	{
 		PICK_OBJECT,
 		PICK_FLORA,
@@ -152,7 +152,6 @@ public:
 	/*virtual*/ BOOL handleTranslatedKeyUp(KEY key,  MASK mask);
 	/*virtual*/ void handleScanKey(KEY key, BOOL key_down, BOOL key_up, BOOL key_level);
 	/*virtual*/ BOOL handleUnicodeChar(llwchar uni_char, MASK mask);	// NOT going to handle extended 
-	/*virtual*/ BOOL handleAnyMouseClick(LLWindow *window,  LLCoordGL pos, MASK mask, LLMouseHandler::EClickType clicktype, BOOL down);
 	/*virtual*/ BOOL handleMouseDown(LLWindow *window,  LLCoordGL pos, MASK mask);
 	/*virtual*/ BOOL handleMouseUp(LLWindow *window,  LLCoordGL pos, MASK mask);
 	/*virtual*/ BOOL handleCloseRequest(LLWindow *window);
@@ -215,7 +214,6 @@ public:
 	LLCoordGL		getCurrentMouseDelta()	const	{ return mCurrentMouseDelta; }
 	LLStat *		getMouseVelocityStat()		{ return &mMouseVelocityStat; }
 	BOOL			getLeftMouseDown()	const	{ return mLeftMouseDown; }
-	BOOL			getMiddleMouseDown()	const	{ return mMiddleMouseDown; }
 	BOOL			getRightMouseDown()	const	{ return mRightMouseDown; }
 
 	const LLPickInfo&	getLastPick() const { return mLastPick; }
@@ -283,7 +281,7 @@ public:
 
 	// snapshot functionality.
 	// perhaps some of this should move to llfloatershapshot?  -MG
-	typedef enum
+	typedef enum e_snapshot_type
 	{
 		SNAPSHOT_TYPE_COLOR,
 		SNAPSHOT_TYPE_DEPTH,
@@ -389,7 +387,6 @@ protected:
 	LLCoordGL		mCurrentMouseDelta;		//amount mouse moved this frame
 	LLStat			mMouseVelocityStat;
 	BOOL			mLeftMouseDown;
-	BOOL			mMiddleMouseDown;
 	BOOL			mRightMouseDown;
 
 	LLProgressView	*mProgressView;

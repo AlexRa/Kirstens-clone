@@ -46,7 +46,6 @@ public:
 
 	void apply();
 	void cancel();
-	static void onOpenHelp(void *data);
 };
 
 #endif

@@ -370,8 +370,7 @@ void LLGroupNotifyBox::close()
 //static 
 void LLGroupNotifyBox::initClass()
 {
-	// these are self registering so they don't need to be retained here
-	new LLNotificationChannel("Group Notifications", "Visible", LLNotificationFilters::filterBy<std::string>(&LLNotification::getType, "groupnotify"));
+	LLNotificationChannel::buildChannel("Group Notifications", "Visible", LLNotificationFilters::filterBy<std::string>(&LLNotification::getType, "groupnotify"));
 	LLNotifications::instance().getChannel("Group Notifications")->connectChanged(&LLGroupNotifyBox::onNewNotification);
 }
 

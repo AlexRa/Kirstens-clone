@@ -40,7 +40,6 @@
 #include "llmemory.h"
 #include "llvolume.h"
 #include "lltextureentry.h"
-#include "llprimtexturelist.h"
 
 // Moved to stdtypes.h --JC
 // typedef U8 LLPCode;
@@ -296,8 +295,6 @@ public:
 	LLPrimitive();
 	virtual ~LLPrimitive();
 
-	void clearTextureList();
-
 	static LLPrimitive *createPrimitive(LLPCode p_code);
 	void init_primitive(LLPCode p_code);
 
@@ -308,11 +305,11 @@ public:
 
 	// Modify texture entry properties
 	inline BOOL validTE(const U8 te_num) const;
-	LLTextureEntry* getTE(const U8 te_num) const;
+	const LLTextureEntry *getTE(const U8 te_num) const;
 
 	virtual void setNumTEs(const U8 num_tes);
 	virtual void setAllTETextures(const LLUUID &tex_id);
-	virtual void setTE(const U8 index, const LLTextureEntry& te);
+	virtual void setTE(const U8 index, const LLTextureEntry &te);
 	virtual S32 setTEColor(const U8 te, const LLColor4 &color);
 	virtual S32 setTEColor(const U8 te, const LLColor3 &color);
 	virtual S32 setTEAlpha(const U8 te, const F32 alpha);
@@ -335,6 +332,10 @@ public:
 	virtual S32 setTEGlow(const U8 te, const F32 glow);
 	virtual BOOL setMaterial(const U8 material); // returns TRUE if material changed
 
+	void setTEArrays(const U8 size,
+					  const LLUUID* image_ids,
+					  const F32* scale_s,
+					  const F32* scale_t);
 	void copyTEs(const LLPrimitive *primitive);
 	S32 packTEField(U8 *cur_ptr, U8 *data_ptr, U8 data_size, U8 last_face_index, EMsgVariableType type) const;
 	S32 unpackTEField(U8 *cur_ptr, U8 *buffer_end, U8 *data_ptr, U8 data_size, U8 face_count, EMsgVariableType type);
@@ -382,21 +383,14 @@ public:
 	const LLVector3&	getAngularVelocity() const	{ return mAngularVelocity; }
 	const LLVector3&	getVelocity() const			{ return mVelocity; }
 	const LLVector3&	getAcceleration() const		{ return mAcceleration; }
-	U8					getNumTEs() const			{ return mTextureList.size(); }
-	U8					getExpectedNumTEs() const;
+	U8					getNumTEs() const			{ return mNumTEs; }
 
 	U8					getMaterial() const			{ return mMaterial; }
 	
 	void				setVolumeType(const U8 code);
 	U8					getVolumeType();
 
-	// clears existing textures
-	// copies the contents of other_list into mEntryList
-	void copyTextureList(const LLPrimTextureList& other_list);
-
-	// clears existing textures
-	// takes the contents of other_list and clears other_list
-	void takeTextureList(LLPrimTextureList& other_list);
+	void setTextureList(LLTextureEntry *listp);
 
 	inline BOOL	isAvatar() const;
 	inline BOOL	isSittingAvatar() const;
@@ -421,7 +415,7 @@ protected:
 	LLVector3			mAcceleration;		// are we under constant acceleration?
 	LLVector3			mAngularVelocity;	// angular velocity
 	LLPointer<LLVolume> mVolumep;
-	LLPrimTextureList	mTextureList;		// list of texture GUIDs, scales, offsets
+	LLTextureEntry		*mTextureList;		// list of texture GUIDs, scales, offsets
 	U8					mMaterial;			// Material code
 	U8					mNumTEs;			// # of faces on the primitve	
 	U32 				mMiscFlags;			// home for misc bools

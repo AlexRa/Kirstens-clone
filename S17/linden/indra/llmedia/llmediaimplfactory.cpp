@@ -76,8 +76,8 @@ LLMediaImplMakerBase* LLMediaImplFactory::getImplMaker(	const std::string& schem
 			return ( iter->second );
 		}
 	}
-	std::string::size_type idx1 = type.find("/");
-	std::string::size_type len = (idx1 == std::string::npos) ? 0 : idx1;
+	int idx1 = type.find("/");
+	int len = (idx1 == std::string::npos) ? 0 : idx1;
 	std::string category = type.substr(0,len);
 	for(iter = begin; iter != end; ++iter)
 	{

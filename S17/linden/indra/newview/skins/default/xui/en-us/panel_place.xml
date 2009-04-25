@@ -2,7 +2,7 @@
 <panel border="false" bottom="20" can_close="true" can_minimize="true"
      can_resize="false" follows="bottom|left" height="400" left="330"
      name="Place" title="Place" width="450">
-	<texture_picker bottom="75" follows="left|top" height="300" left="20" name="snapshot_ctrl"
+	<texture_picker bottom="95" follows="left|top" height="300" left="20" name="snapshot_ctrl"
 	     width="400" />
 	<text bottom_delta="-10" follows="left|top" font="SansSerif" height="20" left="20" name="name_label">
 		Name:
@@ -35,10 +35,10 @@
 		Traffic: [TRAFFIC]
 	</string>
 	<string name="area_text">
-		Area: [AREA] sq. m.
+		Area: [AREA] m². 
 	</string>
 	<string name="forsale_text">
-		For Sale for L$ [PRICE]
+		For Sale for L$[PRICE]
 	</string>
 	<string name="auction_text">
 		Auction ID [ID].

@@ -169,9 +169,9 @@ scratch and wear it.
 			     bottom="-74" drop_shadow_visible="true" follows="left|top|right"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="28" left="8"
 			     mouse_opaque="true" name="not worn instructions" v_pad="0" width="373">
-        Put on a new skin by dragging one from your inventory
-        to your avatar. Alternately, you create a new one from
-        scratch and wear it.
+				Put on a new skin by dragging one from your inventory
+to your avatar. Alternately, you create a new one from
+scratch and wear it.
       </text>
       <text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 			     bottom="-74" drop_shadow_visible="true" follows="left|top|right"
@@ -263,9 +263,9 @@ scratch and wear it.
 			     bottom="-74" drop_shadow_visible="true" follows="left|top|right"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="28" left="8"
 			     mouse_opaque="true" name="not worn instructions" v_pad="0" width="373">
-        Put on a new hair by dragging one from your inventory
-        to your avatar. Alternately, you create a new one from
-        scratch and wear it.
+				Put on a new hair by dragging one from your inventory
+to your avatar. Alternately, you create a new one from
+scratch and wear it.
       </text>
       <text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 			     bottom="-74" drop_shadow_visible="true" follows="left|top|right"
@@ -435,9 +435,9 @@ scratch and wear it.
 			     bottom="-74" drop_shadow_visible="true" follows="left|top|right"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="28" left="8"
 			     mouse_opaque="true" name="not worn instructions" v_pad="0" width="373">
-        Put on a new shirt by dragging one from your inventory
-        to your avatar. Alternately, you create a new one from
-        scratch and wear it.
+				Put on a new shirt by dragging one from your inventory
+to your avatar. Alternately, you create a new one from
+scratch and wear it.
       </text>
       <text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 			     bottom="-74" drop_shadow_visible="true" follows="left|top|right"
@@ -516,9 +516,9 @@ scratch and wear it.
 			     bottom="-74" drop_shadow_visible="true" follows="left|top|right"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="28" left="8"
 			     mouse_opaque="true" name="not worn instructions" v_pad="0" width="373">
-        Put on a new pants by dragging one from your inventory
-        to your avatar. Alternately, you create a new one from
-        scratch and wear it.
+				Put on a new pants by dragging one from your inventory
+to your avatar. Alternately, you create a new one from
+scratch and wear it.
       </text>
       <text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 			     bottom="-74" drop_shadow_visible="true" follows="left|top|right"
@@ -736,9 +736,9 @@ scratch and wear it.
 			     bottom="-74" drop_shadow_visible="true" follows="left|top|right"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="28" left="8"
 			     mouse_opaque="true" name="not worn instructions" v_pad="0" width="373">
-        Put on a new jacket by dragging one from your inventory
-        to your avatar. Alternately, you create a new one from
-        scratch and wear it.
+				Put on a new jacket by dragging one from your inventory
+to your avatar. Alternately, you create a new one from
+scratch and wear it.
       </text>
       <text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 			     bottom="-74" drop_shadow_visible="true" follows="left|top|right"
@@ -821,9 +821,9 @@ scratch and wear it.
 			     bottom="-74" drop_shadow_visible="true" follows="left|top|right"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="28" left="8"
 			     mouse_opaque="true" name="not worn instructions" v_pad="0" width="373">
-        Put on a new gloves by dragging one from your inventory
-        to your avatar. Alternately, you create a new one from
-        scratch and wear it.
+				Put on a new gloves by dragging one from your inventory
+to your avatar. Alternately, you create a new one from
+scratch and wear it.
       </text>
       <text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 			     bottom="-74" drop_shadow_visible="true" follows="left|top|right"
@@ -903,9 +903,9 @@ scratch and wear it.
 			     bottom="-74" drop_shadow_visible="true" follows="left|top|right"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="28" left="8"
 			     mouse_opaque="true" name="not worn instructions" v_pad="0" width="373">
-        Put on a new undershirt by dragging one from your inventory
-        to your avatar. Alternately, you create a new one from
-        scratch and wear it.
+				Put on a new undershirt by dragging one from your inventory
+to your avatar. Alternately, you create a new one from
+scratch and wear it.
       </text>
       <text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 			     bottom="-74" drop_shadow_visible="true" follows="left|top|right"
@@ -986,9 +986,9 @@ scratch and wear it.
 			     bottom="-74" drop_shadow_visible="true" follows="left|top|right"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="28" left="8"
 			     mouse_opaque="true" name="not worn instructions" v_pad="0" width="373">
-        Put on a new underpants by dragging one from your inventory
-        to your avatar. Alternately, you create a new one from
-        scratch and wear it.
+				Put on a new underpants by dragging one from your inventory
+to your avatar. Alternately, you create a new one from
+scratch and wear it.
       </text>
       <text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 			     bottom="-74" drop_shadow_visible="true" follows="left|top|right"
@@ -1115,7 +1115,7 @@ scratch and wear it.
 	     height="20" label="Cancel" label_selected="Cancel" mouse_opaque="true"
 	     name="Cancel" right="-10" scale_image="true" width="100" />
 	<button bottom="-536" follows="right|bottom" font="SansSerif" halign="center"
-	     height="20" label="Ok" label_selected="Ok" mouse_opaque="true"
+	     height="20" label="OK" label_selected="OK" mouse_opaque="true"
 	     name="Ok" right="-116" scale_image="true" width="100" />
 	<button bottom="-536" follows="left|bottom" font="SansSerif" halign="center"
 	     height="20" label="Make Outfit..." label_selected="Make Outfit..."

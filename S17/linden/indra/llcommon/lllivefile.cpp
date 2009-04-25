@@ -167,12 +167,3 @@ void LLLiveFile::addToEventTimer()
 	impl.mEventTimer = new LiveFileEventTimer(*this, impl.mRefreshPeriod);
 }
 
-void LLLiveFile::setRefreshPeriod(F32 seconds)
-{
-	if (seconds < 0.f)
-	{
-		seconds = -seconds;
-	}
-	impl.mRefreshPeriod = seconds;
-}
-

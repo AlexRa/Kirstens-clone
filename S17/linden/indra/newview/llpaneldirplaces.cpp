@@ -82,14 +82,21 @@ BOOL LLPanelDirPlaces::postBuild()
 	mCurrentSortColumn = "dwell";
 	mCurrentSortAscending = FALSE;
 	
-	if (!gAgent.getAgentAccess().isInTransition())
+	if (gAgent.getAgentAccess().isInTransition())
 	{
-		// remove category for adult if we're post-transition
-		// (this code can go away, and the category can be removed from the xml,
-		// once we've completed the transition period for adult)
-		getChild<LLComboBox>("Category")->remove("adult_land_category_label");
-	}	
-
+		// during the AO transition, this combo has an Adult item.
+		// Post-transition, it goes away. We can remove this conditional
+		// after the transition and just use the "else" clause.
+		childSetVisible("Category_Adult", true);
+		childSetEnabled("Category_Adult", true);
+	}
+	else
+	{
+		// this is the code that should be preserved post-transition
+		childSetVisible("Category", true);
+		childSetEnabled("Category", true);
+	}
+	
 	// Don't prepopulate the places list, as it hurts the database as of 2006-12-04. JC
 	// initialQuery();
 
@@ -111,33 +118,8 @@ LLPanelDirPlaces::~LLPanelDirPlaces()
 // virtual
 void LLPanelDirPlaces::draw()
 {
-	bool adult_enabled = gAgent.canAccessAdult();
-	bool mature_enabled = gAgent.canAccessMature();
-	
-	// These check boxes can only be checked if you have the right access to use them
-	childSetValue("incpg", gSavedSettings.getBOOL("ShowPGSims"));
-	childSetValue("incmature", gSavedSettings.getBOOL("ShowMatureSims") && mature_enabled);
-	childSetValue("incadult", gSavedSettings.getBOOL("ShowAdultSims") && adult_enabled);
-	
-	// Teens don't get mature/adult choices
-	if (gAgent.wantsPGOnly())
-	{
-		childHide("incmature");
-		childHide("incadult");
-		childSetValue("incpg", TRUE);
-		childDisable("incpg");
-	}		
+	updateMaturityCheckbox();
 
-	if (!mature_enabled)
-	{
-		childDisable("incmature");
-	}
-
-	if (!adult_enabled)
-	{
-		childDisable("incadult");
-	}
-			
 	LLPanelDirBrowser::draw();
 }
 
@@ -171,6 +153,19 @@ void LLPanelDirPlaces::performQuery()
 	};
 
 	std::string catstring = childGetValue("Category").asString();
+	if (gAgent.getAgentAccess().isInTransition())
+	{
+		// during the AO transition, this combo has an Adult item.
+		// Post-transition, it goes away. We can remove this conditional
+		// after the transition and just use the "else" clause.
+		catstring = childGetValue("Category_Adult").asString();
+	}
+	else
+	{
+		// this is the code that should be preserved post-transition
+		catstring = childGetValue("Category").asString();
+	}
+	
 	
 	// Because LLParcel::C_ANY is -1, must do special check
 	S32 category = 0;

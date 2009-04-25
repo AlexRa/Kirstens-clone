@@ -200,7 +200,12 @@ void LLFloaterGesture::refreshAll()
 		}
 		else
 		{
-			if (! list->setCurrentByID(sInstance->mSelectedID))
+			if (list->setCurrentByID(sInstance->mSelectedID))
+			{
+				LLCtrlScrollInterface *scroll = sInstance->childGetScrollInterface("gesture_list");
+				if (scroll) scroll->scrollToShowSelected();
+			}
+			else
 			{
 				list->selectFirstItem();
 			}
@@ -214,14 +219,8 @@ void LLFloaterGesture::refreshAll()
 void LLFloaterGesture::buildGestureList()
 {
 	LLCtrlListInterface *list = childGetListInterface("gesture_list");
-	LLCtrlScrollInterface *scroll = childGetScrollInterface("gesture_list");
+	if (!list) return;
 
-	if (! (list && scroll)) return;
-
-	// attempt to preserve scroll position through re-builds
-	// since we do re-build any time anything dirties
-	S32 current_scroll_pos = scroll->getScrollPos();
-	
 	list->operateOnAll(LLCtrlListInterface::OP_DELETE);
 
 	LLGestureManager::item_map_t::iterator it;
@@ -320,8 +319,6 @@ void LLFloaterGesture::buildGestureList()
 		}
 		list->addElement(element, ADD_BOTTOM);
 	}
-	
-	scroll->setScrollPos(current_scroll_pos);
 }
 
 // static

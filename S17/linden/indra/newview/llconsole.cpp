@@ -68,15 +68,11 @@ LLConsole::LLConsole(const std::string& name, const U32 max_lines, const LLRect 
 					 S32 font_size_index, F32 persist_time ) 
 	: 
 	LLFixedBuffer(max_lines),
-	LLView(name, rect, FALSE),
-	mLinePersistTime(persist_time), // seconds
-	mFadeTime(persist_time - FADE_DURATION),
-	mFont(NULL),
-	mLastBoxHeight(0),
-	mLastBoxWidth(0),
-	mConsoleWidth(0),
-	mConsoleHeight(0)
+	LLView(name, rect, FALSE)
 {
+	mLinePersistTime = persist_time;		// seconds
+	mFadeTime = persist_time - FADE_DURATION;
+
 	setFontSize( font_size_index );
 	setMaxLines(gSavedSettings.getS32("ConsoleMaxLines"));
 }

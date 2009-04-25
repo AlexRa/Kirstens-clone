@@ -18,7 +18,6 @@ set(vivox_files
 set(debug_src_dir "${CMAKE_SOURCE_DIR}/../libraries/i686-win32/lib/debug")
 set(debug_files
     freebl3.dll
-    gksvggdiplus.dll
     js3250.dll
     nspr4.dll
     nss3.dll
@@ -53,7 +52,6 @@ set(all_targets ${all_targets} ${out_targets})
 set(release_src_dir "${CMAKE_SOURCE_DIR}/../libraries/i686-win32/lib/release")
 set(release_files
     freebl3.dll
-    gksvggdiplus.dll
     js3250.dll
     nspr4.dll
     nss3.dll

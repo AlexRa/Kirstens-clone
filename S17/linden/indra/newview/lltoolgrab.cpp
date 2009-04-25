@@ -210,29 +210,22 @@ BOOL LLToolGrab::handleObjectHit(const LLPickInfo& info)
 
 	if (!objectp->usePhysics())
 	{
-		if (script_touch)
+		// In mouselook, we shouldn't be able to grab non-physical, 
+		// non-touchable objects.  If it has a touch handler, we
+		// do grab it (so llDetectedGrab works), but movement is
+		// blocked on the server side. JC
+		if (gAgent.cameraMouselook() && !script_touch)
 		{
-			mMode = GRAB_NONPHYSICAL;  // if it has a script, use the non-physical grab
+			mMode = GRAB_LOCKED;
+			gViewerWindow->hideCursor();
+			gViewerWindow->moveCursorToCenter();
 		}
 		else
 		{
-			// In mouselook, we shouldn't be able to grab non-physical, 
-			// non-touchable objects.  If it has a touch handler, we
-			// do grab it (so llDetectedGrab works), but movement is
-			// blocked on the server side. JC
-			if (gAgent.cameraMouselook())
-			{
-				mMode = GRAB_LOCKED;
-			}
-			else
-			{
-				mMode = GRAB_ACTIVE_CENTER;
-			}
-
-			gViewerWindow->hideCursor();
-			gViewerWindow->moveCursorToCenter();
-			
+			mMode = GRAB_NONPHYSICAL;
 		}
+		// Don't bail out here, go on and grab so buttons can get
+		// their "touched" event.
 	}
 	else if( !objectp->permMove() )
 	{

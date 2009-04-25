@@ -64,14 +64,7 @@
 	<slider bottom="-217" can_edit_text="true"
 	     decimal_digits="3" enabled="true" height="16" increment="0.025"
 	     initial_val="1" left="148" max_val="1.4" min_val="0.75" mouse_opaque="true"
-	     name="ui_scale_slider" show_text="true" value="1" width="150" />
-  <text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom_delta="-1" drop_shadow_visible="true" enabled="true"
-	     follows="left|top" font="SansSerifSmall" h_pad="0" halign="left"
-	     height="18" left_delta="155" mouse_opaque="true" name="ui_scale_warning"
-	     v_pad="0" width="400">
-    (Requires restart for full effect)
-  </text>
+	     name="ui_scale_slider" show_text="true" value="1" width="256" />
 	<check_box bottom="-236" enabled="true" follows="left|top"
 	     font="SansSerifSmall" height="16" initial_value="false"
 	     label="Use resolution independent scale" left="151" mouse_opaque="true"
@@ -95,10 +88,10 @@
 	     bottom="-322" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="10" left="151"
 	     mouse_opaque="true" name="maturity_desired_prompt" v_pad="0" width="394">
-		 Allow access to content rated:
+		 I want to access content rated:
 	</text>
 	<combo_box bottom="-328" follows="left|top" height="18" left="315"
-	     mouse_opaque="true" name="maturity_desired_combobox" width="130">
+	     mouse_opaque="true" name="maturity_desired_combobox" width="150">
 		<combo_item name="Desired_Adult" value="42">
 			PG, Mature and Adult
 		</combo_item>
@@ -112,11 +105,9 @@
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom="-322" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="10" left="315"
-	     mouse_opaque="true" name="maturity_desired_textbox" v_pad="0" width="130">
+	     mouse_opaque="true" name="maturity_desired_textbox" v_pad="0" width="150">
 		 PG only
 	</text>
-	<button bottom="-328" follows="left|top" font="SansSerif" height="18" label="?"
-	     left="470" name="MaturityHelpButton" width="22" />
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom="-20" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="10" left="10"
@@ -200,8 +191,14 @@
 		<combo_item type="string" length="1" enabled="true" name="French" value="fr">
 			Français (French) - Beta
 		</combo_item>
+		<combo_item type="string" length="1" enabled="true" name="Italian" value="it">
+			Italiano (Italian) - Beta
+		</combo_item>
 		<combo_item type="string" length="1" enabled="true" name="Hungarian" value="hu">
 			Magyar (Hungarian) - Beta
+		</combo_item>
+		<combo_item type="string" length="1" enabled="true" name="Dutch" value="nl">
+			Nederlands (Dutch) - Beta
 		</combo_item>
 		<combo_item type="string" length="1" enabled="true" name="Polish" value="pl">
 			Polski (Polish) - Beta
@@ -212,6 +209,9 @@
  		<combo_item type="string" length="1" enabled="true" name="Russian" value="ru">
  			Русский (Russian) - Beta
  		</combo_item>
+		<combo_item type="string" length="1" enabled="true" name="Turkish" value="tr">
+			Türkçe (Turkish) - Beta
+		</combo_item>
  		<combo_item type="string" length="1" enabled="true" name="Ukrainian" value="uk">
  			Українська (Ukrainian) - Beta
  		</combo_item>

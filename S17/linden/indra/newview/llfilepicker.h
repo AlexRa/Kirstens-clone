@@ -59,7 +59,6 @@
 #include <commdlg.h>
 #endif
 
-extern "C" {
 // mostly for Linux, possible on others
 #if LL_GTK
 # include "gtk/gtk.h"
@@ -69,7 +68,6 @@ extern "C" {
 #if LL_X11
 #include "SDL/SDL_syswm.h"
 #endif
-}
 
 class LLFilePicker
 {

@@ -294,7 +294,6 @@ void LLTracker::trackAvatar( const LLUUID& avatar_id, const std::string& name )
 	LLAvatarTracker::instance().track( avatar_id, name );
 	instance()->mTrackingStatus = TRACKING_AVATAR;
 	instance()->mLabel = name;
-	instance()->mToolTip = "";
 }
 
 
@@ -310,7 +309,6 @@ void LLTracker::trackLandmark( const LLUUID& asset_id, const LLUUID& item_id, co
 	instance()->cacheLandmarkPosition();
 	instance()->mTrackingStatus = TRACKING_LANDMARK;
 	instance()->mLabel = name;
-	instance()->mToolTip = "";
 }
 
 

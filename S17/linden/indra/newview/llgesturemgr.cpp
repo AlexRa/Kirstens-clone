@@ -926,15 +926,20 @@ void LLGestureManager::onLoadComplete(LLVFS *vfs,
 		LLVFile file(vfs, asset_uuid, type, LLVFile::READ);
 		S32 size = file.getSize();
 
-		std::vector<char> buffer(size+1);
+		char* buffer = new char[size+1];
+		if (buffer == NULL)
+		{
+			llerrs << "Memory Allocation Failed" << llendl;
+			return;
+		}
 
-		file.read((U8*)&buffer[0], size);
+		file.read((U8*)buffer, size);		/* Flawfinder: ignore */
 		// ensure there's a trailing NULL so strlen will work.
 		buffer[size] = '\0';
 
 		LLMultiGesture* gesture = new LLMultiGesture();
 
-		LLDataPackerAsciiBuffer dp(&buffer[0], size+1);
+		LLDataPackerAsciiBuffer dp(buffer, size+1);
 		BOOL ok = gesture->deserialize(dp);
 
 		if (ok)
@@ -986,6 +991,9 @@ void LLGestureManager::onLoadComplete(LLVFS *vfs,
 			delete gesture;
 			gesture = NULL;
 		}
+
+		delete [] buffer;
+		buffer = NULL;
 	}
 	else
 	{

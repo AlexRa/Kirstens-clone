@@ -91,17 +91,7 @@ LLPreviewLandmark::LLPreviewLandmark(const std::string& name,
 {
 	
 	mFactoryMap["place_details_panel"] = LLCallbackMap(LLPreviewLandmark::createPlaceDetail, this);
-
-	if (show_keep_discard)
-	{
-		LLUICtrlFactory::getInstance()->buildFloater(this, "floater_preview_landmark_keep_discard.xml", &getFactoryMap());
-		childSetAction("Keep",onKeepBtn,this);
-		childSetAction("Discard",onDiscardBtn,this);
-	}
-	else
-	{
-		LLUICtrlFactory::getInstance()->buildFloater(this, "floater_preview_existing_landmark.xml", &getFactoryMap());
-	}
+	LLUICtrlFactory::getInstance()->buildFloater(this, "floater_preview_existing_landmark.xml", &getFactoryMap());
 
 	/*
 	childSetCommitCallback("desc_editor", LLPreview::onText, this);

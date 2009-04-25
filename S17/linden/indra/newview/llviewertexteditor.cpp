@@ -894,9 +894,51 @@ BOOL LLViewerTextEditor::handleHover(S32 x, S32 y, MASK mask)
 
 BOOL LLViewerTextEditor::handleMouseUp(S32 x, S32 y, MASK mask)
 {
-	BOOL handled = FALSE;
+	BOOL	handled = FALSE;
 
-	if( hasMouseCapture() )
+	// let scrollbar have first dibs
+	handled = LLView::childrenHandleMouseUp(x, y, mask) != NULL;
+
+	// Used to enable I Agree checkbox if the user scrolled through entire text
+	BOOL was_scrolled_to_bottom = (mScrollbar->getDocPos() == mScrollbar->getDocPosMax());
+	if (mOnScrollEndCallback && was_scrolled_to_bottom)
+	{
+		mOnScrollEndCallback(mOnScrollEndData);
+	}
+
+	if( !handled && mTakesNonScrollClicks)
+	{
+		if( mIsSelecting )
+		{
+			// Finish selection
+			if( y > getTextRect().mTop )
+			{
+				mScrollbar->setDocPos( mScrollbar->getDocPos() - 1 );
+			}
+			else
+			if( y < getTextRect().mBottom )
+			{
+				mScrollbar->setDocPos( mScrollbar->getDocPos() + 1 );
+			}
+			
+			setCursorAtLocalPos( x, y, TRUE );
+			endSelection();
+
+			updateScrollFromCursor();
+		}
+		
+		if( !hasSelection() )
+		{
+			handleMouseUpOverSegment( x, y, mask );
+		}
+
+		handled = TRUE;
+	}
+
+	// Delay cursor flashing
+	resetKeystrokeTimer();
+
+	if( hasMouseCapture()  )
 	{
 		if (mDragItem)
 		{
@@ -915,15 +957,8 @@ BOOL LLViewerTextEditor::handleMouseUp(S32 x, S32 y, MASK mask)
 			}
 		}
 		mDragItem = NULL;
-	}
-
-	handled = LLTextEditor::handleMouseUp(x,y,mask);
-
-	// Used to enable I Agree checkbox if the user scrolled through entire text
-	BOOL was_scrolled_to_bottom = (mScrollbar->getDocPos() == mScrollbar->getDocPosMax());
-	if (mOnScrollEndCallback && was_scrolled_to_bottom)
-	{
-		mOnScrollEndCallback(mOnScrollEndData);
+		gFocusMgr.setMouseCapture( NULL );
+		handled = TRUE;
 	}
 
 	return handled;
@@ -965,24 +1000,6 @@ BOOL LLViewerTextEditor::handleRightMouseDown(S32 x, S32 y, MASK mask)
 	return handled;
 }
 
-BOOL LLViewerTextEditor::handleMiddleMouseDown(S32 x, S32 y, MASK mask)
-{
-	BOOL	handled = FALSE;
-	handled = childrenHandleMiddleMouseDown(x, y, mask) != NULL;
-	if (!handled)
-	{
-		handled = LLTextEditor::handleMiddleMouseDown(x, y, mask);
-	}
-	return handled;
-}
-
-BOOL LLViewerTextEditor::handleMiddleMouseUp(S32 x, S32 y, MASK mask)
-{
-	BOOL handled = childrenHandleMiddleMouseUp(x, y, mask) != NULL;
-
-	return handled;
-}
-
 BOOL LLViewerTextEditor::handleDoubleClick(S32 x, S32 y, MASK mask)
 {
 	BOOL	handled = FALSE;
@@ -1005,6 +1022,7 @@ BOOL LLViewerTextEditor::handleDoubleClick(S32 x, S32 y, MASK mask)
 				}
 			}
 		}
+
 	
 		setCursorAtLocalPos( x, y, FALSE );
 		deselect();
@@ -1041,9 +1059,6 @@ BOOL LLViewerTextEditor::handleDoubleClick(S32 x, S32 y, MASK mask)
 
 		// delay cursor flashing
 		resetKeystrokeTimer();
-
-		// take selection to 'primary' clipboard
-		updatePrimary();
 
 		handled = TRUE;
 	}

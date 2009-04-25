@@ -217,7 +217,6 @@
 #include "llfloaterassetbrowser.h"
 
 using namespace LLVOAvatarDefines;
-
 void init_client_menu(LLMenuGL* menu);
 void init_server_menu(LLMenuGL* menu);
 
@@ -764,7 +763,7 @@ void init_client_menu(LLMenuGL* menu)
 	/*menu->append(new LLMenuItemCallGL("Reload settings/colors", 
 					&handle_reload_settings, NULL, NULL));*/
 	menu->append(new LLMenuItemCallGL("Reload personal setting overrides", 
-		&reload_personal_settings_overrides, NULL, NULL, KEY_F12, MASK_CONTROL|MASK_SHIFT));
+		&reload_personal_settings_overrides, NULL, NULL, KEY_F2, MASK_CONTROL|MASK_SHIFT));
 
 	sub_menu = new LLMenuGL("HUD Info");
 	{
@@ -952,13 +951,6 @@ void init_client_menu(LLMenuGL* menu)
 										&menu_check_control,
 										(void*)"SaveMinidump"));
 
-	// TomY Temporary menu item so we can test this floater
-	menu->append(new LLMenuItemCheckGL("Clothing...", 
-												&handle_clothing,
-												NULL,
-												NULL,
-												NULL));
-
 	menu->append(new LLMenuItemCallGL("Debug Settings...", LLFloaterSettingsDebug::show, NULL, NULL));
 	menu->append(new LLMenuItemCheckGL("View Admin Options", &handle_admin_override_toggle, NULL, &check_admin_override, NULL, 'V', MASK_CONTROL | MASK_ALT));
 
@@ -1083,95 +1075,94 @@ void init_debug_rendering_menu(LLMenuGL* menu)
 	//
 	sub_menu = new LLMenuGL("Types");
 	menu->appendMenu(sub_menu);
-	
+
 	sub_menu->append(new LLMenuItemCheckGL("Simple",
 											&LLPipeline::toggleRenderTypeControl, NULL,
 											&LLPipeline::hasRenderTypeControl,
-											(void*)LLPipeline::RENDER_TYPE_SIMPLE,	'1', MASK_ALT|MASK_SHIFT));
+											(void*)LLPipeline::RENDER_TYPE_SIMPLE,	'1', MASK_CONTROL|MASK_ALT|MASK_SHIFT));
 	sub_menu->append(new LLMenuItemCheckGL("Alpha",
 											&LLPipeline::toggleRenderTypeControl, NULL,
 											&LLPipeline::hasRenderTypeControl,
-											(void*)LLPipeline::RENDER_TYPE_ALPHA, '2', MASK_ALT|MASK_SHIFT));
+											(void*)LLPipeline::RENDER_TYPE_ALPHA, '2', MASK_CONTROL|MASK_ALT|MASK_SHIFT));
 	sub_menu->append(new LLMenuItemCheckGL("Tree",
 											&LLPipeline::toggleRenderTypeControl, NULL,
 											&LLPipeline::hasRenderTypeControl,
-											(void*)LLPipeline::RENDER_TYPE_TREE, '3', MASK_ALT|MASK_SHIFT));
+											(void*)LLPipeline::RENDER_TYPE_TREE, '3', MASK_CONTROL|MASK_ALT|MASK_SHIFT));
 	sub_menu->append(new LLMenuItemCheckGL("Character",
 											&LLPipeline::toggleRenderTypeControl, NULL,
 											&LLPipeline::hasRenderTypeControl,
-											(void*)LLPipeline::RENDER_TYPE_AVATAR, '4', MASK_ALT|MASK_SHIFT));
+											(void*)LLPipeline::RENDER_TYPE_AVATAR, '4', MASK_CONTROL|MASK_ALT|MASK_SHIFT));
 	sub_menu->append(new LLMenuItemCheckGL("SurfacePatch",
 											&LLPipeline::toggleRenderTypeControl, NULL,
 											&LLPipeline::hasRenderTypeControl,
-											(void*)LLPipeline::RENDER_TYPE_TERRAIN, '5', MASK_ALT|MASK_SHIFT));
+											(void*)LLPipeline::RENDER_TYPE_TERRAIN, '5', MASK_CONTROL|MASK_ALT|MASK_SHIFT));
 	sub_menu->append(new LLMenuItemCheckGL("Sky",
 											&LLPipeline::toggleRenderTypeControl, NULL,
 											&LLPipeline::hasRenderTypeControl,
-											(void*)LLPipeline::RENDER_TYPE_SKY, '6', MASK_ALT|MASK_SHIFT));
+											(void*)LLPipeline::RENDER_TYPE_SKY, '6', MASK_CONTROL|MASK_ALT|MASK_SHIFT));
 	sub_menu->append(new LLMenuItemCheckGL("Water",
 											&LLPipeline::toggleRenderTypeControl, NULL,
 											&LLPipeline::hasRenderTypeControl,
-											(void*)LLPipeline::RENDER_TYPE_WATER, '7', MASK_ALT|MASK_SHIFT));
+											(void*)LLPipeline::RENDER_TYPE_WATER, '7', MASK_CONTROL|MASK_ALT|MASK_SHIFT));
 	sub_menu->append(new LLMenuItemCheckGL("Ground",
 											&LLPipeline::toggleRenderTypeControl, NULL,
 											&LLPipeline::hasRenderTypeControl,
-											(void*)LLPipeline::RENDER_TYPE_GROUND, '8', MASK_ALT|MASK_SHIFT));
+											(void*)LLPipeline::RENDER_TYPE_GROUND, '8', MASK_CONTROL|MASK_ALT|MASK_SHIFT));
 	sub_menu->append(new LLMenuItemCheckGL("Volume",
 											&LLPipeline::toggleRenderTypeControl, NULL,
 											&LLPipeline::hasRenderTypeControl,
-											(void*)LLPipeline::RENDER_TYPE_VOLUME, '9', MASK_ALT|MASK_SHIFT));
+											(void*)LLPipeline::RENDER_TYPE_VOLUME, '9', MASK_CONTROL|MASK_ALT|MASK_SHIFT));
 	sub_menu->append(new LLMenuItemCheckGL("Grass",
 											&LLPipeline::toggleRenderTypeControl, NULL,
 											&LLPipeline::hasRenderTypeControl,
-											(void*)LLPipeline::RENDER_TYPE_GRASS, '0', MASK_ALT|MASK_SHIFT));
+											(void*)LLPipeline::RENDER_TYPE_GRASS, '0', MASK_CONTROL|MASK_ALT|MASK_SHIFT));
 	sub_menu->append(new LLMenuItemCheckGL("Clouds",
 											&LLPipeline::toggleRenderTypeControl, NULL,
 											&LLPipeline::hasRenderTypeControl,
-											(void*)LLPipeline::RENDER_TYPE_CLOUDS, '-', MASK_ALT|MASK_SHIFT));
+											(void*)LLPipeline::RENDER_TYPE_CLOUDS, '-', MASK_CONTROL|MASK_ALT| MASK_SHIFT));
 	sub_menu->append(new LLMenuItemCheckGL("Particles",
 											&LLPipeline::toggleRenderTypeControl, NULL,
 											&LLPipeline::hasRenderTypeControl,
-											(void*)LLPipeline::RENDER_TYPE_PARTICLES, '`', MASK_ALT|MASK_SHIFT));
+											(void*)LLPipeline::RENDER_TYPE_PARTICLES, '=', MASK_CONTROL|MASK_ALT|MASK_SHIFT));
 	sub_menu->append(new LLMenuItemCheckGL("Bump",
 											&LLPipeline::toggleRenderTypeControl, NULL,
 											&LLPipeline::hasRenderTypeControl,
-											(void*)LLPipeline::RENDER_TYPE_BUMP, '\\', MASK_ALT|MASK_SHIFT));
-
+											(void*)LLPipeline::RENDER_TYPE_BUMP, '\\', MASK_CONTROL|MASK_ALT|MASK_SHIFT));
 	sub_menu->createJumpKeys();
 	sub_menu = new LLMenuGL("Features");
 	menu->appendMenu(sub_menu);
 	sub_menu->append(new LLMenuItemCheckGL("UI",
 											&LLPipeline::toggleRenderDebugFeature, NULL,
 											&LLPipeline::toggleRenderDebugFeatureControl,
-											(void*)LLPipeline::RENDER_DEBUG_FEATURE_UI, KEY_F1, MASK_CONTROL|MASK_SHIFT));
+											(void*)LLPipeline::RENDER_DEBUG_FEATURE_UI, KEY_F1, MASK_ALT|MASK_CONTROL));
 	sub_menu->append(new LLMenuItemCheckGL("Selected",
 											&LLPipeline::toggleRenderDebugFeature, NULL,
 											&LLPipeline::toggleRenderDebugFeatureControl,
-											(void*)LLPipeline::RENDER_DEBUG_FEATURE_SELECTED, KEY_F2, MASK_CONTROL|MASK_SHIFT));
+											(void*)LLPipeline::RENDER_DEBUG_FEATURE_SELECTED, KEY_F2, MASK_ALT|MASK_CONTROL));
 	sub_menu->append(new LLMenuItemCheckGL("Highlighted",
 											&LLPipeline::toggleRenderDebugFeature, NULL,
 											&LLPipeline::toggleRenderDebugFeatureControl,
-											(void*)LLPipeline::RENDER_DEBUG_FEATURE_HIGHLIGHTED, KEY_F3, MASK_CONTROL|MASK_SHIFT));
+											(void*)LLPipeline::RENDER_DEBUG_FEATURE_HIGHLIGHTED, KEY_F3, MASK_ALT|MASK_CONTROL));
 	sub_menu->append(new LLMenuItemCheckGL("Dynamic Textures",
 											&LLPipeline::toggleRenderDebugFeature, NULL,
 											&LLPipeline::toggleRenderDebugFeatureControl,
-											(void*)LLPipeline::RENDER_DEBUG_FEATURE_DYNAMIC_TEXTURES, KEY_F4, MASK_CONTROL|MASK_SHIFT));
+											(void*)LLPipeline::RENDER_DEBUG_FEATURE_DYNAMIC_TEXTURES, KEY_F4, MASK_ALT|MASK_CONTROL));
 	sub_menu->append(new LLMenuItemCheckGL( "Foot Shadows", 
 											&LLPipeline::toggleRenderDebugFeature, NULL,
 											&LLPipeline::toggleRenderDebugFeatureControl,
-											(void*)LLPipeline::RENDER_DEBUG_FEATURE_FOOT_SHADOWS, KEY_F5, MASK_CONTROL|MASK_SHIFT));
+											(void*)LLPipeline::RENDER_DEBUG_FEATURE_FOOT_SHADOWS, KEY_F5, MASK_ALT|MASK_CONTROL));
 	sub_menu->append(new LLMenuItemCheckGL("Fog",
 											&LLPipeline::toggleRenderDebugFeature, NULL,
 											&LLPipeline::toggleRenderDebugFeatureControl,
-											(void*)LLPipeline::RENDER_DEBUG_FEATURE_FOG, KEY_F6, MASK_CONTROL|MASK_SHIFT));
+											(void*)LLPipeline::RENDER_DEBUG_FEATURE_FOG, KEY_F6, MASK_ALT|MASK_CONTROL));
 	sub_menu->append(new LLMenuItemCheckGL("Test FRInfo",
 											&LLPipeline::toggleRenderDebugFeature, NULL,
 											&LLPipeline::toggleRenderDebugFeatureControl,
-											(void*)LLPipeline::RENDER_DEBUG_FEATURE_FR_INFO, KEY_F8, MASK_CONTROL|MASK_SHIFT));
+											(void*)LLPipeline::RENDER_DEBUG_FEATURE_FR_INFO, KEY_F8, MASK_ALT|MASK_CONTROL));
 	sub_menu->append(new LLMenuItemCheckGL( "Flexible Objects", 
 											&LLPipeline::toggleRenderDebugFeature, NULL,
 											&LLPipeline::toggleRenderDebugFeatureControl,
-											(void*)LLPipeline::RENDER_DEBUG_FEATURE_FLEXIBLE, KEY_F9, MASK_CONTROL|MASK_SHIFT));
+											(void*)LLPipeline::RENDER_DEBUG_FEATURE_FLEXIBLE, KEY_F9, MASK_ALT|MASK_CONTROL));
 	sub_menu->createJumpKeys();
 
 	/////////////////////////////
@@ -1328,11 +1319,8 @@ void init_debug_avatar_menu(LLMenuGL* menu)
 	menu->appendMenu(sub_menu);
 
 	sub_menu = new LLMenuGL("Character Tests");
-	sub_menu->append(new LLMenuItemCheckGL("Go Away/AFK When Idle",
-										   menu_toggle_control,
-										   NULL,
-										   menu_check_control,
-										   (void*)"AllowIdleAFK"));
+	sub_menu->append(new LLMenuItemToggleGL("Go Away/AFK When Idle",
+		&gAllowIdleAFK));
 
 	sub_menu->append(new LLMenuItemCallGL("Appearance To XML", 
 		&LLVOAvatar::dumpArchetypeXML));
@@ -1368,8 +1356,14 @@ void init_debug_avatar_menu(LLMenuGL* menu)
 	//menu->append(new LLMenuItemToggleGL("Show Attachment Points", &LLVOAvatar::sShowAttachmentPoints));
 	//diabling collision plane due to DEV-14477 -brad
 	//menu->append(new LLMenuItemToggleGL("Show Collision Plane", &LLVOAvatar::sShowFootPlane));
-	menu->append(new LLMenuItemToggleGL("Show Collision Skeleton", &LLVOAvatar::sShowCollisionVolumes));
-	menu->append(new LLMenuItemToggleGL( "Display Agent Target", &LLAgent::sDebugDisplayTarget));
+	menu->append(new LLMenuItemCheckGL("Show Collision Skeleton",
+									   &LLPipeline::toggleRenderDebug, NULL,
+									   &LLPipeline::toggleRenderDebugControl,
+									   (void*)LLPipeline::RENDER_DEBUG_AVATAR_VOLUME));
+	menu->append(new LLMenuItemCheckGL("Display Agent Target",
+									   &LLPipeline::toggleRenderDebug, NULL,
+									   &LLPipeline::toggleRenderDebugControl,
+									   (void*)LLPipeline::RENDER_DEBUG_AGENT_TARGET));
 	menu->append(new LLMenuItemToggleGL( "Debug Rotation", &LLVOAvatar::sDebugAvatarRotation));
 	menu->append(new LLMenuItemCallGL("Dump Attachments", handle_dump_attachments));
 	menu->append(new LLMenuItemCallGL("Rebake Textures", handle_rebake_textures, NULL, NULL, 'R', MASK_ALT | MASK_CONTROL ));
@@ -4031,18 +4025,6 @@ BOOL sitting_on_selection()
 	return (avatar->mIsSitting && avatar->getRoot() == root_object);
 }
 
-class LLToolsSaveToInventory : public view_listener_t
-{
-	bool handleEvent(LLPointer<LLEvent> event, const LLSD& userdata)
-	{
-		if(enable_save_into_inventory(NULL))
-		{
-			derez_objects(DRD_SAVE_INTO_AGENT_INVENTORY, LLUUID::null);
-		}
-		return true;
-	}
-};
-
 class LLToolsSaveToObjectInventory : public view_listener_t
 {
 	bool handleEvent(LLPointer<LLEvent> event, const LLSD& userdata)
@@ -4733,29 +4715,25 @@ class LLWorldSetBusy : public view_listener_t
 	}
 };
 
-bool can_create_landmark()
-{
-	BOOL can = FALSE;
-	
-	LLParcel* agent_parcel = LLViewerParcelMgr::getInstance()->getAgentParcel();
-	if (agent_parcel)
-	{
-
-		if (agent_parcel->getAllowLandmark()
-			|| LLViewerParcelMgr::isParcelOwnedByAgent(agent_parcel, GP_LAND_ALLOW_LANDMARK))
-		{
-			can = TRUE;
-		}
-	}
-
-	return can;
-}
 
 class LLWorldCreateLandmark : public view_listener_t
 {
 	bool handleEvent(LLPointer<LLEvent> event, const LLSD& userdata)
 	{
-		if (!can_create_landmark())
+		LLViewerRegion* agent_region = gAgent.getRegion();
+		if(!agent_region)
+		{
+			llwarns << "No agent region" << llendl;
+			return true;
+		}
+		LLParcel* agent_parcel = LLViewerParcelMgr::getInstance()->getAgentParcel();
+		if (!agent_parcel)
+		{
+			llwarns << "No agent parcel" << llendl;
+			return true;
+		}
+		if (!agent_parcel->getAllowLandmark()
+			&& !LLViewerParcelMgr::isParcelOwnedByAgent(agent_parcel, GP_LAND_ALLOW_LANDMARK))
 		{
 			LLNotifications::instance().add("CannotCreateLandmarkNotOwner");
 			return true;
@@ -6295,28 +6273,25 @@ class LLToolsEnableTakeCopy : public view_listener_t
 		bool all_valid = false;
 		if (LLSelectMgr::getInstance())
 		{
-			if (!LLSelectMgr::getInstance()->getSelection()->isEmpty())
-			{
-				all_valid = true;
+			all_valid = true;
 #ifndef HACKED_GODLIKE_VIEWER
 # ifdef TOGGLE_HACKED_GODLIKE_VIEWER
-				if (LLViewerLogin::getInstance()->isInProductionGrid()
-					|| !gAgent.isGodlike())
+			if (LLViewerLogin::getInstance()->isInProductionGrid()
+                || !gAgent.isGodlike())
 # endif
+			{
+				struct f : public LLSelectedObjectFunctor
 				{
-					struct f : public LLSelectedObjectFunctor
+					virtual bool apply(LLViewerObject* obj)
 					{
-						virtual bool apply(LLViewerObject* obj)
-						{
-							return (!obj->permCopy() || obj->isAttachment());
-						}
-					} func;
-					const bool firstonly = true;
-					bool any_invalid = LLSelectMgr::getInstance()->getSelection()->applyToRootObjects(&func, firstonly);
-					all_valid = !any_invalid;
-				}
-#endif // HACKED_GODLIKE_VIEWER
+						return (!obj->permCopy() || obj->isAttachment());
+					}
+				} func;
+				const bool firstonly = true;
+				bool any_invalid = LLSelectMgr::getInstance()->getSelection()->applyToRootObjects(&func, firstonly);
+				all_valid = !any_invalid;
 			}
+#endif // HACKED_GODLIKE_VIEWER
 		}
 
 		gMenuHolder->findControl(userdata["control"].asString())->setValue(all_valid);
@@ -6426,16 +6401,6 @@ BOOL enable_save_into_inventory(void*)
 	return FALSE;
 }
 
-class LLToolsEnableSaveToInventory : public view_listener_t
-{
-	bool handleEvent(LLPointer<LLEvent> event, const LLSD& userdata)
-	{
-		bool new_value = enable_save_into_inventory(NULL);
-		gMenuHolder->findControl(userdata["control"].asString())->setValue(new_value);
-		return true;
-	}
-};
-
 BOOL enable_save_into_task_inventory(void*)
 {
 	LLSelectNode* node = LLSelectMgr::getInstance()->getSelection()->getFirstRootNode();
@@ -6510,10 +6475,9 @@ class LLWorldEnableCreateLandmark : public view_listener_t
 {
 	bool handleEvent(LLPointer<LLEvent> event, const LLSD& userdata)
 	{
-		bool new_value = can_create_landmark();
-		
+		bool new_value = gAgent.isGodlike() || 
+			(gAgent.getRegion() && gAgent.getRegion()->getAllowLandmark());
 		gMenuHolder->findControl(userdata["control"].asString())->setValue(new_value);
-		
 		return true;
 	}
 };
@@ -7550,7 +7514,6 @@ void initialize_menus()
 	addMenu(new LLToolsLookAtSelection(), "Tools.LookAtSelection");
 	addMenu(new LLToolsBuyOrTake(), "Tools.BuyOrTake");
 	addMenu(new LLToolsTakeCopy(), "Tools.TakeCopy");
-	addMenu(new LLToolsSaveToInventory(), "Tools.SaveToInventory");
 	addMenu(new LLToolsSaveToObjectInventory(), "Tools.SaveToObjectInventory");
 	addMenu(new LLToolsSelectedScriptAction(), "Tools.SelectedScriptAction");
 
@@ -7559,8 +7522,7 @@ void initialize_menus()
 	addMenu(new LLToolsEnableUnlink(), "Tools.EnableUnlink");
 	addMenu(new LLToolsEnableBuyOrTake(), "Tools.EnableBuyOrTake");
 	addMenu(new LLToolsEnableTakeCopy(), "Tools.EnableTakeCopy");
-	addMenu(new LLToolsEnableSaveToInventory(), "Tools.EnableSaveToInventory");
-	addMenu(new LLToolsEnableSaveToObjectInventory(), "Tools.EnableSaveToObjectInventory");
+	addMenu(new LLToolsEnableSaveToObjectInventory(), "Tools.SaveToObjectInventory");
 
 	/*addMenu(new LLToolsVisibleBuyObject(), "Tools.VisibleBuyObject");
 	addMenu(new LLToolsVisibleTakeObject(), "Tools.VisibleTakeObject");*/

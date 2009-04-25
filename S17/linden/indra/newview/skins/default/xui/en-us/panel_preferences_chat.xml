@@ -119,7 +119,7 @@
 	</text>
 	<check_box bottom_delta="-8" enabled="true"
 	     follows="left|top" font="SansSerifSmall" height="16" initial_value="false"
-	     label="Close chat after hitting return" left="148" mouse_opaque="true"
+	     label="Close chat bar after hitting return" left="148" mouse_opaque="true"
 	     name="close_chat_on_return_check" radio_style="false" width="237" />
 	<check_box bottom_delta="-20" enabled="true"
 	     follows="left|top" font="SansSerifSmall" height="16" initial_value="false"

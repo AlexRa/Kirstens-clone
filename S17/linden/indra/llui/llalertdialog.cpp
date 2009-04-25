@@ -59,9 +59,8 @@ const S32 MSG_PAD = 8;
 //static
 void LLAlertDialog::initClass()
 {
-	// these are self registering so they don't need to be retained here
-	new LLNotificationChannel("Alerts", "Visible", LLNotificationFilters::filterBy<std::string>(&LLNotification::getType, "alert"));
-	new LLNotificationChannel("AlertModal", "Visible", LLNotificationFilters::filterBy<std::string>(&LLNotification::getType, "alertmodal"));
+	LLNotificationChannel::buildChannel("Alerts", "Visible", LLNotificationFilters::filterBy<std::string>(&LLNotification::getType, "alert"));
+	LLNotificationChannel::buildChannel("AlertModal", "Visible", LLNotificationFilters::filterBy<std::string>(&LLNotification::getType, "alertmodal"));
 	LLNotifications::instance().getChannel("Alerts")->connectChanged(boost::bind(&onNewNotification, _1, false));
 	LLNotifications::instance().getChannel("AlertModal")->connectChanged(boost::bind(&onNewNotification, _1, true));
 }

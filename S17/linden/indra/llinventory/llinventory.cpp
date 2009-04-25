@@ -333,6 +333,15 @@ void LLInventoryItem::copyItem(const LLInventoryItem* other)
 	mCreationDate = other->mCreationDate;
 }
 
+// As a constructor alternative, the clone() method works like a
+// copy constructor, but gens a new UUID.
+void LLInventoryItem::cloneItem(LLPointer<LLInventoryItem>& newitem) const
+{
+	newitem = new LLInventoryItem;
+	newitem->copyItem(this);
+	newitem->mUUID.generate();
+}
+
 const LLPermissions& LLInventoryItem::getPermissions() const
 {
 	return mPermissions;
@@ -925,12 +934,6 @@ BOOL LLInventoryItem::exportLegacyStream(std::ostream& output_stream, BOOL inclu
 LLSD LLInventoryItem::asLLSD() const
 {
 	LLSD sd = LLSD();
-	asLLSD(sd);
-	return sd;
-}
-
-void LLInventoryItem::asLLSD( LLSD& sd ) const
-{
 	sd[INV_ITEM_ID_LABEL] = mUUID;
 	sd[INV_PARENT_ID_LABEL] = mParentUUID;
 	sd[INV_PERMISSIONS_LABEL] = ll_create_sd_from_permissions(mPermissions);
@@ -962,9 +965,11 @@ void LLInventoryItem::asLLSD( LLSD& sd ) const
 	sd[INV_NAME_LABEL] = mName;
 	sd[INV_DESC_LABEL] = mDescription;
 	sd[INV_CREATION_DATE_LABEL] = (S32) mCreationDate;
+
+	return sd;
 }
 
-bool LLInventoryItem::fromLLSD(const LLSD& sd)
+bool LLInventoryItem::fromLLSD(LLSD& sd)
 {
 	mInventoryType = LLInventoryType::IT_NONE;
 	mAssetUUID.setNull();
@@ -1257,19 +1262,23 @@ void LLInventoryItem::unpackBinaryBucket(U8* bin_bucket, S32 bin_bucket_size)
 	// Early exit on an empty binary bucket.
 	if (bin_bucket_size <= 1) return;
 
-	if (NULL == bin_bucket)
+	// Convert the bin_bucket into a string.
+	char* item_buffer = new char[bin_bucket_size+1];
+	if ((item_buffer != NULL) && (bin_bucket != NULL))
 	{
-		llerrs << "unpackBinaryBucket failed.  bin_bucket is NULL." << llendl;
+		memcpy(item_buffer, bin_bucket, bin_bucket_size);	/* Flawfinder: ignore */
+	}
+	else
+	{
+		llerrs << "unpackBinaryBucket failed. item_buffer or bin_bucket is Null." << llendl;
+		delete[] item_buffer;
 		return;
 	}
-
-	// Convert the bin_bucket into a string.
-	std::vector<char> item_buffer(bin_bucket_size+1);
-	memcpy(&item_buffer[0], bin_bucket, bin_bucket_size);	/* Flawfinder: ignore */
 	item_buffer[bin_bucket_size] = '\0';
-	std::string str(&item_buffer[0]);
+	std::string str(item_buffer);
 
-	lldebugs << "item buffer: " << str << llendl;
+	lldebugs << "item buffer: " << item_buffer << llendl;
+	delete[] item_buffer;
 
 	// Tokenize the string.
 	typedef boost::tokenizer<boost::char_separator<char> > tokenizer;
@@ -1410,7 +1419,7 @@ void LLInventoryCategory::packMessage(LLMessageSystem* msg) const
 	msg->addStringFast(_PREHASH_Name, mName);
 }
 
-bool LLInventoryCategory::fromLLSD(const LLSD& sd)
+bool LLInventoryCategory::fromLLSD(LLSD& sd)
 {
     std::string w;
 
@@ -1652,7 +1661,6 @@ LLSD ll_create_sd_from_inventory_item(LLPointer<LLInventoryItem> item)
 	return rv;
 }
 
-/* deprecated, use LLInventoryItem::fromLLSD() instead
 LLPointer<LLInventoryItem> ll_create_item_from_sd(const LLSD& sd_item)
 {
 	LLPointer<LLInventoryItem> rv = new LLInventoryItem;
@@ -1682,7 +1690,6 @@ LLPointer<LLInventoryItem> ll_create_item_from_sd(const LLSD& sd_item)
 	rv->setCreationDate(sd_item[INV_CREATION_DATE_LABEL].asInteger());
 	return rv;
 }
-*/
 
 LLSD ll_create_sd_from_inventory_category(LLPointer<LLInventoryCategory> cat)
 {

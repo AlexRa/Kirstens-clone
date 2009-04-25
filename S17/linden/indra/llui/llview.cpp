@@ -987,30 +987,6 @@ BOOL LLView::handleRightMouseUp(S32 x, S32 y, MASK mask)
 	}
 	return handled;
 }
- 
-BOOL LLView::handleMiddleMouseDown(S32 x, S32 y, MASK mask)
-{
-	LLView* handled_view = childrenHandleMiddleMouseDown( x, y, mask );
-	BOOL handled = (handled_view != NULL);
-	if( !handled && blockMouseEvent(x, y) )
-	{
-		handled = TRUE;
-		handled_view = this;
-	}
-
-	return handled;
-}
-
-BOOL LLView::handleMiddleMouseUp(S32 x, S32 y, MASK mask)
-{
-	BOOL handled = childrenHandleMiddleMouseUp( x, y, mask ) != NULL;
-	if( !handled && blockMouseEvent(x, y) )
-	{
-		handled = TRUE;
-	}
-	return handled;
-}
-
 
 LLView* LLView::childrenHandleScrollWheel(S32 x, S32 y, S32 clicks)
 {
@@ -1172,34 +1148,6 @@ LLView* LLView::childrenHandleRightMouseDown(S32 x, S32 y, MASK mask)
 	return handled_view;
 }
 
-LLView* LLView::childrenHandleMiddleMouseDown(S32 x, S32 y, MASK mask)
-{
-	LLView* handled_view = NULL;
-
-	if (getVisible() && getEnabled() )
-	{
-		for ( child_list_iter_t child_it = mChildList.begin(); child_it != mChildList.end(); ++child_it)
-		{
-			LLView* viewp = *child_it;
-			S32 local_x = x - viewp->getRect().mLeft;
-			S32 local_y = y - viewp->getRect().mBottom;
-			if (viewp->pointInView(local_x, local_y) &&
-				viewp->getVisible() &&
-				viewp->getEnabled() &&
-				viewp->handleMiddleMouseDown( local_x, local_y, mask ))
-			{
-				if (sDebugMouseHandling)
-				{
-					sMouseHandlerMessage = std::string("->") + viewp->mName + sMouseHandlerMessage;
-				}
-				handled_view = viewp;
-				break;
-			}
-		}
-	}
-	return handled_view;
-}
-
 LLView* LLView::childrenHandleDoubleClick(S32 x, S32 y, MASK mask)
 {
 	LLView* handled_view = NULL;
@@ -1285,32 +1233,6 @@ LLView* LLView::childrenHandleRightMouseUp(S32 x, S32 y, MASK mask)
 	return handled_view;
 }
 
-LLView* LLView::childrenHandleMiddleMouseUp(S32 x, S32 y, MASK mask)
-{
-	LLView* handled_view = NULL;
-	if( getVisible() && getEnabled() )
-	{
-		for ( child_list_iter_t child_it = mChildList.begin(); child_it != mChildList.end(); ++child_it)
-		{
-			LLView* viewp = *child_it;
-			S32 local_x = x - viewp->getRect().mLeft;
-			S32 local_y = y - viewp->getRect().mBottom;
-			if (viewp->pointInView(local_x, local_y) &&
-				viewp->getVisible() &&
-				viewp->getEnabled() &&
-				viewp->handleMiddleMouseUp( local_x, local_y, mask ))
-			{
-				if (sDebugMouseHandling)
-				{
-					sMouseHandlerMessage = std::string("->") + viewp->mName + sMouseHandlerMessage;
-				}
-				handled_view = viewp;
-				break;
-			}
-		}
-	}
-	return handled_view;
-}
 
 void LLView::draw()
 {
@@ -1370,8 +1292,6 @@ void LLView::draw()
 	{
 		drawDebugRect();
 	}
-
-	gGL.getTexUnit(0)->disable();
 }
 
 //Draw a box for debugging.

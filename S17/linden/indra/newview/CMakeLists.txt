@@ -142,7 +142,6 @@ set(viewer_SOURCE_FILES
     llfloaterchat.cpp
     llfloaterchatterbox.cpp
     llfloaterclassified.cpp
-    llfloaterclothing.cpp
     llfloatercolorpicker.cpp
     llfloatercustomize.cpp
     llfloaterdaycycle.cpp
@@ -280,6 +279,7 @@ set(viewer_SOURCE_FILES
     llpanelgrouplandmoney.cpp
     llpanelgroupnotices.cpp
     llpanelgrouproles.cpp
+    llpanelgroupvoting.cpp
     llpanelinput.cpp
     llpanelinventory.cpp
     llpanelland.cpp
@@ -312,6 +312,7 @@ set(viewer_SOURCE_FILES
     llpreviewscript.cpp
     llpreviewsound.cpp
     llpreviewtexture.cpp
+    llproductinforequest.cpp
     llprogressview.cpp
     llregionposition.cpp
     llremoteparcelrequest.cpp
@@ -547,7 +548,6 @@ set(viewer_HEADER_FILES
     llfloaterchat.h
     llfloaterchatterbox.h
     llfloaterclassified.h
-    llfloaterclothing.h
     llfloatercolorpicker.h
     llfloatercustomize.h
     llfloaterdaycycle.h
@@ -684,6 +684,7 @@ set(viewer_HEADER_FILES
     llpanelgrouplandmoney.h
     llpanelgroupnotices.h
     llpanelgrouproles.h
+    llpanelgroupvoting.h
     llpanelinput.h
     llpanelinventory.h
     llpanelland.h
@@ -717,6 +718,7 @@ set(viewer_HEADER_FILES
     llpreviewscript.h
     llpreviewsound.h
     llpreviewtexture.h
+    llproductinforequest.h
     llprogressview.h
     llregionposition.h
     llremoteparcelrequest.h
@@ -1032,11 +1034,7 @@ if (WINDOWS)
 endif (WINDOWS)
 
 # Add the xui files. This is handy for searching for xui elements
-# from within the IDE.
-
-file(GLOB viewer_XUI_FILE_GLOB_LIST
-     ${CMAKE_CURRENT_SOURCE_DIR}/skins/default/xui/en-us/*.xml)
-
+# from within the IDE
 set(viewer_XUI_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/skins/default/colors.xml
     ${CMAKE_CURRENT_SOURCE_DIR}/skins/default/colors_base.xml
@@ -1073,8 +1071,6 @@ set(viewer_APPSETTINGS_FILES
     ${CMAKE_SOURCE_DIR}/../etc/message.xml
     ${CMAKE_SOURCE_DIR}/../scripts/messages/message_template.msg
     )
-
-use_prebuilt_binary(artwork-common)
 
 source_group("App Settings" FILES ${viewer_APPSETTINGS_FILES})
 

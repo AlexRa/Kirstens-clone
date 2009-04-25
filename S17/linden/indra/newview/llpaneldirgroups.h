@@ -41,6 +41,7 @@ public:
 	LLPanelDirGroups(const std::string& name, LLFloaterDirectory* floater);
 
 	/*virtual*/ void search(const std::string& search_text);
+	/*virtual*/ void draw();
 };
 
 #endif

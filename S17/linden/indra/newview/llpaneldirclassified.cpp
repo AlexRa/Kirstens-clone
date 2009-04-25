@@ -143,6 +143,8 @@ void LLPanelDirClassified::refresh()
 	BOOL godlike = gAgent.isGodlike();
 	childSetVisible("Delete", godlike);
 	childSetEnabled("Delete", godlike);
+
+	updateMaturityCheckbox();
 }
 
 //Open Profile to Classifieds tab

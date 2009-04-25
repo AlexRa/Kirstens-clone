@@ -43,6 +43,8 @@ public:
 	LLPanelDirLand(const std::string& name, LLFloaterDirectory* floater);
 	/*virtual*/ ~LLPanelDirLand();
 
+	/*virtual*/ void draw();
+
 	virtual BOOL postBuild();
 
 	void performQuery();

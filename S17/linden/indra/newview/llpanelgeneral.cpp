@@ -76,9 +76,6 @@ BOOL LLPanelGeneral::postBuild()
 	
 	childSetValue("language_combobox", 	gSavedSettings.getString("Language"));
 
-	// Help button
-	childSetAction("MaturityHelpButton", onOpenHelp, this);
-	
 	
 	// if we have no agent, we can't let them choose anything
 	// if we have an agent, then we only let them choose if they have a choice
@@ -159,28 +156,4 @@ void LLPanelGeneral::apply()
 void LLPanelGeneral::cancel()
 {
 }
-
-void LLPanelGeneral::onOpenHelp(void* user_data)
-{
-	LLNotifications::instance().add("MaturityPreferencesHelp");
-	
-	// this stuff wanted to do a dependent floater, but for now we're just doing 
-	// a modal alert
-	/*
-	
-	LLPanelGeneral* self = static_cast<LLPanelGeneral*>(user_data);
-	
-	const char* xml_alert = "MaturityPreferencesHelp";
-	LLAlertDialog* dialogp = gViewerWindow->alertXml(xml_alert);
-	if (dialogp)
-	{
-		LLFloater* root_floater = gFloaterView->getParentFloater(self);
-		if (root_floater)
-		{
-			root_floater->addDependentFloater(dialogp);
-		}
-	}	
-	 */
-}
-
 

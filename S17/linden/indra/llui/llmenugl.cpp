@@ -931,8 +931,7 @@ LLMenuItemCheckGL::LLMenuItemCheckGL ( const std::string& name,
 									   void* user_data,
 									   KEY key, MASK mask ) :
 	LLMenuItemCallGL( name, label, clicked_cb, enabled_cb, user_data, key, mask ),
-	mCheckCallback( NULL ),
-	mChecked(FALSE)
+	mCheckCallback( NULL )
 {
 	setControlName(control_name, context);
 }

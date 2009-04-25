@@ -116,6 +116,13 @@ LLPanelDirLand::~LLPanelDirLand()
 	// Children all cleaned up by default view destructor.
 }
 
+// virtual
+void LLPanelDirLand::draw()
+{
+	updateMaturityCheckbox();
+
+	LLPanelDirBrowser::draw();
+}
 
 void LLPanelDirLand::onClickSort(void* data)
 {

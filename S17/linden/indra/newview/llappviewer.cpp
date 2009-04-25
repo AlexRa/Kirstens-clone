@@ -202,6 +202,7 @@ const F32 DEFAULT_AFK_TIMEOUT = 5.f * 60.f; // time with no input before user fl
 F32 gSimLastTime; // Used in LLAppViewer::init and send_stats()
 F32 gSimFrames;
 
+BOOL gAllowIdleAFK = TRUE;
 BOOL gAllowTapTapHoldRun = TRUE;
 BOOL gShowObjectUpdates = FALSE;
 BOOL gUseQuickTime = TRUE;
@@ -300,7 +301,7 @@ LLAppViewer::LLUpdaterInfo *LLAppViewer::sUpdaterInfo = NULL ;
 void idle_afk_check()
 {
 	// check idle timers
-	if (gSavedSettings.getBOOL("AllowIdleAFK") && (gAwayTriggerTimer.getElapsedTimeF32() > gSavedSettings.getF32("AFKTimeout")))
+	if (gAllowIdleAFK && (gAwayTriggerTimer.getElapsedTimeF32() > gSavedSettings.getF32("AFKTimeout")))
 	{
 		gAgent.setAFK();
 	}
@@ -393,6 +394,7 @@ static void settings_to_globals()
 	gAgent.mHideGroupTitle		= gSavedSettings.getBOOL("RenderHideGroupTitle");
 
 	gDebugWindowProc = gSavedSettings.getBOOL("DebugWindowProc");
+	gAllowIdleAFK = gSavedSettings.getBOOL("AllowIdleAFK");
 	gAllowTapTapHoldRun = gSavedSettings.getBOOL("AllowTapTapHoldRun");
 	gShowObjectUpdates = gSavedSettings.getBOOL("ShowObjectUpdates");
 	gMapScale = gSavedSettings.getF32("MapScale");
@@ -505,7 +507,6 @@ LLTextureFetch* LLAppViewer::sTextureFetch = NULL;
 
 LLAppViewer::LLAppViewer() : 
 	mMarkerFile(),
-	mLogoutMarkerFile(NULL),
 	mReportedCrash(false),
 	mNumSessions(0),
 	mPurgeCache(false),
@@ -848,7 +849,6 @@ bool LLAppViewer::mainLoop()
 		try
 		{
 			LLFastTimer t(LLFastTimer::FTM_FRAME);
-			
 			pingMainloopTimeout("Main:MiscNativeWindowEvents");
 			
 			{
@@ -1999,38 +1999,9 @@ bool LLAppViewer::initConfiguration()
 		}
 
 		initMarkerFile();
-		
-#if LL_SEND_CRASH_REPORTS
-		if (gLastExecEvent == LAST_EXEC_FROZE)
-		{
-			llinfos << "Last execution froze, requesting to send crash report." << llendl;
-			//
-			// Pop up a freeze or crash warning dialog
-			//
-			std::ostringstream msg;
-			msg << gSecondLife
-				<< " appears to have frozen or crashed on the previous run.\n"
-				<< "Would you like to send a crash report?";
-			std::string alert;
-			alert = gSecondLife;
-			alert += " Alert";
-			S32 choice = OSMessageBox(msg.str(),
-									  alert,
-									  OSMB_YESNO);
-			if (OSBTN_YES == choice)
-			{
-				llinfos << "Sending crash report." << llendl;
-
-				bool report_freeze = true;
-				handleCrashReporting(report_freeze);
-			}
-			else
-			{
-				llinfos << "Not sending crash report." << llendl;
-			}
-		}
-#endif // #if LL_SEND_CRASH_REPORTS
-	}
+        
+        checkForCrash();
+    }
 	else
 	{
 		mSecondInstance = anotherInstanceRunning();
@@ -2048,6 +2019,11 @@ bool LLAppViewer::initConfiguration()
 		}
 
 		initMarkerFile();
+        
+        if(!mSecondInstance)
+        {
+            checkForCrash();
+        }
 	}
 
    	// need to do this here - need to have initialized global settings first
@@ -2060,6 +2036,43 @@ bool LLAppViewer::initConfiguration()
 	gLastRunVersion = gSavedSettings.getString("LastRunVersion");
 
 	return true; // Config was successful.
+}
+
+
+void LLAppViewer::checkForCrash(void)
+{
+    
+#if LL_SEND_CRASH_REPORTS
+    if (gLastExecEvent == LAST_EXEC_FROZE || gLastExecEvent == LAST_EXEC_OTHER_CRASH)
+    {
+        llinfos << "Last execution froze, requesting to send crash report." << llendl;
+        //
+        // Pop up a freeze or crash warning dialog
+        //
+        std::ostringstream msg;
+        msg << gSecondLife
+        << " appears to have frozen or crashed on the previous run.\n"
+        << "Would you like to send a crash report?";
+        std::string alert;
+        alert = gSecondLife;
+        alert += " Alert";
+        S32 choice = OSMessageBox(msg.str(),
+                                  alert,
+                                  OSMB_YESNO);
+        if (OSBTN_YES == choice)
+        {
+            llinfos << "Sending crash report." << llendl;
+            
+            bool report_freeze = true;
+            handleCrashReporting(report_freeze);
+        }
+        else
+        {
+            llinfos << "Not sending crash report." << llendl;
+        }
+    }
+#endif // LL_SEND_CRASH_REPORTS    
+    
 }
 
 bool LLAppViewer::initWindow()
@@ -2157,6 +2170,7 @@ void LLAppViewer::cleanupSavedSettings()
 
 	gSavedSettings.setBOOL("DebugWindowProc", gDebugWindowProc);
 		
+	gSavedSettings.setBOOL("AllowIdleAFK", gAllowIdleAFK);
 	gSavedSettings.setBOOL("AllowTapTapHoldRun", gAllowTapTapHoldRun);
 	gSavedSettings.setBOOL("ShowObjectUpdates", gShowObjectUpdates);
 	
@@ -2397,6 +2411,10 @@ void LLAppViewer::handleViewerCrash()
 
 	LLError::logToFile("");
 
+// On Mac, we send the report on the next run, since we need macs crash report
+// for a stack trace, so we have to let it the app fail.
+#if !LL_DARWIN
+
 	// Remove the marker file, since otherwise we'll spawn a process that'll keep it locked
 	if(gDebugInfo["LastExecEvent"].asInteger() == LAST_EXEC_LOGOUT_CRASH)
 	{
@@ -2410,6 +2428,8 @@ void LLAppViewer::handleViewerCrash()
 	// Call to pure virtual, handled by platform specific llappviewer instance.
 	pApp->handleCrashReporting(); 
 
+#endif //!LL_DARWIN
+    
 	return;
 }
 
@@ -2465,6 +2485,13 @@ void LLAppViewer::initMarkerFile()
 	std::string llerror_marker_file = gDirUtilp->getExpandedFilename(LL_PATH_LOGS, LLERROR_MARKER_FILE_NAME);
 	std::string error_marker_file = gDirUtilp->getExpandedFilename(LL_PATH_LOGS, ERROR_MARKER_FILE_NAME);
 
+	
+	if (LLAPRFile::isExist(mMarkerFileName, NULL, LL_APR_RB) && !anotherInstanceRunning())
+	{
+		gLastExecEvent = LAST_EXEC_FROZE;
+		LL_INFOS("MarkerFile") << "Exec marker found: program froze on previous execution" << LL_ENDL;
+	}    
+    
 	if(LLAPRFile::isExist(logout_marker_file, NULL, LL_APR_RB))
 	{
 		LL_INFOS("MarkerFile") << "Last exec LLError crashed, setting LastExecEvent to " << LAST_EXEC_LLERROR_CRASH << LL_ENDL;
@@ -2487,16 +2514,10 @@ void LLAppViewer::initMarkerFile()
 	LLAPRFile::remove(llerror_marker_file);
 	LLAPRFile::remove(error_marker_file);
 	
-	//Freeze case checks
+	// No new markers if another instance is running.
 	if(anotherInstanceRunning()) 
 	{
 		return;
-	}
-	
-	if (LLAPRFile::isExist(mMarkerFileName, NULL, LL_APR_RB))
-	{		
-		gLastExecEvent = LAST_EXEC_FROZE;
-		LL_INFOS("MarkerFile") << "Exec marker found: program froze on previous execution" << LL_ENDL;
 	}
 	
 	// Create the marker file for this execution & lock it
@@ -3495,7 +3516,7 @@ void LLAppViewer::idleShutdown()
 		S32 finished_uploads = total_uploads - pending_uploads;
 		F32 percent = 100.f * finished_uploads / total_uploads;
 		gViewerWindow->setProgressPercent(percent);
-		gViewerWindow->setProgressString("Saving your settings...");
+		gViewerWindow->setProgressString("Saving final data...");
 		return;
 	}
 
@@ -3667,7 +3688,7 @@ void LLAppViewer::idleNetwork()
 	// Check that the circuit between the viewer and the agent's current
 	// region is still alive
 	LLViewerRegion *agent_region = gAgent.getRegion();
-	if (agent_region && (LLStartUp::getStartupState()==STATE_STARTED))
+	if (agent_region)
 	{
 		LLUUID this_region_id = agent_region->getRegionID();
 		bool this_region_alive = agent_region->isAlive();

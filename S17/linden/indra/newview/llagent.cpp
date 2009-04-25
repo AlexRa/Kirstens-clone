@@ -76,7 +76,6 @@
 #include "llfloaterdirectory.h"
 #include "llfloatergroupinfo.h"
 #include "llfloatergroups.h"
-#include "llfloaterland.h"
 #include "llfloatermap.h"
 #include "llfloatermute.h"
 #include "llfloatersnapshot.h"
@@ -217,7 +216,6 @@ LLAgent gAgent;
 //
 // Statics
 //
-BOOL LLAgent::sDebugDisplayTarget = FALSE;
 
 const F32 LLAgent::TYPING_TIMEOUT_SECS = 5.f;
 
@@ -4428,7 +4426,8 @@ void LLAgent::setFocusGlobal(const LLVector3d& focus, const LLUUID &object_id)
 		// for attachments, make offset relative to avatar, not the attachment
 		if (mFocusObject->isAttachment())
 		{
-			while (!mFocusObject->isAvatar())
+			while (mFocusObject.notNull()		// DEV-29123 - can crash with a messed-up attachment
+				&& !mFocusObject->isAvatar())
 			{
 				mFocusObject = (LLViewerObject*) mFocusObject->getParent();
 			}
@@ -4840,6 +4839,36 @@ bool LLAgent::canAccessMature() const
 bool LLAgent::canAccessAdult() const
 {
 	return mAgentAccess.canAccessAdult();
+}
+
+bool LLAgent::canAccessMaturityInRegion( U64 region_handle ) const
+{
+	LLViewerRegion *regionp = LLWorld::getInstance()->getRegionFromHandle( region_handle );
+	if( regionp )
+	{
+		switch( regionp->getSimAccess() )
+		{
+			case SIM_ACCESS_MATURE:
+				if( !canAccessMature() )
+					return false;
+				break;
+			case SIM_ACCESS_ADULT:
+				if( !canAccessAdult() )
+					return false;
+				break;
+			default:
+				// Oh, go on and hear the silly noises.
+				break;
+		}
+	}
+	
+	return true;
+}
+
+bool LLAgent::canAccessMaturityAtGlobal( LLVector3d pos_global ) const
+{
+	U64 region_handle = to_region_handle_global( pos_global.mdV[0], pos_global.mdV[1] );
+	return canAccessMaturityInRegion( region_handle );
 }
 
 bool LLAgent::prefersPG() const
@@ -5951,9 +5980,6 @@ bool LLAgent::teleportCore(bool is_local)
 	LLFloaterWorldMap::hide(NULL);
 	LLFloaterDirectory::hide(NULL);
 
-	// hide land floater too - it'll be out of date
-	LLFloaterLand::hideInstance();
-	
 	LLViewerParcelMgr::getInstance()->deselectLand();
 
 	// Close all pie menus, deselect land, etc.
@@ -6431,6 +6457,8 @@ void LLAgent::saveWearable( EWearableType type, BOOL send_update )
 			addWearableToAgentInventory(cb, new_wearable);
 			return;
 		}
+		
+		getAvatarObject()->wearableUpdated( type );
 
 		if( send_update )
 		{

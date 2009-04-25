@@ -71,6 +71,7 @@ private:
 	static void onClickHome( void* data );
 	static void onClickSearch( void* data );
 	static void onCommitSearch(LLUICtrl*, void* data);
+	static void onClickHelp( void* data );
 
 	/*virtual*/ void onNavigateBegin( const EventType& eventIn );
 	/*virtual*/ void onNavigateComplete( const EventType& eventIn );

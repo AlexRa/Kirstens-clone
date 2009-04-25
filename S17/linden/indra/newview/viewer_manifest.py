@@ -205,7 +205,6 @@ class WindowsManifest(ViewerManifest):
         # Mozilla runtime DLLs (CP)
         if self.prefix(src="../../libraries/i686-win32/lib/release", dst=""):
             self.path("freebl3.dll")
-            self.path("gksvggdiplus.dll")
             self.path("js3250.dll")
             self.path("nspr4.dll")
             self.path("nss3.dll")
@@ -243,12 +242,12 @@ class WindowsManifest(ViewerManifest):
             self.path("wrap_oal.dll")
             self.end_prefix()
 
-        # pull in the crash logger and updater from other projects
-        self.path(src=self.find_existing_file( # tag:"crash-logger" here as a cue to the exporter
-                "../win_crash_logger/debug/windows-crash-logger.exe",
-                "../win_crash_logger/release/windows-crash-logger.exe",
-                "../win_crash_logger/relwithdebinfo/windows-crash-logger.exe"),
-                  dst="win_crash_logger.exe")
+#        # pull in the crash logger and updater from other projects
+#        self.path(src=self.find_existing_file( # tag:"crash-logger" here as a cue to the exporter
+#                "../win_crash_logger/debug/windows-crash-logger.exe",
+#                "../win_crash_logger/release/windows-crash-logger.exe",
+#                "../win_crash_logger/relwithdebinfo/windows-crash-logger.exe"),
+#                  dst="win_crash_logger.exe")
         self.path(src=self.find_existing_file(
                 "../win_updater/debug/windows-updater.exe",
                 "../win_updater/release/windows-updater.exe",
@@ -447,21 +446,14 @@ class DarwinManifest(ViewerManifest):
                 self.path("vivox-runtime/universal-darwin/libvivoxsdk.dylib", "libvivoxsdk.dylib")
                 self.path("vivox-runtime/universal-darwin/SLVoice", "SLVoice")
 
-                # need to get the kdu dll from any of the build directories as well
-                try:
-                    self.path(self.find_existing_file('../llkdu/%s/libllkdu.dylib' % self.args['configuration'],
-                        "../../libraries/universal-darwin/lib_release/libllkdu.dylib"),
-                        dst='libllkdu.dylib')
-                    pass
-                except:
-                    print "Skipping libllkdu.dylib"
-                    pass
+                # llkdu dynamic library
+#                self.path("../../libraries/universal-darwin/lib_release/libllkdu.dylib", "libllkdu.dylib")
                 
                 #libfmodwrapper.dylib
                 self.path(self.args['configuration'] + "/libfmodwrapper.dylib", "libfmodwrapper.dylib")
                 
                 # our apps
-                self.path("../mac_crash_logger/" + self.args['configuration'] + "/mac-crash-logger.app", "mac-crash-logger.app")
+#                self.path("../mac_crash_logger/" + self.args['configuration'] + "/mac-crash-logger.app", "mac-crash-logger.app")
                 self.path("../mac_updater/" + self.args['configuration'] + "/mac-updater.app", "mac-updater.app")
 
                 # command line arguments for connecting to the proper grid
@@ -598,8 +590,8 @@ class LinuxManifest(ViewerManifest):
             else:
                 installer_name += '_' + self.channel_oneword().upper()
 
-                # Fix access permissions
-                self.run_command("""
+        # Fix access permissions
+        self.run_command("""
                 find %(dst)s -type d | xargs --no-run-if-empty chmod 755;
                 find %(dst)s -type f -perm 0700 | xargs --no-run-if-empty chmod 0755;
                 find %(dst)s -type f -perm 0500 | xargs --no-run-if-empty chmod 0555;
@@ -630,20 +622,20 @@ class Linux_i686Manifest(LinuxManifest):
     def construct(self):
         super(Linux_i686Manifest, self).construct()
 
-        # install either the libllkdu we just built, or a prebuilt one, in
+#        # install either the libllkdu we just built, or a prebuilt one, in
         # decreasing order of preference.  for linux package, this goes to bin/
         try:
-            self.path(self.find_existing_file('../llkdu/libllkdu.so',
-                '../../libraries/i686-linux/lib_release_client/libllkdu.so'), 
-                  dst='bin/libllkdu.so')
+#            self.path(self.find_existing_file('../llkdu/libllkdu.so',
+#                '../../libraries/i686-linux/lib_release_client/libllkdu.so'), 
+#                  dst='bin/libllkdu.so')
             # keep this one to preserve syntax, open source mangling removes previous lines
             pass
         except:
-            print "Skipping libllkdu.so - not found"
+#            print "Skipping libllkdu.so - not found"
             pass
 
         self.path("secondlife-stripped","bin/do-not-directly-run-secondlife-bin")
-        self.path("../linux_crash_logger/linux-crash-logger-stripped","linux-crash-logger.bin")
+#        self.path("../linux_crash_logger/linux-crash-logger-stripped","linux-crash-logger.bin")
         self.path("linux_tools/launch_url.sh","launch_url.sh")
         if self.prefix("res-sdl"):
             self.path("*")
@@ -685,7 +677,7 @@ class Linux_x86_64Manifest(LinuxManifest):
     def construct(self):
         super(Linux_x86_64Manifest, self).construct()
         self.path("secondlife-stripped","bin/do-not-directly-run-secondlife-bin")
-        self.path("../linux_crash_logger/linux-crash-logger-stripped","linux-crash-logger.bin")
+#        self.path("../linux_crash_logger/linux-crash-logger-stripped","linux-crash-logger.bin")
         self.path("linux_tools/launch_url.sh","launch_url.sh")
         if self.prefix("res-sdl"):
             self.path("*")

@@ -71,3 +71,9 @@ void LLPanelDirGroups::search(const std::string& search_text)
 
 	childSetText("search_editor", search_text);
 }
+
+void LLPanelDirGroups::draw()
+{
+	updateMaturityCheckbox();
+	LLPanelDirBrowser::draw();
+}

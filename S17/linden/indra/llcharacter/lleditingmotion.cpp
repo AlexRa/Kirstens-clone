@@ -190,10 +190,8 @@ BOOL LLEditingMotion::onUpdate(F32 time, U8* joint_mask)
 	if (!llfinite(focus_pt.magVecSquared()))
 	{
 		LLVector3 tmp = mCharacter->getCharacterPosition() ;
-		LL_WARNS_ONCE("Animation") << "Non finite focus point in editing motion. focus point: " << focus_pt << " and character position: " <<
-			tmp << " and pointAtPt: " << pointAtPt <<
-			" - ignoring anim" << LL_ENDL;
-		return FALSE;
+		llwarns << "Non finite focus point in editing motion. focus point: " << focus_pt << " and character position: " <<
+			tmp << " and pointAtPt: " << *pointAtPt << llendl;
 	}
 
 	// propagate joint positions to kinematic chain

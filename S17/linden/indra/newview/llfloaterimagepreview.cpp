@@ -72,14 +72,11 @@ const S32 PREVIEW_TEXTURE_HEIGHT = 300;
 // LLFloaterImagePreview()
 //-----------------------------------------------------------------------------
 LLFloaterImagePreview::LLFloaterImagePreview(const std::string& filename) : 
-	LLFloaterNameDesc(filename),
-
-	mAvatarPreview(NULL),
-	mSculptedPreview(NULL),
-	mLastMouseX(0),
-	mLastMouseY(0),
-	mImagep(NULL)
+	LLFloaterNameDesc(filename)
 {
+	mLastMouseX = 0;
+	mLastMouseY = 0;
+	mImagep = NULL ;
 	loadImage(mFilenameAndPath);
 }
 
@@ -138,6 +135,8 @@ BOOL LLFloaterImagePreview::postBuild()
 //-----------------------------------------------------------------------------
 LLFloaterImagePreview::~LLFloaterImagePreview()
 {
+	clearAllPreviewTextures();
+
 	mRawImagep = NULL;
 	delete mAvatarPreview;
 	delete mSculptedPreview;
@@ -203,6 +202,21 @@ void	LLFloaterImagePreview::onPreviewTypeCommit(LLUICtrl* ctrl, void* userdata)
 	
 	fp->mAvatarPreview->refresh();
 	fp->mSculptedPreview->refresh();
+}
+
+
+//-----------------------------------------------------------------------------
+// clearAllPreviewTextures()
+//-----------------------------------------------------------------------------
+void LLFloaterImagePreview::clearAllPreviewTextures()
+{
+	mAvatarPreview->clearPreviewTexture("mHairMesh0");
+	mAvatarPreview->clearPreviewTexture("mUpperBodyMesh0");
+	mAvatarPreview->clearPreviewTexture("mLowerBodyMesh0");
+	mAvatarPreview->clearPreviewTexture("mHeadMesh0");
+	mAvatarPreview->clearPreviewTexture("mUpperBodyMesh0");
+	mAvatarPreview->clearPreviewTexture("mLowerBodyMesh0");
+	mAvatarPreview->clearPreviewTexture("mSkirtMesh0");
 }
 
 //-----------------------------------------------------------------------------
@@ -649,6 +663,19 @@ void LLImagePreviewAvatar::setPreviewTarget(const std::string& joint_name, const
 }
 
 //-----------------------------------------------------------------------------
+// clearPreviewTexture()
+//-----------------------------------------------------------------------------
+void LLImagePreviewAvatar::clearPreviewTexture(const std::string& mesh_name)
+{
+	LLViewerJointMesh *mesh = (LLViewerJointMesh*)mDummyAvatar->mRoot.findJoint(mesh_name);
+	// clear out existing test mesh
+	if (mesh)
+	{
+		mesh->setTestTexture(0);
+	}
+}
+
+//-----------------------------------------------------------------------------
 // update()
 //-----------------------------------------------------------------------------
 BOOL LLImagePreviewAvatar::render()
@@ -818,7 +845,7 @@ void LLImagePreviewSculpted::setPreviewTarget(LLImageRaw* imagep, F32 distance)
 	mVertexBuffer->getIndexStrider(index_strider);
 
 	// build vertices and normals
-	for (U32 i = 0; i < num_vertices; i++)
+	for (U32 i = 0; (S32)i < num_vertices; i++)
 	{
 		*(vertex_strider++) = vf.mVertices[i].mPosition;
 		LLVector3 normal = vf.mVertices[i].mNormal;

@@ -1610,7 +1610,7 @@ void LLFloaterWorldMap::updateSims(bool found_null_sim)
 		childSetFocus("search_results");
 		onCommitSearchResult(NULL, this);
 	}
-	else if (num_results == 0)
+	else
 	{
 		list->addCommentText(std::string("None found."));
 		list->operateOnAll(LLCtrlListInterface::OP_DESELECT);

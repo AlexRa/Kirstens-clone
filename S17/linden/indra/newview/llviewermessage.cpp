@@ -1343,6 +1343,27 @@ void inventory_offer_handler(LLOfferInfo* info, BOOL from_task)
 	LLNotifications::instance().add(p);
 }
 
+
+bool group_vote_callback(const LLSD& notification, const LLSD& response)
+{
+	LLUUID group_id = notification["payload"]["group_id"].asUUID();
+	S32 option = LLNotification::getSelectedOption(notification, response);
+	switch(option)
+	{
+	case 0:
+		// Vote Now
+		// Open up the voting tab
+		LLFloaterGroupInfo::showFromUUID(group_id, "voting_tab");
+		break;
+	default:
+		// Vote Later or
+		// close button
+		break;
+	}
+	return false;
+}
+static LLNotificationFunctorRegistration group_vote_callback_reg("GroupVote", group_vote_callback);
+
 bool lure_callback(const LLSD& notification, const LLSD& response)
 {
 	S32 option = 0;
@@ -1493,7 +1514,7 @@ void process_improved_im(LLMessageSystem *msg, void **user_data)
 				// initiated by the other party) then...
 				std::string my_name;
 				gAgent.buildFullname(my_name);
-				std::string response = gSavedPerAccountSettings.getString("BusyModeResponse2");
+				std::string response = gSavedPerAccountSettings.getText("BusyModeResponse");
 				pack_instant_message(
 					gMessageSystem,
 					gAgent.getID(),
@@ -1826,12 +1847,17 @@ void process_improved_im(LLMessageSystem *msg, void **user_data)
 		LLNotifications::instance().add("InventoryDeclined", args);
 		break;
 	}
-	// TODO: _DEPRECATED suffix as part of vote removal - DEV-24856
 	case IM_GROUP_VOTE:
-		{
-			LL_WARNS("Messaging") << "Received IM: IM_GROUP_VOTE_DEPRECATED" << LL_ENDL;
-		}
-		break;
+	{
+		LLSD args;
+		args["NAME"] = name;
+		args["MESSAGE"] = message;
+
+		LLSD payload;
+		payload["group_id"] = session_id;
+		LLNotifications::instance().add("GroupVote", args, payload);
+	}
+	break;
 
 	case IM_GROUP_ELECTION_DEPRECATED:
 	{
@@ -2087,7 +2113,7 @@ void busy_message (LLMessageSystem* msg, LLUUID from_id)
 	{
 		std::string my_name;
 		gAgent.buildFullname(my_name);
-		std::string response = gSavedPerAccountSettings.getString("BusyModeResponse2");
+		std::string response = gSavedPerAccountSettings.getText("BusyModeResponse");
 		pack_instant_message(
 			gMessageSystem,
 			gAgent.getID(),
@@ -3359,6 +3385,12 @@ void process_sound_trigger(LLMessageSystem *msg, void **)
 		return;
 	}
 
+	// Don't play sounds from a region with maturity above current agent maturity
+	if( !gAgent.canAccessMaturityInRegion( region_handle ) )
+	{
+		return;
+	}
+		
 	gAudiop->triggerSound(sound_id, owner_id, gain, LLAudioEngine::AUDIO_TYPE_SFX, pos_global);
 }
 
@@ -3392,6 +3424,13 @@ void process_preload_sound(LLMessageSystem *msg, void **user_data)
 	// audio data into a buffer at this point, as it won't actually
 	// help us out.
 
+	// Don't play sounds from a region with maturity above current agent maturity
+	LLVector3d pos_global = objectp->getPositionGlobal();
+	if( !gAgent.canAccessMaturityAtGlobal( pos_global ) )
+	{
+		return;
+	}
+	
 	// Add audioData starts a transfer internally.
 	sourcep->addAudioData(datap, FALSE);
 }
@@ -3421,6 +3460,14 @@ void process_attached_sound(LLMessageSystem *msg, void **user_data)
 	
 	if (LLMuteList::getInstance()->isMuted(owner_id, LLMute::flagObjectSounds)) return;
 
+	
+	// Don't play sounds from a region with maturity above current agent maturity
+	LLVector3d pos = objectp->getPositionGlobal();
+	if( !gAgent.canAccessMaturityAtGlobal(pos) )
+	{
+		return;
+	}
+	
 	objectp->setAttachedSound(sound_id, owner_id, gain, flags);
 }
 
@@ -4336,11 +4383,11 @@ void mean_name_callback(const LLUUID &id, const std::string& first, const std::s
 		return;
 	}
 
-	static const U32 max_collision_list_size = 20;
+	static const int max_collision_list_size = 20;
 	if (gMeanCollisionList.size() > max_collision_list_size)
 	{
 		mean_collision_list_t::iterator iter = gMeanCollisionList.begin();
-		for (U32 i=0; i<max_collision_list_size; i++) iter++;
+		for (S32 i=0; i<max_collision_list_size; i++) iter++;
 		for_each(iter, gMeanCollisionList.end(), DeletePointer());
 		gMeanCollisionList.erase(iter, gMeanCollisionList.end());
 	}
@@ -4839,7 +4886,7 @@ void process_teleport_failed(LLMessageSystem *msg, void**)
 	LLSD args;
 
 	// if we have additional alert data
-	if (msg->getSizeFast(_PREHASH_AlertInfo, _PREHASH_Message) > 0)
+	if (msg->getNumberOfBlocksFast(_PREHASH_AlertInfo) > 0)
 	{
 		// Get the message ID
 		msg->getStringFast(_PREHASH_AlertInfo, _PREHASH_Message, reason);
@@ -5191,22 +5238,17 @@ static LLNotificationFunctorRegistration callback_script_dialog_reg_2("ScriptDia
 void process_script_dialog(LLMessageSystem* msg, void**)
 {
 	S32 i;
+
 	LLSD payload;
-
-	LLUUID object_id;
-	msg->getUUID("Data", "ObjectID", object_id);
-
-	if (LLMuteList::getInstance()->isMuted(object_id))
-	{
-		return;
-	}
 
 	std::string message; 
 	std::string first_name;
 	std::string last_name;
 	std::string title;
 
+	LLUUID object_id;
 	S32 chat_channel;
+	msg->getUUID("Data", "ObjectID", object_id);
 	msg->getString("Data", "FirstName", first_name);
 	msg->getString("Data", "LastName", last_name);
 	msg->getString("Data", "ObjectName", title);
@@ -5505,18 +5547,25 @@ void onCovenantLoadComplete(LLVFS *vfs,
 		
 		S32 file_length = file.getSize();
 		
-		std::vector<char> buffer(file_length+1);
-		file.read((U8*)&buffer[0], file_length);		
-		// put a EOS at the end
-		buffer[file_length] = '\0';
+		char* buffer = new char[file_length+1];
+		if (buffer == NULL)
+		{
+			LL_ERRS("Messaging") << "Memory Allocation failed" << LL_ENDL;
+			return;
+		}
+
+		file.read((U8*)buffer, file_length);		/* Flawfinder: ignore */
 		
-		if( (file_length > 19) && !strncmp( &buffer[0], "Linden text version", 19 ) )
+		// put a EOS at the end
+		buffer[file_length] = 0;
+		
+		if( (file_length > 19) && !strncmp( buffer, "Linden text version", 19 ) )
 		{
 			LLViewerTextEditor* editor =
 				new LLViewerTextEditor(std::string("temp"),
 						       LLRect(0,0,0,0),
 						       file_length+1);
-			if( !editor->importBuffer( &buffer[0], file_length+1 ) )
+			if( !editor->importBuffer( buffer, file_length+1 ) )
 			{
 				LL_WARNS("Messaging") << "Problem importing estate covenant." << LL_ENDL;
 				covenant_text = "Problem importing estate covenant.";
@@ -5526,6 +5575,7 @@ void onCovenantLoadComplete(LLVFS *vfs,
 				// Version 0 (just text, doesn't include version number)
 				covenant_text = editor->getText();
 			}
+			delete[] buffer;
 			delete editor;
 		}
 		else

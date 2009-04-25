@@ -62,8 +62,10 @@
 #include "llpanelpick.h"
 #include "llpanelplace.h"
 #include "llpaneldirland.h"
+#include "llproductinforequest.h"
 #include "llscrolllistctrl.h"
 #include "lltextbox.h"
+#include "lltrans.h"
 #include "lluiconstants.h"
 #include "llviewercontrol.h"
 #include "llviewerimagelist.h"
@@ -273,6 +275,47 @@ std::string LLPanelDirBrowser::filterShortWords( const std::string source_string
 	return dest_string.str();
 }
 
+void LLPanelDirBrowser::updateMaturityCheckbox()
+{
+	BOOL godlike = gAgent.isGodlike();
+	// You only have a choice if your maturity is 'mature' or higher.
+	// Logic: if you're not at least mature, hide the mature and adult options
+	// After that, enable only the options you can legitimately choose.
+	// If you're PG only, show you the checkbox but don't let you change it.
+	// If you're God, you have everything.
+	bool mature_enabled = gAgent.canAccessMature() || godlike;
+	bool adult_enabled = gAgent.canAccessAdult() || godlike;
+
+	// These check boxes can only be checked if you have the right access to use them
+	std::string control_name_pg = getChild<LLCheckBoxCtrl>("incpg")->getControlName();
+	std::string control_name_mature = getChild<LLCheckBoxCtrl>("incmature")->getControlName();
+	std::string control_name_adult = getChild<LLCheckBoxCtrl>("incadult")->getControlName();
+
+	childSetValue("incpg", gSavedSettings.getBOOL(control_name_pg));
+	childSetValue("incmature", gSavedSettings.getBOOL(control_name_mature) && mature_enabled);
+	childSetValue("incadult", gSavedSettings.getBOOL(control_name_adult) && adult_enabled);
+	
+	// Teens don't get mature/adult choices
+	if (gAgent.wantsPGOnly())
+	{
+		childHide("incmature");
+		childHide("incadult");
+		childSetValue("incpg", TRUE);
+		childDisable("incpg");
+	}
+
+	childSetEnabled("incmature", mature_enabled);		
+	childSetEnabled("incadult", adult_enabled);
+
+	if (mature_enabled)
+	{
+		childEnable("incpg");
+		childSetVisible("incpg", TRUE);
+		childSetVisible("incmature", TRUE);
+		childSetVisible("incadult", TRUE);
+	}
+}
+
 void LLPanelDirBrowser::selectByUUID(const LLUUID& id)
 {
 	LLCtrlListInterface *list = childGetListInterface("results");
@@ -362,9 +405,17 @@ void LLPanelDirBrowser::onCommitList(LLUICtrl* ctrl, void* data)
 		// all but events use the UUID above
 		item_id = self->mResultsContents[id_str]["event_id"];
 	}
-
 	//std::string name = self->mResultsContents[id_str]["name"].asString();
 	self->showDetailPanel(type, item_id);
+
+	if (type == FOR_SALE_CODE)
+	{
+		std::string land_type = self->mResultsContents[id_str]["landtype"].asString();
+		if (self->mFloaterDirectory && self->mFloaterDirectory->mPanelPlaceSmallp)
+		{
+			self->mFloaterDirectory->mPanelPlaceSmallp->setLandTypeString(land_type);
+		}	
+	}
 }
 
 void LLPanelDirBrowser::showDetailPanel(S32 type, LLSD id)
@@ -925,6 +976,8 @@ void LLPanelDirBrowser::processDirLandReply(LLMessageSystem *msg, void**)
 	LLUUID	query_id;
 	LLUUID	parcel_id;
 	std::string	name;
+	std::string land_sku;
+	std::string land_type;
 	BOOL	auction;
 	BOOL	for_sale;
 	S32		sale_price;
@@ -974,7 +1027,19 @@ void LLPanelDirBrowser::processDirLandReply(LLMessageSystem *msg, void**)
 		msg->getBOOL(	"QueryReplies", "ForSale", for_sale, i);
 		msg->getS32(	"QueryReplies", "SalePrice", sale_price, i);
 		msg->getS32(	"QueryReplies", "ActualArea", actual_area, i);
-		
+
+		if ( msg->getSizeFast(_PREHASH_QueryReplies, i, _PREHASH_ProductSKU) > 0 )
+		{
+			msg->getStringFast(	_PREHASH_QueryReplies, _PREHASH_ProductSKU, land_sku, i);
+			llinfos << "Land sku: " << land_sku << llendl;
+			land_type = LLProductInfoRequestManager::instance().getDescriptionForSku(land_sku);
+		}
+		else
+		{
+			land_sku.clear();
+			land_type = LLTrans::getString("land_type_unknown");
+		}
+
 		if (parcel_id.isNull()) continue;
 
 		if (use_price && (sale_price > limit_price)) continue;
@@ -988,6 +1053,7 @@ void LLPanelDirBrowser::processDirLandReply(LLMessageSystem *msg, void**)
 
 		content["type"] = type;
 		content["name"] = name;
+		content["landtype"] = land_type;
 
 		std::string buffer = "Auction";
 		if (!auction)
@@ -1028,6 +1094,10 @@ void LLPanelDirBrowser::processDirLandReply(LLMessageSystem *msg, void**)
 			row["columns"][5]["value"] = "1.0";
 			row["columns"][5]["font"] = "SANSSERIFSMALL";
 		}
+
+		row["columns"][6]["column"] = "landtype";
+		row["columns"][6]["value"] = land_type;
+		row["columns"][6]["font"] = "SANSSERIFSMALL";
 
 		list->addElement(row);
 		self->mResultsContents[parcel_id.asString()] = content;

@@ -986,7 +986,7 @@ bool LLScriptEdCore::handleReloadFromServerDialog(const LLSD& notification, cons
 		if( mLoadCallback )
 		{
 			setScriptText(getString("loading"), FALSE);
-			mLoadCallback(mUserdata);
+			mLoadCallback( mUserdata );
 		}
 		break;
 
@@ -1516,13 +1516,14 @@ void LLPreviewLSL::onLoadComplete( LLVFS *vfs, const LLUUID& asset_uuid, LLAsset
 			LLVFile file(vfs, asset_uuid, type);
 			S32 file_length = file.getSize();
 
-			std::vector<char> buffer(file_length+1);
-			file.read((U8*)&buffer[0], file_length);
+			char* buffer = new char[file_length+1];
+			file.read((U8*)buffer, file_length);		/*Flawfinder: ignore*/
 
 			// put a EOS at the end
 			buffer[file_length] = 0;
 			preview->mScriptEd->setScriptText(LLStringExplicit(&buffer[0]), TRUE);
 			preview->mScriptEd->mEditor->makePristine();
+			delete [] buffer;
 			LLInventoryItem* item = gInventory.getItem(*item_uuid);
 			BOOL is_modifiable = FALSE;
 			if(item
@@ -1911,8 +1912,8 @@ void LLLiveLSLEditor::loadScriptText(LLVFS *vfs, const LLUUID &uuid, LLAssetType
 {
 	LLVFile file(vfs, uuid, type);
 	S32 file_length = file.getSize();
-	std::vector<char> buffer(file_length + 1);
-	file.read((U8*)&buffer[0], file_length);
+	char *buffer = new char[file_length + 1];
+	file.read((U8*)buffer, file_length);		/*Flawfinder: ignore*/
 
 	if (file.getLastBytesRead() != file_length ||
 		file_length <= 0)
@@ -1924,6 +1925,8 @@ void LLLiveLSLEditor::loadScriptText(LLVFS *vfs, const LLUUID &uuid, LLAssetType
 
 	mScriptEd->setScriptText(LLStringExplicit(&buffer[0]), TRUE);
 	mScriptEd->mEditor->makePristine();
+	delete[] buffer;
+
 }
 
 

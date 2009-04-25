@@ -44,7 +44,6 @@
 #include "llstring.h"
 #include "lldatapacker.h"
 #include "llsdutil.h"
-#include "llprimtexturelist.h"
 
 /**
  * exported constants
@@ -113,7 +112,6 @@ const F32 FLEXIBLE_OBJECT_DEFAULT_LENGTH = 1.0f;
 const BOOL FLEXIBLE_OBJECT_DEFAULT_USING_COLLISION_SPHERE = FALSE;
 const BOOL FLEXIBLE_OBJECT_DEFAULT_RENDERING_COLLISION_SPHERE = FALSE;
 
-const S32 MAX_FACE_BITS = 9;
 
 const char *SCULPT_DEFAULT_TEXTURE = "be293869-d0d9-0a69-5989-ad27f1946fd4"; // old inverted texture: "7595d345-a24c-e7ef-f0bd-78793792133e";
 
@@ -153,8 +151,7 @@ bool LLPrimitive::cleanupVolumeManager()
 
 //===============================================================
 LLPrimitive::LLPrimitive()
-:	mTextureList(),
-	mMiscFlags(0)
+:	mMiscFlags(0)
 {
 	mPrimitiveCode = 0;
 
@@ -171,22 +168,26 @@ LLPrimitive::LLPrimitive()
 	mAngularVelocity.setVec(0.f,0.f,0.f);
 	
 	mScale.setVec(1.f,1.f,1.f);
+
+	mNumTEs = 0;
+	mTextureList = NULL;
 }
 
 //===============================================================
 LLPrimitive::~LLPrimitive()
 {
-	clearTextureList();
+	if (mTextureList)
+	{
+		delete [] mTextureList;
+		mTextureList = NULL;
+	}
+
 	// Cleanup handled by volume manager
 	if (mVolumep)
 	{
 		sVolumeManager->unrefVolume(mVolumep);
 	}
 	mVolumep = NULL;
-}
-
-void LLPrimitive::clearTextureList()
-{
 }
 
 //===============================================================
@@ -212,7 +213,15 @@ LLPrimitive *LLPrimitive::createPrimitive(LLPCode p_code)
 void LLPrimitive::init_primitive(LLPCode p_code)
 {
 	LLMemType m1(LLMemType::MTYPE_PRIMITIVE);
-	clearTextureList();
+	if (mNumTEs)
+	{
+		if (mTextureList)
+		{
+			delete [] mTextureList;
+		}
+		mTextureList = new LLTextureEntry[mNumTEs];
+	}
+
 	mPrimitiveCode = p_code;
 }
 
@@ -222,146 +231,342 @@ void LLPrimitive::setPCode(const U8 p_code)
 }
 
 //===============================================================
-LLTextureEntry* LLPrimitive::getTE(const U8 index) const
+const LLTextureEntry * LLPrimitive::getTE(const U8 te_num) const
 {
-	return mTextureList.getTexture(index);
+	// if we're asking for a non-existent face, return null
+	if (mNumTEs && (te_num< mNumTEs))
+	{
+		return(&mTextureList[te_num]);
+	}
+	else
+	{	
+		return(NULL);
+	}
 }
 
 //===============================================================
 void LLPrimitive::setNumTEs(const U8 num_tes)
 {
-	mTextureList.setSize(num_tes);
+	if (num_tes == mNumTEs)
+	{
+		return;
+	}
+	
+	// Right now, we don't try and preserve entries when the number of faces
+	// changes.
+
+	LLMemType m1(LLMemType::MTYPE_PRIMITIVE);
+	if (num_tes)
+	{
+		LLTextureEntry *new_tes;
+		new_tes = new LLTextureEntry[num_tes];
+		U32 i;
+		for (i = 0; i < num_tes; i++)
+		{
+			if (i < mNumTEs)
+			{
+				new_tes[i] = mTextureList[i];
+			}
+			else if (mNumTEs)
+			{
+				new_tes[i] = mTextureList[mNumTEs - 1];
+			}
+			else
+			{
+				new_tes[i] = LLTextureEntry();
+			}
+		}
+		delete[] mTextureList;
+		mTextureList = new_tes;
+	}
+	else
+	{
+		delete[] mTextureList;
+		mTextureList = NULL;
+	}
+
+
+	mNumTEs = num_tes;
 }
 
 //===============================================================
 void  LLPrimitive::setAllTETextures(const LLUUID &tex_id)
 {
-	mTextureList.setAllIDs(tex_id);
+	U8 i;
+
+	for (i = 0; i < mNumTEs; i++)
+	{
+		mTextureList[i].setID(tex_id);
+	}
 }
 
 //===============================================================
-void LLPrimitive::setTE(const U8 index, const LLTextureEntry& te)
+void LLPrimitive::setTE(const U8 index, const LLTextureEntry &te)
 {
-	mTextureList.copyTexture(index, te);
+	mTextureList[index] = te;
 }
 
-S32  LLPrimitive::setTETexture(const U8 index, const LLUUID &id)
+S32  LLPrimitive::setTETexture(const U8 te, const LLUUID &tex_id)
 {
-	return mTextureList.setID(index, id);
+    // if we're asking for a non-existent face, return null
+	if (te >= mNumTEs)
+	{
+		llwarns << "setting non-existent te " << te << llendl
+		return 0;
+	}
+
+	return mTextureList[te].setID(tex_id);
 }
 
-S32  LLPrimitive::setTEColor(const U8 index, const LLColor4 &color)
+S32  LLPrimitive::setTEColor(const U8 te, const LLColor4 &color)
 {
-	return mTextureList.setColor(index, color);
+    // if we're asking for a non-existent face, return null
+	if (te >= mNumTEs)
+	{
+		llwarns << "setting non-existent te " << te << llendl
+		return 0;
+	}
+
+	return mTextureList[te].setColor(color);
 }
 
-S32  LLPrimitive::setTEColor(const U8 index, const LLColor3 &color)
+S32  LLPrimitive::setTEColor(const U8 te, const LLColor3 &color)
 {
-	return mTextureList.setColor(index, color);
+    // if we're asking for a non-existent face, return null
+	if (te >= mNumTEs)
+	{
+		llwarns << "setting non-existent te " << te << llendl
+		return 0;
+	}
+
+	return mTextureList[te].setColor(color);
 }
 
-S32  LLPrimitive::setTEAlpha(const U8 index, const F32 alpha)
+S32  LLPrimitive::setTEAlpha(const U8 te, const F32 alpha)
 {
-	return mTextureList.setAlpha(index, alpha);
+    // if we're asking for a non-existent face, return null
+	if (te >= mNumTEs)
+	{
+		llwarns << "setting non-existent te " << te << llendl
+		return 0;
+	}
+
+	return mTextureList[te].setAlpha(alpha);
 }
 
 //===============================================================
-S32  LLPrimitive::setTEScale(const U8 index, const F32 s, const F32 t)
+S32  LLPrimitive::setTEScale(const U8 te, const F32 s, const F32 t)
 {
-	return mTextureList.setScale(index, s, t);
+    // if we're asking for a non-existent face, return null
+	if (te >= mNumTEs)
+	{
+		llwarns << "Setting nonexistent face" << llendl;
+		return 0;
+	}
+
+	return mTextureList[te].setScale(s,t);
 }
 
 
 // BUG: slow - done this way because texture entries have some
 // voodoo related to texture coords
-S32 LLPrimitive::setTEScaleS(const U8 index, const F32 s)
+S32 LLPrimitive::setTEScaleS(const U8 te, const F32 s)
 {
-	return mTextureList.setScaleS(index, s);
+	if (te >= mNumTEs)
+	{
+		llwarns << "Setting nonexistent face" << llendl;
+		return 0;
+	}
+
+	F32 ignore, t;
+	mTextureList[te].getScale(&ignore, &t);
+	return mTextureList[te].setScale(s,t);
 }
 
 
 // BUG: slow - done this way because texture entries have some
 // voodoo related to texture coords
-S32 LLPrimitive::setTEScaleT(const U8 index, const F32 t)
+S32 LLPrimitive::setTEScaleT(const U8 te, const F32 t)
 {
-	return mTextureList.setScaleT(index, t);
+	if (te >= mNumTEs)
+	{
+		llwarns << "Setting nonexistent face" << llendl;
+		return 0;
+	}
+
+	F32 s, ignore;
+	mTextureList[te].getScale(&s, &ignore);
+	return mTextureList[te].setScale(s,t);
 }
 
 
 //===============================================================
-S32  LLPrimitive::setTEOffset(const U8 index, const F32 s, const F32 t)
+S32  LLPrimitive::setTEOffset(const U8 te, const F32 s, const F32 t)
 {
-	return mTextureList.setOffset(index, s, t);
+    // if we're asking for a non-existent face, return null
+	if (te >= mNumTEs)
+	{
+		llwarns << "Setting nonexistent face" << llendl;
+		return 0;
+	}
+
+	return mTextureList[te].setOffset(s,t);
 }
 
 
 // BUG: slow - done this way because texture entries have some
 // voodoo related to texture coords
-S32 LLPrimitive::setTEOffsetS(const U8 index, const F32 s)
+S32 LLPrimitive::setTEOffsetS(const U8 te, const F32 s)
 {
-	return mTextureList.setOffsetS(index, s);
+	if (te >= mNumTEs)
+	{
+		llwarns << "Setting nonexistent face" << llendl;
+		return 0;
+	}
+
+	F32 ignore, t;
+	mTextureList[te].getOffset(&ignore, &t);
+	return mTextureList[te].setOffset(s,t);
 }
 
 
 // BUG: slow - done this way because texture entries have some
 // voodoo related to texture coords
-S32 LLPrimitive::setTEOffsetT(const U8 index, const F32 t)
+S32 LLPrimitive::setTEOffsetT(const U8 te, const F32 t)
 {
-	return mTextureList.setOffsetT(index, t);
+	if (te >= mNumTEs)
+	{
+		llwarns << "Setting nonexistent face" << llendl;
+		return 0;
+	}
+
+	F32 s, ignore;
+	mTextureList[te].getOffset(&s, &ignore);
+	return mTextureList[te].setOffset(s,t);
 }
 
 
 //===============================================================
-S32  LLPrimitive::setTERotation(const U8 index, const F32 r)
+S32  LLPrimitive::setTERotation(const U8 te, const F32 r)
 {
-	return mTextureList.setRotation(index, r);
+     // if we're asking for a non-existent face, return null
+	if (te >= mNumTEs)
+	{
+		llwarns << "Setting nonexistent face" << llendl;
+		return 0;
+	}
+
+	return mTextureList[te].setRotation(r);
 }
 
 
 //===============================================================
-S32  LLPrimitive::setTEBumpShinyFullbright(const U8 index, const U8 bump)
+S32  LLPrimitive::setTEBumpShinyFullbright(const U8 te, const U8 bump)
 {
-	return mTextureList.setBumpShinyFullbright(index, bump);
+    // if we're asking for a non-existent face, return null
+	if (te >= mNumTEs)
+	{
+		llwarns << "setting non-existent te " << te << llendl
+		return 0;
+	}
+
+	return mTextureList[te].setBumpShinyFullbright( bump );
 }
 
-S32  LLPrimitive::setTEMediaTexGen(const U8 index, const U8 media)
+S32  LLPrimitive::setTEMediaTexGen(const U8 te, const U8 media)
 {
-	return mTextureList.setMediaTexGen(index, media);
+    // if we're asking for a non-existent face, return null
+	if (te >= mNumTEs)
+	{
+		llwarns << "setting non-existent te " << te << llendl
+		return 0;
+	}
+
+	return mTextureList[te].setMediaTexGen( media );
 }
 
-S32  LLPrimitive::setTEBumpmap(const U8 index, const U8 bump)
+S32  LLPrimitive::setTEBumpmap(const U8 te, const U8 bump)
 {
-	return mTextureList.setBumpMap(index, bump);
+    // if we're asking for a non-existent face, return null
+	if (te >= mNumTEs)
+	{
+		llwarns << "setting non-existent te " << te << llendl
+		return 0;
+	}
+
+	return mTextureList[te].setBumpmap( bump );
 }
 
-S32  LLPrimitive::setTEBumpShiny(const U8 index, const U8 bump_shiny)
+S32  LLPrimitive::setTEBumpShiny(const U8 te, const U8 bump_shiny)
 {
-	return mTextureList.setBumpShiny(index, bump_shiny);
+    // if we're asking for a non-existent face, return null
+	if (te >= mNumTEs)
+	{
+		llwarns << "setting non-existent te " << te << llendl
+		return 0;
+	}
+
+	return mTextureList[te].setBumpShiny( bump_shiny );
 }
 
-S32  LLPrimitive::setTETexGen(const U8 index, const U8 texgen)
+S32  LLPrimitive::setTETexGen(const U8 te, const U8 texgen)
 {
-	return mTextureList.setTexGen(index, texgen);
+    // if we're asking for a non-existent face, return null
+	if (te >= mNumTEs)
+	{
+		llwarns << "setting non-existent te " << te << llendl
+		return 0;
+	}
+
+	return mTextureList[te].setTexGen( texgen );
 }
 
-S32  LLPrimitive::setTEShiny(const U8 index, const U8 shiny)
+S32  LLPrimitive::setTEShiny(const U8 te, const U8 shiny)
 {
-	return mTextureList.setShiny(index, shiny);
+    // if we're asking for a non-existent face, return null
+	if (te >= mNumTEs)
+	{
+		llwarns << "setting non-existent te " << te << llendl
+		return 0;
+	}
+
+	return mTextureList[te].setShiny( shiny );
 }
 
-S32  LLPrimitive::setTEFullbright(const U8 index, const U8 fullbright)
+S32  LLPrimitive::setTEFullbright(const U8 te, const U8 fullbright)
 {
-	return mTextureList.setFullbright(index, fullbright);
+    // if we're asking for a non-existent face, return null
+	if (te >= mNumTEs)
+	{
+		llwarns << "setting non-existent te " << te << llendl
+		return 0;
+	}
+
+	return mTextureList[te].setFullbright( fullbright );
 }
 
-S32  LLPrimitive::setTEMediaFlags(const U8 index, const U8 media_flags)
+S32  LLPrimitive::setTEMediaFlags(const U8 te, const U8 media_flags)
 {
-	return mTextureList.setMediaFlags(index, media_flags);
+    // if we're asking for a non-existent face, return null
+	if (te >= mNumTEs)
+	{
+		llwarns << "setting non-existent te " << te << llendl
+		return 0;
+	}
+
+	return mTextureList[te].setMediaFlags( media_flags );
 }
 
-S32 LLPrimitive::setTEGlow(const U8 index, const F32 glow)
+S32 LLPrimitive::setTEGlow(const U8 te, const F32 glow)
 {
-	return mTextureList.setGlow(index, glow);
+	// if we're asking for a non-existent face, return null
+	if (te >= mNumTEs)
+	{
+		llwarns << "setting non-existent te " << te << llendl
+			return 0;
+	}
+
+	return mTextureList[te].setGlow( glow );
 }
 
 
@@ -673,18 +878,25 @@ std::string LLPrimitive::pCodeToString(const LLPCode pcode)
 void LLPrimitive::copyTEs(const LLPrimitive *primitivep)
 {
 	U32 i;
-	if (primitivep->getExpectedNumTEs() != getExpectedNumTEs())
+	if (primitivep->getNumTEs() != getNumTEs())
 	{
-		llwarns << "Primitives don't have same expected number of TE's" << llendl;
+		llwarns << "Primitives don't have same number of TE's" << llendl;
 	}
-	U32 num_tes = llmin(primitivep->getExpectedNumTEs(), getExpectedNumTEs());
-	if (mTextureList.size() < getExpectedNumTEs())
-	{
-		mTextureList.setSize(getExpectedNumTEs());
-	}
+	U32 num_tes = llmin(primitivep->getNumTEs(), getNumTEs());
 	for (i = 0; i < num_tes; i++)
 	{
-		mTextureList.copyTexture(i, *(primitivep->getTE(i)));
+		const LLTextureEntry *tep = primitivep->getTE(i);
+		F32 s, t;
+		setTETexture(i, tep->getID());
+		setTEColor(i, tep->getColor());
+		tep->getScale(&s, &t);
+		setTEScale(i, s, t);
+		tep->getOffset(&s, &t);
+		setTEOffset(i, s, t);
+		setTERotation(i, tep->getRotation());
+		setTEBumpShinyFullbright(i, tep->getBumpShinyFullbright());
+		setTEMediaTexGen(i, tep->getMediaTexGen());
+		setTEGlow(i, tep->getGlow());
 	}
 }
 
@@ -750,12 +962,12 @@ BOOL LLPrimitive::setVolume(const LLVolumeParams &volume_params, const S32 detai
 	sVolumeManager->unrefVolume(mVolumep);
 	mVolumep = volumep;
 	
-	U32 new_face_mask = mVolumep->mFaceMask;
+	U32 new_face_mask = mVolumep->mFaceMask;	
 	if (old_face_mask != new_face_mask) 
 	{
 		setNumTEs(mVolumep->getNumFaces());
-	}
-
+	}	
+	
 	return TRUE;
 }
 
@@ -769,6 +981,50 @@ BOOL LLPrimitive::setMaterial(U8 material)
 	else
 	{
 		return FALSE;
+	}
+}
+
+void LLPrimitive::setTEArrays(const U8 size,
+							  const LLUUID* image_ids,
+							  const F32* scale_s,
+							  const F32* scale_t)
+{
+	S32 cur_size = size;
+	if (cur_size > getNumTEs())
+	{
+		llwarns << "Trying to set more TEs than exist!" << llendl;
+		cur_size = getNumTEs();
+	}
+
+	S32 i;
+	// Copy over image information
+	for (i = 0; i < cur_size; i++)
+	{
+		// This is very BAD!!!!!!
+		if (image_ids != NULL)
+		{
+			setTETexture(i,image_ids[i]);
+		}
+		if (scale_s && scale_t)
+		{
+			setTEScale(i, scale_s[i], scale_t[i]);
+		}
+ 	}
+
+	if (i < getNumTEs())
+	{
+		cur_size--;
+		for (i=i; i < getNumTEs(); i++)		// the i=i removes a gcc warning
+		{
+			if (image_ids != NULL)
+			{
+				setTETexture(i, image_ids[cur_size]);
+			}
+			if (scale_s && scale_t)
+			{
+				setTEScale(i, scale_s[cur_size], scale_t[cur_size]);
+			}
+		}
 	}
 }
 
@@ -1233,24 +1489,11 @@ S32 LLPrimitive::unpackTEMessage(LLDataPacker &dp)
 	return retval;
 }
 
-U8	LLPrimitive::getExpectedNumTEs() const
+void LLPrimitive::setTextureList(LLTextureEntry *listp)
 {
-	U8 expected_face_count = 0;
-	if (mVolumep)
-	{
-		expected_face_count = mVolumep->getNumFaces();
-	}
-	return expected_face_count;
-}
-
-void LLPrimitive::copyTextureList(const LLPrimTextureList& other_list)
-{
-	mTextureList.copy(other_list);
-}
-
-void LLPrimitive::takeTextureList(LLPrimTextureList& other_list)
-{
-	mTextureList.take(other_list);
+	LLTextureEntry* old_texture_list = mTextureList;
+	mTextureList = listp;
+ 	delete[] old_texture_list;
 }
 
 //============================================================================

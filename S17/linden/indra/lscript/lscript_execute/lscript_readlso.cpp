@@ -39,7 +39,7 @@
 LLScriptLSOParse::LLScriptLSOParse(LLFILE *fp)
 {
 	U8  sizearray[4];
-	size_t filesize;
+	S32 filesize;
 	S32 pos = 0;
 	if (fread(&sizearray, 1, 4, fp) != 4)
 	{

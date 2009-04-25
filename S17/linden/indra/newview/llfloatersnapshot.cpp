@@ -508,7 +508,8 @@ void LLSnapshotLivePreview::draw()
 				gGL.end();
 			}
 
-			if (mShineAnimTimer.getElapsedTimeF32() > SHINE_TIME)
+			// if we're at the end of the animation, stop
+			if (shine_interp >= 1.f)
 			{
 				mShineAnimTimer.stop();
 			}
@@ -1275,7 +1276,7 @@ void LLFloaterSnapshot::Impl::updateControls(LLFloaterSnapshot* floater)
 
 	LLSnapshotLivePreview* previewp = getPreviewView(floater);
 	BOOL got_bytes = previewp && previewp->getDataSize() > 0;
-	BOOL got_snap = previewp && previewp->getSnapshotUpToDate();
+	BOOL got_snap = previewp->getSnapshotUpToDate();
 
 	floater->childSetEnabled("send_btn",   shot_type == LLSnapshotLivePreview::SNAPSHOT_POSTCARD && got_snap && previewp->getDataSize() <= MAX_POSTCARD_DATASIZE);
 	floater->childSetEnabled("upload_btn", shot_type == LLSnapshotLivePreview::SNAPSHOT_TEXTURE  && got_snap);
@@ -1283,10 +1284,7 @@ void LLFloaterSnapshot::Impl::updateControls(LLFloaterSnapshot* floater)
 
 	LLLocale locale(LLLocale::USER_LOCALE);
 	std::string bytes_string;
-	if (got_snap)
-	{
-		LLResMgr::getInstance()->getIntegerString(bytes_string, (previewp->getDataSize()) >> 10 );
-	}
+	LLResMgr::getInstance()->getIntegerString(bytes_string, (previewp->getDataSize()) >> 10 );
 	S32 upload_cost = LLGlobalEconomy::Singleton::getInstance()->getPriceUpload();
 	floater->childSetLabelArg("texture", "[AMOUNT]", llformat("%d",upload_cost));
 	floater->childSetLabelArg("upload_btn", "[AMOUNT]", llformat("%d",upload_cost));

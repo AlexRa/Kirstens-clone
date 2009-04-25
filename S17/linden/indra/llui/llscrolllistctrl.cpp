@@ -835,12 +835,6 @@ void LLScrollListCtrl::updateLayout()
 		mItemListRect.mRight = getRect().getWidth() - mBorderThickness - SCROLLBAR_SIZE;
 	}
 
-	// don't allow scrolling off bottom
-	if (mScrollLines + mPageLines > getItemCount())
-	{
-		setScrollPos(llmax(0, getItemCount() - mPageLines));
-	}
-
 	mScrollbar->reshape(SCROLLBAR_SIZE, mItemListRect.getHeight() + (mDisplayColumnHeaders ? mHeadingHeight : 0));
 	mScrollbar->setPageSize( mPageLines );
 	mScrollbar->setDocSize( getItemCount() );
@@ -2669,11 +2663,6 @@ void LLScrollListCtrl::scrollToShowSelected()
 		return;
 	}
 
-	if (needsSorting() && !isSorted())
-	{
-		sortItems();
-	}	
-	
 	S32 index = getFirstSelectedIndex();
 	if (index < 0)
 	{

@@ -112,33 +112,11 @@ void LLPanelDirEvents::draw()
 
 void LLPanelDirEvents::refresh()
 {
-	// You only have a choice if you are mature.
-	// Logic: if you're not at least mature, hide the mature and adult options
-	// After that, enable only the options you can legitimately choose.
-	// If you're PG only, show you the checkbox but don't let you change it.
-	childSetVisible("incmature", gAgent.canAccessMature());
-	childSetVisible("incadult", gAgent.canAccessMature()); // yes, you can see it if you're mature
+	BOOL godlike = gAgent.isGodlike();
+	childSetVisible("Delete", godlike);
+	childSetEnabled("Delete", godlike);
 
-	if (gAgent.wantsPGOnly())
-	{
-		childSetValue("incpg", TRUE);
-		childDisable("incpg");
-	}	
-	
-	if (!gAgent.canAccessMature())
-	{
-		childSetValue("incmature", FALSE);
-		childDisable("incmature");
-	}
-
-	if (!gAgent.canAccessAdult())
-	{
-		childSetValue("incadult", FALSE);
-		childDisable("incadult");
-	}
-
-	childSetVisible("Delete", gAgent.isGodlike());
-	childSetEnabled("Delete", gAgent.isGodlike());
+	updateMaturityCheckbox();
 }
 
 

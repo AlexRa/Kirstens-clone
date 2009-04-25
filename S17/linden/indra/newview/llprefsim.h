@@ -49,8 +49,6 @@ public:
 
 	LLPanel* getPanel();
 
-	static void cleanupBadSetting();
-
 protected:
 	LLPrefsIMImpl& impl;
 };

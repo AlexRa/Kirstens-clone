@@ -148,14 +148,7 @@ public:
 	{
 		if (visible(instance, key))
 		{
-			if(instance->getHost())
-			{
-				LLFloaterChatterBox::hideInstance();
-			}
-			else
-			{
-				VisibilityPolicy<LLFloater>::hide(instance, key);
-			}
+			LLFloaterChatterBox::hideInstance();
 		}
 	}
 

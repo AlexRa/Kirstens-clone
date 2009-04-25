@@ -96,8 +96,11 @@
    functor="GenericAcknowledge"
    icon="alertmodal.tga"
    name="MissingAlert"
+   label="Unknown Alert Message"
    type="alertmodal">
-The alert called &apos;[_NAME]&apos; was not found in notifications.xml.
+Your version of Second Life does not know how to display the alert message it just received.
+
+Error details: The alert called &apos;[_NAME]&apos; was not found in notifications.xml.
     <usetemplate
      name="okbutton"
      yestext="OK"/>
@@ -375,6 +378,33 @@ Checking this box will show:
 
   <notification
    icon="alertmodal.tga"
+   name="ClickSoundHelpLand"
+   type="alertmodal">Media and Music can only be experienced within the parcel. Sound and Voice options can be restricted to the parcel or will be heard by residents outside the parcel depending on their maturity Rating. Go to Knowledge Base to learn more about how to set these options?
+    <url option="0" name="url">
+	https://support.secondlife.com/ics/support/default.asp?deptID=4417&amp;task=knowledge&amp;questionID=5046
+    </url>
+    <usetemplate
+     name="okcancelbuttons"
+     yestext="Go to Knowledge Base"
+	 notext="Close" />
+  </notification>
+
+  <notification
+   icon="alertmodal.tga"
+   name="ClickSearchHelpAll"
+   type="alertmodal">
+Search results are organized based on the tab you are in, your maturity Rating, the category chosen, and other factors. For more details, please see the Knowledge Base.
+    <url option="0" name="url">
+	https://support.secondlife.com/ics/support/default.asp?deptID=4417&amp;task=knowledge&amp;questionID=4722
+    </url>
+    <usetemplate
+     name="okcancelbuttons"
+     yestext="Go to Knowledge Base"
+	 notext="Close" />
+  </notification>
+
+  <notification
+   icon="alertmodal.tga"
    name="ClickPublishHelpLandDisabled"
    type="alertmodal">
 You can&apos;t make this parcel show in search because it is located in a region that forbids this.
@@ -466,7 +496,7 @@ Please select an individual to sell to if selling for L$0.
    name="ConfirmLandSaleChange"
    priority="high"
    type="alertmodal">
-The selected [LAND_SIZE] m2 land is being set for sale.
+The selected [LAND_SIZE] m² land is being set for sale.
 Your selling price will be L$[SALE_PRICE] and will be authorized for sale to [NAME].
     <usetemplate
      name="okcancelbuttons"
@@ -480,7 +510,7 @@ Your selling price will be L$[SALE_PRICE] and will be authorized for sale to [NA
    type="alertmodal">
 ATTENTION: Clicking &apos;sell to anyone&apos; makes your land available to the entire Second Life community, even those not in this region.
 
-The selected [LAND_SIZE] m2 land is being set for sale.
+The selected [LAND_SIZE] m² land is being set for sale.
 Your selling price will be L$[SALE_PRICE] and will be authorized for sale to [NAME].
     <usetemplate
      name="okcancelbuttons"
@@ -1298,6 +1328,13 @@ Unknown Vorbis encode failure on: [FILE]
 
   <notification
    icon="alertmodal.tga"
+   name="CannotEncodeFile"
+   type="alertmodal">
+Unable to encode file: [FILE]
+  </notification>
+
+  <notification
+   icon="alertmodal.tga"
    name="CorruptResourceFile"
    type="alertmodal">
 Corrupt resource file: [FILE]
@@ -1633,7 +1670,7 @@ Select an entire parcel, or divide your parcel first.
    icon="alertmodal.tga"
    name="ReleaseLandWarning"
    type="alertmodal">
-You are about to release [AREA] m2 of land.
+You are about to release [AREA] m² of land.
 Releasing this parcel will remove it from your land holdings, but will not grant any L$.
 
 Release this land?
@@ -2104,7 +2141,7 @@ Please select a smaller area and try again.
 By deeding this parcel, the group will be required to have and maintain sufficient land use credits.
 The purchase price of the land is not refunded to the owner. If a deeded parcel is sold, the sale price will be divided evenly among group members.
 
-Deed this [AREA] m2 of land to the group &apos;[GROUP_NAME]&apos;?
+Deed this [AREA] m² of land to the group &apos;[GROUP_NAME]&apos;?
     <usetemplate
      name="okcancelbuttons"
      notext="Cancel"
@@ -2119,7 +2156,7 @@ By deeding this parcel, the group will be required to have and maintain sufficie
 The deed will include a simultaneous land contribution to the group from &apos;[FIRST_NAME] [LAST_NAME]&apos;.
 The purchase price of the land is not refunded to the owner. If a deeded parcel is sold, the sale price will be divided evenly among group members.
 
-Deed this [AREA] m2 of land to the group &apos;[GROUP_NAME]&apos;?
+Deed this [AREA] m² of land to the group &apos;[GROUP_NAME]&apos;?
     <usetemplate
      name="okcancelbuttons"
      notext="Cancel"
@@ -2252,6 +2289,13 @@ This is really only useful for debugging.
      name="okcancelbuttons"
      notext="Cancel"
      yestext="OK"/>
+  </notification>
+
+  <notification
+   icon="alertmodal.tga"
+   name="BuyOneObjectOnly"
+   type="alertmodal">
+Unable to buy more than one object at a time.  Please select only one object and try again.
   </notification>
 
   <notification
@@ -2528,7 +2572,7 @@ Go to www.secondlife.com to manage your account?
    icon="alertmodal.tga"
    name="WebLaunchBugReport101"
    type="alertmodal">
-Visit the [SECOND_LIFE] Wiki and Learn how to Report Bugs Correctly.
+Visit the [SECOND_LIFE] Wiki and learn how to report bugs correctly.
     <usetemplate
      ignoretext="When launching web browser to view the Bug Reporting 101 Wiki"
      name="okcancelignore"
@@ -2540,7 +2584,7 @@ Visit the [SECOND_LIFE] Wiki and Learn how to Report Bugs Correctly.
    icon="alertmodal.tga"
    name="WebLaunchSecurityIssues"
    type="alertmodal">
-Visit the [SECOND_LIFE] Wiki for Details of How to Report a Security Issue.
+Visit the [SECOND_LIFE] Wiki for details of how to report a security issue.
     <usetemplate
      ignoretext="When launching web browser to view Security Issues Wiki"
      name="okcancelignore"
@@ -2564,7 +2608,7 @@ Visit the [SECOND_LIFE] QA Wiki.
    icon="alertmodal.tga"
    name="WebLaunchPublicIssue"
    type="alertmodal">
-Visit the [SECOND_LIFE] Public Issue Tracker, Where you can Report Bugs and other Issues.
+Visit the [SECOND_LIFE] Public Issue Tracker, where you can report bugs and other issues.
     <usetemplate
      ignoretext="When launching web browser to view the Public Issue Tracker"
      name="okcancelignore"
@@ -2588,7 +2632,7 @@ Visit the [SECOND_LIFE] Wiki for info on how to use the Public Issue Tracker.
    icon="alertmodal.tga"
    name="WebLaunchSupportWiki"
    type="alertmodal">
-Go to the Official Linden Blog, for the Latest News and Information.
+Go to the Official Linden Blog, for the latest news and information.
     <usetemplate
      ignoretext="When launching web browser to view the blog"
      name="okcancelignore"
@@ -2665,6 +2709,13 @@ Sorry, you cannot mute a Linden.
     <usetemplate
      name="okbutton"
      yestext="OK"/>
+  </notification>
+
+  <notification
+   icon="alertmodal.tga"
+   name="CannotStartAuctionAlreadyForSale"
+   type="alertmodal">
+You cannot start an auction on a parcel which is already set for sale.  Disable the land sale if you are sure you want to start an auction.
   </notification>
 
   <notification
@@ -3055,7 +3106,9 @@ Are you sure you want to change the Estate Covenant?
    icon="alertmodal.tga"
    name="RegionEntryAccessBlocked"
    type="alertmodal">
-You are not allowed in that Region due to your maturity Rating. This may be a result of a lack of information validating your age. Please verify you have the latest Viewer installed, and go to the Knowledge Base for details on accessing areas with this maturity rating.
+You are not allowed in that Region due to your maturity Rating. This may be a result of a lack of information validating your age.
+
+Please verify you have the latest Viewer installed, and go to the Knowledge Base for details on accessing areas with this maturity rating.
     <usetemplate
      name="okbutton"
      yestext="OK"/>
@@ -3065,10 +3118,9 @@ You are not allowed in that Region due to your maturity Rating. This may be a re
    icon="alertmodal.tga"
    name="RegionEntryAccessBlocked_KB"
    type="alertmodal">
-You are not allowed in that region due to your maturity Rating. 
-Go to the Knowledge Base for more information about maturity Ratings?
+You are not allowed in that region due to your maturity Rating.
 
-[_URL]
+Go to the Knowledge Base for more information about maturity Ratings?
     <url option="0" name="url">
 		https://support.secondlife.com/ics/support/default.asp?deptID=4417&amp;task=knowledge&amp;questionID=6010
     </url>
@@ -3076,7 +3128,7 @@ Go to the Knowledge Base for more information about maturity Ratings?
      name="okcancelignore"
      yestext="Go to Knowledge Base"
 	 notext="Close"
-	 ignoretext="Region entry blocked due to maturity Rating"/>
+	 ignoretext="When Region entry is blocked due to maturity Rating"/>
   </notification>
 
   <notification
@@ -3090,20 +3142,30 @@ You are not allowed in that region due to your maturity Rating.
    icon="alertmodal.tga"
    name="RegionEntryAccessBlocked_Change"
    type="alertmodal">
-You are not allowed in that Region due to your maturity Rating preference. 
-Clicking Change Preference will set your maturity Rating preference and allow you to enter. You will be able to access [REGIONMATURITY] content from now on; if you would like to change this setting back, open the Preferences window to the General tab."
-    <usetemplate
-     name="okcancelignore"
-     yestext="Change Preference"
-	 notext="Close"
-	 ignoretext="Region entry blocked due to maturity Rating preference"/>
+You are not allowed in that Region due to your maturity Rating preference.
+
+You can click &apos;Change Preference&apos; to raise your maturity Rating preference now and allow you to enter. You will be able to search and access [REGIONMATURITY] content from now on. If you later want to change this setting back, go to Edit &gt; Preferences... &gt; General.
+	 <form>
+      <button
+       index="0"
+       name="OK"
+       text="Change Preference"/>
+      <button
+       default="true"
+       index="1"
+       name="Cancel"
+       text="Close"/>
+       <ignore text="When Region entry is blocked due to maturity Rating preference"/>
+    </form>
   </notification>
 
   <notification
    icon="alertmodal.tga"
    name="LandClaimAccessBlocked"
    type="alertmodal">
-You cannot claim this land due to your maturity Rating. This may be a result of a lack of information validating your age. Please verify you have the latest Viewer installed, and go to the Knowledge Base for details on accessing areas with this maturity rating.
+You cannot claim this land due to your maturity Rating. This may be a result of a lack of information validating your age.
+
+Please verify you have the latest Viewer installed, and go to the Knowledge Base for details on accessing areas with this maturity rating.
     <usetemplate
      name="okbutton"
      yestext="OK"/>
@@ -3113,10 +3175,9 @@ You cannot claim this land due to your maturity Rating. This may be a result of 
    icon="alertmodal.tga"
    name="LandClaimAccessBlocked_KB"
    type="alertmodal">
-You cannot claim this land due to your maturity Rating. 
-Go to the Knowledge Base for more information about maturity Ratings?
+You cannot claim this land due to your maturity Rating.
 
-[_URL]
+Go to the Knowledge Base for more information about maturity Ratings?
     <url option="0" name="url">
 		https://support.secondlife.com/ics/support/default.asp?deptID=4417&amp;task=knowledge&amp;questionID=6010
     </url>
@@ -3124,7 +3185,7 @@ Go to the Knowledge Base for more information about maturity Ratings?
      name="okcancelignore"
      yestext="Go to Knowledge Base"
 	 notext="Close"
-	 ignoretext="Land claim blocked due to maturity Rating"/>
+	 ignoretext="When claiming land is blocked due to maturity Rating"/>
   </notification>
 
   <notification
@@ -3138,20 +3199,23 @@ You cannot claim this land due to your maturity Rating.
    icon="alertmodal.tga"
    name="LandClaimAccessBlocked_Change"
    type="alertmodal">
-You cannot claim this land due to your maturity Rating preference. 
-Clicking Change Preference will set your maturity Rating preference and allow you to enter. You will be able to access [REGIONMATURITY] content from now on; if you would like to change this setting back, open the Preferences window to the General tab."
+You cannot claim this land due to your maturity Rating preference.
+
+You can click &apos;Change Preference&apos; to raise your maturity Rating preference now and allow you to enter. You will be able to search and access [REGIONMATURITY] content from now on. If you later want to change this setting back, go to Edit &gt; Preferences... &gt; General.
     <usetemplate
      name="okcancelignore"
      yestext="Change Preference"
 	 notext="Close"
-	 ignoretext="Land claim blocked due to maturity Rating preference"/>
+	 ignoretext="When claiming land is blocked due to maturity Rating preference"/>
   </notification>
 
   <notification
    icon="alertmodal.tga"
    name="LandBuyAccessBlocked"
    type="alertmodal">
-You cannot buy this land due to your maturity Rating. This may be a result of a lack of information validating your age. Please verify you have the latest Viewer installed, and go to the Knowledge Base for details on accessing areas with this maturity rating.
+You cannot buy this land due to your maturity Rating. This may be a result of a lack of information validating your age.
+
+Please verify you have the latest Viewer installed, and go to the Knowledge Base for details on accessing areas with this maturity rating.
     <usetemplate
      name="okbutton"
      yestext="OK"/>
@@ -3161,10 +3225,9 @@ You cannot buy this land due to your maturity Rating. This may be a result of a 
    icon="alertmodal.tga"
    name="LandBuyAccessBlocked_KB"
    type="alertmodal">
-You cannot buy this land due to your maturity Rating. 
-Go to the Knowledge Base for more information about maturity Ratings?
+You cannot buy this land due to your maturity Rating.
 
-[_URL]
+Go to the Knowledge Base for more information about maturity Ratings?
     <url option="0" name="url">
 		https://support.secondlife.com/ics/support/default.asp?deptID=4417&amp;task=knowledge&amp;questionID=6010
     </url>
@@ -3172,7 +3235,7 @@ Go to the Knowledge Base for more information about maturity Ratings?
      name="okcancelignore"
      yestext="Go to Knowledge Base"
 	 notext="Close"
-	 ignoretext="Land purchase blocked due to maturity Rating"/>
+	 ignoretext="When a Land purchase is blocked due to maturity Rating"/>
   </notification>
 
   <notification
@@ -3186,33 +3249,14 @@ You cannot buy this land due to your maturity Rating.
    icon="alertmodal.tga"
    name="LandBuyAccessBlocked_Change"
    type="alertmodal">
-You cannot buy this land due to your maturity Rating preference. 
-Clicking Change Preference will set your maturity Rating preference and allow you to enter. You will be able to access [REGIONMATURITY] content from now on; if you would like to change this setting back, open the Preferences window to the General tab."
+You cannot buy this land due to your maturity Rating preference.
+
+You can click &apos;Change Preference&apos; to raise your maturity Rating preference now and allow you to enter. You will be able to search and access [REGIONMATURITY] content from now on. If you later want to change this setting back, go to Edit &gt; Preferences... &gt; General.
     <usetemplate
      name="okcancelignore"
      yestext="Change Preference"
 	 notext="Close"
-	 ignoretext="Land purchase blocked due to maturity Rating preference"/>
-  </notification>
-
-  <notification
-   icon="alertmodal.tga"
-   name="LandClaimAccessBlocked"
-   type="alertmodal">
-   You cannot claim this land due to your maturity Rating. This may be a result of a lack of information validating your age. Please verify you have the latest Viewer installed, and go to the Knowledge Base for details on accessing areas with this maturity rating.
-    <usetemplate
-     name="okbutton"
-     yestext="OK"/>
-  </notification>
-
-  <notification
-   icon="alertmodal.tga"
-   name="LandBuyAccessBlocked"
-   type="alertmodal">
-You cannot buy this land due to your maturity Rating. This may be a result of a lack of information validating your age. Please verify you have the latest Viewer installed, and go to the Knowledge Base for details on accessing areas with this maturity rating.
-    <usetemplate
-     name="okbutton"
-     yestext="OK"/>
+	 ignoretext="When a Land purchase is blocked due to maturity Rating preference"/>
   </notification>
 
   <notification
@@ -3384,7 +3428,7 @@ Default: 40
    label="Object Bonus"
    name="HelpRegionObjectBonus"
    type="alertmodal">
-The Object Bonus is a multiplier for primitives allowed on any given parcel. The range allowed is 1 to 10. Set at &apos;1&apos;, each 512m2 parcel is allowed 117 objects. Set at &apos;2&apos;, each 512m2 parcel is allowed 234, or twice as many, and so on. The max number of objects allowed per region remains 15,000 no matter what the Object Bonus is. Once set, be aware that lowering the Object Bonus may cause objects to be returned or deleted.
+The Object Bonus is a multiplier for primitives allowed on any given parcel. The range allowed is 1 to 10. Set at &apos;1&apos;, each 512m² parcel is allowed 117 objects. Set at &apos;2&apos;, each 512m² parcel is allowed 234, or twice as many, and so on. The max number of objects allowed per region remains 15,000 no matter what the Object Bonus is. Once set, be aware that lowering the Object Bonus may cause objects to be returned or deleted.
 
 Default: 1.0
   </notification>
@@ -3394,19 +3438,9 @@ Default: 1.0
    label="Maturity"
    name="HelpRegionMaturity"
    type="alertmodal">
-Sets the maturity of the region, as shown at the top of the screen and in pop-up tips on the map. This setting also affects search results - Residents can choose not to find content in Mature regions.
+Sets the maturity Rating of the Region, as shown in the menu bar at the top of any Resident&apos;s viewer, and in tooltips on the World Map when the cursor hovers over this Region. This setting also affects access to this Region and search results. Other Residents may only enter Regions or view search results with the same maturity Ratings they have chosen in their preferences.
 
 It may take some time for this change to be reflected on the map.
-
-Default: PG
-  </notification>
-
-  <notification
-   icon="alertmodal.tga"
-   label="Maturity Preference"
-   name="MaturityPreferencesHelp"
-   type="alertmodal">
-   This setting permits you to lower the maturity rating of your avatar as seen by Second Life. If you set it below your normal rating, you may be prevented from entering regions you would normally have access to.
   </notification>
 
   <notification
@@ -5314,7 +5348,9 @@ Can only claim public land in region you&apos;re in.
    icon="notify.tga"
    name="RegionTPAccessBlocked"
    type="notify">
-You aren&apos;t allowed in that Region due to your maturity Rating. You may need to validate your age and/or install the latest Viewer. Please go to the Knowledge Base for details on accessing areas with this maturity Rating.  
+You aren&apos;t allowed in that Region due to your maturity Rating. You may need to validate your age and/or install the latest Viewer.
+
+Please go to the Knowledge Base for details on accessing areas with this maturity Rating.  
   </notification>
 
   <notification

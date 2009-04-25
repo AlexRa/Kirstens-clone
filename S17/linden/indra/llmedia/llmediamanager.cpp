@@ -245,8 +245,8 @@ bool LLMediaManager::supportsMediaType( const std::string& impl_name, const std:
 	LLMediaImplMakerBase* impl_maker = LLMediaImplFactory::getInstance()->getImplMaker( impl_name );
 	if( impl_maker )
 	{
-		std::string::size_type idx1 = mime_type.find("/");
-		std::string::size_type len = (idx1 == std::string::npos) ? 0 : idx1;
+		int idx1 = mime_type.find("/");
+		int len = (idx1 == std::string::npos) ? 0 : idx1;
 		std::string category = mime_type.substr(0,len);
 
 		return impl_maker->supportsScheme(scheme) ||

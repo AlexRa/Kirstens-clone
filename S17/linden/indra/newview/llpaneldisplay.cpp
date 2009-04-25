@@ -723,14 +723,6 @@ void LLPanelDisplay::onChangeQuality(LLUICtrl *ctrl, void *data)
 
 void LLPanelDisplay::onChangeCustom(LLUICtrl *ctrl, void *data)
 {
-	LLPanelDisplay* self = static_cast<LLPanelDisplay*>(data);
-	// if custom is turned off, reset everything to defaults
-	if (self && !self->mCtrlCustomSettings->getValue())
-	{
-		U32 set = (U32)self->mCtrlSliderQuality->getValueF32();
-		LLFeatureManager::getInstance()->setGraphicsLevel(set, true);	
-	}
-		
 	LLFloaterPreference::refreshEnabledGraphics();
 }
 

@@ -156,11 +156,13 @@ void LLPrefsIMImpl::apply()
 	LLWString busy_response;
 	if (busy) busy_response = busy->getWText(); 
 	LLWStringUtil::replaceTabsWithSpaces(busy_response, 4);
+	LLWStringUtil::replaceChar(busy_response, '\n', '^');
+	LLWStringUtil::replaceChar(busy_response, ' ', '%');
 	
 	if(mGotPersonalInfo)
 	{ 
 
-		gSavedPerAccountSettings.setString("BusyModeResponse2", std::string(wstring_to_utf8str(busy_response)));
+		gSavedPerAccountSettings.setString("BusyModeResponse", std::string(wstring_to_utf8str(busy_response)));
 
 		gSavedSettings.setBOOL("IMInChatHistory", childGetValue("include_im_in_chat_history").asBoolean());
 		gSavedSettings.setBOOL("IMShowTimestamps", childGetValue("show_timestamps_check").asBoolean());
@@ -249,7 +251,11 @@ void LLPrefsIMImpl::setPersonalInfo(const std::string& visibility, bool im_via_e
 	childEnable("log_chat_IM");
 	childEnable("log_date_timestamp");
 	
-	childSetText("busy_response", gSavedPerAccountSettings.getString("BusyModeResponse2"));
+	//RN: get wide string so replace char can work (requires fixed-width encoding)
+	LLWString busy_response = utf8str_to_wstring( gSavedPerAccountSettings.getString("BusyModeResponse") );
+	LLWStringUtil::replaceChar(busy_response, '^', '\n');
+	LLWStringUtil::replaceChar(busy_response, '%', ' ');
+	childSetText("busy_response", wstring_to_utf8str(busy_response));
 
 	enableHistory();
 
@@ -320,15 +326,4 @@ void LLPrefsIM::setPersonalInfo(const std::string& visibility, bool im_via_email
 LLPanel* LLPrefsIM::getPanel()
 {
 	return &impl;
-}
-
-// static
-// DEV-24146 -  needs to be removed at a later date. jan-2009
-void LLPrefsIM::cleanupBadSetting()
-{
-	if (gSavedPerAccountSettings.getString("BusyModeResponse2") == "|TOKEN COPY BusyModeResponse|")
-	{
-		llwarns << "cleaning old BusyModeResponse" << llendl;
-		gSavedPerAccountSettings.setString("BusyModeResponse2", gSavedPerAccountSettings.getText("BusyModeResponse"));
-	}
 }

@@ -612,12 +612,9 @@ bool LLMediaImplLLMozLib::clearCookies()
 // virtual
 bool LLMediaImplLLMozLib::reset()
 {
-	if (mWindowId != 0)
-	{
-		LLMozLib::getInstance()->remObserver( mWindowId, this );
+	LLMozLib::getInstance()->remObserver( mWindowId, this );
 
-		LLMozLib::getInstance()->destroyBrowserWindow( mWindowId );
-	}
+	LLMozLib::getInstance()->destroyBrowserWindow( mWindowId );
 
 	mWindowId = 0;
 

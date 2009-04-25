@@ -327,7 +327,6 @@ U64 LLStatAccum::sScaleTimes[NUM_SCALES] =
 LLStatAccum::LLStatAccum(bool useFrameTimer)
 	: mUseFrameTimer(useFrameTimer),
 	  mRunning(FALSE),
-	  mLastTime(0),
 	  mLastSampleValue(0.0),
 	  mLastSampleValid(FALSE)
 {
@@ -348,7 +347,7 @@ void LLStatAccum::reset(U64 when)
 	{
 		mBuckets[i].accum = 0.0;
 		mBuckets[i].endTime = when + sScaleTimes[i];
-		mBuckets[i].lastValid = false;
+		mBuckets[i].lastValid = FALSE;
 	}
 }
 
@@ -396,7 +395,7 @@ void LLStatAccum::sum(F64 value, U64 when)
 			{
 				F64 valueLeft = value * timeLeft / timeSpan;
 
-				bucket.lastValid = true;
+				bucket.lastValid = TRUE;
 				bucket.lastAccum = bucket.accum + (value - valueLeft);
 				bucket.accum = valueLeft;
 				bucket.endTime += timeScale;
@@ -405,7 +404,7 @@ void LLStatAccum::sum(F64 value, U64 when)
 			{
 				U64 timeTail = timeLeft % timeScale;
 
-				bucket.lastValid = true;
+				bucket.lastValid = TRUE;
 				bucket.lastAccum = value * timeScale / timeSpan;
 				bucket.accum = value * timeTail / timeSpan;
 				bucket.endTime += (timeLeft - timeTail) + timeScale;

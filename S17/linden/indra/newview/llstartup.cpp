@@ -116,7 +116,6 @@
 #include "llkeyboard.h"
 #include "llloginhandler.h"			// gLoginHandler, SLURL support
 #include "llpanellogin.h"
-#include "llprefsim.h"
 #include "llmutelist.h"
 #include "llnotify.h"
 #include "llpanelavatar.h"
@@ -130,6 +129,7 @@
 #include "llpanelgroupnotices.h"
 #include "llpreview.h"
 #include "llpreviewscript.h"
+#include "llproductinforequest.h"
 #include "llsecondlifeurls.h"
 #include "llselectmgr.h"
 #include "llsky.h"
@@ -1970,9 +1970,6 @@ bool idle_startup()
 	//---------------------------------------------------------------------
 	if (STATE_INVENTORY_SEND == LLStartUp::getStartupState())
 	{
-		// Inform simulator of our language preference
-		LLAgentLanguage::update();
-
 		// unpack thin inventory
 		LLUserAuth::options_t options;
 		options.clear();
@@ -2280,6 +2277,9 @@ bool idle_startup()
 		// JC - 7/20/2002
 		gViewerWindow->sendShapeToSim();
 
+		// Inform simulator of our language preference
+		LLAgentLanguage::update();
+
 		
 		// Ignore stipend information for now.  Money history is on the web site.
 		// if needed, show the L$ history window
@@ -2337,9 +2337,6 @@ bool idle_startup()
 
         //DEV-17797.  get null folder.  Any items found here moved to Lost and Found
         LLInventoryModel::findLostItems();
-
-		//DEV-10530.  do cleanup.  remove at some later date.  jan-2009
-		LLPrefsIM::cleanupBadSetting();
 
 		LLStartUp::setStartupState( STATE_PRECACHE );
 		timeout.reset();
@@ -2503,6 +2500,11 @@ bool idle_startup()
 		// If we've got a startup URL, dispatch it
 		LLStartUp::dispatchURL();
 
+		// Retrieve information about the land data
+		// (just accessing this the first time will fetch it,
+		// then the data is cached for the viewer's lifetime)
+		LLProductInfoRequestManager::instance();
+		
 		// Clean up the userauth stuff.
 		LLUserAuth::getInstance()->reset();
 

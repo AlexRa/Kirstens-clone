@@ -1625,6 +1625,8 @@ bool LLAudioSource::hasPendingPreloads() const
 	for (iter = mPreloadMap.begin(); iter != mPreloadMap.end(); iter++)
 	{
 		LLAudioData *adp = iter->second;
+		// note: a bad UUID will forever be !hasDecodedData()
+		// but also !hasValidData(), hence the check for hasValidData()
 		if (!adp->hasDecodedData() && adp->hasValidData())
 		{
 			// This source is still waiting for a preload

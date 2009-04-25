@@ -2,8 +2,7 @@
 <floater bottom="-762" can_close="true" can_drag_on_left="false" can_minimize="true"
      can_resize="true" enabled="true" follows="left|top" height="361" left="273"
      min_height="243" min_width="234" mouse_opaque="true"
-     name="preview notecard" title="Note:" width="400"
-     default_tab_group="1">
+     name="preview notecard" title="Note:" width="400">
 	<button bottom="-352" enabled="false" follows="left|bottom" font="SansSerif"
 	     halign="center" height="20" label="Save" label_selected="Save" left="9"
 	     mouse_opaque="false" name="Save" scale_image="true" width="100" />
@@ -24,7 +23,7 @@
 	<text_editor type="string" length="1" bottom="-327" embedded_items="true" enabled="true"
 	     follows="left|top|right|bottom" font="SansSerif" height="281"
 	     ignore_tab="false" left="4" max_length="65536" mouse_opaque="true"
-	     name="Notecard Editor" width="392" word_wrap="true" tab_group="1">
+	     name="Notecard Editor" width="392" word_wrap="true">
 		Loading...
 	</text_editor>
 	<string name="no_object">

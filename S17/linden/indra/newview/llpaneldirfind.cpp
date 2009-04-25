@@ -104,6 +104,7 @@ BOOL LLPanelDirFind::postBuild()
 	childSetAction("forward_btn", onClickForward, this);
 	childSetCommitCallback("search_editor", onCommitSearch, this);
 	childSetAction("search_btn", onClickSearch, this);
+	childSetAction("?", onClickHelp, this);
 
 	// showcase doesn't have maturity flags -- it's all PG
 	if (hasChild("incmature"))
@@ -172,6 +173,12 @@ void LLPanelDirFind::draw()
 
 		bool enable_forward = mWebBrowser->canNavigateForward();	
 		childSetEnabled( "forward_btn", enable_forward );
+	}
+
+	// showcase doesn't have maturity flags -- it's all PG
+	if (hasChild("incmature"))
+	{
+		updateMaturityCheckbox();
 	}
 
 	LLPanelDirBrowser::draw();
@@ -373,6 +380,12 @@ void LLPanelDirFind::onClickBack( void* data )
 	{
 		self->mWebBrowser->navigateBack();
 	}
+}
+
+// static
+void LLPanelDirFind::onClickHelp( void* data )
+{
+	LLNotifications::instance().add("ClickSearchHelpAll");
 }
 
 // static

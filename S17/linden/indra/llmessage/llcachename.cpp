@@ -426,7 +426,6 @@ bool LLCacheName::importFile(std::istream& istr)
 		entry->mFirstName = agent[FIRST].asString();
 		entry->mLastName = agent[LAST].asString();
 		impl.mCache[id] = entry;
-
 		++count;
 	}
 	llinfos << "LLCacheName loaded " << count << " agent names" << llendl;

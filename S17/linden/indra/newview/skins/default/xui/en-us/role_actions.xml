@@ -172,6 +172,16 @@
 		     name="notices receive" value="43" />
 	</action_set>
 	<action_set
+	     description="These Abilities include powers to allow Members to set up Proposals, vote on Proposals, and view voting history."
+	     name="Proposals">
+		<action description="Create Proposals"
+		     longdescription="Members in a Role with this Ability can create proposals to be voted on in Group Information &gt; Proposals tab."
+		     name="proposal start" value="44" />
+		<action description="Vote on Proposals"
+		     longdescription="Members in a Role with this Ability can vote on proposals in Group Information &gt; Proposals tab."
+		     name="proposal vote" value="45" />
+	</action_set>
+	<action_set
 	     description="These Abilities include powers to allow or restrict access to group chat sessions and group voice chat." 
 	     name="Chat">
 		<action description="Join Group Chat"

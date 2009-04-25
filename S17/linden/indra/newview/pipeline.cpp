@@ -329,13 +329,14 @@ void LLPipeline::init()
 	stop_glerror();
 
 	//create render pass pools
-	getPool(LLDrawPool::POOL_ALPHA);
+	//getPool(LLDrawPool::POOL_ALPHA);
 	getPool(LLDrawPool::POOL_SIMPLE);
 	getPool(LLDrawPool::POOL_GRASS);
 	getPool(LLDrawPool::POOL_FULLBRIGHT);
 	getPool(LLDrawPool::POOL_INVISIBLE);
 	getPool(LLDrawPool::POOL_BUMP);
 	getPool(LLDrawPool::POOL_GLOW);
+	getPool(LLDrawPool::POOL_ALPHA);
 
 	mTrianglesDrawnStat.reset();
 	resetFrameStats();

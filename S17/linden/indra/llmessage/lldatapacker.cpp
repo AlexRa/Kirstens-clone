@@ -1896,12 +1896,7 @@ BOOL LLDataPackerAsciiFile::getValueStr(const char *name, char *out_value, S32 v
 	if (mFP)
 	{
 		fpos_t last_pos;
-		if (0 != fgetpos(mFP, &last_pos)) // 0==success for fgetpos
-		{
-			llwarns << "Data packer failed to fgetpos" << llendl;
-			return FALSE;
-		}
-
+		fgetpos(mFP, &last_pos);
 		if (fgets(buffer, DP_BUFSIZE, mFP) == NULL)
 		{
 			buffer[0] = '\0';

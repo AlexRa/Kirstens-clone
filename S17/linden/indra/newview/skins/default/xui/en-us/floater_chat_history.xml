@@ -24,7 +24,7 @@
 	<string name="IM_end_log_string">
 		-- End of Log --
 	</string>
-  <string name="voice_icon">icn_voice-localchat.tga</string>
+
   <string name="ScriptQuestionCautionChatGranted">
 '[OBJECTNAME]', an object owned by '[OWNERNAME]', located in [REGIONNAME] at [REGIONPOS], has been granted permission to: [PERMISSIONS].
   </string>
@@ -66,7 +66,7 @@
   </string>
 
   <layout_stack border="false" bottom="2" follows="left|top|right|bottom" height="250" left="2"
-	     orientation="horizontal" width="430">
+	     orientation="horizontal" width="430" name="panels">
 		<layout_panel border="false" bottom="0" default_tab_group="1" height="130" left="0"
 		     min_width="275" name="im_contents_panel" width="305">
 			<combo_box follows="left|top" height="20" label="Gestures" left="5" name="Gesture"

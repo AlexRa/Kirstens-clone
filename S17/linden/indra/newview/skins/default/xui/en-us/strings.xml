@@ -182,6 +182,9 @@
 	<string name="SIM_ACCESS_ADULT">Adult</string>
 	<string name="SIM_ACCESS_DOWN">Offline</string>
 	<string name="SIM_ACCESS_MIN">Unknown</string>
+	
+	<!-- For use when we do not have land type back from the server -->
+	<string name="land_type_unknown">(unknown)</string>
 
 	<!-- File load/save dialogs -->
 	<string name="all_files">All Files</string>

@@ -385,10 +385,10 @@ void LLFloaterHtmlHelp::show(std::string url, std::string title)
 
 	if (gSavedSettings.getBOOL("UseExternalBrowser"))
 	{
-        LLSD notificationData;
-        notificationData["url"] = url;                                                                     	    
-                                                                                                   	    
-	    LLNotifications::instance().add("ClickOpenF1Help", notificationData, LLSD(), onClickF1HelpLoadURL);	    
+        LLSD payload;
+        payload["url"] = url;
+		
+	    LLNotifications::instance().add("ClickOpenF1Help", LLSD(), payload, onClickF1HelpLoadURL);	    
 	}
 	else
 	{
@@ -403,7 +403,7 @@ bool LLFloaterHtmlHelp::onClickF1HelpLoadURL(const LLSD& notification, const LLS
 	S32 option = LLNotification::getSelectedOption(notification, response);
 	if (option == 0)
 	{
-		LLWeb::loadURL(notification["url"]);
+		LLWeb::loadURL(notification["payload"]["url"].asString());
 	}
 	return false;
 }
