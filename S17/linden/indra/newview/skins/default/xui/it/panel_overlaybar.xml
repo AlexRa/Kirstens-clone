@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<panel name="overlay">
+	<layout_stack name="overlay_layout_panel">
+		<layout_panel name="main_panel">
+			<layout_stack name="chatbar_and_buttons">
+				<layout_panel name="state_buttons">
+					<button label="Hai ricevuto un IM" label_selected="Hai ricevuto un IM" name="IM Received" tool_tip="Hai un IM in attesa. Clicca per mostrare i messaggi IM."/>
+					<button label="Mettimi &apos;non occupato&apos;" label_selected="Mettimi &apos;non occupato&apos;" name="Set Not Busy" tool_tip="La chat e gli IM sono ora nascosti. Clicca qui per terminare lo stato di &apos;occupato&apos;."/>
+					<button label="Visualizzazione in soggettiva" label_selected="Visualizzazione in soggettiva" name="Mouselook" tool_tip="Usa il mouse per guardarti intorno. Se hai un&apos;arma, cliccando potrai sparare."/>
+					<button label="Alzati" label_selected="Alzati" name="Stand Up" tool_tip="Clicca qui per alzarti."/>
+				</layout_panel>
+			</layout_stack>
+		</layout_panel>
+	</layout_stack>
+</panel>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<panel label="Régió" name="General">
+	<text name="region_text_lbl">
+		Régió:
+	</text>
+	<text name="region_text">
+		ismeretlen
+	</text>
+	<text name="version_channel_text_lbl">
+		Verzió:
+	</text>
+	<text name="version_channel_text">
+		ismeretlen
+	</text>
+	<check_box label="Domborzat átalakításának tiltása" name="block_terraform_check" />
+	<button label="?" name="terraform_help" />
+	<check_box label="Repülés tiltása" name="block_fly_check" />
+	<button label="?" name="fly_help" />
+	<check_box label="Károkozás engedélyezése" name="allow_damage_check" />
+	<button label="?" name="damage_help" />
+	<check_box label="Ütközések engedélyezése" name="restrict_pushobject" />
+	<button label="?" name="restrict_pushobject_help" />
+	<check_box label="Föld eladásának engedélyezése" name="allow_land_resell_check" />
+	<button label="?" name="land_resell_help" />
+	<check_box label="Föld egyesítésének/&#10;felosztásának engedélyezése"
+	     name="allow_parcel_changes_check" />
+	<button label="?" name="parcel_changes_help" />
+	<check_box label="Föld megjelenítésének tiltása &#10;a keresőben"
+	     name="block_parcel_search_check"
+	     tool_tip="Föld nevének a keresési eredmények közötti tiltása"  bottom_delta="-36" />
+	<button label="?" name="parcel_search_help" />
+	<spinner label="Maximum avatárok száma:" name="agent_limit_spin" />
+	<button label="?" name="agent_limit_help" />
+	<spinner label="Bónusz tárgyak &#10;száma:" name="object_bonus_spin" />
+	<button label="?" name="object_bonus_help" />
+	<text label="Típus" name="access_text">
+		Típus:
+	</text>
+	<combo_box name="access_combo" width="135" left="60">
+	</combo_box>
+	<button label="?" name="access_help" />
+	<button label="Alkalmaz" name="apply_btn" />
+	<button label="Egy adott felhasználó hazateleportálása" name="kick_btn" bottom_delta="-64"/>
+	<button label="Összes felhasználó hazateleportálása" name="kick_all_btn" />
+	<button label="Üzenetküldése a régiónak..." name="im_btn" />
+	<button label="Telehub kezelése..." name="manage_telehub_btn" />
+</panel>

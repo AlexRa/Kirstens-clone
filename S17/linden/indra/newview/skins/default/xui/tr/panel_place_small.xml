@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<panel name="Place">
+	<text name="name_label">
+		İsim:
+	</text>
+	<text name="description_label">
+		Tanım:
+	</text>
+	<text name="information_label">
+		Bilgi:
+	</text>
+	<text name="location_label">
+		Lokasyon:
+	</text>
+	<button label="Işınlan" name="teleport_btn" />
+	<button label="Haritada göster" name="map_btn" />
+	<button label="Bahisler..." name="auction_btn" />
+	<string name="traffic_text">
+		Trafik: [TRAFFIC]
+	</string>
+	<string name="area_text">
+		Alan: [AREA] sq. m.
+	</string>
+	<string name="forsale_text">
+		Satılık L$ [PRICE]
+	</string>
+	<string name="auction_text">
+		A.Arttırma No [ID].
+	</string>
+</panel>

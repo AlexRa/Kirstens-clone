@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<panel name="chat_bar">
+	<button label="Genel sohbet" name="History"
+	     tool_tip="Ne yazıldığını görmek için buraya tıklayınız." />
+	<line_editor label="Sohbet için buraya tıklayınız." name="Chat Editor"
+	     tool_tip="Söylemek için Enter,bağırmak için Ctrl-Enter tuşlarına basınız." />
+	<flyout_button label="Söyle" name="Say" tool_tip="(Enter)" />
+	<combo_box label="Hareketler" name="Gesture" />
+	<string name="gesture_label">
+		Hareketler
+	</string>
+</panel>

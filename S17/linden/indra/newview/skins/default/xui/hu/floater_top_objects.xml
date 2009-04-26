@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<floater name="top_objects" title="betöltés folyamatban...">
+	<text name="title_text">
+		Betöltés folyamatban...
+	</text>
+	<scroll_list name="objects_list">
+		<column label="Pontszám" name="score"/>
+		<column label="Név" name="name"/>
+		<column label="Tulajdonos" name="owner"/>
+		<column label="Helyszín" name="location"/>
+		<column label="Idő" name="time"/>
+	</scroll_list>
+	<text name="id_text">
+		Tárgy azonosító:
+	</text>
+	<button label="Jelzőfények megjelenítése" name="show_beacon_btn"/>
+	<text name="obj_name_text">
+		Tárgy neve:
+	</text>
+	<button label="Szűrő" name="filter_object_btn"/>
+	<text name="owner_name_text">
+		Tulajdonos neve:
+	</text>
+	<button label="Szűrő" name="filter_owner_btn"/>
+	<button label="Kijelölt visszaküldése" name="return_selected_btn"/>
+	<button label="Mindet visszaküld" name="return_all_btn"/>
+	<button label="Kijelölt letiltása" name="disable_selected_btn"/>
+	<button label="Mindet letilt" name="disable_all_btn"/>
+	<button label="Frissít" name="refresh_btn"/>
+	<string name="top_scripts_title">
+		Főbb kódok
+	</string>
+	<string name="top_scripts_text">
+		[COUNT] kód betöltése ennyi időt vesz igénybe: [TIME] ms
+	</string>
+	<string name="scripts_score_label">
+		Idő
+	</string>
+	<string name="top_colliders_title">
+		Főbb ütközések
+	</string>
+	<string name="top_colliders_text">
+		[COUNT] tárgy számos ütközést okozhat
+	</string>
+	<string name="colliders_score_label">
+		Pontszám
+	</string>
+	<string name="none_descriptor">
+		Egyet sem talált.
+	</string>
+</floater>

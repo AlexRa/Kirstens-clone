@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<panel label="ミニマップ" name="mini_mapview">
+	<text name="n_label">
+		北
+	</text>
+	<text name="e_label">
+		東
+	</text>
+	<text name="s_label">
+		南
+	</text>
+	<text name="w_label">
+		西
+	</text>
+	<text name="ne_label">
+		北東
+	</text>
+	<text name="se_label">
+		南東
+	</text>
+	<text name="sw_label">
+		南西
+	</text>
+	<text name="nw_label">
+		北西
+	</text>
+</panel>

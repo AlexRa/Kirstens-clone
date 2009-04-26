@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="avatarpicker" title="Üye Seçici">
+	<text name="instruct_search_resident_name">
+		Üyenin isminin bir kısmını yazınız:
+	</text>
+	<button label="Bul" label_selected="Bul" name="Find" />
+	<text name="Or select their calling card:">
+		Veya arama kartı seçiniz:
+	</text>
+	<button label="Kapat" label_selected="Kapat" name="Close" />
+	<button label="Seç" label_selected="Seç" name="Select" />
+	<string name="NotFound">
+		&apos;[TEXT]&apos; bulunamıyor
+	</string>
+</floater>

@@ -8,8 +8,11 @@
 			<string name="not_found_text">
 				Не знайдено.
 			</string>
-			<button label="Назад" name="back_btn" />
-			<button label="Вперед" name="forward_btn" />
+			<text name="find">
+				Знайти:
+			</text>
+			<button label="&lt; Назад" name="back_btn" />
+			<button label="Вперед &gt;" name="forward_btn" />
 			<line_editor label="Пошук" name="search_editor" tool_tip="Пошук в SL" />
 			<button label="Пошук" name="search_btn" />
 			<combo_box name="Category">
@@ -32,7 +35,7 @@
 					Вікі
 				</combo_item>
 			</combo_box>
-			<check_box label="Включаючи Для дорослих" name="mature_check" />
+
 			<string name="loading_text">
 				Завантаження...
 			</string>
@@ -58,7 +61,7 @@
 			<text name="find">
 				Знайти:
 			</text>
-			<check_box label="Включаючи Для дорослих" name="incmature" />
+
 			<combo_box name="Category">
 				<combo_item name="AnyCategory">
 					Всі категорії
@@ -126,12 +129,12 @@
 			<button label="&gt;&gt;" label_selected="&gt;&gt;" name="&gt;&gt;"
 			     tool_tip="На день вперед" />
 			<button label="Сьогодні" label_selected="Сьогодні" name="Today"
-			     tool_tip="Показати поточні події" />
+			     tool_tip="Показати поточні події" bottom="-62" left_delta="-72" width="95"/>
 			<text name="text">
 				Категорія:
 			</text>
 			<text name="text2">
-				Ім&apos;я/Опис:
+				Знайти:
 			</text>
 			<combo_box name="category combo">
 				<combo_item name="All">
@@ -171,7 +174,6 @@
 					Різне
 				</combo_item>
 			</combo_box>
-			<check_box label="Для дорослих" name="incmature" />
 			<button label="Пошук" label_selected="Пошук" name="Search"
 			     tool_tip="Пошук" />
 			<button label="Видалити" label_selected="Видалити" name="Delete" />
@@ -193,8 +195,8 @@
 			<string name="not_found_text">
 				Не знайдено.
 			</string>
-			<button label="Назад" name="back_btn" />
-			<button label="Вперед" name="forward_btn" />
+			<button label="&lt; Назад" name="back_btn" />
+			<button label="Вперед &gt;" name="forward_btn" />
 			<string name="loading_text">
 				Завантаження...
 			</string>
@@ -215,9 +217,12 @@
 			<string name="not_found_text">
 				Не знайдено.
 			</string>
-			<button label="&lt; Наст." label_selected="Наст. &gt;" name="Next &gt;" />
-			<button label="Поп. &gt;" label_selected="&lt; Поп." name="&lt; Prev" />
-			<combo_box name="type">
+			<text name="find">
+				Знайти:
+			</text>
+			<button label="Наст. &gt;" label_selected="Наст. &gt;" name="Next &gt;" />
+			<button label="&lt; Поп." label_selected="&lt; Поп." name="&lt; Prev" />
+			<combo_box name="type" bottom="-64" width="175" left="224">
 				<combo_item name="AllTypes">
 					Усі типи
 				</combo_item>
@@ -231,25 +236,22 @@
 					Продається Маєток
 				</combo_item>
 			</combo_box>
-			<combo_box name="rating">
-				<combo_item name="PG&amp;Mature">
-					PG і Для дорослих
-				</combo_item>
-				<combo_item name="PGonly">
-					Тільки PG
-				</combo_item>
-				<combo_item name="Matureonly">
-					Тільки Для дорослих
-				</combo_item>
-			</combo_box>
-			<check_box label="Ціна &lt;= L$" name="pricecheck" />
-			<check_box label="Площ. &gt;= кв.м." name="areacheck" />
-			<button label="Пошук" label_selected="Пошук" name="Search" />
+			<check_box label="Ціна &#8804; " name="pricecheck" />
+			<check_box label="Площ. &#8805; " name="areacheck" />
+			<text name="pricecheck_symbol" left="120" >
+				L$
+			</text>
+			<text name="areacheck_symbol" left="190" width="30">
+				кв.м.
+			</text>
+			<line_editor name="priceedit" left="135" />
+			<line_editor name="areaedit" left="135" />
+			<button label="Пошук" label_selected="Пошук" name="Search"  width="80" bottom="-66" left="140"/>
 			<text name="land">
 				Земля може бути куплена за Лінден-долары (L$) або на аукціоні за L$ або US$.
 Щоб купити землю, відвідайте її і натисніть мишкою по її назві.
 			</text>
-			<scroll_list name="results">
+			<scroll_list name="results" height="438" >
 				<column label="" name="icon" />
 				<column label="" name="type" />
 				<column label="Назва" name="name" />
@@ -270,16 +272,13 @@
 			<text name="find">
 				Знайти:
 			</text>
-			<check_box label="Увімкн. Для дорослих" name="incmature" />
+
 			<combo_box name="Category">
 				<combo_item name="AnyCategory">
 					Всі категорії
 				</combo_item>
 				<combo_item name="LindenLocation">
 					Місця Лінденів
-				</combo_item>
-				<combo_item name="Adult">
-					Для дорослих
 				</combo_item>
 				<combo_item name="Arts&amp;Culture">
 					Культура і Мистецтво
@@ -346,11 +345,14 @@
 			<string name="not_found_text">
 				Не знайдено.
 			</string>
+			<text name="find">
+				Знайти:
+			</text>
 			<button label="&lt; Назад" name="back_btn" />
 			<button label="Вперед &gt;" name="forward_btn" />
 			<line_editor label="Пошук" name="search_editor" tool_tip="Пошук в SL" />
 			<button label="Пошук" name="search_btn" />
-			<check_box label="Включаючи Для дорослих" name="mature_check" />
+
 			<string name="loading_text">
 				Завантаження...
 			</string>

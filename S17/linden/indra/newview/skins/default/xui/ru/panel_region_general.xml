@@ -37,14 +37,8 @@
 	<text label="Рейтинг" name="access_text">
 		Рейтинг:
 	</text>
-	<combo_box label="Для взрослых" name="access_combo">
-		<combo_item name="PG">
-			PG
-		</combo_item>
-		<combo_item name="Mature">
-			Для взрослых
-		</combo_item>
-	</combo_box>
+
+
 	<button label="?" name="access_help" />
 	<button label="Применить" name="apply_btn" />
 	<button label="Отправ.домой одного пользователя..."

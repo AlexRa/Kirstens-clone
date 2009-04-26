@@ -8,17 +8,7 @@
 	<button label="Телепорт" name="classified_teleport_btn" />
 	<button label="Карта" name="classified_map_btn" />
 	<combo_box label="" name="classified_category_combo" />
-	<combo_box label="" name="classified_mature_check">
-		<combo_item name="select_mature">
-			- Виберіть рейтинг -
-		</combo_item>
-		<combo_item name="mature">
-			Для дорослих
-		</combo_item>
-		<combo_item name="not_mature">
-			Не Для дорослих
-		</combo_item>
-	</combo_box>
+
 	<text name="classified_info_text"
 	     tool_tip="Чим більше Ви заплатите за рекламу, тим вище вона буде знаходитися в списку.">
 		Реклама розміщена: ще не опублікована

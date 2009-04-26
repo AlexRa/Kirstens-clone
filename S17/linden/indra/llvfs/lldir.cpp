@@ -247,7 +247,7 @@ std::string LLDir::buildSLOSCacheDir() const
 	}
 	else
 	{
-		res = getOSCacheDir() + mDirDelimiter + "SecondLife";
+		res = getOSCacheDir() + mDirDelimiter + "Kirstens S17";
 	}
 	return res;
 }

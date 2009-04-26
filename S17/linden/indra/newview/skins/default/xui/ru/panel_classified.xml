@@ -8,17 +8,7 @@
 	<button label="Телепорт" name="classified_teleport_btn" />
 	<button label="Показать на карте" name="classified_map_btn" />
 	<button label="Профиль" name="classified_profile_btn" />
-	<combo_box name="classified_mature_check">
-		<combo_item name="select_mature">
-			- Выберите рейтинг -
-		</combo_item>
-		<combo_item name="mature">
-			Для взрослых
-		</combo_item>
-		<combo_item name="not_mature">
-			Не Для взрослых
-		</combo_item>
-	</combo_box>
+
 	<combo_box label="" name="classified_category_combo" />
 	<button label="Обновить" name="classified_update_btn" />
 	<string name="ad_placed_paid">

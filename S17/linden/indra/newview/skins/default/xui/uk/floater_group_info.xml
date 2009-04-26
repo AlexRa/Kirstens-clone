@@ -35,8 +35,7 @@
 			<check_box label="Опублікувати в Інтернет" name="allow_publish"
 			     tool_tip="Публікувати інформацію про Ваш профіль в Інтернет" />
 			<button label="?" label_selected="?" name="publish_help_btn" />
-			<check_box label="Для дорослих" name="mature"
-			     tool_tip="Ваш профіль вважається дорослим" />
+			<check_box name="mature" />
 		</panel>
 		<panel label="Титули" name="tit">
 			<text name="txt">

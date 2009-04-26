@@ -57,18 +57,7 @@
 		     tool_tip="Вимагати грошовий сбір за реєстрацію в групу." />
 		<spinner name="spin_enrollment_fee"
 		     tool_tip="Нові учасники повинні будуть оплатити внесок, якщо вказаний &apos;&apos;Внесок за Вступ&apos;&apos;." />
-		<combo_box name="group_mature_check"
-		     tool_tip="Встановлює чи вважати Групу як Групу для дорослих.">
-			<combo_item name="select_mature">
-				- Вибрати -
-			</combo_item>
-			<combo_item name="mature">
-				Зміст Для Дорослих
-			</combo_item>
-			<combo_item name="not_mature">
-				Немає змісту Для дорослих
-			</combo_item>
-		</combo_box>
+
 		<panel name="title_container">
 			<text name="active_title_label">
 				Мій Активний Титул

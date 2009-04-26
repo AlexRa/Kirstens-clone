@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<floater name="avatarpicker" title="Kies inwoner">
+	<text name="instruct_search_resident_name">
+		Type een deel van de naam van de inwoner:
+	</text>
+	<button label="Zoek" label_selected="Zoek" name="Find"/>
+	<text name="Or select their calling card:">
+		Of selecteer een visitekaartje:
+	</text>
+	<button label="Sluiten" label_selected="Sluiten" name="Close"/>
+	<button label="Selecteer" label_selected="Selecteer" name="Select"/>
+	<string name="NotFound">
+		[TEXT]&apos; niet gevonden
+	</string>
+</floater>

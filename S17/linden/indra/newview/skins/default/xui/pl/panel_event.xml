@@ -12,15 +12,7 @@
 	<text name="event_category">
 		(brak)
 	</text>
-	<text name="event_mature_label">
-		Dla Dorosłych (18+):
-	</text>
-	<text name="event_mature_yes">
-		Tak
-	</text>
-	<text name="event_mature_no">
-		Nie
-	</text>
+
 	<text name="event_date_label">
 		Data:
 	</text>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<panel label="Anlaşma" name="Covenant">
+	<text name="covenant_help_text">
+		Anlaşma bilgisindeki değişiklikler bu emlağa ait tüm parsellerde gösterilecektir.
+	</text>
+	<text name="region_name_lbl">
+		Bölge:
+	</text>
+	<text name="estate_name_lbl">
+		Emlak:
+	</text>
+	<text name="estate_owner_lbl">
+		Emlak sahibi:
+	</text>
+	<text name="covenent_instructions">
+		Bu emlağın anlaşmasını değiştirmek için bir notekart sürükleyip bırakınız.
+	</text>
+	<button label="Yenile" name="reset_covenant" />
+	<string name="can_resell">
+		Bu bölgede satın alınan arazi tekrar satılabilir.
+	</string>
+	<string name="can_not_resell">
+		Bu bölgede satın alınan arazi tekrar satılamaz.
+	</string>
+	<string name="can_change">
+		Bu bölgede satın alınan arazi birleştirilebilir veya bölünebilir.
+	</string>
+	<string name="can_not_change">
+		Bu bölgede satın alınan arazi birleştirilemez veya bölünemez.
+	</string>
+	<button label="?" name="covenant_help" />
+</panel>

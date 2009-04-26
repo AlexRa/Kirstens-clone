@@ -21,6 +21,45 @@
 	<string name="IM_end_log_string">
 		-- Кінець Лога --
 	</string>
+  <string name="ScriptQuestionCautionChatGranted">
+	&apos;[OBJECTNAME]&apos;, об&apos;єкт , що належить &apos;[OWNERNAME]&apos; і знаходиться в [REGIONNAME] at [REGIONPOS], отримав дозволи: [PERMISSIONS].
+  </string>
+  <string name="ScriptQuestionCautionChatDenied">
+	&apos;[OBJECTNAME]&apos;, об&apos;єкт , що належить &apos;[OWNERNAME]&apos;, і знаходиться в [REGIONNAME] at [REGIONPOS], втратив дозволи: [PERMISSIONS].
+  </string>
+  <string name="ScriptTakeMoney">
+	Отримати з Вас Лінден-долари (L$)
+  </string>
+  <string name="ActOnControlInputs">
+	Працювати на Ваших кнопках
+  </string>
+  <string name="RemapControlInputs">
+	Перенастроїти управління
+  </string>
+  <string name="AnimateYourAvatar">
+	Анімувати Ваш аватар
+  </string>
+  <string name="AttachToYourAvatar">
+	Прикріпити до Вашого аватара
+  </string>
+  <string name="ReleaseOwnership">
+	Прибрати з власності і зробити публічним
+  </string>
+  <string name="LinkAndDelink">
+	Під&apos;єднати/від&apos;єднати від інших об&apos;єктів
+  </string>
+  <string name="AddAndRemoveJoints">
+	Додайте і видаліть з&apos;єднання з іншими об&apos;єктами
+  </string>
+  <string name="ChangePermissions">
+	Змінити його права
+  </string>
+  <string name="TrackYourCamera">
+	Стеження за Вашою камерою
+  </string>
+  <string name="ControlYourCamera">
+	Управління Вашою камерою
+  </string>
 	<layout_stack name="panels">
 		<layout_panel name="im_contents_panel">
 			<combo_box label="Жести" name="Gesture">

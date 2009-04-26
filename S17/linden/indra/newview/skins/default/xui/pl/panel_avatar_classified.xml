@@ -8,17 +8,7 @@
 	<button label="Teleportuj" name="classified_teleport_btn" />
 	<button label="Mapa" name="classified_map_btn" />
 	<combo_box label="" name="classified_category_combo" />
-	<combo_box label="" name="classified_mature_check">
-		<combo_item name="select_mature">
-			- Treść -
-		</combo_item>
-		<combo_item name="mature">
-			Dla Dorosłych (18+)
-		</combo_item>
-		<combo_item name="not_mature">
-			Bez Ograniczeń (BO)
-		</combo_item>
-	</combo_box>
+
 	<text name="classified_info_text"
 	     tool_tip="Twoja reklama jest tym wyżej na liście im więcej za nią płacisz.">
 		Reklama: Jeszcze nie zamieszczona

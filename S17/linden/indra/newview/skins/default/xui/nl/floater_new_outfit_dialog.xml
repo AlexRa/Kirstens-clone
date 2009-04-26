@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<floater name="modal container" title="">
+	<button label="Opslaan" label_selected="Opslaan" name="Save"/>
+	<button label="Annuleren" label_selected="Annuleren" name="Cancel"/>
+	<check_box label="Postuur" name="checkbox_Shape"/>
+	<check_box label="Huid" name="checkbox_Skin"/>
+	<check_box label="Haar" name="checkbox_Hair"/>
+	<check_box label="Ogen" name="checkbox_Eyes"/>
+	<check_box label="Hernoem kleding naar mapnaam" name="rename"/>
+	<check_box label="Hemd" name="checkbox_Shirt"/>
+	<check_box label="Broek" name="checkbox_Pants"/>
+	<check_box label="Schoenen" name="checkbox_Shoes"/>
+	<check_box label="Sokken" name="checkbox_Socks"/>
+	<check_box label="Jas" name="checkbox_Jacket"/>
+	<check_box label="Handschoenen" name="checkbox_Gloves"/>
+	<check_box label="Onderhemd" name="checkbox_Undershirt"/>
+	<check_box label="Onderbroek" name="checkbox_Underpants"/>
+	<check_box label="Rok" name="checkbox_Skirt"/>
+	<check_box label="Borstkast" name="checkbox_Chest"/>
+	<check_box label="Schedel" name="checkbox_Skull"/>
+	<check_box label="Linker schouder" name="checkbox_Left Shoulder"/>
+	<check_box label="Rechter schouder" name="checkbox_Right Shoulder"/>
+	<check_box label="Linker hand" name="checkbox_Left Hand"/>
+	<check_box label="Rechter hand" name="checkbox_Right Hand"/>
+	<check_box label="Linker voet" name="checkbox_Left Foot"/>
+	<check_box label="Rechter voet" name="checkbox_Right Foot"/>
+	<check_box label="Ruggengraat" name="checkbox_Spine"/>
+	<check_box label="Bekken" name="checkbox_Pelvis"/>
+	<check_box label="Mond" name="checkbox_Mouth"/>
+	<check_box label="Kin" name="checkbox_Chin"/>
+	<check_box label="Linker oor" name="checkbox_Left Ear"/>
+	<check_box label="Rechter oor" name="checkbox_Right Ear"/>
+	<check_box label="Linker oogbal" name="checkbox_Left Eyeball"/>
+	<check_box label="Rechter oogbal" name="checkbox_Right Eyeball"/>
+	<check_box label="Neus" name="checkbox_Nose"/>
+	<check_box label="R bovenarm" name="checkbox_R Upper Arm"/>
+	<check_box label="R onderarm" name="checkbox_R Forearm"/>
+	<check_box label="L bovenarm" name="checkbox_L Upper Arm"/>
+	<check_box label="L onderarm" name="checkbox_L Forearm"/>
+	<check_box label="Rechter heup" name="checkbox_Right Hip"/>
+	<check_box label="R bovenbeen" name="checkbox_R Upper Leg"/>
+	<check_box label="R onderbeen" name="checkbox_R Lower Leg"/>
+	<check_box label="Linker heup" name="checkbox_Left Hip"/>
+	<check_box label="L bovenbeen" name="checkbox_L Upper Leg"/>
+	<check_box label="L onderbeen" name="checkbox_L Lower Leg"/>
+	<check_box label="Maag" name="checkbox_Stomach"/>
+	<check_box label="Linker borstspier" name="checkbox_Left Pec"/>
+	<check_box label="Rechter borstspier" name="checkbox_Right Pec"/>
+	<check_box label="Middelpunt 2" name="checkbox_Center 2"/>
+	<check_box label="Bovenkant rechts" name="checkbox_Top Right"/>
+	<check_box label="Bovenkant" name="checkbox_Top"/>
+	<check_box label="Bovenkant links" name="checkbox_Top Left"/>
+	<check_box label="Middelpunt" name="checkbox_Center"/>
+	<check_box label="Onderkant links" name="checkbox_Bottom Left"/>
+	<check_box label="Onderkant" name="checkbox_Bottom"/>
+	<check_box label="Onderkant rechts" name="checkbox_Bottom Right"/>
+	<text name="Make New Outfit">
+		Maak nieuwe kleding
+	</text>
+	<text name="Outfits are folders that contain clothing and body parts. Drag an outfit folder onto your avatar to put it on.   &quot;Make New Outfit&quot; makes a new folder and saves copies of the items you are now wearing into it.">
+		Kleding bestaat uit mappen die kleding en lichaamsdelen bevatten. Sleep een kledingmap op uw avatar om het te dragen.
+
+&apos;Maak nieuwe kleding&apos; maakt een nieuwe map en slaat er kopieën in op van de items die u nu draagt.
+	</text>
+	<text name="Folder name:">
+		Mapnaam:
+	</text>
+	<text name="Items to include in outfit:">
+		Items om toe te voegen aan outfit:
+	</text>
+	<text name="Body Parts:">
+		Lichaamsdelen:
+	</text>
+	<text name="Clothes:">
+		Kleding:
+	</text>
+	<text name="Attachments:">
+		Bevestigingen:
+	</text>
+	<text name="Options:">
+		Opties:
+	</text>
+	<line_editor name="name ed">
+		Nieuwe kleding
+	</line_editor>
+</floater>

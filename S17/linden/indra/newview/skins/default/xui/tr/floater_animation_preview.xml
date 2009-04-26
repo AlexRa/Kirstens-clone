@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="Animation Preview" title="">
+	<text name="name_label">
+		Ad:
+	</text>
+	<text name="description_label">
+		Tanım:
+	</text>
+	<spinner label="Öncelik" name="priority" />
+	<check_box label="Tekrar" name="loop_check"  />
+	<spinner label="In(%)" name="loop_in_point"  />
+	<spinner label="Out(%)" name="loop_out_point"  />
+	<text name="preview_label">
+		Önizleme
+	</text>
+	<combo_box label="" name="preview_base_anim" >
+		<combo_item name="Standing">
+			Dururken
+		</combo_item>
+		<combo_item name="Walking">
+			Yürürken
+		</combo_item>
+		<combo_item name="Sitting">
+			Otururken
+		</combo_item>
+		<combo_item name="Flying">
+			Uçarken
+		</combo_item>
+	</combo_box>
+	<button label="İptal" name="cancel_btn" />
+	<button label="Yükle ([AMOUNT] L$)" name="ok_btn" />
+</floater>

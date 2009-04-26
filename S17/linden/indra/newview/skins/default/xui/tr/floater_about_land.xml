@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="floaterland" title="Arazi hakkında">
+	<tab_container name="landtab">
+		<panel label="Genel" name="land_general_panel">
+			<text type="string" length="1" name="Name:">
+				Ad:
+			</text>
+			<text type="string" length="1" name="Description:">
+				Tanım:
+			</text>
+			<text type="string" length="1" name="Owner:">
+				Sahibi:
+			</text>
+			<text type="string" length="1" name="OwnerText">
+				Leyla Linden
+			</text>
+			<button label="Profile..." label_selected="Profile..." name="Profile..." />
+			<text type="string" length="1" name="Group:">
+				Grup:
+			</text>
+			<button label="Düzenle..." label_selected="Düzenle..." name="Set..." />
+			<check_box label="Gruba bağışına izin ver" name="check deed" />
+			<button label="Bağışla..." label_selected="Bağışla..." name="Deed..." />
+			<check_box label="Arsa sahibi bağışa destek verir" name="check contrib"  />
+			<text type="string" length="1" name="For Sale:">
+				Satış durumu:
+			</text>
+			<text type="string" length="1" name="Not for sale.">
+				Satılık değil.
+			</text>
+			<text type="string" length="1" name="For Sale: Price L$[PRICE].">
+				Ücret: [PRICE] L$.
+			</text>
+			<button label="Araziyi sat..." label_selected="Araziyi sat..." name="Sell Land..." />
+			<text type="string" length="1" name="For sale to">
+				Satılık: [BUYER]
+			</text>
+			<text type="string" length="1" name="Sell with landowners objects in parcel.">
+				Satışa objeler dahildir.
+			</text>
+			<text type="string" length="1" name="Selling with no objects in parcel.">
+				Satışa objeler dahil değildir.
+			</text>
+			<text type="string" length="1" name="Claimed:">
+				Alım zamanı:
+			</text>
+			<text type="string" length="1" name="DateClaimText">
+				Tue Aug 15 13:47:25 2006
+			</text>
+			<text type="string" length="1" name="PriceLabel">
+				Area:
+			</text>
+			<text type="string" length="1" name="PriceText">
+				4048 sq. m.
+			</text>
+			<text type="string" length="1" name="Traffic:">
+				Trafik:
+			</text>
+			<text type="string" length="1" name="DwellText">
+				0
+			</text>
+			<button label="Satın al..." label_selected="Satın al..." name="Buy Land..." />
+			<button label="Grup için satın al..." label_selected="Grup için satın al..."
+			     name="Buy For Group..." />
+			<button label="Şifre al..." label_selected="Şifre al..." name="Buy Pass..."  />
+			<button label="Araziyi bırak..." label_selected="Araziyi bırak..."
+			     name="Abandon Land..." />
+			<button label="Araziyi geri Al..." label_selected="Araziyi geri Al..."
+			     name="Reclaim Land..." />
+			<button label="Linden satışı..." label_selected="Linden satışı..."
+			     name="Linden Sale..."  />
+			<string name="anyone">
+				Herhangi birine
+			</string>
+			<string name="area_text">
+				Alan
+			</string>
+			<string name="area_size_text">
+				[AREA] sq. m.
+			</string>
+			<string name="auction_id_text">
+				A.Arttırma No: [ID]
+			</string>
+			<string name="group_owned_text">
+				(Gruba Ait)
+			</string>
+			<string name="profile_text">
+				Profil...
+			</string>
+			<string name="info_text">
+				Bilgi...
+			</string>
+		</panel>
+		<panel label="Anlaşma" name="land_covenant_panel">
+			<text type="string" length="1" name="covenant_timestamp_text">
+				Last Modified Wed Dec 31 16:00:00 1969
+			</text>
+			<text type="string" length="1" name="region_name_lbl">
+				Bölge:
+			</text>
+			<text type="string" length="1" name="region_name_text">
+				leyla
+			</text>
+			<text type="string" length="1" name="estate_name_lbl">
+				Emlak:
+			</text>
+			<text type="string" length="1" name="estate_name_text">
+				mainland
+			</text>
+			<text type="string" length="1" name="estate_owner_lbl">
+				Emlak sahibi:
+			</text>
+			<string name="can_resell">
+				Bu bölgede satın alınan arazi tekrar satılabilir.
+			</string>
+			<string name="can_not_resell">
+				Bu bölgede satın alınan arazi tekrar satılamaz.
+			</string>
+			<string name="can_change">
+				Bu bölgede satın alınan arazi birleştirilebilir veya bölünebilir.
+			</string>
+			<string name="can_not_change">
+				Bu bölgede satın alınan arazi birleştirilemez veya bölünemez.
+			</string>
+		</panel>
+		<panel label="Objeler" name="land_objects_panel">
+			<text type="string" length="1" name="parcel_object_bonus">
+				Bölge bonus obje faktörü: [BONUS]
+			</text>
+			<text type="string" length="1" name="Simulator primitive usage:">
+				Simulatördeki prim kullanımı:
+			</text>
+			<string name="objects_available_text">
+				[MAX] primden [COUNT] ([AVAILABLE] mevcut)
+			</string>
+			<text type="string" length="1" name="Primitives parcel supports:">
+				Parselin desteklediği prim:
+			</text>
+			<text type="string" length="1" name="object_contrib_text">
+				[COUNT]
+			</text>
+			<text type="string" length="1" name="Primitives on parcel:">
+				Parseldeki primler:
+			</text>
+			<text type="string" length="1" name="total_objects_text">
+				[COUNT]
+			</text>
+			<text type="string" length="1" name="Owned by parcel owner:">
+				Parsel sahibine ait:
+			</text>
+			<text type="string" length="1" name="owner_objects_text">
+				[COUNT]
+			</text>
+			<button label="Göster" label_selected="Göster" name="ShowOwner" />
+			<button label="Geri gönder..." label_selected="Geri gönder..." name="ReturnOwner..."
+			     tool_tip="Objeleri sahiplerine geri gönderin." />
+			<text type="string" length="1" name="Set to group:">
+				Gruba ait:
+			</text>
+			<text type="string" length="1" name="group_objects_text">
+				[COUNT]
+			</text>
+			<button label="Göster" label_selected="Göster" name="ShowGroup" />
+			<button label="Geri gönder..." label_selected="Geri gönder..." name="ReturnGroup..."
+			     tool_tip="Objeleri sahiplerine geri gönderin." />
+			<text type="string" length="1" name="Owned by others:">
+				Diğerlerine ait:
+			</text>
+			<text type="string" length="1" name="other_objects_text">
+				[COUNT]
+			</text>
+			<button label="Göster" label_selected="Göster" name="ShowOther" />
+			<button label="Geri gönder..." label_selected="Geri gönder..." name="ReturnOther..."
+			     tool_tip="Objeleri sahiplerine geri gönderin." />
+			<text type="string" length="1" name="Selected / sat upon:">
+				Seçili:
+			</text>
+			<text type="string" length="1" name="selected_objects_text">
+				[COUNT]
+			</text>
+			<text type="string" length="1" name="Autoreturn">
+				Diğer üyelerin objelerini geri gönderme (dakikalar, 0 yok):
+			</text>
+			<text type="string" length="1" name="Object Owners:">
+				Obje sahipleri:
+			</text>
+			<button label="Listeyi yenile" label_selected="Listeyi yenile" name="Refresh List" />
+			<button label="Objeleri geri gönder..." label_selected="Objeleri geri gönder..."
+			     name="Return objects..." />
+			<name_list name="owner list">
+				<column label="Type" name="type" />
+				<column label="Ad" name="name" />
+				<column label="Adet" name="count" />
+				<column name="mostrecent" />
+			</name_list>
+		</panel>
+		<panel label="Seçenekler" name="land_options_panel">
+			<text type="string" length="1" name="allow_label">
+				Diğer üyelerin izinleri:
+			</text>
+			<check_box label="Zemini düzenleme" name="edit land check" />
+			<check_box label="Yer imleri yaratma" name="check landmark" />
+			<check_box label="Uçma" name="check fly" />
+			<text type="string" length="1" name="allow_label2">
+				Obje yaratma:
+			</text>
+			<check_box label="Tüm üyeler" name="edit objects check" />
+			<check_box label="Grup" name="edit group objects check" />
+			<text type="string" length="1" name="allow_label3">
+				Obje girişi:
+			</text>
+			<check_box label="Tüm üyeler" name="all object entry check" />
+			<check_box label="Grup" name="group object entry check" />
+			<text type="string" length="1" name="allow_label4">
+				Betik çalıştırma:
+			</text>
+			<check_box label="Tüm üyeler" name="check other scripts" />
+			<check_box label="Grup" name="check group scripts" />
+			<text type="string" length="1" name="land_options_label">
+				Arazi Seçenekleri:
+			</text>
+			<check_box label="Emniyet (zarar yok)" name="check safe" />
+			<check_box label="İtişi kısıtla" name="PushRestrictCheck"/>
+			<check_box label="Parseli aramada göster (30 L$/haftalık)" name="ShowDirectoryCheck"
+			     tool_tip="İnsanların bu parseli arama sonuçlarında görmesine izin verin" />
+			<combo_box name="land category">
+				<combo_item name="AnyCategory">
+					Herhangi bir kategori
+				</combo_item>
+				<combo_item name="LindenLocation">
+					Linden lokasyonu
+				</combo_item>
+
+				<combo_item name="Arts&amp;Culture">
+					Sanat &amp; kültür
+				</combo_item>
+				<combo_item name="Business">
+					Mesleki
+				</combo_item>
+				<combo_item name="Educational">
+					Eğitimsel
+				</combo_item>
+				<combo_item name="Gaming">
+					Oyun
+				</combo_item>
+				<combo_item name="Hangout">
+					Takılma
+				</combo_item>
+				<combo_item name="NewcomerFriendly">
+					Başlangıç
+				</combo_item>
+				<combo_item name="Parks&amp;Nature">
+					Parklar &amp; doğa
+				</combo_item>
+				<combo_item name="Residential">
+					Yerleşim
+				</combo_item>
+				<combo_item name="Shopping">
+					Alışveriş
+				</combo_item>
+				<combo_item name="Other">
+					Diğer
+				</combo_item>
+			</combo_box>
+			<button label="?" label_selected="?" name="?" />
+			<check_box name="MatureCheck" />
+			<text type="string" length="1" name="Snapshot:">
+				Resim:
+			</text>
+			<texture_picker label="" name="snapshot_ctrl" tool_tip="Resim seçmek için tıklayınız" />
+			<text type="string" length="1" name="landing_point">
+				Konum noktası: [LANDING]
+			</text>
+			<string name="landing_point_none">
+				(yok)
+			</string>
+			<button label="Düzenle" label_selected="Düzenle" name="Set"
+			     tool_tip="Karakterinizin lokasyonunun konum noktasını seçin.Bu arazi parselinin içinde olmalıdır." />
+			<button label="Temizle" label_selected="Temizle" name="Clear"
+			     tool_tip="Konum noktasını temizleyin." />
+			<text type="string" length="1" name="Teleport Routing: ">
+				Işınlanma 
+yönlendiricisi:
+			</text>
+			<combo_box name="landing type"
+			     tool_tip="Işınlanma yönlendiricisi -- arazinize ışınlanmaların nasıl sağlanacağını seçin.">
+				<combo_item type="string" length="1" name="Blocked">
+					Yasak
+				</combo_item>
+				<combo_item type="string" length="1" name="LandingPoint">
+					Konum noktası
+				</combo_item>
+				<combo_item type="string" length="1" name="Anywhere">
+					Herhangi bir yer
+				</combo_item>
+			</combo_box>
+		</panel>
+		<panel label="Medya" name="land_media_panel">
+			<text type="string" length="1" name="with media:">
+				Medya türü:
+			</text>
+			<combo_box name="media type"
+			     tool_tip="Adresin film,web sayfası veya diğer bir medya olduğunu tanımlayın" />
+			<text type="string" length="1" name="at URL:">
+				Adresi:
+			</text>
+			<button label="Düzenle..." label_selected="Düzenle..." name="set_media_url" />
+			<text type="string" length="1" name="Description:">
+				Tanım:
+			</text>
+			<line_editor name="url_description" tool_tip="Oynat/yükle butonu yanında görünen yazı" />
+			<text type="string" length="1" name="Media texture:">
+				Desen
+değiştir:
+			</text>
+			<texture_picker label="" name="media texture" tool_tip="Resim seçmek için tıklayınız" />
+			<text type="string" length="1" name="replace_texture_help">
+				(Bu deseni kullanan objeler oynat okuna tıkladığınızda
+filmi veya web sayfasını gösterecektir.)
+			</text>
+			<text type="string" length="1" name="Options:">
+				Medya
+seçenekleri:
+			</text>
+			<check_box label="Otomatik ölçek" name="media_auto_scale"
+			     tool_tip="Bu seçeneği işaretlemek içeriği bu parsel için otomatik olarak ölçeklendirecektir.Biraz yavaş ve düşük kalitede görsellik olabilir fakat başka bir desen ölçeklemesi veya hizalaması gerekmez." />
+			<check_box label="Medyayı tekrarla" name="media_loop"
+			     tool_tip="Medyayı tekrar oynatma.Medya oynamayı durdurduğunda onu baştan başlatacaktır." />
+			<check_box label="Medya adresini sakla" name="hide_media_url"
+			     tool_tip="Bu seçeneği işaretlemek herhangi bir izinsiz görüntüleyiciden bu parsel bilgisindeki medya adresini gizleyecektir.HTML türleri için geçerli değildir." />
+			<check_box label="Müzik adresini sakla" name="hide_music_url"
+			     tool_tip="Bu seçeneği işaretlemek herhangi bir izinsiz görüntüleyiciden bu parsel bilgisindeki müzik adresini gizleyecektir." />
+			<text type="string" length="1" name="media_size" >
+				Medya 
+boyutu:
+			</text>
+			<spinner name="media_size_width"
+			     tool_tip="Değiştirilebilir medya boyutu,normal olan için 0 bırakınız." />
+			<spinner name="media_size_height"
+			     tool_tip="Değiştirilebilir medya boyutu, normal olan için 0 bırakınız." />
+			<text type="string" length="1" name="pixels">
+				piksel
+			</text>
+			<text type="string" length="1" name="MusicURL:">
+				Müzik adresi:
+			</text>
+			<text type="string" length="1" name="Sound:">
+				Ses:
+			</text>
+			<check_box label="Sesi sadece bu parselde kısıtla" name="check sound local" />
+			<text type="string" length="1" name="Voice settings:">
+				Konuşma:
+			</text>
+			<radio_group name="parcel_voice_channel">
+				<radio_item type="string" length="1" name="Estate">
+					Emlağa ait kanalı kullan
+				</radio_item>
+				<radio_item type="string" length="1" name="Private">
+					Özel bir kanal kullan
+				</radio_item>
+				<radio_item type="string" length="1" name="Disabled">
+					Konuşmayı devre dışı bırak
+				</radio_item>
+			</radio_group>
+		</panel>
+		<panel label="Erişim" name="land_access_panel">
+			<text type="string" length="1" name="Limit access to this parcel to:">
+				Parsele erişim
+			</text>
+			<check_box label="Genel girişe izin ver" name="public_access" />
+			<text type="string" length="1" name="Only Allow">
+				Giriş kısıtlaması:
+			</text>
+			<check_box label="Linden Lab&apos;a ödeme bilgisi vermemiş üyeler" name="limit_payment"
+			     tool_tip="Tanımsız üyeleri yasaklayın." />
+			<check_box label="Yetişkin yaş doğrulamasına sahip olmayan üyeler"
+			     name="limit_age_verified"
+			     tool_tip="Yaşlarını doğrulamamış üyeleri banlayın.Daha fazla bilgi için support.secondlife.com adresini ziyaret edebilirsiniz." />
+			<check_box label="Gruba izin ver: [GROUP]" name="GroupCheck"
+			     tool_tip="Genel sekmesinden grup düzenleyin." />
+			<check_box label="Şifre satışı:" name="PassCheck"
+			     tool_tip="Bu parsele geçici olarak giriş izni verir" />
+			<combo_box name="pass_combo">
+				<combo_item name="Anyone">
+					Herhangi birine
+				</combo_item>
+				<combo_item name="Group">
+					Gruba
+				</combo_item>
+			</combo_box>
+			<spinner label="L$ ücreti:" name="PriceSpin" />
+			<spinner label="İzin saatleri:" name="HoursSpin" />
+			<text label="Always Allow" name="AllowedText">
+				İzinli üyeler
+			</text>
+			<name_list name="AccessList" tool_tip="([LISTED] listelenen,maksimum [MAX])" />
+			<button label="Ekle..." label_selected="Ekle..." name="add_allowed" />
+			<button label="Çıkar" label_selected="Çıkar" name="remove_allowed" />
+			<text label="Ban" name="BanCheck">
+				Yasaklı üyeler
+			</text>
+			<name_list name="BannedList" tool_tip="([LISTED] listelenen,maksimum [MAX])" />
+			<button label="Ekle..." label_selected="Ekle..." name="add_banned" />
+			<button label="Çıkar" label_selected="Çıkar" name="remove_banned" />
+		</panel>
+	</tab_container>
+</floater>

@@ -21,31 +21,29 @@
 	<text name="classifieds_label">
 		Реклама
 	</text>
-	<check_box label=" " name="class_chk" />
+	<check_box label="" name="class_chk" />
 	<text name="person_label">
 		Человек
 	</text>
-	<check_box label=" " name="people_chk" />
+	<check_box label="" name="people_chk" />
 	<text name="infohub_label">
 		Инфохаб
 	</text>
-	<check_box label=" " name="infohub_chk" />
+	<check_box label="" name="infohub_chk" />
 	<text name="telehub_label">
 		Телехаб
 	</text>
-	<check_box label=" " name="telehubchk" />
+	<check_box label="" name="telehubchk" />
 	<text name="land_for_sale_label2">
 		Земля прод.
 	</text>
-	<check_box label=" " name="land_for_sale_chk" />
+	<check_box label="" name="land_for_sale_chk" />
 	<text name="events_label">
 		События
 	</text>
-	<check_box label=" " name="event_chk" />
-	<text name="events_mature_label">
-		Соб.(взросл.)
-	</text>
-	<check_box label=" " name="event_mature_chk" />
+	<check_box label="" name="event_chk" />
+
+	<check_box label="" name="event_mature_chk" />
 	<combo_box label="Друзья онлайн" name="friend combo"
 	     tool_tip="Показывать друзей на карте">
 		<combo_item name="none_selected">

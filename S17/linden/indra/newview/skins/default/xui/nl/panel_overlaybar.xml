@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<panel name="overlay">
+	<layout_stack name="overlay_layout_panel">
+		<layout_panel name="main_panel">
+			<layout_stack name="chatbar_and_buttons">
+				<layout_panel name="state_buttons">
+					<button label="IM ontvangen" label_selected="IM ontvangen" name="IM Received" tool_tip="Er wacht een instant message. Klik om IM&apos;s te tonen."/>
+					<button label="Niet-bezet instellen" label_selected="Niet-bezet instellen" name="Set Not Busy" tool_tip="Chat en IM is voor u verborgen. Klik hier om Niet Storen uit te zetten."/>
+					<button label="Mouselook" label_selected="Mouselook" name="Mouselook" tool_tip="Gebruik de muis om uw weergave te sturen. Wanneer u een geweer heeft, zal klikken schieten."/>
+					<button label="Sta op" label_selected="Sta op" name="Stand Up" tool_tip="Klik hier om op te staan."/>
+				</layout_panel>
+			</layout_stack>
+		</layout_panel>
+	</layout_stack>
+</panel>

@@ -19,13 +19,13 @@
 		Ruch: [TRAFFIC]
 	</string>
 	<string name="area_text">
-		Obszar: [AREA] m.
+		Obszar: [AREA] m
 	</string>
 	<string name="forsale_text">
 		Na Sprzedaż za [PRICE]L$
 	</string>
 	<string name="auction_text">
-		ID Aukcji [ID].
+		ID Aukcji: [ID]
 	</string>
 	<string name="server_update_text">
 		Informacje o tym miejscu nie będą dostępne bez aktualizacji serwera.

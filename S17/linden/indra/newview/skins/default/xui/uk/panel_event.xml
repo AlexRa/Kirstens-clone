@@ -12,15 +12,7 @@
 	<text name="event_category">
 		(немає)
 	</text>
-	<text name="event_mature_label">
-		Зміст Для дорослих:
-	</text>
-	<text name="event_mature_yes">
-		Так
-	</text>
-	<text name="event_mature_no">
-		Ні
-	</text>
+
 	<text name="event_date_label">
 		Дата:
 	</text>

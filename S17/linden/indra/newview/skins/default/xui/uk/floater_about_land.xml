@@ -282,9 +282,7 @@
 				<combo_item name="LindenLocation">
 					Linden Місця
 				</combo_item>
-				<combo_item name="Adult">
-					Для Дорослих
-				</combo_item>
+
 				<combo_item name="Arts&amp;Culture">
 					Мистецтво і Культура
 				</combo_item>
@@ -317,8 +315,7 @@
 				</combo_item>
 			</combo_box>
 			<button label="?" label_selected="?" name="?" />
-			<check_box label="Зміст дорослих" name="MatureCheck"
-			     tool_tip="Інформація про вашу ділянку вважається дорослою." />
+			<check_box name="MatureCheck" />
 			<text type="string" length="1" name="Snapshot:">
 				Скріншот:
 			</text>

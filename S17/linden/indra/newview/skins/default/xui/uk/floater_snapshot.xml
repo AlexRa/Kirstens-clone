@@ -8,7 +8,7 @@
 			Відправ. Листівку
 		</radio_item>
 		<radio_item name="texture">
-			Завантаж. скріншот
+			Завантаж. скріншот (L$[AMOUNT])
 		</radio_item>
 		<radio_item name="local">
 			Зберегти скріншот на диск
@@ -19,7 +19,7 @@
 	</text>
 	<button label="Оновити Скріншот" name="new_snapshot_btn" />
 	<button label="Відправити" name="send_btn" />
-	<button label="Зав.(L$10)" name="upload_btn" />
+	<button label="Зав.(L$[AMOUNT])" name="upload_btn" />
 	<button label="Зберегти" name="save_btn" />
 	<button label="Відміна" name="discard_btn" />
 	<button label="Більше &gt;&gt;" name="more_btn" tool_tip="Дод. опції" />

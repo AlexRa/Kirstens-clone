@@ -8,6 +8,9 @@
 			<string name="not_found_text">
 				Не найдено.
 			</string>
+			<text name="find">
+				Найти:
+			</text>
 			<button label="Назад" name="back_btn" />
 			<button label="Вперед" name="forward_btn" />
 			<line_editor label="Поиск" name="search_editor" tool_tip="Поиск в SL" />
@@ -32,7 +35,7 @@
 					Вики
 				</combo_item>
 			</combo_box>
-			<check_box label="Включая Для взрослых" name="mature_check" />
+
 			<string name="loading_text">
 				Загрузка...
 			</string>
@@ -58,7 +61,7 @@
 			<text name="find">
 				Найти:
 			</text>
-			<check_box label="Включая Для взрослых" name="incmature" />
+
 			<combo_box name="Category">
 				<combo_item name="AnyCategory">
 					Все категории
@@ -126,12 +129,12 @@
 			<button label="&gt;&gt;" label_selected="&gt;&gt;" name="&gt;&gt;"
 			     tool_tip="На день Вперед" />
 			<button label="Сегодня" label_selected="Сегодня" name="Today"
-			     tool_tip="Показать текущие события" />
+			     tool_tip="Показать текущие события" bottom="-62" left_delta="-72" width="95"/>
 			<text name="text">
 				Категория:
 			</text>
 			<text name="text2">
-				Имя/Описание:
+				Найти:
 			</text>
 			<combo_box name="category combo">
 				<combo_item name="All">
@@ -171,7 +174,7 @@
 					Разное
 				</combo_item>
 			</combo_box>
-			<check_box label="Для взрослых" name="incmature" />
+
 			<button label="Поиск" label_selected="Поиск" name="Search"
 			     tool_tip="Поиск" />
 			<button label="Удалить" label_selected="Удалить" name="Delete" />
@@ -215,9 +218,12 @@
 			<string name="not_found_text">
 				Не найдено.
 			</string>
+			<text name="find">
+				Найти:
+			</text>
 			<button label="&lt; След." label_selected="След. &gt;" name="Next &gt;" />
 			<button label="Пред. &gt;" label_selected="&lt; Пред." name="&lt; Prev" />
-			<combo_box name="type">
+			<combo_box name="type" bottom="-64" width="168" left="224">
 				<combo_item name="AllTypes">
 					Все типы
 				</combo_item>
@@ -231,25 +237,22 @@
 					Продается Поместье
 				</combo_item>
 			</combo_box>
-			<combo_box name="rating">
-				<combo_item name="PG&amp;Mature">
-					PG и Для взрослых
-				</combo_item>
-				<combo_item name="PGonly">
-					Только PG
-				</combo_item>
-				<combo_item name="Matureonly">
-					Только Для взрослых
-				</combo_item>
-			</combo_box>
-			<check_box label="Цена &lt;= L$" name="pricecheck" />
-			<check_box label="Площ. &gt;= кв.м." name="areacheck" />
-			<button label="Поиск" label_selected="Поиск" name="Search" />
+			<check_box label="Цена &#8804; " name="pricecheck" />
+			<check_box label="Площ. &#8805; " name="areacheck" />
+			<text name="pricecheck_symbol" left="120" >
+				L$
+			</text>
+			<text name="areacheck_symbol" left="190" width="30">
+				кв.м.
+			</text>
+			<line_editor name="priceedit" left="135" />
+			<line_editor name="areaedit" left="135" />
+			<button label="Поиск" label_selected="Поиск" name="Search" width="80" bottom="-66" left="140"/>
 			<text name="land">
 				Земля может быть куплена за Линден-доллары (L$) или на аукционе за L$ или US$.
 Чтобы купить землю, посетите ее и щелкните мышкой по ее названию.
 			</text>
-			<scroll_list name="results">
+			<scroll_list name="results" height="438" >
 				<column label="" name="icon" />
 				<column label="" name="type" />
 				<column label="Название" name="name" />
@@ -270,16 +273,13 @@
 			<text name="find">
 				Найти:
 			</text>
-			<check_box label="Включить Для взрослых" name="incmature" />
+
 			<combo_box name="Category">
 				<combo_item name="AnyCategory">
 					Все категории
 				</combo_item>
 				<combo_item name="LindenLocation">
 					Места Линденов
-				</combo_item>
-				<combo_item name="Adult">
-					Для взрослых
 				</combo_item>
 				<combo_item name="Arts&amp;Culture">
 					Культура и Искусство
@@ -346,11 +346,14 @@
 			<string name="not_found_text">
 				Не найдено.
 			</string>
+			<text name="find">
+				Найти:
+			</text>
 			<button label="&lt; Назад" name="back_btn" />
 			<button label="Вперед &gt;" name="forward_btn" />
 			<line_editor label="Поиск" name="search_editor" tool_tip="Поиск в SL" />
 			<button label="Поиск" name="search_btn" />
-			<check_box label="Включая Для взрослых" name="mature_check" />
+
 			<string name="loading_text">
 				Загрузка...
 			</string>

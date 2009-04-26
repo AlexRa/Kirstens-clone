@@ -8,17 +8,7 @@
 	<button label="Teleportuj" name="classified_teleport_btn" />
 	<button label="Pokaż na Mapie" name="classified_map_btn" />
 	<button label="Profil" name="classified_profile_btn" />
-	<combo_box name="classified_mature_check">
-		<combo_item name="select_mature">
-			- Treść -
-		</combo_item>
-		<combo_item name="mature">
-			Dla Dorosłych (18+)
-		</combo_item>
-		<combo_item name="not_mature">
-			Bez Ograniczeń (BO)
-		</combo_item>
-	</combo_box>
+
 	<combo_box label="" name="classified_category_combo" />
 	<button label="Aktualizuj" name="classified_update_btn" />
 	<string name="ad_placed_paid">

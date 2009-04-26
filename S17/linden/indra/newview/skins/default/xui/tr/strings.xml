@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<strings>
+	<string name="LoginInProgress">
+		Giriş yapılıyor.[APP_NAME] donmuş gözükebilir.Lütfen bekleyiniz.
+	</string>
+	<string name="LoginAuthenticating">
+		Tanımlanıyor
+	</string>
+	<string name="LoginAttempt">
+		Önceki giriş işlemi başarısız oldu.Giriş yapılıyor,deneme [NUMBER]
+	</string>
+	<string name="LoginPrecaching">
+		Dünya yükleniyor...
+	</string>
+	<string name="LoginInitializingBrowser">
+		Gömülü web tarayıcı algılanıyor...
+	</string>
+	<string name="LoginInitializingMultimedia">
+		Multimedya algılanıyor...
+	</string>
+	<string name="LoginVerifyingCache">
+		Ön bellek dosyaları doğrlanıyor(60-90 saniye sürebilir)...
+	</string>
+	<string name="LoginProcessingResponse">
+		Yanıt işleniyor...
+	</string>
+	<string name="LoginInitializingWorld">
+		Dünya algılanıyor...
+	</string>
+	<string name="LoginDecodingImages">
+		Resimler çözümüyor...
+	</string>
+	<string name="LoginInitializingQuicktime">
+		QuickTime algılanıyor...
+	</string>
+	<string name="LoginQuicktimeNotFound">
+		QuickTime bulanamıyor - algılanamadı.
+	</string>
+	<string name="LoginWaitingForRegionHandshake">
+		Bölge iletişimi bekleniyor...
+	</string>
+	<string name="LoginConnectingToRegion">
+		Bölgeye bağlanılıyor...
+	</string>
+	<string name="LoginDownloadingClothing">
+		Giyim indiriliyor...
+	</string>
+	<string name="LoginFailedNoNetwork">
+		Bağlantı hatası: Bağlantınız sağlanamadı,lütfen ağ bağlantınızı kontrol ediniz.
+	</string>
+	<string name="AgentLostConnection">
+		Bu bölge sorun yaşıyor olabilir.Lütfen internet bağlantınızı kontrol ediniz.
+	</string>
+	<string name="AvatarEditingApparance">
+		(Görünüm düzenleniyor)
+	</string>
+	<string name="AvatarAway">
+		Dışarda
+	</string>
+	<string name="AvatarBusy">
+		Meşgul
+	</string>
+	<string name="texture_loading">
+		Yükleniyor...
+	</string>
+	<string name="worldmap_offline">
+		Devre dışı
+	</string>
+	<string name="whisper">
+		fısıldıyor:
+	</string>
+	<string name="shout">
+		bağırıyor:
+	</string>
+</strings>

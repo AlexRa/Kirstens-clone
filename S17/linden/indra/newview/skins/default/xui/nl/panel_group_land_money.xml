@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<panel label="Land &amp; L$" name="land_money_tab">
+	<string name="help_text">
+		Percelen die groepseigendom zijn worden getoond, samen met bijdragedetails. Een waarschuwing verschijnt totdat &apos; Totaal land in gebruik&apos; minder dan of gelijk aan de totale bijdrage is. De &apos;details&apos; en &apos;Verkopen&apos; tabbladen verschaffen meer informatie over de financiën van de groep.
+	</string>
+	<button label="?" name="help_button"/>
+	<string name="cant_view_group_land_text">
+		U heeft geen permissie om land te bekijken dat eigendom van de groep is.
+	</string>
+	<string name="cant_view_group_accounting_text">
+		U heeft geen permissie om accounting informatie van de groep te bekijken.
+	</string>
+	<string name="loading_txt">
+		Laden...
+	</string>
+	<text name="group_land_heading">
+		Land in eigendom van groep
+	</text>
+	<scroll_list name="group_parcel_list">
+		<column label="Perceelnaam" name="name"/>
+		<column label="Regio" name="location"/>
+		<column label="Gebied" name="area"/>
+	</scroll_list>
+	<button label="Toon op kaart" label_selected="Toon op kaart" name="map_button"/>
+	<text name="total_contributed_land_label">
+		Totale bijdrage:
+	</text>
+	<text name="total_contributed_land_value">
+		[AREA] vierkante meter
+	</text>
+	<text name="total_land_in_use_label">
+		Totale land in gebruik:
+	</text>
+	<text name="total_land_in_use_value">
+		[AREA] vierkante meter
+	</text>
+	<text name="land_available_label">
+		Land beschikbaar:
+	</text>
+	<text name="land_available_value">
+		[AREA] vierkante meter
+	</text>
+	<text name="your_contribution_label">
+		Uw bijdrage:
+	</text>
+	<string name="land_contrib_error">
+		Niet in staat uw landbijdrage in te stellen.
+	</string>
+	<text name="your_contribution_max_value">
+		m2 ([AMOUNT] max)
+	</text>
+	<text name="group_over_limit_text">
+		Groepsleden moeten landcredits bijdragen om het gebruikte land te ondersteunen.
+	</text>
+	<text name="group_money_heading">
+		Groep L$
+	</text>
+	<tab_container name="group_money_tab_container">
+		<panel label="Details" name="group_money_details_tab">
+			<text_editor name="group_money_details_text">
+				Berekenen...
+			</text_editor>
+			<button label="&lt; Eerder" label_selected="&lt; Eerder" name="earlier_details_button" tool_tip="Ga terug in de tijd"/>
+			<button label="Later &gt;" label_selected="Later &gt;" name="later_details_button" tool_tip="Ga vooruit in de tijd"/>
+		</panel>
+		<panel label="Verkopen" name="group_money_sales_tab">
+			<text_editor name="group_money_sales_text">
+				Berekenen...
+			</text_editor>
+			<button label="&lt; Eerder" label_selected="&lt; Eerder" name="earlier_sales_button" tool_tip="Ga terug in de tijd"/>
+			<button label="Later &gt;" label_selected="Later &gt;" name="later_sales_button" tool_tip="Ga vooruit in de tijd"/>
+		</panel>
+	</tab_container>
+</panel>

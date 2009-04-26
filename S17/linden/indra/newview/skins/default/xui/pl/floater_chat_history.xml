@@ -21,6 +21,45 @@
 	<string name="IM_end_log_string">
 		-- Koniec zapisu --
 	</string>
+  <string name="ScriptQuestionCautionChatGranted">
+	&apos;[OBJECTNAME]&apos;, właściciel: &apos;[OWNERNAME]&apos;, położenie: [REGIONNAME] [REGIONPOS], pozwala Ci na: [PERMISSIONS].
+  </string>
+  <string name="ScriptQuestionCautionChatDenied">
+	&apos;[OBJECTNAME]&apos;, właściciel: &apos;[OWNERNAME]&apos;, położenie: [REGIONNAME] [REGIONPOS], nie pozwala Ci na: [PERMISSIONS].
+  </string>
+  <string name="ScriptTakeMoney">
+	Zabiera Lindeny (L$) od Ciebie
+  </string>
+  <string name="ActOnControlInputs">
+	Używaj klawiszy sterowania
+  </string>
+  <string name="RemapControlInputs">
+	Zmień klawisze sterowania
+  </string>
+  <string name="AnimateYourAvatar">
+	Animuj Awatara
+  </string>
+  <string name="AttachToYourAvatar">
+	Dołącz do Awatara
+  </string>
+  <string name="ReleaseOwnership">
+	Usuń prawo własności (zmień na publiczne)
+  </string>
+  <string name="LinkAndDelink">
+	Łącz / odłącz z innymi obiektów
+  </string>
+  <string name="AddAndRemoveJoints">
+	Dodaj / usuń połączenia z innymi obiektami
+  </string>
+  <string name="ChangePermissions">
+	Ustaw zezwolenia
+  </string>
+  <string name="TrackYourCamera">
+	Chodź za kamerą
+  </string>
+  <string name="ControlYourCamera">
+	Kontroluj kamerę
+  </string>
 	<layout_stack name="panels">
 		<layout_panel name="im_contents_panel">
 			<combo_box label="Gesty" name="Gesture">

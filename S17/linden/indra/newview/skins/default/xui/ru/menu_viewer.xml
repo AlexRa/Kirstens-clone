@@ -2,11 +2,13 @@
 <menu_bar name="Main Menu">
 	<menu label="Файл" name="File">
 		<tearoff_menu label="~~~~~~~~~~~" name="~~~~~~~~~~~" />
+		<menu label="Загрузка" name="upload">
 		<menu_item_call label="Загр.изображение (L$[COST])..." name="Upload Image" />
 		<menu_item_call label="Загр.звук (L$[COST])..." name="Upload Sound" />
 		<menu_item_call label="Загр.анимацию (L$[COST])..." name="Upload Animation" />
-		<menu_item_call label="Пакетная загрузка (L$[COST]за файл)..."
+		<menu_item_call label="Пакетная загрузка (L$[COST] за файл)..."
 		     name="Bulk Upload" />
+		</menu>
 		<menu_item_separator label="-----------" name="separator" />
 		<menu_item_call label="Закрыть окно" name="Close Window" />
 		<menu_item_call label="Закрыть все окна" name="Close All Windows" />

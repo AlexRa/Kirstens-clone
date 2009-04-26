@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="gesture_preview">
+	<string name="stop_txt">
+		Durdur
+	</string>
+	<string name="preview_txt">
+		Önizleme
+	</string>
+	<string name="none_text">
+		-- None --
+	</string>
+	<text name="desc_label">
+		Tanım:
+	</text>
+	<text name="trigger_label">
+		Kısayol:
+	</text>
+	<text name="replace_text">
+		Değiştir:
+	</text>
+	<line_editor name="replace_editor" />
+	<text name="key_label">
+		Kısayol tuşu:
+	</text>
+	<combo_box name="modifier_combo" />
+	<combo_box name="key_combo" />
+	<text name="library_label">
+		Kütüphane:
+	</text>
+	<text name="steps_label">
+		Adımlar:
+	</text>
+	<button label="Ekle &gt;&gt;" name="add_btn" />
+	<button label="Yukarı" name="up_btn" />
+	<button label="Aşağı" name="down_btn" />
+	<button label="Çıkar" name="delete_btn" />
+	<text name="help_label">
+		Bekleme adımları eklemediğiniz 
+takdirde tüm adımlar eşzamanlı 
+olarak gerçekleşir.
+	</text>
+	<radio_group name="animation_trigger_type">
+		<radio_item name="start">
+			Başlat
+		</radio_item>
+		<radio_item name="stop">
+			Durdur
+		</radio_item>
+	</radio_group>
+	<check_box label="Aktif" name="active_check"
+	     tool_tip="Aktif hareketler kısayol ibareleri yazılarak veya tuşları kullanılarak tetiklenebilir.Eğer tuş karışması varsa,hareketler genellikle devre dışı olurlar." />
+	<button label="Önizleme" name="preview_btn" />
+	<button label="Kaydet" name="save_btn" />
+</floater>

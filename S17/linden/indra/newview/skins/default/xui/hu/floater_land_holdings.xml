@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="land holdings floater" title="Saját föld">
+	<scroll_list name="parcel list">
+		<column label="Név" name="name" />
+		<column label="Helyszín" name="location" />
+		<column label="Terület" name="area" />
+		<column label="" name="hidden" />
+	</scroll_list>
+	<button label="Teleportálás" label_selected="Teleportálás" name="Teleport"
+	     tool_tip="Teleportálás ennek a földnek a középpontjára." />
+	<button label="Térképen mutat" label_selected="Térképen mutat" name="Show on Map"
+	     tool_tip="A föld megjelenítése a világtérképen." />
+	<text name="contrib_label">
+		Hozzájárulás a csoportodhoz:
+	</text>
+	<scroll_list name="grant list">
+		<column label="Csoport" name="group" />
+		<column label="Terület" name="area" />
+	</scroll_list>
+	<text name="allowed_label">
+		Megengedett fenntartható földterület a jelenlegi fizetési ütemezés mellett:
+	</text>
+	<text name="allowed_text">
+		[AREA] m2
+	</text>
+	<text name="current_label">
+		Jelenleg fenntartott földterület:
+	</text>
+	<text name="current_text">
+		[AREA] m2
+	</text>
+	<text name="available_label">
+		Földvásárláshoz rendelkezésre áll:
+	</text>
+	<text name="available_text">
+		[AREA] m2
+	</text>
+	<string name="area_string">
+		[AREA] m2
+	</string>
+</floater>
