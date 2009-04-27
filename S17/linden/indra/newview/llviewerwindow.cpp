@@ -183,9 +183,6 @@
 #include "llviewernetwork.h"
 #include "llpostprocess.h"
 
-#include "llfloatertest.h" // HACK!
-#include "llfloaternotificationsconsole.h"
-
 #if LL_WINDOWS
 #include <tchar.h> // For Unicode conversion methods
 #endif
@@ -2447,17 +2444,6 @@ BOOL LLViewerWindow::handleKey(KEY key, MASK mask)
 			// Initialize visibility (and don't force visibility - use prefs)
 			LLPanelLogin::refreshLocation( false );
 		}
-	}
-
-	// Debugging view for unified notifications -- we need Ctrl+Shift+Alt to get it 
-	// since Ctrl+Shift maps to Nighttime under windlight.
-	if ((MASK_SHIFT & mask) 
-		&& (MASK_CONTROL & mask)
-		&& (MASK_ALT & mask)
-		&& ('N' == key || 'n' == key))
-	{
-		LLFloaterNotificationConsole::showInstance();
-		return TRUE;
 	}
 
 	// handle escape key
