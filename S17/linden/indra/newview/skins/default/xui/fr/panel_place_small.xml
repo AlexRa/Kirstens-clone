@@ -10,6 +10,9 @@
 		Informations :
 	</text>
 	<text left="103" name="info_editor" width="338"/>
+	<text name="land_type_label">
+		Type de terrain :
+	</text>
 	<text name="location_label">
 		Lieu :
 	</text>

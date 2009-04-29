@@ -309,10 +309,13 @@ BOOL LLControlGroup::declareControl(const std::string& name, eControlType type, 
  	{
 		if (persist && existing_control->isType(type))
 		{
-			// Sometimes we need to declare a control *after* it has been loaded from a settings file.
-			LLSD cur_value = existing_control->getValue(); // get the current value
-			existing_control->setDefaultValue(initial_val); // set the default to the declared value
-			existing_control->setValue(cur_value); // now set to the loaded value
+			if (!existing_control->llsd_compare(existing_control->getDefault(), initial_val))
+			{
+				// Sometimes we need to declare a control *after* it has been loaded from a settings file.
+				LLSD cur_value = existing_control->getValue(); // get the current value
+				existing_control->setDefaultValue(initial_val); // set the default to the declared value
+				existing_control->setValue(cur_value); // now set to the loaded value
+			}
 		}
 		else
 		{

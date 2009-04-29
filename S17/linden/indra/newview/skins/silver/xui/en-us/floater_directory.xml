@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <floater can_close="true" can_drag_on_left="false" can_minimize="true"
-     can_resize="false" height="570" min_height="570" min_width="780"
+     can_resize="true" height="570" min_height="570" min_width="780"
      name="directory" rect_control="FloaterFindRect2" title="Search Second Life"
      width="780">
 	<tab_container bottom="-570" follows="left|top|right|bottom" height="550" left="0"
@@ -31,7 +31,7 @@
 			<button bottom="-26" follows="top|right" font="SansSerifSmall" height="20"
 			     label="Forward" left="304" name="forward_btn" width="70" />
 			<button bottom="-48" follows="top|right" font="SansSerif" height="20"
-			     label="Search" left="130" name="search_btn" width="86" />
+			     label="Search" left="121" name="search_btn" width="95" />
 			<combo_box allow_text_entry="false" bottom="-46" follows="right|top" height="18"
 			     left="230" max_chars="20" mouse_opaque="true" name="Category"
 			     width="158">
@@ -56,16 +56,19 @@
 			</combo_box>
 			<check_box bottom="-22" control_name="ShowPGSearchAll" follows="right|top"
 			     font="SansSerifSmall" height="16" initial_value="true"
-			     label="PG content" left="400" mouse_opaque="true"
+			     label="PG content" left="420" mouse_opaque="true"
 			     name="incpg" width="156" />
 			<check_box bottom="-40" control_name="ShowMatureSearchAll" follows="right|top"
 			     font="SansSerifSmall" height="16" initial_value="true"
-			     label="Mature content" left="400" mouse_opaque="true"
+			     label="Mature content" left="420" mouse_opaque="true"
 			     name="incmature" width="156" />
 			<check_box bottom="-58" control_name="ShowAdultSearchAll" follows="right|top"
 			     font="SansSerifSmall" height="16" initial_value="false"
-			     label="Adult content" left="400" mouse_opaque="true"
+			     label="Adult content" left="420" mouse_opaque="true"
 			     name="incadult" width="156" />
+			<button bottom="-22" enabled="true" follows="right|top" font="SansSerif"
+                             halign="center" height="18" label="?" label_selected="?" left="-25"
+                             mouse_opaque="true" name="?" width="18" />
 			<web_browser bottom="25" follows="top|left|bottom|right" font="SansSerifSmall" left="10"
 			     name="find_browser" right="-10" top="-60" />
 			<text bottom="5" follows="bottom|left" halign="left" height="16" left="10"
@@ -101,15 +104,15 @@
 			     max_length="63" mouse_opaque="true" name="name" width="160" />
 			<check_box bottom="-22" control_name="ShowPGClassifieds" follows="right|top"
 			     font="SansSerifSmall" height="16" initial_value="true"
-			     label="PG content" left="400" mouse_opaque="true"
+			     label="PG content" left="420" mouse_opaque="true"
 			     name="incpg" width="156" />
 			<check_box bottom="-40" control_name="ShowMatureClassifieds" follows="right|top"
 			     font="SansSerifSmall" height="16" initial_value="true"
-			     label="Mature content" left="400" mouse_opaque="true"
+			     label="Mature content" left="420" mouse_opaque="true"
 			     name="incmature" width="156" />
 			<check_box bottom="-58" control_name="ShowAdultClassifieds" follows="right|top"
 			     font="SansSerifSmall" height="16" initial_value="false"
-			     label="Adult content" left="400" mouse_opaque="true"
+			     label="Adult content" left="420" mouse_opaque="true"
 			     name="incadult" width="156" />
 			<combo_box allow_text_entry="false" bottom="-46" follows="right|top" height="18" left="230"
 			     max_chars="20" mouse_opaque="true" name="Category" width="158">
@@ -145,14 +148,14 @@
 				</combo_item>
 			</combo_box>
 			<button bottom="-48" follows="right|top" font="SansSerif" halign="center" height="20"
-			     label="Browse" label_selected="Browse" left="130" mouse_opaque="true"
-			     name="Browse" width="86" />
+			     label="Browse" label_selected="Browse" left="121" mouse_opaque="true"
+			     name="Browse" width="95" />
 			<button bottom="-48" follows="right|top" font="SansSerif" halign="center" height="20"
-			     label="Search" label_selected="Search" left="130" mouse_opaque="true" name="Search"
-			     visible="false" width="86" />
+			     label="Search" label_selected="Search" left="121" mouse_opaque="true" name="Search"
+			     visible="false" width="95" />
 			<button bottom="-46" follows="right|top" font="SansSerif" halign="center" height="20"
-			     label="Place an Ad..." label_selected="Place an Ad..." left="650"
-			     mouse_opaque="true" name="Place an Ad..." width="125" />
+			     label="Place an Ad..." label_selected="Place an Ad..." left="630"
+			     mouse_opaque="true" name="Place an Ad..." width="145" />
 			<button bottom="-533" follows="left|bottom" font="SansSerif" halign="center"
 			     height="20" label="Delete" label_selected="Delete" left="80"
 			     mouse_opaque="true" name="Delete" width="80" />
@@ -167,7 +170,7 @@
 			<text bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 			     bottom_delta="-20" drop_shadow_visible="true" follows="left|bottom"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="16" left="4"
-			     mouse_opaque="true" name="result_text" v_pad="0" width="328" />
+			     mouse_opaque="true" name="result_text" v_pad="0" width="80" />
 			<button bottom="-533" follows="right|bottom" font="SansSerif" halign="center"
 			     height="20" label="Next &gt;" label_selected="Next &gt;"
 			     mouse_opaque="true" name="Next &gt;" right="344" width="80" />
@@ -228,7 +231,7 @@
 			<combo_box allow_text_entry="false" bottom="-46" follows="right|top" height="18" left="230"
 			     max_chars="20" mouse_opaque="true" name="category combo" width="158">
 				<combo_item name="All" value="0">
-					All
+					Any Category
 				</combo_item>
 				<combo_item name="Discussion" value="18">
 					Discussion
@@ -266,19 +269,19 @@
 			</combo_box>
 			<check_box bottom="-22" control_name="ShowPGEvents" follows="right|top"
 			     font="SansSerifSmall" height="16" initial_value="true"
-			     label="PG content" left="400" mouse_opaque="true"
+			     label="PG content" left="420" mouse_opaque="true"
 			     name="incpg" width="156" />
 			<check_box bottom="-40" control_name="ShowMatureEvents" follows="right|top"
 			     font="SansSerifSmall" height="16" initial_value="true"
-			     label="Mature content" left="400" mouse_opaque="true"
+			     label="Mature content" left="420" mouse_opaque="true"
 			     name="incmature" width="156" />
 			<check_box bottom="-58" control_name="ShowAdultEvents" follows="right|top"
 			     font="SansSerifSmall" height="16" initial_value="false"
-			     label="Adult content" left="400" mouse_opaque="true"
+			     label="Adult content" left="420" mouse_opaque="true"
 			     name="incadult" width="156" />
 			<button bottom="-48" follows="right|top" font="SansSerif" halign="center" height="20"
-			     label="Search" label_selected="Search" left="130" mouse_opaque="true" name="Search"
-			     visible="true" width="86" />
+			     label="Search" label_selected="Search" left="121" mouse_opaque="true" name="Search"
+			     visible="true" width="95" />
 			<button bottom="-533" follows="left|bottom" font="SansSerif" halign="center"
 			     height="20" label="Delete" label_selected="Delete" left="80"
 			     mouse_opaque="true" name="Delete" width="80" />
@@ -295,7 +298,7 @@
 			<text bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 			     bottom_delta="-20" drop_shadow_visible="true" follows="left|bottom"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="16" left="4"
-			     mouse_opaque="true" name="result_text" v_pad="0" width="328" />
+			     mouse_opaque="true" name="result_text" v_pad="0" width="80" />
 			<button bottom="-533" follows="right|bottom" font="SansSerif" halign="center"
 			     height="20" label="Next &gt;" label_selected="Next &gt;"
 			     mouse_opaque="true" name="Next &gt;" right="344" width="80" />
@@ -356,17 +359,17 @@ To buy direct, visit the land and click on the place name in the title bar.
 			</text>
 			<check_box bottom="-22" control_name="ShowPGLand" follows="right|top"
 			     font="SansSerifSmall" height="16" initial_value="true"
-			     label="PG content" left="400" mouse_opaque="true"
+			     label="PG content" left="420" mouse_opaque="true"
 			     name="incpg" width="156" />
 			<check_box bottom="-40" control_name="ShowMatureLand" follows="right|top"
 			     font="SansSerifSmall" height="16" initial_value="true"
-			     label="Mature content" left="400" mouse_opaque="true"
+			     label="Mature content" left="420" mouse_opaque="true"
 			     name="incmature" width="156" />
 			<check_box bottom="-58" control_name="ShowAdultLand" follows="right|top"
 			     font="SansSerifSmall" height="16" initial_value="false"
-			     label="Adult content" left="400" mouse_opaque="true"
+			     label="Adult content" left="420" mouse_opaque="true"
 			     name="incadult" width="156" />
-			<combo_box allow_text_entry="false" bottom="-46" follows="right|top" height="18" left="264"
+			<combo_box allow_text_entry="false" bottom="-46" follows="left|top|right" height="18" left="282"
 			     max_chars="20" mouse_opaque="true" name="type" width="128">
 				<combo_item name="AllTypes" value="All Types">
 					All Types
@@ -383,30 +386,41 @@ To buy direct, visit the land and click on the place name in the title bar.
 			</combo_box>
 			<check_box bottom="-24" control_name="FindLandPrice" follows="left|top"
 			     font="SansSerifSmall" height="16" initial_value="true"
-			     label="Price &lt;= L$" left="32" mouse_opaque="true" name="pricecheck"
+			     label="Price &#8804; " left="56" mouse_opaque="true" name="pricecheck"
 			     width="88" />
+			<text bg_visible="false" border_drop_shadow_visible="false" border_visible="false" follows="left|top"
+			     bottom="-24" font="SansSerifSmall" halign="left" height="16" left="116" mouse_opaque="true"
+			     name="pricecheck_symbol" width="15">
+				L$
+			</text>
 			<check_box bottom_delta="-18" control_name="FindLandArea" follows="left|top"
 			     font="SansSerifSmall" height="16" initial_value="true"
-			     label="Area &gt;= sq.m." left="32" mouse_opaque="true" name="areacheck"
-			     width="102" />
+			     label="Area &#8805; " left="56" mouse_opaque="true" name="areacheck"
+			     width="80" />
+			<text bg_visible="false" border_drop_shadow_visible="false" border_visible="false" follows="left|top"
+			     bottom="-42" font="SansSerifSmall" halign="left" height="16" left="170" mouse_opaque="true"
+			     name="areacheck_symbol" width="15">
+				m²
+			</text>
 			<line_editor bevel_style="in" border_style="line" border_thickness="1" bottom="-22"
-			     follows="left|top" font="SansSerifSmall" height="16" left="134"
+			     follows="left|top" font="SansSerifSmall" height="16" left="132"
 			     max_length="10" mouse_opaque="true" name="priceedit" width="50" />
 			<line_editor bevel_style="in" border_style="line" border_thickness="1" bottom_delta="-18"
-			     follows="left|top" font="SansSerifSmall" height="16" left="134"
+			     follows="left|top" font="SansSerifSmall" height="16" left="117"
 			     max_length="10" mouse_opaque="true" name="areaedit" width="50" />
-			<button bottom="-48" follows="right|top" font="SansSerif" halign="center" height="20"
-			     label="Search" label_selected="Search" left="190" mouse_opaque="true"
+			<button bottom="-48" follows="left|top" font="SansSerif" halign="center" height="20"
+			     label="Search" label_selected="Search" left="208" mouse_opaque="true"
 			     name="Search" width="70" />
-			<scroll_list background_visible="true" bottom="-513" column_padding="0" draw_border="true" draw_heading="true" 
-			     follows="left|top|right|bottom" height="438" left="4" mouse_opaque="true"
+			<scroll_list background_visible="true" bottom="-510" column_padding="0" draw_border="true" draw_heading="true" 
+			     follows="left|top|right|bottom" height="450" left="4" mouse_opaque="true"
 			     multi_select="false" name="results" search_column="2" width="387">
 				<column label="" name="icon" width="24" />
 				<column label="" name="type" width="-1" />
 				<column dynamicwidth="true" label="Name" name="name" />
+				<column label="Type" name="landtype" width="50" />
 				<column label="L$ Price" name="price" width="65" />
 				<column label="Area" name="area" width="50" />
-				<column label="L$/sq.m" name="per_meter" width="65" />
+				<column label="L$/m²" name="per_meter" width="65" />
 			</scroll_list>
 			<text bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 			     bottom_delta="-20" drop_shadow_visible="true" follows="left|bottom"
@@ -428,12 +442,6 @@ To buy direct, visit the land and click on the place name in the title bar.
 			<string name="not_found_text">
 				None Found.
 			</string>
-			<!-- The following entry must be the same as the combo_item in Category whose value is "adult". 
-			Once we have completed the transition period, both this string and the adult combo itme can 
-			be deleted. -->
-			<string name="adult_land_category_label">
-				Adult
-			</string>
 			<text bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 			     bottom="-24" drop_shadow_visible="true" follows="left|top" font="SansSerif"
 			     h_pad="0" halign="left" height="16" left="4" mouse_opaque="true"
@@ -445,18 +453,60 @@ To buy direct, visit the land and click on the place name in the title bar.
 			     max_length="63" mouse_opaque="true" name="name" width="160" />
 			<check_box bottom="-22" control_name="ShowPGSims" follows="right|top"
 			     font="SansSerifSmall" height="16" initial_value="true"
-			     label="PG content" left="400" mouse_opaque="true"
+			     label="PG content" left="420" mouse_opaque="true"
 			     name="incpg" width="156" />
 			<check_box bottom="-40" control_name="ShowMatureSims" follows="right|top"
 			     font="SansSerifSmall" height="16" initial_value="true"
-			     label="Mature content" left="400" mouse_opaque="true"
+			     label="Mature content" left="420" mouse_opaque="true"
 			     name="incmature" width="156" />
 			<check_box bottom="-58" control_name="ShowAdultSims" follows="right|top"
 			     font="SansSerifSmall" height="16" initial_value="false"
-			     label="Adult content" left="400" mouse_opaque="true"
+			     label="Adult content" left="420" mouse_opaque="true"
 			     name="incadult" width="156" />
-			<combo_box allow_text_entry="false" bottom="-46" follows="right|top" height="18" left="230"
-			     max_chars="20" mouse_opaque="true" name="Category" width="128">
+			<combo_box allow_text_entry="false" bottom="-46" enabled="false" follows="right|top" height="18" left="230"
+			     max_chars="20" mouse_opaque="true" name="Category" width="128" visible="false">
+				<combo_item name="AnyCategory" value="any">
+					Any Category
+				</combo_item>
+				<combo_item name="LindenLocation" value="linden">
+					Linden Location
+				</combo_item>
+				<combo_item name="Arts&amp;Culture" value="arts">
+					Arts &amp; Culture
+				</combo_item>
+				<combo_item name="Business" value="store">
+					Business
+				</combo_item>
+				<combo_item name="Educational" value="educational">
+					Educational
+				</combo_item>
+				<combo_item name="Gaming" value="game">
+					Gaming
+				</combo_item>
+				<combo_item name="Hangout" value="gather">
+					Hangout
+				</combo_item>
+				<combo_item name="NewcomerFriendly" value="newcomer">
+					Newcomer Friendly
+				</combo_item>
+				<combo_item name="Parks&amp;Nature" value="park">
+					Parks &amp; Nature
+				</combo_item>
+				<combo_item name="Residential" value="home">
+					Residential
+				</combo_item>
+				<combo_item name="Shopping" value="shopping">
+					Shopping
+				</combo_item>
+				<combo_item name="Other" value="other">
+					Other
+				</combo_item>
+			</combo_box>
+			<!-- This is used only during the AO transition and can be deleted once the AO transition is
+			complete. It is identical to the combo box above except that it has the Adult category. 
+			You might also want to set it back to default visible and enabled. -->
+			<combo_box allow_text_entry="false" bottom="-46" enabled="false" follows="right|top" height="18" left="230"
+			     max_chars="20" mouse_opaque="true" name="Category_Adult" width="128" visible="false">
 				<combo_item name="AnyCategory" value="any">
 					Any Category
 				</combo_item>
@@ -498,8 +548,8 @@ To buy direct, visit the land and click on the place name in the title bar.
 				</combo_item>
 			</combo_box>
 			<button bottom="-48" follows="right|top" font="SansSerif" halign="center" height="20"
-			     label="Search" label_selected="Search" left="130" mouse_opaque="true"
-			     name="Search" width="86" />
+			     label="Search" label_selected="Search" left="121" mouse_opaque="true"
+			     name="Search" width="95" />
 			<scroll_list background_visible="true" bottom="-510" column_padding="0" draw_border="true"
 			     draw_heading="true" 
 			     
@@ -540,8 +590,8 @@ To buy direct, visit the land and click on the place name in the title bar.
 			     follows="left|right|top" font="SansSerif" height="18" left="56"
 			     max_length="63" mouse_opaque="true" name="name" width="160" />
 		<button bottom="-48" follows="right|top" font="SansSerif" halign="center" height="20"
-			     label="Search" label_selected="Search" left="130" mouse_opaque="true"
-			     name="Search" width="86" />
+			     label="Search" label_selected="Search" left="121" mouse_opaque="true"
+			     name="Search" width="95" />
       <scroll_list background_visible="true" bottom="-510" column_padding="0" draw_border="true"
 			     draw_heading="true"
                                
@@ -600,18 +650,18 @@ To buy direct, visit the land and click on the place name in the title bar.
 			<button bottom="-26" follows="top|right" font="SansSerifSmall" height="20"
 			     label="Forward" left="304" name="forward_btn" width="70" />
 			<button bottom="-48" follows="top|right" font="SansSerif" height="20"
-			     label="Search" left="130" name="search_btn" width="86" />
+			     label="Search" left="121" name="search_btn" width="95" />
 	  <check_box bottom="-22" control_name="ShowPGGroups" follows="right|top"
 		     font="SansSerifSmall" height="16" initial_value="true"
-		     label="PG content" left="400" mouse_opaque="true"
+		     label="PG content" left="420" mouse_opaque="true"
 		     name="incpg" width="156" />
 	  <check_box bottom="-40" control_name="ShowMatureGroups" follows="right|top"
 		     font="SansSerifSmall" height="16" initial_value="true"
-		     label="Mature content" left="400" mouse_opaque="true"
+		     label="Mature content" left="420" mouse_opaque="true"
 		     name="incmature" width="156" />
 	  <check_box bottom="-58" control_name="ShowAdultGroups" follows="right|top"
 			     font="SansSerifSmall" height="16" initial_value="false"
-		     label="Adult content" left="400" mouse_opaque="true"
+		     label="Adult content" left="420" mouse_opaque="true"
 		     name="incadult" width="156" />
       <web_browser name="groups_browser"
 				bottom="25"
@@ -644,8 +694,8 @@ To buy direct, visit the land and click on the place name in the title bar.
 		<panel bottom="0" follows="right|top" height="470" left="0" name="group_details_panel"
 		     width="430" />
 	</panel>
-	<panel bottom="20" follows="right|top" height="470" left="340"
+	<panel bottom="5" follows="right|top" height="470" left="340"
 	     name="place_details_panel" width="440" />
-	<panel bottom="20" follows="right|top" height="470" left="385"
+	<panel bottom="0" follows="right|top" height="470" left="385"
 	     name="place_details_small_panel" width="395" />
 </floater>

@@ -4182,11 +4182,8 @@ U32 LLVOAvatar::renderSkinned(EAvatarRenderPass pass)
 
 		if (!LLDrawPoolAvatar::sSkipTransparent || LLPipeline::sImpostorRender)
 		{
-			if (!mIsDummy)
-			{
-				LLGLEnable blend(GL_BLEND);
-				LLGLEnable test(GL_ALPHA_TEST);
-			}
+			LLGLState blend(GL_BLEND, !mIsDummy);
+			LLGLState test(GL_ALPHA_TEST, !mIsDummy);
 			num_indices += renderTransparent(first_pass);
 		}
 	}

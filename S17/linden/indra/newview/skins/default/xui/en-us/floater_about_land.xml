@@ -42,7 +42,7 @@
 			<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 			     bottom="-100" drop_shadow_visible="true" enabled="true" follows="left|top"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="16" left="96"
-			     mouse_opaque="true" name="LandTypeText" v_pad="0" width="272">
+			     mouse_opaque="true" name="LandTypeText" v_pad="0" width="250">
 				Mainland / Homestead
 			</text>
 			<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
@@ -54,7 +54,7 @@
 			<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 			     bottom="-120" drop_shadow_visible="true" enabled="true" follows="left|top"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="16" left="96"
-			     mouse_opaque="true" name="ContentRatingText" v_pad="0" width="272">
+			     mouse_opaque="true" name="ContentRatingText" v_pad="0" width="250">
 				Adult
 			</text>
 			<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
@@ -66,7 +66,7 @@
 			<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 			     bottom="-140" drop_shadow_visible="true" enabled="true" follows="left|top"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="16" left="96"
-			     mouse_opaque="true" name="OwnerText" v_pad="0" width="272">
+			     mouse_opaque="true" name="OwnerText" v_pad="0" width="250">
 				Leyla Linden
 			</text>
 			<button bottom="-140" enabled="true" follows="left|top" font="SansSerifSmall"
@@ -82,7 +82,7 @@
 			<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 			     bottom="-162" drop_shadow_visible="true" enabled="false" follows="left|top"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="16" left="96"
-			     mouse_opaque="true" name="GroupText" v_pad="0" width="90" />
+			     mouse_opaque="true" name="GroupText" v_pad="0" width="250" />
 			<button bottom="-160" enabled="true" follows="left|top" font="SansSerifSmall"
 			     halign="center" height="16" label="Set..." label_selected="Set..."
 			     left="350" mouse_opaque="true" name="Set..." scale_image="true" width="90" />
@@ -174,7 +174,7 @@
 			     bottom="-304" drop_shadow_visible="true" enabled="true" follows="left|top"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="16" left="96"
 			     mouse_opaque="true" name="PriceText" v_pad="0" width="186">
-				4048 sq. m.
+				4048 sq.m.
 			</text>
 			<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 			     bottom="-324" drop_shadow_visible="true" enabled="true" follows="left|top"
@@ -225,7 +225,7 @@
 				Area
 			</string>
 			<string name="area_size_text">
-				[AREA] sq. m.
+				[AREA] sq.m.
 			</string>
 			<string name="auction_id_text">
 				Auction ID: [ID]
@@ -261,7 +261,7 @@ Go to World menu > About Land or select another parcel to show its details.
 		     name="land_covenant_panel" width="458">
 			<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 			     bottom="-20" drop_shadow_visible="true" enabled="true" follows="left|top"
-			     font="SansSerifSmall" h_pad="0" halign="left" height="20" left="5"
+			     font="SansSerif" h_pad="0" halign="left" height="20" left="5"
 			     mouse_opaque="false" name="estate_section_lbl" v_pad="0" width="100">
 				Estate:
 			</text>
@@ -289,81 +289,81 @@ Go to World menu > About Land or select another parcel to show its details.
 			     mouse_opaque="false" name="estate_owner_text" v_pad="0" width="150">
 				(none)
 			</text>
-			<text_editor type="string" length="1" bottom="-180" embedded_items="false" enabled="false"
-			     follows="left|top|right|bottom" font="SansSerifSmall" height="120"
+			<text_editor type="string" length="1" bottom="-175" embedded_items="false" enabled="false"
+			     follows="left|top|right|bottom" font="SansSerifSmall" height="115"
 			     left="120" max_length="65535" mouse_opaque="true" name="covenant_editor"
 			     width="330" word_wrap="true">
 				There is no Covenant provided for this Estate.
 			</text_editor>
 			<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-			     bottom="-255" drop_shadow_visible="true" enabled="true" follows="left|top"
+			     bottom="-250" drop_shadow_visible="true" enabled="true" follows="left|top"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="20" left="120"
 			     mouse_opaque="false" name="covenant_timestamp_text" v_pad="0" width="250">
 				Last Modified Wed Dec 31 16:00:00 1969
 			</text>
 			<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-			     bottom="-275" drop_shadow_visible="true" enabled="true" follows="left|top"
-			     font="SansSerifSmall" h_pad="0" halign="left" height="20" left="5"
+			     bottom="-270" drop_shadow_visible="true" enabled="true" follows="left|top"
+			     font="SansSerif" h_pad="0" halign="left" height="20" left="5"
 			     mouse_opaque="false" name="region_section_lbl" v_pad="0" width="100">
 				Region:
 			</text>
 			<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-			     bottom="-295" drop_shadow_visible="true" enabled="true" follows="left|top"
+			     bottom="-290" drop_shadow_visible="true" enabled="true" follows="left|top"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="20" left="10"
 			     mouse_opaque="false" name="region_name_lbl" v_pad="0" width="100">
 				Name:
 			</text>
 			<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-			     bottom="-295" drop_shadow_visible="true" enabled="true" follows="left|top"
+			     bottom="-290" drop_shadow_visible="true" enabled="true" follows="left|top"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="20" left="120"
 			     mouse_opaque="false" name="region_name_text" v_pad="0" width="150">
 				leyla
 			</text>
 			<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-			     bottom="-315" drop_shadow_visible="true" enabled="true" follows="left|top"
+			     bottom="-310" drop_shadow_visible="true" enabled="true" follows="left|top"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="20" left="10"
 			     mouse_opaque="false" name="region_landtype_lbl" v_pad="0" width="100">
 				Type:
 			</text>
 			<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-			     bottom="-315" drop_shadow_visible="true" enabled="true" follows="left|top"
+			     bottom="-310" drop_shadow_visible="true" enabled="true" follows="left|top"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="20" left="120"
 			     mouse_opaque="false" name="region_landtype_text" v_pad="0" width="150">
 				Mainland / Homestead
 			</text>
 			<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-			     bottom="-335" drop_shadow_visible="true" enabled="true" follows="left|top"
+			     bottom="-330" drop_shadow_visible="true" enabled="true" follows="left|top"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="20" left="10"
 			     mouse_opaque="false" name="region_maturity_lbl" v_pad="0" width="100">
 				Rating:
 			</text>
 			<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-			     bottom="-335" drop_shadow_visible="true" enabled="true" follows="left|top"
+			     bottom="-330" drop_shadow_visible="true" enabled="true" follows="left|top"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="20" left="120"
 			     mouse_opaque="false" name="region_maturity_text" v_pad="0" width="150">
 				Adult
 			</text>
 			<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-			     bottom="-355" drop_shadow_visible="true" enabled="true" follows="left|top"
+			     bottom="-350" drop_shadow_visible="true" enabled="true" follows="left|top"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="20" left="10"
 			     mouse_opaque="false" name="resellable_lbl" v_pad="0" width="100">
 				Resale:
 			</text>
 			<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-			     bottom="-355" drop_shadow_visible="true" enabled="true" follows="left|top"
-			     font="SansSerif" h_pad="0" halign="left" height="20" left="120"
+			     bottom="-350" drop_shadow_visible="true" enabled="true" follows="left|top"
+			     font="SansSerifSmall" h_pad="0" halign="left" height="20" left="120"
 			     mouse_opaque="false" name="resellable_clause" v_pad="0" width="330">
 				Land in this region may not be resold.
 			</text>
 			<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-			     bottom="-375" drop_shadow_visible="true" enabled="true" follows="left|top"
+			     bottom="-370" drop_shadow_visible="true" enabled="true" follows="left|top"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="20" left="10"
 			     mouse_opaque="false" name="changeable_lbl" v_pad="0" width="100">
 				Subdivide:
 			</text>
 			<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-			     bottom="-375" drop_shadow_visible="true" enabled="true" follows="left|top"
-			     font="SansSerif" h_pad="0" halign="left" height="20" left="120"
+			     bottom="-380" drop_shadow_visible="true" enabled="true" follows="left|top"
+			     font="SansSerifSmall" h_pad="0" halign="left" height="30" left="120"
 			     mouse_opaque="false" name="changeable_clause" v_pad="0" width="330">
 				Land in this region may not be joined/subdivided.
 			</text>
@@ -626,20 +626,20 @@ Go to World menu > About Land or select another parcel to show its details.
 			     height="16" initial_value="false"
 			     label="Show Place in Search (L$30/week) under" left="14"
 			     mouse_opaque="true" name="ShowDirectoryCheck" radio_style="false"
-			     width="268" />
-      <string name="search_enabled_tooltip">
-        Let people see this parcel in search results
-      </string>
-      <string name="search_disabled_small_tooltip">
-        Disabled because this parcel's area is 128 square meters or smaller.
+			     tool_tip="Let people see this parcel in search results" width="268" />
+			<string name="search_enabled_tooltip">
+				Let people see this parcel in search results
+			</string>
+			<string name="search_disabled_small_tooltip">
+				This option is disabled because this parcel&apos;s area is 128 sq.m. or smaller.
 Only large parcels can be listed in search.
-      </string>
-      <string name="search_disabled_permissions_tooltip">
-        Disabled because you cannot modify this parcel's options.
-      </string>
-      <combo_box allow_text_entry="false" bottom="-140" enabled="true" follows="left|top"
+			</string>
+			<string name="search_disabled_permissions_tooltip">
+				This option is disabled because you cannot modify this parcel&apos;s options.
+			</string>
+			<combo_box allow_text_entry="false" bottom="-140" enabled="false" follows="left|top"
 			     height="18" left="255" max_chars="20" mouse_opaque="true"
-			     name="land category" width="130">
+			     name="land category with adult" width="130" visible="false">
 				<combo_item name="AnyCategory" value="any">
 					Any Category
 				</combo_item>
@@ -680,25 +680,69 @@ Only large parcels can be listed in search.
 					Other
 				</combo_item>
 			</combo_box>
-			<!-- The following entry must be the same as the combo_item above whose value is "adult". 
-			Once we have completed the transition period, both this string and the adult combo itme can 
-			be deleted. -->
-			<string name="adult_land_category_label">
-				Adult
-			</string>
+			<!-- The following combo box is identical to the previous one, except for the
+			fact that the Adult item is missing. This seems to be the only way to safely
+			delete the adult item with our UI toolkit.
+			Once we have completed the transition period, the one WITH adult can be deleted. -->
+			<combo_box allow_text_entry="false" bottom="-140" enabled="false" follows="left|top"
+			     height="18" left="255" max_chars="20" mouse_opaque="true"
+			     name="land category" width="130" visible="false">
+				<combo_item name="AnyCategory" value="any">
+					Any Category
+				</combo_item>
+				<combo_item name="LindenLocation" value="linden">
+					Linden Location
+				</combo_item>
+				<combo_item name="Arts&amp;Culture" value="arts">
+					Arts &amp; Culture
+				</combo_item>
+				<combo_item name="Business" value="store">
+					Business
+				</combo_item>
+				<combo_item name="Educational" value="educational">
+					Educational
+				</combo_item>
+				<combo_item name="Gaming" value="game">
+					Gaming
+				</combo_item>
+				<combo_item name="Hangout" value="gather">
+					Hangout
+				</combo_item>
+				<combo_item name="NewcomerFriendly" value="newcomer">
+					Newcomer Friendly
+				</combo_item>
+				<combo_item name="Parks&amp;Nature" value="park">
+					Parks &amp; Nature
+				</combo_item>
+				<combo_item name="Residential" value="home">
+					Residential
+				</combo_item>
+				<combo_item name="Shopping" value="shopping">
+					Shopping
+				</combo_item>
+				<combo_item name="Other" value="other">
+					Other
+				</combo_item>
+			</combo_box>
 			<button bottom="-140" enabled="true" follows="left|top" font="SansSerif"
 			     halign="center" height="18" label="?" label_selected="?" left="400"
 			     mouse_opaque="true" name="?" width="18" />
 			<check_box bottom="-160" enabled="true" follows="left|top" font="SansSerifSmall"
 			     height="16" initial_value="false" label="Mature Content" left="14"
 			     mouse_opaque="true" name="MatureCheck" radio_style="false"
-			     tool_tip="Your parcel information or content is considered mature."
+			     tool_tip=" "
 			     width="107" />
 			<string name="mature_check_mature">
 				Mature Content
 			</string>
 			<string name="mature_check_adult">
 				Adult Content
+			</string>
+			<string name="mature_check_mature_tooltip">
+				Your parcel information or content is considered mature.
+			</string>
+			<string name="mature_check_adult_tooltip">
+				Your parcel information or content is considered adult.
 			</string>
 			<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 			     bottom="-180" drop_shadow_visible="true" enabled="true" follows="left|top"
@@ -866,31 +910,33 @@ Options:
 			</text>
 			<check_box bottom_delta="0" enabled="true" follows="left|top" font="SansSerifSmall"
 			     height="16" initial_value="false"
-			     label="Restrict spatialized sound to this parcel" left="80"
+			     label="Restrict gesture and object sounds to this parcel" left="80"
 			     mouse_opaque="true" name="check sound local" radio_style="false"
 			     width="292" />
+			<button bottom_delta="0" enabled="true" follows="left|top" font="SansSerif"
+			     halign="center" height="18" label="?" label_selected="?" left="372"
+			     mouse_opaque="true" name="?" width="18" />
 			<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 			     bottom_delta="-40" enabled="true" follows="left|top" font="SansSerifSmall"
 			     h_pad="0" halign="left" height="16" left="10" mouse_opaque="false"
 			     name="Voice settings:" tab_stop="false" v_pad="0" width="364">
 				Voice:
 			</text>
-			<radio_group bottom_delta="-40" draw_border="true" enabled="true" follows="left|top"
-			     height="54" left="80" mouse_opaque="true" name="parcel_voice_channel"
-			     tab_stop="true" width="219">
-				<radio_item type="string" length="1" bottom="-19" enabled="true" follows="left|top" height="16" left="3"
-				     mouse_opaque="true" name="Estate" width="463">
-					Use the Estate spatial channel
-				</radio_item>
-				<radio_item type="string" length="1" bottom="-35" enabled="true" follows="left|top" height="16" left="3"
-				     mouse_opaque="true" name="Private" width="463">
-					Use a private spatial channel
-				</radio_item>
-				<radio_item type="string" length="1" bottom="-51" enabled="true" follows="left|top" height="16" left="3"
-				     mouse_opaque="true" name="Disabled" width="463">
-					Disable spatial audio on this parcel
-				</radio_item>
-			</radio_group>
+			<check_box bottom_delta="-0" enabled="true" follows="left|top"
+			     height="54" left="80" mouse_opaque="true" name="parcel_enable_voice_channel"
+			     tab_stop="true" width="463"
+			     label="Enable Voice"
+			/>
+			<check_box bottom_delta="-0" enabled="false" follows="left|top"
+			     height="54" left="80" mouse_opaque="true" name="parcel_enable_voice_channel_is_estate_disabled"
+			     tab_stop="true" width="463"
+			     label="Enable Voice (established by the Estate)"
+			/>
+			<check_box bottom_delta="-20" enabled="true" follows="left|top"
+			     height="54" left="100" mouse_opaque="true" name="parcel_enable_voice_channel_parcel"
+			     tab_stop="true" width="443"
+			     label="Restrict Voice to this parcel"
+			/>
 		</panel>
 		<panel border="true" bottom="-349" enabled="true" follows="left|top|right|bottom"
 		     height="333" label="Access" left="1" mouse_opaque="true"

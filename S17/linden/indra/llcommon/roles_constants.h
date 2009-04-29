@@ -141,9 +141,7 @@ const U64 GP_NOTICES_SEND			= 0x1LL << 42;	// Send Notices
 const U64 GP_NOTICES_RECEIVE		= 0x1LL << 43;	// Receive Notices and View Notice History
 
 // Proposals
-// TODO: _DEPRECATED suffix as part of vote removal - DEV-24856:
 const U64 GP_PROPOSAL_START		= 0x1LL << 44;	// Start Proposal
-// TODO: _DEPRECATED suffix as part of vote removal - DEV-24856:
 const U64 GP_PROPOSAL_VOTE		= 0x1LL << 45;	// Vote on Proposal
 
 // Group chat moderation related

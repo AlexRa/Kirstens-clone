@@ -3259,7 +3259,17 @@ You can click &apos;Change Preference&apos; to raise your maturity Rating prefer
 	 ignoretext="When a Land purchase is blocked due to maturity Rating preference"/>
   </notification>
 
-  <notification
+	<notification
+	  icon="alertmodal.tga"
+	  name="TooManyPrimsSelected"
+	  type="alertmodal">
+		"There are too many prims selected.  Please select [MAX_PRIM_COUNT] or fewer prims and try again"
+		<usetemplate
+		 name="okbutton"
+		 yestext="OK"/>
+	</notification>
+
+	<notification
    icon="alertmodal.tga"
    name="ProblemImportingEstateCovenant"
    type="alertmodal">
@@ -3400,6 +3410,26 @@ Default: off
 If this box is checked, people will not be able to fly in this region regardless of the per-parcel &apos;Fly&apos; setting.
 
 Default: off
+  </notification>
+
+  <notification
+   icon="alertmodal.tga"
+   label="Bulk Change Content Permissions"
+   name="HelpBulkPermission"
+   type="alertmodal">
+The Bulk Permissions tool helps you to quickly change the permissions on multiple items in the contents of the selected object(s).  However, please note that you are only setting permissions on the items in the Contents of the selected objects -- not permissions on the container object(s) themselves.  
+
+Also note, the permissions are not applied to the nested contents of any of the contained items.  Your request only operates on items exactly one level deep.
+
+You can selectively choose which types of items to modify by using the checklist under &apos;Content Types&apos; here. Snapshots are included when you select Textures.
+
+* This tool will only succeed at changing permissions on items you are allowed to change.
+* You cannot grant any Next owner permissions which you do not already have.
+* The Next owner permissions are merely requests. If any item cannot take all of the new permissions, none its permissions will change.
+
+When you are ready to change the permissions in bulk, click &apos;Apply&apos; and wait for the results to display.
+
+If you close the Bulk Permissions window while permissions are being changed, it will halt the operation.
   </notification>
 
   <notification
