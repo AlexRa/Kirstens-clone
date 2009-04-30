@@ -2664,7 +2664,7 @@ void LLVolumeGeometryManager::genDrawInfo(LLSpatialGroup* group, U32 mask, std::
 
 				if (LLPipeline::sRenderDeferred)
 				{
-				 registerFace(group, facep, LLRenderPass::PASS_ALPHA_SHADOW); //KL you can change this for SL film buffs as a hack to use plain alpha in def render.
+				 registerFace(group, facep, LLRenderPass::PASS_ALPHA); //KL you can change this for SL film buffs as a hack to use plain alpha in def render.
 				}
 			}
 			else if (gPipeline.canUseVertexShaders()

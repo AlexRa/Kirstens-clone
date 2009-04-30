@@ -1357,30 +1357,30 @@ void LLVOAvatar::initClass()
 	sAvatarSkeletonInfo = new LLVOAvatarSkeletonInfo;
 	if (!sAvatarSkeletonInfo->parseXml(sSkeletonXMLTree.getRoot()))
 	{
-		llerrs << "Error parsing skeleton XML file: " << skeleton_path << llendl;
+		llwarns << "Error parsing skeleton XML file: " << skeleton_path << llendl;
 	}
 	// parse avatar_lad.xml
 	llassert(!sAvatarXmlInfo);
 	sAvatarXmlInfo = new LLVOAvatarXmlInfo;
 	if (!sAvatarXmlInfo->parseXmlSkeletonNode(root))
 	{
-		llerrs << "Error parsing skeleton node in avatar XML file: " << skeleton_path << llendl;
+		llwarns << "Error parsing skeleton node in avatar XML file: " << skeleton_path << llendl;
 	}
 	if (!sAvatarXmlInfo->parseXmlMeshNodes(root))
 	{
-		llerrs << "Error parsing skeleton node in avatar XML file: " << skeleton_path << llendl;
+		llwarns << "Error parsing skeleton node in avatar XML file: " << skeleton_path << llendl;
 	}
 	if (!sAvatarXmlInfo->parseXmlColorNodes(root))
 	{
-		llerrs << "Error parsing skeleton node in avatar XML file: " << skeleton_path << llendl;
+		llwarns << "Error parsing skeleton node in avatar XML file: " << skeleton_path << llendl;
 	}
 	if (!sAvatarXmlInfo->parseXmlLayerNodes(root))
 	{
-		llerrs << "Error parsing skeleton node in avatar XML file: " << skeleton_path << llendl;
+		llwarns << "Error parsing skeleton node in avatar XML file: " << skeleton_path << llendl;
 	}
 	if (!sAvatarXmlInfo->parseXmlDriverNodes(root))
 	{
-		llerrs << "Error parsing skeleton node in avatar XML file: " << skeleton_path << llendl;
+		llwarns << "Error parsing skeleton node in avatar XML file: " << skeleton_path << llendl;
 	}
 
 }
