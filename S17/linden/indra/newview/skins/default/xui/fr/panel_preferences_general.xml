@@ -41,7 +41,7 @@
 	<text name="maturity_desired_prompt">
 		Je veux accéder au contenu classé :
 	</text>
-	<combo_box name="maturity_desired_combobox">
+	<combo_box name="maturity_desired_combobox" left="340">
 		<combo_item name="Desired_Adult">
 			PG, Mature et Adult
 		</combo_item>

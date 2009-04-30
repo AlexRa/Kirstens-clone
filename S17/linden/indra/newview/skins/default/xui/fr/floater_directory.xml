@@ -229,9 +229,9 @@ Pour acheter directement, visitez le terrain et cliquez sur le nom de l&apos;end
 			<text name="find">
 				Trouver :
 			</text>
-			<check_box label="Contenu PG" name="incpg"/>
-			<check_box label="Contenu Mature" name="incmature"/>
-			<check_box label="Contenu Adult" name="incadult"/>
+			<check_box label="Contenu PG" name="incpg" left="450"/>
+			<check_box label="Contenu Mature" name="incmature" left="450"/>
+			<check_box label="Contenu Adult" name="incadult" left="450"/>
 			<combo_box left="298" name="type" width="135">
 				<combo_item name="AllTypes">
 					Tous types

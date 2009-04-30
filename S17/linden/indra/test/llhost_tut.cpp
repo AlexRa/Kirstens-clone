@@ -229,18 +229,4 @@ namespace tut
 		host2.setPort(host1.getPort() + 10);
 		ensure("operator<  failed", host1 < host2);
 	}
-
-	// invalid ip address string
-	template<> template<>
-	void host_object::test<14>()
-	{
-		LLHost host1("10.0.1.2", 6143);
-		ensure("10.0.1.2 should be a valid address", host1.isOk());
-
-		LLHost host2("booger-brains", 6143);
-		ensure("booger-brains should be an invalid ip addess", !host2.isOk());
-
-		LLHost host3("255.255.255.255", 6143);
-		ensure("255.255.255.255 should be valid broadcast address", host3.isOk());
-	}
 }

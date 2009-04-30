@@ -183,6 +183,9 @@
 #include "llviewernetwork.h"
 #include "llpostprocess.h"
 
+#include "llfloatertest.h" // HACK!
+#include "llfloaternotificationsconsole.h"
+
 #if LL_WINDOWS
 #include <tchar.h> // For Unicode conversion methods
 #endif
@@ -2444,6 +2447,16 @@ BOOL LLViewerWindow::handleKey(KEY key, MASK mask)
 			// Initialize visibility (and don't force visibility - use prefs)
 			LLPanelLogin::refreshLocation( false );
 		}
+	}
+
+	// Debugging view for unified notifications: CTRL-SHIFT-5
+	// *FIXME: Having this special-cased right here (just so this can be invoked from the login screen) sucks.
+	if ((MASK_SHIFT & mask) 
+	    && (MASK_CONTROL & mask)
+	    && ('5' == key))
+	{
+		LLFloaterNotificationConsole::showInstance();
+		return TRUE;
 	}
 
 	// handle escape key

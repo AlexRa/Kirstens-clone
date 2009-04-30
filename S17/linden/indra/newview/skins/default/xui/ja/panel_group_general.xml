@@ -67,7 +67,7 @@
 			<combo_box name="active_title" tool_tip="このグループをアクティブ設定にした際アバターのネームタグに表示されるタイトルの設定"/>
 		</panel>
 		<check_box label="グループ通知を受信" name="receive_notices" tool_tip="グループからの通知を受信するかどうかを指定します。 このグループがスパム行為をしている場合は、このボックスのチェックを外してください"/>
-		<check_box label="ﾌﾟﾛﾌｨｰﾙにｸﾞﾙｰﾌﾟを表示" name="list_groups_in_profile" tool_tip="このグループをあなたのプロフィールに表示するかどうかを設定します"/>
+		<check_box label="プロフィールに表示" name="list_groups_in_profile" tool_tip="このグループをあなたのプロフィールに表示するかどうかを設定します"/>
 	</panel>
 	<string name="incomplete_member_data_str">
 		メンバー・データを検索

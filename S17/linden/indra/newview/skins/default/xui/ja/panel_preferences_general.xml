@@ -35,7 +35,7 @@
 	<spinner label="退席までの時間：" name="afk_timeout_spinner"/>
 	<check_box label="リンデン・ドル（L$）の支払い/受け取りを通知" name="notify_money_change_checkbox"/>
 	<text name="maturity_desired_label">
-		区分：
+		レーティング区分：
 	</text>
 	<text name="maturity_desired_prompt">
 		アクセスしたいコンテンツ：

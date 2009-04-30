@@ -157,9 +157,7 @@ namespace tut
 		LLPointer<LLInventoryItem> src = create_random_inventory_item();
 		LLSD sd = ll_create_sd_from_inventory_item(src);
 		//llinfos << "sd: " << *sd << llendl;
-		LLPointer<LLInventoryItem> dst = new LLInventoryItem;
-		bool successful_parse = dst->fromLLSD(sd);
-		ensure_equals("0.LLInventoryItem::fromLLSD()", successful_parse, true);
+		LLPointer<LLInventoryItem> dst = ll_create_item_from_sd(sd);
 		ensure_equals("1.item id::getUUID() failed", dst->getUUID(), src->getUUID());
 		ensure_equals("2.parent::getParentUUID() failed", dst->getParentUUID(), src->getParentUUID());
 		ensure_equals("3.name::getName() failed", dst->getName(), src->getName());
@@ -223,7 +221,7 @@ namespace tut
 
 		sd = ll_create_sd_from_inventory_item(src);
 		//llinfos << "sd: " << *sd << llendl;
-		successful_parse = dst->fromLLSD(sd);
+		dst = ll_create_item_from_sd(sd);
 		ensure_equals("13.item id::getUUID() failed", dst->getUUID(), src->getUUID());
 		ensure_equals("14.parent::getParentUUID() failed", dst->getParentUUID(), src->getParentUUID());
 		ensure_equals("15.name::getName() failed", dst->getName(), src->getName());
@@ -292,14 +290,13 @@ namespace tut
 		src->setFlags(new_flags);
 		src->setCreationDate(new_creation);
 
-		// test a save/load cycle to LLSD and back again
 		LLSD sd = ll_create_sd_from_inventory_item(src);
-		LLPointer<LLInventoryItem> dst = new LLInventoryItem;
-		bool successful_parse = dst->fromLLSD(sd);
-		ensure_equals("0.LLInventoryItem::fromLLSD()", successful_parse, true);
+		LLPointer<LLInventoryItem> dst = ll_create_item_from_sd(sd);
+
 
 		LLPointer<LLInventoryItem> src1 = create_random_inventory_item();
 		src1->copyItem(src);
+		src1->cloneItem(src);
 		
 		ensure_equals("1.item id::getUUID() failed", dst->getUUID(), src1->getUUID());
 		ensure_equals("2.parent::getParentUUID() failed", dst->getParentUUID(), src1->getParentUUID());
@@ -315,9 +312,24 @@ namespace tut
 		ensure_equals("11.flags::getFlags() failed", dst->getFlags(), src1->getFlags());
 		ensure_equals("12.creation::getCreationDate() failed", dst->getCreationDate(), src1->getCreationDate());
 
-		// quick test to make sure generateUUID() really works
-		src1->generateUUID();	
-		ensure_not_equals("13.item id::generateUUID() failed", src->getUUID(), src1->getUUID());
+		LLPointer<LLInventoryItem> src2;
+		src1->cloneItem(src2);
+		
+		ensure_not_equals("13.item id::getUUID() failed", src1->getUUID(), src2->getUUID());
+		ensure_equals("14.parent::getParentUUID() failed", src2->getParentUUID(), src1->getParentUUID());
+		ensure_equals("15.name::getName() failed", src2->getName(), src1->getName());
+		ensure_equals("16.type::getType() failed", src2->getType(), src1->getType());
+		
+		ensure_equals("17.permissions::getPermissions() failed", src2->getPermissions(), src1->getPermissions());
+		ensure_equals("18.description::getDescription() failed", src2->getDescription(), src1->getDescription());
+		ensure_equals("19.sale type::getSaleType() failed type", src2->getSaleInfo().getSaleType(), src1->getSaleInfo().getSaleType());
+		ensure_equals("20.sale price::getSalePrice() failed price", src2->getSaleInfo().getSalePrice(), src1->getSaleInfo().getSalePrice());
+		ensure_equals("21.asset id::getAssetUUID() failed id", src2->getAssetUUID(), src1->getAssetUUID());
+		ensure_equals("22.inventory type::getInventoryType() failed type", src2->getInventoryType(), src1->getInventoryType());
+		ensure_equals("23.flags::getFlags() failed", src2->getFlags(), src1->getFlags());
+		ensure_equals("24.creation::getCreationDate() failed", src2->getCreationDate(), src1->getCreationDate());
+
+
 	}
 
 	template<> template<>

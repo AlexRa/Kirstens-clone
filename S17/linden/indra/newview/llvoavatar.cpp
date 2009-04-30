@@ -6948,10 +6948,6 @@ void LLVOAvatar::updateMeshTextures()
 	} 
 	else 
 	{
-		for (U32 i = 0; i < mBakedTextureData[BAKED_HAIR].mMeshes.size(); i++)
-		{
-			mBakedTextureData[BAKED_HAIR].mMeshes[i]->setColor( 1.f, 1.f, 1.f, 1.f );
-		}
 		mHasBakedHair = TRUE;
 	}
 	
@@ -8094,6 +8090,17 @@ void LLVOAvatar::useBakedTexture( const LLUUID& id )
 				 local_tex_iter++)
 			{
 				setLocalTexture(*local_tex_iter, getTEImage(*local_tex_iter), TRUE);
+			}
+
+			// ! BACKWARDS COMPATIBILITY !
+			// Workaround for viewing avatars from old viewers that haven't baked hair textures.
+			// This is paired with similar code in updateMeshTextures that sets hair mesh color.
+			if (i == BAKED_HAIR)
+			{
+				for (U32 i = 0; i < mBakedTextureData[BAKED_HAIR].mMeshes.size(); i++)
+				{
+					mBakedTextureData[BAKED_HAIR].mMeshes[i]->setColor( 1.f, 1.f, 1.f, 1.f );
+				}
 			}
 		}
 	}

@@ -216,12 +216,20 @@
 		<url name="url">
 			https://support.secondlife.com/ics/support/default.asp?deptID=4417&amp;task=knowledge&amp;questionID=5046
 		</url>
+    <usetemplate
+     name="okcancelbuttons"
+     yestext="ナレッジベースを開く"
+	 notext="閉じる" />
 	</notification>
 	<notification name="ClickSearchHelpAll">
 		検索結果は今見ているタブ、あなたのレーティング区分、選択したカテゴリその他を元に編成されています。 詳細はナレッジベースをご覧ください。
 		<url name="url">
 			https://support.secondlife.com/ics/support/default.asp?deptID=4417&amp;task=knowledge&amp;questionID=4722
 		</url>
+    <usetemplate
+     name="okcancelbuttons"
+     yestext="ナレッジベースを開く"
+	 notext="閉じる" />
 	</notification>
 	<notification name="ClickPublishHelpLandDisabled">
 		この区画は検索を禁ずる地域にあるため、
@@ -1660,9 +1668,19 @@ L$[AMOUNT]で、このクラシファイド広告を今すぐ公開しますか�
 	</notification>
 	<notification name="SetClassifiedMature">
 		この広告にMatureコンテンツは含まれていますか？
+    <usetemplate
+     canceltext="キャンセル"
+     name="yesnocancelbuttons"
+     notext="いいえ"
+     yestext="はい"/>
 	</notification>
 	<notification name="SetGroupMature">
 		この広告にMatureコンテンツは含まれていますか？
+    <usetemplate
+     canceltext="キャンセル"
+     name="yesnocancelbuttons"
+     notext="いいえ"
+     yestext="はい"/>
 	</notification>
 	<notification label="再起動を確認" name="ConfirmRestart">
 		この地域を2分後に再起動しようとしています。操作を続行しますか？

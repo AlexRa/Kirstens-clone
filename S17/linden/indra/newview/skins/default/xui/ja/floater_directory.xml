@@ -35,9 +35,9 @@
 					Wiki
 				</combo_item>
 			</combo_box>
-			<check_box label="PGコンテンツ" name="incpg"/>
-			<check_box label="Matureコンテンツ" name="incmature"/>
-			<check_box label="Adultコンテンツ" name="incadult"/>
+			<check_box left="440" label="PGコンテンツ" name="incpg"/>
+			<check_box left="440" label="Matureコンテンツ" name="incmature"/>
+			<check_box left="440" label="Adultコンテンツ" name="incadult"/>
 			<button label="?" label_selected="?" name="?"/>
 			<string name="loading_text">
 				ローディング中...
@@ -59,9 +59,9 @@
 			<text name="find">
 				検索：
 			</text>
-			<check_box label="PGコンテンツ" name="incpg"/>
-			<check_box label="Matureコンテンツ" name="incmature"/>
-			<check_box label="Adultコンテンツ" name="incadult"/>
+			<check_box left="440" label="PGコンテンツ" name="incpg"/>
+			<check_box left="440" label="Matureコンテンツ" name="incmature"/>
+			<check_box left="440" label="Adultコンテンツ" name="incadult"/>
 			<combo_box name="Category">
 				<combo_item name="AnyCategory">
 					全カテゴリー
@@ -134,7 +134,7 @@
 			<text name="text">
 				カテゴリー：
 			</text>
-			<combo_box name="category combo" width="212">
+			<combo_box name="category combo" width="206">
 				<combo_item name="All">
 					全カテゴリ
 				</combo_item>
@@ -172,9 +172,9 @@
 					その他
 				</combo_item>
 			</combo_box>
-			<check_box label="PGコンテンツ" name="incpg"/>
-			<check_box label="Matureコンテンツ" name="incmature"/>
-			<check_box label="Adultコンテンツ" name="incadult"/>
+			<check_box left="440" label="PGコンテンツ" name="incpg"/>
+			<check_box left="440" label="Matureコンテンツ" name="incmature"/>
+			<check_box left="440" label="Adultコンテンツ" name="incadult"/>
 			<button label="検索" label_selected="検索" name="Search" tool_tip="検索"/>
 			<button label="削除" label_selected="削除" name="Delete"/>
 			<scroll_list name="results">
@@ -218,9 +218,9 @@
 			<text name="find">
 				検索：
 			</text>
-			<check_box label="PGコンテンツ" name="incpg"/>
-			<check_box label="Matureコンテンツ" name="incmature"/>
-			<check_box label="Adultコンテンツ" name="incadult"/>
+			<check_box left="440" label="PGコンテンツ" name="incpg"/>
+			<check_box left="440" label="Matureコンテンツ" name="incmature"/>
+			<check_box left="440" label="Adultコンテンツ" name="incadult"/>
 			<combo_box bottom="-64" left="224" name="type" width="168">
 				<combo_item name="AllTypes">
 					全種類
@@ -268,9 +268,9 @@
 			<text name="find">
 				検索：
 			</text>
-			<check_box label="PGコンテンツ" name="incpg"/>
-			<check_box label="Matureコンテンツ" name="incmature"/>
-			<check_box label="Adultコンテンツ" name="incadult"/>
+			<check_box left="440" label="PGコンテンツ" name="incpg"/>
+			<check_box left="440" label="Matureコンテンツ" name="incmature"/>
+			<check_box left="440" label="Adultコンテンツ" name="incadult"/>
 			<combo_box name="Category">
 				<combo_item name="AnyCategory">
 					全カテゴリー
@@ -393,9 +393,9 @@
 			<button label="戻る" name="back_btn"/>
 			<button label="進む" name="forward_btn"/>
 			<button label="検索" name="search_btn"/>
-			<check_box label="PGコンテンツ" name="incpg"/>
-			<check_box label="Matureコンテンツ" name="incmature"/>
-			<check_box label="Adultコンテンツ" name="incadult"/>
+			<check_box left="440" label="PGコンテンツ" name="incpg"/>
+			<check_box left="440" label="Matureコンテンツ" name="incmature"/>
+			<check_box left="440" label="Adultコンテンツ" name="incadult"/>
 			<string name="loading_text">
 				ロード中...
 			</string>

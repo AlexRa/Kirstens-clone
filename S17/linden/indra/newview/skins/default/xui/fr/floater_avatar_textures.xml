@@ -6,7 +6,7 @@
 	<text name="composite_label">
 		Textures composées
 	</text>
-	<button label="Vider ces ID dans la console" label_selected="Vider" name="Dump"/>
+	<button label="Vider ces ID dans la console" label_selected="Vider" name="Dump" left="-185" width="175"/>
 	<texture_picker label="Cheveux" name="hair-baked"/>
 	<texture_picker label="Cheveux" name="hair"/>
 	<texture_picker label="Tête" name="head-baked"/>

@@ -185,10 +185,12 @@ Allez dans le menu Monde &gt; À propos du terrain ou sélectionnez une autre pa
 				Le terrain acheté dans cette région ne peut pas être revendu.
 			</string>
 			<string name="can_change">
-				Le terrain acheté dans cette région peut être fusionné ou divisé.
+				Le terrain acheté dans cette région peut être fusionné
+ou divisé.
 			</string>
 			<string name="can_not_change">
-				Le terrain acheté dans cette région ne peut pas être fusionné ou divisé.
+				Le terrain acheté dans cette région ne peut pas être fusionné
+ou divisé.
 			</string>
 		</panel>
 		<panel label="Objets" name="land_objects_panel">
@@ -304,7 +306,7 @@ Seules les parcelles de grande taille peuvent apparaître dans la recherche.
 			<string name="search_disabled_permissions_tooltip">
 				Cette option est désactivée car vous ne pouvez pas modifier les options de cette parcelle.
 			</string>
-			<combo_box name="land category with adult">
+			<combo_box bottom="-160" left="286" name="land category with adult" width="146">
 				<combo_item name="AnyCategory">
 					Toutes catégories
 				</combo_item>

@@ -60,7 +60,7 @@
 		(1,1 L$/m²)
 		vendu avec objets
 	</text>
-	<text name="info_action">
+	<text name="info_action" width="380">
 		Si vous achetez ce terrain :
 	</text>
 	<text name="error_message">
@@ -222,7 +222,7 @@ peuvent contenir [AMOUNT2] prims
 		Ce groupe, [GROUP], aura besoin de suffisamment de crédit pour payer les frais d&apos;occupation de terrain avant que l&apos;achat de cette parcelle ne soit finalisé.
 	</string>
 	<string name="have_enough_lindens">
-		Vous avez [AMOUNT]L$, ce qui est suffisant pour acheter ce terrain.
+		Vous avez [AMOUNT] L$, ce qui est suffisant pour acheter ce terrain.
 	</string>
 	<string name="not_enough_lindens">
 		Vous n&apos;avez que [AMOUNT] L$ et vous avez besoin de [AMOUNT2] L$ de plus.

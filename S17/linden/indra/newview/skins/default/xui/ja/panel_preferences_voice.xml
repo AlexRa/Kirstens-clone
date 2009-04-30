@@ -16,7 +16,7 @@
 		プッシュ・トゥ・トーク
 	</text>
 	<text_editor name="voice_chat_description">
-		メモ： 「機器の設定」または「ボイス・チャットの設定」を実行すると、一時的にボイス・チャットから切断されます。
+		メモ： 「機器の設定」または「ボイス・チャットの設定」を実行すると、一時的にボイスチャットから切断されます。
 	</text_editor>
 	<check_box label="切り替えモードで、プッシュ・トゥ・トークを使用" name="push_to_talk_toggle_check"/>
 	<text name="push_to_talk_label">
@@ -31,6 +31,6 @@
 	<check_box label="IMコールが終了したらマイクのスイッチを切る" name="auto_disengage_mic_check"/>
 	<button label="機器の設定" name="device_settings_btn"/>
 	<text_editor name="device_settings_text">
-		注意：「機器の設定」を実行すると、一時的にボイス・チャットから切断されます。変更は即座に適用されます。
+		注意：「機器の設定」を実行すると、一時的にボイスチャットから切断されます。変更は即座に適用されます。
 	</text_editor>
 </panel>

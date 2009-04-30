@@ -750,12 +750,13 @@ void init_client_menu(LLMenuGL* menu)
 										(void*)gDebugView->mMemoryView,
 										  '0', MASK_CONTROL|MASK_SHIFT ) );
 #endif
-
+		
 		sub->appendSeparator();
-
+		
 		// Debugging view for unified notifications
 		sub->append(new LLMenuItemCallGL("Notifications Console...",
-						 &handle_show_notifications_console, NULL));
+						 &handle_show_notifications_console, NULL, NULL, '5', MASK_CONTROL|MASK_SHIFT ));
+		
 
 		sub->appendSeparator();
 

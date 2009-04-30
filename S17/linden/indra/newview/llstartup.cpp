@@ -1295,9 +1295,16 @@ bool idle_startup()
 		if (update || gSavedSettings.getBOOL("ForceMandatoryUpdate"))
 		{
 			gSavedSettings.setBOOL("ForceMandatoryUpdate", FALSE);
-			update_app(TRUE, auth_message);
-			LLStartUp::setStartupState( STATE_UPDATE_CHECK );
-			return false;
+			if (show_connect_box)
+			{
+				update_app(TRUE, auth_message);
+				LLStartUp::setStartupState( STATE_UPDATE_CHECK );
+				return false;
+			}
+			else
+			{
+				quit = true;
+			}
 		}
 
 		// Version update and we're not showing the dialog

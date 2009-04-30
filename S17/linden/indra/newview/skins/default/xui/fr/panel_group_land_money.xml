@@ -18,7 +18,7 @@ financières de ce groupe.
 		Terrain du groupe
 	</text>
 	<scroll_list name="group_parcel_list">
-		<column label="Nom de la parcelle" name="name"/>
+		<column label="Parcelle" name="name"/>
 		<column label="Région" name="location"/>
 		<column label="Type" name="type"/>
 		<column label="Surface" name="area"/>
