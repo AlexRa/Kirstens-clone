@@ -1452,6 +1452,7 @@ void LLVOAvatar::getSpatialExtents(LLVector3& newMin, LLVector3& newMax)
 	LLVector3 pos = getRenderPosition();
 	newMin = pos - buffer;
 	newMax = pos + buffer;
+	float max_attachment_span = DEFAULT_MAX_PRIM_SCALE * 5.0f;
 	
 	//stretch bounding box by joint positions
 	for (polymesh_map_t::iterator i = mMeshes.begin(); i != mMeshes.end(); ++i)
@@ -1488,8 +1489,18 @@ void LLVOAvatar::getSpatialExtents(LLVector3& newMin, LLVector3& newMax)
 				if (bridge)
 				{
 					const LLVector3* ext = bridge->getSpatialExtents();
-					update_min_max(newMin,newMax,ext[0]);
-					update_min_max(newMin,newMax,ext[1]);
+					LLVector3 distance = (ext[1] - ext[0]);
+					
+					// Only add the prim to spatial extents calculations if it isn't a megaprim.
+					// max_attachment_span calculated at the start of the function 
+					// (currently 5 times our max prim size) 
+					if (distance.mV[0] < max_attachment_span 
+						&& distance.mV[1] < max_attachment_span
+						&& distance.mV[2] < max_attachment_span)
+					{
+						update_min_max(newMin,newMax,ext[0]);
+						update_min_max(newMin,newMax,ext[1]);
+					}
 				}
 			}
 		}
