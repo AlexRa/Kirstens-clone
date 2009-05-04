@@ -5645,14 +5645,14 @@
                 color="198, 71, 71, 0" />
 
                <value
-                color="198, 71, 71, 255" />
+                color="198, 71, 71, 0" />
             </param_color>
          </param>
       </layer>
 
 	  <layer
        name="freckles"
-       fixed_color="120,47,20,128">
+       fixed_color="120,47,20,0">
          <param
           id="165"
           group="0"
@@ -5691,7 +5691,7 @@
                 color="255, 255, 255, 0" />
 
                <value
-                color="255, 255, 255, 64" />
+                color="255, 255, 255, 0" />
             </param_color>
          </param>
       </layer>
@@ -5719,7 +5719,7 @@
                 color="220, 115, 115, 0" />
 
                <value
-                color="220, 115, 115, 128" />
+                color="220, 115, 115, 0" />
             </param_color>
          </param>
       </layer>
@@ -5791,7 +5791,7 @@
                 color="255,255,255,0" />
 
                <value
-                color="255,255,255,255" />
+                color="255,255,255,0" />
             </param_color>
          </param>
       </layer>
@@ -5831,7 +5831,7 @@
                 color="255,255,255,0" />
 
                <value
-                color="255,255,255,255" />
+                color="255,255,255,0" />
             </param_color>
          </param>
       </layer>
@@ -5853,34 +5853,34 @@
           camera_distance=".25">
             <param_color>
                <value
-                color="245,161,177,200" />
+                color="245,161,177,0" />
 
                <value
-                color="216,37,67,200" />
+                color="216,37,67,0" />
 
                <value
-                color="178,48,76,200" />
+                color="178,48,76,0" />
 
                <value
-                color="68,0,11,200" />
+                color="68,0,11,0" />
 
                <value
-                color="252,207,184,200" />
+                color="252,207,184,0" />
 
                <value
-                color="241,136,106,200" />
+                color="241,136,106,0" />
 
                <value
-                color="208,110,85,200" />
+                color="208,110,85,0" />
 
                <value
-                color="106,28,18,200" />
+                color="106,28,18,0" />
 
                <value
-                color="58,26,49,200" />
+                color="58,26,49,0" />
 
                <value
-                color="14,14,14,200" />
+                color="14,14,14,0" />
             </param_color>
          </param>
 
@@ -5906,7 +5906,7 @@
 
       <layer
        name="lipgloss"
-       fixed_color="255,255,255,190">
+       fixed_color="255,255,255,0">
          <param
           id="702"
           name="Lipgloss"
@@ -5966,28 +5966,28 @@
           camera_angle="20">
             <param_color>
                <value
-                color="253,162,193,200" />
+                color="253,162,193,0" />
 
                <value
-                color="247,131,152,200" />
+                color="247,131,152,0" />
 
                <value
-                color="213,122,140,200" />
+                color="213,122,140,0" />
 
                <value
-                color="253,152,144,200" />
+                color="253,152,144,0" />
 
                <value
                 color="236,138,103,200" />
 
                <value
-                color="195,128,122,200" />
+                color="195,128,122,0" />
 
                <value
-                color="148,103,100,200" />
+                color="148,103,100,0" />
 
                <value
-                color="168,95,62,200" />
+                color="168,95,62,0" />
             </param_color>
          </param>
 
@@ -6012,7 +6012,7 @@
                 color="255,255,255,0" />
 
                <value
-                color="255,255,255,255" />
+                color="255,255,255,0" />
             </param_color>
          </param>
       </layer>
@@ -6034,79 +6034,79 @@
           camera_elevation=".14">
             <param_color>
                <value
-                color="252,247,246,255" />
+                color="252,247,246,0" />
 
                <value
-                color="255,206,206,255" />
+                color="255,206,206,0" />
 
                <value
-                color="233,135,149,255" />
+                color="233,135,149,0" />
 
                <value
-                color="220,168,192,255" />
+                color="220,168,192,0" />
 
                <value
-                color="228,203,232,255" />
+                color="228,203,232,0" />
 
                <value
-                color="255,234,195,255" />
+                color="255,234,195,0" />
 
                <value
-                color="230,157,101,255" />
+                color="230,157,101,0" />
 
                <value
-                color="255,147,86,255" />
+                color="255,147,86,0" />
 
                <value
-                color="228,110,89,255" />
+                color="228,110,89,0" />
 
                <value
-                color="228,150,120,255" />
+                color="228,150,120,0" />
 
                <value
-                color="223,227,213,255" />
+                color="223,227,213,0" />
 
                <value
-                color="96,116,87,255" />
+                color="96,116,87,0" />
 
                <value
-                color="88,143,107,255" />
+                color="88,143,107,0" />
 
                <value
-                color="194,231,223,255" />
+                color="194,231,223,0" />
 
                <value
-                color="207,227,234,255" />
+                color="207,227,234,0" />
 
                <value
-                color="41,171,212,255" />
+                color="41,171,212,0" />
 
                <value
-                color="180,137,130,255" />
+                color="180,137,130,0" />
 
                <value
-                color="173,125,105,255" />
+                color="173,125,105,0" />
 
                <value
-                color="144,95,98,255" />
+                color="144,95,98,0" />
 
                <value
-                color="115,70,77,255" />
+                color="115,70,77,0" />
 
                <value
-                color="155,78,47,255" />
+                color="155,78,47,0" />
 
                <value
-                color="239,239,239,255" />
+                color="239,239,239,0" />
 
                <value
-                color="194,194,194,255" />
+                color="194,194,194,0" />
 
                <value
-                color="120,120,120,255" />
+                color="120,120,120,0" />
 
                <value
-                color="10,10,10,255" />
+                color="10,10,10,0" />
             </param_color>
          </param>
 
@@ -6130,7 +6130,7 @@
                 color="255,255,255,0" />
 
                <value
-                color="255,255,255,255" />
+                color="255,255,255,0" />
             </param_color>
          </param>
 
@@ -6171,79 +6171,79 @@
           camera_elevation=".14">
             <param_color>
                <value
-                color="252,247,246,255" />
+                color="252,247,246,0" />
 
                <value
-                color="255,206,206,255" />
+                color="255,206,206,0" />
 
                <value
-                color="233,135,149,255" />
+                color="233,135,149,0" />
 
                <value
-                color="220,168,192,255" />
+                color="220,168,192,0" />
 
                <value
-                color="228,203,232,255" />
+                color="228,203,232,0" />
 
                <value
-                color="255,234,195,255" />
+                color="255,234,195,0" />
 
                <value
-                color="230,157,101,255" />
+                color="230,157,101,0" />
 
                <value
-                color="255,147,86,255" />
+                color="255,147,86,0" />
 
                <value
-                color="228,110,89,255" />
+                color="228,110,89,0" />
 
                <value
-                color="228,150,120,255" />
+                color="228,150,120,0" />
 
                <value
-                color="223,227,213,255" />
+                color="223,227,213,0" />
 
                <value
-                color="96,116,87,255" />
+                color="96,116,87,0" />
 
                <value
-                color="88,143,107,255" />
+                color="88,143,107,0" />
 
                <value
-                color="194,231,223,255" />
+                color="194,231,223,0" />
 
                <value
-                color="207,227,234,255" />
+                color="207,227,234,0" />
 
                <value
-                color="41,171,212,255" />
+                color="41,171,212,0" />
 
                <value
-                color="180,137,130,255" />
+                color="180,137,130,0" />
 
                <value
-                color="173,125,105,255" />
+                color="173,125,105,0" />
 
                <value
-                color="144,95,98,255" />
+                color="144,95,98,0" />
 
                <value
-                color="115,70,77,255" />
+                color="115,70,77,0" />
 
                <value
-                color="155,78,47,255" />
+                color="155,78,47,0" />
 
                <value
-                color="239,239,239,255" />
+                color="239,239,239,0" />
 
                <value
-                color="194,194,194,255" />
+                color="194,194,194,0" />
 
                <value
-                color="120,120,120,255" />
+                color="120,120,120,0" />
 
                <value
-                color="10,10,10,255" />
+                color="10,10,10,0" />
             </param_color>
          </param>
 
@@ -6267,7 +6267,7 @@
                 color="255,255,255,0" />
 
                <value
-                color="255,255,255,255" />
+                color="255,255,255,0" />
             </param_color>
          </param>
 
@@ -6447,7 +6447,7 @@
           value_max="1">
             <param_color>
                <value
-                color="255,255,255,255" />
+                color="255,255,255,0" />
 
                <value
                 color="255,255,255,0" />
@@ -6538,7 +6538,7 @@
             <param_color
              operation="multiply">
                <value
-                color="255,255,255,255" />
+                color="255,255,255,0" />
 
                <value
                 color="255,255,255,30" />
