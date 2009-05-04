@@ -7796,6 +7796,18 @@ void LLVOAvatar::processAvatarAppearance( LLMessageSystem* mesgsys )
 	unpackTEMessage(mesgsys, _PREHASH_ObjectData);
 //	dumpAvatarTEs( "POST processAvatarAppearance()" );
 
+	// prevent the overwriting of valid baked textures with invalid baked textures
+	for (U8 baked_index = 0; baked_index < mBakedTextureData.size(); baked_index++)
+	{
+		if (!isTextureDefined(mBakedTextureData[baked_index].mTextureIndex) 
+			&& mBakedTextureData[baked_index].mLastTextureIndex != IMG_DEFAULT
+			&& baked_index != BAKED_SKIRT)
+		{
+			setTEImage(mBakedTextureData[baked_index].mTextureIndex, gImageList.getImage(mBakedTextureData[baked_index].mLastTextureIndex));
+		}
+	}
+
+
 	//llinfos << "Received AvatarAppearance: " << (mIsSelf ? "(self): " : "(other): ")  << std::endl <<
 	//	(isTextureDefined(TEX_HEAD_BAKED)  ? "HEAD " : "head " ) << (getTEImage(TEX_HEAD_BAKED)->getID()) << std::endl <<
 	//	(isTextureDefined(TEX_UPPER_BAKED) ? "UPPER " : "upper " ) << (getTEImage(TEX_UPPER_BAKED)->getID()) << std::endl <<
