@@ -770,6 +770,7 @@ LLVOAvatar::LLVOAvatar(const LLUUID& id,
 		mBakedTextureData[i].mLastTextureIndex = IMG_DEFAULT_AVATAR;
 		mBakedTextureData[i].mTexLayerSet = NULL;
 		mBakedTextureData[i].mIsLoaded = false;
+		mBakedTextureData[i].mIsUsed = false;
 		mBakedTextureData[i].mMaskTexName = 0;
 		mBakedTextureData[i].mTextureIndex = getTextureIndex((EBakedTextureIndex)i);
 	}
@@ -4153,8 +4154,11 @@ U32 LLVOAvatar::renderSkinned(EAvatarRenderPass pass)
 	if (pass == AVATAR_RENDER_PASS_SINGLE)
 	{
 		const bool should_alpha_mask = mHasBakedHair && isTextureDefined(TEX_HEAD_BAKED) && isTextureDefined(TEX_UPPER_BAKED) 
-										&& isTextureDefined(TEX_LOWER_BAKED) && mBakedTextureData[BAKED_HEAD].mIsLoaded
+										&& isTextureDefined(TEX_LOWER_BAKED) 
+										&& mBakedTextureData[BAKED_HEAD].mIsLoaded
 										&& mBakedTextureData[BAKED_UPPER].mIsLoaded && mBakedTextureData[BAKED_LOWER].mIsLoaded
+										&& mBakedTextureData[BAKED_HEAD].mIsUsed
+										&& mBakedTextureData[BAKED_UPPER].mIsUsed && mBakedTextureData[BAKED_LOWER].mIsUsed
 										&& !LLDrawPoolAlpha::sShowDebugAlpha // Don't alpha mask if "Highlight Transparent" checked
 										&& !(isSelf() && gAgent.cameraCustomizeAvatar()); // don't alpha mask if in customize mode
 
@@ -4272,7 +4276,11 @@ U32 LLVOAvatar::renderRigid()
 	if (isTextureVisible(TEX_EYES_BAKED) || mIsDummy)
 	{
 		// If the meshes need to be drawn, enable alpha masking but not blending
-		bool should_alpha_mask = mHasBakedHair && mBakedTextureData[BAKED_EYES].mIsLoaded && !(isSelf() && gAgent.cameraCustomizeAvatar());
+		bool should_alpha_mask = mHasBakedHair 
+					&& mBakedTextureData[BAKED_EYES].mIsLoaded
+					&& mBakedTextureData[BAKED_EYES].mIsUsed
+					&& !(isSelf() && gAgent.cameraCustomizeAvatar());
+
 		LLGLState test(GL_ALPHA_TEST, should_alpha_mask);
 		
 		if (should_alpha_mask)
@@ -6907,6 +6915,7 @@ void LLVOAvatar::updateMeshTextures()
 		if (use_lkg_baked_layer[i] && !self_customizing )
 		{
 			LLViewerImage* baked_img = gImageList.getImageFromHost( mBakedTextureData[i].mLastTextureIndex, target_host );
+			mBakedTextureData[i].mIsUsed = TRUE;
 			for (U32 k=0; k < mBakedTextureData[i].mMeshes.size(); k++)
 			{
 				mBakedTextureData[i].mMeshes[k]->setTexture( baked_img );
@@ -6936,6 +6945,7 @@ void LLVOAvatar::updateMeshTextures()
 		{
 			mBakedTextureData[i].mTexLayerSet->createComposite();
 			mBakedTextureData[i].mTexLayerSet->setUpdatesEnabled( TRUE );
+			mBakedTextureData[i].mIsUsed = FALSE;			
 			for (U32 k=0; k < mBakedTextureData[i].mMeshes.size(); k++)
 			{
 				mBakedTextureData[i].mMeshes[k]->setLayerSet( mBakedTextureData[i].mTexLayerSet );
@@ -6946,7 +6956,7 @@ void LLVOAvatar::updateMeshTextures()
 	// ! BACKWARDS COMPATIBILITY !
 	// Workaround for viewing avatars from old viewers that haven't baked hair textures.
 	// if (!isTextureDefined(mBakedTextureData[BAKED_HAIR].mTextureIndex))
-	if (!is_layer_baked[BAKED_HAIR])
+	if (!is_layer_baked[BAKED_HAIR] || self_customizing)
 	{
 		const LLColor4 color = mTexHairColor ? mTexHairColor->getColor() : LLColor4(1,1,1,1);
 		LLViewerImage* hair_img = getTEImage( TEX_HAIR );
@@ -7768,7 +7778,7 @@ void LLVOAvatar::processAvatarAppearance( LLMessageSystem* mesgsys )
 	}
 	
 	LLMemType mt(LLMemType::MTYPE_AVATAR);
-	
+
 //	llinfos << "processAvatarAppearance start " << mID << llendl;
 	BOOL is_first_appearance_message = !mFirstAppearanceMessageReceived;
 
@@ -8098,6 +8108,7 @@ void LLVOAvatar::useBakedTexture( const LLUUID& id )
 		if (id == image_baked->getID())
 		{
 			mBakedTextureData[i].mIsLoaded = true;
+			mBakedTextureData[i].mIsUsed = true;
 			mBakedTextureData[i].mLastTextureIndex = id;
 			for (U32 k = 0; k < mBakedTextureData[i].mMeshes.size(); k++)
 			{
