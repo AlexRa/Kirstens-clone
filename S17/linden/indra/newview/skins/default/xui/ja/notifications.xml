@@ -94,23 +94,17 @@
 	</notification>
 	<notification name="BadInstallation">
 		Second Lifeをアップデート中にエラーが発生しました。 secondlife.comから最新バージョンをダウンロードしてください。
-    <usetemplate
-     name="okbutton"
-     yestext="OK"/>
+		<usetemplate name="okbutton" yestext="OK"/>
 	</notification>
 	<notification name="LoginFailedNoNetwork">
 		ネットワークエラー： 接続が確立できませんでした。 
 「[DIAGNOSTIC]」
 ネットワーク接続を確認してください。
-	<usetemplate
-     name="okbutton"
-     yestext="OK"/>
+		<usetemplate name="okbutton" yestext="OK"/>
 	</notification>
 	<notification name="MessageTemplateNotFound">
 		メッセージテンプレート [PATH] がありませんでした。
-	<usetemplate
-     name="okbutton"
-     yestext="OK"/>
+		<usetemplate name="okbutton" yestext="OK"/>
 	</notification>
 	<notification name="WearableSave">
 		現在の衣服/ボディーパーツの変更を保存しますか？
@@ -216,20 +210,14 @@
 		<url name="url">
 			https://support.secondlife.com/ics/support/default.asp?deptID=4417&amp;task=knowledge&amp;questionID=5046
 		</url>
-    <usetemplate
-     name="okcancelbuttons"
-     yestext="ナレッジベースを開く"
-	 notext="閉じる" />
+		<usetemplate name="okcancelbuttons" notext="閉じる" yestext="ナレッジベースを開く"/>
 	</notification>
 	<notification name="ClickSearchHelpAll">
 		検索結果は今見ているタブ、あなたのレーティング区分、選択したカテゴリその他を元に編成されています。 詳細はナレッジベースをご覧ください。
 		<url name="url">
 			https://support.secondlife.com/ics/support/default.asp?deptID=4417&amp;task=knowledge&amp;questionID=4722
 		</url>
-    <usetemplate
-     name="okcancelbuttons"
-     yestext="ナレッジベースを開く"
-	 notext="閉じる" />
+		<usetemplate name="okcancelbuttons" notext="閉じる" yestext="ナレッジベースを開く"/>
 	</notification>
 	<notification name="ClickPublishHelpLandDisabled">
 		この区画は検索を禁ずる地域にあるため、
@@ -746,6 +734,48 @@ L$が不足しているのでこのグループに参加することができま
 	<notification name="CouldNotTeleportReason">
 		テレポートに失敗しました。
 [REASON]
+	</notification>
+	<notification name="invalid_tport">
+		テレポート・リクエストの処理中に問題が発生しました。テレポートするには、再度ログインする必要があります。
+このメッセージが引き続き表示される場合は、技術サポートFAQ（www.secondlife.com/support）を参照してください。
+	</notification>
+	<notification name="invalid_region_handoff">
+		地域間の移動の処理中に問題が発生しました。地域間を移動するには、再度ログインする必要があります。
+このメッセージが引き続き表示される場合は、技術サポートFAQ（www.secondlife.com/support）を参照してください。
+	</notification>
+	<notification name="blocked_tport">
+		申し訳ございません。テレポートは現在、ブロックされています。もう少し後でやり直してください。
+やり直してもテレポートできない場合は、いったんログアウトし、再度ログインして問題を解決してください。
+	</notification>
+	<notification name="nolandmark_tport">
+		残念ながら、システムはランドマーク目的地を探せませんでした。
+	</notification>
+	<notification name="timeout_tport">
+		申し訳ございません。システムはテレポート接続を完了できませんでした。
+もう少し後でやり直してください。
+	</notification>
+	<notification name="noaccess_tport">
+		残念ながら、そのテレポート目的地へのアクセスがありません。
+	</notification>
+	<notification name="missing_attach_tport">
+		添付物は、まだ到着していません。あと数秒間お待ちいただくか、いったんログアウトし、再度ログインしてからテレポートをやり直してださい。
+	</notification>
+	<notification name="too_many_uploads_tport">
+		この地域の資産キューが現在込み合っているため、テレポート・リクエストを時間通りに処理することが難しい状況です。
+数分後にやり直すか、または混雑していない他の地域をお試しください。
+	</notification>
+	<notification name="expired_tport">
+		申し訳ございません。システムはテレポート・リクエストを時間どおりに完了できませんでした。数分後にやり直してください。
+	</notification>
+	<notification name="expired_region_handoff">
+		申し訳ございません。システムは地域間の移動を時間どおりに完了できませんでした。
+数分後にやり直してください。
+	</notification>
+	<notification name="no_host">
+		テレポート目的地を見つけられません。目的地が一時的に利用できない状態か、またはすでに消滅している可能性があります。数分後にやり直してください。
+	</notification>
+	<notification name="no_inventory_host">
+		持ち物システムは現在利用できません。
 	</notification>
 	<notification name="CannotSetLandOwnerNothingSelected">
 		土地所有者設定ができません：
@@ -1541,22 +1571,16 @@ F1キーを押してください。
 		あなたのレーティング区分により、その地域（リージョン）へは入ることができません。 年齢を確認する際の情報に不足があったためと考えられます。
 
 最新ビューワがインストールされているかをご確認ください。このレーティング区分でのアクセスに関する詳細はナレッジベースをご覧ください。
-    <usetemplate
-     name="okbutton"
-     yestext="OK"/>
+		<usetemplate name="okbutton" yestext="OK"/>
 	</notification>
 	<notification name="RegionEntryAccessBlocked_KB">
-		あなたのレーティング区分により、その地域（リージョン）へは入ることができません。 
+		あなたのレーティング区分により、その地域（リージョン）へは入ることができません。
 
 ナレッジベースを開きレーティング区分について学びますか？
 		<url name="url">
 			https://support.secondlife.com/ics/support/default.asp?deptID=4417&amp;task=knowledge&amp;questionID=6010
 		</url>
-    <usetemplate
-     name="okcancelignore"
-     yestext="ナレッジベースを開く"
-	 notext="閉じる"
-	 ignoretext="レーティング区分によって地域（リージョン）に入れないとき"/>
+		<usetemplate ignoretext="レーティング区分によって地域（リージョン）に入れないとき" name="okcancelignore" notext="閉じる" yestext="ナレッジベースを開く"/>
 	</notification>
 	<notification name="RegionEntryAccessBlocked_Notify">
 		あなたのレーティング区分により、その地域（リージョン）へは入ることができません。
@@ -1564,33 +1588,32 @@ F1キーを押してください。
 	<notification name="RegionEntryAccessBlocked_Change">
 		あなたのレーティング区分設定により、その地域（リージョン）へは入ることができません。
 
-「設定を変更」をクリックするとあなたのレーティング区分が設定され、入れるようになります。 今後 [REGIONMATURITY] コンテンツへのアクセスが可能です。設定を元に戻したい場合は「環境設定」の「一般」タブから行ってください。
-    <usetemplate
-     name="okcancelignore"
-     yestext="設定の変更"
-	 notext="閉じる"
-	 ignoretext="レーティング区分設定によって地域（リージョン）に入れないとき"/>
+「設定を変更」をクリックするとあなたのレーティング区分が上がり、入れるようになります。 あなたは今後 [REGIONMATURITY] コンテンツの検索及びアクセスが可能となります。. あとで設定を元に戻したい場合は、「編集」＞「環境設定」をご覧ください。 ＞「一般」
+	<form>
+      <button
+       name="OK"
+       text="設定の変更"/>
+      <button
+       default="true"
+       name="Cancel"
+       text="閉じる"/>
+       <ignore text="レーティング区分設定によって地域（リージョン）に入れないとき"/>
+    </form>
 	</notification>
 	<notification name="LandClaimAccessBlocked">
-		あなたのレーティング区分により、この土地を取得することはできません。
+		あなたのレーティング区分により、この土地を取得することはできません。 年齢を確認する際の情報に不足があったためと考えられます。
 
-年齢を確認する際の情報に不足があったためと考えられます。 最新ビューワがインストールされているかをご確認ください。このレーティング区分でのアクセスに関する詳細はナレッジベースをご覧ください。
-    <usetemplate
-     name="okbutton"
-     yestext="OK"/>
+最新ビューワがインストールされているかをご確認ください。このレーティング区分でのアクセスに関する詳細はナレッジベースをご覧ください。
+		<usetemplate name="okbutton" yestext="OK"/>
 	</notification>
 	<notification name="LandClaimAccessBlocked_KB">
-		あなたのレーティング区分により、この土地を取得することはできません。 
+		あなたのレーティング区分により、この土地を取得することはできません。
 
 ナレッジベースを開きレーティング区分について学びますか？
 		<url name="url">
 			https://support.secondlife.com/ics/support/default.asp?deptID=4417&amp;task=knowledge&amp;questionID=6010
 		</url>
-    <usetemplate
-     name="okcancelignore"
-     yestext="ナレッジベースを開く"
-	 notext="閉じる"
-	 ignoretext="レーティング区分によって土地を取得できないとき"/>
+		<usetemplate ignoretext="レーティング区分によって土地を取得できないとき" name="okcancelignore" notext="閉じる" yestext="ナレッジベースを開く"/>
 	</notification>
 	<notification name="LandClaimAccessBlocked_Notify">
 		あなたのレーティング区分により、この土地を取得することはできません。
@@ -1598,46 +1621,35 @@ F1キーを押してください。
 	<notification name="LandClaimAccessBlocked_Change">
 		あなたのレーティング区分設定により、この土地を取得することはできません。
 
-「設定を変更」をクリックするとあなたのレーティング区分が設定され、入れるようになります。 今後 [REGIONMATURITY] コンテンツへのアクセスが可能です。設定を元に戻したい場合は「環境設定」の「一般」タブから行ってください。
-    <usetemplate
-     name="okcancelignore"
-     yestext="設定の変更"
-	 notext="閉じる"
-	 ignoretext="レーティング区分設定によって土地を取得できないとき"/>
+「設定を変更」をクリックするとあなたのレーティング区分が上がり、入れるようになります。 あなたは今後 [REGIONMATURITY] コンテンツの検索及びアクセスが可能となります。. あとで設定を元に戻したい場合は、「編集」＞「環境設定」をご覧ください。 ＞「一般」
+		<usetemplate ignoretext="レーティング区分設定によって土地を取得できないとき" name="okcancelignore" notext="閉じる" yestext="設定の変更"/>
 	</notification>
 	<notification name="LandBuyAccessBlocked">
-		あなたのレーティング区分により、この土地を購入することはできません。
+		あなたのレーティング区分により、この土地を購入することはできません。 年齢を確認する際の情報に不足があったためと考えられます。
 
-年齢を確認する際の情報に不足があったためと考えられます。 最新ビューワがインストールされているかをご確認ください。このレーティング区分でのアクセスに関する詳細はナレッジベースをご覧ください。
-    <usetemplate
-     name="okbutton"
-     yestext="OK"/>
+最新ビューワがインストールされているかをご確認ください。このレーティング区分でのアクセスに関する詳細はナレッジベースをご覧ください。
+		<usetemplate name="okbutton" yestext="OK"/>
 	</notification>
 	<notification name="LandBuyAccessBlocked_KB">
-		あなたのレーティング区分により、この土地を購入することはできません。 
+		あなたのレーティング区分により、この土地を購入することはできません。
 
 ナレッジベースを開きレーティング区分について学びますか？
 		<url name="url">
 			https://support.secondlife.com/ics/support/default.asp?deptID=4417&amp;task=knowledge&amp;questionID=6010
 		</url>
-    <usetemplate
-     name="okcancelignore"
-     yestext="ナレッジベースを開く"
-	 notext="閉じる"
-	 ignoretext="レーティング区分によって土地を購入できないとき"/>
+		<usetemplate ignoretext="レーティング区分によって土地を購入できないとき" name="okcancelignore" notext="閉じる" yestext="ナレッジベースを開く"/>
 	</notification>
 	<notification name="LandBuyAccessBlocked_Notify">
 		あなたのレーティング区分により、この土地を購入することはできません。
 	</notification>
 	<notification name="LandBuyAccessBlocked_Change">
-		あなたのレーティング区分設定により、この土地を購入することができません。 
+		あなたのレーティング区分設定により、この土地を購入することができません。
 
-「設定を変更」をクリックするとあなたのレーティング区分が設定され、入れるようになります。 今後 [REGIONMATURITY] コンテンツへのアクセスが可能です。設定を元に戻したい場合は「環境設定」の「一般」タブから行ってください。
-    <usetemplate
-     name="okcancelignore"
-     yestext="設定の変更"
-	 notext="閉じる"
-	 ignoretext="レーティング区分設定によって土地を購入できないとき"/>
+「設定を変更」をクリックするとあなたのレーティング区分が上がり、入れるようになります。 あなたは今後 [REGIONMATURITY] コンテンツの検索及びアクセスが可能となります。. あとで設定を元に戻したい場合は、「編集」＞「環境設定」をご覧ください。 ＞「一般」
+		<usetemplate ignoretext="レーティング区分設定によって土地を購入できないとき" name="okcancelignore" notext="閉じる" yestext="設定の変更"/>
+	</notification>
+	<notification name="TooManyPrimsSelected">
+		「選択したプリムが多すぎます。  [MAX_PRIM_COUNT] を選択するか、プリム数を減らしてもう一度お試しください。」
 	</notification>
 	<notification name="ProblemImportingEstateCovenant">
 		不動産約款のインポート時に問題発生。
@@ -1668,19 +1680,11 @@ L$[AMOUNT]で、このクラシファイド広告を今すぐ公開しますか�
 	</notification>
 	<notification name="SetClassifiedMature">
 		この広告にMatureコンテンツは含まれていますか？
-    <usetemplate
-     canceltext="キャンセル"
-     name="yesnocancelbuttons"
-     notext="いいえ"
-     yestext="はい"/>
+		<usetemplate canceltext="キャンセル" name="yesnocancelbuttons" notext="いいえ" yestext="はい"/>
 	</notification>
 	<notification name="SetGroupMature">
 		この広告にMatureコンテンツは含まれていますか？
-    <usetemplate
-     canceltext="キャンセル"
-     name="yesnocancelbuttons"
-     notext="いいえ"
-     yestext="はい"/>
+		<usetemplate canceltext="キャンセル" name="yesnocancelbuttons" notext="いいえ" yestext="はい"/>
 	</notification>
 	<notification label="再起動を確認" name="ConfirmRestart">
 		この地域を2分後に再起動しようとしています。操作を続行しますか？
@@ -1705,6 +1709,21 @@ L$[AMOUNT]で、このクラシファイド広告を今すぐ公開しますか�
 		このボックスをチェックすると、区画ごとの「飛行」設定に関わらず飛行ができなくなります。
 
 デフォルト：オフ
+	</notification>
+	<notification label="コンテンツ権限の一括変更" name="HelpBulkPermission">
+		権限の一括変更ツールでは、選択した複数のアイテムの権限を素早く変更することが可能です。  しかし選択したオブジェクトのコンテンツの中身の権限設定をするだけで、オブジェクトそのものではないことにご注意ください。  
+
+また、権限は中にあるアイテムのその中身には適用されないこともご注意ください。  1段階層のアイテムのみへのリクエストとなります。
+
+「コンテンツの種類」にあるチェックリストを使って、修正するアイテムの種類を選択します。 テクスチャーを選択すると、スナップショットも含まれます。
+
+* このツールの使用は、あなたが変更することのできるアイテムにのみ有効です。
+* 次のオーナーの権限があなたにない場合は、適用されません。
+* 次のオーナーの権限は単にリクエストにすぎません。 どれか一つのアイテムでも新しい権限の設定を受け付けない場合、すべての権限の設定はそのまま維持されます。
+
+一括変更の準備ができたら、「適用」をクリックして結果が表示されるのをお待ちください。
+
+権限変更中に権限の一括変更ウィンドウを閉じた場合、処理は停止されます。
 	</notification>
 	<notification label="ダメージ許可" name="HelpRegionAllowDamage">
 		このボックスをチェックすると、各区画の個別の設定にかかわらず、全ての区画における
@@ -2949,7 +2968,7 @@ Second Lifeのウェブサイトにアクセスして、設定しますか？
 
 ロード元のオブジェクト：[OBJECTNAME]、オーナー：[NAME]？
 		<form name="form">
-			<button name="Gotopage" text="ページに移動"/>
+			<button name="Gotopage" text="移動"/>
 			<button name="Cancel" text="取り消し"/>
 		</form>
 	</notification>
@@ -3017,19 +3036,16 @@ Second Lifeのウェブサイトにアクセスして、設定しますか？
 	<notification name="FirstMap">
 		地図をスクロールするには、クリックしてドラッグします。
 テレポートするには、ダブルクリックします。
-右側のコントロールを使用すると、物を見つけたり、
-別の背景を表示することができます。
+右側のコントロールを使用すると、物を見つけたり、別の背景を表示することができます。
 	</notification>
 	<notification name="FirstBuild">
-		[SECOND_LIFE]には、新しいオブジェクトを作ることができる地域があります。
-作成には画面上部左のツールが使え、Ctrl キーや
- Alt キーを押したままにすれば素早くツールを切り替えられます。
+		[SECOND_LIFE] には、新しいオブジェクトを作ることができる地域があります。
+作成には画面上部左のツールが使え、Ctrl キーや Alt キーを押したままにすれば素早くツールを切り替えられます。
  Escキーを押すと、作成は終了します。
 	</notification>
 	<notification name="FirstLeftClickNoHit">
 		左クリックにより、特別なオブジェクトを操作できます。
-マウス・ポインタが手のマークに変わる場合、
-ポイントしているオブジェクトを操作できます。
+マウス・ポインタが手のマークに変わる場合、ポイントしているオブジェクトを操作できます。
 右クリックにより、実行可能な操作のメニューが表示されます。
 	</notification>
 	<notification name="FirstTeleport">
@@ -3063,8 +3079,7 @@ Mキーを押して変更します。
 	</notification>
 	<notification name="FirstFlexible">
 		このオブジェクトは フレキシブルです。
-フレキシブル・チェックボックスのチェックが外されるまでは、
-オブジェクトは物理的でなくファントムでなければなりません。
+フレキシブル・チェックボックスのチェックが外されるまでは、オブジェクトは物理的でなくファントムでなければなりません。
 	</notification>
 	<notification name="FirstDebugMenus">
 		高度な設定を有効にしました。

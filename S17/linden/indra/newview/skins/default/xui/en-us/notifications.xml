@@ -3506,7 +3506,7 @@ You can selectively choose which types of items to modify by using the checklist
 
 * This tool will only succeed at changing permissions on items you are allowed to change.
 * You cannot grant any Next owner permissions which you do not already have.
-* The Next owner permissions are merely requests. If any item cannot take all of the new permissions, none its permissions will change.
+* The Next owner permissions are merely requests. If any item cannot take all of the new permissions, none of its permissions will change.
 
 When you are ready to change the permissions in bulk, click &apos;Apply&apos; and wait for the results to display.
 

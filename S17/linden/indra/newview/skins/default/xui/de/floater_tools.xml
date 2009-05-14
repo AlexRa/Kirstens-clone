@@ -114,7 +114,7 @@
 			<text name="perm_modify">
 				Sie können dieses Objekt ändern.
 			</text>
-			<check_box label="Mit Gruppe teilen" left="6" name="checkbox share with group" tool_tip="Gruppenmitgliedern Verschieben, Ändern, Kopieren und Löschen gestatten."/>
+			<check_box label="Mit Gruppe teilen" left="6" name="checkbox share with group" tool_tip="Allen Mitgliedern der zugeordneten Gruppe die Erlaubnis erteilen, Ihre Berechtigungen für dieses Objekt zu teilen und zu verwenden. Sie müssen Übereignen, um Rollenbeschränkungen zu aktivieren."/>
 			<string name="text deed continued">
 				Übertragung...
 			</string>

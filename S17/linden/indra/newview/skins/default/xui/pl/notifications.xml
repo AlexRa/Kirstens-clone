@@ -2781,7 +2781,7 @@ Nastąpi wylogowanie jeżeli zostaniesz w tym regionie.
 
 Obiekt: [OBJECTNAME], właściciel: [NAME]?
 		<form name="form">
-			<button name="Gotopage" text="Idź na stronę"/>
+			<button name="Gotopage" text="Załaduj"/>
 			<button name="Cancel" text="Anuluj"/>
 		</form>
 	</notification>

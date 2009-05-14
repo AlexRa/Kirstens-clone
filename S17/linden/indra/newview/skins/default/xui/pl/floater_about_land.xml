@@ -165,14 +165,15 @@ Idź do Świat &gt; O Posiadłości albo wybierz inną posiadłość żeby pokaz
 			<text name="resellable_lbl">
 				Odsprzedaj:
 			</text>
-			<text length="1" name="resellable_clause" type="string">
+			<text length="1" name="resellable_clause" type="string" width="338">
 				Posiadłość zakupiona w tym regionie nie może być odsprzedana.
 			</text>
 			<text name="changeable_lbl">
 				Podziel:
 			</text>
-			<text length="1" name="changeable_clause" type="string">
-				Posiadłość zakupiona w tym regionie nie może być łączona/dzielona
+			<text length="1" name="changeable_clause" type="string" width="338">
+				Posiadłość zakupiona w tym regionie nie może być
+łączona/dzielona.
 			</text>
 			<string name="can_resell">
 				Posiadłość zakupiona w tym regionie może być odsprzedana.
@@ -181,10 +182,11 @@ Idź do Świat &gt; O Posiadłości albo wybierz inną posiadłość żeby pokaz
 				Posiadłość zakupiona w tym regionie nie może być odsprzedana.
 			</string>
 			<string name="can_change">
-				Posiadłość zakupiona w tym regionie może być łączona/dzielona
+				Posiadłość zakupiona w tym regionie może być łączona/dzielona.
 			</string>
 			<string name="can_not_change">
-				Posiadłość zakupiona w tym regionie nie może być łączona/dzielona
+				Posiadłość zakupiona w tym regionie nie może być
+łączona/dzielona.
 			</string>
 		</panel>
 		<panel label="Obiekty" name="land_objects_panel">
@@ -390,7 +392,7 @@ Jedynie większe posiadłości mogą być umieszczone w bazie wyszukiwarki.
 				Twoja posiadłość bądź treść jaką zawiera klasyfikowana jest jako &apos;Mature&apos;.
 			</string>
 			<string name="mature_check_adult_tooltip">
-				Informacje o Twojej posiadłości i treści jaką zawiera klasyfikowane są jako &apos;Mature&apos;.
+				Informacje o Twojej posiadłości i treści jaką zawiera klasyfikowane są jako &apos;Adult&apos;.
 			</string>
 			<text length="1" name="Snapshot:" type="string">
 				Zdjęcie:
@@ -471,7 +473,7 @@ Mediów:
 				Dźwięk:
 			</text>
 			<check_box label="Restrykcja obiektów oraz gestur dozwolonych w tej posiadłości" name="check sound local"/>
-			<button label="?" label_selected="?" name="?"/>
+			<button label="?" label_selected="?" name="?" left="432"/>
 			<text length="1" name="Voice settings:" type="string">
 				Głos:
 			</text>

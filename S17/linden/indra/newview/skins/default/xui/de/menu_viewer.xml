@@ -23,7 +23,7 @@
 	</menu>
 	<menu label="Bearbeiten" name="Edit">
 		<menu_item_call label="Rückgängig" name="Undo"/>
-		<menu_item_call label="Neu" name="Redo"/>
+		<menu_item_call label="Wiederherstellen" name="Redo"/>
 		<menu_item_separator label="-----------" name="separator"/>
 		<menu_item_call label="Ausschneiden" name="Cut"/>
 		<menu_item_call label="Kopieren" name="Copy"/>

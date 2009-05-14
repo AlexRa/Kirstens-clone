@@ -8,7 +8,7 @@
 			<menu_item_call label="Animation ([COST] L$)..." name="Upload Animation"/>
 			<menu_item_call label="Lot ([COST] L$ par fichier)..." name="Bulk Upload"/>
 			<menu_item_separator label="-----------" name="separator"/>
-			<menu_item_call label="Définir les permissions par défaut..." name="perm prefs"/>
+			<menu_item_call label="Définir les droits par défaut..." name="perm prefs"/>
 		</menu>
 		<menu_item_separator label="-----------" name="separator"/>
 		<menu_item_call label="Fermer la fenêtre" name="Close Window"/>
@@ -183,7 +183,7 @@
 		<menu_item_call label="Désactiver les scripts dans la sélection" name="Set Scripts to Not Running in Selection"/>
 	</menu>
 	<menu label="Aide" name="Help">
-		<menu_item_call label="Aide Second Life" name="Second Life Help"/>
+		<menu_item_call label="Aide de Second Life" name="Second Life Help"/>
 		<menu_item_call label="Didacticiel" name="Tutorial"/>
 		<menu_item_separator label="-----------" name="separator"/>
 		<menu_item_call label="Blog officiel..." name="Official Linden Blog..."/>

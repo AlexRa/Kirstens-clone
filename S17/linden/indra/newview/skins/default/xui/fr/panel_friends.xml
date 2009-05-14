@@ -11,8 +11,8 @@
 		<column name="icon_edit_mine" tool_tip="Vos amis peuvent modifier, supprimer ou prendre vos objets"/>
 		<column name="icon_edit_theirs" tool_tip="Vous pouvez modifier les objets de cet ami"/>
 	</scroll_list>
-	<button label="IM/Appel" name="im_btn" tool_tip="Ouvrez une session de messagerie instantanée"/>
-	<button label="Profil" name="profile_btn" tool_tip="Affichez une photo, vos groupes et autres infos"/>
+	<button label="IM/Appel" name="im_btn" tool_tip="Envoyez un IM à ce résident"/>
+	<button label="Profil" name="profile_btn" tool_tip="Consultez le profil de ce résident (photos, groupes et autres infos)"/>
 	<button label="Téléporter..." name="offer_teleport_btn" tool_tip="Proposez à cet ami d&apos;être téléporté là où vous êtes"/>
 	<button label="Payer..." name="pay_btn" tool_tip="Donnez des L$ à cet ami"/>
 	<button label="Supprimer..." name="remove_btn" tool_tip="Supprimez cette personne de votre liste d&apos;amis"/>
