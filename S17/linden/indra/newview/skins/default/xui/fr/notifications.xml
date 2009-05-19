@@ -197,14 +197,14 @@ En cochant cette case, votre parcelle apparaîtra :
 	<notification name="ClickSoundHelpLand">
 		La musique et le média ne peuvent être utilisés que sur cette parcelle. Les options Son et Voix peuvent être limités à la parcelle ou seront entendus par les résidents en dehors de la parcelle, en fonction de leur catégorie d&apos;accès. Souhaitez-vous en savoir plus sur le paramétrage de ces options ?
 		<url name="url">
-			https://support.secondlife.com/ics/support/default.asp?deptID=4417&amp;task=knowledge&amp;questionID=5046
+			http://wiki.secondlife.com/wiki/M%C3%A9dias_sur_la_parcelle_(KB)
 		</url>
 		<usetemplate name="okcancelbuttons" notext="Fermer" yestext="Consulter les pages d&apos;aide"/>
 	</notification>
 	<notification name="ClickSearchHelpAll">
 		Les résultats de recherche sont organisés en fonction de l&apos;onglet dans lequel vous vous trouvez, votre catégorie d&apos;accès, la catégorie choisie, ainsi que d&apos;autres facteurs. Pour plus de détails, veuillez consulter les pages d&apos;aide.
 		<url name="url">
-			https://support.secondlife.com/ics/support/default.asp?deptID=4417&amp;task=knowledge&amp;questionID=4722
+			http://wiki.secondlife.com/wiki/FAQ_sur_la_recherche_(KB)
 		</url>
 		<usetemplate name="okcancelbuttons" notext="Fermer" yestext="Consulter les pages d&apos;aide"/>
 	</notification>
@@ -1491,7 +1491,7 @@ Vérifiez que vous avez la toute dernière version du client et consultez les pa
 
 Souhaitez-vous en savoir plus sur les différentes catégories d&apos;accès ?
 		<url name="url">
-			https://support.secondlife.com/ics/support/default.asp?deptID=4417&amp;task=knowledge&amp;questionID=6010
+			http://wiki.secondlife.com/wiki/Pr%C3%A9sentation_des_cat%C3%A9gories_de_contenu_(KB)
 		</url>
 		<usetemplate ignoretext="Lorsque l&apos;accès à une région est bloqué à cause de la catégorie d&apos;accès" name="okcancelignore" notext="Fermer" yestext="Consulter les pages d&apos;aide"/>
 	</notification>
@@ -1502,7 +1502,7 @@ Souhaitez-vous en savoir plus sur les différentes catégories d&apos;accès ?
 		Votre catégorie d&apos;accès ne vous permet pas de pénétrer dans cette région.
 
 En cliquant sur Modifier les préférences, vous pourrez changer votre catégorie d&apos;accès et pénétrer dans la région. À partir de maintenant, vous pouvez rechercher et accéder au contenu [REGIONMATURITY]. Vous pouvez modifier ce paramètre à partir du menu Édition &gt; Préférences... &gt; Général.
-	<form>
+	<form name="form">
       <button
        name="OK"
        text="Modifier les Préférences"/>
@@ -1510,7 +1510,7 @@ En cliquant sur Modifier les préférences, vous pourrez changer votre catégori
        default="true"
        name="Cancel"
        text="Fermer"/>
-       <ignore text="Lorsque l&apos;accès à une région est bloqué à cause des préférences concernant la catégorie d&apos;accès"/>
+       <ignore name="ignore" text="Lorsque l&apos;accès à une région est bloqué à cause des préférences concernant la catégorie d&apos;accès"/>
     </form>
 	</notification>
 	<notification name="LandClaimAccessBlocked">
@@ -1524,7 +1524,7 @@ Vérifiez que vous avez la toute dernière version du client et consultez les pa
 
 Souhaitez-vous en savoir plus sur les différentes catégories d&apos;accès ?
 		<url name="url">
-			https://support.secondlife.com/ics/support/default.asp?deptID=4417&amp;task=knowledge&amp;questionID=6010
+			http://wiki.secondlife.com/wiki/Pr%C3%A9sentation_des_cat%C3%A9gories_de_contenu_(KB)
 		</url>
 		<usetemplate ignoretext="Lorsqu&apos;une région ne peut pas être réclamée à cause de la catégorie d&apos;accès" name="okcancelignore" notext="Fermer" yestext="Consulter les pages d&apos;aide"/>
 	</notification>
@@ -1548,7 +1548,7 @@ Vérifiez que vous avez la toute dernière version du client et consultez les pa
 
 Souhaitez-vous en savoir plus sur les différentes catégories d&apos;accès ?
 		<url name="url">
-			https://support.secondlife.com/ics/support/default.asp?deptID=4417&amp;task=knowledge&amp;questionID=6010
+			http://wiki.secondlife.com/wiki/Pr%C3%A9sentation_des_cat%C3%A9gories_de_contenu_(KB)
 		</url>
 		<usetemplate ignoretext="Lorsqu&apos;une région ne peut pas être achetée à cause de la catégorie d&apos;accès" name="okcancelignore" notext="Fermer" yestext="Consulter les pages d&apos;aide"/>
 	</notification>

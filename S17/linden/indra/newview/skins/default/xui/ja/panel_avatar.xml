@@ -198,11 +198,11 @@
 		あなたのロケーションに強制テレポート
 	</string>
 	<string name="TeleportPrelude">
-		あなたのロケーションへのテレポートを贈ります。
+		あなたのロケーションへのテレポートを送ります。
 あなたがオリエンテーション・アイランドを去るまで無効です。
 	</string>
 	<string name="TeleportNormal">
-		あなたのロケーションへのテレポートを贈ります。
+		あなたのロケーションへのテレポートを送ります。
 	</string>
 	<string name="Loading">
 		ローディング．．．

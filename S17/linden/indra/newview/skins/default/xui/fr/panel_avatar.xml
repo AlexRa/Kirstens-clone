@@ -17,7 +17,7 @@
 				Membre originaire
 			</string>
 			<string name="AcctTypeEmployee">
-				Employé de Linden Lab
+				Employé(e) de Linden Lab
 			</string>
 			<string name="PaymentInfoUsed">
 				Infos de paiement utilisées
@@ -26,7 +26,7 @@
 				Infos de paiement enregistrées
 			</string>
 			<string name="NoPaymentInfoOnFile">
-				Aucune info de paiement enregistrée
+				Aucune info de paiement
 			</string>
 			<string name="AgeVerified">
 				Âge vérifié
@@ -137,7 +137,7 @@ objets :
 				Faites connaître aux autres résidents vos endroits favoris dans Second Life.
 			</text>
 			<button label="Créer..." label_selected="Créer..." name="New..."/>
-			<button label="Supprimer..." label_selected="Supprimer..." name="Delete..."/>
+			<button label="Supprimer..." label_selected="Supprimer..." name="Delete..." width="85"/>
 			<tab_container name="picks tab" width="452" />
 			<text name="loading_text">
 				Chargement...
@@ -148,7 +148,7 @@ objets :
 				Passez une petite annonce sur Second Life.
 			</text>
 			<button label="Créer..." label_selected="Créer..." name="New..."/>
-			<button label="Supprimer..." label_selected="Supprimer..." name="Delete..."/>
+			<button label="Supprimer..." label_selected="Supprimer..." name="Delete..." width="85"/>
 			<tab_container name="classified tab" width="452" />
 			<text name="loading_text">
 				Chargement...

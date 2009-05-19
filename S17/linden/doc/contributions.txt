@@ -563,6 +563,7 @@ Vadim Bigbear
 	VWR-2681
 Vixen Heron
 	VWR-2710
+	CT-88
 Whoops Babii
 	VWR-631
 	VWR-1640

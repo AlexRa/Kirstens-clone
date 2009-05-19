@@ -3226,7 +3226,7 @@ You are not allowed in that region due to your maturity Rating.
 You are not allowed in that Region due to your maturity Rating preference.
 
 You can click &apos;Change Preference&apos; to raise your maturity Rating preference now and allow you to enter. You will be able to search and access [REGIONMATURITY] content from now on. If you later want to change this setting back, go to Edit &gt; Preferences... &gt; General.
-	 <form>
+	 <form name="form">
       <button
        index="0"
        name="OK"
@@ -3236,7 +3236,7 @@ You can click &apos;Change Preference&apos; to raise your maturity Rating prefer
        index="1"
        name="Cancel"
        text="Close"/>
-       <ignore text="When Region entry is blocked due to maturity Rating preference"/>
+       <ignore name="ignore" text="When Region entry is blocked due to maturity Rating preference"/>
     </form>
   </notification>
 

@@ -204,14 +204,14 @@ Dieses Kontrollkästchen zeigt Folgendes an:
 	<notification name="ClickSoundHelpLand">
 		Medien und Musik können nur innerhalb der Parzelle abgespielt werden. Sound- und Voice-Chat-Optionen können auf die Parzelle beschränkt werden oder von Einwohnern außerhalb der Parzelle, entsprechend ihrer Alterseinstufung, gehört werden. Möchten Sie unsere Knowledgebase besuchen, um mehr darüber zu erfahren, wie diese Optionen eingestellt werden können?
 		<url name="url">
-			https://support.secondlife.com/ics/support/default.asp?deptID=4417&amp;task=knowledge&amp;questionID=5046
+			http://wiki.secondlife.com/wiki/Medien_auf_Parzellen_(KB)
 		</url>
 		<usetemplate name="okcancelbuttons" notext="Schließen" yestext="Zur Knowledgbase"/>
 	</notification>
 	<notification name="ClickSearchHelpAll">
 		Die Suchergebnisse wurde aufgrund der entsprechenden Registerkarte, Ihrer Alterseinstufung, der gewählten Kategorie und anderen Faktoren geordnet. Bitte besuchen Sie unsere Knowledgebase, um weitere Informationen zu erhalten.
 		<url name="url">
-			https://support.secondlife.com/ics/support/default.asp?deptID=4802&amp;task=knowledge&amp;questionID=5087
+			http://wiki.secondlife.com/wiki/FAQ_zur_Suchfunktion_(KB)
 		</url>
 		<usetemplate name="okcancelbuttons" notext="Schließen" yestext="Zur Knowledgbase"/>
 	</notification>
@@ -1508,7 +1508,7 @@ Bitte vergewissern Sie sich, dass Sie den aktuellsten Viewer installiert haben u
 
 Möchten Sie unsere Knowledgebase besuchen, um mehr Informationen über Altereinstufung zu erhalten?
 		<url name="url">
-			https://support.secondlife.com/ics/support/default.asp?deptID=4417&amp;task=knowledge&amp;questionID=6010
+			http://wiki.secondlife.com/wiki/Alterseinstufung:_Ein_%C3%9Cberblick_(KB)
 		</url>
 		<usetemplate ignoretext="Wenn Regionzugang aufgrund von Alterseinstufung gesperrt ist" name="okcancelignore" notext="Schließen" yestext="Zur Knowledgbase"/>
 	</notification>
@@ -1519,14 +1519,14 @@ Möchten Sie unsere Knowledgebase besuchen, um mehr Informationen über Alterein
 		Sie dürfen diese Region aufgrund der Einstellung Ihrer Alterseinstufung nicht betreten.
 
 Klicken Sie auf „Einstellung ändern“, um Ihre Einstellung für Altereinstufung sofort zu ändern und Zugang zu erhalten. Sie können ab sofort [REGIONMATURITY]-Inhalt suchen und auf diesen zugreifen. Falls Sie diese Einstellung später rückgängig machen möchten, gehen Sie zu Bearbeiten &gt; Einstellungen... &gt; Allgemein.
-	<form>
+	<form name="form">
       <button
        name="OK"
        text="Einstellung ändern"/>
       <button
        name="Cancel"
        text="Schließen"/>
-       <ignore text="Wenn Regionzugang aufgrund von Einstellung für Alterseinstufung gesperrt ist."/>
+       <ignore name="ignore" text="Wenn Regionzugang aufgrund von Einstellung für Alterseinstufung gesperrt ist"/>
     </form>
 	</notification>
 	<notification name="LandClaimAccessBlocked">
@@ -1540,7 +1540,7 @@ Bitte vergewissern Sie sich, dass Sie den aktuellsten Viewer installiert haben u
 
 Möchten Sie unsere Knowledgebase besuchen, um mehr Informationen über Altereinstufung zu erhalten?
 		<url name="url">
-			https://support.secondlife.com/ics/support/default.asp?deptID=4417&amp;task=knowledge&amp;questionID=6010
+			http://wiki.secondlife.com/wiki/Alterseinstufung:_Ein_%C3%9Cberblick_(KB)
 		</url>
 		<usetemplate ignoretext="Wenn Landanspruch aufgrund von Alterseinstufung gesperrt ist" name="okcancelignore" notext="Schließen" yestext="Zur Knowledgbase"/>
 	</notification>
@@ -1564,7 +1564,7 @@ Bitte vergewissern Sie sich, dass Sie den aktuellsten Viewer installiert haben u
 
 Möchten Sie unsere Knowledgebase besuchen, um mehr Informationen über Altereinstufung zu erhalten?
 		<url name="url">
-			https://support.secondlife.com/ics/support/default.asp?deptID=4417&amp;task=knowledge&amp;questionID=6010
+			http://wiki.secondlife.com/wiki/Alterseinstufung:_Ein_%C3%9Cberblick_(KB)
 		</url>
 		<usetemplate ignoretext="Wenn Landkauf aufgrund von Alterseinstufung gesperrt ist" name="okcancelignore" notext="Schließen" yestext="Zur Knowledgbase"/>
 	</notification>

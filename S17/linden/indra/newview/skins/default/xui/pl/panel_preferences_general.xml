@@ -8,7 +8,7 @@
 			Ostatnie Miejsce
 		</radio_item>
 	</radio_group>
-	<check_box label="Pokaż Miejsce Startu na Ekranie Logowania" name="show_location_checkbox"/>
+	<check_box label="Pokaż Miejsce Startu podczas Logowania" name="show_location_checkbox"/>
 	<combo_box name="fade_out_combobox">
 		<combo_item name="Never">
 			Nigdy

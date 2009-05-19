@@ -1,5 +1,5 @@
-SLASSET_LIBS_DARWIN=http://automated-builds-secondlife-com.s3.amazonaws.com/viewer-rc-dev/slviewer-darwin-libs-viewer-rc-dev-1.23.2.120313.tar.gz
-SLASSET_LIBS_LINUXI386=http://automated-builds-secondlife-com.s3.amazonaws.com/viewer-rc-dev/slviewer-linux-libs-viewer-rc-dev-1.23.2.120313.tar.gz
-SLASSET_LIBS_WIN32=http://automated-builds-secondlife-com.s3.amazonaws.com/viewer-rc-dev/slviewer-win32-libs-viewer-rc-dev-1.23.2.120313.zip
-SLASSET_ART=http://automated-builds-secondlife-com.s3.amazonaws.com/viewer-rc-dev/slviewer-artwork-viewer-rc-dev-1.23.2.120313.zip
-SLASSET_MD5=http://automated-builds-secondlife-com.s3.amazonaws.com/viewer-rc-dev/md5sums-viewer-rc-dev-1.23.2.120313.txt
+SLASSET_LIBS_DARWIN=http://automated-builds-secondlife-com.s3.amazonaws.com/viewer-rc-dev/slviewer-darwin-libs-viewer-rc-dev-1.23.2.120816.tar.gz
+SLASSET_LIBS_LINUXI386=http://automated-builds-secondlife-com.s3.amazonaws.com/viewer-rc-dev/slviewer-linux-libs-viewer-rc-dev-1.23.2.120816.tar.gz
+SLASSET_LIBS_WIN32=http://automated-builds-secondlife-com.s3.amazonaws.com/viewer-rc-dev/slviewer-win32-libs-viewer-rc-dev-1.23.2.120816.zip
+SLASSET_ART=http://automated-builds-secondlife-com.s3.amazonaws.com/viewer-rc-dev/slviewer-artwork-viewer-rc-dev-1.23.2.120816.zip
+SLASSET_MD5=http://automated-builds-secondlife-com.s3.amazonaws.com/viewer-rc-dev/md5sums-viewer-rc-dev-1.23.2.120816.txt

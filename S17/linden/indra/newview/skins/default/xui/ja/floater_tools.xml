@@ -74,7 +74,7 @@
 		強度
 	</text>
 	<text name="obj_count">
-		選択済オブジェクト:[COUNT]
+		選択オブジェクト:[COUNT]
 	</text>
 	<text name="prim_count">
 		プリム:[COUNT]
