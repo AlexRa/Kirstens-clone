@@ -66,12 +66,13 @@ protected:
 	
 public:
 	LLDrawInfo(U16 start, U16 end, U32 count, U32 offset, 
-				LLViewerImage* image, LLVertexBuffer* buffer, 
+				LLImageGL* gl_image, LLViewerImage* image, LLVertexBuffer* buffer, 
 				BOOL fullbright = FALSE, U8 bump = 0, BOOL particle = FALSE, F32 part_size = 0);
 	
 
 	LLPointer<LLVertexBuffer> mVertexBuffer;
-	LLPointer<LLViewerImage> mTexture;
+	LLPointer<LLImageGL>     mTexture;
+	LLPointer<LLViewerImage> mViewerTexture;
 	LLColor4U mGlowColor;
 	S32 mDebugColor;
 	const LLMatrix4* mTextureMatrix;

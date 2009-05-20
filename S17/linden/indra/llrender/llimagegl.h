@@ -48,6 +48,10 @@ class LLImageGL : public LLRefCount
 {
 	friend class LLTexUnit;
 public:
+	static std::list<U32> sDeadTextureList;
+
+	static void deleteDeadTextures();
+
 	// Size calculation
 	static S32 dataFormatBits(S32 dataformat);
 	static S32 dataFormatBytes(S32 dataformat, S32 width, S32 height);
@@ -63,8 +67,11 @@ public:
 	static void restoreGL();
 
 	// Sometimes called externally for textures not using LLImageGL (should go away...)
+#if !LL_RELEASE_FOR_DOWNLOAD
+	static S32 updateBoundTexMem(const S32 delta, const S32 size) ;
+#else
 	static S32 updateBoundTexMem(const S32 delta);
-
+#endif
 	static bool checkSize(S32 width, S32 height);
 	
 	// Not currently necessary for LLImageGL, but required in some derived classes,

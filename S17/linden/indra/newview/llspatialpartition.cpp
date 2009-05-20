@@ -2896,11 +2896,12 @@ LLDrawable* LLSpatialPartition::lineSegmentIntersect(const LLVector3& start, con
 }
 
 LLDrawInfo::LLDrawInfo(U16 start, U16 end, U32 count, U32 offset, 
-					   LLViewerImage* texture, LLVertexBuffer* buffer,
+					   LLImageGL* gl_texture, LLViewerImage* texture, LLVertexBuffer* buffer,
 					   BOOL fullbright, U8 bump, BOOL particle, F32 part_size)
 :
 	mVertexBuffer(buffer),
-	mTexture(texture),
+	mTexture(gl_texture),
+	mViewerTexture(texture),
 	mTextureMatrix(NULL),
 	mModelMatrix(NULL),
 	mStart(start),
@@ -2932,10 +2933,10 @@ LLDrawInfo::LLDrawInfo(U16 start, U16 end, U32 count, U32 offset,
 
 LLDrawInfo::~LLDrawInfo()	
 {
-	if (LLSpatialGroup::sNoDelete)
+	/*if (LLSpatialGroup::sNoDelete)
 	{
 		llerrs << "LLDrawInfo deleted illegally!" << llendl;
-	}
+	}*/
 
 	if (mFace)
 	{

@@ -47,7 +47,7 @@ F64	gGLLastModelView[16];
 F64 gGLProjection[16];
 S32	gGLViewport[4];
 
-static const U32 LL_NUM_TEXTURE_LAYERS = 8; 
+static const U32 LL_NUM_TEXTURE_LAYERS = 16; 
 
 static GLenum sGLTextureType[] =
 {
@@ -177,7 +177,7 @@ void LLTexUnit::disable(void)
 	}
 }
 
-bool LLTexUnit::bind(LLImageGL* texture, bool forceBind)
+bool LLTexUnit::bind(LLImageGL* texture, bool for_rendering, bool forceBind)
 {
 	stop_glerror();
 	if (mIndex < 0) return false;
@@ -197,6 +197,20 @@ bool LLTexUnit::bind(LLImageGL* texture, bool forceBind)
 
 		return texture->bindDefaultImage(mIndex);
 	}
+
+#if !LL_RELEASE_FOR_DOWNLOAD
+	if(for_rendering)
+	{
+		int w = texture->getWidth(texture->getDiscardLevel()) ;
+		int h = texture->getHeight(texture->getDiscardLevel()) ;
+
+		if(w * h == LLImageGL::sCurTexPickSize)
+		{
+			texture->updateBindStats();
+			return bind(LLImageGL::sDefaultTexturep.get());
+		}
+	}
+#endif
 
 	if ((mCurrTexture != texture->getTexName()) || forceBind)
 	{
