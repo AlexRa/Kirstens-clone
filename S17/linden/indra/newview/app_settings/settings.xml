@@ -4815,7 +4815,7 @@
     <key>IMInChatConsole</key>
     <map>
       <key>Comment</key>
-      <string>Copy IM into chat console</string>
+      <string>Copy IM into background chat console</string>
       <key>Persist</key>
       <integer>1</integer>
       <key>Type</key>

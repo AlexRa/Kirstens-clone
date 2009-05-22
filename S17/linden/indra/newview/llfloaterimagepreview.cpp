@@ -73,9 +73,7 @@ const S32 PREVIEW_TEXTURE_HEIGHT = 300;
 // LLFloaterImagePreview()
 //-----------------------------------------------------------------------------
 LLFloaterImagePreview::LLFloaterImagePreview(const std::string& filename) : 
-	LLFloaterNameDesc(filename),
-	mAvatarPreview(NULL),
-	mSculptedPreview(NULL)
+	LLFloaterNameDesc(filename)
 {
 	mLastMouseX = 0;
 	mLastMouseY = 0;
@@ -213,16 +211,13 @@ void	LLFloaterImagePreview::onPreviewTypeCommit(LLUICtrl* ctrl, void* userdata)
 //-----------------------------------------------------------------------------
 void LLFloaterImagePreview::clearAllPreviewTextures()
 {
-	if (mAvatarPreview)
-	{
-		mAvatarPreview->clearPreviewTexture("mHairMesh0");
-		mAvatarPreview->clearPreviewTexture("mUpperBodyMesh0");
-		mAvatarPreview->clearPreviewTexture("mLowerBodyMesh0");
-		mAvatarPreview->clearPreviewTexture("mHeadMesh0");
-		mAvatarPreview->clearPreviewTexture("mUpperBodyMesh0");
-		mAvatarPreview->clearPreviewTexture("mLowerBodyMesh0");
-		mAvatarPreview->clearPreviewTexture("mSkirtMesh0");
-	}
+	mAvatarPreview->clearPreviewTexture("mHairMesh0");
+	mAvatarPreview->clearPreviewTexture("mUpperBodyMesh0");
+	mAvatarPreview->clearPreviewTexture("mLowerBodyMesh0");
+	mAvatarPreview->clearPreviewTexture("mHeadMesh0");
+	mAvatarPreview->clearPreviewTexture("mUpperBodyMesh0");
+	mAvatarPreview->clearPreviewTexture("mLowerBodyMesh0");
+	mAvatarPreview->clearPreviewTexture("mSkirtMesh0");
 }
 
 //-----------------------------------------------------------------------------
@@ -673,14 +668,11 @@ void LLImagePreviewAvatar::setPreviewTarget(const std::string& joint_name, const
 //-----------------------------------------------------------------------------
 void LLImagePreviewAvatar::clearPreviewTexture(const std::string& mesh_name)
 {
-	if (mDummyAvatar)
+	LLViewerJointMesh *mesh = (LLViewerJointMesh*)mDummyAvatar->mRoot.findJoint(mesh_name);
+	// clear out existing test mesh
+	if (mesh)
 	{
-		LLViewerJointMesh *mesh = (LLViewerJointMesh*)mDummyAvatar->mRoot.findJoint(mesh_name);
-		// clear out existing test mesh
-		if (mesh)
-		{
-			mesh->setTestTexture(0);
-		}
+		mesh->setTestTexture(0);
 	}
 }
 
@@ -801,11 +793,27 @@ LLImagePreviewSculpted::LLImagePreviewSculpted(S32 width, S32 height) : LLDynami
 	
 	F32 const HIGHEST_LOD = 4.0f;
 	mVolume = new LLVolume(volume_params,  HIGHEST_LOD);
+
+	/*
+	mDummyAvatar = new LLVOAvatar(LLUUID::null, LL_PCODE_LEGACY_AVATAR, gAgent.getRegion());
+	mDummyAvatar->createDrawable(&gPipeline);
+	mDummyAvatar->mIsDummy = TRUE;
+	mDummyAvatar->mSpecialRenderMode = 2;
+	mDummyAvatar->setPositionAgent(LLVector3::zero);
+	mDummyAvatar->slamPosition();
+	mDummyAvatar->updateJointLODs();
+	mDummyAvatar->updateGeometry(mDummyAvatar->mDrawable);
+	gPipeline.markVisible(mDummyAvatar->mDrawable, *LLViewerCamera::getInstance());
+	mTextureName = 0;
+	*/
 }
 
 
 LLImagePreviewSculpted::~LLImagePreviewSculpted()
 {
+	/*
+	mDummyAvatar->markDead();
+	*/
 }
 
 
