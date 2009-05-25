@@ -35,7 +35,7 @@
 const S32 LL_VERSION_MAJOR = 1;
 const S32 LL_VERSION_MINOR = 16;
 const S32 LL_VERSION_PATCH = 3;
-const S32 LL_VERSION_BUILD = 100; 
+const S32 LL_VERSION_BUILD = 102; 
 
 const char* const DX_CHANNEL = "Kirstens S16";
 

@@ -1803,15 +1803,54 @@ void process_improved_im(LLMessageSystem *msg, void **user_data)
 	break;
 
 	case IM_FROM_TASK:
-		if (is_busy && !is_owned_by_me)
 		{
-			return;
+			if (is_busy && !is_owned_by_me)
+			{
+				return;
+			}
+			chat.mText = name + separator_string + message.substr(message_offset);
+			chat.mFromName = name;
+
+			// Build a link to open the object IM info window.
+			std::string location = ll_safe_string((char*)binary_bucket,binary_bucket_size);
+			
+			LLSD query_string;
+			query_string["owner"] = from_id;
+			query_string["slurl"] = location.c_str();
+			query_string["name"] = name;
+			if (from_group)
+			{
+				query_string["groupowned"] = "true";
+			}
+			query_string["regionid"] = region_id;
+			query_string["localpos"] = llformat("/%d/%d/%d", (S32)position[VX], (S32)position[VY], (S32)position[VZ]);
+
+			if (session_id.notNull())
+			{
+				chat.mFromID = session_id;
+			}
+			else
+			{
+				// This message originated on a region without the updated code for task id and slurl information.
+				// We just need a unique ID for this object that isn't the owner ID.
+				// If it is the owner ID it will overwrite the style that contains the link to that owner's profile.
+				// This isn't ideal - it will make 1 style for all objects owned by the the same person/group.
+				// This works because the only thing we can really do in this case is show the owner name and link to their profile.
+				chat.mFromID = from_id ^ gAgent.getSessionID();
+			}
+
+			std::ostringstream link;
+			link << "secondlife:///app/objectim/" << session_id
+					<< LLURI::mapToQueryString(query_string);
+
+			//chat.mURL = link.str();
+			chat.mText = name + separator_string + message.substr(message_offset);
+
+			// Note: lie to LLFloaterChat::addChat(), pretending that this is NOT an IM, because
+			// IMs from objcts don't open IM sessions.
+			chat.mSourceType = CHAT_SOURCE_OBJECT;
+			LLFloaterChat::addChat(chat, FALSE, FALSE);
 		}
-		chat.mText = name + separator_string + message.substr(message_offset);
-		// Note: lie to LLFloaterChat::addChat(), pretending that this is NOT an IM, because
-		// IMs from objcts don't open IM sessions.
-		chat.mSourceType = CHAT_SOURCE_OBJECT;
-		LLFloaterChat::addChat(chat, FALSE, FALSE);
 		break;
 	case IM_FROM_TASK_AS_ALERT:
 		if (is_busy && !is_owned_by_me)
@@ -2369,18 +2408,17 @@ void process_teleport_start(LLMessageSystem *msg, void**)
 	U32 teleport_flags = 0x0;
 	msg->getU32("Info", "TeleportFlags", teleport_flags);
 
-	if (teleport_flags & TELEPORT_FLAGS_DISABLE_CANCEL)
+	/*if (teleport_flags & TELEPORT_FLAGS_DISABLE_CANCEL)
 	{
 		gViewerWindow->setProgressCancelButtonVisible(FALSE);
 	}
-	else
+	else*/
 	{
 		gViewerWindow->setProgressCancelButtonVisible(TRUE, std::string("Cancel")); // *TODO: Translate
 	}
 
 	// Freeze the UI and show progress bar
 	// Note: could add data here to differentiate between normal teleport and death.
-
 	if( gAgent.getTeleportState() == LLAgent::TELEPORT_NONE )
 	{
 		gTeleportDisplay = TRUE;
@@ -2404,11 +2442,11 @@ void process_teleport_progress(LLMessageSystem* msg, void**)
 	}
 	U32 teleport_flags = 0x0;
 	msg->getU32("Info", "TeleportFlags", teleport_flags);
-	if (teleport_flags & TELEPORT_FLAGS_DISABLE_CANCEL)
+	/*if (teleport_flags & TELEPORT_FLAGS_DISABLE_CANCEL)
 	{
 		gViewerWindow->setProgressCancelButtonVisible(FALSE);
 	}
-	else
+	else*/
 	{
 		gViewerWindow->setProgressCancelButtonVisible(TRUE, std::string("Cancel")); //TODO: Translate
 	}
@@ -3605,7 +3643,8 @@ void process_avatar_animation(LLMessageSystem *mesgsys, void **user_data)
 				if (object)
 				{
 					object->mFlags |= FLAGS_ANIM_SOURCE;
-
+				}
+				{
 					BOOL anim_found = FALSE;
 					LLVOAvatar::AnimSourceIterator anim_it = avatarp->mAnimationSources.find(object_id);
 					for (;anim_it != avatarp->mAnimationSources.end(); ++anim_it)
@@ -4715,10 +4754,10 @@ void process_teleport_local(LLMessageSystem *msg,void**)
 	}
 
 	gAgent.setPositionAgent(pos);
-	gAgent.slamLookAt(look_at);
+	//gAgent.slamLookAt(look_at);
 
 	// likewise make sure the camera is behind the avatar
-	gAgent.resetView(TRUE);
+	//gAgent.resetView(TRUE, TRUE);
 
 	// send camera update to new region
 	gAgent.updateCamera();

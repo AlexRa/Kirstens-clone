@@ -463,7 +463,7 @@ void LLTexLayerSetBuffer::readBackAndUpload(U8* baked_bump_data)
 											  LLTexLayerSetBuffer::onTextureUploadComplete,
 											  baked_upload_data,
 											  TRUE,		// temp_file
-											  FALSE,	// is_priority
+											  TRUE,		// is_priority
 											  TRUE);	// store_local
 		
 				mNeedsUpload = FALSE;

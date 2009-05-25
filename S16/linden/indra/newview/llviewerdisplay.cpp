@@ -87,8 +87,8 @@ extern LLPointer<LLImageGL> gStartImageGL;
 LLPointer<LLImageGL> gDisconnectedImagep = NULL;
 
 // used to toggle renderer back on after teleport
-const F32 TELEPORT_RENDER_DELAY = 20.f; // Max time a teleport is allowed to take before we raise the curtain
-const F32 TELEPORT_ARRIVAL_DELAY = 2.f; // Time to preload the world before raising the curtain after we've actually already arrived.
+const F32 TELEPORT_RENDER_DELAY = 10.f; // Max time a teleport is allowed to take before we raise the curtain - TAY
+const F32 TELEPORT_ARRIVAL_DELAY = 1.f; // Time to preload the world before raising the curtain after we've actually already arrived. - TAY: This will cut teleportation delay in half
 BOOL		 gTeleportDisplay = FALSE;
 LLFrameTimer gTeleportDisplayTimer;
 LLFrameTimer gTeleportArrivalTimer;
@@ -321,7 +321,7 @@ void display(BOOL rebuild, F32 zoom_factor, int subfield, BOOL for_snapshot)
 	if (gTeleportDisplay)
 	{
 		LLAppViewer::instance()->pingMainloopTimeout("Display:Teleport");
-		const F32 TELEPORT_ARRIVAL_DELAY = 2.f; // Time to preload the world before raising the curtain after we've actually already arrived.
+		const F32 TELEPORT_ARRIVAL_DELAY = 1.f; // Time to preload the world before raising the curtain after we've actually already arrived. TAY - Same thing XD cut teleport delay in half.
 
 		S32 attach_count = 0;
 		if (gAgent.getAvatarObject())
@@ -345,7 +345,7 @@ void display(BOOL rebuild, F32 zoom_factor, int subfield, BOOL for_snapshot)
 			// Transition to REQUESTED.  Viewer has sent some kind
 			// of TeleportRequest to the source simulator
 			gTeleportDisplayTimer.reset();
-			gViewerWindow->setShowProgress(TRUE);
+			gViewerWindow->setShowProgress(FALSE); //TAY - We set it to false here to make the progress loader not appear when we enter TELEPORT_START state.
 			gViewerWindow->setProgressPercent(0);
 			gAgent.setTeleportState( LLAgent::TELEPORT_REQUESTED );
 			gAgent.setTeleportMessage(
