@@ -7381,6 +7381,26 @@ class LLWorldWaterSettings : public view_listener_t
 	}
 };
 
+/// Sky Menu callbacks added by Kirstenlee ^^
+class LLWorldSkySettings : public view_listener_t
+{	
+	bool handleEvent(LLPointer<LLEvent> event, const LLSD& userdata)
+	{
+		// if not there or is hidden, show it
+		if(	!LLFloaterWindLight::isOpen() || 
+			!LLFloaterWindLight::instance()->getVisible()) {
+			LLFloaterWindLight::show();
+				
+		// otherwise, close it button acts like a toggle
+		} 
+		else 
+		{
+			LLFloaterWindLight::instance()->close();
+		}
+		return true;
+	}
+};
+
 /// Post-Process callbacks
 class LLWorldPostProcess : public view_listener_t
 {
@@ -7520,6 +7540,7 @@ void initialize_menus()
 	(new LLWorldWaterSettings())->registerListener(gMenuHolder, "World.WaterSettings");
 	(new LLWorldPostProcess())->registerListener(gMenuHolder, "World.PostProcess");
 	(new LLWorldDayCycle())->registerListener(gMenuHolder, "World.DayCycle");
+	(new LLWorldSkySettings())->registerListener(gMenuHolder, "World.SkySettings");  // KL
 
 	// Tools menu
 	addMenu(new LLToolsSelectTool(), "Tools.SelectTool");
