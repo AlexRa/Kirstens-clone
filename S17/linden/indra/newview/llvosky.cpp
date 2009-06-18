@@ -1215,7 +1215,7 @@ LLDrawable *LLVOSky::createDrawable(LLPipeline *pipeline)
 
 //by bao
 //fake vertex buffer updating
-//to guaranttee at least updating one VBO buffer every frame
+//to guarantee at least updating one VBO buffer every frame
 //to walk around the bug caused by ATI card --> DEV-3855
 //
 void LLVOSky::createDummyVertexBuffer()

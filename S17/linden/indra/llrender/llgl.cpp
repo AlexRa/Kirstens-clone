@@ -64,6 +64,7 @@ LLMatrix4 gGLObliqueProjectionInverse;
 #define LL_GL_NAME_POOLING 0
 
 LLGLNamePool::pool_list_t LLGLNamePool::sInstances;
+std::list<LLGLUpdate*> LLGLUpdate::sGLQ;
 
 #if (LL_WINDOWS || LL_LINUX || LL_SOLARIS)  && !LL_MESA_HEADLESS
 // ATI prototypes
