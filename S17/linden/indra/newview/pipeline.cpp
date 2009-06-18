@@ -1803,6 +1803,16 @@ void LLPipeline::markTextured(LLDrawable *drawablep)
 	}
 }
 
+void LLPipeline::markGLRebuild(LLGLUpdate* glu)
+{
+	if (glu && !glu->mInQ)
+	{
+		LLGLUpdate::sGLQ.push_back(glu);
+		glu->mInQ = TRUE;
+	}
+}
+
+
 void LLPipeline::markRebuild(LLDrawable *drawablep, LLDrawable::EDrawableFlags flag, BOOL priority)
 {
 	LLMemType mt(LLMemType::MTYPE_PIPELINE);

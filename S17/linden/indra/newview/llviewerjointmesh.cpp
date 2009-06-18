@@ -565,7 +565,7 @@ U32 LLViewerJointMesh::drawShape( F32 pixelArea, BOOL first_pass, BOOL is_dummy)
 			// Ignore the warning if that's the case.
 			if (!gSavedSettings.getBOOL("RenderUnloadedAvatar"))
 			{
-				llwarns << "Layerset without composite" << llendl;
+				//llwarns << "Layerset without composite" << llendl;
 			}
 			gGL.getTexUnit(0)->bind(gImageList.getImage(IMG_DEFAULT));
 		}
@@ -574,7 +574,7 @@ U32 LLViewerJointMesh::drawShape( F32 pixelArea, BOOL first_pass, BOOL is_dummy)
 	if ( !is_dummy && mTexture.notNull() )
 	{
 		old_mode = mTexture->getAddressMode();
-		gGL.getTexUnit(0)->bind(mTexture.get());
+		gGL.getTexUnit(0)->bind(mTexture.get(), TRUE);
 		gGL.getTexUnit(0)->setTextureAddressMode(LLTexUnit::TAM_CLAMP);
 	}
 	else

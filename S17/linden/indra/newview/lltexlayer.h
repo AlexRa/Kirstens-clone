@@ -252,7 +252,7 @@ private:
 // LLTexLayerSet
 // An ordered set of texture layers that get composited into a single texture.
 //-----------------------------------------------------------------------------
-class LLTexLayerSet
+class LLTexLayerSet : public LLGLUpdate
 {
 public:
 	LLTexLayerSet( LLVOAvatar* avatar );
@@ -285,6 +285,7 @@ public:
 	BOOL					hasComposite()					{ return (mComposite != NULL); }
 	void					setBump( BOOL b )				{ mHasBump = b; }
 	BOOL					hasBump()						{ return mHasBump; }
+	/*virtual*/ void		updateGL();
 
 public:
 	static BOOL		sHasCaches;

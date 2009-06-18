@@ -129,6 +129,7 @@ public:
 	void        markMoved(LLDrawable *drawablep, BOOL damped_motion = FALSE);
 	void        markShift(LLDrawable *drawablep);
 	void        markTextured(LLDrawable *drawablep);
+	void		markGLRebuild(LLGLUpdate* glu);
 	void        markRebuild(LLDrawable *drawablep, LLDrawable::EDrawableFlags flag = LLDrawable::REBUILD_ALL, BOOL priority = FALSE);
 		
 	//get the object between start and end that's closest to start.
@@ -183,6 +184,7 @@ public:
 	void createObjects(F32 max_dtime);
 	void createObject(LLViewerObject* vobj);
 	void updateGeom(F32 max_dtime);
+	void updateGL();
 
 	//calculate pixel area of given box from vantage point of given camera
 	static F32 calcPixelArea(LLVector3 center, LLVector3 size, LLCamera& camera);

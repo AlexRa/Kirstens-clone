@@ -833,7 +833,7 @@ BOOL LLTexLayerSet::render( S32 x, S32 y, S32 width, S32 height )
 			if( image_gl )
 			{
 				LLGLSUIDefault gls_ui;
-				gGL.getTexUnit(0)->bind(image_gl);
+				gGL.getTexUnit(0)->bind(image_gl, TRUE);
 				gGL.getTexUnit(0)->setTextureBlendType( LLTexUnit::TB_REPLACE );
 				gl_rect_2d_simple_tex( width, height );
 			}
@@ -924,10 +924,19 @@ void LLTexLayerSet::cancelUpload()
 	}
 }
 
+void LLTexLayerSet::updateGL()
+{
+
+   createComposite();
+   
+}
+
+
 void LLTexLayerSet::createComposite()
 {
 	if( !mComposite )
 	{
+        
 		S32 width = mInfo->mWidth;
 		S32 height = mInfo->mHeight;
 		// Composite other avatars at reduced resolution
@@ -936,7 +945,9 @@ void LLTexLayerSet::createComposite()
 			width /= 2;
 			height /= 2;
 		}
+		gPipeline.markGLRebuild(this);
 		mComposite = new LLTexLayerSetBuffer( this, width, height, mHasBump );
+		
 	}
 }
 
@@ -1418,7 +1429,7 @@ BOOL LLTexLayer::render( S32 x, S32 y, S32 width, S32 height )
 
 					LLTexUnit::eTextureAddressMode old_mode = image_gl->getAddressMode();
 					
-					gGL.getTexUnit(0)->bind(image_gl);
+					gGL.getTexUnit(0)->bind(image_gl, TRUE);
 					gGL.getTexUnit(0)->setTextureAddressMode(LLTexUnit::TAM_CLAMP);
 
 					gl_rect_2d_simple_tex( width, height );
@@ -1440,7 +1451,7 @@ BOOL LLTexLayer::render( S32 x, S32 y, S32 width, S32 height )
 			LLImageGL* image_gl = gTexStaticImageList.getImageGL( getInfo()->mStaticImageFileName, getInfo()->mStaticImageIsMask );
 			if( image_gl )
 			{
-				gGL.getTexUnit(0)->bind(image_gl);
+				gGL.getTexUnit(0)->bind(image_gl, TRUE);
 				gl_rect_2d_simple_tex( width, height );
 				gGL.getTexUnit(0)->unbind(LLTexUnit::TT_TEXTURE);
 			}
@@ -1617,7 +1628,7 @@ BOOL LLTexLayer::renderAlphaMasks( S32 x, S32 y, S32 width, S32 height, LLColor4
 
 					LLTexUnit::eTextureAddressMode old_mode = image_gl->getAddressMode();
 					
-					gGL.getTexUnit(0)->bind(image_gl);
+					gGL.getTexUnit(0)->bind(image_gl, TRUE);
 					gGL.getTexUnit(0)->setTextureAddressMode(LLTexUnit::TAM_CLAMP);
 
 					gl_rect_2d_simple_tex( width, height );
@@ -1643,7 +1654,7 @@ BOOL LLTexLayer::renderAlphaMasks( S32 x, S32 y, S32 width, S32 height, LLColor4
 					( (image_gl->getComponents() == 1) && getInfo()->mStaticImageIsMask ) )
 				{
 					LLGLSNoAlphaTest gls_no_alpha_test;
-					gGL.getTexUnit(0)->bind(image_gl);
+					gGL.getTexUnit(0)->bind(image_gl, TRUE);
 					gl_rect_2d_simple_tex( width, height );
 					gGL.getTexUnit(0)->unbind(LLTexUnit::TT_TEXTURE);
 				}
@@ -2095,7 +2106,7 @@ BOOL LLTexLayerParamAlpha::render( S32 x, S32 y, S32 width, S32 height )
 				}
 
 				LLGLSNoAlphaTest gls_no_alpha_test;
-				gGL.getTexUnit(0)->bind(mCachedProcessedImageGL);
+				gGL.getTexUnit(0)->bind(mCachedProcessedImageGL, TRUE);
 				gl_rect_2d_simple_tex( width, height );
 				gGL.getTexUnit(0)->unbind(LLTexUnit::TT_TEXTURE);
 				stop_glerror();
@@ -2545,7 +2556,7 @@ LLImageGL* LLTexStaticImageList::getImageGL(const std::string& file_name, BOOL i
 			}
 			image_gl->createGLTexture(0, image_raw);
 
-			gGL.getTexUnit(0)->bind(image_gl);
+			gGL.getTexUnit(0)->bind(image_gl, TRUE);
 			image_gl->setAddressMode(LLTexUnit::TAM_CLAMP);
 
 			mStaticImageListGL [ namekey ] = image_gl;

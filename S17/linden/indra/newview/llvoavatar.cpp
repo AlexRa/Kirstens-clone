@@ -4336,7 +4336,7 @@ U32 LLVOAvatar::renderFootShadows()
 	LLGLDepthTest test(GL_TRUE, GL_FALSE);
 	//render foot shadows
 	LLGLEnable blend(GL_BLEND);
-	gGL.getTexUnit(0)->bind(mShadowImagep.get());
+	gGL.getTexUnit(0)->bind(mShadowImagep.get(), TRUE);
 	glColor4fv(mShadow0Facep->getRenderColor().mV);
 	mShadow0Facep->renderIndexed(foot_mask);
 	glColor4fv(mShadow1Facep->getRenderColor().mV);
@@ -5687,6 +5687,15 @@ LLDrawable *LLVOAvatar::createDrawable(LLPipeline *pipeline)
 	return mDrawable;
 }
 
+
+void LLVOAvatar::updateGL()
+{
+	if (mMeshTexturesDirty)
+	{
+		updateMeshTextures();
+		mMeshTexturesDirty = FALSE;
+	}
+}
 
 //-----------------------------------------------------------------------------
 // updateGeometry()
@@ -7206,7 +7215,6 @@ void LLVOAvatar::setNewBakedTexture( ETextureIndex te, const LLUUID& uuid )
 	updateMeshTextures();
 	dirtyMesh();
 
-
 	LLVOAvatar::cullAvatarsByPixelArea();
 
 	/* switch(te)
@@ -7216,7 +7224,7 @@ void LLVOAvatar::setNewBakedTexture( ETextureIndex te, const LLUUID& uuid )
 	if (text_dict->mIsBakedTexture)
 	{
 		llinfos << "New baked texture: " << text_dict->mName << " UUID: " << uuid <<llendl;
-		mBakedTextureData[text_dict->mBakedTextureIndex].mTexLayerSet->requestUpdate();
+	//	mBakedTextureData[text_dict->mBakedTextureIndex].mTexLayerSet->requestUpdate();
 	}
 	else
 	{
@@ -7235,7 +7243,7 @@ bool LLVOAvatar::hasPendingBakedUploads()
 {
 	for (U32 i = 0; i < mBakedTextureData.size(); i++)
 	{
-		bool upload_pending = (mBakedTextureData[i].mTexLayerSet && mBakedTextureData[i].mTexLayerSet->getComposite()->uploadPending());
+		bool upload_pending = (mBakedTextureData[i].mTexLayerSet && mBakedTextureData[i].mTexLayerSet->getComposite() && mBakedTextureData[i].mTexLayerSet->getComposite()->uploadPending());
 		if (upload_pending)
 		{
 			return true;

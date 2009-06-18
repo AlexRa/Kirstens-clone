@@ -151,6 +151,8 @@ public:
 
 	/*virtual*/ LLDrawable* createDrawable(LLPipeline *pipeline);
 	/*virtual*/ BOOL updateGeometry(LLDrawable *drawable);
+	/*virtual*/ void		updateGL();
+
 
 	/*virtual*/ void setPixelAreaAndAngle(LLAgent &agent);
 	BOOL updateJointLODs();
@@ -470,6 +472,7 @@ private:
 	LLFrameTimer				mTypingTimer;
 
 	//--------------------------------------------------------------------
+	BOOL			mMeshTexturesDirty;
 	// wind rippling in clothes
 	//--------------------------------------------------------------------
 public:
