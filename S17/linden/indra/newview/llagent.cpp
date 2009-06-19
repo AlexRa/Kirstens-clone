@@ -434,8 +434,10 @@ void LLAgent::init()
 
 	mCameraFocusOffsetTarget = LLVector4(gSavedSettings.getVector3("CameraOffsetBuild"));
 	mCameraOffsetDefault = gSavedSettings.getVector3("CameraOffsetDefault");
+//	mCameraOffsetNorm = mCameraOffsetDefault;
+//	mCameraOffsetNorm.normalize();
 	mCameraCollidePlane.clearVec();
-	mCurrentCameraDistance = mCameraOffsetDefault.magVec() * gSavedSettings.getF32("CameraOffsetScale");
+	mCurrentCameraDistance = mCameraOffsetDefault.magVec();
 	mTargetCameraDistance = mCurrentCameraDistance;
 	mCameraZoomFraction = 1.f;
 	mTrackFocusObject = gSavedSettings.getBOOL("TrackFocusObject");
@@ -1887,7 +1889,7 @@ void LLAgent::cameraOrbitIn(const F32 meters)
 {
 	if (mFocusOnAvatar && mCameraMode == CAMERA_MODE_THIRD_PERSON)
 	{
-		F32 camera_offset_dist = llmax(0.001f, mCameraOffsetDefault.magVec() * gSavedSettings.getF32("CameraOffsetScale"));
+		F32 camera_offset_dist = llmax(0.001f, mCameraOffsetDefault.magVec());
 		
 		mCameraZoomFraction = (mTargetCameraDistance - meters) / camera_offset_dist;
 
@@ -3687,7 +3689,7 @@ LLVector3d LLAgent::calcCameraPositionTargetGlobal(BOOL *hit_limit)
 		}
 		else
 		{
-			local_camera_offset = mCameraZoomFraction * mCameraOffsetDefault * gSavedSettings.getF32("CameraOffsetScale");
+			local_camera_offset = mCameraZoomFraction * mCameraOffsetDefault;
 			
 			// are we sitting down?
 			if (mAvatarObject.notNull() && mAvatarObject->getParent())
@@ -3918,10 +3920,10 @@ void LLAgent::handleScrollWheel(S32 clicks)
 		}
 		else if (mFocusOnAvatar && mCameraMode == CAMERA_MODE_THIRD_PERSON)
 		{
-			F32 current_zoom_fraction = mTargetCameraDistance / (mCameraOffsetDefault.magVec() * gSavedSettings.getF32("CameraOffsetScale"));
+			F32 current_zoom_fraction = mTargetCameraDistance / mCameraOffsetDefault.magVec();
 			current_zoom_fraction *= 1.f - pow(ROOT_ROOT_TWO, clicks);
 			
-			cameraOrbitIn(current_zoom_fraction * mCameraOffsetDefault.magVec() * gSavedSettings.getF32("CameraOffsetScale"));
+			cameraOrbitIn(current_zoom_fraction * mCameraOffsetDefault.magVec());
 		}
 		else
 		{

@@ -56,7 +56,7 @@ BOOL LLPanelInput::postBuild()
 	childSetAction("joystick_setup_button", onClickJoystickSetup, (void*)this);
 
 	// cache values in case user cancels
-	mPreAdjustFOV = gSavedSettings.getF32("CameraAngle");
+	mPreAdjustFOV = gSavedSettings.getF32("CameraAngle"); // cache value in case user cancels
 	mPreAdjustCameraOffsetScale = gSavedSettings.getF32("CameraOffsetScale");
 
 	childSetValue("mouse_sensitivity", gSavedSettings.getF32("MouseSensitivity"));
@@ -64,6 +64,9 @@ BOOL LLPanelInput::postBuild()
 	childSetValue("invert_mouse", gSavedSettings.getBOOL("InvertMouse"));
 	childSetValue("edit_camera_movement", gSavedSettings.getBOOL("EditCameraMovement"));
 	childSetValue("appearance_camera_movement", gSavedSettings.getBOOL("AppearanceCameraMovement"));
+	childSetValue("dynamic_camera_strength", gSavedSettings.getF32("DynamicCameraStrength"));
+	childSetValue("zoom_time", gSavedSettings.getF32("ZoomTime"));
+	childSetValue("camera_position_smoothing", gSavedSettings.getF32("CameraPositionSmoothing"));
 	childSetValue("first_person_avatar_visible", gSavedSettings.getBOOL("FirstPersonAvatarVisible"));
 
 	LLSliderCtrl* fov_slider = getChild<LLSliderCtrl>("camera_fov");
@@ -91,7 +94,11 @@ void LLPanelInput::apply()
 	gSavedSettings.setBOOL("InvertMouse", childGetValue("invert_mouse"));
 	gSavedSettings.setBOOL("EditCameraMovement", childGetValue("edit_camera_movement"));
 	gSavedSettings.setBOOL("AppearanceCameraMovement", childGetValue("appearance_camera_movement"));
+	mPreAdjustFOV = childGetValue("camera_fov").asReal(); // any cancel after this point will use this new value
 	gSavedSettings.setF32("CameraAngle", mPreAdjustFOV);
+	gSavedSettings.setF32("DynamicCameraStrength", childGetValue("dynamic_camera_strength").asReal());
+	gSavedSettings.setF32("ZoomTime", childGetValue("zoom_time").asReal());
+	gSavedSettings.setF32("CameraPositionSmoothing", childGetValue("camera_position_smoothing").asReal());
 	gSavedSettings.setBOOL("FirstPersonAvatarVisible", childGetValue("first_person_avatar_visible"));
 }
 

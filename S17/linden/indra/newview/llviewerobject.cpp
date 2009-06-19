@@ -4142,6 +4142,11 @@ void LLViewerObject::updateText()
 	}
 }
 
+LLVOAvatar* LLViewerObject::asAvatar()
+{
+	return NULL;
+}
+
 BOOL LLViewerObject::isParticleSource() const
 {
 	return !mPartSourcep.isNull() && !mPartSourcep->isDead();

@@ -1277,12 +1277,25 @@ void LLSpatialBridge::updateDistance(LLCamera& camera_in)
 		return;
 	}
 
-	LLCamera camera = transformCamera(camera_in);
-	
-	mDrawable->updateDistance(camera);
-	
 	if (mDrawable->getVObj())
 	{
+		if (mDrawable->getVObj()->isAttachment())
+		{
+			LLDrawable* parent = mDrawable->getParent();
+			if (parent && parent->getVObj())
+			{
+				LLVOAvatar* av = parent->getVObj()->asAvatar();
+				if (av && av->isImpostor())
+				{
+					return;
+				}
+			}
+		}
+
+		LLCamera camera = transformCamera(camera_in);
+	
+		mDrawable->updateDistance(camera);
+	
 		LLViewerObject::const_child_list_t& child_list = mDrawable->getVObj()->getChildren();
 		for (LLViewerObject::child_list_t::const_iterator iter = child_list.begin();
 			 iter != child_list.end(); iter++)

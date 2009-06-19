@@ -906,14 +906,19 @@ void LLTexLayerSet::requestUpdate()
 	if( mUpdatesEnabled )
 	{
 		createComposite();
-		mComposite->requestUpdate(); 
+		if (mComposite)
+		{
+			mComposite->requestUpdate(); 
+		}
 	}
 }
 
 void LLTexLayerSet::requestUpload()
 {
-	createComposite();
-	mComposite->requestUpload();
+	if (mComposite)
+	{
+		mComposite->requestUpload();
+	}
 }
 
 void LLTexLayerSet::cancelUpload()

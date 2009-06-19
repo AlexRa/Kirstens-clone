@@ -85,6 +85,8 @@ public:
 	/*virtual*/ void markDead();
 	void startDefaultMotions();
 
+	/*virtual*/ LLVOAvatar* asAvatar();
+
 	static void updateImpostors();
 
 	//--------------------------------------------------------------------

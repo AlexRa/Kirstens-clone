@@ -718,6 +718,7 @@ LLVOAvatar::LLVOAvatar(const LLUUID& id,
 	mTyping(FALSE),
 	mMeshValid(FALSE),
 	mVisible(FALSE),
+	mMeshTexturesDirty(FALSE),
 	mWindFreq(0.f),
 	mRipplePhase( 0.f ),
 	mBelowWater(FALSE),
@@ -826,8 +827,10 @@ LLVOAvatar::LLVOAvatar(const LLUUID& id,
 	mRippleTimeLast = 0.f;
 
 	mShadowImagep = gImageList.getImageFromFile("foot_shadow.j2c");
-	gGL.getTexUnit(0)->bind(mShadowImagep.get());
-	mShadowImagep->setAddressMode(LLTexUnit::TAM_CLAMP);
+	
+	// GL NOT ACTIVE HERE
+	//gGL.getTexUnit(0)->bind(mShadowImagep.get());
+	//mShadowImagep->setAddressMode(LLTexUnit::TAM_CLAMP);
 	
 	mInAir = FALSE;
 
@@ -1765,6 +1768,11 @@ BOOL LLVOAvatar::buildSkeleton(const LLVOAvatarSkeletonInfo *info)
 	}
 
 	return TRUE;
+}
+
+LLVOAvatar* LLVOAvatar::asAvatar()
+{
+	return this;
 }
 
 //-----------------------------------------------------------------------------
@@ -3453,7 +3461,7 @@ BOOL LLVOAvatar::updateCharacter(LLAgent &agent)
 
 	if (!visible)
 	{
-		updateMotions(LLCharacter::HIDDEN_UPDATE);
+		//updateMotions(LLCharacter::HIDDEN_UPDATE);
 		return FALSE;
 	}
 
@@ -4403,6 +4411,7 @@ void LLVOAvatar::updateTextures(LLAgent &agent)
 	}
 
 	std::vector<bool> layer_baked;
+	// GL NOT ACTIVE HERE - *TODO
 	for (U32 i = 0; i < mBakedTextureData.size(); i++)
 	{
 		layer_baked.push_back(isTextureDefined(mBakedTextureData[i].mTextureIndex));
@@ -6894,6 +6903,7 @@ void LLVOAvatar::updateMeshTextures()
 			use_lkg_baked_layer[i] = (!is_layer_baked[i] 
 									  && (mBakedTextureData[i].mLastTextureIndex != IMG_DEFAULT_AVATAR) 
 									  && mBakedTextureData[i].mTexLayerSet 
+									  && mBakedTextureData[i].mTexLayerSet->getComposite()
 									  && !mBakedTextureData[i].mTexLayerSet->getComposite()->isInitialized());
 			if (use_lkg_baked_layer[i])
 			{
@@ -6918,7 +6928,7 @@ void LLVOAvatar::updateMeshTextures()
 	{
 		llwarns << "updateMeshTextures: invalid host for object: " << getID() << llendl;
 	}
-	
+
 	for (U32 i=0; i < mBakedTextureData.size(); i++)
 	{
 		if (use_lkg_baked_layer[i] && !self_customizing )
@@ -7768,9 +7778,11 @@ void LLVOAvatar::onFirstTEMessageReceived()
 				}
 				image->setLoadedCallback( onInitialBakedTextureLoaded, MAX_DISCARD_LEVEL, FALSE, FALSE, new LLUUID( mID ) );
 			}
+			
 		}
 
-		updateMeshTextures();
+		mMeshTexturesDirty = TRUE;
+		//gPipeline.markGLRebuild(this);
 	}
 }
 
@@ -7786,7 +7798,7 @@ void LLVOAvatar::processAvatarAppearance( LLMessageSystem* mesgsys )
 	}
 	
 	LLMemType mt(LLMemType::MTYPE_AVATAR);
-
+	
 //	llinfos << "processAvatarAppearance start " << mID << llendl;
 	BOOL is_first_appearance_message = !mFirstAppearanceMessageReceived;
 
@@ -7840,14 +7852,15 @@ void LLVOAvatar::processAvatarAppearance( LLMessageSystem* mesgsys )
 	}
 
 	setCompositeUpdatesEnabled( FALSE );
+	mMeshTexturesDirty = TRUE;
+	//gPipeline.markGLRebuild(this);
 
 	if (!mIsSelf)
 	{
 		releaseUnnecessaryTextures();
 	}
 	
-	updateMeshTextures(); // enables updates for laysets without baked textures.
-
+	
 	// parse visual params
 	S32 num_blocks = mesgsys->getNumberOfBlocksFast(_PREHASH_VisualParam);
 	if( num_blocks > 1 )
