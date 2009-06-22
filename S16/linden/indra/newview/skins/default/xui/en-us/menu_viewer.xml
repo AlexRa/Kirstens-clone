@@ -595,7 +595,19 @@
 			<menu_item_call bottom="-132" enabled="false" height="19" label="Environment Editor" left="0"
 			     mouse_opaque="true" name="Environment Editor" width="169">
 				<on_click function="World.EnvSettings" userdata="editor" />
-			</menu_item_call>
+            </menu_item_call>
+            <menu_item_call bottom="-151" enabled="false" height="19" label="Sky Settings" left="0"
+                 mouse_opaque="true" name="Sky Settings" width="169">
+                <on_click function="World.SkySettings" />
+            </menu_item_call>
+			<menu_item_call bottom="-170" enabled="false" height="19" label="Water Settings" left="0"
+                 mouse_opaque="true" name="Water Settings" width="169">
+                <on_click function="World.WaterSettings" />
+            </menu_item_call>   
+            <menu_item_call bottom="-189" enabled="false" height="19" label="Day Cycle" left="0"
+                 mouse_opaque="true" name="Day Cycle" width="169">
+                <on_click function="World.DayCycle" />
+            </menu_item_call> 
 		</menu>
 	</menu>
 	<menu bottom="-18" create_jump_keys="true" drop_shadow="true" enabled="true"
