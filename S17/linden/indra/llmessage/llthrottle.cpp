@@ -152,13 +152,13 @@ F32 gThrottleMaximumBPS[TC_EOF] =
 
 F32 gThrottleDefaultBPS[TC_EOF] =
 {
-	100000.f, // TC_RESEND
+	150000.f, // TC_RESEND
 	4000.f, // TC_LAND
 	4000.f, // TC_WIND
 	4000.f, // TC_CLOUD
-	4000.f, // TC_TASK
+	20000.f, // TC_TASK
 	4000.f, // TC_TEXTURE
-	100000.f, // TC_ASSET
+	200000.f, // TC_ASSET
 };
 
 // Don't throttle down lower than this
