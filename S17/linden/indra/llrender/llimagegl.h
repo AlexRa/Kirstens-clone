@@ -41,7 +41,7 @@
 #include "v2math.h"
 
 #include "llrender.h"
-
+class LLTextureAtlas ;
 //============================================================================
 
 class LLImageGL : public LLRefCount
@@ -119,6 +119,7 @@ public:
 
 	void setExplicitFormat(LLGLint internal_format, LLGLenum primary_format, LLGLenum type_format = 0, BOOL swap_bytes = FALSE);
 	void dontDiscard() { mDontDiscard = 1; mTextureState = NO_DELETE; }
+	void setComponents(S8 ncomponents) { mComponents = ncomponents; }
 
 	S32	 getDiscardLevel() const		{ return mCurrentDiscardLevel; }
 	S32	 getMaxDiscardLevel() const		{ return mMaxDiscardLevel; }
@@ -178,7 +179,20 @@ public:
 	void setActive() ;
 	void forceActive() ;
 	void setNoDelete() ;
+		
+	BOOL canAddToAtlas() ;
+	BOOL createGLTextureInAtlas(S32 discard_level, const LLImageRaw* imageraw, LLTextureAtlas* atlasp, S16 slot_col, S16 slot_row);
+	BOOL addToAtlas(const LLImageRaw* raw_image, LLTextureAtlas* atlasp, S16 slot_col, S16 slot_row) ;
+	
+	LLGLenum getTexTarget()const { return mTarget ;}
+	S8       getDiscardLevelInAtlas()const {return mDiscardLevelInAtlas;}
+	U32      getTexelsInAtlas()const { return mTexelsInAtlas ;}
+	U32      getTexelsInGLTexture()const {return mTexelsInGLTexture;}
 
+private:
+	void preAddToAtlas(S32 data_width) ;
+	void postAddToAtlas() ;	
+	
 protected:
 	void init(BOOL usemipmaps);
 	virtual void cleanup(); // Clean up the LLImageGL so it can be reinitialized.  Be careful when using this in derived class destructors
@@ -203,7 +217,14 @@ private:
 	U16      mHeight;	
 	S8       mCurrentDiscardLevel;
 
+	S8       mDiscardLevelInAtlas;
+	U32      mTexelsInAtlas ;
+	U32      mTexelsInGLTexture;
+
 protected:
+
+	BOOL mCanAddToAtlas ;
+
 	LLGLenum mTarget;		// Normally GL_TEXTURE2D, sometimes something else (ex. cube maps)
 	LLTexUnit::eTextureType mBindTarget;	// Normally TT_TEXTURE, sometimes something else (ex. cube maps)
 	bool mHasMipMaps;
@@ -251,6 +272,25 @@ public:
 	static U32 sBindCount;					// Tracks number of texture binds for current frame
 	static U32 sUniqueCount;				// Tracks number of unique texture binds for current frame
 	static BOOL sGlobalUseAnisotropic;
+	static BOOL sUseTextureAtlas ;
+#if !LL_RELEASE_FOR_DOWNLOAD
+	//for debug use: show texture size distribution 
+	//----------------------------------------
+	static LLPointer<LLImageGL> sDefaultTexturep; //default texture to replace normal textures
+	static std::vector<S32> sTextureLoadedCounter ;
+	static std::vector<S32> sTextureBoundCounter ;
+	static std::vector<S32> sTextureCurBoundCounter ;
+	static S32 sCurTexSizeBar ;
+	static S32 sCurTexPickSize ;
+
+	static S32 getTextureCounterIndex(U32 val) ;
+	static void incTextureCounter(U32 val) ;
+	static void decTextureCounter(U32 val) ;
+	static void setCurTexSizebar(S32 index) ;
+	static void resetCurTexSizebar();
+	//----------------------------------------
+#endif
+
 #if DEBUG_MISS
 	BOOL mMissed; // Missed on last bind?
 	BOOL getMissed() const { return mMissed; };

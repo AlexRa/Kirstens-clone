@@ -43,7 +43,7 @@
 #include "llmath.h"
 #include "llgl.h"
 #include "llrender.h"
-
+#include "lltextureatlas.h"
 
 //----------------------------------------------------------------------------
 

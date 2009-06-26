@@ -280,6 +280,11 @@ bool LLTexUnit::bind(LLRenderTarget* renderTarget, bool bindDepth)
 
 	if (bindDepth)
 	{
+		if (renderTarget->hasStencil())
+		{
+			llerrs << "Cannot bind a render buffer for sampling.  Allocate render target without a stencil buffer if sampling of depth buffer is required." << llendl;
+		}
+
 		bindManual(renderTarget->getUsage(), renderTarget->getDepth());
 	}
 	else
@@ -293,15 +298,18 @@ bool LLTexUnit::bind(LLRenderTarget* renderTarget, bool bindDepth)
 
 bool LLTexUnit::bindManual(eTextureType type, U32 texture, bool hasMips)
 {
-	if (mIndex < 0 || mCurrTexture == texture) return false;
-
-	gGL.flush();
+	if (mIndex < 0) return false;
 	
-	activate();
-	enable(type);
-	mCurrTexture = texture;
-	glBindTexture(sGLTextureType[type], texture);
-	mHasMipMaps = hasMips;
+	if(mCurrTexture != texture)
+	{
+		gGL.flush();
+	
+		activate();
+		enable(type);
+		mCurrTexture = texture;
+		glBindTexture(sGLTextureType[type], texture);
+		mHasMipMaps = hasMips;
+	}
 	return true;
 }
 
