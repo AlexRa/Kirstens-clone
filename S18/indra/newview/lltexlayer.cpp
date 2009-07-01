@@ -957,7 +957,7 @@ void LLTexLayerSet::createComposite()
 			width /= 2;
 			height /= 2;
 		}
-		gPipeline.markGLRebuild(this);
+	//	gPipeline.markGLRebuild(this);
 		mComposite = new LLTexLayerSetBuffer( this, width, height, mHasBump );
 		
 	}

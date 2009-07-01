@@ -374,6 +374,24 @@ void LLDrawPoolAlpha::renderAlpha(U32 mask)
 				{
 					params.mGroup->rebuildMesh();
 				}
+
+				
+				if (params.mTexture.notNull())
+				{
+					gGL.getTexUnit(diffuse_channel)->bind(params.mTexture.get(), TRUE, TRUE);
+				//	if(params.mViewerTexture.notNull())
+				//	{
+				//		params.mViewerTexture->addTextureStats(params.mVSize);
+				//	}
+					if (params.mTextureMatrix)
+					{
+						gGL.getTexUnit(0)->activate();
+						glMatrixMode(GL_TEXTURE);
+						glLoadMatrixf((GLfloat*) params.mTextureMatrix->mMatrix);
+						gPipeline.mTextureMatrixOps++;
+					}
+				}
+
 				params.mVertexBuffer->setBuffer(mask);
 				params.mVertexBuffer->drawRange(LLRender::TRIANGLES, params.mStart, params.mEnd, params.mCount, params.mOffset);
 				gPipeline.addTrianglesDrawn(params.mCount/3);
