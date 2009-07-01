@@ -936,19 +936,19 @@ void LLTexLayerSet::cancelUpload()
 	}
 }
 
-void LLTexLayerSet::updateGL()
-{
-
-   createComposite();
-   
-}
-
-
 void LLTexLayerSet::createComposite()
 {
 	if( !mComposite )
 	{
-        
+		gPipeline.markGLRebuild(this);
+	}
+	updateGL();
+}
+
+void LLTexLayerSet::updateGL()
+{
+	if (!mComposite)
+	{
 		S32 width = mInfo->mWidth;
 		S32 height = mInfo->mHeight;
 		// Composite other avatars at reduced resolution
@@ -957,9 +957,7 @@ void LLTexLayerSet::createComposite()
 			width /= 2;
 			height /= 2;
 		}
-	//	gPipeline.markGLRebuild(this);
 		mComposite = new LLTexLayerSetBuffer( this, width, height, mHasBump );
-		
 	}
 }
 
