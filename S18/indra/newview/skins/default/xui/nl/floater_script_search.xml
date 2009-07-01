@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<floater name="script search" title="Script zoeken">
+	<check_box label="Niet hoofdlettergevoelig" name="case_text"/>
+	<button label="Zoeken" label_selected="Zoeken" name="search_btn"/>
+	<button label="Vervangen" label_selected="Vervangen" name="replace_btn"/>
+	<button label="Alles vervangen" label_selected="Alles vervangen" name="replace_all_btn"/>
+	<text name="txt">
+		Zoeken
+	</text>
+	<text name="txt2">
+		Vervangen
+	</text>
+</floater>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="Joystick" title="Oyun Çubuğu Konfigürasyonu">
+	<check_box name="enable_joystick">
+		Etkinleştir:
+	</check_box>
+	<string name="JoystickMonitor">
+		Oyun Çubuğu Monitörü
+	</string>
+	<string name="Axis">
+		Axis [NUM]
+	</string>
+	<string name="NoDevice">
+		aygıt bulunamıyor
+	</string>
+</floater>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<panel label="Invoer &amp; Camera" name="Input panel">
+	<text name=" Mouselook Options:">
+		Mouselook opties:
+	</text>
+	<text name=" Mouse Sensitivity:">
+		Muis gevoeligheid:
+	</text>
+	<check_box label="Muis omkeren" name="invert_mouse"/>
+	<text name=" Auto Fly Options:">
+		Automatisch vliegen
+opties:
+	</text>
+	<check_box label="Vlieg/Land bij indrukken Page Up/Down" name="automatic_fly"/>
+	<text name=" Camera Options:">
+		Camera opties:
+	</text>
+	<text name="Camera Follow Distance:">
+		Camera volgafstand:
+	</text>
+	<text name="Camera Transition Time:">
+		Camera overgangstijd
+	</text>
+	<text name="Camera Smoothing:">
+		Camera egalisering
+	</text>
+	<check_box label="Automatische bewerken camera beweging" name="edit_camera_movement" tool_tip="Gebruik automatische camerapositionering bij het betreden en verlaten van de bewerken modus"/>
+	<check_box label="Automatische uiterlijk camera beweging" name="appearance_camera_movement" tool_tip="Gebruik automatische camerapositionering in de bewerken modus"/>
+	<text name="text2">
+		Avatar weergave opties:
+	</text>
+	<check_box label="Toon avatar in mouselook" name="first_person_avatar_visible"/>
+	<text name="text5">
+		Joystick opties:
+	</text>
+	<button label="Joystick instellingen" name="joystick_setup_button"/>
+</panel>

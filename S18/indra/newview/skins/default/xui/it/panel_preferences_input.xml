@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<panel label="Controlli &amp; Telecamera" name="Input panel">
+	<text name=" Mouselook Options:">
+		Opzioni visualizzazione
+in soggettiva:
+	</text>
+	<text name=" Mouse Sensitivity:">
+		Sensibilità del mouse:
+	</text>
+	<check_box label="Inverti i controlli del mouse" name="invert_mouse"/>
+	<text name=" Auto Fly Options:">
+		Opzioni di volo
+automatico:
+	</text>
+	<check_box label="Vola/atterra premendo su/giù" name="automatic_fly"/>
+	<text name=" Camera Options:">
+		Opzioni della
+telecamera:
+	</text>
+	<text name="Camera Follow Distance:">
+		Distanza della telecamera dall&apos;avatar:
+	</text>
+	<text name="Camera Transition Time:">
+		Tempo di transizione della telecamera:
+	</text>
+	<text name="Camera Smoothing:">
+		Riduzione contrasto della telecamera:
+	</text>
+	<check_box label="Movimenti automatici della telecamera in modalità modifica oggetti" name="edit_camera_movement" tool_tip="Usa il posizionamento automatico della telecamera entrando e uscendo dalla modalità modifica oggetti"/>
+	<check_box label="Movimenti automatici della telecamera in modalità aspetto fisico" name="appearance_camera_movement" tool_tip="Usa il posizionamento automatico della telecamera durante la modalità modifica oggetti"/>
+	<text name="text2">
+		Opzione di visualizzazione
+dell&apos;avatar:
+	</text>
+	<check_box label="Mostra l&apos;avatar in prima persona" name="first_person_avatar_visible"/>
+	<text name="text5">
+		Opzioni del joystick:
+	</text>
+	<button label="Installazione del joystick" name="joystick_setup_button" bottom_delta="-40" />
+</panel>

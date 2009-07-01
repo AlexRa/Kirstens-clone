@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<panel name="GroupInfo" title="GroupInfo">
+	<button label="Uygula" label_selected="Apply" name="btn_apply" />
+	<button label="İptal" label_selected="Cancel" name="btn_cancel" />
+	<button label="Tamam" label_selected="OK" name="btn_ok" />
+	<button label="Yenile" label_selected="Refresh" name="btn_refresh" />
+</panel>

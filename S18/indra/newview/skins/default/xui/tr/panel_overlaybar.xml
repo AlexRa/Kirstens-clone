@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<panel name="overlay">
+	<layout_stack name="overlay_layout_panel">
+		<layout_panel name="main_panel">
+			<layout_stack name="chatbar_and_buttons">
+				<layout_panel name="state_buttons">
+					<button label="HM alındı" label_selected="HM alındı" name="IM Received"
+					     tool_tip="Bekleyen hızlı mesajınız var.HM&apos;leri görüntülemek için tıklayınız." />
+					<button label="Meşgulden çık" label_selected="Meşgulden çık" name="Set Not Busy"
+					     tool_tip="Sohbet ve HM sizin için saklandı.Kendinizi meşgul durumdan çıkarmak için buraya tıklayınız." />
+					<button label="Farebakışı" label_selected="Farebakışı" name="Mouselook"
+					     tool_tip="Görünümünüze yön vermek için fareyi kullanınız.Eğer silahınız varsa,tıklamak ateş ettirecektir." />
+					<button label="Ayağa kalk" label_selected="Ayağa kalk" name="Stand Up"
+					     tool_tip="Ayağa kalkmak için buraya tıklayınız." />
+				</layout_panel>
+			</layout_stack>
+		</layout_panel>
+	</layout_stack>
+</panel>

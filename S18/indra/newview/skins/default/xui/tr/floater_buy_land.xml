@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="buy land" title="Arazi Satın Alımı">
+	<text name="region_name_label">
+		Bölge:
+	</text>
+	<text name="estate_name_label">
+		Emlak:
+	</text>
+	<text name="estate_owner_label">
+		Emlak sahibi:
+	</text>
+	<text name="resellable_changeable_label">
+		Bu bölgede satın alınan arazi:
+	</text>
+	<text name="covenant_text">
+		Emlak anlaşmasını kabul etmelisiniz:
+	</text>
+	<check_box label="Yukarıda belirtilen anlaşmayı kabul ediyorum." name="agree_covenant" />
+	<text name="info_parcel_label">
+		Parsel:
+	</text>
+	<text name="info_parcel">
+		Scotopteryx 138,204
+	</text>
+	<text name="info_size_label">
+		Boyut:
+	</text>
+	<text name="info_size">
+		1024 sq. m.
+	</text>
+	<text name="info_price_label">
+		Ücret:
+	</text>
+	<button label="Web sitesine git" name="error_web" />
+	<line_editor name="currency_amt">
+		1000
+	</line_editor>
+	<button label="Satın al" name="buy_btn" />
+	<button label="İptal" name="cancel_btn" />
+	<string name="can_resell">
+		Tekrar satılabilir.
+	</string>
+	<string name="can_not_resell">
+		Tekrar satılamaz.
+	</string>
+	<string name="can_change">
+		Birleştirilebilir veya bölünebilir.
+	</string>
+	<string name="can_not_change">
+		Birleştirilemez veya bölünemez.
+	</string>
+	<string name="parcel_not_for_sale">
+		Seçili arazi satılık değil.
+	</string>
+	<string name="group_already_owns">
+		Grup zaten araziye sahip.
+	</string>
+	<string name="you_already_own">
+		Zaten araziye sahipsiniz.
+	</string>
+	<string name="processing">
+		İşleminiz yapılıyor...
+ 
+(Bir veya iki dakika sürebilir.)
+	</string>
+	<string name="fetching_error">
+		Arazi satış bilgisini alma sırasında bir hata oluştu.
+	</string>
+	<string name="buying_will">
+		Araziyi satın almak:
+	</string>
+	<string name="cannot_buy_now">
+		Satın alınamıyor:
+	</string>
+	<string name="cant_own_land">
+		Hesabınız arazi sahibi olabilir.
+	</string>
+	<string name="land_holdings">
+		[BUYER] metre kare araziniz mevcut.
+	</string>
+	<string name="parcel_meters">
+		Bu parsel [AMOUNT] metre karedir.
+	</string>
+	<string name="premium_land">
+		Burası anakara arazisidir,bu yüzden [AMOUNT] metre kare verginiz olacak.
+	</string>
+	<string name="discounted_land">
+		Burası özel emlak arazisidir,bu yüzden [AMOUNT] metre kare &quot;Linden Lab&quot; verginiz olacak.
+	</string>
+	<string name="have_enough_lindens">
+		Bu araziyi satın alabilmek için yeterli [AMOUNT] L$ bakiyeniz var.
+	</string>
+	<string name="not_enough_lindens">
+		Sadece [AMOUNT] L$ bakiyeniz var,[AMOUNT2] L$ daha gerekli.
+	</string>
+	<string name="balance_left">
+		Satın alımdan sonra,hesabınızda [AMOUNT] L$ kalacak.
+	</string>
+	<string name="balance_needed">
+		Bu araziyi satın alabilmek için en az [AMOUNT] L$ satın almanız gerekli.
+	</string>
+</floater>

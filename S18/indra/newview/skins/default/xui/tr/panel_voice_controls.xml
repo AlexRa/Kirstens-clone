@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<panel name="voice_controls">
+	<button label="" name="speakers_btn"
+	     tool_tip="Çevrenizdeki sesli sohbet eden üyelerin listesi" />
+	<button label="Konuş" name="push_to_talk"
+	     tool_tip="Konuşmak için butonu basılı tutunuz" />
+	<button label="" name="ptt_lock"
+	     tool_tip="Konuşma moduna geçmek için kilide tıklayınız" />
+	<button label="" name="show_channel"
+	     tool_tip="Mevcut konuşma kanalınızı görmek için tıklayınız" />
+</panel>

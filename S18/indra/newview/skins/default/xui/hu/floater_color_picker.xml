@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<floater name="ColorPicker" title="Színválasztás">
+	<text name="r_val_text">
+		Piros (R):
+	</text>
+	<text name="g_val_text">
+		Zöld (G):
+	</text>
+	<text name="b_val_text">
+		Kék (B):
+	</text>
+	<text name="h_val_text">
+		Árnyalat:
+	</text>
+	<text name="s_val_text">
+		Telítettség:
+	</text>
+	<text name="l_val_text">
+		Fényerő:
+	</text>
+	<check_box label="Azonnali alkalmazás" name="apply_immediate"/>
+	<button label="" label_selected="" name="color_pipette"/>
+	<button label="Mégsem" label_selected="Mégsem" name="cancel_btn"/>
+	<button label="Kijelöl" label_selected="Kijelöl" name="select_btn"/>
+	<text name="Current color:">
+		Jelenlegi szín:
+	</text>
+	<text name="(Drag below to save.)" width="128">
+		(Húzd le az elmentéshez.)
+	</text>
+</floater>

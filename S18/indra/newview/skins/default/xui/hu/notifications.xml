@@ -1,0 +1,1544 @@
+<?xml version="1.0" ?><notifications>
+
+  <global name="skipnexttime">
+
+		Ne mutasd újra
+  </global>
+
+  <global name="alwayschoose">
+
+		Mindig ez a beállítás alkalmazása
+  </global>
+
+  <template name="okbutton">
+    <form>
+      <button
+       name="OK"
+       text="$yestext"/>
+    </form>
+  </template>
+
+  <template name="okignore">
+    <form>
+      <button
+       name="OK"
+       text="$yestext"/>
+      <ignore text="$ignoretext"/>
+    </form>
+  </template>
+
+  <template name="okcancelbuttons">
+    <form>
+      <button
+       name="OK"
+       text="$yestext"/>
+      <button
+       name="Cancel"
+       text="$notext"/>
+    </form>
+  </template>
+
+  <template name="okcancelignore">
+    <form>
+      <button
+       name="OK"
+       text="$yestext"/>
+      <button
+       name="Cancel"
+       text="$notext"/>
+      <ignore text="$ignoretext"/>
+    </form>
+  </template>
+
+  <template name="okhelpbuttons">
+    <form>
+      <button
+       name="OK"
+       text="$yestext"/>
+      <button
+       name="Help"
+       text="$helptext"/>
+    </form>
+  </template>
+
+  <template name="yesnocancelbuttons">
+    <form>
+      <button
+       name="Yes"
+       text="$yestext"/>
+      <button
+       name="No"
+       text="$notext"/>
+      <button
+       name="Cancel"
+       text="$canceltext"/>
+    </form>
+  </template>
+
+  <notification
+   functor="GenericAcknowledge"
+   
+   name="MissingAlert"
+   >
+Hiba: &apos;[_NAME]&apos; hiányzik notifications.xml fájlból!
+    <usetemplate
+     name="okbutton"
+     yestext="OK"/>
+  </notification>
+
+  <notification
+   
+   name="FloaterNotFound"
+   >
+Hiba: A következő vezérlők nem találhatók:
+
+[CONTROLS]
+    <usetemplate
+     name="okbutton"
+     yestext="OK"/>
+  </notification>
+
+  <notification
+   
+   name="GenericAlert"
+   >
+[MESSAGE]
+  </notification>
+
+  <notification
+   
+   name="GenericAlertYesCancel"
+   >
+[MESSAGE]
+    <usetemplate
+     name="okcancelbuttons"
+     notext="Mégsem"
+     yestext="Igen"/>
+  </notification>
+
+  <notification
+   
+   name="WearableSave"
+   >
+Változtatások elmentése öltözetként/testrészként?
+    <usetemplate
+     canceltext="Mégsem"
+     name="yesnocancelbuttons"
+     notext="Nem ment"
+     yestext="Ment"/>
+  </notification>
+
+  <notification
+   
+   name="CompileQueueSaveText"
+   >
+A következő probléma merült fel a kód feltöltésekor: [REASON]. Kérjük próbáld meg később.
+  </notification>
+
+  <notification
+   
+   name="CompileQueueSaveBytecode"
+   >
+A következő probléma merült fel a kód futtatásakor: [REASON]. Kérjük próbáld meg később.
+  </notification>
+
+  <notification
+   
+   name="WriteAnimationFail"
+   >
+A következő probléma merült fel az animációs adatok írásakor: [REASON]. Kérjük próbáld meg később.
+  </notification>
+
+  <notification
+   
+   name="UploadAuctionSnapshotFail"
+   >
+A következő probléma merült fel az aukciós képek feltöltésekor: [REASON]. Kérjük próbáld meg később.
+  </notification>
+
+  <notification
+   
+   name="UnableToViewContentsMoreThanOne"
+   >
+Nem sikerült egyszerre több tétel tartalmának a megtekintése.
+Kérjük csak egy tárgyat válassz ki és próbáld újra.
+  </notification>
+
+  <notification
+   
+   name="SaveClothingBodyChanges"
+   >
+Változtatások elmentése öltözetként/testrészként?
+    <usetemplate
+     canceltext="Mégsem"
+     name="yesnocancelbuttons"
+     notext="Nem ment"
+     yestext="Mindet elment"/>
+  </notification>
+
+  <notification
+   
+   name="GrantModifyRights"
+   >
+A jogok módosításának átruházása más lakó részére lehetővé teszi a földön lévő BÁRMELY tárgy megváltozatásának jogát. Kérjük kezeld NAGYON figyelmesen ennek az engedélynek a kiosztását.
+Biztos, hogy átruházod a módosítás jogát a következő lakóra: [LAST_NAME] [FIRST_NAME]?
+    <usetemplate
+     name="okcancelbuttons"
+     notext="Nem"
+     yestext="Igen"/>
+  </notification>
+
+  <notification
+   
+   name="RevokeModifyRights"
+   >
+Visszavonod a módosítás jogát a következő lakótól: [LAST_NAME] [FIRST_NAME]?
+    <usetemplate
+     name="okcancelbuttons"
+     notext="Nem"
+     yestext="Igen"/>
+  </notification>
+
+  <notification
+   
+   name="UnableToCreateGroup"
+   >
+Nem sikerült a csoport létrehozása.
+[MESSAGE]
+    <usetemplate
+     name="okbutton"
+     yestext="OK"/>
+  </notification>
+
+  <notification
+   
+   name="PanelGroupApply"
+   >
+[NEEDS_APPLY_MESSAGE]
+[WANT_APPLY_MESSAGE]
+    <usetemplate
+     canceltext="Mégsem"
+     name="yesnocancelbuttons"
+     notext="Változtatások elvetése"
+     yestext="Változtatások mentése"/>
+  </notification>
+
+  <notification
+   
+   name="MustSpecifyGroupNoticeSubject"
+   >
+Kérjük töltsd ki a csoport felhívás tárgysorát.
+    <usetemplate
+     name="okbutton"
+     yestext="OK"/>
+  </notification>
+
+  <notification
+   
+   name="AddGroupOwnerWarning"
+   >
+A következő pozíció hozzárendelése csoporttaghoz: [ROLE_NAME].
+A tagoktól nem vonható meg ez a pozíció.
+A tagoknak saját maguktól kell lemondani a pozícióról.
+Biztos, hogy folytatni szeretnéd?
+    <usetemplate
+     ignoretext="Amikor csoporttagokat adsz tulajdonosi jogokoz"
+     name="okcancelignore"
+     notext="Nem"
+     yestext="Igen"/>
+  </notification>
+
+  <notification
+   
+   name="AssignDangerousActionWarning"
+   >
+A következő tevékenység hozzárendelése a pozícióhoz: [ACTION_NAME].
+
+ *FIGYELEM*
+ Bármely tag, aki ebben pozícióban van ezzel a tevékenység jogával, bármikor módosíthatja az ehhez kapcsolódo jogokat. Kérjük kezeld figyelmesen a tevékenységek kiosztását.
+Tevékenység hozzárendelése a következő pozícióhoz: [ROLE_NAME]?
+    <usetemplate
+     name="okcancelbuttons"
+     notext="Nem"
+     yestext="Igen"/>
+  </notification>
+
+  <notification
+   
+   name="AssignDangerousAbilityWarning"
+   >
+A követekező képesség: &apos;[ACTION_NAME]&apos; hizzárandelése ehhez a beosztáshoz: &apos;[ROLE_NAME]&apos;.
+
+ *FIGYELEM*
+ Bármely tag, aki ebben pozícióban van ennek a képességnek a jogával, bármikor módosíthatja az ehhez kapcsolódo jogokat.
+
+Képesség hozzárendelése a következő pozícióhoz: [ROLE_NAME]?
+    <usetemplate
+     name="okcancelbuttons"
+     notext="Nem"
+     yestext="Igen"/>
+  </notification>
+
+  <notification
+   
+   name="ClickPublishHelpLand"
+   >
+A keresőkben történő megjelenítés kiválasztása
+Ezzel a beállítással lehetőség nyílik megjeleníteni:
+- a földet a keresési eredmények között
+- a földön elhelyzett nyilvánosan használható tárgyakat
+- a földet a honlapon szereplő keresőben
+  </notification>
+
+  <notification
+   
+   name="ClickPublishHelpLandDisabled"
+   >
+Ez a föld nem szerepelhet a keresők között, mert ebben a régióban ez nem engdélyezett.
+  </notification>
+
+  <notification
+   
+   name="ClickPublishHelpAvatar"
+   >
+A keresőkben történő megjelenítés kiválasztása
+Ezzel a beállítással lehetőség nyílik megjeleníteni:
+- a saját adatlap megjelenítése a keresőben
+- hivatkozások a saját adatlaphoz nyilvános csoport oldalakon
+  </notification>
+
+  <notification
+   
+   name="ClickPartnerHelpAvatar"
+   >
+Indítványozhatsz kapcsolatot egy másik vagy megszakíthatod a kapcsolatot egy meglévő lakóval a [SECOND_LIFE] oldalon.
+
+Tovább a Second Life honlapra?
+    <usetemplate
+     name="okcancelbuttons"
+     notext="Mégsem"
+     yestext="Megnyit"/>
+  </notification>
+
+  <notification
+   
+   name="JoinGroupCanAfford"
+   >
+    <usetemplate
+     name="okcancelbuttons"
+     notext="Mégsem"
+     yestext="Belép"/>
+  </notification>
+
+  <notification
+   
+   name="LandBuyPass"
+   >
+    <usetemplate
+     name="okcancelbuttons"
+     notext="Mégsem"
+     yestext="OK"/>
+  </notification>
+
+  <notification
+   
+   name="SystemMessageTip"
+   >
+[MESSAGE]
+  </notification>
+
+  <notification
+   
+   name="Cancelled"
+   >
+Törölt
+  </notification>
+
+  <notification
+   
+   name="CancelledSit"
+   >
+Megszakított ülés
+  </notification>
+
+  <notification
+   
+   name="CancelledAttach"
+   >
+Törölt csatolás
+  </notification>
+
+  <notification
+   
+   name="ReplacedMissingWearable"
+   >
+Alapértelmezettel felcserélt hiányzó ruházat/testrész.
+  </notification>
+
+  <notification
+   
+   name="GroupNotice"
+   >
+Tárgy: [SUBJECT], Üzenet: [MESSAGE]
+  </notification>
+
+  <notification
+   
+   name="FriendOnline"
+   >
+[FIRST] [LAST] online
+  </notification>
+
+  <notification
+   
+   name="FriendOffline"
+   >
+[FIRST] [LAST] offline
+  </notification>
+
+  <notification
+   
+   name="AddSelfFriend"
+   >
+Saját magadat nem tudod hozzáadni a barátlistádhoz.
+  </notification>
+
+  <notification
+   
+   name="UploadingAuctionSnapshot"
+   >
+Kép feltöltése itt vagy a honlapra...
+(Kb. 5 percig tart.)
+  </notification>
+
+  <notification
+   
+   name="UploadPayment"
+   >
+Ennyi összeget fizettél a feltöltésért: [AMOUNT] L$.
+  </notification>
+
+  <notification
+   
+   name="UploadWebSnapshotDone"
+   >
+Kép honlapra történő feltöltése megtörtént.
+  </notification>
+
+  <notification
+   
+   name="UploadSnapshotDone"
+   >
+Kép feltöltése itt megtörtént.
+  </notification>
+
+  <notification
+   
+   name="TerrainDownloaded"
+   >
+Domborzat .raw fájl feltöltése megtörtént.
+  </notification>
+
+  <notification
+   
+   name="GestureMissing"
+   >
+[NAME] nevű gesztus hiányzik az adatbázisból.
+  </notification>
+
+  <notification
+   
+   name="UnableToLoadGesture"
+   >
+[NAME] nevű gesztus feltöltése nem sikerült.
+Kérjük próbáld meg újra.
+  </notification>
+
+  <notification
+   
+   name="LandmarkMissing"
+   >
+A jelzőpont hiányzik az adatbázisból.
+  </notification>
+
+  <notification
+   
+   name="UnableToLoadLandmark"
+   >
+A jelzőpont betöltése nem sikerült. Kérjük próbáld meg újra.
+  </notification>
+
+  <notification
+   
+   name="CapsKeyOn"
+   >
+A kis- és nagybillenytyű átkapcsoló gomb be van nyomva.
+Ennek hatása van a beírt jelszóra. Valószínüleg ki kell kapcsolnod.
+  </notification>
+
+  <notification
+   
+   name="NotecardMissing"
+   >
+A jegyzet hiányzik az adatbázisból.
+  </notification>
+
+  <notification
+   
+   name="NotecardNoPermissions"
+   >
+Nincs jogosultságod a jegyzet megtekintésére.
+  </notification>
+
+  <notification
+   
+   name="RezItemNoPermissions"
+   >
+Nincs jogosultság a tárgy rezzelésére.
+  </notification>
+
+  <notification
+   
+   name="UnableToLoadNotecard"
+   >
+A jegyzet betöltése nem sikerült.
+Kérjük próbáld meg újra.
+  </notification>
+
+  <notification
+   
+   name="ScriptMissing"
+   >
+A kód hiányzik az adatbázisból.
+  </notification>
+
+  <notification
+   
+   name="ScriptNoPermissions"
+   >
+NIncs jogosultságod a kód megtekintésésre.
+  </notification>
+
+  <notification
+   
+   name="UnableToLoadScript"
+   >
+A kód betöltése sikertelen. Kérjük próbáld meg újra.
+  </notification>
+
+  <notification
+   
+   name="IncompleteInventory"
+   >
+A felajánlott tartalom helyileg nem elérhető. Kérjük válassz másik elemet néhány perc múlva.
+  </notification>
+
+  <notification
+   
+   name="CannotModifyProtectedCategories"
+   >
+Védett kategóriát nem módosíthatsz.
+  </notification>
+
+  <notification
+   
+   name="CannotRemoveProtectedCategories"
+   >
+Védett kategóriát nem távolíthatsz el.
+  </notification>
+
+  <notification
+   
+   name="OfferedCard"
+   >
+Hívókártya felajánlása ennek: [FIRST] [LAST]
+  </notification>
+
+  <notification
+   
+   name="UnableToBuyWhileDownloading"
+   >
+Adatletöltés alatt a vásárlás nem elérhető.
+Kérjük próbáld meg újra.
+  </notification>
+
+  <notification
+   
+   name="UnableToLinkWhileDownloading"
+   >
+Adatletöltés alatt az elemek összefűzése nem elérhető.
+Kérjük próbáld meg újra.
+  </notification>
+
+  <notification
+   
+   name="CannotBuyObjectsFromDifferentOwners"
+   >
+Egyszerre ugyanabban az időben nem vásárolhatsz két különböző tulajdonostól.
+Kérjük csak egy tárgyat válassz.
+  </notification>
+
+  <notification
+   
+   name="ObjectNotForSale"
+   >
+Ez a tárgy nem eladó.
+  </notification>
+
+  <notification
+   
+   name="EnteringGodMode"
+   >
+Rendszergazdai jogba belépés, szint: [LEVEL]
+  </notification>
+
+  <notification
+   
+   name="LeavingGodMode"
+   >
+Rendszergazdai jog elhagyása, szint: [LEVEL]
+  </notification>
+
+  <notification
+   
+   name="CopyFailed"
+   >
+A másolás sikertelen, mivel ezt a funkciót letiltottad.
+  </notification>
+
+  <notification
+   
+   name="InventoryAccepted"
+   >
+[NAME] elfogadta az átadott elemet.
+  </notification>
+
+  <notification
+   
+   name="InventoryDeclined"
+   >
+[NAME] elutasította az átadott elemet.
+  </notification>
+
+  <notification
+   
+   name="ObjectMessage"
+   >
+[NAME]: [MESSAGE]
+  </notification>
+
+  <notification
+   
+   name="CallingCardAccepted"
+   >
+A hívókártyád elfogadásra került.
+  </notification>
+
+  <notification
+   
+   name="CallingCardDeclined"
+   >
+A hívókártyád elutasításra került.
+  </notification>
+
+  <notification
+   
+   name="TeleportToLandmark"
+   >
+Most, hogy elérted a Főszigetet, lehetőség nyílik erre a helyszínre történő teleportálásra: &apos;[NAME]&apos;. Kattints a Készlettár gombra és válaszd a Jelzőpontok (Landmarks) mappát, majd kattints kétszer a megfelelő jelzőpontra és a teleportálásod a kiválasztott helyszínre megkezdődik.
+  </notification>
+
+  <notification
+   
+   name="TeleportToPerson"
+   >
+Most, hogy elérted a Főszigetet, lehetőség nyílik evvel a személlyel történő kapcsolatfelvételre: &apos;[NAME]&apos;. Kattints a Készlettár gombra és válaszd a Hívókártyák (Calling Cards) mappát, majd kattints kétszer a megfelelő hívókártyára és utána azonnali üzenetet küldhetsz a kiválasztott személynek.
+  </notification>
+
+  <notification
+   
+   name="CantSelectLandFromMultipleRegions"
+   >
+Nem jelölhetsz ki olyan földet, amely túlnyúlik a szerver határain.
+Kérjük jelölj ki egy kisebb területet.
+  </notification>
+
+  <notification
+   
+   name="GroupVote"
+   >
+[NAME] szavazásra javasolta a következőt:
+[MESSAGE]
+    <form name="form">
+      <button
+       
+       name="VoteNow"
+       text="Szavaz most"/>
+      <button
+       
+       name="Later"
+       text="Később"/>
+    </form>
+  </notification>
+
+  <notification
+   
+   name="SystemMessage"
+   >
+[MESSAGE]
+  </notification>
+
+  <notification
+   
+   name="EventNotification"
+   >
+Esemény értesítés:
+
+[NAME]
+[DATE]
+    <form name="form">
+      <button
+       
+       name="Teleport"
+       text="Teleportál"/>
+      <button
+       
+       name="Description"
+       text="Leírás"/>
+      <button
+       
+       name="Cancel"
+       text="Mégsem"/>
+    </form>
+  </notification>
+
+  <notification
+   
+   name="TransferObjectsHighlighted"
+   >
+Minden tárgy kiemelésre került ezen a telken, melyek a vásárló részére kerülnek átadásra.
+
+* A fák és fűvek nem kerültek kiemelésre.
+    <form name="form">
+      <button
+       
+       name="Done"
+       text="Végrehajtva"/>
+    </form>
+  </notification>
+
+  <notification
+   
+   name="DeactivatedGesturesTrigger"
+   >
+Gesztusok leállítása a következő a vezérlőkkel:
+[NAMES]
+  </notification>
+
+  <notification
+   
+   name="NoQuickTime"
+   >
+Apple QuickTime szoftver installálása nem történt meg a rendszeredben.
+Amennyiben streaming média tartalmat szeretnél megtekinteni, a QuickTime Player programot telepítened kell a következő honlapról: (http://www.apple.com/quicktime).
+  </notification>
+
+  <notification
+   
+   name="OwnedObjectsReturned"
+   >
+A kijelölt területen lévő tárgyaid visszakerültek a készlettáradba.
+  </notification>
+
+  <notification
+   
+   name="OtherObjectsReturned"
+   >
+[FIRST] [LAST] tulajdonában lévő tárgyak visszaküldésre kerültek a készlettárába.
+  </notification>
+
+  <notification
+   
+   name="OtherObjectsReturned2"
+   >
+A kijelölt területen lévő tárgyak visszaküldésre kerültek a föld tulajdonos, &apos;[NAME]&apos; készlettárába.
+  </notification>
+
+  <notification
+   
+   name="GroupObjectsReturned"
+   >
+A kijelölt területen lévő tárgyak megosztásra kerültek a következő csoporttal: [GROUPNAME].
+Az átruházható tárgyak visszakerültek az előző tulajdonoshoz.
+A nem átruházható tárgyak törlésre kerültek.
+  </notification>
+
+  <notification
+   
+   name="UnOwnedObjectsReturned"
+   >
+A kijelölt területen lévő tárgyak, melyek nem a te tulajdonodban vannak, visszaküldésre kerültek a tulajdonosainak.
+  </notification>
+
+  <notification
+   
+   name="NotSafe"
+   >
+Ezen a területen a károkozás engedélyezett (&apos;nem biztonságos&apos;).
+Sérülés lehetséges. Amennyiben megsérülsz, a kezdő helyszínre kerülsz teleportálásra.
+  </notification>
+
+  <notification
+   
+   name="NoFly"
+   >
+Ezen a földön a repülés nincs engedélyezve (&apos;nincs repülés&apos;).
+Itt nem repülhetsz.
+  </notification>
+
+  <notification
+   
+   name="PushRestricted"
+   >
+Ezen a földön az &apos;llPushObject&apos; korlátozva van.
+Nem használhatod ezt a funkciót, kivéve, ha te vagy a föld tulajdonosa.
+  </notification>
+
+  <notification
+   
+   name="NoVoice"
+   >
+Ezen a földön a hangüzenetek váltása nem engedélyezett.
+  </notification>
+
+  <notification
+   
+   name="NoBuild"
+   >
+Ezen a földön az építés nem engedélyezett (&apos;nincs építés&apos;).
+Itt nem építhetsz.
+  </notification>
+
+  <notification
+   
+   name="ScriptsStopped"
+   >
+Kódok futtatásának lehetősége átmenetileg nincs engedélyezve ezen a régión.
+  </notification>
+
+  <notification
+   
+   name="ScriptsNotRunning"
+   >
+Ezen a régión semmilyen kód nem fut.
+  </notification>
+
+  <notification
+   
+   name="NoOutsideScripts"
+   >
+Ezen a földön külső kódok futtatására nincs lehetőségThis land has outside scripts disabled
+(&apos;nincs külső kód&apos;).
+Csak olyan kódok futtathatók, melyek a föld tulajdonosának birtokában vannak.
+  </notification>
+
+  <notification
+   
+   name="ClaimPublicLand"
+   >
+Csak nyilvános területű föld szerezhető azon a régión, melyen tartózkodsz.
+  </notification>
+
+  <notification
+   
+   name="ObjectGiveItem"
+   >
+[FIRST] [LAST] tulajdonában lévő [OBJECTFROMNAME] tárgy átadta a követekezőket: [OBJECTTYPE], [OBJECTNAME].
+    <form name="form">
+      <button
+       
+       name="Keep"
+       text="Megtart"/>
+      <button
+       
+       name="Discard"
+       text="Elvet"/>
+      <button
+       
+       name="Mute"
+       text="Elnémít"/>
+    </form>
+  </notification>
+
+  <notification
+   
+   name="ObjectGiveItemUnknownUser"
+   >
+Ismeretlen felhasználó tulajdában lévő [OBJECTFROMNAME] tárgy átadta a következőket: [OBJECTTYPE], [OBJECTNAME].
+    <form name="form">
+      <button
+       
+       name="Keep"
+       text="Megtart"/>
+      <button
+       
+       name="Discard"
+       text="Elvet"/>
+      <button
+       
+       name="Mute"
+       text="Elnémít"/>
+    </form>
+  </notification>
+
+  <notification
+   
+   name="UserGiveItem"
+   >
+[NAME] átadta a következőt: [OBJECTTYPE], [OBJECTNAME].
+    <form name="form">
+      <button
+       
+       name="Keep"
+       text="Megtart"/>
+      <button
+       
+       name="Discard"
+       text="Elvet"/>
+      <button
+       
+       name="Mute"
+       text="Elnémít"/>
+    </form>
+  </notification>
+
+  <notification
+   
+   name="GodMessage"
+   >
+[NAME]
+[MESSAGE]
+  </notification>
+
+  <notification
+   
+   name="JoinGroup"
+   >
+[MESSAGE]
+    <form name="form">
+      <button
+       
+       name="Join"
+       text="Belép"/>
+      <button
+       
+       name="Decline"
+       text="Elutasít"/>
+      <button
+       
+       name="Info"
+       text="Információ"/>
+    </form>
+  </notification>
+
+  <notification
+   
+   name="TeleportOffered"
+   >
+[NAME] teleportálást ajánlott a tartózkodási helyére:
+
+[MESSAGE]
+    <form name="form">
+      <button
+       
+       name="Teleport"
+       text="Teleportál"/>
+      <button
+       
+       name="Cancel"
+       text="Mégsem"/>
+    </form>
+  </notification>
+
+  <notification
+   
+   name="GotoURL"
+   >
+[MESSAGE]
+[URL]
+    <form name="form">
+      <button
+       
+       name="Later"
+       text="Később"/>
+      <button
+       
+       name="GoNow..."
+       text="Most megy..."/>
+    </form>
+  </notification>
+
+  <notification
+   
+   name="OfferFriendship"
+   >
+[NAME] barátságot ajánl.
+
+[MESSAGE]
+
+(Alapértelmezett esetben mindenki látja a másik fél online állapotát.)
+    <form name="form">
+      <button
+       
+       name="Accept"
+       text="Elfogad"/>
+      <button
+       
+       name="Decline"
+       text="Elutasít"/>
+    </form>
+  </notification>
+
+  <notification
+   
+   name="OfferFriendshipNoMessage"
+   >
+[NAME] barátságot ajánl.
+
+(Alapértelmezett esetben mindenki
+látja a másik fél online állapotát.)
+    <form name="form">
+      <button
+       
+       name="Accept"
+       text="Elfogad"/>
+      <button
+       
+       name="Decline"
+       text="Elutasít"/>
+    </form>
+  </notification>
+
+  <notification
+   
+   name="FriendshipAccepted"
+   >
+[NAME] elfogadta a barátság felajánlását.
+  </notification>
+
+  <notification
+   
+   name="FriendshipDeclined"
+   >
+[NAME] elutasította a barátság felajánlását.
+  </notification>
+
+  <notification
+   
+   name="OfferCallingCard"
+   >
+[FIRST] [LAST] felajánlja a hívókártyáját.
+Ez egy könyvjelző a készlettáradba, amellyel azonnali üzenetet tudsz neki küldeni.
+    <form name="form">
+      <button
+       
+       name="Accept"
+       text="Elfogad"/>
+      <button
+       
+       name="Decline"
+       text="Elutasít"/>
+    </form>
+  </notification>
+
+  <notification
+   
+   name="RegionRestartMinutes"
+   
+   
+   >
+A régió [MINUTES] perc múlva újraindul.
+Amennyiben itt maradsz automatikusan kiléptetésre kerülsz.
+  </notification>
+
+  <notification
+   
+   name="RegionRestartSeconds"
+   
+   
+   >
+A régió [SECONDS] mp múlva újraindul.
+Amennyiben itt maradsz automatikusan kiléptetésre kerülsz.
+  </notification>
+
+  <notification
+   
+   name="LoadWebPage"
+   >
+Honlap betöltése [URL]?
+
+[MESSAGE]
+
+Ettől a tárgytól: [OBJECTNAME], tulajdonos: [NAME]?
+    <form name="form">
+      <button
+       
+       name="Gotopage"
+       text="Megnyit"/>
+      <button
+       
+       name="Cancel"
+       text="Mégsem"/>
+    </form>
+  </notification>
+
+  <notification
+   
+   name="FailedToFindWearableUnnamed"
+   >
+Nem található az adatbázisban: [TYPE].
+  </notification>
+
+  <notification
+   
+   name="FailedToFindWearable"
+   >
+Nem található az adatbázisban: [TYPE], [DESC].
+  </notification>
+
+  <notification
+   
+   name="ScriptQuestion"
+   >
+&apos;[OBJECTNAME]&apos;, tulajdonos: &apos;[NAME]&apos;, szeretne:
+
+[QUESTIONS]
+Rendben?
+    <form name="form">
+      <button
+       
+       name="Yes"
+       text="Igen"/>
+      <button
+       
+       name="No"
+       text="Nem"/>
+      <button
+       
+       name="Mute"
+       text="Elnémít"/>
+    </form>
+  </notification>
+
+  <notification
+   
+   name="ScriptQuestionCaution"
+   >
+&apos;[OBJECTNAME]&apos;, tulajdonos: &apos;[NAME]&apos;, szeretne:
+
+[QUESTIONS]
+Amennyiben nem találod biztonságosnak a tárgyat vagy a készítőjét, lehetőséged van elutasítani a kérést. További információkért, kattints a Részletek gombra.
+
+Jóváhagyod a kérést?
+    <form name="form">
+      <button
+       
+       name="Grant"
+       text="Jóváhagy"/>
+      <button
+       
+       name="Deny"
+       text="Elutasít"/>
+      <button
+       
+       name="Details"
+       text="Részletek..."/>
+    </form>
+  </notification>
+
+  <notification
+   
+   name="ScriptDialog"
+   >
+[FIRST] [LAST]&apos;s &apos;[TITLE]&apos;
+[MESSAGE]
+    <form name="form">
+      <button
+       
+       name="Ignore"
+       text="Elutasít"/>
+    </form>
+  </notification>
+
+  <notification
+   
+   name="ScriptDialogGroup"
+   >
+[GROUPNAME]&apos;s &apos;[TITLE]&apos;
+[MESSAGE]
+    <form name="form">
+      <button
+       
+       name="Ignore"
+       text="Elutasít"/>
+    </form>
+  </notification>
+
+  <notification
+   
+   name="FirstBalanceIncrease"
+   >
+Ennyi összeget kaptál: [AMOUNT] L$.
+Tárgyak és egyéb személyek is adhatnak L$.
+Az jelenlegi egyenleged a képernyő felső jobb sarkában látható.
+  </notification>
+
+  <notification
+   
+   name="FirstBalanceDecrease"
+   >
+Ennyi összeget fizettél: [AMOUNT] L$.
+Az jelenlegi egyenleged a képernyő felső jobb sarkában látható.
+  </notification>
+
+  <notification
+   
+   name="FirstSit"
+   >
+Éppen ülsz.
+Használd a nyilakat a billentyűzeten a nézet váltásához.
+Kattints a Felállás (Stand up) gombra a megszakításhoz.
+  </notification>
+
+  <notification
+   
+   name="FirstMap"
+   >
+Kattins és húzd az egeret a térkép lapozásához.
+Kétszer kattints a teleportáláshoz.
+  </notification>
+
+  <notification
+   
+   name="FirstBuild"
+   >
+A [SECOND_LIFE] területein új tárgyakat építhetsz.
+Használd a fenti eszközöket és alkalmazd a Ctrl vagy Alt billentyűket az esuközök váltásához.
+Nyomd le az Esc billentyűt az építés befejezéséhez.
+  </notification>
+
+  <notification
+   
+   name="FirstLeftClickNoHit"
+   >
+A bal egér gomb lenyomásával kapcsolatot teremthetsz a különleges tárgyakkal.
+Ha az egér mutatója átvált nyílból mutatóújra,
+akkor kapcsolatot teremthetsz az adott tárggyal.
+Jobb egér gomb lenyomásával mindig a menü kerül megjelenítésre.
+  </notification>
+
+  <notification
+   
+   name="FirstTeleport"
+   >
+Ezen a régión belül a teleportációk nincsenek engedélyezve, így a legközelebbi telehub-ra kerülsz átirányításra.
+Az érkezési pont egy magas beacon elemmel van jelölve.
+Kövesd a piros nyilat vagy kattints a beacon elvetéséhez.
+  </notification>
+
+  <notification
+   
+   name="FirstOverrideKeys"
+   >
+A mozgás vezérlő gombok most egy tárgy által vezéreltek.
+Próbáld használni a nyilakat a billentyűzeten.
+Néhány tárgy (pl. fegyverek) egér nézet alkalmazását kérik.
+Nyomd le az &apos;M&apos; billentyűt ennek használatához.
+  </notification>
+
+  <notification
+   
+   name="FirstAppearance"
+   >
+Jelenleg a megjelenésedet szerkeszted.
+A forgáshoz és nagyításhoz használd a nyilakat a billentyűzeten.
+Amikor befejezted, kattints a &apos;Mindet elment&apos; gombra a mentéshez és a kilépéshez.
+A megjelenésedet bármikor szerkesztheted.
+  </notification>
+
+  <notification
+   
+   name="FirstInventory"
+   >
+Ez a készlettárad, amely tartalmaz tárgyakat, feljegyzéseket, ruházatot és egyéb tárgyakat.
+* Tárgy vagy ruházat felvételéhez egyszerűen csak húzd azokat magadra.
+* Tárgy kitételehez húzd ki a tárgyat a földre.
+* Feljegyzés olvasásához kattints kétszer a feljegyzésre.
+  </notification>
+
+  <notification
+   
+   name="FirstSandbox"
+   >
+Ez a régió homokozóként működik.
+Az itt épített tárgyak törlésre kerülhetnek.
+A homokozókon általában rendszeres tisztítást végeznek bizonyos időközönként. Bővebbb információkat erről a Föld információkban találsz.
+
+A homokozók ritkák és ezeket ugyanakkor jelzik.
+  </notification>
+
+  <notification
+   
+   name="FirstFlexible"
+   >
+Ez a tárgy flexi.
+Flexibilis tárgy nem lehet fizikai tárgy egyszerre és ugyanakkor fantom tulajdonságokkal kell rendelkeznie.
+  </notification>
+
+  <notification
+   
+   name="FirstDebugMenus"
+   >
+Engedélyezted az Advanced menüt.
+Ez a menü a fejlesztéshez szükséges eszköztárakat tartalmazza.
+A menü ki- és bekapcsolásához használd a Ctrl-Alt-D vagy Cmd-Opt-Shift-D (MAC) billentyűket.
+  </notification>
+
+  <notification
+   
+   name="FirstSculptedPrim"
+   >
+Éppen sculptie prímet szerkesztesz.
+A sculptie prím elkészítéséhez speciális textúrára van szükséged.
+Minta sculptie textúrákat találsz a készlettáradban.
+  </notification>
+
+  <notification
+   
+   name="FirstMedia"
+   >
+Média lejátszását kezdted meg. A média automatikus lejátszása a Tulajdonságok menü Hang és Videó résznél állítható be. Ismeretlen média oldal lehetséges biztonsági kockázatot jelent.
+  </notification>
+
+  <notification
+   
+   name="MaxListSelectMessage"
+   >
+Legfeljebb ennyi elemet jelölhetsz ki a listából: [MAX_SELECT].
+  </notification>
+
+  <notification
+   
+   name="VoiceInviteP2P"
+   >
+[NAME] hangüzenet váltását szeretne veled kezdeményezni.
+Kattints az elfogad gombra a beszélgetés megkezdéséhez vagy az elutasít gombra a elutasításhoz. Kattints az elnémít gombra a hívó elnémításához.
+    <form name="form">
+      <button
+       
+       name="Accept"
+       text="Elfogad"/>
+      <button
+       
+       name="Decline"
+       text="Elutasít"/>
+      <button
+       
+       name="Mute"
+       text="Elnémít"/>
+    </form>
+  </notification>
+
+  <notification
+   
+   name="AutoUnmuteByIM"
+   >
+[FIRST] [LAST] üzenetet küldött és automatikusan lekerült az elnémítottak listájáról.
+  </notification>
+
+  <notification
+   
+   name="AutoUnmuteByMoney"
+   >
+[FIRST] [LAST] pénzt adott és automatikusan lekerült az elnémítottak listájáról.
+  </notification>
+
+  <notification
+   
+   name="AutoUnmuteByInventory"
+   >
+[FIRST] [LAST] készlettár elemet ajánlott és automatikusan lekerült az elnémítottak listájáról.
+  </notification>
+
+  <notification
+   
+   name="VoiceInviteGroup"
+   >
+[NAME] belépett ezzel a csoporttal: [GROUP] történő beszélgetésbe.
+Kattints az elfogad gombra a beszélgetés megkezdéséhez vagy az elutasít gombra a elutasításhoz. Kattints az elnémít gombra a hívó elnémításához.
+    <form name="form">
+      <button
+       
+       name="Accept"
+       text="Elfogad"/>
+      <button
+       
+       name="Decline"
+       text="Elutasít"/>
+      <button
+       
+       name="Mute"
+       text="Elnémít"/>
+    </form>
+  </notification>
+
+  <notification
+   
+   name="VoiceInviteAdHoc"
+   >
+[NAME] konferencia beszélgetést végez...
+Kattints az elfogad gombra a beszélgetés megkezdéséhez vagy az elutasít gombra a elutasításhoz. Kattints az elnémít gombra a hívó elnémításához.
+    <form name="form">
+      <button
+       
+       name="Accept"
+       text="Elfogad"/>
+      <button
+       
+       name="Decline"
+       text="Elutasít"/>
+      <button
+       
+       name="Mute"
+       text="Elnémít"/>
+    </form>
+  </notification>
+
+  <notification
+   
+   name="InviteAdHoc"
+   >
+[NAME] konferencia beszélgetésbe hív.
+Kattints az elfogad gombra a beszélgetés megkezdéséhez vagy az elutasít gombra a elutasításhoz. Kattints az elnémít gombra a felhasználó elnémításához..
+    <form name="form">
+      <button
+       
+       name="Accept"
+       text="Elfogad"/>
+      <button
+       
+       name="Decline"
+       text="Elutasít"/>
+      <button
+       
+       name="Mute"
+       text="Elnémít"/>
+    </form>
+  </notification>
+
+  <notification
+   
+   name="VoiceChannelFull"
+   >
+A beszélgetésben résztvevők száma elérte maximális megengethető kapacitást: [VOICE_CHANNEL_NAME]. Kérjük próbáld meg később.
+  </notification>
+
+  <notification
+   
+   name="ProximalVoiceChannelFull"
+   >
+Sajnáljuk, de ezen a területen több beszélgetés nem kezdeményezhető. Kérjük próbáld meg egy másik területen.
+  </notification>
+
+  <notification
+   
+   name="VoiceChannelDisconnected"
+   >
+Lekapcsolódás erről a beszélgetésről: [VOICE_CHANNEL_NAME]. Most visszakapcsolódsz a nyilvános beszélgetésbe.
+  </notification>
+
+  <notification
+   
+   name="VoiceChannelDisconnectedP2P"
+   >
+Beszélgetés befejezése evvel: [VOICE_CHANNEL_NAME]. Most visszakapcsolódsz a nyilvános beszélgetésbe.
+  </notification>
+
+  <notification
+   
+   name="P2PCallDeclined"
+   >
+Beszélgetés visszautasítva ettől: [VOICE_CHANNEL_NAME]. Most visszakapcsolódsz a nyilvános beszélgetésbe.
+  </notification>
+
+  <notification
+   
+   name="P2PCallNoAnswer"
+   >
+Beszélgetés nem elérhető evvel: [VOICE_CHANNEL_NAME]. Most visszakapcsolódsz a nyilvános beszélgetésbe.
+  </notification>
+
+  <notification
+   
+   name="VoiceChannelJoinFailed"
+   >
+Sikertelen kapcsolódás evvel: [VOICE_CHANNEL_NAME], kérjük próbáld meg később. Most visszakapcsolódsz a nyilvános beszélgetésbe.
+  </notification>
+
+  <notification
+   
+   name="VoiceLoginRetry"
+   >
+Beszélgetésre felkészülés. Ez eltarthat legalább egy percig.
+  </notification>
+
+  <notification
+   
+   name="Cannot enter parcel: not a group member"
+   >
+Telekre történő belépés sikertelen. Nem vagy a megfelelő csoport tagja.
+  </notification>
+
+  <notification
+   
+   name="Cannot enter parcel: banned"
+   >
+A telekre történő belépés nincs engedélyezve. Ki vagy tiltva.
+  </notification>
+
+  <notification
+   
+   name="Cannot enter parcel: not on access list"
+   >
+A telekre történő belépés nincs engedélyezve. Nem vagy az engedélyezett belépők listáján.
+  </notification>
+
+  <notification
+   
+   name="VoiceNotAllowed"
+   >
+Nincs jogosultságod a beszélgetéshez történő csatlakozáshoz evvel: [VOICE_CHANNEL_NAME].
+  </notification>
+
+  <notification
+   
+   name="VoiceCallGenericError"
+   >
+Hiba merült fel a ehhez beszélgetéshez történő csatlakozáskor: [VOICE_CHANNEL_NAME]. Kérjük próbáld meg később.
+  </notification>
+
+  <notification
+   
+   name="ServerVersionChanged"
+   >
+Ezen a régión más verziójú szimulátor fut. Kattints erre az üzenetre a részletekért.
+  </notification>
+
+  <notification
+   
+   name="UnableToOpenCommandURL"
+   >
+A hivatkozás, melyre kattintottál nem nyitható meg ebből a böngészőből.
+  </notification>
+</notifications>
+

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="worldmap" title="Dünya haritası">
+	<tab_container name="maptab">
+		<panel label="Objeler" name="objects_mapview" />
+		<panel label="Zemin" name="terrain_mapview" />
+	</tab_container>
+	<text name="land_for_sale_label">
+		Satılık arazi
+	</text>
+	<text name="auction_label">
+		Açık arttırma
+	</text>
+	<text name="you_label">
+		Siz
+	</text>
+	<text name="home_label">
+		Ev
+	</text>
+	<button label="Eve git" label_selected="Eve git" name="Go Home"
+	     tool_tip="Evinize ışınlanın" />
+	<text name="person_label">
+		Kişi
+	</text>
+	<check_box label=" " name="people_chk" />
+	<text name="infohub_label">
+		Infohub
+	</text>
+	<check_box label="" name="infohub_chk" />
+	<text name="telehub_label">
+		Telehub
+	</text>
+	<check_box label="" name="telehubchk" />
+	<text name="land_for_sale_label2">
+		Satılık arazi
+	</text>
+	<check_box label="" name="land_for_sale_chk" />
+	<text name="events_label">
+		Aktiviteler
+	</text>
+	<check_box label="" name="event_chk" />
+	<check_box label="" name="event_mature_chk" />
+	<combo_box label="Sistemdeki Arkadaşlar" name="friend combo"
+	     tool_tip="Haritada Gösterilecek Arkadaş">
+		<combo_item name="none_selected">
+			Sistemdeki arkadaşlar
+		</combo_item>
+	</combo_box>
+	<combo_box label="Yer İmleri" name="landmark combo"
+	     tool_tip="Haritada Gösterilecek Yer İmi">
+		<combo_item name="none_selected">
+			Yer imleri
+		</combo_item>
+	</combo_box>
+	<line_editor name="location"
+	     tool_tip="Bölge ismini yazınız" />
+	<button label="Ara" name="DoSearch" tool_tip="Bölge arayın" />
+	<text name="search_label">
+		Arama sonuçları:
+	</text>
+	<scroll_list name="search_results">
+		<column label="" name="icon" />
+		<column label="" name="sim_name" />
+	</scroll_list>
+	<text name="location_label">
+		Lokasyon:
+	</text>
+	<spinner name="spin x"  />
+	<spinner name="spin y"  />
+	<spinner name="spin z"  />
+	<button label="Işınlan" label_selected="Işınlan" name="Teleport"
+	     tool_tip="Seçilen lokasyona ışınlan" />
+	<button label="Hedefi göster" label_selected="Hedefi göster"
+	     name="Show Destination" tool_tip="Seçilen lokasyondaki harita merkezi" />
+	<button label="Temizle" label_selected="Temizle" name="Clear" tool_tip="İzlemeyi durdur" />
+	<button label="Lokasyonumu göster" label_selected="Lokasyonumu göster"
+	     name="Show My Location"
+	     tool_tip="Karakterinizin lokasyonundaki harita merkezi" />
+	<button label="SLURL&apos;yi panoya yapıştır" name="copy_slurl"
+	     tool_tip="Mevcut lokasyonu web&apos;de kullanılmak üzere SLURL olarak kopyalar." />
+	<slider label="Zum" name="zoom slider" />
+</floater>

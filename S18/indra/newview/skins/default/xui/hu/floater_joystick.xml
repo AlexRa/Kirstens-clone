@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="Joystick" title="Joystick konfigurációja">
+	<check_box name="enable_joystick">
+		Joystick engedélyezése:
+	</check_box>
+	<spinner label="X tengely leképezése" name="JoystickAxis1" />
+	<spinner label="Y tengely leképezése" name="JoystickAxis2" />
+	<spinner label="Z tengely leképezése" name="JoystickAxis0" />
+	<spinner label="Magassági leképezés" name="JoystickAxis4" />
+	<spinner label="Oldalirányú leképezés" name="JoystickAxis5" />
+	<spinner label="Gördülési leképezés" name="JoystickAxis3" />
+	<spinner label="Nagyítási leképezés" name="JoystickAxis6" />
+	<check_box label="Közvetlen nagyítás" name="ZoomDirect" />
+	<check_box label="3D kurzor" name="Cursor3D" />
+	<check_box label="Automatikus szint" name="AutoLeveling" />
+	<text type="string" length="1" name="Control Modes:">
+		Kontroll módok:
+	</text>
+	<check_box name="JoystickAvatarEnabled">
+		Avatár
+	</check_box>
+	<check_box name="JoystickBuildEnabled">
+		Építés
+	</check_box>
+	<check_box name="JoystickFlycamEnabled">
+		Flycam
+	</check_box>
+	<text name="XScale">
+		X skála
+	</text>
+	<text name="YScale">
+		Y skála
+	</text>
+	<text name="ZScale">
+		Z skála
+	</text>
+	<text name="PitchScale">
+		Magássági fok
+	</text>
+	<text name="YawScale">
+		Oldalirányú fok
+	</text>
+	<text name="RollScale">
+		Görgetési fok
+	</text>
+	<text name="XDeadZone">
+		X néma zóna
+	</text>
+	<text name="YDeadZone">
+		Y néma zóna
+	</text>
+	<text name="ZDeadZone">
+		Z néma zóna
+	</text>
+	<text name="PitchDeadZone">
+		Magassági néma zóna
+	</text>
+	<text name="YawDeadZone">
+		Oldalirányú néma zóna
+	</text>
+	<text name="RollDeadZone">
+		Görgetési néma zóna
+	</text>
+	<text name="Feathering">
+		Csúsztatás
+	</text>
+	<slider label="" name="AvatarFeathering" />
+	<slider label="" name="BuildFeathering" />
+	<slider label="" name="FlycamFeathering" />
+	<text name="ZoomScale2">
+		Nagyítási skála
+	</text>
+	<spinner label="" name="FlycamAxisScale6" />
+	<text name="ZoomDeadZone">
+		Nagyítási néma zóna
+	</text>
+	<spinner label="" name="FlycamAxisDeadZone6" />
+	<button label="Alapértelmezett beállítása" name="SpaceNavigatorDefaults" />
+	<string name="JoystickMonitor">
+		Joystick Monitor
+	</string>
+	<string name="Axis">
+		Tengely [NUM]
+	</string>
+	<string name="NoDevice">
+		nincs csatlakoztatott eszköz
+	</string>
+</floater>

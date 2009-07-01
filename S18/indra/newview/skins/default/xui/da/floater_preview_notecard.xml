@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="preview notecard" title="Note:">
+	<button label="Gem" label_selected="Gem" name="Save" />
+	<text type="string" length="1" name="desc txt">
+		Beskrivelse:
+	</text>
+	<text_editor type="string" length="1" name="Notecard Editor">
+		Indlæser...
+	</text_editor>
+	<string name="not_allowed">
+		Du har ikke tilladelse til at læse denne note.
+	</string>
+</floater>

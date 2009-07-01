@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<panel label="Convenant" name="Covenant">
+	<text name="covenant_help_text">
+		Wijzingen in de convenantinformatie zullen in alle percelen van het estate zichtbaar worden.
+	</text>
+	<text name="region_name_lbl">
+		Regio:
+	</text>
+	<text name="region_name_text">
+		(onbekend)
+	</text>
+	<text name="estate_name_lbl">
+		Estate:
+	</text>
+	<text name="estate_name_text">
+		(onbekend)
+	</text>
+	<text name="estate_owner_lbl">
+		Estate eigenaar:
+	</text>
+	<text name="estate_owner_text">
+		(onbekend)
+	</text>
+	<text name="resellable_clause">
+		Aangekocht land in deze regio mag wel of niet worden doorverkocht.
+	</text>
+	<text name="changeable_clause">
+		Aangekocht land in deze regio mag wel of niet worden gecombineerd of opgedeeld.
+	</text>
+	<text name="covenent_instructions">
+		Sleep en deponeer een notitiekaart om het convenant voor deze estate te wijzigen.
+	</text>
+	<text_editor name="covenant_editor">
+		Laden...
+	</text_editor>
+	<button label="Opnieuw instellen" name="reset_covenant"/>
+	<string name="can_resell">
+		Aangekocht land in deze regio mag worden doorverkocht.
+	</string>
+	<string name="can_not_resell">
+		Aangekocht land in deze regio mag niet worden doorverkocht.
+	</string>
+	<string name="can_change">
+		Aangekocht land in deze regio mag worden gecombineerd of opgedeeld.
+	</string>
+	<string name="can_not_change">
+		Aangekocht land in deze regio mag niet worden gecombineerd of opgedeeld.
+	</string>
+	<button label="?" name="covenant_help"/>
+</panel>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<panel name="voice_controls">
+	<button label="" name="speakers_btn" tool_tip="Toon lijst van inwoners om u heen die voicechat gebruiken"/>
+	<button label="Praten" name="push_to_talk" tool_tip="Houd de knop ingedrukt om te praten"/>
+	<button label="" name="ptt_lock" tool_tip="Klik het slot om te wisselen naar spreek modus"/>
+	<button label="" name="show_channel" tool_tip="Klik om het huidige voicekanaal te tonen"/>
+</panel>

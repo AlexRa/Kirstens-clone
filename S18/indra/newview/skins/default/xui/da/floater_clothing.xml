@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="clothing" title="Tøj">
+	<scroll_list name="clothing_list">
+		<column label="" name="icon" />
+		<column label="Navn" name="name" />
+	</scroll_list>
+	<button label="Tag af" name="take_off_btn" />
+	<button label="Tag på " name="wear_btn" />
+</floater>

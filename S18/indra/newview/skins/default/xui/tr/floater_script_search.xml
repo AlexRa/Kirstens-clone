@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="script search" title="Betik arama">
+	<check_box label="Harf duyarsız" name="case_text" />
+	<button label="Ara" label_selected="Ara" name="search_btn" />
+	<button label="Değiştir" label_selected="Değiştir" name="replace_btn" />
+	<button label="Tümünü değiştir" label_selected="Tümünü değiştir"
+	     name="replace_all_btn" />
+	<text type="string" length="1" name="txt">
+		Ara
+	</text>
+	<text type="string" length="1" name="txt2">
+		Değiştir
+	</text>
+</floater>

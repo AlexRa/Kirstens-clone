@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<floater name="Postcard" title="Foto por correo electrónico">
+	<text name="to_label">
+		Correo electrónico del destinatario:
+	</text>
+	<text name="from_label">
+		Su correo electrónico:
+	</text>
+	<text name="name_label">
+		Su nombre:
+	</text>
+	<text name="subject_label">
+		Asunto:
+	</text>
+	<line_editor label="Escriba aquí el asunto." name="subject_form"/>
+	<text name="msg_label">
+		Mensaje:
+	</text>
+	<text_editor name="msg_form">
+		Escriba aquí el mensaje.
+	</text_editor>
+	<text name="fine_print">
+		Si su destinatario se registra en SL, usted conseguirá un bono de referido.
+	</text>
+	<button label="Cancelar" name="cancel_btn"/>
+	<button label="Enviar" name="send_btn"/>
+	<string name="default_subject">
+		Postal desde Second Life.
+	</string>
+	<string name="default_message">
+		¡Mira esto!
+	</string>
+	<string name="upload_message">
+		&quot;Enviando...&quot;
+	</string>
+</floater>

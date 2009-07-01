@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<panel label="Bemenet és kamera" name="Input panel">
+	<text type="string" length="1" name=" Mouselook Options:">
+		Egér nézet:
+	</text>
+	<text type="string" length="1" name=" Mouse Sensitivity:">
+		Egér érzékenysége:
+	</text>
+	<check_box label="Fordított egérműködés" name="invert_mouse" />
+	<text type="string" length="1" name=" Auto Fly Options:">
+		Automatikus repülés:
+	</text>
+	<check_box label="Repülés/landolás a le/fel billentyűk lenyomásával"
+	     name="automatic_fly" />
+	<text type="string" length="1" name=" Camera Options:">
+		Kamera beállítások:
+	</text>
+	<text type="string" length="1" name="Camera Follow Distance:">
+		Kamera követési távolság:
+	</text>
+	<text type="string" length="1" name="Camera Transition Time:">
+		Kamera átváltási idő:
+	</text>
+	<text type="string" length="1" name="Camera Smoothing:">
+		Kamera simítás:
+	</text>
+	<check_box label="Automatikus kameramozgás szerkesztés módban"
+	     name="edit_camera_movement"
+	     tool_tip="Automatikus kamera pozícionálás szerkesztés módban" />
+	<check_box label="Automatikus kameramozgás megjelenés módban"
+	     name="appearance_camera_movement"
+	     tool_tip="Automatikus kamera pozícionálás szerkesztés módban" />
+	<text type="string" length="1" name="text2">
+		Avatár megjelenítése:
+	</text>
+	<check_box label="Avatár megjelenítése egér nézetben" name="first_person_avatar_visible" />
+	<text type="string" length="1" name="text5">
+		Joystick opciók:
+	</text>
+	<button label="Joystick beállítása" name="joystick_setup_button" />
+</panel>

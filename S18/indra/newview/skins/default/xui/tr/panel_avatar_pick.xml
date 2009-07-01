@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<panel name="Pick">
+	<button label="Lokasyon belirle" name="set_location_btn" />
+	<button label="Işınlan" name="pick_teleport_btn" />
+	<button label="Haritada göster" name="pick_map_btn" />
+</panel>

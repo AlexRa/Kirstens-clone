@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="floater_lagmeter" title="Gecikme ölçüsü">
+	<button label="" label_selected="" name="client_lagmeter" />
+	<text name="client">
+		İstemci:
+	</text>
+	<button label="" label_selected="" name="network_lagmeter"  />
+	<text name="network">
+		Ağ:
+	</text>
+	<button label="" label_selected="" name="server_lagmeter" tool_tip="Server lag status" />
+	<text name="server">
+		Sunucu:
+	</text>
+	<button label="?" name="server_help" />
+	<button label="&gt;&gt;" name="minimize" />
+	<string name="max_title_msg">
+		Gecikme Ölçüsü
+	</string>
+	<string name="max_width_px">
+		360
+	</string>
+	<string name="min_width_px">
+		90
+	</string>
+	<string name="client_frame_rate_critical_fps">
+		10
+	</string>
+	<string name="client_frame_rate_warning_fps">
+		15
+	</string>
+	<string name="network_packet_loss_critical_pct">
+		10
+	</string>
+	<string name="network_packet_loss_warning_pct">
+		5
+	</string>
+	<string name="network_ping_critical_ms">
+		600
+	</string>
+	<string name="network_ping_warning_ms">
+		300
+	</string>
+	<string name="server_frame_rate_critical_fps">
+		20
+	</string>
+	<string name="server_frame_rate_warning_fps">
+		30
+	</string>
+	<string name="server_single_process_max_time_ms">
+		20
+	</string>
+	<string name="smaller_label">
+		&gt;&gt;
+	</string>
+	<string name="bigger_label">
+		&lt;&lt;
+	</string>
+</floater>
