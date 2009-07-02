@@ -293,12 +293,12 @@ LLPanelLogin::LLPanelLogin(const LLRect &rect,
 	// make links open in external browser
 	web_browser->setOpenInExternalBrowser( true );
 
-	// Kirsten force the size to be correct (XML doesn't seem to be sufficient to do this) (with some padding so the other login screen doesn't show through)
+	// force the size to be correct (XML doesn't seem to be sufficient to do this) (with some padding so the other login screen doesn't show through)
 	LLRect htmlRect = getRect();
 #if USE_VIEWER_AUTH
 	htmlRect.setCenterAndSize( getRect().getCenterX() - 2, getRect().getCenterY(), getRect().getWidth() + 6, getRect().getHeight());
 #else
-	htmlRect.setCenterAndSize( getRect().getCenterX() - 2, getRect().getCenterY() + 80, getRect().getWidth() + 6, getRect().getHeight() - 200 ); // here!
+	htmlRect.setCenterAndSize( getRect().getCenterX() - 2, getRect().getCenterY() + 40, getRect().getWidth() + 6, getRect().getHeight() - 78 );
 #endif
 	web_browser->setRect( htmlRect );
 	web_browser->reshape( htmlRect.getWidth(), htmlRect.getHeight(), TRUE );
