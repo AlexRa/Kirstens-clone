@@ -645,7 +645,8 @@ void LLViewerImage::processTextureStats()
 		// data than we need to.
 		if (mBoostLevel == LLViewerImageBoostLevel::BOOST_UI ||
 			mBoostLevel == LLViewerImageBoostLevel::BOOST_PREVIEW ||
-			mBoostLevel == LLViewerImageBoostLevel::BOOST_AVATAR_SELF)	// JAMESDEBUG what about AVATAR_BAKED_SELF?
+			mBoostLevel == LLViewerImageBoostLevel::BOOST_AVATAR_SELF ||
+			mBoostLevel == LLViewerImageBoostLevel::BOOST_AVATAR_BAKED_SELF) 
 		{
 			discard_level = 0; // full res
 		}

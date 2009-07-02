@@ -320,12 +320,28 @@ BOOL LLTexLayerSetBuffer::render()
 		if (!success)
 		{
 			delete [] baked_bump_data;
-			llinfos << "Failed attempt to bake " << mTexLayerSet->getBodyRegion() << llendl;
+			llinfos << "Baking: Failed attempt to bake " << mTexLayerSet->getBodyRegion() << llendl;
 			mUploadPending = FALSE;
 		}
 		else
 		{
+			llinfos << "Baking: Successful bake and upload " << mTexLayerSet->getBodyRegion() << llendl;
 			readBackAndUpload(baked_bump_data);
+		}
+	}
+	else
+	{
+		if (gAgent.mNumPendingQueries != 0)
+		{
+			llinfos << "Baking: Won't upload bake " << mTexLayerSet->getBodyRegion() << " : queries are still pending" << llendl;
+		}
+		if (!mNeedsUpload)
+		{
+			llinfos << "Baking: Won't upload bake " << mTexLayerSet->getBodyRegion() << " : upload is not requested" << llendl;
+		}
+		if (!mTexLayerSet->isLocalTextureDataFinal())
+		{
+			llinfos << "Baking: Won't upload bake " << mTexLayerSet->getBodyRegion() << " : textures are not final" << llendl;
 		}
 	}
 
@@ -803,7 +819,7 @@ BOOL LLTexLayerSet::isLocalTextureDataAvailable()
 // Returns TRUE if all of the data for the textures that this layerset depends on have arrived.
 BOOL LLTexLayerSet::isLocalTextureDataFinal()
 {
-	return mAvatar->isLocalTextureDataFinal( this );
+	return mAvatar->isLocalTextureDataReady( this );
 }
 
 

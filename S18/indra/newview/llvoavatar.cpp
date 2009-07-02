@@ -4497,9 +4497,9 @@ void LLVOAvatar::updateTextures()
 		if (imagep)
 		{
 			// Debugging code - maybe non-self avatars are downloading textures?
-			//llinfos << "avatar self " << mIsSelf << " tex " << i 
+			//llinfos << "avatar self " << mIsSelf << " tex " << index
 			//	<< " decode " << imagep->getDecodePriority()
-			//	<< " boost " << boost_avatar 
+			//	<< " boost " << imagep->getBoostLevel()
 			//	<< " size " << imagep->getWidth() << "x" << imagep->getHeight()
 			//	<< " discard " << imagep->getDiscardLevel()
 			//	<< " desired " << imagep->getDesiredDiscardLevel()
@@ -7160,7 +7160,8 @@ void LLVOAvatar::clearChat()
 
 S32 LLVOAvatar::getLocalDiscardLevel( ETextureIndex index )
 {
-	if (!isIndexLocalTexture(index)) return FALSE;
+	// If the texture is not local, we don't care and treat it as fully loaded
+	if (!isIndexLocalTexture(index)) return 0;
 
 	LocalTextureData &local_tex_data = mLocalTextureData[index];
 	if (index >= 0
@@ -7205,6 +7206,56 @@ BOOL LLVOAvatar::isLocalTextureDataFinal( LLTexLayerSet* layerset )
 	return FALSE;
 }
 
+//-----------------------------------------------------------------------------
+// isLocalTextureDataReady()
+// Returns true if the required quality level exists for every texture
+// in the layerset.
+//-----------------------------------------------------------------------------
+BOOL LLVOAvatar::isLocalTextureDataReady( LLTexLayerSet* layerset )
+{
+	for (U32 i = 0; i < mBakedTextureData.size(); i++)
+	{
+		if (layerset == mBakedTextureData[i].mTexLayerSet)
+		{
+			LL_INFOS("http-texture") << "Baking: Check readiness -> start" << LL_ENDL;
+			const LLVOAvatarDictionary::BakedDictionaryEntry *baked_dict = LLVOAvatarDictionary::getInstance()->getBakedTexture((EBakedTextureIndex)i);
+			U32 index = 0;
+			for (texture_vec_t::const_iterator local_tex_iter = baked_dict->mLocalTextures.begin();
+				 local_tex_iter != baked_dict->mLocalTextures.end();
+				 local_tex_iter++, index++)
+			{
+				if (getLocalDiscardLevel(*local_tex_iter) != 0)
+				{
+					LocalTextureData &local_tex_data = mLocalTextureData[*local_tex_iter];
+					S32 current_level = local_tex_data.mImage->getDiscardLevel();
+					S32 boost_level = local_tex_data.mImage->getBoostLevel();
+					S32 desired_level = local_tex_data.mImage->getDesiredDiscardLevel();
+					LL_INFOS("http-texture") << "Baking: index = " << index << ", boost = " << boost_level << ", current = " << current_level << ", desired = " << desired_level << LL_ENDL;
+					// We're concerned only by the elements that are part of the baking texture
+					if (boost_level == LLViewerImageBoostLevel::BOOST_AVATAR_BAKED_SELF)
+					{
+						// If we haven't started to download or have but haven't reached the 
+						// right level yet, then we're not done yet
+						if ((current_level < 0) || (current_level > desired_level))
+						{
+							LL_INFOS("http-texture") << "Baking: Check readiness failure! <- end" << LL_ENDL;
+							return FALSE;
+						}
+					}
+				}
+				else
+				{
+					LL_INFOS("http-texture") << "Baking: index = " << index << ", discard level = 0" << LL_ENDL;
+				}
+			}
+			LL_INFOS("http-texture") << "Baking: Check readiness success <- end" << LL_ENDL;
+			return TRUE;
+		}
+	}
+
+	llassert(0);
+	return FALSE;
+}
 //-----------------------------------------------------------------------------
 // isLocalTextureDataAvailable()
 // Returns true if at least the lowest quality discard level exists for every texture
