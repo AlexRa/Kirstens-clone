@@ -455,7 +455,7 @@ bool LLTextureCacheRemoteWorker::doRead()
 		std::string filename = mCache->getTextureFileName(mID);
 		S32 filesize = LLAPRFile::size(filename, mCache->getLocalAPRFilePool());
 
-		if ((filesize + TEXTURE_CACHE_ENTRY_SIZE) > mOffset)
+		if (filesize && (filesize + TEXTURE_CACHE_ENTRY_SIZE) > mOffset)
 		{
 			S32 max_datasize = TEXTURE_CACHE_ENTRY_SIZE + filesize - mOffset;
 			mDataSize = llmin(max_datasize, mDataSize);
@@ -477,6 +477,7 @@ bool LLTextureCacheRemoteWorker::doRead()
 				llassert_always(mReadData);
 				memcpy(data, mReadData, data_offset);
 				delete[] mReadData;
+				mReadData = NULL;
 			}
 			else
 			{
@@ -488,6 +489,7 @@ bool LLTextureCacheRemoteWorker::doRead()
 			}
 
 			// Now use that buffer as the object read buffer
+			llassert_always(mReadData == NULL);
 			mReadData = data;
 
 			// Read the data at last
@@ -508,10 +510,9 @@ bool LLTextureCacheRemoteWorker::doRead()
 		}
 		else
 		{
-			// That means that all the data were skipped, nothing to read then
-			// Note: since mOffset is always null, this never really happens...
-			llassert(false);
-			mDataSize = 0;
+			// No body, we're done.
+			mDataSize = llmax(TEXTURE_CACHE_ENTRY_SIZE - mOffset, 0);
+			lldebugs << "No body file for: " << filename << llendl;
 		}	
 		// Nothing else to do at that point...
 		done = true;
