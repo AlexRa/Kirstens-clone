@@ -425,6 +425,9 @@ void LLViewerImage::destroyTexture()
 
 void LLViewerImage::addToCreateTexture()
 {
+	/* VWR-13742 : Merov : Storing cache for sculpties in gl textures as the rest (temporary)
+	Right now, the viewer assumes the existence of such textures in the UI
+
 	if(isForSculptOnly())
 	{
 		//just update some variables, not to create a real GL texture.
@@ -433,6 +436,7 @@ void LLViewerImage::addToCreateTexture()
 		destroyRawImage();
 	}
 	else
+	*/
 	{	
 #if 1
 		//
@@ -1527,10 +1531,23 @@ LLImageRaw* LLViewerImage::readBackRawImage(S8 discard_level)
 		llerrs << "called with existing mRawImage" << llendl;
 		mRawImage = NULL;
 	}
-	
+	/* VWR-13505 : Merov : Porting 1.23 code back (temporary) 
+	We can't use the new http-texture mCachedRawImage here because that cache is not of the same res as the
+	gl cache but the calling doLoadedCallbacks() is assuming it is.
+	As we need the raw gl cache here (so we don't refetch the image) and that we know the gl
+	cache is present (tested in the calling function), it looks like we should be able to use
+	it safely instead of the mCachedRawImage. Eventually though, we need to sort out when that new 
+	cache should be used and change the API so that caching is working without assumed state consistency.
+
 	mRawImage = mCachedRawImage ;
-	sRawCount++;
 	mRawDiscardLevel = mCachedRawDiscardLevel;
+	*/
+	mRawImage = new LLImageRaw(getWidth(discard_level), getHeight(discard_level), mComponents);
+	mRawDiscardLevel = discard_level;
+	readBackRaw(mRawDiscardLevel, mRawImage, false);
+	// VWR-13505 - end
+
+	sRawCount++;
 	mIsRawImageValid = TRUE;
 
 	return mRawImage;
@@ -1620,7 +1637,9 @@ void LLViewerImage::setForSculpt()
 	mForSculpt = TRUE ;
 	if(isForSculptOnly())
 	{
+		/* VWR-13742 : Merov : we need the gl texture for the UI (temporary) 
 		destroyGLTexture() ; //sculpt image does not need gl texture.
+		*/
 	}
 	checkCachedRawSculptImage() ;
 }

@@ -68,9 +68,10 @@ const S32 SCROLL_HINT_WIDTH = 65;
 const F32 BIG_DOT_RADIUS = 5.f;
 BOOL LLWorldMapView::sHandledLastClick = FALSE;
 
-LLUIImagePtr LLWorldMapView::sAvatarYouSmallImage = NULL;
 LLUIImagePtr LLWorldMapView::sAvatarSmallImage = NULL;
-LLUIImagePtr LLWorldMapView::sAvatarLargeImage = NULL;
+LLUIImagePtr LLWorldMapView::sAvatarYouImage = NULL;
+LLUIImagePtr LLWorldMapView::sAvatarYouLargeImage = NULL;
+LLUIImagePtr LLWorldMapView::sAvatarLevelImage = NULL;
 LLUIImagePtr LLWorldMapView::sAvatarAboveImage = NULL;
 LLUIImagePtr LLWorldMapView::sAvatarBelowImage = NULL;
 
@@ -110,11 +111,12 @@ const S32 DRAW_LANDFORSALE_THRESHOLD = 2;	// Max level for which we load or disp
 
 void LLWorldMapView::initClass()
 {
-	sAvatarYouSmallImage =	LLUI::getUIImage("map_avatar_you_8.tga");
 	sAvatarSmallImage = 	LLUI::getUIImage("map_avatar_8.tga");
-	sAvatarLargeImage = 	LLUI::getUIImage("map_avatar_16.tga");
-	sAvatarAboveImage = 	LLUI::getUIImage("map_avatar_above_8.tga");
-	sAvatarBelowImage = 	LLUI::getUIImage("map_avatar_below_8.tga");
+	sAvatarYouImage =		LLUI::getUIImage("map_avatar_16.tga");
+	sAvatarYouLargeImage =	LLUI::getUIImage("map_avatar_you_32.tga");
+	sAvatarLevelImage = 	LLUI::getUIImage("map_avatar_32.tga");
+	sAvatarAboveImage = 	LLUI::getUIImage("map_avatar_above_32.tga");
+	sAvatarBelowImage = 	LLUI::getUIImage("map_avatar_below_32.tga");
 
 	sHomeImage =			LLUI::getUIImage("map_home.tga");
 	sTelehubImage = 		LLUI::getUIImage("map_telehub.tga");
@@ -138,9 +140,10 @@ void LLWorldMapView::initClass()
 // static
 void LLWorldMapView::cleanupClass()
 {
-	sAvatarYouSmallImage = NULL;
 	sAvatarSmallImage = NULL;
-	sAvatarLargeImage = NULL;
+	sAvatarYouImage = NULL;
+	sAvatarYouLargeImage = NULL;
+	sAvatarLevelImage = NULL;
 	sAvatarAboveImage = NULL;
 	sAvatarBelowImage = NULL;
 
@@ -508,7 +511,7 @@ void LLWorldMapView::draw()
 
 	// Draw the current agent after all that other stuff.
 	LLVector3d pos_global = gAgent.getPositionGlobal();
-	drawImage(pos_global, sAvatarLargeImage);
+	drawImage(pos_global, sAvatarYouImage);
 
 	LLVector3 pos_map = globalPosToView(pos_global);
 	if (!pointInView(llround(pos_map.mV[VX]), llround(pos_map.mV[VY])))
@@ -1101,6 +1104,9 @@ static void drawDot(F32 x_pixels, F32 y_pixels,
 	}
 	else
 	{
+		// Draw V indicator for above or below
+		// *TODO: Replace this vector drawing with icons
+		
 		F32 left =		x_pixels - dot_radius;
 		F32 right =		x_pixels + dot_radius;
 		F32 center = (left + right) * 0.5f;
@@ -1109,13 +1115,14 @@ static void drawDot(F32 x_pixels, F32 y_pixels,
 
 		gGL.getTexUnit(0)->unbind(LLTexUnit::TT_TEXTURE);
 		gGL.color4fv( color.mV );
-		LLUI::setLineWidth(1.5f);
-		F32 h_bar = relative_z > HEIGHT_THRESHOLD ? top : bottom; // horizontal bar Y
+		LLUI::setLineWidth(3.0f);
+		F32 point = relative_z > HEIGHT_THRESHOLD ? top : bottom; // Y pos of the point of the V
+		F32 back = relative_z > HEIGHT_THRESHOLD ? bottom : top; // Y pos of the ends of the V
 		gGL.begin( LLRender::LINES );
-			gGL.vertex2f(center, top);
-			gGL.vertex2f(left, h_bar);
-			gGL.vertex2f(right, h_bar);
-			gGL.vertex2f(right, bottom);
+			gGL.vertex2f(left, back);
+			gGL.vertex2f(center, point);
+			gGL.vertex2f(center, point);
+			gGL.vertex2f(right, back);
 		gGL.end();
 		LLUI::setLineWidth(1.0f);
 	}
@@ -1130,7 +1137,7 @@ void LLWorldMapView::drawAvatar(F32 x_pixels,
 								F32 dot_radius)
 {
 	const F32 HEIGHT_THRESHOLD = 7.f;
-	LLUIImagePtr dot_image = sAvatarSmallImage;
+	LLUIImagePtr dot_image = sAvatarLevelImage;
 	if(relative_z < -HEIGHT_THRESHOLD) 
 	{
 		dot_image = sAvatarBelowImage; 
@@ -1139,9 +1146,13 @@ void LLWorldMapView::drawAvatar(F32 x_pixels,
 	{ 
 		dot_image = sAvatarAboveImage;
 	}
+
+	S32 dot_width = llround(dot_radius * 2.f);
 	dot_image->draw(
-		llround(x_pixels) - dot_image->getWidth()/2,
-		llround(y_pixels) - dot_image->getHeight()/2, 
+		llround(x_pixels - dot_radius),
+		llround(y_pixels - dot_radius),
+		dot_width,
+		dot_width,
 		color);
 }
 

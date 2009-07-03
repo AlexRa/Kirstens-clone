@@ -1180,7 +1180,8 @@ BOOL LLImageGL::setDiscardLevel(S32 discard_level)
 
 BOOL LLImageGL::readBackRaw(S32 discard_level, LLImageRaw* imageraw, bool compressed_ok)
 {
-	llassert_always(sAllowReadBackRaw) ;
+	// VWR-13505 : Merov : Allow gl texture read back so save texture works again (temporary)
+	//llassert_always(sAllowReadBackRaw) ;
 	//llerrs << "should not call this function!" << llendl ;
 	
 	if (discard_level < 0)

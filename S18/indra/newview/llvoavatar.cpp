@@ -7871,7 +7871,6 @@ void LLVOAvatar::onFirstTEMessageReceived()
 				}
 				image->setLoadedCallback( onInitialBakedTextureLoaded, MAX_DISCARD_LEVEL, FALSE, FALSE, new LLUUID( mID ) );
 			}
-			
 		}
 
 		mMeshTexturesDirty = TRUE;

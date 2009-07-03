@@ -151,7 +151,7 @@ public:
 	/*virtual*/ bool deleteOK(); // called from update() (WORK THREAD)
 
 	~LLTextureFetchWorker();
-	void relese() { --mActiveCount; }
+	void release() { --mActiveCount; }
 
 	void callbackHttpGet(const LLChannelDescriptors& channels,
 						 const LLIOPipe::buffer_ptr_t& buffer,
@@ -1283,13 +1283,24 @@ void LLTextureFetchWorker::callbackDecoded(bool success, LLImageRaw* raw, LLImag
 	}
 	else
 	{
-		llwarns << "DECODE FAILED: " << mID << " Discard: " << (S32)mFormattedImage->getDiscardLevel() << llendl;
+		if (mFormattedImage.notNull())
+		{
+			LL_WARNS("http-texture") << "DECODE FAILED: id = " << mID << ", Discard = " << (S32)mFormattedImage->getDiscardLevel() << LL_ENDL;
+		}
+		else
+		{
+			LL_WARNS("http-texture") << "DECODE FAILED: id = " << mID << ", mFormattedImage is Null!" << LL_ENDL;
+		}
 		removeFromCache();
 		mDecodedDiscard = -1; // Redundant, here for clarity and paranoia
 	}
 	mDecoded = TRUE;
 // 	llinfos << mID << " : DECODE COMPLETE " << llendl;
 	setPriority(LLWorkerThread::PRIORITY_HIGH | mWorkPriority);
+	// Set the decode flag at the end of the callback or we trigger race conditions between the fetch thread and the 
+	// decode threads that's calling this callback. The fetch thread might set mFormattedImage to NULL before we
+	// have time here to call getDiscardLevel() which causes crashes
+	mDecoded = TRUE;
 }
 
 //////////////////////////////////////////////////////////////////////////////
