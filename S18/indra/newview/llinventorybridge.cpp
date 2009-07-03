@@ -3319,7 +3319,21 @@ void LLObjectBridge::openItem()
 	/* Disabled -- this preview isn't useful. JC */
 	// CP: actually, this code is required - made changes to match LLAnimationBridge::openItem() idiom
 	// The properties preview is useful, converting to show object properties. - DaveP
-	LLShowProps::showProperties(mUUID);
+	//LLShowProps::showProperties(mUUID);
+    LLVOAvatar* avatar = gAgent.getAvatarObject();   // KL lets try out the doubleclick patch then....
+	if (!avatar)
+	{
+		return;
+	}
+	if (avatar->isWearingAttachment(mUUID))
+	{
+		performAction(NULL, NULL, "detach");
+	}
+	else
+	{
+		performAction(NULL, NULL, "attach");
+	}   // End of patch! see also line 4386 in this code!
+
 }
 
 LLFontGL::StyleFlags LLObjectBridge::getLabelStyle() const
@@ -4371,10 +4385,15 @@ void LLWearableBridge::openItem()
 	}
 	else if(isAgentInventory())
 	{
-		if( !gAgent.isWearingItem( mUUID ) )
+		if(gAgent.isWearingItem( mUUID )) // KL applying the double click inventory patch here was !gAgent
 		{
-			wearOnAvatar();
+			//wearOnAvatar();
+			performAction(NULL, NULL, "take_off");
 		}
+		else
+		{
+            performAction(NULL, NULL, "wear");
+		} // End of patch
 	}
 	else
 	{
