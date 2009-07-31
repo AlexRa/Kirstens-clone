@@ -50,7 +50,7 @@ const F32 MAX_FRACTIONAL = 1.5f;
 const F32 MIN_FRACTIONAL = 0.2f;
 
 const F32 MIN_BANDWIDTH = 50.f;
-const F32 MAX_BANDWIDTH = 3000.f; // setting to 3000 Kbps max
+const F32 MAX_BANDWIDTH = 5000.f; // setting to 5000 Kbps max
 const F32 STEP_FRACTIONAL = 0.1f;
 const F32 TIGHTEN_THROTTLE_THRESHOLD = 3.0f; // packet loss % per s
 const F32 EASE_THROTTLE_THRESHOLD = 0.2f; // packet loss % per s
@@ -75,7 +75,7 @@ const std:: string LLViewerThrottle::sNames[TC_EOF] = {
 const F32 BW_PRESET_50[TC_EOF]   = {   5,  10,   3,   3,  10,  10,   9 };
 const F32 BW_PRESET_300[TC_EOF]  = {  30,  40,   9,   9,  86,  86,  40 };
 const F32 BW_PRESET_500[TC_EOF]  = {  150,  170,  14,  14, 236, 936,  180 };
-const F32 BW_PRESET_1000[TC_EOF] = { 300, 300,  100,  100, 420, 1200, 420 }; // more like 3000 kirsten!
+const F32 BW_PRESET_1000[TC_EOF] = { 300, 300,  100,  100, 420, 1200, 420 }; // more like it kirsten!
 
 LLViewerThrottleGroup::LLViewerThrottleGroup()
 {

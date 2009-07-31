@@ -131,7 +131,7 @@ void LLTexLayerSetBuffer::destroyGLTexture()
 	if( mBumpTex.notNull() )
 	{
 		mBumpTex = NULL ;
-		//LLImageGL::sGlobalTextureMemory -= mWidth * mHeight * 4;
+		//LLImageGL::sGlobalTextureMemoryInBytes -= mWidth * mHeight * 4;
 		LLTexLayerSetBuffer::sGLBumpByteCount -= mWidth * mHeight * 4;
 	}
 
@@ -162,7 +162,7 @@ void LLTexLayerSetBuffer::createBumpTexture()
 
 		gGL.getTexUnit(0)->unbind(LLTexUnit::TT_TEXTURE);
 
-		LLImageGL::sGlobalTextureMemory += mWidth * mHeight * 4;
+		LLImageGL::sGlobalTextureMemoryInBytes += mWidth * mHeight * 4;
 		LLTexLayerSetBuffer::sGLBumpByteCount += mWidth * mHeight * 4;
 
 		if(gAuditTexture)
@@ -320,28 +320,12 @@ BOOL LLTexLayerSetBuffer::render()
 		if (!success)
 		{
 			delete [] baked_bump_data;
-			llinfos << "Baking: Failed attempt to bake " << mTexLayerSet->getBodyRegion() << llendl;
+			llinfos << "Failed attempt to bake " << mTexLayerSet->getBodyRegion() << llendl;
 			mUploadPending = FALSE;
 		}
 		else
 		{
-			llinfos << "Baking: Successful bake and upload " << mTexLayerSet->getBodyRegion() << llendl;
 			readBackAndUpload(baked_bump_data);
-		}
-	}
-	else
-	{
-		if (gAgent.mNumPendingQueries != 0)
-		{
-			llinfos << "Baking: Won't upload bake " << mTexLayerSet->getBodyRegion() << " : queries are still pending" << llendl;
-		}
-		if (!mNeedsUpload)
-		{
-			llinfos << "Baking: Won't upload bake " << mTexLayerSet->getBodyRegion() << " : upload is not requested" << llendl;
-		}
-		if (!mTexLayerSet->isLocalTextureDataFinal())
-		{
-			llinfos << "Baking: Won't upload bake " << mTexLayerSet->getBodyRegion() << " : textures are not final" << llendl;
 		}
 	}
 
@@ -819,7 +803,7 @@ BOOL LLTexLayerSet::isLocalTextureDataAvailable()
 // Returns TRUE if all of the data for the textures that this layerset depends on have arrived.
 BOOL LLTexLayerSet::isLocalTextureDataFinal()
 {
-	return mAvatar->isLocalTextureDataReady( this );
+	return mAvatar->isLocalTextureDataFinal( this );
 }
 
 

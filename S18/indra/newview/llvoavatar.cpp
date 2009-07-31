@@ -1323,7 +1323,7 @@ if(gAuditTexture)
 
 		sScratchTexNames.deleteAllData();
 		LLVOAvatar::sScratchTexLastBindTime.deleteAllData();
-		LLImageGL::sGlobalTextureMemory -= sScratchTexBytes;
+		LLImageGL::sGlobalTextureMemoryInBytes -= sScratchTexBytes;
 		sScratchTexBytes = 0;
 	}
 
@@ -4497,9 +4497,9 @@ void LLVOAvatar::updateTextures()
 		if (imagep)
 		{
 			// Debugging code - maybe non-self avatars are downloading textures?
-			//llinfos << "avatar self " << mIsSelf << " tex " << index
+			//llinfos << "avatar self " << mIsSelf << " tex " << index 
 			//	<< " decode " << imagep->getDecodePriority()
-			//	<< " boost " << imagep->getBoostLevel()
+			//	<< " boost " << imagep->getBoostLevel() 
 			//	<< " size " << imagep->getWidth() << "x" << imagep->getHeight()
 			//	<< " discard " << imagep->getDiscardLevel()
 			//	<< " desired " << imagep->getDesiredDiscardLevel()
@@ -6837,7 +6837,7 @@ LLGLuint LLVOAvatar::getScratchTexName( LLGLenum format, U32* texture_bytes )
 		LLVOAvatar::sScratchTexNames.addData( format, new LLGLuint( name ) );
 
 		LLVOAvatar::sScratchTexBytes += *texture_bytes;
-		LLImageGL::sGlobalTextureMemory += *texture_bytes;
+		LLImageGL::sGlobalTextureMemoryInBytes += *texture_bytes;
 
 		if(gAuditTexture)
 		{
@@ -6945,7 +6945,6 @@ void LLVOAvatar::updateMeshTextures()
 			use_lkg_baked_layer[i] = (!is_layer_baked[i] 
 									  && (mBakedTextureData[i].mLastTextureIndex != IMG_DEFAULT_AVATAR) 
 									  && mBakedTextureData[i].mTexLayerSet 
-									  && mBakedTextureData[i].mTexLayerSet->getComposite()
 									  && !mBakedTextureData[i].mTexLayerSet->getComposite()->isInitialized());
 			if (use_lkg_baked_layer[i])
 			{
@@ -7207,56 +7206,6 @@ BOOL LLVOAvatar::isLocalTextureDataFinal( LLTexLayerSet* layerset )
 }
 
 //-----------------------------------------------------------------------------
-// isLocalTextureDataReady()
-// Returns true if the required quality level exists for every texture
-// in the layerset.
-//-----------------------------------------------------------------------------
-BOOL LLVOAvatar::isLocalTextureDataReady( LLTexLayerSet* layerset )
-{
-	for (U32 i = 0; i < mBakedTextureData.size(); i++)
-	{
-		if (layerset == mBakedTextureData[i].mTexLayerSet)
-		{
-			LL_INFOS("http-texture") << "Baking: Check readiness -> start" << LL_ENDL;
-			const LLVOAvatarDictionary::BakedDictionaryEntry *baked_dict = LLVOAvatarDictionary::getInstance()->getBakedTexture((EBakedTextureIndex)i);
-			U32 index = 0;
-			for (texture_vec_t::const_iterator local_tex_iter = baked_dict->mLocalTextures.begin();
-				 local_tex_iter != baked_dict->mLocalTextures.end();
-				 local_tex_iter++, index++)
-			{
-				if (getLocalDiscardLevel(*local_tex_iter) != 0)
-				{
-					LocalTextureData &local_tex_data = mLocalTextureData[*local_tex_iter];
-					S32 current_level = local_tex_data.mImage->getDiscardLevel();
-					S32 boost_level = local_tex_data.mImage->getBoostLevel();
-					S32 desired_level = local_tex_data.mImage->getDesiredDiscardLevel();
-					LL_INFOS("http-texture") << "Baking: index = " << index << ", boost = " << boost_level << ", current = " << current_level << ", desired = " << desired_level << LL_ENDL;
-					// We're concerned only by the elements that are part of the baking texture
-					if (boost_level == LLViewerImageBoostLevel::BOOST_AVATAR_BAKED_SELF)
-					{
-						// If we haven't started to download or have but haven't reached the 
-						// right level yet, then we're not done yet
-						if ((current_level < 0) || (current_level > desired_level))
-						{
-							LL_INFOS("http-texture") << "Baking: Check readiness failure! <- end" << LL_ENDL;
-							return FALSE;
-						}
-					}
-				}
-				else
-				{
-					LL_INFOS("http-texture") << "Baking: index = " << index << ", discard level = 0" << LL_ENDL;
-				}
-			}
-			LL_INFOS("http-texture") << "Baking: Check readiness success <- end" << LL_ENDL;
-			return TRUE;
-		}
-	}
-
-	llassert(0);
-	return FALSE;
-}
-//-----------------------------------------------------------------------------
 // isLocalTextureDataAvailable()
 // Returns true if at least the lowest quality discard level exists for every texture
 // in the layerset.
@@ -7317,6 +7266,7 @@ void LLVOAvatar::setNewBakedTexture( ETextureIndex te, const LLUUID& uuid )
 	setTEImage( te, gImageList.getImageFromHost( uuid, target_host ) );
 	updateMeshTextures();
 	dirtyMesh();
+
 
 	LLVOAvatar::cullAvatarsByPixelArea();
 
@@ -8261,7 +8211,7 @@ void LLVOAvatar::dumpArchetypeXML( void* )
 {
 	LLVOAvatar* avatar = gAgent.getAvatarObject();
 	LLAPRFile outfile ;
-	outfile.open(gDirUtilp->getExpandedFilename(LL_PATH_CHARACTER,"new archetype.xml"), LL_APR_WB );
+	outfile.open(gDirUtilp->getExpandedFilename(LL_PATH_CHARACTER,"new archetype.xml"), LL_APR_WB, LLAPRFile::global);
 	apr_file_t* file = outfile.getFileHandle() ;
 	if( !file )
 	{

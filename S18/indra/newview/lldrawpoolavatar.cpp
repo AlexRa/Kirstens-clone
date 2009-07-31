@@ -94,7 +94,6 @@ BOOL gAvatarEmbossBumpMap = FALSE;
 static BOOL sRenderingSkinned = FALSE;
 S32 normal_channel = -1;
 S32 specular_channel = -1;
-S32 diffuse_channel = -1;
 
 LLDrawPoolAvatar::LLDrawPoolAvatar() :
 LLFacePool(POOL_AVATAR)

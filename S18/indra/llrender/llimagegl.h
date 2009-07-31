@@ -42,6 +42,9 @@
 
 #include "llrender.h"
 class LLTextureAtlas ;
+#define BYTES_TO_MEGA_BYTES(x) ((x) >> 20)
+#define MEGA_BYTES_TO_BYTES(x) ((x) << 20)
+
 //============================================================================
 class LLImageGL : public LLRefCount
 {
@@ -87,7 +90,7 @@ protected:
 public:
 	virtual void dump();	// debugging info to llinfos
 	virtual bool bindError(const S32 stage = 0) const;
-	virtual bool bindDefaultImage(const S32 stage = 0) const;
+	virtual bool bindDefaultImage(const S32 stage = 0) ;
 	virtual void forceImmediateUpdate() ;
 
 	void setSize(S32 width, S32 height, S32 ncomponents);
@@ -173,8 +176,6 @@ public:
 	void setActive() ;
 	void forceActive() ;
 	void setNoDelete() ;
-	
-	void setTextureSize(S32 size) {mTextureMemory = size;}
 		
 	BOOL canAddToAtlas() ;
 	BOOL createGLTextureInAtlas(S32 discard_level, const LLImageRaw* imageraw, LLTextureAtlas* atlasp, S16 slot_col, S16 slot_row);
@@ -184,7 +185,8 @@ public:
 	S8       getDiscardLevelInAtlas()const {return mDiscardLevelInAtlas;}
 	U32      getTexelsInAtlas()const { return mTexelsInAtlas ;}
 	U32      getTexelsInGLTexture()const {return mTexelsInGLTexture;}
-
+	
+	void setTextureSize(S32 size) {mTextureMemory = size;}
 private:
 	void preAddToAtlas(S32 data_width) ;
 	void postAddToAtlas() ;	
@@ -262,18 +264,19 @@ public:
 	static LLGLuint sCurrentBoundTextures[MAX_GL_TEXTURE_UNITS]; // Currently bound texture ID
 
 	// Global memory statistics
-	static S32 sGlobalTextureMemory;		// Tracks main memory texmem
-	static S32 sBoundTextureMemory;			// Tracks bound texmem for last completed frame
+	static S32 sGlobalTextureMemoryInBytes;		// Tracks main memory texmem
+	static S32 sBoundTextureMemoryInBytes;	// Tracks bound texmem for last completed frame
 	static S32 sCurBoundTextureMemory;		// Tracks bound texmem for current frame
 	static U32 sBindCount;					// Tracks number of texture binds for current frame
 	static U32 sUniqueCount;				// Tracks number of unique texture binds for current frame
 	static BOOL sGlobalUseAnisotropic;
+	static BOOL sUseTextureAtlas ;
+	
 #if DEBUG_MISS
 	BOOL mMissed; // Missed on last bind?
 	BOOL getMissed() const { return mMissed; };
 #else
 	BOOL getMissed() const { return FALSE; };
-	static BOOL sUseTextureAtlas ;
 #endif
 
 public:

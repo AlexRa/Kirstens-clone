@@ -1,8 +1,5 @@
-# For building instructions:
-# https://wiki.secondlife.com/wiki/Get_source_and_compile
-
-SLASSET_MD5=http://secondlife.com/developers/opensource/downloads/2009/05/md5sums-viewer-1.23.2-r120719.txt
-SLASSET_ART=http://secondlife.com/developers/opensource/downloads/2009/05/slviewer-artwork-viewer-1.23.2-r120719.zip
-SLASSET_LIBS_DARWIN=http://secondlife.com/developers/opensource/downloads/2009/05/slviewer-darwin-libs-viewer-1.23.2-r120719.tar.gz
-SLASSET_LIBS_WIN32=http://secondlife.com/developers/opensource/downloads/2009/05/slviewer-win32-libs-viewer-1.23.2-r120719.zip
-SLASSET_LIBS_LINUXI386=http://secondlife.com/developers/opensource/downloads/2009/05/slviewer-linux-libs-viewer-1.23.2-r120719.tar.gz
+SLASSET_LIBS_DARWIN=http://automated-builds-secondlife-com.s3.amazonaws.com/viewer-rc-dev/slviewer-darwin-libs-viewer-rc-dev-1.23.4.127689.tar.gz
+SLASSET_LIBS_LINUXI386=http://automated-builds-secondlife-com.s3.amazonaws.com/viewer-rc-dev/slviewer-linux-libs-viewer-rc-dev-1.23.4.127689.tar.gz
+SLASSET_LIBS_WIN32=http://automated-builds-secondlife-com.s3.amazonaws.com/viewer-rc-dev/slviewer-win32-libs-viewer-rc-dev-1.23.4.127689.zip
+SLASSET_ART=http://automated-builds-secondlife-com.s3.amazonaws.com/viewer-rc-dev/slviewer-artwork-viewer-rc-dev-1.23.4.127689.zip
+SLASSET_MD5=http://automated-builds-secondlife-com.s3.amazonaws.com/viewer-rc-dev/md5sums-viewer-rc-dev-1.23.4.127689.txt

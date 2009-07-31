@@ -54,14 +54,15 @@ LLGLuint LLImageGL::sCurrentBoundTextures[MAX_GL_TEXTURE_UNITS] = { 0 };
 
 U32 LLImageGL::sUniqueCount				= 0;
 U32 LLImageGL::sBindCount				= 0;
-S32 LLImageGL::sGlobalTextureMemory		= 0;
-S32 LLImageGL::sBoundTextureMemory		= 0;
+S32 LLImageGL::sGlobalTextureMemoryInBytes		= 0;
+S32 LLImageGL::sBoundTextureMemoryInBytes		= 0;
 S32 LLImageGL::sCurBoundTextureMemory	= 0;
 S32 LLImageGL::sCount					= 0;
 
 BOOL LLImageGL::sGlobalUseAnisotropic	= FALSE;
 F32 LLImageGL::sLastFrameTime			= 0.f;
-BOOL LLImageGL::sAllowReadBackRaw       = FALSE ;
+//BOOL LLImageGL::sUseTextureAtlas        = FALSE ;  // render-pipeline KL
+BOOL LLImageGL::sAllowReadBackRaw       = FALSE ; // snowglobe KL
 
 std::set<LLImageGL*> LLImageGL::sImageList;
 
@@ -213,7 +214,7 @@ S32 LLImageGL::dataFormatComponents(S32 dataformat)
 void LLImageGL::updateStats(F32 current_time)
 {
 	sLastFrameTime = current_time;
-	sBoundTextureMemory = sCurBoundTextureMemory;
+	sBoundTextureMemoryInBytes = sCurBoundTextureMemory;
 	sCurBoundTextureMemory = 0;
 
 	if(gAuditTexture)
@@ -544,7 +545,7 @@ bool LLImageGL::bindError(const S32 stage) const
 }
 
 //virtual
-bool LLImageGL::bindDefaultImage(const S32 stage) const
+bool LLImageGL::bindDefaultImage(const S32 stage) 
 {
 	return false;
 }
@@ -1100,7 +1101,7 @@ BOOL LLImageGL::createGLTexture(S32 discard_level, const U8* data_in, BOOL data_
 
 	if (old_name != 0)
 	{
-		sGlobalTextureMemory -= mTextureMemory;
+		sGlobalTextureMemoryInBytes -= mTextureMemory;
 
 		if(gAuditTexture)
 		{
@@ -1113,7 +1114,7 @@ BOOL LLImageGL::createGLTexture(S32 discard_level, const U8* data_in, BOOL data_
 	}
 
 	mTextureMemory = getMipBytes(discard_level);
-	sGlobalTextureMemory += mTextureMemory;
+	sGlobalTextureMemoryInBytes += mTextureMemory;
 	setActive() ;
 
 	if(gAuditTexture)
@@ -1311,7 +1312,7 @@ void LLImageGL::destroyGLTexture()
 			{
 				decTextureCounter() ;
 			}
-			sGlobalTextureMemory -= mTextureMemory;
+			sGlobalTextureMemoryInBytes -= mTextureMemory;
 			mTextureMemory = 0;
 		}
 		

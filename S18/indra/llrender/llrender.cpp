@@ -47,7 +47,7 @@ F64	gGLLastModelView[16];
 F64 gGLProjection[16];
 S32	gGLViewport[4];
 
-static const U32 LL_NUM_TEXTURE_LAYERS = 16; 
+static const U32 LL_NUM_TEXTURE_LAYERS = 8; 
 
 static GLenum sGLTextureType[] =
 {
@@ -198,19 +198,14 @@ bool LLTexUnit::bind(LLImageGL* texture, bool for_rendering, bool forceBind)
 		return texture->bindDefaultImage(mIndex);
 	}
 
-#if !LL_RELEASE_FOR_DOWNLOAD
-	if(for_rendering)
+	if(gAuditTexture && for_rendering && LLImageGL::sCurTexPickSize > 0)
 	{
-		int w = texture->getWidth(texture->getDiscardLevel()) ;
-		int h = texture->getHeight(texture->getDiscardLevel()) ;
-
-		if(w * h == LLImageGL::sCurTexPickSize)
+		if(texture->getWidth() * texture->getHeight() == LLImageGL::sCurTexPickSize)
 		{
 			texture->updateBindStats();
 			return bind(LLImageGL::sDefaultTexturep.get());
 		}
 	}
-#endif
 
 	if ((mCurrTexture != texture->getTexName()) || forceBind)
 	{
@@ -228,6 +223,7 @@ bool LLTexUnit::bind(LLImageGL* texture, bool for_rendering, bool forceBind)
 			setTextureFilteringOption(texture->mFilterOption);
 		}
 	}
+
 	return true;
 }
 
@@ -280,11 +276,6 @@ bool LLTexUnit::bind(LLRenderTarget* renderTarget, bool bindDepth)
 
 	if (bindDepth)
 	{
-		if (renderTarget->hasStencil())
-		{
-			llerrs << "Cannot bind a render buffer for sampling.  Allocate render target without a stencil buffer if sampling of depth buffer is required." << llendl;
-		}
-
 		bindManual(renderTarget->getUsage(), renderTarget->getDepth());
 	}
 	else
@@ -298,18 +289,15 @@ bool LLTexUnit::bind(LLRenderTarget* renderTarget, bool bindDepth)
 
 bool LLTexUnit::bindManual(eTextureType type, U32 texture, bool hasMips)
 {
-	if (mIndex < 0) return false;
+	if (mIndex < 0 || mCurrTexture == texture) return false;
+
+	gGL.flush();
 	
-	if(mCurrTexture != texture)
-	{
-		gGL.flush();
-	
-		activate();
-		enable(type);
-		mCurrTexture = texture;
-		glBindTexture(sGLTextureType[type], texture);
-		mHasMipMaps = hasMips;
-	}
+	activate();
+	enable(type);
+	mCurrTexture = texture;
+	glBindTexture(sGLTextureType[type], texture);
+	mHasMipMaps = hasMips;
 	return true;
 }
 

@@ -261,8 +261,6 @@ void LLDrawPoolAlpha::renderAlpha(U32 mask)
 {
 	BOOL initialized_lighting = FALSE;
 	BOOL light_enabled = TRUE;
-	S32 diffuse_channel = 0;
-
 	//BOOL is_particle = FALSE;
 	BOOL use_shaders = (LLPipeline::sUnderWaterRender && gPipeline.canUseVertexShaders())
 		|| gPipeline.canUseWindLightShadersOnObjects();
@@ -346,13 +344,11 @@ void LLDrawPoolAlpha::renderAlpha(U32 mask)
 					if (deferred_render && current_shader != NULL)
 					{
 						gPipeline.unbindDeferredShader(*current_shader);
-						diffuse_channel = 0;
 					}
 					current_shader = target_shader;
 					if (deferred_render)
 					{
 						gPipeline.bindDeferredShader(*current_shader);
-						diffuse_channel = current_shader->enableTexture(LLViewerShaderMgr::DIFFUSE_MAP);
 					}
 					else
 					{
@@ -361,12 +357,11 @@ void LLDrawPoolAlpha::renderAlpha(U32 mask)
 				}
 				else if (!use_shaders && current_shader != NULL)
 				{
+					LLGLSLShader::bindNoShader();
 					if (deferred_render)
 					{
 						gPipeline.unbindDeferredShader(*current_shader);
-						diffuse_channel = 0;
 					}
-					LLGLSLShader::bindNoShader();
 					current_shader = NULL;
 				}
 
@@ -374,24 +369,6 @@ void LLDrawPoolAlpha::renderAlpha(U32 mask)
 				{
 					params.mGroup->rebuildMesh();
 				}
-
-				
-				if (params.mTexture.notNull())
-				{
-					gGL.getTexUnit(diffuse_channel)->bind(params.mTexture.get(), TRUE, TRUE);
-				//	if(params.mViewerTexture.notNull())
-				//	{
-				//		params.mViewerTexture->addTextureStats(params.mVSize);
-				//	}
-					if (params.mTextureMatrix)
-					{
-						gGL.getTexUnit(0)->activate();
-						glMatrixMode(GL_TEXTURE);
-						glLoadMatrixf((GLfloat*) params.mTextureMatrix->mMatrix);
-						gPipeline.mTextureMatrixOps++;
-					}
-				}
-
 				params.mVertexBuffer->setBuffer(mask);
 				params.mVertexBuffer->drawRange(LLRender::TRIANGLES, params.mStart, params.mEnd, params.mCount, params.mOffset);
 				gPipeline.addTrianglesDrawn(params.mCount/3);
@@ -406,15 +383,6 @@ void LLDrawPoolAlpha::renderAlpha(U32 mask)
 		}
 	}
 
-	if (deferred_render && current_shader != NULL)
-	{
-		gPipeline.unbindDeferredShader(*current_shader);
-		LLVertexBuffer::unbind();	
-		LLGLState::checkStates();
-		LLGLState::checkTextureChannels();
-		LLGLState::checkClientArrays();
-	}
-	
 	if (!light_enabled)
 	{
 		gPipeline.enableLightsDynamic();

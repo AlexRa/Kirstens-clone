@@ -34,7 +34,7 @@
 #define LL_LLIMAGEWORKER_H
 
 #include "llimage.h"
-#include "llworkerthread.h"
+#include "llqueuedthread.h"
 
 class LLImageDecodeThread : public LLQueuedThread
 {

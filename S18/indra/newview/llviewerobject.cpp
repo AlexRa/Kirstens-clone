@@ -2735,7 +2735,7 @@ void LLViewerObject::setPixelAreaAndAngle(LLAgent &agent)
 	F32 mid_scale = getMidScale();
 	F32 min_scale = getMinScale();
 
-	// IW: esitmate - when close to large objects, computing range based on distance from center is no good
+	// IW: estimate - when close to large objects, computing range based on distance from center is no good
 	// to try to get a min distance from face, subtract min_scale/2 from the range.
 	// This means we'll load too much detail sometimes, but that's better than not enough
 	// I don't think there's a better way to do this without calculating distance per-poly
