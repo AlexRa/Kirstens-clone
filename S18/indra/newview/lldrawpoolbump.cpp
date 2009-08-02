@@ -572,7 +572,11 @@ BOOL LLDrawPoolBump::bindBumpMap(LLDrawInfo& params, S32 channel)
 	LLImageGL* bump = NULL;
 
 	U8 bump_code = params.mBump;
-	LLViewerImage* tex = params.mTexture;
+	LLViewerImage* tex = params.mViewerTexture;
+	if(!tex)
+	{
+		return FALSE ;
+	}
 
 	switch( bump_code )
 	{
