@@ -48,6 +48,7 @@
 #include "llrender.h"
 #include "lloctree.h"
 #include "llvoavatar.h"
+#include "lltextureatlas.h"
 
 const F32 SG_OCCLUSION_FUDGE = 0.25f;
 #define SG_DISCARD_TOLERANCE 0.01f
@@ -281,10 +282,10 @@ S32 LLSphereAABB(const LLVector3& center, const LLVector3& size, const LLVector3
 
 LLSpatialGroup::~LLSpatialGroup()
 {
-	if (sNoDelete)
+	/*if (sNoDelete)
 	{
 		llerrs << "Illegal deletion of LLSpatialGroup!" << llendl;
-	}
+	}*/
 
 	if (isState(DEAD))
 	{
@@ -302,6 +303,129 @@ LLSpatialGroup::~LLSpatialGroup()
 
 	LLMemType mt(LLMemType::MTYPE_SPACE_PARTITION);
 	clearDrawMap();
+	clearAtlasList() ;
+}
+
+BOOL LLSpatialGroup::hasAtlas(LLTextureAtlas* atlasp)
+{
+	S8 type = atlasp->getComponents() - 1 ;
+	for(std::list<LLTextureAtlas*>::iterator iter = mAtlasList[type].begin(); iter != mAtlasList[type].end() ; ++iter)
+	{
+		if(atlasp == *iter)
+		{
+			return TRUE ;
+		}
+	}
+	return FALSE ;
+}
+
+void LLSpatialGroup::addAtlas(LLTextureAtlas* atlasp, S8 recursive_level) 
+{		
+	if(!hasAtlas(atlasp))
+	{
+		mAtlasList[atlasp->getComponents() - 1].push_back(atlasp) ;
+		atlasp->addSpatialGroup(this) ;
+	}
+	
+	--recursive_level;
+	if(recursive_level)//levels propagating up.
+	{
+		LLSpatialGroup* parent = getParent() ;
+		if(parent)
+		{
+			parent->addAtlas(atlasp, recursive_level) ;
+		}
+	}	
+}
+
+void LLSpatialGroup::removeAtlas(LLTextureAtlas* atlasp, BOOL remove_group, S8 recursive_level) 
+{
+	mAtlasList[atlasp->getComponents() - 1].remove(atlasp) ;
+	if(remove_group)
+	{
+		atlasp->removeSpatialGroup(this) ;
+	}
+
+	--recursive_level;
+	if(recursive_level)//levels propagating up.
+	{
+		LLSpatialGroup* parent = getParent() ;
+		if(parent)
+		{
+			parent->removeAtlas(atlasp, recursive_level) ;
+		}
+	}	
+}
+
+void LLSpatialGroup::clearAtlasList() 
+{
+	std::list<LLTextureAtlas*>::iterator iter ;
+	for(S8 i = 0 ; i < 4 ; i++)
+	{
+		if(mAtlasList[i].size() > 0)
+		{
+			for(iter = mAtlasList[i].begin(); iter != mAtlasList[i].end() ; ++iter)
+			{
+				((LLTextureAtlas*)*iter)->removeSpatialGroup(this) ;			
+			}
+			mAtlasList[i].clear() ;
+		}
+	}
+}
+
+LLTextureAtlas* LLSpatialGroup::getAtlas(S8 ncomponents, S8 to_be_reserved, S8 recursive_level)
+{
+	S8 type = ncomponents - 1 ;
+	if(mAtlasList[type].size() > 0)
+	{
+		for(std::list<LLTextureAtlas*>::iterator iter = mAtlasList[type].begin(); iter != mAtlasList[type].end() ; ++iter)
+		{
+			if(!((LLTextureAtlas*)*iter)->isFull(to_be_reserved))
+			{
+				return *iter ;
+			}
+		}
+	}
+
+	--recursive_level;
+	if(recursive_level)
+	{
+		LLSpatialGroup* parent = getParent() ;
+		if(parent)
+		{
+			return parent->getAtlas(ncomponents, to_be_reserved, recursive_level) ;
+		}
+	}
+	return NULL ;
+}
+
+void LLSpatialGroup::setCurUpdatingSlot(LLTextureAtlasSlot* slotp) 
+{ 
+	mCurUpdatingSlotp = slotp;
+
+	//if(!hasAtlas(mCurUpdatingSlotp->getAtlas()))
+	//{
+	//	addAtlas(mCurUpdatingSlotp->getAtlas()) ;
+	//}
+}
+
+LLTextureAtlasSlot* LLSpatialGroup::getCurUpdatingSlot(LLViewerImage* imagep, S8 recursive_level) 
+{ 
+	if(gFrameCount && mCurUpdatingTime == gFrameCount && mCurUpdatingTexture == imagep)
+	{
+		return mCurUpdatingSlotp ;
+	}
+
+	//--recursive_level ;
+	//if(recursive_level)
+	//{
+	//	LLSpatialGroup* parent = getParent() ;
+	//	if(parent)
+	//	{
+	//		return parent->getCurUpdatingSlot(imagep, recursive_level) ;
+	//	}
+	//}
+	return NULL ;
 }
 
 void LLSpatialGroup::clearDrawMap()
@@ -468,17 +592,17 @@ void validate_draw_info(LLDrawInfo& params)
 	}
 	
 	//bad indices
-	U32* indicesp = (U32*) params.mVertexBuffer->getIndicesPointer();
+	U16* indicesp = (U16*) params.mVertexBuffer->getIndicesPointer(); // KL 16 indices for SD not 32
 	if (indicesp)
 	{
 		for (U32 i = params.mOffset; i < params.mOffset+params.mCount; i++)
 		{
-			if (indicesp[i] < params.mStart)
+			if (indicesp[i] < (U16)params.mStart) //KL
 			{
 				llerrs << "Draw batch has vertex buffer index out of range error (index too low)." << llendl;
 			}
 			
-			if (indicesp[i] > params.mEnd)
+			if (indicesp[i] > (U16)params.mEnd) // KL
 			{
 				llerrs << "Draw batch has vertex buffer index out of range error (index too high)." << llendl;
 			}
@@ -540,6 +664,7 @@ BOOL LLSpatialGroup::addObject(LLDrawable *drawablep, BOOL add_all, BOOL from_oc
 		drawablep->setSpatialGroup(this);
 		validate_drawable(drawablep);
 		setState(OBJECT_DIRTY | GEOM_DIRTY | DISCARD_QUERY);
+		gPipeline.markRebuild(this, TRUE);
 		if (drawablep->isSpatialBridge())
 		{
 			mBridgeList.push_back((LLSpatialBridge*) drawablep);
@@ -572,22 +697,23 @@ void LLSpatialGroup::rebuildMesh()
 
 void LLSpatialPartition::rebuildGeom(LLSpatialGroup* group)
 {
-	if (!gPipeline.hasRenderType(mDrawableType))
+	/*if (!gPipeline.hasRenderType(mDrawableType))
 	{
 		return;
-	}
-
-	if (!LLPipeline::sSkipUpdate && group->changeLOD())
-	{
-		group->mLastUpdateDistance = group->mDistance;
-		group->mLastUpdateViewAngle = group->mViewAngle;
-	}
+	}*/
 
 	if (group->isDead() || !group->isState(LLSpatialGroup::GEOM_DIRTY))
 	{
+		/*if (!group->isState(LLSpatialGroup::GEOM_DIRTY) && mRenderByGroup)
+		{
+			llerrs << "WTF?" << llendl;
+		}*/
 		return;
 	}
 
+	group->mLastUpdateDistance = group->mDistance;
+	group->mLastUpdateViewAngle = group->mViewAngle;
+	
 	LLFastTimer ftm(LLFastTimer::FTM_REBUILD_VBO);	
 
 	group->clearDrawMap();
@@ -624,6 +750,7 @@ void LLSpatialPartition::rebuildGeom(LLSpatialGroup* group)
 	group->mLastUpdateTime = gFrameTimeSeconds;
 	group->clearState(LLSpatialGroup::GEOM_DIRTY);
 }
+
 
 void LLSpatialPartition::rebuildMesh(LLSpatialGroup* group)
 {
@@ -663,8 +790,11 @@ BOOL LLSpatialGroup::boundObjects(BOOL empty, LLVector3& minOut, LLVector3& maxO
 			drawablep = *i;
 			minMax = drawablep->getSpatialExtents();
 			
+			update_min_max(newMin, newMax, minMax[0]);
+			update_min_max(newMin, newMax, minMax[1]);
+
 			//bin up the object
-			for (U32 i = 0; i < 3; i++)
+			/*for (U32 i = 0; i < 3; i++)
 			{
 				if (minMax[0].mV[i] < newMin.mV[i])
 				{
@@ -674,7 +804,7 @@ BOOL LLSpatialGroup::boundObjects(BOOL empty, LLVector3& minOut, LLVector3& maxO
 				{
 					newMax.mV[i] = minMax[1].mV[i];
 				}
-			}
+			}*/
 		}
 		
 		mObjectBounds[0] = (newMin + newMax) * 0.5f;
@@ -738,6 +868,10 @@ LLSpatialGroup* LLSpatialGroup::getParent()
 		return NULL;
 	}
 
+	if(!mOctreeNode)
+	{
+		return NULL;
+	}
 	OctreeNode* parent = mOctreeNode->getOctParent();
 
 	if (parent)
@@ -763,6 +897,8 @@ BOOL LLSpatialGroup::removeObject(LLDrawable *drawablep, BOOL from_octree)
 	{
 		drawablep->setSpatialGroup(NULL);
 		setState(GEOM_DIRTY);
+		gPipeline.markRebuild(this, TRUE);
+
 		if (drawablep->isSpatialBridge())
 		{
 			for (bridge_list_t::iterator i = mBridgeList.begin(); i != mBridgeList.end(); ++i)
@@ -799,6 +935,7 @@ void LLSpatialGroup::shift(const LLVector3 &offset)
 	//if (!mSpatialPartition->mRenderByGroup)
 	{
 		setState(GEOM_DIRTY);
+		gPipeline.markRebuild(this, TRUE);
 	}
 
 	if (mOcclusionVerts)
@@ -948,7 +1085,11 @@ LLSpatialGroup::LLSpatialGroup(OctreeNode* node, LLSpatialPartition* part) :
 	mLastUpdateDistance(-1.f), 
 	mLastUpdateTime(gFrameTimeSeconds),
 	mViewAngle(0.f),
-	mLastUpdateViewAngle(-1.f)
+	mLastUpdateViewAngle(-1.f),
+	mAtlasList(4),
+	mCurUpdatingTime(0),
+	mCurUpdatingSlotp(NULL),
+	mCurUpdatingTexture (NULL)
 {
 	sNodeCount++;
 	LLMemType mt(LLMemType::MTYPE_SPACE_PARTITION);
@@ -956,6 +1097,7 @@ LLSpatialGroup::LLSpatialGroup(OctreeNode* node, LLSpatialPartition* part) :
 	sg_assert(mOctreeNode->getListenerCount() == 0);
 	mOctreeNode->addListener(this);
 	setState(SG_INITIAL_STATE_MASK);
+	gPipeline.markRebuild(this, TRUE);
 
 	mBounds[0] = LLVector3(node->getCenter());
 	mBounds[1] = LLVector3(node->getSize());
@@ -1014,6 +1156,7 @@ F32 LLSpatialPartition::calcDistance(LLSpatialGroup* group, LLCamera& camera)
 					//NOTE: If there is a trivial way to detect that alpha sorting here would not change the render order,
 					//not setting this node to dirty would be a very good thing
 					group->setState(LLSpatialGroup::ALPHA_DIRTY);
+					gPipeline.markRebuild(group, FALSE);
 				}
 			}
 		}
@@ -1048,6 +1191,18 @@ F32 LLSpatialPartition::calcDistance(LLSpatialGroup* group, LLCamera& camera)
 F32 LLSpatialPartition::calcPixelArea(LLSpatialGroup* group, LLCamera& camera)
 {
 	return LLPipeline::calcPixelArea(group->mObjectBounds[0], group->mObjectBounds[1], camera);
+}
+
+F32 LLSpatialGroup::getUpdateUrgency() const
+{
+	if (!isVisible())
+	{
+		return 0.f;
+	}
+	else
+	{
+		return (gFrameTimeSeconds - mLastUpdateTime+4.f)/mDistance;
+	}
 }
 
 BOOL LLSpatialGroup::needsUpdate()
@@ -1157,6 +1312,8 @@ void LLSpatialGroup::handleChildRemoval(const OctreeNode* parent, const OctreeNo
 void LLSpatialGroup::destroyGL() 
 {
 	setState(LLSpatialGroup::GEOM_DIRTY | LLSpatialGroup::IMAGE_DIRTY);
+	gPipeline.markRebuild(this, TRUE);
+
 	mLastUpdateTime = gFrameTimeSeconds;
 	mVertexBuffer = NULL;
 	mBufferMap.clear();
@@ -1339,7 +1496,8 @@ void LLSpatialGroup::doOcclusion(LLCamera* camera)
 
 //==============================================
 
-LLSpatialPartition::LLSpatialPartition(U32 data_mask, U32 buffer_usage)
+LLSpatialPartition::LLSpatialPartition(U32 data_mask, BOOL render_by_group, U32 buffer_usage)
+: mRenderByGroup(render_by_group)
 {
 	LLMemType mt(LLMemType::MTYPE_SPACE_PARTITION);
 	mOcclusionEnabled = TRUE;
@@ -1351,7 +1509,6 @@ LLSpatialPartition::LLSpatialPartition(U32 data_mask, U32 buffer_usage)
 	mBufferUsage = buffer_usage;
 	mDepthMask = FALSE;
 	mSlopRatio = 0.25f;
-	mRenderByGroup = TRUE;
 	mInfiniteFarClip = FALSE;
 
 	LLGLNamePool::registerPool(&sQueryPool);
@@ -1647,13 +1804,76 @@ public:
 		return false;
 	}
 
+	virtual void traverse(const LLSpatialGroup::TreeNode* n)
+	{
+		LLSpatialGroup* group = (LLSpatialGroup*) n->getListener(0);
+
+		if (earlyFail(group))
+		{
+			return;
+		}
+		
+		if (mRes == 2)
+		{
+			//fully in, don't traverse further (won't effect extents
+		}
+		else if (mRes && group->isState(LLSpatialGroup::SKIP_FRUSTUM_CHECK))
+		{	//don't need to do frustum check
+			LLSpatialGroup::OctreeTraveler::traverse(n);
+		}
+		else
+		{  
+			mRes = frustumCheck(group);
+				
+			if (mRes)
+			{ //at least partially in, run on down
+				LLSpatialGroup::OctreeTraveler::traverse(n);
+			}
+
+			mRes = 0;
+		}
+	}
+
 	virtual void processGroup(LLSpatialGroup* group)
 	{
-		if (group->mObjectBounds[1].magVecSquared() < 256.f * 256.f)
-		{ //megaprims and water edge patches be damned!
+		if (group->isState(LLSpatialGroup::DIRTY) || group->getData().empty())
+		{
+			llerrs << "WTF?" << llendl;
+		}
+
+		if (mRes < 2)
+		{
+			
+			if (mCamera->AABBInFrustum(group->mObjectBounds[0], group->mObjectBounds[1]) == 2)
+			{
+				mEmpty = FALSE;
+				update_min_max(mMin, mMax, group->mObjectExtents[0]);
+				update_min_max(mMin, mMax, group->mObjectExtents[1]);
+			}
+			else
+			{
+				if (group->mObjectBounds[1].magVecSquared() < 256.f * 256.f)
+				{ //megaprims and water edge patches be damned!
+					for (LLSpatialGroup::element_iter i = group->getData().begin(); i != group->getData().end(); ++i)
+					{
+						LLDrawable* drawable = i->get();
+						const LLVector3* ext = drawable->getSpatialExtents();
+
+						if (mCamera->AABBInFrustum((ext[1]+ext[0])*0.5f, (ext[1]-ext[0])*0.5f))
+						{
+							mEmpty = FALSE;
+							update_min_max(mMin, mMax, ext[0]);
+							update_min_max(mMin, mMax, ext[1]);
+						}
+					}
+				}
+			}
+		}
+		else
+		{
 			mEmpty = FALSE;
-			update_min_max(mMin, mMax, group->mObjectExtents[0]);
-			update_min_max(mMin, mMax, group->mObjectExtents[1]);
+			update_min_max(mMin, mMax, group->mExtents[0]);
+			update_min_max(mMin, mMax, group->mExtents[1]);
 		}
 	}
 
@@ -2431,6 +2651,39 @@ void renderBatchSize(LLDrawInfo* params)
 	pushVerts(params, LLVertexBuffer::MAP_VERTEX);
 }
 
+void renderShadowFrusta(LLDrawInfo* params)
+{
+	LLGLEnable blend(GL_BLEND);
+	gGL.setSceneBlendType(LLRender::BT_ADD);
+
+	LLVector3 center = (params->mExtents[1]+params->mExtents[0])*0.5f;
+	LLVector3 size = (params->mExtents[1]-params->mExtents[0])*0.5f;
+
+	if (gPipeline.mShadowCamera[4].AABBInFrustum(center, size))
+	{
+		glColor3f(1,0,0);
+		pushVerts(params, LLVertexBuffer::MAP_VERTEX);
+	}
+	if (gPipeline.mShadowCamera[5].AABBInFrustum(center, size))
+	{
+		glColor3f(0,1,0);
+		pushVerts(params, LLVertexBuffer::MAP_VERTEX);
+	}
+	if (gPipeline.mShadowCamera[6].AABBInFrustum(center, size))
+	{
+		glColor3f(0,0,1);
+		pushVerts(params, LLVertexBuffer::MAP_VERTEX);
+	}
+	if (gPipeline.mShadowCamera[7].AABBInFrustum(center, size))
+	{
+		glColor3f(1,0,1);
+		pushVerts(params, LLVertexBuffer::MAP_VERTEX);
+	}
+
+	gGL.setSceneBlendType(LLRender::BT_ALPHA);
+}
+
+
 void renderLights(LLDrawable* drawablep)
 {
 	if (!drawablep->isLight())
@@ -2566,6 +2819,9 @@ public:
 			//draw tight fit bounding boxes for spatial group
 			if (gPipeline.hasRenderDebugMask(LLPipeline::RENDER_DEBUG_OCTREE))
 			{	
+				group->rebuildGeom();
+				group->rebuildMesh();
+
 				renderOctree(group);
 				stop_glerror();
 			}
@@ -2573,6 +2829,9 @@ public:
 			//render visibility wireframe
 			if (gPipeline.hasRenderDebugMask(LLPipeline::RENDER_DEBUG_OCCLUSION))
 			{
+				group->rebuildGeom();
+				group->rebuildMesh();
+
 				gGL.flush();
 				glPushMatrix();
 				gGLLastMatrix = NULL;
@@ -2598,6 +2857,19 @@ public:
 		LLVector3 nodeCenter = group->mBounds[0];
 		LLVector3 octCenter = LLVector3(group->mOctreeNode->getCenter());
 
+		group->rebuildGeom();
+		group->rebuildMesh();
+
+		if (gPipeline.hasRenderDebugMask(LLPipeline::RENDER_DEBUG_BBOXES))
+		{
+			if (!group->getData().empty())
+			{
+				gGL.color3f(0,0,1);
+				drawBoxOutline(group->mObjectBounds[0],
+								group->mObjectBounds[1]);
+			}
+		}
+
 		for (LLSpatialGroup::OctreeNode::const_element_iter i = branch->getData().begin(); i != branch->getData().end(); ++i)
 		{
 			LLDrawable* drawable = *i;
@@ -2607,6 +2879,16 @@ public:
 				renderBoundingBox(drawable);			
 			}
 			
+			if (gPipeline.hasRenderDebugMask(LLPipeline::RENDER_DEBUG_BUILD_QUEUE))
+			{
+				if (drawable->isState(LLDrawable::IN_REBUILD_Q2))
+				{
+					gGL.color4f(0.6f, 0.6f, 0.1f, 1.f);
+					const LLVector3* ext = drawable->getSpatialExtents();
+					drawBoxOutline((ext[0]+ext[1])*0.5f, (ext[1]-ext[0])*0.5f);
+				}
+			}	
+
 			if (drawable->getVOVolume() && gPipeline.hasRenderDebugMask(LLPipeline::RENDER_DEBUG_TEXTURE_PRIORITY))
 			{
 				renderTexturePriority(drawable);
@@ -2627,9 +2909,9 @@ public:
 				renderRaycast(drawable);
 			}
 
-			LLVOAvatar* avatar = dynamic_cast<LLVOAvatar*>(drawable->getVObj().get());
+		//	LLVOAvatar* avatar = dynamic_cast<LLVOAvatar*>(drawable->getVObj().get());
 			
-			if (avatar && gPipeline.hasRenderDebugMask(LLPipeline::RENDER_DEBUG_AVATAR_VOLUME))
+		/*	if (avatar && gPipeline.hasRenderDebugMask(LLPipeline::RENDER_DEBUG_AVATAR_VOLUME))
 			{
 				renderAvatarCollisionVolumes(avatar);
 			}
@@ -2637,7 +2919,7 @@ public:
 			if (avatar && gPipeline.hasRenderDebugMask(LLPipeline::RENDER_DEBUG_AGENT_TARGET))
 			{
 				renderAgentTarget(avatar);
-			}
+			} */
 			
 		}
 		
@@ -2654,6 +2936,10 @@ public:
 				if (gPipeline.hasRenderDebugMask(LLPipeline::RENDER_DEBUG_BATCH_SIZE))
 				{
 					renderBatchSize(draw_info);
+				}
+				if (gPipeline.hasRenderDebugMask(LLPipeline::RENDER_DEBUG_SHADOW_FRUSTA))
+				{
+					renderShadowFrusta(draw_info);
 				}
 			}
 		}
@@ -2705,7 +2991,7 @@ void LLSpatialPartition::renderIntersectingBBoxes(LLCamera* camera)
 	pusher.traverse(mOctree);
 }
 
-void LLSpatialPartition::renderDebug()
+void LLSpatialPartition::renderDebug()  // KL SD version
 {
 	if (!gPipeline.hasRenderDebugMask(LLPipeline::RENDER_DEBUG_OCTREE |
 									  LLPipeline::RENDER_DEBUG_OCCLUSION |
@@ -2716,8 +3002,8 @@ void LLSpatialPartition::renderDebug()
 									  LLPipeline::RENDER_DEBUG_TEXTURE_PRIORITY |
 									  LLPipeline::RENDER_DEBUG_TEXTURE_ANIM |
 									  LLPipeline::RENDER_DEBUG_RAYCAST |
-									  LLPipeline::RENDER_DEBUG_AVATAR_VOLUME |
-									  LLPipeline::RENDER_DEBUG_AGENT_TARGET))
+									  LLPipeline::RENDER_DEBUG_BUILD_QUEUE |
+									  LLPipeline::RENDER_DEBUG_SHADOW_FRUSTA)) 
 	{
 		return;
 	}
@@ -2750,6 +3036,12 @@ void LLSpatialPartition::renderDebug()
 
 	LLOctreeRenderNonOccluded render_debug(camera);
 	render_debug.traverse(mOctree);
+}
+
+void LLSpatialGroup::drawObjectBox(LLColor4 col)
+{
+	gGL.color4fv(col.mV);
+	drawBox(mObjectBounds[0], mObjectBounds[1]*1.01f+LLVector3(0.001f, 0.001f, 0.001f));
 }
 
 

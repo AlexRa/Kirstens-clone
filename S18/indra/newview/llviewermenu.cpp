@@ -735,10 +735,8 @@ void init_client_menu(LLMenuGL* menu)
 										&get_visibility,
 										debugview,
 									   	'4', MASK_CONTROL|MASK_SHIFT ) );
-
-		if(gAuditTexture)
-		{
-			sub->append(new LLMenuItemCheckGL("Texture Size Console", 
+#if !LL_RELEASE_FOR_DOWNLOAD
+		sub->append(new LLMenuItemCheckGL("Texture Size Console", 
 										&toggle_visibility,
 										NULL,
 										&get_visibility,
@@ -750,7 +748,7 @@ void init_client_menu(LLMenuGL* menu)
 										&get_visibility,
 										(void*)gTextureCategoryView,
 									   	'6', MASK_CONTROL|MASK_SHIFT ) );
-		}
+#endif
 
 		sub->append(new LLMenuItemCheckGL("Fast Timers", 
 										&toggle_visibility,
@@ -1384,14 +1382,14 @@ void init_debug_avatar_menu(LLMenuGL* menu)
 	//menu->append(new LLMenuItemToggleGL("Show Attachment Points", &LLVOAvatar::sShowAttachmentPoints));
 	//diabling collision plane due to DEV-14477 -brad
 	//menu->append(new LLMenuItemToggleGL("Show Collision Plane", &LLVOAvatar::sShowFootPlane));
-	menu->append(new LLMenuItemCheckGL("Show Collision Skeleton",
-									   &LLPipeline::toggleRenderDebug, NULL,
-									   &LLPipeline::toggleRenderDebugControl,
-									   (void*)LLPipeline::RENDER_DEBUG_AVATAR_VOLUME));
-	menu->append(new LLMenuItemCheckGL("Display Agent Target",
-									   &LLPipeline::toggleRenderDebug, NULL,
-									   &LLPipeline::toggleRenderDebugControl,
-									   (void*)LLPipeline::RENDER_DEBUG_AGENT_TARGET));
+	//menu->append(new LLMenuItemCheckGL("Show Collision Skeleton",
+	//								   &LLPipeline::toggleRenderDebug, NULL,
+	//								   &LLPipeline::toggleRenderDebugControl,
+	//								   (void*)LLPipeline::RENDER_DEBUG_AVATAR_VOLUME));
+	//menu->append(new LLMenuItemCheckGL("Display Agent Target",
+	//								   &LLPipeline::toggleRenderDebug, NULL,
+	//								   &LLPipeline::toggleRenderDebugControl,
+	//								   (void*)LLPipeline::RENDER_DEBUG_AGENT_TARGET));
 	menu->append(new LLMenuItemToggleGL( "Debug Rotation", &LLVOAvatar::sDebugAvatarRotation));
 	menu->append(new LLMenuItemCallGL("Dump Attachments", handle_dump_attachments));
 	menu->append(new LLMenuItemCallGL("Rebake Textures", handle_rebake_textures, NULL, NULL, 'R', MASK_ALT | MASK_CONTROL ));
@@ -6732,7 +6730,7 @@ class LLToolsSelectBySurrounding : public view_listener_t
 	}
 };
 
-class LLToolsShowSelectionHighlights : public view_listener_t
+/* class LLToolsShowSelectionHighlights : public view_listener_t
 {
 	bool handleEvent(LLPointer<LLEvent> event, const LLSD& userdata)
 	{
@@ -6741,7 +6739,7 @@ class LLToolsShowSelectionHighlights : public view_listener_t
 		gSavedSettings.setBOOL("RenderHighlightSelections", LLSelectMgr::sRenderSelectionHighlights);
 		return true;
 	}
-};
+}; */
 
 class LLToolsShowHiddenSelection : public view_listener_t
 {
@@ -7663,7 +7661,7 @@ void initialize_menus()
 	addMenu(new LLToolsSelectOnlyMyObjects(), "Tools.SelectOnlyMyObjects");
 	addMenu(new LLToolsSelectOnlyMovableObjects(), "Tools.SelectOnlyMovableObjects");
 	addMenu(new LLToolsSelectBySurrounding(), "Tools.SelectBySurrounding");
-	addMenu(new LLToolsShowSelectionHighlights(), "Tools.ShowSelectionHighlights");
+	//addMenu(new LLToolsShowSelectionHighlights(), "Tools.ShowSelectionHighlights");
 	addMenu(new LLToolsShowHiddenSelection(), "Tools.ShowHiddenSelection");
 	addMenu(new LLToolsShowSelectionLightRadius(), "Tools.ShowSelectionLightRadius");
 	addMenu(new LLToolsEditLinkedParts(), "Tools.EditLinkedParts");

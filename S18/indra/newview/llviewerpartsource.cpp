@@ -101,7 +101,7 @@ LLViewerPartSourceScript::LLViewerPartSourceScript(LLViewerObject *source_objp) 
 	mSourceObjectp = source_objp;
 	mPosAgent = mSourceObjectp->getPositionAgent();
 	mImagep = gImageList.getImageFromFile("pixiesmall.j2c");
-	gGL.getTexUnit(0)->bind(mImagep.get());
+	//gGL.getTexUnit(0)->bind(mImagep.get());
 	mImagep->setAddressMode(LLTexUnit::TAM_CLAMP);
 }
 

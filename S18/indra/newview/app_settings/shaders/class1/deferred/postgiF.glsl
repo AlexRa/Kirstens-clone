@@ -5,75 +5,103 @@
  * $License$
  */
 
-uniform sampler2DRect depthMap;
-uniform sampler2DRect normalMap;
-uniform sampler2DRect giLightMap;
-uniform sampler2D	noiseMap;
+uniform sampler2D		diffuseGIMap;
+uniform sampler2D		normalGIMap;
+uniform sampler2D		depthGIMap;
+uniform sampler2D		diffuseMap;
 
-uniform vec2 kern[32];
-uniform float dist_factor;
-uniform float blur_size;
-uniform vec2 delta;
-uniform int kern_length;
-uniform float kern_scale;
-uniform vec3 blur_quad;
+uniform sampler2D		lastDiffuseGIMap;
+uniform sampler2D		lastNormalGIMap;
+uniform sampler2D		lastMinpGIMap;
+uniform sampler2D		lastMaxpGIMap;
 
-varying vec2 vary_fragcoord;
+uniform float gi_blend;
 
-uniform mat4 inv_proj;
-uniform vec2 screen_res;
+uniform mat4 gi_mat;  //gPipeline.mGIMatrix - eye space to sun space
+uniform mat4 gi_mat_proj; //gPipeline.mGIMatrixProj - eye space to projected sun space
+uniform mat4 gi_norm_mat; //gPipeline.mGINormalMatrix - eye space normal to sun space normal matrix
+uniform mat4 gi_inv_proj; //gPipeline.mGIInvProj - projected sun space to sun space
+uniform float gi_radius;
+uniform float gi_intensity;
+uniform vec2 gi_kern[16];
+uniform vec2 gi_scale;
 
-vec4 getPosition(vec2 pos_screen)
+
+vec4 getGIPosition(vec2 gi_tc)
 {
-	float depth = texture2DRect(depthMap, pos_screen.xy).a;
-	vec2 sc = pos_screen.xy*2.0;
-	sc /= screen_res;
-	sc -= vec2(1.0,1.0);
+	float depth = texture2D(depthGIMap, gi_tc).a;
+	vec2 sc = gi_tc*2.0;
+	sc -= vec2(1.0, 1.0);
 	vec4 ndc = vec4(sc.x, sc.y, 2.0*depth-1.0, 1.0);
-	vec4 pos = inv_proj * ndc;
-	pos /= pos.w;
+	vec4 pos = gi_inv_proj*ndc;
+	pos.xyz /= pos.w;
 	pos.w = 1.0;
 	return pos;
 }
 
+
 void main() 
 {
-	vec3 norm = texture2DRect(normalMap, vary_fragcoord.xy).xyz*2.0-1.0;
-	vec3 pos = getPosition(vary_fragcoord.xy).xyz;
+	vec2 c_tc = gl_TexCoord[0].xy;
 	
+	vec3 diff = vec3(0,0,0);
+	vec3 minp = vec3(1024,1024,1024);
+	vec3 maxp = vec3(-1024,-1024,-1024);
+	vec3 norm = vec3(0,0,0);
 	
-	vec3 ccol = texture2DRect(giLightMap, vary_fragcoord.xy).rgb;
-	vec2 dlt = kern_scale * delta/(1.0+norm.xy*norm.xy);
-	dlt /= max(-pos.z*dist_factor, 1.0);
-	float defined_weight = kern[0].x;
-	vec3 col = vec3(0.0);
+	float dweight = 0.0;
 	
-	for (int i = 0; i < kern_length; i++)
+	vec3 cnorm = normalize(texture2D(normalGIMap, c_tc).rgb*2.0-1.0);
+	
+	vec3 cpos = vec3(0,0,0);
+	float tweight = 0.0;
+	
+	for (int i = 0; i < 8; ++i)
 	{
-		vec2 tc = vary_fragcoord.xy + kern[i].y*dlt;
-	    vec3 sampNorm = texture2DRect(normalMap, tc.xy).xyz*2.0-1.0;
-	    
-	    float d = dot(norm.xyz, sampNorm);
-		
-		if (d > 0.8)
+		for (int j = 0; j < 8; ++j)
 		{
-			vec3 samppos = getPosition(tc.xy).xyz;
-			samppos -= pos;
-			if (dot(samppos,samppos) < -0.05*pos.z)
-			{
-	    		col += texture2DRect(giLightMap, tc).rgb*kern[i].x;
-				defined_weight += kern[i].x;
-			}
+			vec2 tc = vec2(i-4+0.5, j-4+0.5);
+			float weight = 1.0-length(tc)/6.0;
+			tc *= 1.0/(256.0);
+			tc += c_tc;
+					
+			vec3 n = texture2D(normalGIMap, tc).rgb*2.0-1.0;
+			tweight += weight;
+			
+			diff += weight*texture2D(diffuseGIMap, tc).rgb;
+		
+			norm += n*weight;
+			
+			dweight += dot(n, cnorm);
+			
+			vec3 pos = getGIPosition(tc).xyz;
+			cpos += pos*weight;
+			
+			minp = min(pos, minp);
+			maxp = max(pos, maxp); 
 		}
 	}
-
-	col /= defined_weight;
+		
+	dweight = abs(1.0-dweight/64.0);
+	float mind = min(sqrt(dweight+0.5), 1.0);
 	
-	//col = ccol;
+	dweight *= dweight;
 	
-	col = col*col*blur_quad.x + col*blur_quad.y + blur_quad.z;
+	cpos /= tweight;
 	
-	gl_FragData[0].xyz = col;
+	diff = clamp(diff/tweight, vec3(1.0/2.2), vec3(1,1,1));
+	norm = normalize(norm);
+	maxp = cpos;
+	minp = vec3(dweight, mind, cpos.z-minp.z);
 	
-	//gl_FragColor = ccol;
+	//float blend = 1.0;
+	//diff = mix(texture2D(lastDiffuseGIMap, c_tc).rgb, diff, blend);
+	//norm = mix(texture2D(lastNormalGIMap, c_tc).rgb, norm, blend);
+	//maxp = mix(texture2D(lastMaxpGIMap, c_tc).rgb, maxp, blend);
+	//minp = mix(texture2D(lastMinpGIMap, c_tc).rgb, minp, blend);
+	
+	gl_FragData[0].rgb = diff;
+	gl_FragData[2].xyz = normalize(norm);
+	gl_FragData[1].xyz = maxp;
+	gl_FragData[3].xyz = minp;
 }

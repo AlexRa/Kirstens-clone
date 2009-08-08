@@ -177,11 +177,14 @@ class LLUICtrlFactory;
 //
 class LLWebBrowserCtrl :
 	public LLUICtrl,
-	public LLMediaObserver
+	public LLMediaObserver,
+	public LLGLUpdate
 {
 	public:
 		LLWebBrowserCtrl( const std::string& name, const LLRect& rect );
 		virtual ~LLWebBrowserCtrl();
+
+		void updateGL();
 
 		void setBorderVisible( BOOL border_visible );
 

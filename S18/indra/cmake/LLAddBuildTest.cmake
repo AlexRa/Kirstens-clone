@@ -104,11 +104,11 @@ MACRO(ADD_BUILD_TEST_INTERNAL name parent libraries source_files)
 
     #MESSAGE(STATUS "ADD_BUILD_TEST_INTERNAL ${name} test_script  = ${TEST_SCRIPT_CMD}")
     ADD_CUSTOM_COMMAND(
-        OUTPUT ${TEST_OUTPUT}
-        COMMAND ${TEST_SCRIPT_CMD}
-        DEPENDS ${name}_test
-        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-        )
+      OUTPUT ${TEST_OUTPUT}
+      COMMAND ${TEST_SCRIPT_CMD}
+      DEPENDS ${name}_test
+      WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+      )
 
     ADD_CUSTOM_TARGET(${name}_test_ok ALL DEPENDS ${TEST_OUTPUT})
     IF (${parent})

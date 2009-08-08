@@ -392,8 +392,6 @@ void LLWLParamManager::update(LLViewerCamera * cam)
 
 	F32 camYaw = cam->getYaw();
 
-	stop_glerror();
-
 	// *TODO: potential optimization - this block may only need to be
 	// executed some of the time.  For example for water shaders only.
 	{

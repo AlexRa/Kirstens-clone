@@ -801,11 +801,27 @@ LLImagePreviewSculpted::LLImagePreviewSculpted(S32 width, S32 height) : LLDynami
 	
 	F32 const HIGHEST_LOD = 4.0f;
 	mVolume = new LLVolume(volume_params,  HIGHEST_LOD);
+
+	/*
+	mDummyAvatar = new LLVOAvatar(LLUUID::null, LL_PCODE_LEGACY_AVATAR, gAgent.getRegion());
+	mDummyAvatar->createDrawable(&gPipeline);
+	mDummyAvatar->mIsDummy = TRUE;
+	mDummyAvatar->mSpecialRenderMode = 2;
+	mDummyAvatar->setPositionAgent(LLVector3::zero);
+	mDummyAvatar->slamPosition();
+	mDummyAvatar->updateJointLODs();
+	mDummyAvatar->updateGeometry(mDummyAvatar->mDrawable);
+	gPipeline.markVisible(mDummyAvatar->mDrawable, *LLViewerCamera::getInstance());
+	mTextureName = 0;
+	*/
 }
 
 
 LLImagePreviewSculpted::~LLImagePreviewSculpted()
 {
+	/*
+	mDummyAvatar->markDead();
+	*/
 }
 
 

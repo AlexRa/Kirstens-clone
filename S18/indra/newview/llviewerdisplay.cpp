@@ -125,6 +125,11 @@ void display_startup()
 		return; 
 	}
 
+	gPipeline.updateGL();
+
+	// Update images?
+	gImageList.updateImages(0.01f);
+	
 	LLGLSDefault gls_default;
 
 	// Required for HTML update in login screen
@@ -514,12 +519,7 @@ void display(BOOL rebuild, F32 zoom_factor, int subfield, BOOL for_snapshot)
 		{ //don't draw hud objects in this frame
 			gPipeline.toggleRenderType(LLPipeline::RENDER_TYPE_HUD);
 		}
-
-		if (gPipeline.hasRenderType(LLPipeline::RENDER_TYPE_HUD_PARTICLES))
-		{ //don't draw hud particles in this frame
-			gPipeline.toggleRenderType(LLPipeline::RENDER_TYPE_HUD_PARTICLES);
-		}
-
+		
 		//upkeep gl name pools
 		LLGLNamePool::upkeepPools();
 		
@@ -538,6 +538,9 @@ void display(BOOL rebuild, F32 zoom_factor, int subfield, BOOL for_snapshot)
 		gPipeline.updateGeom(max_geom_update_time);
 		stop_glerror();
 		
+		gPipeline.updateGL();
+		stop_glerror();
+
 		gFrameStats.start(LLFrameStats::UPDATE_CULL);
 		S32 water_clip = 0;
 		if ((LLViewerShaderMgr::instance()->getVertexShaderLevel(LLViewerShaderMgr::SHADER_ENVIRONMENT) > 1) &&
@@ -627,6 +630,8 @@ void display(BOOL rebuild, F32 zoom_factor, int subfield, BOOL for_snapshot)
 					gPipeline.generateSunShadow(*LLViewerCamera::getInstance());
 				}
 
+				LLVertexBuffer::unbind();
+
 				LLGLState::checkStates();
 				LLGLState::checkTextureChannels();
 				LLGLState::checkClientArrays();
@@ -679,9 +684,11 @@ void display(BOOL rebuild, F32 zoom_factor, int subfield, BOOL for_snapshot)
 
 			gBumpImageList.updateImages();  // must be called before gImageList version so that it's textures are thrown out first.
 
-			F32 max_image_decode_time = 0.050f*gFrameIntervalSeconds; // 50 ms/second decode time
-			max_image_decode_time = llclamp(max_image_decode_time, 0.001f, 0.005f ); // min 1ms/frame, max 5ms/frame)
+			const F32 max_image_decode_time = llmin(0.005f, 0.005f*10.f*gFrameIntervalSeconds); // 50 ms/second decode time (no more than 5ms/frame)
 			gImageList.updateImages(max_image_decode_time);
+
+			//remove dead textures from GL KL is it req?
+			LLImageGL::deleteDeadTextures();
 			stop_glerror();
 		}
 		llpushcallstacks ;
@@ -849,6 +856,8 @@ void display(BOOL rebuild, F32 zoom_factor, int subfield, BOOL for_snapshot)
 			render_ui();
 		}
 
+		gPipeline.rebuildGroups();
+
 		LLSpatialGroup::sNoDelete = FALSE;
 	}
 	
@@ -890,26 +899,16 @@ void render_hud_attachments()
 		hud_cam.setOrigin(-1.f,0,0);
 		hud_cam.setAxes(LLVector3(1,0,0), LLVector3(0,1,0), LLVector3(0,0,1));
 		LLViewerCamera::updateFrustumPlanes(hud_cam, TRUE);
-
-		bool render_particles = gPipeline.hasRenderType(LLPipeline::RENDER_TYPE_PARTICLES) && gSavedSettings.getBOOL("RenderHUDParticles");
 		
 		//only render hud objects
 		U32 mask = gPipeline.getRenderTypeMask();
-		// turn off everything
 		gPipeline.setRenderTypeMask(0);
-		// turn on HUD
-		gPipeline.toggleRenderType(LLPipeline::RENDER_TYPE_HUD);
-		// turn on HUD particles
-		gPipeline.toggleRenderType(LLPipeline::RENDER_TYPE_HUD_PARTICLES);
-
-		// if particles are off, turn off hud-particles as well
-		if (!render_particles)
+		if (!gPipeline.hasRenderType(LLPipeline::RENDER_TYPE_HUD))
 		{
-			// turn back off HUD particles
-			gPipeline.toggleRenderType(LLPipeline::RENDER_TYPE_HUD_PARTICLES);
+			gPipeline.toggleRenderType(LLPipeline::RENDER_TYPE_HUD);
 		}
 
-		bool has_ui = gPipeline.hasRenderDebugFeatureMask(LLPipeline::RENDER_DEBUG_FEATURE_UI);
+		BOOL has_ui = gPipeline.hasRenderDebugFeatureMask(LLPipeline::RENDER_DEBUG_FEATURE_UI);
 		if (has_ui)
 		{
 			gPipeline.toggleRenderDebugFeature((void*) LLPipeline::RENDER_DEBUG_FEATURE_UI);
@@ -930,6 +929,15 @@ void render_hud_attachments()
 		gPipeline.toggleRenderType(LLPipeline::RENDER_TYPE_VOLUME);
 		gPipeline.toggleRenderType(LLPipeline::RENDER_TYPE_ALPHA);
 		gPipeline.toggleRenderType(LLPipeline::RENDER_TYPE_FULLBRIGHT);
+		gPipeline.toggleRenderType(LLPipeline::RENDER_TYPE_PASS_ALPHA);
+		gPipeline.toggleRenderType(LLPipeline::RENDER_TYPE_PASS_ALPHA_MASK);
+		gPipeline.toggleRenderType(LLPipeline::RENDER_TYPE_PASS_BUMP);
+		gPipeline.toggleRenderType(LLPipeline::RENDER_TYPE_PASS_FULLBRIGHT);
+		gPipeline.toggleRenderType(LLPipeline::RENDER_TYPE_PASS_FULLBRIGHT_ALPHA_MASK);
+		gPipeline.toggleRenderType(LLPipeline::RENDER_TYPE_PASS_FULLBRIGHT_SHINY);
+		gPipeline.toggleRenderType(LLPipeline::RENDER_TYPE_PASS_SHINY);
+		gPipeline.toggleRenderType(LLPipeline::RENDER_TYPE_PASS_INVISIBLE);
+		gPipeline.toggleRenderType(LLPipeline::RENDER_TYPE_PASS_INVISI_SHINY);
 		
 		gPipeline.stateSort(hud_cam, result);
 
@@ -1289,7 +1297,7 @@ void render_disconnected_background()
 
 		
 		raw->expandToPowerOfTwo();
-		gDisconnectedImagep->createGLTexture(0, raw, 0, TRUE, LLViewerImageBoostLevel::OTHER);
+		gDisconnectedImagep->createGLTexture(0, raw);
 		gStartImageGL = gDisconnectedImagep;
 		gGL.getTexUnit(0)->unbind(LLTexUnit::TT_TEXTURE);
 	}

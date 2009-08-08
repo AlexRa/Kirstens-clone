@@ -9,12 +9,14 @@
 
 uniform sampler2DRect diffuseRect;
 uniform sampler2DRect specularRect;
-uniform sampler2DRect positionMap;
 uniform sampler2DRect normalMap;
-uniform sampler2DRect depthMap;
 uniform sampler2DRect lightMap;
 uniform sampler2D	  noiseMap;
 uniform samplerCube environmentMap;
+uniform sampler2D		diffuseGIMap;
+uniform sampler2D		normalGIMap;
+uniform sampler2D		minpGIMap;
+uniform sampler2D		maxpGIMap;
 
 uniform float blur_size;
 uniform float blur_fidelity;
@@ -38,9 +40,24 @@ uniform vec4 max_y;
 uniform vec4 glow;
 uniform float scene_light_strength;
 uniform vec3 env_mat[3];
-uniform mat4 shadow_matrix[3];
 uniform vec4 shadow_clip;
 uniform mat3 ssao_effect_mat;
+
+uniform mat4 gi_mat;  //gPipeline.mGIMatrix - eye space to sun space
+uniform mat4 gi_mat_proj; //gPipeline.mGIMatrixProj - eye space to projected sun space
+uniform mat4 gi_norm_mat; //gPipeline.mGINormalMatrix - eye space normal to sun space normal matrix
+uniform mat4 gi_inv_proj; //gPipeline.mGIInvProj - projected sun space to sun space
+uniform float gi_radius;
+uniform float gi_intensity;
+uniform vec2 gi_kern[25];
+uniform vec2 gi_scale;
+uniform vec3 gi_quad;
+uniform float gi_direction_weight;
+uniform float gi_light_offset;
+
+uniform sampler2DRect depthMap;
+uniform mat4 inv_proj;
+uniform vec2 screen_res;
 
 varying vec4 vary_light;
 varying vec2 vary_fragcoord;
@@ -51,6 +68,119 @@ vec3 vary_SunlitColor;
 vec3 vary_AmblitColor;
 vec3 vary_AdditiveColor;
 vec3 vary_AtmosAttenuation;
+
+vec4 getPosition(vec2 pos_screen)
+{ //get position in screen space (world units) given window coordinate and depth map
+	float depth = texture2DRect(depthMap, pos_screen.xy).a;
+	vec2 sc = pos_screen.xy*2.0;
+	sc /= screen_res;
+	sc -= vec2(1.0,1.0);
+	vec4 ndc = vec4(sc.x, sc.y, 2.0*depth-1.0, 1.0);
+	vec4 pos = inv_proj * ndc;
+	pos /= pos.w;
+	pos.w = 1.0;
+	return pos;
+}
+
+vec4 giAmbient(vec3 pos, vec3 norm)
+{
+	vec4 gi_c = gi_mat_proj * vec4(pos, 1.0);
+	gi_c.xyz /= gi_c.w;
+
+	vec3 nz = texture2D(noiseMap, vary_fragcoord.xy/128.0).xyz;
+			
+	vec4 gi_pos = gi_mat*vec4(pos,1.0);
+	vec3 gi_norm = (gi_norm_mat*vec4(norm,1.0)).xyz;
+	gi_norm = normalize(gi_norm);
+	
+	vec3 eye_dir = vec3(0,0,-1);
+	eye_dir = (gi_norm_mat*vec4(eye_dir, 1.0)).xyz;
+	eye_dir = normalize(eye_dir);
+	
+	float round_x = gi_scale.x*0.5;
+	float round_y = gi_scale.y*0.5;
+	
+	gi_c.x = floor(gi_c.x/round_x+0.5)*round_x;
+	gi_c.y = floor(gi_c.y/round_y+0.5)*round_y;
+	
+	float fda = 0.0;
+	vec3 fdiff = vec3(0,0,0);
+	
+	vec3 rcol = vec3(0,0,0);
+	
+	float fsa = 0.0;
+	
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; ++j)
+		{
+			vec2 tc = vec2((i-2+0.5)/2.0, (j-2+0.5)/2.0);
+			tc *= gi_scale.xy;
+			tc += gi_c.xy;
+			vec3 lnorm = texture2D(normalGIMap, tc.xy).xyz;
+			vec3 center = texture2D(minpGIMap, tc.xy).xyz;
+			vec3 size = texture2D(maxpGIMap, tc.xy).xyz;
+			vec3 diff = texture2D(diffuseGIMap, tc.xy).xyz;
+				
+			vec3 ldir = reflect(vec3(0,0,-1), lnorm);
+			
+			vec3 lpos = center;
+					
+			vec3 at = lpos-gi_pos.xyz;
+					
+			if (at.z > 0.0)
+			{
+				float z = max(at.z-size.z, 0.0);
+				at.z = z;
+			}
+			else
+			{
+				float z = min(at.z+size.z, 0.0);
+				at.z = z;
+			}
+			
+			at.z = max(at.z, gi_radius*0.5);
+			
+			float dist = length(at);
+			float lpdist = -dot(vec3(center.xy, center.z-size.z)-gi_pos, lnorm);
+			lpdist = clamp(lpdist+gi_light_offset+length(at.xy)*size.x+gi_direction_weight, size.y, 1.0);
+			
+			float da =	clamp((dist/lpdist-gi_radius*0.3)/(gi_radius*0.7), 0.0, 1.0);
+			da = 1.0-da;
+			
+			//add angular attenuation
+			ldir = normalize(at-ldir*(1.0-size.x)*0.5*dist);
+			float ang_atten = clamp(dot(ldir, gi_norm), 0.0, 1.0);
+			ang_atten = clamp(ang_atten+da*da*0.1, 0.0, 1.0);
+			
+			
+			//add specular attenuation
+			float sa = clamp(dot(reflect(eye_dir, gi_norm), ldir), 0.0, 1.0);
+			sa *= sa;
+			sa *= sa;
+			fsa += sa*da;
+			
+			da *= ang_atten;
+			fda += da;
+			fdiff += diff*da;
+		}
+	}
+
+	fdiff /= max(fda, gi_quad.z);
+	fsa /= max(fda, 0.25);
+	
+
+	fda /= 16.0;
+	fda = sqrt(fda);
+	fda = fda*fda*gi_quad.x+fda*gi_quad.y+gi_quad.z;			
+
+	fda *= nz.z;
+	
+	//rcol.rgb *= gi_intensity;
+	//return rcol.rgb+vary_AmblitColor.rgb*0.25;
+	//return debug;
+	return vec4(clamp(fda*fdiff,vec3(gi_quad.z), vec3(1.0)), fsa);
+}
 
 vec3 getPositionEye()
 {
@@ -235,8 +365,8 @@ vec3 scaleSoftClip(vec3 light)
 void main() 
 {
 	vec2 tc = vary_fragcoord.xy;
-	vec3 pos = texture2DRect(positionMap, tc).xyz;
-	vec3 norm = texture2DRect(normalMap, tc).xyz;
+	vec3 pos = getPosition(tc).xyz;
+	vec3 norm = texture2DRect(normalMap, tc).xyz*2.0-1.0;
 	vec3 nz = texture2D(noiseMap, vary_fragcoord.xy/128.0).xyz;
 	
 	float da = max(dot(norm.xyz, vary_light.xyz), 0.0);
@@ -250,12 +380,16 @@ void main()
 	
 	calcAtmospherics(pos.xyz, ambocc);
 	
-	vec3 col = atmosAmbient(vec3(0));
+	vec3 col = vec3(0,0,0);
+	
 	col += atmosAffectDirectionalLight(min(da, scol));
 	
-	col *= diffuse.rgb;
+	vec4 amb_col = giAmbient(pos, norm);
 	
-	if (spec.a > 0.2)
+	col = min(col+amb_col.rgb*ambocc, vec3(0.8,0.8,0.8));
+	
+	//col = giAmbient(pos,norm).rgb; //*ambocc;
+	/*if (spec.a > 0.2)
 	{
 		vec3 ref = reflect(pos.xyz, norm.xyz);
 		vec3 rc;
@@ -264,15 +398,24 @@ void main()
 		rc.z = dot(ref, env_mat[2]);
 		
 		vec3 refcol = textureCube(environmentMap, rc).rgb;
-		col.rgb += refcol * spec.rgb; 
+		col.rgb = col.rgb*refcol * spec.rgb+col.rgb*diffuse.rgb; 
 	}
+	else*/
+	{
+		col *= diffuse.rgb;
+	}
+	
+	col.rgb += spec.rgb*amb_col.rgb*amb_col.a;
 	
 	col = atmosLighting(col);
 	col = scaleSoftClip(col);
+		
 	
-	gl_FragColor.rgb = col;
+	gl_FragColor.rgb = col*vec3(1.0+1.0/2.2);
 	gl_FragColor.a = 0.0;
+	
 	//gl_FragColor.rg = scol_ambocc.rg;
+	//gl_FragColor.rgb = texture2DRect(lightMap, vary_fragcoord.xy).rgb;
 	//gl_FragColor.rgb = norm.rgb*0.5+0.5;
 	//gl_FragColor.rgb = vec3(ambocc);
 	//gl_FragColor.rgb = vec3(scol);

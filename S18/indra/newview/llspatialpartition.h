@@ -167,7 +167,8 @@ public:
 	typedef std::vector<LLPointer<LLDrawInfo> > drawmap_elem_t; 
 	typedef std::map<U32, drawmap_elem_t > draw_map_t;	
 	typedef std::vector<LLPointer<LLVertexBuffer> > buffer_list_t;
-	typedef std::map<LLPointer<LLViewerImage>, buffer_list_t> buffer_texture_map_t;
+	typedef std::map<LLPointer<LLImageGL>, buffer_list_t> buffer_texture_map_t; // KL render-pipeline
+//	typedef std::map<LLPointer<LLViewerImage>, buffer_list_t> buffer_texture_map_t; // KL standard SG
 	typedef std::map<U32, buffer_texture_map_t> buffer_map_t;
 
 	typedef LLOctreeListener<LLDrawable>	BaseType;
@@ -184,6 +185,14 @@ public:
 		bool operator()(const LLSpatialGroup* const& lhs, const LLSpatialGroup* const& rhs)
 		{
 			return lhs->mDistance > rhs->mDistance;
+		}
+	};
+
+	struct CompareUpdateUrgency
+	{
+		bool operator()(const LLPointer<LLSpatialGroup> lhs, const LLPointer<LLSpatialGroup> rhs)
+		{
+			return lhs->getUpdateUrgency() > rhs->getUpdateUrgency();
 		}
 	};
 
@@ -213,6 +222,10 @@ public:
 		IMAGE_DIRTY				= 0x00004000,
 		OCCLUSION_DIRTY			= 0x00008000,
 		MESH_DIRTY				= 0x00010000,
+		NEW_DRAWINFO			= 0x00020000,
+		IN_BUILD_Q1				= 0x00040000,
+		IN_BUILD_Q2				= 0x00080000,
+	
 	} eSpatialState;
 
 	typedef enum
@@ -256,6 +269,7 @@ public:
 	
 	void updateDistance(LLCamera& camera);
 	BOOL needsUpdate();
+	F32 getUpdateUrgency() const;
 	BOOL changeLOD();
 	void rebuildGeom();
 	void rebuildMesh();
@@ -264,6 +278,8 @@ public:
 	void dirtyMesh() { setState(MESH_DIRTY); }
 	element_list& getData() { return mOctreeNode->getData(); }
 	U32 getElementCount() const { return mOctreeNode->getElementCount(); }
+
+	void drawObjectBox(LLColor4 col);
 
 	 //LISTENER FUNCTIONS
 	virtual void handleInsertion(const TreeNode* node, LLDrawable* face);
@@ -361,7 +377,7 @@ class LLSpatialPartition: public LLGeometryManager
 public:
 	static BOOL sFreezeState; //if true, no spatialgroup state updates will be made
 
-	LLSpatialPartition(U32 data_mask, U32 mBufferUsage = GL_STATIC_DRAW_ARB);
+	LLSpatialPartition(U32 data_mask,  BOOL render_by_group, U32 mBufferUsage);
 	virtual ~LLSpatialPartition();
 
 	LLSpatialGroup *put(LLDrawable *drawablep, BOOL was_visible = FALSE);
@@ -407,7 +423,7 @@ public:
 	BOOL mOcclusionEnabled; // if TRUE, occlusion culling is performed
 	BOOL mInfiniteFarClip; // if TRUE, frustum culling ignores far clip plane
 	U32 mBufferUsage;
-	BOOL mRenderByGroup;
+	const BOOL mRenderByGroup;
 	U32 mLODSeed;
 	U32 mLODPeriod;	//number of frames between LOD updates for a given spatial group (staggered by mLODSeed)
 	U32 mVertexDataMask;
@@ -426,7 +442,7 @@ protected:
 public:
 	typedef std::vector<LLPointer<LLSpatialBridge> > bridge_vector_t;
 	
-	LLSpatialBridge(LLDrawable* root, U32 data_mask);
+	LLSpatialBridge(LLDrawable* root, BOOL render_by_group, U32 data_mask);
 	
 	virtual BOOL isSpatialBridge() const		{ return TRUE; }
 

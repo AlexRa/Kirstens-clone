@@ -14,6 +14,7 @@ uniform sampler2DRect specularRect;
 uniform sampler2DRect depthMap;
 uniform sampler2DRect normalMap;
 uniform samplerCube environmentMap;
+uniform sampler2DRect lightMap;
 uniform sampler2D noiseMap;
 uniform sampler2D lightFunc;
 uniform sampler2D projectionMap;
@@ -31,6 +32,8 @@ uniform float far_clip;
 
 uniform vec3 proj_origin; //origin of projection to be used for angular attenuation
 uniform float sun_wash;
+uniform int proj_shadow_idx;
+uniform float shadow_fade;
 
 varying vec4 vary_light;
 
@@ -58,6 +61,17 @@ void main()
 	frag.xyz /= frag.w;
 	frag.xyz = frag.xyz*0.5+0.5;
 	frag.xy *= screen_res;
+	
+	float shadow = 1.0;
+	
+	if (proj_shadow_idx >= 0)
+	{
+		vec4 shd = texture2DRect(lightMap, frag.xy);
+		float sh[2];
+		sh[0] = shd.b;
+		sh[1] = shd.a;
+		shadow = min(sh[proj_shadow_idx]+shadow_fade, 1.0);
+	}
 	
 	vec3 pos = getPosition(frag.xy).xyz;
 	vec3 lv = vary_light.xyz-pos.xyz;
@@ -111,7 +125,7 @@ void main()
 			
 			lit = da * dist_atten * noise;
 			
-			col = lcol*lit*diff_tex;
+			col = lcol*lit*diff_tex*shadow;
 		}
 		
 		float diff = clamp((proj_range-proj_focus)/proj_range, 0.0, 1.0);
@@ -119,6 +133,10 @@ void main()
 		vec4 amb_plcol = texture2DLod(projectionMap, proj_tc.xy, lod);
 		//float amb_da = mix(proj_ambiance, proj_ambiance*max(-da, 0.0), max(da, 0.0));
 		float amb_da = proj_ambiance;
+		if (da > 0.0)
+		{
+			amb_da += (da*0.5)*(1.0-shadow)*proj_ambiance;
+		}
 		
 		amb_da += (da*da*0.5+0.5)*proj_ambiance;
 			
@@ -155,7 +173,7 @@ void main()
 					stc.y > 0.0)
 				{
 					vec4 scol = texture2DLod(projectionMap, stc.xy, proj_lod-spec.a*proj_lod);
-					col += dist_atten*scol.rgb*gl_Color.rgb*scol.a*spec.rgb;
+					col += dist_atten*scol.rgb*gl_Color.rgb*scol.a*spec.rgb*shadow;
 				}
 			}
 		}
@@ -172,6 +190,10 @@ void main()
 		col += da*sa*lcol*spec.rgb;
 	}*/
 	
+	//attenuate point light contribution by SSAO component
+	col *= texture2DRect(lightMap, frag.xy).g;
+	
+
 	gl_FragColor.rgb = col;	
 	gl_FragColor.a = 0.0;
 }

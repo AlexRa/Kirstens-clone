@@ -289,7 +289,7 @@ void LLSkyTex::create(const F32 brightness)
 
 void LLSkyTex::createGLImage(S32 which)
 {	
-	mImageGL[which]->createGLTexture(0, mImageRaw[which], 0, TRUE, LLViewerImageBoostLevel::OTHER);
+	mImageGL[which]->createGLTexture(0, mImageRaw[which]);
 	mImageGL[which]->setAddressMode(LLTexUnit::TAM_CLAMP);
 }
 
@@ -1180,7 +1180,7 @@ BOOL LLVOSky::updateSky()
 	return TRUE;
 }
 
-void LLVOSky::updateTextures()
+void LLVOSky::updateTextures(LLAgent &agent)
 {
 	if (mSunTexturep)
 	{
@@ -1197,6 +1197,8 @@ LLDrawable *LLVOSky::createDrawable(LLPipeline *pipeline)
 
 	LLDrawPoolSky *poolp = (LLDrawPoolSky*) gPipeline.getPool(LLDrawPool::POOL_SKY);
 	poolp->setSkyTex(mSkyTex);
+	poolp->setSun(&mSun);
+	poolp->setMoon(&mMoon);
 	mDrawable->setRenderType(LLPipeline::RENDER_TYPE_SKY);
 	
 	for (S32 i = 0; i < 6; ++i)

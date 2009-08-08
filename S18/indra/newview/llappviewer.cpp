@@ -385,7 +385,7 @@ static void settings_to_globals()
 	LLFolderView::sAutoOpenTime			= llmax(0.25f, gSavedSettings.getF32("FolderAutoOpenDelay"));
 	LLToolBar::sInventoryAutoOpenTime	= gSavedSettings.getF32("InventoryAutoOpenDelay");
 	LLSelectMgr::sRectSelectInclusive	= gSavedSettings.getBOOL("RectangleSelectInclusive");
-	LLSelectMgr::sRenderSelectionHighlights = gSavedSettings.getBOOL("RenderHighlightSelections");
+//	LLSelectMgr::sRenderSelectionHighlights = gSavedSettings.getBOOL("RenderHighlightSelections");
 	LLSelectMgr::sRenderHiddenSelections = gSavedSettings.getBOOL("RenderHiddenSelections");
 	LLSelectMgr::sRenderLightRadius = gSavedSettings.getBOOL("RenderLightRadius");
 
@@ -412,7 +412,7 @@ static void settings_modify()
 	LLVOSurfacePatch::sLODFactor *= LLVOSurfacePatch::sLODFactor; //square lod factor to get exponential range of [1,4]
 	gDebugGL = gSavedSettings.getBOOL("RenderDebugGL");
 	gDebugPipeline = gSavedSettings.getBOOL("RenderDebugPipeline");
-	gAuditTexture = gSavedSettings.getBOOL("AuditTexture");
+	
 #if LL_VECTORIZE
 	if (gSysCPU.hasAltivec())
 	{
@@ -850,6 +850,7 @@ bool LLAppViewer::mainLoop()
 		try
 		{
 			LLFastTimer t(LLFastTimer::FTM_FRAME);
+			
 			pingMainloopTimeout("Main:MiscNativeWindowEvents");
 			
 			{

@@ -40,7 +40,7 @@
 #include <vector>
 
 #include "llchat.h"
-#include "lldrawpoolalpha.h"
+// #include "lldrawpoolalpha.h"  // KL not in SD branch SG only
 #include "llviewerobject.h"
 #include "llcharacter.h"
 #include "llviewerjointmesh.h"
@@ -85,6 +85,8 @@ public:
 	/*virtual*/ void markDead();
 	void startDefaultMotions();
 
+	/*virtual*/ LLVOAvatar* asAvatar(); // KL SD
+
 	static void updateImpostors();
 
 	//--------------------------------------------------------------------
@@ -117,7 +119,7 @@ public:
 
 	// Graphical stuff for objects - maybe broken out into render class later?
 	U32 renderFootShadows();
-	U32 renderImpostor(LLColor4U color = LLColor4U(255,255,255,255));
+	U32 renderImpostor(LLColor4U color = LLColor4U(255,255,255,255), S32 diffuse_channel = 0); // KL SD
 	U32 renderRigid();
 	U32 renderSkinned(EAvatarRenderPass pass);
 	U32 renderTransparent(BOOL first_pass);
@@ -133,7 +135,7 @@ public:
 										  LLVector3* bi_normal = NULL             // return the surface bi-normal at the intersection point
 		);
 
-	/*virtual*/ void updateTextures();
+	/*virtual*/ void updateTextures(LLAgent &agent); // KL SD
 	// If setting a baked texture, need to request it from a non-local sim.
 	/*virtual*/ S32 setTETexture(const U8 te, const LLUUID& uuid);
 	/*virtual*/ void onShift(const LLVector3& shift_vector);
@@ -328,7 +330,7 @@ public:
 	static LLUUID			getDefaultTEImageID(LLVOAvatarDefines::ETextureIndex te );
 	static void		onChangeSelfInvisible(BOOL newvalue);
 	void			setInvisible(BOOL newvalue);
-	static LLColor4 getDummyColor();
+	//static LLColor4 getDummyColor(); // KL SG
 
 
 
@@ -341,7 +343,7 @@ public:
 	BOOL			teToColorParams( LLVOAvatarDefines::ETextureIndex te, const char* param_name[3] );
 
 	BOOL			isWearingWearableType( EWearableType type );
-	void			wearableUpdated( EWearableType type );
+	//void			wearableUpdated( EWearableType type ); // KL SG
 
 	//--------------------------------------------------------------------
 	// texture compositing
@@ -516,6 +518,7 @@ public:
 	static BOOL		sShowAnimationDebug; // show animation debug info
 	static BOOL		sUseImpostors; //use impostors for far away avatars
 	static BOOL		sShowFootPlane;	// show foot collision plane reported by server
+	static BOOL		sShowCollisionVolumes;	// show skeletal collision volumes // KL SD
 	static BOOL		sVisibleInFirstPerson;
 	static S32		sNumLODChangesThisFrame;
 	static S32		sNumVisibleChatBubbles;
@@ -702,7 +705,7 @@ private:
 		LLUUID			mLastTextureIndex;
 		LLTexLayerSet*	mTexLayerSet;
 		bool			mIsLoaded;
-		bool			mIsUsed;
+		//bool			mIsUsed; // KL SG
 		LLVOAvatarDefines::ETextureIndex	mTextureIndex;
 		U32				mMaskTexName;
 		// Stores pointers to the joint meshes that this baked texture deals with
@@ -761,9 +764,7 @@ inline BOOL LLVOAvatar::isTextureDefined(U8 te) const
 
 inline BOOL LLVOAvatar::isTextureVisible(U8 te) const
 {
-	return ((isTextureDefined(te) || isSelf())
-			&& (getTEImage(te)->getID() != IMG_INVISIBLE 
-				|| LLDrawPoolAlpha::sShowDebugAlpha));
+	return (!isTextureDefined(te) || getTEImage(te)->getID() != IMG_INVISIBLE);
 }
 
 #endif // LL_VO_AVATAR_H

@@ -603,7 +603,7 @@ void LLViewerObjectList::updateApparentAngles(LLAgent &agent)
 
 			//  Update distance & gpw 
 			objectp->setPixelAreaAndAngle(agent); // Also sets the approx. pixel area
-			objectp->updateTextures();	// Update the image levels of textures for this object.
+			objectp->updateTextures(agent);	// Update the image levels of textures for this object.
 		}
 	}
 
@@ -1118,7 +1118,7 @@ void LLViewerObjectList::generatePickList(LLCamera &camera)
 
 		std::vector<LLDrawable*> pick_drawables;
 
-		for (LLWorld::region_list_t::const_iterator iter = LLWorld::getInstance()->getRegionList().begin(); 
+		for (LLWorld::region_list_t::iterator iter = LLWorld::getInstance()->getRegionList().begin(); 
 			iter != LLWorld::getInstance()->getRegionList().end(); ++iter)
 		{
 			LLViewerRegion* region = *iter;

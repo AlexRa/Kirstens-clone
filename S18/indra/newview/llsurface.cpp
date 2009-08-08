@@ -250,11 +250,28 @@ void LLSurface::createSTexture()
 			}
 		}
 
+		mSTexturep = new LLViewerImage(sTextureSize, sTextureSize, 3, FALSE);
+		mSTexturep->dontDiscard();
+		mSTexturep->setAddressMode(LLTexUnit::TAM_CLAMP);
+		gImageList.addImage(mSTexturep);
+
+		// GL NOT ACTIVE HERE
+		/*U8 *default_texture = raw->getData();
+		for (S32 i = 0; i < sTextureSize; i++)
+		{
+			for (S32 j = 0; j < sTextureSize; j++)
+			{
+				*(default_texture + (i*sTextureSize + j)*3) = 128;
+				*(default_texture + (i*sTextureSize + j)*3 + 1) = 128;
+				*(default_texture + (i*sTextureSize + j)*3 + 2) = 128;
+			}
+		}
+
 		mSTexturep = new LLViewerImage(raw, FALSE);
 		mSTexturep->dontDiscard();
 		gGL.getTexUnit(0)->bind(mSTexturep.get());
-		mSTexturep->setAddressMode(LLTexUnit::TAM_CLAMP);
-		gImageList.addImage(mSTexturep);
+		mSTexturep->setAddressMode(LLTexUnit::TAM_CLAMP);*/
+		
 	}
 }
 
@@ -263,7 +280,7 @@ void LLSurface::createWaterTexture()
 	if (!mWaterTexturep)
 	{
 		// Create the water texture
-		LLPointer<LLImageRaw> raw = new LLImageRaw(sTextureSize/2, sTextureSize/2, 4);
+		/*LLPointer<LLImageRaw> raw = new LLImageRaw(sTextureSize/2, sTextureSize/2, 4);
 		U8 *default_texture = raw->getData();
 		for (S32 i = 0; i < sTextureSize/2; i++)
 		{
@@ -274,10 +291,11 @@ void LLSurface::createWaterTexture()
 				*(default_texture + (i*sTextureSize/2 + j)*4 + 2) = MAX_WATER_COLOR.mV[2];
 				*(default_texture + (i*sTextureSize/2 + j)*4 + 3) = MAX_WATER_COLOR.mV[3];
 			}
-		}
-		mWaterTexturep = new LLViewerImage(raw, FALSE);
+		}*/
+
+		mWaterTexturep = new LLViewerImage(sTextureSize/2, sTextureSize/2, 4, FALSE);
 		mWaterTexturep->dontDiscard();
-		gGL.getTexUnit(0)->bind(mWaterTexturep.get());
+	//	gGL.getTexUnit(0)->bind(mWaterTexturep.get());  // KL not in SD
 		mWaterTexturep->setAddressMode(LLTexUnit::TAM_CLAMP);
 		gImageList.addImage(mWaterTexturep);
 	}
@@ -1275,6 +1293,11 @@ BOOL LLSurface::generateWaterTexture(const F32 x, const F32 y,
 				*(rawp + offset++) = coloru.mV[3];
 			}
 		}
+	}
+
+	if (!mWaterTexturep->getHasGLTexture())
+	{
+		mWaterTexturep->createGLTexture(0, raw);
 	}
 
 	mWaterTexturep->setSubImage(raw, x_begin, y_begin, x_end - x_begin, y_end - y_begin);

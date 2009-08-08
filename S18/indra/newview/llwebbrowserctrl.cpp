@@ -47,6 +47,7 @@
 #include "llnotifications.h"
 #include "llweb.h"
 #include "llrender.h"
+#include "pipeline.h"
 
 // linden library includes
 #include "llfocusmgr.h"
@@ -79,12 +80,6 @@ LLWebBrowserCtrl::LLWebBrowserCtrl( const std::string& name, const LLRect& rect 
 	mTakeFocusOnClick( true ),
 	mCurrentNavUrl( "about:blank" )
 {
-	S32 screen_width = mIgnoreUIScale ? 
-		llround((F32)getRect().getWidth() * LLUI::sGLScaleFactor.mV[VX]) : getRect().getWidth();
-	S32 screen_height = mIgnoreUIScale ? 
-		llround((F32)getRect().getHeight() * LLUI::sGLScaleFactor.mV[VY]) : getRect().getHeight();
-
-
 	LLMediaManager *mgr = LLMediaManager::getInstance();
 
 	if (!mgr)
@@ -109,12 +104,24 @@ LLWebBrowserCtrl::LLWebBrowserCtrl( const std::string& name, const LLRect& rect 
 		mMediaSource->addObserver(this);
 
 		// create a new texture (based on LLDynamic texture) that will be used to display the output
-		mWebBrowserImage = new LLWebBrowserTexture( screen_width, screen_height, this, mMediaSource );
+		// GL NOT ACTIVE HERE
+		gPipeline.markGLRebuild(this);
 	}
 
 	LLRect border_rect( 0, getRect().getHeight() + 2, getRect().getWidth() + 2, 0 );
 	mBorder = new LLViewBorder( std::string("web control border"), border_rect, LLViewBorder::BEVEL_IN );
 	addChild( mBorder );
+}
+
+
+void LLWebBrowserCtrl::updateGL()
+{
+	S32 screen_width = mIgnoreUIScale ? 
+		llround((F32)getRect().getWidth() * LLUI::sGLScaleFactor.mV[VX]) : getRect().getWidth();
+	S32 screen_height = mIgnoreUIScale ? 
+		llround((F32)getRect().getHeight() * LLUI::sGLScaleFactor.mV[VY]) : getRect().getHeight();
+	mWebBrowserImage = new LLWebBrowserTexture( screen_width, screen_height, this, mMediaSource );
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////

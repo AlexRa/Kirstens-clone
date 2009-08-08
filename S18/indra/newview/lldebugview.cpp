@@ -98,15 +98,14 @@ LLDebugView::LLDebugView(const std::string& name, const LLRect &rect)
 	addChild(gTextureView);
 	//gTextureView->reshape(r.getWidth(), r.getHeight(), TRUE);
 
-	if(gAuditTexture)
-	{
-		r.set(150, rect.getHeight() - 50, 900 + LLImageGL::sTextureLoadedCounter.size() * 30, 100);
-		gTextureSizeView = new LLTextureSizeView("gTextureSizeView");
-		gTextureSizeView->setRect(r);
-		gTextureSizeView->setFollowsBottom();
-		gTextureSizeView->setFollowsLeft();
-		gTextureSizeView->setType(LLTextureSizeView::TEXTURE_MEM_OVER_SIZE) ;
-		addChild(gTextureSizeView);
+#if !LL_RELEASE_FOR_DOWNLOAD
+	r.set(150, rect.getHeight() - 50, 900 + LLImageGL::sTextureLoadedCounter.size() * 30, 100);
+	gTextureSizeView = new LLTextureSizeView("gTextureSizeView");
+	gTextureSizeView->setRect(r);
+	gTextureSizeView->setFollowsBottom();
+	gTextureSizeView->setFollowsLeft();
+	addChild(gTextureSizeView);
+
 
 		r.set(150, rect.getHeight() - 50, 900 + LLImageGL::sTextureMemByCategory.size() * 30, 100);
 		gTextureCategoryView = new LLTextureSizeView("gTextureCategoryView");
@@ -115,7 +114,7 @@ LLDebugView::LLDebugView(const std::string& name, const LLRect &rect)
 		gTextureCategoryView->setFollowsLeft();
 		gTextureCategoryView->setType(LLTextureSizeView::TEXTURE_MEM_OVER_CATEGORY);
 		addChild(gTextureCategoryView);
-	}
+#endif		
 
 	const S32 VELOCITY_LEFT = 10; // 370;
 	const S32 VELOCITY_WIDTH = 500;
@@ -135,6 +134,5 @@ LLDebugView::~LLDebugView()
 	gDebugView = NULL;
 	gTextureView = NULL;
 	gTextureSizeView = NULL;
-	gTextureCategoryView = NULL;
 }
 

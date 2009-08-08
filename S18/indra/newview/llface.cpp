@@ -176,7 +176,8 @@ void LLFace::init(LLDrawable* drawablep, LLViewerObject* objp)
 	mLastIndicesCount = mIndicesCount;
 	mLastIndicesIndex = mIndicesIndex;
 
-	mImportanceToCamera = 0.f ;
+	mAtlasInfop = NULL ;
+	mUsingAtlas  = FALSE ;
 }
 
 
@@ -186,7 +187,6 @@ void LLFace::destroy()
 	{
 		mTexture->removeFace(this) ;
 	}
-	
 	if (mDrawPoolp)
 	{
 		mDrawPoolp->removeFace(this);
@@ -204,12 +204,14 @@ void LLFace::destroy()
 			if (group)
 			{
 				group->dirtyGeom();
+				gPipeline.markRebuild(group, TRUE);
 			}
 		}
 	}
-	
+
 	setDrawInfo(NULL);
 	
+	removeAtlas();
 	mDrawablep = NULL;
 	mVObjp = NULL;
 }
@@ -269,6 +271,7 @@ void LLFace::setTexture(LLViewerImage* tex)
 	if(mTexture.notNull())
 	{
 		mTexture->removeFace(this) ;
+		removeAtlas() ;
 	}
 	
 	mTexture = tex ;
@@ -476,9 +479,6 @@ void LLFace::renderSelected(LLImageGL *imagep, const LLColor4& color)
 		renderSetColor();
 
 		mVertexBuffer->setBuffer(LLVertexBuffer::MAP_VERTEX | LLVertexBuffer::MAP_TEXCOORD0);
-#if !LL_RELEASE_FOR_DOWNLOAD
-		LLGLState::checkClientArrays("", LLVertexBuffer::MAP_VERTEX | LLVertexBuffer::MAP_TEXCOORD0);
-#endif
 		mVertexBuffer->draw(LLRender::TRIANGLES, mIndicesCount, mIndicesIndex);
 
 		unsetFaceColor();
@@ -894,12 +894,30 @@ BOOL LLFace::getGeometryVolume(const LLVolume& volume,
 		mVertexBuffer->getBinormalStrider(binormals, mGeomIndex);
 	}
 
+	F32 tcoord_xoffset = 0.f ;
+	F32 tcoord_yoffset = 0.f ;
+	F32 tcoord_xscale = 1.f ;
+	F32 tcoord_yscale = 1.f ;
+	BOOL in_atlas = FALSE ;
+
 	if (rebuild_tcoord)
 	{
 		mVertexBuffer->getTexCoord0Strider(tex_coords, mGeomIndex);
 		if (bump_code && mVertexBuffer->hasDataType(LLVertexBuffer::TYPE_TEXCOORD1))
 		{
 			mVertexBuffer->getTexCoord1Strider(tex_coords2, mGeomIndex);
+		}
+
+		in_atlas = isAtlasInUse() ;
+		if(in_atlas)
+		{
+			const LLVector2* tmp = getTexCoordOffset() ;
+			tcoord_xoffset = tmp->mV[0] ; 
+			tcoord_yoffset = tmp->mV[1] ;
+
+			tmp = getTexCoordScale() ;
+			tcoord_xscale = tmp->mV[0] ; 
+			tcoord_yscale = tmp->mV[1] ;	
 		}
 	}
 	if (rebuild_color)
@@ -1110,6 +1128,93 @@ BOOL LLFace::getGeometryVolume(const LLVolume& volume,
 				xform(tc, cos_ang, sin_ang, os, ot, ms, mt);
 			}
 
+			if(in_atlas)
+			{
+				//
+				//manually calculate tex-coord per vertex for varying address modes.
+				//should be removed if shader can handle this.
+				//
+
+				S32 int_part = 0 ;
+				switch(mTexture->getAddressMode())
+				{
+				case LLTexUnit::TAM_CLAMP:
+					if(tc.mV[0] < 0.f)
+					{
+						tc.mV[0] = 0.f ;
+					}
+					else if(tc.mV[0] > 1.f)
+					{
+						tc.mV[0] = 1.f;
+					}
+
+					if(tc.mV[1] < 0.f)
+					{
+						tc.mV[1] = 0.f ;
+					}
+					else if(tc.mV[1] > 1.f)
+					{
+						tc.mV[1] = 1.f;
+					}
+					break;
+				case LLTexUnit::TAM_MIRROR:
+					if(tc.mV[0] < 0.f)
+					{
+						tc.mV[0] = -tc.mV[0] ;
+					}
+					int_part = (S32)tc.mV[0] ;
+					if(int_part & 1) //odd number
+					{
+						tc.mV[0] = int_part + 1 - tc.mV[0] ;
+					}
+					else //even number
+					{
+						tc.mV[0] -= int_part ;
+					}
+
+					if(tc.mV[1] < 0.f)
+					{
+						tc.mV[1] = -tc.mV[1] ;
+					}
+					int_part = (S32)tc.mV[1] ;
+					if(int_part & 1) //odd number
+					{
+						tc.mV[1] = int_part + 1 - tc.mV[1] ;
+					}
+					else //even number
+					{
+						tc.mV[1] -= int_part ;
+					}
+					break;
+				case LLTexUnit::TAM_WRAP:
+					if(tc.mV[0] > 1.f)
+						tc.mV[0] -= (S32)(tc.mV[0] - 0.00001f) ;
+					else if(tc.mV[0] < -1.f)
+						tc.mV[0] -= (S32)(tc.mV[0] + 0.00001f) ;
+
+					if(tc.mV[1] > 1.f)
+						tc.mV[1] -= (S32)(tc.mV[1] - 0.00001f) ;
+					else if(tc.mV[1] < -1.f)
+						tc.mV[1] -= (S32)(tc.mV[1] + 0.00001f) ;
+
+					if(tc.mV[0] < 0.f)
+					{
+						tc.mV[0] = 1.0f + tc.mV[0] ;
+					}
+					if(tc.mV[1] < 0.f)
+					{
+						tc.mV[1] = 1.0f + tc.mV[1] ;
+					}
+					break;
+				default:
+					break;
+				}
+			
+				tc.mV[0] = tcoord_xoffset + tcoord_xscale * tc.mV[0] ;
+				tc.mV[1] = tcoord_yoffset + tcoord_yscale * tc.mV[1] ;
+			}
+			
+
 			*tex_coords++ = tc;
 		
 			if (bump_code && mVertexBuffer->hasDataType(LLVertexBuffer::TYPE_TEXCOORD1))
@@ -1174,142 +1279,6 @@ BOOL LLFace::getGeometryVolume(const LLVolume& volume,
 	mLastIndicesIndex = mIndicesIndex;
 
 	return TRUE;
-}
-
-const F32 LEAST_IMPORTANCE = 0.05f ;
-const F32 LEAST_IMPORTANCE_FOR_LARGE_IMAGE = 0.3f ;
-
-F32 LLFace::getTextureVirtualSize()
-{
-	F32 radius;
-	F32 cos_angle_to_view_dir;
-	mPixelArea = calcPixelArea(cos_angle_to_view_dir, radius);
-
-	if (mPixelArea <= 0)
-	{
-		return 0.f;
-	}
-
-	//get area of circle in texture space
-	LLVector2 tdim = mTexExtents[1] - mTexExtents[0];
-	F32 texel_area = (tdim * 0.5f).lengthSquared()*3.14159f;
-	if (texel_area <= 0)
-	{
-		// Probably animated, use default
-		texel_area = 1.f;
-	}
-
-	//apply texel area to face area to get accurate ratio
-	//face_area /= llclamp(texel_area, 1.f/64.f, 16.f);
-	F32 face_area = mPixelArea / llclamp(texel_area, 0.015625f, 1024.f);
-
-	if(face_area > LLViewerImage::sMaxSmallImageSize)
-	{
-		if(mImportanceToCamera < LEAST_IMPORTANCE) //if the face is not important, do not load hi-res.
-		{
-			face_area = LLViewerImage::sMaxSmallImageSize ;
-		}
-		else if(face_area > LLViewerImage::sMinLargeImageSize) //if is large image, shrink face_area by considering the partial overlapping.
-		{
-			if(mImportanceToCamera < LEAST_IMPORTANCE_FOR_LARGE_IMAGE)//if the face is not important, do not load hi-res.
-			{
-				face_area = LLViewerImage::sMinLargeImageSize ;
-			}	
-			else if(mTexture.notNull() && mTexture->isLargeImage())
-			{		
-				face_area *= adjustPartialOverlapPixelArea(cos_angle_to_view_dir, radius );
-			}			
-		}
-	}
-
-	return face_area;
-}
-
-F32 LLFace::calcPixelArea(F32& cos_angle_to_view_dir, F32& radius)
-{
-	//get area of circle around face
-	LLVector3 center = getPositionAgent();
-	LLVector3 size = (mExtents[1] - mExtents[0]) * 0.5f;
-	
-	LLVector3 lookAt = center - LLViewerCamera::getInstance()->getOrigin();
-	F32 dist = lookAt.normVec() ;
-
-	//get area of circle around node
-	F32 app_angle = atanf(size.length()/dist);
-	radius = app_angle*LLDrawable::sCurPixelAngle;
-	F32 face_area = radius*radius * 3.14159f;
-
-	cos_angle_to_view_dir = lookAt * LLViewerCamera::getInstance()->getXAxis() ;	
-	mImportanceToCamera = LLFace::calcImportanceToCamera(cos_angle_to_view_dir, dist) ;
-	
-	return face_area ;
-}
-
-//the projection of the face partially overlaps with the screen
-F32 LLFace::adjustPartialOverlapPixelArea(F32 cos_angle_to_view_dir, F32 radius )
-{
-	F32 screen_radius = (F32)llmax(gViewerWindow->getWindowDisplayWidth(), gViewerWindow->getWindowDisplayHeight()) ;
-	F32 center_angle = acosf(cos_angle_to_view_dir) ;
-	F32 d = center_angle * LLDrawable::sCurPixelAngle ;
-
-	if(d + radius > screen_radius + 5.f)
-	{
-		//----------------------------------------------
-		//calculate the intersection area of two circles
-		//F32 radius_square = radius * radius ;
-		//F32 d_square = d * d ;
-		//F32 screen_radius_square = screen_radius * screen_radius ;
-		//face_area = 
-		//	radius_square * acosf((d_square + radius_square - screen_radius_square)/(2 * d * radius)) +
-		//	screen_radius_square * acosf((d_square + screen_radius_square - radius_square)/(2 * d * screen_radius)) -
-		//	0.5f * sqrtf((-d + radius + screen_radius) * (d + radius - screen_radius) * (d - radius + screen_radius) * (d + radius + screen_radius)) ;			
-		//----------------------------------------------
-
-		//the above calculation is too expensive
-		//the below is a good estimation: bounding box of the bounding sphere:
-		F32 alpha = 0.5f * (radius + screen_radius - d) / radius ;
-		alpha = llclamp(alpha, 0.f, 1.f) ;
-		return alpha * alpha ;
-	}
-	return 1.0f ;
-}
-
-const S8 FACE_IMPORTANCE_LEVEL = 4 ;
-const F32 FACE_IMPORTANCE_TO_CAMERA_OVER_DISTANCE[FACE_IMPORTANCE_LEVEL][2] = //{distance, importance_weight}
-	{{16.1f, 1.0f}, {32.1f, 0.5f}, {48.1f, 0.2f}, {96.1f, 0.05f} } ;
-const F32 FACE_IMPORTANCE_TO_CAMERA_OVER_ANGLE[FACE_IMPORTANCE_LEVEL][2] =    //{cos(angle), importance_weight}
-	{{0.985f /*cos(10 degrees)*/, 1.0f}, {0.94f /*cos(20 degrees)*/, 0.8f}, {0.866f /*cos(30 degrees)*/, 0.64f}, {0.0f, 0.36f}} ;
-
-//static 
-F32 LLFace::calcImportanceToCamera(F32 cos_angle_to_view_dir, F32 dist)
-{
-	F32 importance = 0.f ;
-	
-	if(cos_angle_to_view_dir > LLViewerCamera::getInstance()->getCosHalfFov() && 
-		dist < FACE_IMPORTANCE_TO_CAMERA_OVER_DISTANCE[FACE_IMPORTANCE_LEVEL - 1][0]) 
-	{
-		F32 camera_moving_speed = LLViewerCamera::getInstance()->getAverageSpeed() ;
-		F32 camera_angular_speed = LLViewerCamera::getInstance()->getAverageAngularSpeed();
-
-		if(camera_moving_speed > 10.0f || camera_angular_speed > 1.0f)
-		{
-			//if camera moves or rotates too fast, ignore the importance factor
-			return 0.f ;
-		}
-		
-		//F32 camera_relative_speed = camera_moving_speed * (lookAt * LLViewerCamera::getInstance()->getVelocityDir()) ;
-		
-		S32 i = 0 ;
-		for(i = 0; i < FACE_IMPORTANCE_LEVEL && dist > FACE_IMPORTANCE_TO_CAMERA_OVER_DISTANCE[i][0]; ++i);
-		i = llmin(i, FACE_IMPORTANCE_LEVEL - 1) ;
-		F32 dist_factor = FACE_IMPORTANCE_TO_CAMERA_OVER_DISTANCE[i][1] ;
-		
-		for(i = 0; i < FACE_IMPORTANCE_LEVEL && cos_angle_to_view_dir < FACE_IMPORTANCE_TO_CAMERA_OVER_ANGLE[i][0] ; ++i) ;
-		i = llmin(i, FACE_IMPORTANCE_LEVEL - 1) ;
-		importance = dist_factor * FACE_IMPORTANCE_TO_CAMERA_OVER_ANGLE[i][1] ;
-	}
-
-	return importance ;
 }
 
 BOOL LLFace::verify(const U32* indices_array) const
@@ -1499,4 +1468,154 @@ LLVector3 LLFace::getPositionAgent() const
 	{
 		return mCenterLocal * getRenderMatrix();
 	}
+}
+
+//
+//atlas
+//
+void LLFace::removeAtlas()
+{
+	setAtlasInUse(FALSE) ;
+	mAtlasInfop = NULL ;	
+}
+
+const LLTextureAtlas* LLFace::getAtlas()const 
+{
+	if(mAtlasInfop)
+	{
+		return mAtlasInfop->getAtlas() ;
+	}
+	return NULL ;
+}
+
+const LLVector2* LLFace::getTexCoordOffset()const 
+{
+	if(isAtlasInUse())
+	{
+		return mAtlasInfop->getTexCoordOffset() ;
+	}
+	return NULL ;
+}
+const LLVector2* LLFace::getTexCoordScale() const 
+{
+	if(isAtlasInUse())
+	{
+		return mAtlasInfop->getTexCoordScale() ;
+	}
+	return NULL ;
+}
+
+BOOL LLFace::isAtlasInUse()const
+{
+	return mUsingAtlas ;
+}
+
+BOOL LLFace::canUseAtlas()const
+{
+	//no drawable or no spatial group, do not use atlas
+	if(!mDrawablep || !mDrawablep->getSpatialGroup())
+	{
+		return FALSE ;
+	}
+
+	//if bump face, do not use atlas
+	if(getTextureEntry() && getTextureEntry()->getBumpmap())
+	{
+		return FALSE ;
+	}
+
+	//if animated texture, do not use atlas
+	if(isState(TEXTURE_ANIM))
+	{
+		return FALSE ;
+	}
+
+	return TRUE ;
+}
+
+void LLFace::setAtlasInUse(BOOL flag)
+{
+	//no valid atlas to use.
+	if(flag && (!mAtlasInfop || !mAtlasInfop->isValid()))
+	{
+		flag = FALSE ;
+	}
+
+	if(!flag && !mUsingAtlas)
+	{
+		return ;
+	}
+
+	//
+	//at this stage (flag || mUsingAtlas) is always true.
+	//
+
+	//rebuild the tex coords
+	if(mDrawablep)
+	{
+		gPipeline.markRebuild(mDrawablep, LLDrawable::REBUILD_TCOORD);
+		mUsingAtlas = flag ;
+	}
+	else
+	{
+		mUsingAtlas = FALSE ;
+	}
+}
+
+LLTextureAtlasSlot* LLFace::getAtlasInfo()
+{
+	return mAtlasInfop ;
+}
+
+void LLFace::setAtlasInfo(LLTextureAtlasSlot* atlasp)
+{	
+	if(mAtlasInfop != atlasp)
+	{
+		if(mAtlasInfop)
+		{
+			//llerrs << "Atlas slot changed!" << llendl ;
+		}
+		mAtlasInfop = atlasp ;
+	}
+}
+
+LLImageGL* LLFace::getGLTexture() const
+{
+	if(isAtlasInUse())
+	{
+		return (LLImageGL*)mAtlasInfop->getAtlas() ;
+	}
+
+	return (LLImageGL*)mTexture ;
+}
+
+//switch to atlas or switch back to gl texture 
+//return TRUE if using atlas.
+BOOL LLFace::switchTexture()
+{
+	//no valid atlas or texture
+	if(!mAtlasInfop || !mAtlasInfop->isValid() || !mTexture)
+	{
+		return FALSE ;
+	}
+	
+	if(mTexture->getTexelsInAtlas() >= (U32)mVSize || mTexture->getTexelsInAtlas() >= mTexture->getTexelsInGLTexture())
+	{
+		//switch to use atlas
+		//atlas resolution is qualified, use it.		
+		if(!mUsingAtlas)
+		{
+			setAtlasInUse(TRUE) ;
+		}
+	}
+	else //if atlas not qualified.
+	{
+		//switch back to GL texture
+		if(mUsingAtlas && mTexture->isGLTextureCreated() && mTexture->getDiscardLevel() < mTexture->getDiscardLevelInAtlas())
+		{
+			setAtlasInUse(FALSE) ;
+		}
+	}
+
+	return mUsingAtlas ;
 }

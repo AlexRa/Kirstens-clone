@@ -947,7 +947,7 @@ void LLWorld::updateWaterObjects()
 
 void LLWorld::shiftRegions(const LLVector3& offset)
 {
-	for (region_list_t::const_iterator i = getRegionList().begin(); i != getRegionList().end(); ++i)
+	for (region_list_t::iterator i = getRegionList().begin(); i != getRegionList().end(); ++i)
 	{
 		LLViewerRegion* region = *i;
 		region->updateRenderMatrix();
@@ -1133,7 +1133,7 @@ void send_agent_pause()
 	gAgentPauseSerialNum++;
 	gMessageSystem->addU32Fast(_PREHASH_SerialNum, gAgentPauseSerialNum);
 
-	for (LLWorld::region_list_t::const_iterator iter = LLWorld::getInstance()->getRegionList().begin();
+	for (LLWorld::region_list_t::iterator iter = LLWorld::getInstance()->getRegionList().begin();
 		 iter != LLWorld::getInstance()->getRegionList().end(); ++iter)
 	{
 		LLViewerRegion* regionp = *iter;
@@ -1163,7 +1163,7 @@ void send_agent_resume()
 	gMessageSystem->addU32Fast(_PREHASH_SerialNum, gAgentPauseSerialNum);
 	
 
-	for (LLWorld::region_list_t::const_iterator iter = LLWorld::getInstance()->getRegionList().begin();
+	for (LLWorld::region_list_t::iterator iter = LLWorld::getInstance()->getRegionList().begin();
 		 iter != LLWorld::getInstance()->getRegionList().end(); ++iter)
 	{
 		LLViewerRegion* regionp = *iter;

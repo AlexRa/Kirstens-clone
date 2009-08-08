@@ -4889,18 +4889,18 @@
       <key>Value</key>
       <real>0.0</real>
     </map>
-    <key>InstallLanguage</key>
-    <map>
-      <key>Comment</key>
-      <string>Language passed from installer (for UI)</string>
-      <key>Persist</key>
-      <integer>1</integer>
-      <key>Type</key>
-      <string>String</string>
-      <key>Value</key>
-      <string>default</string>
-    </map>
-    <key>InventoryAutoOpenDelay</key>
+	<key>InstallLanguage</key>
+	<map>
+		<key>Comment</key>
+		<string>Language passed from installer (for UI)</string>
+		<key>Persist</key>
+		<integer>1</integer>
+		<key>Type</key>
+		<string>String</string>
+		<key>Value</key>
+		<string>default</string>
+	</map>
+	<key>InventoryAutoOpenDelay</key>
     <map>
       <key>Comment</key>
       <string>Seconds before automatically opening inventory when mouse is over inventory button when performing inventory drag and drop</string>
@@ -6905,7 +6905,7 @@
     <string>Vector3</string>
     <key>Value</key>
     <array>
-      <real>2.0</real>
+      <real>3.0</real>
       <real>2.0</real>
       <real>0.0</real>
     </array>
@@ -7152,6 +7152,7 @@
     <integer>0</integer>
   </map>
 
+  
   <key>RenderAnimateTrees</key>
   <map>
     <key>Comment</key>
@@ -7185,21 +7186,8 @@
     <key>Type</key>
     <string>U32</string>
     <key>Value</key>
-    <real>64</real>
+    <real>2</real>
   </map>
-
-  <key>RenderGIRange</key>
-  <map>
-    <key>Comment</key>
-    <string>Distance to cut off GI effect.</string>
-    <key>Persist</key>
-    <integer>1</integer>
-    <key>Type</key>
-    <string>F32</string>
-    <key>Value</key>
-    <real>128</real>
-  </map>
-
 
   <key>RenderGIDirectionWeight</key>
   <map>
@@ -7222,7 +7210,7 @@
     <key>Type</key>
     <string>F32</string>
     <key>Value</key>
-    <real>0.0</real>
+    <real>0.5</real>
   </map>
 
   <key>RenderGIColorCurve</key>
@@ -7235,100 +7223,12 @@
     <string>Vector3</string>
     <key>Value</key>
     <array>
+      <real>2.0</real>
       <real>0.0</real>
-      <real>0.9</real>
-      <real>0.02</real>
-    </array>
-  </map>
-
-  <key>RenderLuminanceColorCurve</key>
-  <map>
-    <key>Comment</key>
-    <string>Luminance color correction curve parameters.</string>
-    <key>Persist</key>
-    <integer>1</integer>
-    <key>Type</key>
-    <string>Vector3</string>
-    <key>Value</key>
-    <array>
-      <real>1.00</real>
-      <real>0.0</real>
-      <real>0.0</real>
-    </array>
-  </map>
-
-  <key>RenderGILuminanceColorCurve</key>
-  <map>
-    <key>Comment</key>
-    <string>Luminance color correction curve parameters.</string>
-    <key>Persist</key>
-    <integer>1</integer>
-    <key>Type</key>
-    <string>Vector3</string>
-    <key>Value</key>
-    <array>
-      <real>0.00</real>
       <real>0.1</real>
-      <real>0.05</real>
     </array>
   </map>
-
-  <key>RenderSunLuminanceColorCurve</key>
-  <map>
-    <key>Comment</key>
-    <string>Luminance color correction curve parameters.</string>
-    <key>Persist</key>
-    <integer>1</integer>
-    <key>Type</key>
-    <string>Vector3</string>
-    <key>Value</key>
-    <array>
-      <real>0.6</real>
-      <real>0.0</real>
-      <real>-0.3</real>
-    </array>
-  </map>
-
-  <key>RenderLuminanceDetail</key>
-  <map>
-    <key>Comment</key>
-    <string>Mipmap level to use for luminance</string>
-    <key>Persist</key>
-    <integer>1</integer>
-    <key>Type</key>
-    <string>F32</string>
-    <key>Value</key>
-    <real>8.0</real>
-   </map>
-
-  <key>RenderLuminanceFade</key>
-  <map>
-    <key>Comment</key>
-    <string>Scaler for speed of luminance adjustment</string>
-    <key>Persist</key>
-    <integer>1</integer>
-    <key>Type</key>
-    <string>F32</string>
-    <key>Value</key>
-    <real>0.05</real>
-  </map>
-
-  <key>RenderGISpecularCurve</key>
-  <map>
-    <key>Comment</key>
-    <string>Global illumination specular color correction curve parameters.</string>
-    <key>Persist</key>
-    <integer>1</integer>
-    <key>Type</key>
-    <string>Vector3</string>
-    <key>Value</key>
-    <array>
-      <real>0.1</real>
-      <real>0.0</real>
-      <real>0.9</real>
-    </array>
-  </map>
-
+  
   <key>RenderGIIntensity</key>
   <map>
     <key>Comment</key>
@@ -7518,7 +7418,7 @@
     <key>Type</key>
     <string>F32</string>
     <key>Value</key>
-    <real>1</real>
+    <real>128</real>
   </map>
 
   <key>RenderDeferred</key>
@@ -7532,31 +7432,6 @@
     <key>Value</key>
     <integer>0</integer>
   </map>
-
-  <key>RenderDeferredShadow</key>
-  <map>
-    <key>Comment</key>
-    <string>Enable shadows in deferred renderer.</string>
-    <key>Persist</key>
-    <integer>1</integer>
-    <key>Type</key>
-    <string>Boolean</string>
-    <key>Value</key>
-    <integer>1</integer>
-  </map>
-
-  <key>RenderDeferredGI</key>
-  <map>
-    <key>Comment</key>
-    <string>Enable GI in deferred renderer.</string>
-    <key>Persist</key>
-    <integer>1</integer>
-    <key>Type</key>
-    <string>Boolean</string>
-    <key>Value</key>
-    <integer>0</integer>
-  </map>
-
   <key>RenderDeferredSunShadow</key>
   <map>
     <key>Comment</key>

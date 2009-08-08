@@ -1552,7 +1552,6 @@ LLViewerWindow::LLViewerWindow(
 		mInitAlert = "DisplaySettingsNoShaders";
 		LLFeatureManager::getInstance()->setGraphicsLevel(0, false);
 		gSavedSettings.setU32("RenderQualityPerformance", 0);		
-		
 	}
 		
 	// set callbacks
@@ -1560,7 +1559,6 @@ LLViewerWindow::LLViewerWindow(
 
 	// Init the image list.  Must happen after GL is initialized and before the images that
 	// LLViewerWindow needs are requested.
-	LLImageGL::initClass(LLViewerImageBoostLevel::MAX_GL_IMAGE_CATEGORY) ;
 	gImageList.init();
 	LLViewerImage::initClass();
 	gBumpImageList.init();
@@ -4658,7 +4656,7 @@ void LLViewerWindow::stopGL(BOOL save_state)
 		gGLManager.mIsDisabled = TRUE;
 		stop_glerror();
 		
-		llinfos << "Remaining allocated texture memory: " << LLImageGL::sGlobalTextureMemoryInBytes << " bytes" << llendl;
+		llinfos << "Remaining allocated texture memory: " << LLImageGL::sGlobalTextureMemory << " bytes" << llendl;
 	}
 }
 

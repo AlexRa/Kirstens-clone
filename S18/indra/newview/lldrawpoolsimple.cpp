@@ -259,7 +259,7 @@ void LLDrawPoolGrass::endDeferredPass(S32 pass)
 
 void LLDrawPoolGrass::renderDeferred(S32 pass)
 {
-	gGL.setAlphaRejectSettings(LLRender::CF_GREATER, 0.5f);
+	gGL.setAlphaRejectSettings(LLRender::CF_GREATER, 0.5f);  // KL 0 in old render pipeline .5 in sg
 
 	{
 		LLFastTimer t(LLFastTimer::FTM_RENDER_GRASS);

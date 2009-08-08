@@ -405,6 +405,7 @@ void LLPanelDirBrowser::onCommitList(LLUICtrl* ctrl, void* data)
 		// all but events use the UUID above
 		item_id = self->mResultsContents[id_str]["event_id"];
 	}
+
 	//std::string name = self->mResultsContents[id_str]["name"].asString();
 	self->showDetailPanel(type, item_id);
 
@@ -585,7 +586,7 @@ void LLPanelDirBrowser::processDirPlacesReply(LLMessageSystem* msg, void**)
 	BOOL	is_for_sale;
 	BOOL	is_auction;
 	F32		dwell;
-	
+
 	msg->getUUID("AgentData", "AgentID", agent_id);
 	msg->getUUID("QueryData", "QueryID", query_id );
 
@@ -749,7 +750,7 @@ void LLPanelDirBrowser::processDirEventsReply(LLMessageSystem* msg, void**)
 			//llwarns << "Skipped adult event because we're not showing adult, event_id " << event_id << llendl;
 			continue;
 		}
-		
+
 		LLSD content;
 
 		content["type"] = EVENT_CODE;

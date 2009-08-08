@@ -198,14 +198,19 @@ bool LLTexUnit::bind(LLImageGL* texture, bool for_rendering, bool forceBind)
 		return texture->bindDefaultImage(mIndex);
 	}
 
-	if(gAuditTexture && for_rendering && LLImageGL::sCurTexPickSize > 0)
+#if !LL_RELEASE_FOR_DOWNLOAD
+	if(for_rendering)
 	{
-		if(texture->getWidth() * texture->getHeight() == LLImageGL::sCurTexPickSize)
+		int w = texture->getWidth(texture->getDiscardLevel()) ;
+		int h = texture->getHeight(texture->getDiscardLevel()) ;
+
+		if(w * h == LLImageGL::sCurTexPickSize)
 		{
 			texture->updateBindStats();
 			return bind(LLImageGL::sDefaultTexturep.get());
 		}
 	}
+#endif
 
 	if ((mCurrTexture != texture->getTexName()) || forceBind)
 	{
@@ -275,6 +280,11 @@ bool LLTexUnit::bind(LLRenderTarget* renderTarget, bool bindDepth)
 
 	if (bindDepth)
 	{
+		if (renderTarget->hasStencil())
+		{
+			llwarns << "Cannot bind a render buffer for sampling.  Allocate render target without a stencil buffer if sampling of depth buffer is required." << llendl;
+		}
+
 		bindManual(renderTarget->getUsage(), renderTarget->getDepth());
 	}
 	else
@@ -288,15 +298,18 @@ bool LLTexUnit::bind(LLRenderTarget* renderTarget, bool bindDepth)
 
 bool LLTexUnit::bindManual(eTextureType type, U32 texture, bool hasMips)
 {
-	if (mIndex < 0 || mCurrTexture == texture) return false;
-
-	gGL.flush();
+	if (mIndex < 0) return false;
 	
-	activate();
-	enable(type);
-	mCurrTexture = texture;
-	glBindTexture(sGLTextureType[type], texture);
-	mHasMipMaps = hasMips;
+	if(mCurrTexture != texture)
+	{
+		gGL.flush();
+	
+		activate();
+		enable(type);
+		mCurrTexture = texture;
+		glBindTexture(sGLTextureType[type], texture);
+		mHasMipMaps = hasMips;
+	}
 	return true;
 }
 

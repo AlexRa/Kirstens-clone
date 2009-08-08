@@ -68,12 +68,8 @@ S32 LLTexLayerSetBuffer::sGLBumpByteCount = 0;
 //-----------------------------------------------------------------------------
 // LLBakedUploadData()
 //-----------------------------------------------------------------------------
-LLBakedUploadData::LLBakedUploadData( LLVOAvatar* avatar,
-									  LLTexLayerSet* layerset, 
-									  LLTexLayerSetBuffer* layerset_buffer, 
-									  const LLUUID & id ) : 
+LLBakedUploadData::LLBakedUploadData( LLVOAvatar* avatar, LLTexLayerSetBuffer* layerset_buffer, const LLUUID & id ) : 
 	mAvatar( avatar ),
-	mLayerSet( layerset ),
 	mLayerSetBuffer( layerset_buffer ),
 	mID(id)
 { 
@@ -115,6 +111,7 @@ LLTexLayerSetBuffer::~LLTexLayerSetBuffer()
 	if( mBumpTex.notNull())
 	{
 		mBumpTex = NULL ;
+		LLImageGL::sGlobalTextureMemory -= mWidth * mHeight * 4;
 		LLTexLayerSetBuffer::sGLBumpByteCount -= mWidth * mHeight * 4;
 	}
 }
@@ -131,7 +128,7 @@ void LLTexLayerSetBuffer::destroyGLTexture()
 	if( mBumpTex.notNull() )
 	{
 		mBumpTex = NULL ;
-		//LLImageGL::sGlobalTextureMemoryInBytes -= mWidth * mHeight * 4;
+		LLImageGL::sGlobalTextureMemory -= mWidth * mHeight * 4;
 		LLTexLayerSetBuffer::sGLBumpByteCount -= mWidth * mHeight * 4;
 	}
 
@@ -162,16 +159,11 @@ void LLTexLayerSetBuffer::createBumpTexture()
 
 		gGL.getTexUnit(0)->unbind(LLTexUnit::TT_TEXTURE);
 
-		LLImageGL::sGlobalTextureMemoryInBytes += mWidth * mHeight * 4;
+		LLImageGL::sGlobalTextureMemory += mWidth * mHeight * 4;
 		LLTexLayerSetBuffer::sGLBumpByteCount += mWidth * mHeight * 4;
-
-		if(gAuditTexture)
-		{
-			mBumpTex->setCategory(LLViewerImageBoostLevel::TEXLAYER_BUMP) ;
-			mBumpTex->setTextureSize(mWidth * mHeight * 4) ;
-			mBumpTex->setComponents(4) ;
-			mBumpTex->incTextureCounter() ;
-		}
+#if !LL_RELEASE_FOR_DOWNLOAD
+		LLImageGL::incTextureCounter(mWidth * mHeight) ;
+#endif
 	}
 }
 
@@ -334,7 +326,7 @@ BOOL LLTexLayerSetBuffer::render()
 	gGL.setSceneBlendType(LLRender::BT_ALPHA);
 
 	// we have valid texture data now
-	mTexture->setGLTextureCreated(true);
+	mTexture->setGLTextureCreated(true); // KL
 	mNeedsUpdate = FALSE;
 
 	return success;
@@ -496,8 +488,7 @@ void LLTexLayerSetBuffer::readBackAndUpload(U8* baked_bump_data)
 			if( valid )
 			{
 				// baked_upload_data is owned by the responder and deleted after the request completes
-				LLBakedUploadData* baked_upload_data =
-					new LLBakedUploadData( gAgent.getAvatarObject(), this->mTexLayerSet, this, asset_id );
+				LLBakedUploadData* baked_upload_data = new LLBakedUploadData( gAgent.getAvatarObject(), this, asset_id );
 				mUploadID = asset_id;
 				
 				// upload the image
@@ -559,51 +550,40 @@ void LLTexLayerSetBuffer::onTextureUploadComplete(const LLUUID& uuid, void* user
 		// Sanity check: only the user's avatar should be uploading textures.
 		if( baked_upload_data->mAvatar == avatar )
 		{
-			// Composite may have changed since the pointer was stored - need to do some checking. 
-			LLTexLayerSetBuffer* prev_layerset_buffer = baked_upload_data->mLayerSetBuffer;
-			// Can't just call getComposite() because this will trigger creation if none exists.
-			LLTexLayerSetBuffer* curr_layerset_buffer =
-				baked_upload_data->mLayerSet->hasComposite()?baked_upload_data->mLayerSet->getComposite():NULL;
-
-			if (prev_layerset_buffer != curr_layerset_buffer)
-			{
-				llinfos << "Baked texture out of date, composite no longer valid, ignored" << llendl;
-			}
-			else
-			{
-				curr_layerset_buffer->mUploadPending = FALSE;
+			// Because the avatar is still valid, it's layerset buffers should be valid also.
+			LLTexLayerSetBuffer* layerset_buffer = baked_upload_data->mLayerSetBuffer;
+			layerset_buffer->mUploadPending = FALSE;
 			
-				if (curr_layerset_buffer->mUploadID.isNull())
-				{
-					// The upload got canceled, we should be in the process of baking a new texture
-					// so request an upload with the new data
-					curr_layerset_buffer->requestUpload();
-				}
-				else if( baked_upload_data->mID == curr_layerset_buffer->mUploadID )
-				{
-					// This is the upload we're currently waiting for.
-					curr_layerset_buffer->mUploadID.setNull();
+			if (layerset_buffer->mUploadID.isNull())
+			{
+				// The upload got canceled, we should be in the process of baking a new texture
+				// so request an upload with the new data
+				layerset_buffer->requestUpload();
+			}
+			else if( baked_upload_data->mID == layerset_buffer->mUploadID )
+			{
+				// This is the upload we're currently waiting for.
+				layerset_buffer->mUploadID.setNull();
 
-					if( result >= 0 )
-					{
-						ETextureIndex baked_te = avatar->getBakedTE( curr_layerset_buffer->mTexLayerSet );
-						U64 now = LLFrameTimer::getTotalTime();		// Record starting time
-						llinfos << "Baked texture upload took " << (S32)((now - baked_upload_data->mStartTime) / 1000) << " ms" << llendl;
-						avatar->setNewBakedTexture( baked_te, uuid );
-					}
-					else
-					{
-						llinfos << "Baked upload failed. Reason: " << result << llendl;
-						// *FIX: retry upload after n seconds, asset server could be busy
-					}
+				if( result >= 0 )
+				{
+					ETextureIndex baked_te = avatar->getBakedTE( layerset_buffer->mTexLayerSet );
+					U64 now = LLFrameTimer::getTotalTime();		// Record starting time
+					llinfos << "Baked texture upload took " << (S32)((now - baked_upload_data->mStartTime) / 1000) << " ms" << llendl;
+					avatar->setNewBakedTexture( baked_te, uuid );
 				}
 				else
 				{
-					llinfos << "Received baked texture out of date, ignored." << llendl;
+					llinfos << "Baked upload failed. Reason: " << result << llendl;
+					// *FIX: retry upload after n seconds, asset server could be busy
 				}
-
-				avatar->dirtyMesh();
 			}
+			else
+			{
+				llinfos << "Received baked texture out of date, ignored." << llendl;
+			}
+
+			avatar->dirtyMesh();
 		}
 	}
 	else
@@ -626,7 +606,11 @@ void LLTexLayerSetBuffer::bindBumpTexture( U32 stage )
 		if( mLastBindTime != LLImageGL::sLastFrameTime )
 		{
 			mLastBindTime = LLImageGL::sLastFrameTime;
-			mBumpTex->updateBoundTexMem();
+#if !LL_RELEASE_FOR_DOWNLOAD
+			LLImageGL::updateBoundTexMem(mWidth * mHeight * 4, mWidth * mHeight) ;
+#else
+			LLImageGL::updateBoundTexMem(mWidth * mHeight * 4);
+#endif
 		}
 	}
 	else
@@ -756,7 +740,7 @@ BOOL LLTexLayerSet::setInfo(LLTexLayerSetInfo *info)
 
 	requestUpdate();
 
-	stop_glerror();
+	// stop_glerror(); // KL SD
 
 	return TRUE;
 }
@@ -942,7 +926,7 @@ void LLTexLayerSet::createComposite()
 	{
 		gPipeline.markGLRebuild(this);
 	}
-	updateGL();
+   //updateGL();  // KL just drop this in here for the interim to get the avatar composite to actually bake wont be required once all the SD code is in place.
 }
 
 void LLTexLayerSet::updateGL()
@@ -979,7 +963,7 @@ void LLTexLayerSet::setUpdatesEnabled( BOOL b )
 void LLTexLayerSet::updateComposite()
 {
 	createComposite();
-	mComposite->updateImmediate();
+	mComposite->updateImmediate();    //KL exception here if layerset without composite on entering appearance
 }
 
 LLTexLayerSetBuffer* LLTexLayerSet::getComposite()
@@ -1372,12 +1356,6 @@ BOOL LLTexLayer::render( S32 x, S32 y, S32 width, S32 height )
 
 	LLColor4 net_color;
 	color_specified = findNetColor( &net_color );
-
-	if (mTexLayerSet->getAvatar()->mIsDummy)
-	{
-		color_specified = true;
-		net_color = LLVOAvatar::getDummyColor();
-	}
 
 	// If you can't see the layer, don't render it.
 	if( is_approx_zero( net_color.mV[VW] ) )
@@ -2109,7 +2087,7 @@ BOOL LLTexLayerParamAlpha::render( S32 x, S32 y, S32 width, S32 height )
 				// Create the GL texture, and then hang onto it for future use.
 				if( mNeedsCreateTexture )
 				{
-					mCachedProcessedImageGL->createGLTexture(0, mStaticImageRaw, 0, TRUE, LLViewerImageBoostLevel::TEXLAYER_CACHE);
+					mCachedProcessedImageGL->createGLTexture(0, mStaticImageRaw);
 					mNeedsCreateTexture = FALSE;
 					gGL.getTexUnit(0)->bind(mCachedProcessedImageGL);
 					mCachedProcessedImageGL->setAddressMode(LLTexUnit::TAM_CLAMP);
@@ -2564,7 +2542,7 @@ LLImageGL* LLTexStaticImageList::getImageGL(const std::string& file_name, BOOL i
 				// that once an image is a mask it's always a mask.
 				image_gl->setExplicitFormat( GL_ALPHA8, GL_ALPHA );
 			}
-			image_gl->createGLTexture(0, image_raw, 0, TRUE, LLViewerImageBoostLevel::OTHER);
+			image_gl->createGLTexture(0, image_raw);
 
 			gGL.getTexUnit(0)->bind(image_gl, TRUE);
 			image_gl->setAddressMode(LLTexUnit::TAM_CLAMP);

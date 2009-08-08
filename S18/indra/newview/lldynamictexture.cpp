@@ -41,6 +41,7 @@
 #include "llvertexbuffer.h"
 #include "llviewerdisplay.h"
 #include "llrender.h"
+#include "pipeline.h"
 
 // static
 LLDynamicTexture::instance_list_t LLDynamicTexture::sInstances[ LLDynamicTexture::ORDER_COUNT ];
@@ -59,8 +60,8 @@ LLDynamicTexture::LLDynamicTexture(S32 width, S32 height, S32 components, EOrder
 {
 	llassert((1 <= components) && (components <= 4));
 
-	generateGLTexture();
-
+	// generateGLTexture();
+    gPipeline.markGLRebuild(this); // KL SD
 	llassert( 0 <= order && order < ORDER_COUNT );
 	LLDynamicTexture::sInstances[ order ].insert(this);
 }
@@ -75,6 +76,11 @@ LLDynamicTexture::~LLDynamicTexture()
 	{
 		LLDynamicTexture::sInstances[order].erase(this);  // will fail in all but one case.
 	}
+}
+
+void LLDynamicTexture::updateGL()
+{
+	generateGLTexture();
 }
 
 //-----------------------------------------------------------------------------
@@ -111,7 +117,7 @@ void LLDynamicTexture::generateGLTexture(LLGLint internal_format, LLGLenum prima
 		mTexture->setExplicitFormat(internal_format, primary_format, type_format, swap_bytes);
 	}
 // 	llinfos << "ALLOCATING " << (mWidth*mHeight*mComponents)/1024 << "K" << llendl;
-	mTexture->createGLTexture(0, raw_image, 0, TRUE, LLViewerImageBoostLevel::DYNAMIC_TEX);
+	mTexture->createGLTexture(0, raw_image);
 	mTexture->setAddressMode((mClamp) ? LLTexUnit::TAM_CLAMP : LLTexUnit::TAM_WRAP);
 	mTexture->setGLTextureCreated(false);
 }

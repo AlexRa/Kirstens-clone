@@ -29,7 +29,7 @@ void main()
 	
 	pos = gl_ProjectionMatrix * pos;
 	//smash geometry against near clip plane
-	pos.z = max(pos.z, -1.0);
+	//pos.z = max(pos.z, -1.0);
 	gl_Position = pos;
 	
 	gl_FrontColor = gl_Color;

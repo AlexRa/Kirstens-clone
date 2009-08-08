@@ -52,7 +52,7 @@ LLDrawPoolTree::LLDrawPoolTree(LLViewerImage *texturep) :
 	LLFacePool(POOL_TREE),
 	mTexturep(texturep)
 {
-	gGL.getTexUnit(0)->bind(mTexturep.get());
+//	gGL.getTexUnit(0)->bind(mTexturep.get());
 	mTexturep->setAddressMode(LLTexUnit::TAM_WRAP);
 }
 
@@ -108,7 +108,7 @@ void LLDrawPoolTree::render(S32 pass)
 	}
 	else
 	{
-		gGL.getTexUnit(sDiffTex)->bind(mTexturep);
+		gGL.getTexUnit(sDiffTex)->bind(mTexturep, TRUE); // kl sd
 					
 		for (std::vector<LLFace*>::iterator iter = mDrawFace.begin();
 			 iter != mDrawFace.end(); iter++)

@@ -137,19 +137,6 @@ void LLDrawPoolWater::endPostDeferredPass(S32 pass)
 	deferred_render = FALSE;
 }
 
-//===============================
-//DEFERRED IMPLEMENTATION
-//===============================
-void LLDrawPoolWater::renderDeferred(S32 pass)
-{
-	LLFastTimer t(LLFastTimer::FTM_RENDER_WATER);
-	deferred_render = TRUE;
-	shade();
-	deferred_render = FALSE;
-}
-
-//=========================================
-
 void LLDrawPoolWater::render(S32 pass)
 {
 	LLFastTimer ftm(LLFastTimer::FTM_RENDER_WATER);
@@ -351,10 +338,7 @@ void LLDrawPoolWater::renderReflection(LLFace* face)
 
 void LLDrawPoolWater::shade()
 {
-	if (!deferred_render)
-	{
-		gGL.setColorMask(true, true);
-	}
+	gGL.setColorMask(true, true);
 
 	LLVOSky *voskyp = gSky.mVOSkyp;
 
@@ -564,15 +548,8 @@ void LLDrawPoolWater::shade()
 			{ //smash background faces to far clip plane
 				if (water->getIsEdgePatch())
 				{
-					if (deferred_render)
-					{
-						face->renderIndexed();
-					}
-					else
-					{
-						LLGLClampToFarClip far_clip(glh_get_current_projection());
-						face->renderIndexed();
-					}
+					LLGLClampToFarClip far_clip(glh_get_current_projection());
+					face->renderIndexed();
 				}
 				else
 				{
@@ -601,10 +578,7 @@ void LLDrawPoolWater::shade()
 
 	gGL.getTexUnit(0)->activate();
 	gGL.getTexUnit(0)->enable(LLTexUnit::TT_TEXTURE);
-	if (!deferred_render)
-	{
-		gGL.setColorMask(true, false);
-	}
+	gGL.setColorMask(true, false);
 
 }
 

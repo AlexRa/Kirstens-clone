@@ -112,7 +112,7 @@ public:
 									 LLGLenum primary_format = 0,
 									 const LLUUID& force_id = LLUUID::null
 									 );
-	
+
 	// Request image from a specific host, used for baked avatar textures.
 	// Implemented in header in case someone changes default params above. JC
 	LLViewerImage* getImageFromHost(const LLUUID& image_id, LLHost host)
@@ -138,8 +138,8 @@ public:
 
 	void setUpdateStats(BOOL b)			{ mUpdateStats = b; }
 
-	S32	getMaxResidentTexMem() const	{ return mMaxResidentTexMemInMegaBytes; }
-	S32 getMaxTotalTextureMem() const   { return mMaxTotalTextureMemInMegaBytes;}
+	S32	getMaxResidentTexMem() const	{ return mMaxResidentTexMem; }
+	S32 getMaxTotalTextureMem() const   { return mMaxTotalTextureMem;}
 	S32 getNumImages()					{ return mImageList.size(); }
 
 	void updateMaxResidentTexMem(S32 mem);
@@ -180,8 +180,8 @@ private:
 	std::set<LLPointer<LLViewerImage> > mImagePreloads;
 
 	BOOL mUpdateStats;
-	S32	mMaxResidentTexMemInMegaBytes;
-	S32 mMaxTotalTextureMemInMegaBytes;
+	S32	mMaxResidentTexMem;
+	S32 mMaxTotalTextureMem;
 	LLFrameTimer mForceDecodeTimer;
 	
 public:

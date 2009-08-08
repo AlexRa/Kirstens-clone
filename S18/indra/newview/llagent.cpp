@@ -217,6 +217,7 @@ LLAgent gAgent;
 //
 // Statics
 //
+BOOL LLAgent::sDebugDisplayTarget = FALSE;
 
 const F32 LLAgent::TYPING_TIMEOUT_SECS = 5.f;
 
@@ -6463,8 +6464,6 @@ void LLAgent::saveWearable( EWearableType type, BOOL send_update )
 			addWearableToAgentInventory(cb, new_wearable);
 			return;
 		}
-		
-		getAvatarObject()->wearableUpdated( type );
 
 		if( send_update )
 		{
@@ -7791,4 +7790,3 @@ void LLAgent::parseTeleportMessages(const std::string& xml_filename)
 }
 
 // EOF
-

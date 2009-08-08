@@ -11,7 +11,6 @@ include(ELFIO)
 include(FMOD)
 include(OPENAL)
 include(FindOpenGL)
-include(LLAddBuildTest)
 include(LLAudio)
 include(LLCharacter)
 include(LLCommon)
@@ -330,6 +329,7 @@ set(viewer_SOURCE_FILES
     llsurface.cpp
     llsurfacepatch.cpp
     lltexlayer.cpp
+    lltextureatlasmanager.cpp
     lltexturecache.cpp
     lltexturectrl.cpp
     lltexturefetch.cpp
@@ -744,6 +744,7 @@ set(viewer_HEADER_FILES
     llsurfacepatch.h
     lltable.h
     lltexlayer.h
+    lltextureatlasmanager.h
     lltexturecache.h
     lltexturectrl.h
     lltexturefetch.h

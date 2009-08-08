@@ -59,6 +59,7 @@
 BOOL gDebugGL = FALSE;
 BOOL gClothRipple = FALSE;
 BOOL gNoRender = FALSE;
+BOOL gGLActive = FALSE;
 LLMatrix4 gGLObliqueProjectionInverse;
 
 #define LL_GL_NAME_POOLING 0

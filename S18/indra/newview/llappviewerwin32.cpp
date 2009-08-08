@@ -244,6 +244,8 @@ int APIENTRY WINMAIN(HINSTANCE hInstance,
 	}
 #endif
 	
+	// gGLActive = TRUE;  // KL
+
 	viewer_app_ptr->cleanup();
 	
 #if WINDOWS_CRT_MEM_CHECKS

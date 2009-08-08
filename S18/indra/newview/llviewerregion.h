@@ -199,7 +199,7 @@ public:
 
 	// Returns "M", "PG", "A" etc.
 	static std::string accessToShortString(U8 sim_access);
-	
+
 	// helper function which just makes sure all interested parties
 	// can process the message.
 	static void processRegionInfo(LLMessageSystem* msg, void**);

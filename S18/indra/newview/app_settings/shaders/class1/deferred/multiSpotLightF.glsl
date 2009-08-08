@@ -5,7 +5,6 @@
  * $License$
  */
 
-
 #version 120
 
 #extension GL_ARB_texture_rectangle : enable
@@ -15,6 +14,7 @@ uniform sampler2DRect specularRect;
 uniform sampler2DRect depthMap;
 uniform sampler2DRect normalMap;
 uniform samplerCube environmentMap;
+uniform sampler2DRect lightMap;
 uniform sampler2D noiseMap;
 uniform sampler2D lightFunc;
 uniform sampler2D projectionMap;
@@ -26,12 +26,15 @@ uniform vec3 proj_n;
 uniform float proj_focus; //distance from plane to begin blurring
 uniform float proj_lod;  //(number of mips in proj map)
 uniform float proj_range; //range between near clip and far clip plane of projection
+uniform float proj_ambient_lod;
 uniform float proj_ambiance;
 uniform float near_clip;
 uniform float far_clip;
 
 uniform vec3 proj_origin; //origin of projection to be used for angular attenuation
 uniform float sun_wash;
+uniform int proj_shadow_idx;
+uniform float shadow_fade;
 
 varying vec4 vary_light;
 
@@ -69,6 +72,17 @@ void main()
 		discard;
 	}
 	
+	float shadow = 1.0;
+	
+	if (proj_shadow_idx >= 0)
+	{
+		vec4 shd = texture2DRect(lightMap, frag.xy);
+		float sh[2];
+		sh[0] = shd.b;
+		sh[1] = shd.a;
+		shadow = min(sh[proj_shadow_idx]+shadow_fade, 1.0);
+	}
+	
 	vec3 norm = texture2DRect(normalMap, frag.xy).xyz*2.0-1.0;
 	
 	norm = normalize(norm);
@@ -83,7 +97,11 @@ void main()
 	proj_tc.xyz /= proj_tc.w;
 	
 	float fa = gl_Color.a+1.0;
-	float dist_atten = clamp(1.0-(dist2-1.0*(1.0-fa))/fa, 0.0, 1.0);
+	float dist_atten = min(1.0-(dist2-1.0*(1.0-fa))/fa, 1.0);
+	if (dist_atten <= 0.0)
+	{
+		discard;
+	}
 	
 	lv = proj_origin-pos.xyz;
 	lv = normalize(lv);
@@ -101,6 +119,8 @@ void main()
 		proj_tc.y > 0.0)
 	{
 		float lit = 0.0;
+		float amb_da = proj_ambiance;
+		
 		if (da > 0.0)
 		{
 			float diff = clamp((l_dist-proj_focus)/proj_range, 0.0, 1.0);
@@ -112,21 +132,19 @@ void main()
 			
 			lit = da * dist_atten * noise;
 			
-			col = lcol*lit*diff_tex;
+			col = lcol*lit*diff_tex*shadow;
+			amb_da += (da*0.5)*(1.0-shadow)*proj_ambiance;
 		}
 		
-		float diff = clamp((proj_range-proj_focus)/proj_range, 0.0, 1.0);
-		float lod = diff * proj_lod;
-		vec4 amb_plcol = texture2DLod(projectionMap, proj_tc.xy, lod);
-		//float amb_da = mix(proj_ambiance, proj_ambiance*max(-da, 0.0), max(da, 0.0));
-		float amb_da = proj_ambiance;
-		
+		//float diff = clamp((proj_range-proj_focus)/proj_range, 0.0, 1.0);
+		vec4 amb_plcol = texture2DLod(projectionMap, proj_tc.xy, proj_ambient_lod);
+							
 		amb_da += (da*da*0.5+0.5)*proj_ambiance;
-			
+				
 		amb_da *= dist_atten * noise;
-		
+			
 		amb_da = min(amb_da, 1.0-lit);
-		
+			
 		col += amb_da*gl_Color.rgb*diff_tex.rgb*amb_plcol.rgb*amb_plcol.a;
 	}
 	
@@ -144,11 +162,11 @@ void main()
 		{
 			vec3 pfinal = pos + ref * dot(pdelta, proj_n)/ds;
 			
-			vec3 stc = (proj_mat * vec4(pfinal.xyz, 1.0)).xyz;
+			vec4 stc = (proj_mat * vec4(pfinal.xyz, 1.0));
 
 			if (stc.z > 0.0)
 			{
-				stc.xy /= stc.z+proj_near;
+				stc.xy /= stc.w;
 					
 				if (stc.x < 1.0 &&
 					stc.y < 1.0 &&
@@ -156,22 +174,14 @@ void main()
 					stc.y > 0.0)
 				{
 					vec4 scol = texture2DLod(projectionMap, stc.xy, proj_lod-spec.a*proj_lod);
-					col += dist_atten*scol.rgb*gl_Color.rgb*scol.a*spec.rgb;
+					col += dist_atten*scol.rgb*gl_Color.rgb*scol.a*spec.rgb*shadow;
 				}
 			}
 		}
 	}
 	
-	/*if (spec.a > 0.0)
-	{
-		//vec3 ref = reflect(normalize(pos), norm);
-		float sa = dot(normalize(lv-normalize(pos)),norm);;
-		//sa = max(sa, 0.0);
-		//sa = pow(sa, 128.0 * spec.a*spec.a/dist_atten)*min(dist_atten*4.0, 1.0);
-		sa = texture2D(lightFunc, vec2(sa, spec.a)).a * min(dist_atten*4.0, 1.0);
-		sa *= noise;
-		col += da*sa*lcol*spec.rgb;
-	}*/
+	//attenuate point light contribution by SSAO component
+	col *= texture2DRect(lightMap, frag.xy).g;
 	
 	gl_FragColor.rgb = col;	
 	gl_FragColor.a = 0.0;

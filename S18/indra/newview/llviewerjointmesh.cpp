@@ -523,10 +523,7 @@ U32 LLViewerJointMesh::drawShape( F32 pixelArea, BOOL first_pass, BOOL is_dummy)
 	//----------------------------------------------------------------
 	if (!gRenderForSelect)
 	{
-		if (is_dummy)
-			glColor4fv(LLVOAvatar::getDummyColor().mV);
-		else
-			glColor4fv(mColor.mV);
+		glColor4fv(mColor.mV);
 	}
 
 	stop_glerror();
@@ -557,7 +554,7 @@ U32 LLViewerJointMesh::drawShape( F32 pixelArea, BOOL first_pass, BOOL is_dummy)
 	{
 		if(	mLayerSet->hasComposite() )
 		{
-			gGL.getTexUnit(0)->bind(mLayerSet->getComposite()->getTexture());
+			gGL.getTexUnit(0)->bind(mLayerSet->getComposite()->getTexture(), TRUE); // KL SD
 		}
 		else
 		{
@@ -565,7 +562,7 @@ U32 LLViewerJointMesh::drawShape( F32 pixelArea, BOOL first_pass, BOOL is_dummy)
 			// Ignore the warning if that's the case.
 			if (!gSavedSettings.getBOOL("RenderUnloadedAvatar"))
 			{
-				llwarns << "Layerset without composite" << llendl;
+				//llwarns << "Layerset without composite" << llendl;
 			}
 			gGL.getTexUnit(0)->bind(gImageList.getImage(IMG_DEFAULT));
 		}
@@ -574,7 +571,7 @@ U32 LLViewerJointMesh::drawShape( F32 pixelArea, BOOL first_pass, BOOL is_dummy)
 	if ( !is_dummy && mTexture.notNull() )
 	{
 		old_mode = mTexture->getAddressMode();
-		gGL.getTexUnit(0)->bind(mTexture.get());
+		gGL.getTexUnit(0)->bind(mTexture.get(), TRUE); // KL SD
 		gGL.getTexUnit(0)->setTextureAddressMode(LLTexUnit::TAM_CLAMP);
 	}
 	else

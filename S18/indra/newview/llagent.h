@@ -208,7 +208,7 @@ public:
 
 	void			heardChat(const LLUUID& id);
 	void			lookAtLastChat();
-	F32				getTypingTime() { return mTypingTimer.getElapsedTimeF32(); }
+	F32			getTypingTime() { return mTypingTimer.getElapsedTimeF32(); }
 
 	void			setAFK();
 	void			clearAFK();
@@ -745,6 +745,7 @@ public:
 
 	BOOL			mInitialized;
 
+	static BOOL		sDebugDisplayTarget;
 	S32				mNumPendingQueries;
 	S32*			mActiveCacheQueries;
 
