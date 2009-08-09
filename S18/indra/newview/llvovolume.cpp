@@ -2256,7 +2256,7 @@ void LLVolumeGeometryManager::registerFace(LLSpatialGroup* group, LLFace* facep,
 //					  (type == LLRenderPass::PASS_ALPHA ? facep->isState(LLFace::FULLBRIGHT) : FALSE);
 	if (!fullbright && type != LLRenderPass::PASS_GLOW && !facep->mVertexBuffer->hasDataType(LLVertexBuffer::TYPE_NORMAL))
 	{
-		llerrs << "Non fullbright face has no normals!" << llendl;
+		llwarns << "Non fullbright face has no normals!" << llendl; // KL make this a warning for now until i can zero in on the crash!
 	}
 
 	const LLMatrix4* tex_mat = NULL;
