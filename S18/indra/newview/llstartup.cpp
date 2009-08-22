@@ -845,6 +845,53 @@ bool idle_startup()
 			gSavedSettings.setString("FirstName", firstname);
 			gSavedSettings.setString("LastName", lastname);
 
+			if (gSavedSettings.getBOOL("LoginMRUEnabled"))
+			{
+				LLSD mru_list = gSavedSettings.getLLSD("LoginMRUList");
+				if (mru_list.isArray())
+				{
+					// Prepend the current login name to the MRU
+					LLSD login_entry(LLSD::emptyMap());
+					login_entry["first"] = firstname;
+					login_entry["last"] = lastname;
+					mru_list.insert(0, login_entry);
+
+					const S32 names_max = gSavedSettings.getS32("LoginMRULength");
+					for (S32 i = 1; i < mru_list.size(); )
+					{
+						// Trim excess entries
+						if (i >= names_max)
+						{
+							mru_list.erase(i);
+							continue;
+						}
+						// Remove any other instances of the current name
+						login_entry = mru_list[i];
+						if (login_entry.isMap() && login_entry.has("first") && login_entry.has("last"))
+						{
+							if (login_entry["first"].asString() == firstname
+								&& login_entry["last"].asString() == lastname)
+							{
+								mru_list.erase(i);
+							}
+							else
+							{
+								++i;
+							}
+						}
+						else
+						{
+							mru_list.erase(i);
+						}
+					}
+					gSavedSettings.setLLSD("LoginMRUList", mru_list);
+				}
+			}
+			else
+			{
+				gSavedSettings.setLLSD("LoginMRUList", LLSD::emptyArray());
+			}
+
 			LL_INFOS("AppInit") << "Attempting login as: " << firstname << " " << lastname << LL_ENDL;
 			gDebugInfo["LoginName"] = firstname + " " + lastname;	
 		}

@@ -207,6 +207,34 @@ LLPanelLogin::LLPanelLogin(const LLRect &rect,
 	childSetPrevalidate("first_name_edit", LLLineEditor::prevalidatePrintableNoSpace);
 	childSetPrevalidate("last_name_edit", LLLineEditor::prevalidatePrintableNoSpace);
 
+		LLComboBox* name_combo = getChild<LLComboBox>("name_combo");
+	// Only works as intended with this combination of flags,
+	// and in this order of setting them, therefore overriding xui
+	name_combo->setAllowTextEntry(TRUE);
+	name_combo->setTextEntryVisible(FALSE);
+	// Send it down the line, or the invisible text entry covers up our normal
+	// input fields if placed after them in xui
+	sendChildToBack(getChildView("name_combo"));
+
+	bool mru_enabled = gSavedSettings.getBOOL("LoginMRUEnabled");
+	if (mru_enabled)
+	{
+		LLSD name_list = gSavedSettings.getLLSD("LoginMRUList");
+		if (name_list.isArray())
+		{
+			for (LLSD::array_iterator iter = name_list.endArray() - 1; iter >= name_list.beginArray(); --iter)
+			{
+				if (iter->isMap() && iter->has("first") && iter->has("last"))
+				{
+					name_combo->add((*iter)["first"].asString() + " " + (*iter)["last"].asString(), *iter);
+				}
+			}
+		}
+		childSetCommitCallback("name_combo", onSelectLoginMRU, this);
+	}
+	setLoginMRUEnabled(mru_enabled);
+
+
 	childSetCommitCallback("password_edit", mungePassword);
 	childSetKeystrokeCallback("password_edit", onPassKey, this);
 	childSetUserData("password_edit", this);
@@ -1032,4 +1060,41 @@ void LLPanelLogin::onServerComboLostFocus(LLFocusableElement* fe, void*)
 	{
 		onSelectServer(combo, NULL);	
 	}
+}
+
+// static
+void LLPanelLogin::setLoginMRUEnabled(bool enabled)
+{
+	if (!sInstance)
+	{
+		return;
+	}
+
+	LLComboBox* combo = sInstance->getChild<LLComboBox>("name_combo");
+	if (!enabled) combo->removeall();
+	combo->setButtonVisible(enabled);
+	combo->setEnabled(enabled && combo->getItemCount() != 0);
+}
+
+//static
+void LLPanelLogin::onSelectLoginMRU(LLUICtrl* caller, void* user_data)
+{
+	LLPanelLogin* panel = (LLPanelLogin*) user_data;
+	LLComboBox* name_combo = (LLComboBox*) caller;
+	LLLineEditor* first_name_edit = panel->getChild<LLLineEditor>("first_name_edit");
+	LLLineEditor* last_name_edit = panel->getChild<LLLineEditor>("last_name_edit");
+	LLLineEditor* password_edit = panel->getChild<LLLineEditor>("password_edit");
+
+	LLSD selected_name = name_combo->getValue();
+	std::string first_name = selected_name["first"].asString();
+	std::string last_name = selected_name["last"].asString();
+
+	if (gSavedSettings.getBOOL("LoginMRUClearPassword")
+		&& (first_name_edit->getText() != first_name || last_name_edit->getText() != last_name))
+	{
+		password_edit->setText(LLStringUtil::null);
+	}
+	first_name_edit->setText(first_name);
+	last_name_edit->setText(last_name);
+	password_edit->setFocus(TRUE);
 }

@@ -174,6 +174,7 @@ public:
 	void			setTextEntryCallback( void (*cb)(LLLineEditor*, void*) ) { mTextEntryCallback = cb; }
 
 	void			setButtonVisible(BOOL visible);
+	void			setTextEntryVisible(BOOL visible);
 
 	static void		onButtonDown(void *userdata);
 	static void		onItemSelected(LLUICtrl* item, void *userdata);

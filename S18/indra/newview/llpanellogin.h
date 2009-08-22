@@ -62,6 +62,7 @@ public:
 	// Remember password checkbox is set via gSavedSettings "RememberPassword"
 	static void setFields(const std::string& firstname, const std::string& lastname, 
 		const std::string& password);
+    static void setLoginMRUEnabled(bool enabled);
 
 	static void addServer(const std::string& server, S32 domain_name);
 	static void refreshLocation( bool force_visible );
@@ -92,6 +93,7 @@ private:
 	static void onPassKey(LLLineEditor* caller, void* user_data);
 	static void onSelectServer(LLUICtrl*, void*);
 	static void onServerComboLostFocus(LLFocusableElement*, void*);
+    static void onSelectLoginMRU(LLUICtrl*, void*);
 	
 private:
 	LLPointer<LLUIImage> mLogoImage;

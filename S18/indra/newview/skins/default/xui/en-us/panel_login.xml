@@ -11,26 +11,28 @@
 	<string name="forgot_password_url">
 		http://secondlife.com/account/request.php
 	</string>
+	<combo_box name="name_combo" allow_text_entry="true" follows="left|bottom"
+	     font="SansSerif" left="32" bottom="30" width="252" height="20" mouse_opaque="true"/>
 	<text bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom="54" drop_shadow_visible="true" follows="left|bottom"
 	     font="SansSerif" h_pad="0" halign="left" height="16"
-	     left="32" mouse_opaque="true" name="first_name_text" v_pad="0" width="120">
+	     left="32" mouse_opaque="true" name="first_name_text" v_pad="0" width="114">
 		First Name:
 	</text>
 	<line_editor bevel_style="in" border_style="line" border_thickness="1" bottom_delta="-24"
 	     follows="left|bottom" font="SansSerif" handle_edit_keys_directly="true"
 	     height="20" left="32" max_length="31" mouse_opaque="true"
-	     name="first_name_edit" select_all_on_focus_received="true" width="120" />
+	     name="first_name_edit" select_all_on_focus_received="true" width="118" />
 	<text bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom="54" drop_shadow_visible="true" follows="left|bottom"
 	     font="SansSerif" h_pad="0" halign="left" height="16"
-	     left="164" mouse_opaque="true" name="last_name_text" v_pad="0" width="120">
+	     left_delta="117" mouse_opaque="true" name="last_name_text" v_pad="0" width="114">
 		Last Name:
 	</text>
 	<line_editor bevel_style="in" border_style="line" border_thickness="1" bottom_delta="-24"
 	     follows="left|bottom" font="SansSerif" handle_edit_keys_directly="true"
-	     height="20" left="164" max_length="31" mouse_opaque="true"
-	     name="last_name_edit" select_all_on_focus_received="true" width="120" />
+	     height="20" left_delta="0" max_length="31" mouse_opaque="true"
+	     name="last_name_edit" select_all_on_focus_received="true" width="114" />
 	<text bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom="54" drop_shadow_visible="true" follows="left|bottom"
 	     font="SansSerif" h_pad="0" halign="left" height="16"

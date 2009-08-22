@@ -476,6 +476,14 @@ void LLComboBox::setButtonVisible(BOOL visible)
 	}
 }
 
+void LLComboBox::setTextEntryVisible(BOOL visible)
+{
+	if (mTextEntry)
+	{
+		mTextEntry->setVisible(visible);
+	}
+}
+
 void LLComboBox::draw()
 {
 	mButton->setEnabled(getEnabled() /*&& !mList->isEmpty()*/);

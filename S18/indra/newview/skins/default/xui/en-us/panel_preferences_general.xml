@@ -2,22 +2,49 @@
 <panel border="true" bottom="-409" enabled="true" follows="left|top|right|bottom"
      height="408" label="General" left="102" mouse_opaque="true"
      name="general_panel" width="517">
-  <radio_group bottom="-45" draw_border="false" follows="left|bottom" height="40" left="151"
+	<text type="string" length="1" bottom="-25" follows="left|top" font="SansSerifSmall" h_pad="0"
+	     halign="left" height="16" left="10" name="alt_avatars_textbox" v_pad="0"
+	     width="394">
+		Recent Logins:
+	</text>
+	<check_box name="save_names_checkbox" follows="left|top"
+	     left="151" bottom_delta="0" width="149" height="16"
+	     label="Save name list" initial_value="true"
+	     radio_style="false" font="SansSerifSmall"
+	     tool_tip="Save a list of recently used avatar names.\nYou may wish to turn this off if more than one person has access to this computer."/>
+	<check_box bottom_delta="0" follows="left|top"
+	     font="SansSerifSmall" height="16" initial_value="false"
+	     label="Clear password when selecting" left_delta="105" mouse_opaque="true"
+		 tool_tip="Clears the password entry box when selecting a different avatar name at login."
+	     name="clear_password_checkbox" radio_style="false" width="200" />
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom_delta="-22" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     font="SansSerifSmall" h_pad="0" halign="left" height="10" left="10"
+	     mouse_opaque="true" name="start_location_textbox" v_pad="0" width="394">
+		Start Location:
+	</text>
+  <radio_group bottom_delta="-22" draw_border="false" follows="left|bottom" height="40" left="151"
 	     name="default_start_location" width="220">
     <radio_item bottom="-20" height="20" left="0" name="MyHome" width="50"
 		  tool_tip="Log into my home location by default.">
       My Home
     </radio_item>
-    <radio_item bottom="-20" height="20" left="100" name="MyLastLocation" width="50"
+    <radio_item bottom="-20" height="20" left="105" name="MyLastLocation" width="50"
 		  tool_tip="Log into my last location by default.">
       My Last Location
     </radio_item>
   </radio_group>
-  <check_box bottom="-44" enabled="true" follows="left|top"
+	<check_box bottom_delta="0" enabled="true" follows="left|top"
        font="SansSerifSmall" height="16" initial_value="true"
        label="Show Start Location on Login Screen" left="151" mouse_opaque="true"
        name="show_location_checkbox" radio_style="false" width="256" />
-	<combo_box bottom_delta="-25" follows="left|top" height="18" left="155"
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom_delta="-25" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     font="SansSerifSmall" h_pad="0" halign="left" height="10" left="10"
+	     mouse_opaque="true" name="show_names_textbox" v_pad="0" width="394">
+		Show Name Tags:
+	</text>
+	<combo_box bottom_delta="-4" follows="left|top" height="18" left="155"
 	     mouse_opaque="true" name="fade_out_combobox" width="146">
 		<combo_item name="Never" value="Never">
 			Never
@@ -30,13 +57,14 @@
 		</combo_item>
 	</combo_box>
 	<check_box bottom_delta="-25" follows="left|top"
-	     font="SansSerifSmall" height="16" initial_value="true"
-	     label="Small Avatar Names" left="151" name="small_avatar_names_checkbox"
-	     width="200" />
-	<check_box bottom_delta="-18" follows="left|top"
 	     font="SansSerifSmall" height="16" initial_value="false"
 	     label="Hide My Name On My Screen" left="151" name="show_my_name_checkbox"
+	     width="180" />
+	<check_box bottom_delta="0" follows="left|top"
+	     font="SansSerifSmall" height="16" initial_value="true"
+	     label="Small Avatar Names" left_delta="180" name="small_avatar_names_checkbox"
 	     width="200" />
+	     width="149" />
 	<text type="string" length="1" bottom_delta="-24" follows="left|top" font="SansSerifSmall" h_pad="0"
 	     halign="left" height="16" left="10" name="group_titles_textbox" v_pad="0"
 	     width="394">
@@ -44,12 +72,12 @@
 	</text>
 	<check_box bottom_delta="0" follows="left|top"
 	     font="SansSerifSmall" height="16" initial_value="false"
-	     label="Hide All Group Titles" left="151" mouse_opaque="true"
-	     name="show_all_title_checkbox" radio_style="false" width="256" />
-	<check_box bottom_delta="-18" follows="left|top"
-	     font="SansSerifSmall" height="16" initial_value="false"
 	     label="Hide My Group Title" left="151" name="show_my_title_checkbox"
-	     radio_style="false" width="256" />
+	     radio_style="false" width="149" />
+	<check_box bottom_delta="0" follows="left|top"
+	     font="SansSerifSmall" height="16" initial_value="false"
+	     label="Hide All Group Titles" left_delta="180" mouse_opaque="true"
+	     name="show_all_title_checkbox" radio_style="false" width="200" />
 	<color_swatch border_color="0.45098 0.517647 0.607843 1" bottom="-210"
 	     can_apply_immediately="false" color="1 1 1 1"
 	     enabled="true" follows="left|top" height="48" label="" left="153"
@@ -107,18 +135,6 @@
 	     font="SansSerifSmall" h_pad="0" halign="left" height="10" left="315"
 	     mouse_opaque="true" name="maturity_desired_textbox" v_pad="0" width="150">
 		 PG only
-	</text>
-	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom="-20" drop_shadow_visible="true" enabled="true" follows="left|top"
-	     font="SansSerifSmall" h_pad="0" halign="left" height="10" left="10"
-	     mouse_opaque="true" name="start_location_textbox" v_pad="0" width="394">
-		Start Location:
-	</text>
-	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom="-64" drop_shadow_visible="true" enabled="true" follows="left|top"
-	     font="SansSerifSmall" h_pad="0" halign="left" height="10" left="10"
-	     mouse_opaque="true" name="show_names_textbox" v_pad="0" width="394">
-		Show Names:
 	</text>
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom="-184" drop_shadow_visible="true" enabled="true" follows="left|top"

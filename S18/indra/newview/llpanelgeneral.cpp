@@ -41,6 +41,7 @@
 #include "lluictrlfactory.h"
 #include "llurlsimstring.h"
 #include "llviewercontrol.h"
+#include "llstartup.h"
 
 #include "llagent.h"
 #include "llviewerregion.h"
@@ -70,6 +71,9 @@ BOOL LLPanelGeneral::postBuild()
 
 	childSetValue("ui_scale_slider", gSavedSettings.getF32("UIScaleFactor"));
 	childSetValue("ui_auto_scale", gSavedSettings.getBOOL("UIAutoScale"));
+
+	childSetValue("save_names_checkbox", gSavedSettings.getBOOL("LoginMRUEnabled"));
+	childSetValue("clear_password_checkbox", gSavedSettings.getBOOL("LoginMRUClearPassword"));
 
 	LLComboBox* crash_behavior_combobox = getChild<LLComboBox>("crash_behavior_combobox");
 	crash_behavior_combobox->setCurrentByIndex(gCrashSettings.getS32(CRASH_BEHAVIOR_SETTING));
@@ -116,7 +120,9 @@ void LLPanelGeneral::apply()
 {
 	LLComboBox* fade_out_combobox = getChild<LLComboBox>("fade_out_combobox");
 	gSavedSettings.setS32("RenderName", fade_out_combobox->getCurrentIndex());
-	
+
+	gSavedSettings.setBOOL("LoginMRUEnabled", childGetValue("save_names_checkbox"));
+	gSavedSettings.setBOOL("LoginMRUClearPassword", childGetValue("clear_password_checkbox"));
 	gSavedSettings.setBOOL("LoginLastLocation", childGetValue("default_start_location").asString() == "MyLastLocation");
 	gSavedSettings.setBOOL("ShowStartLocation", childGetValue("show_location_checkbox"));
 	gSavedSettings.setBOOL("RenderHideGroupTitleAll", childGetValue("show_all_title_checkbox"));

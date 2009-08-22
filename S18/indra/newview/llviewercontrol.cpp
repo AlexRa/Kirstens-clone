@@ -70,6 +70,8 @@
 #include "llvosurfacepatch.h"
 #include "llvowlsky.h"
 #include "llrender.h"
+#include "llstartup.h"
+#include "llpanellogin.h"
 
 #ifdef TOGGLE_HACKED_GODLIKE_VIEWER
 BOOL 				gHackGodmode = FALSE;
@@ -422,6 +424,31 @@ bool handleVoiceClientPrefsChanged(const LLSD& newvalue)
 	return true;
 }
 
+bool handleLoginMRUPrefsChanged(const LLSD& newvalue)
+{
+	bool enabled = newvalue.asBoolean();
+	if (enabled)
+	{
+		// Initialize the list with the current name if logged in
+		if (LLStartUp::getStartupState() >= STATE_WORLD_INIT)
+		{
+			// list was previously empty, no need to go through sorting
+			LLSD names = LLSD::emptyArray();
+			names.append(LLSD::emptyMap());
+			names[0]["first"] = gSavedSettings.getString("FirstName");
+			names[0]["last"] = gSavedSettings.getString("LastName");
+			gSavedSettings.setLLSD("LoginMRUList", names);
+		}
+	}
+	else
+	{
+		// Clear the list of avatar names when disabled
+		gSavedSettings.setLLSD("LoginMRUList", LLSD::emptyArray());
+	}
+	LLPanelLogin::setLoginMRUEnabled(enabled);
+	return true;
+}
+
 ////////////////////////////////////////////////////////////////////////////
 
 void settings_setup_listeners()
@@ -555,6 +582,7 @@ void settings_setup_listeners()
 	gSavedSettings.getControl("VoiceOutputAudioDevice")->getSignal()->connect(boost::bind(&handleVoiceClientPrefsChanged, _1));
 	gSavedSettings.getControl("AudioLevelMic")->getSignal()->connect(boost::bind(&handleVoiceClientPrefsChanged, _1));
 	gSavedSettings.getControl("LipSyncEnabled")->getSignal()->connect(boost::bind(&handleVoiceClientPrefsChanged, _1));	
+	gSavedSettings.getControl("LoginMRUEnabled")->getSignal()->connect(boost::bind(&handleLoginMRUPrefsChanged, _1));
 }
 
 template <> eControlType get_control_type<U32>(const U32& in, LLSD& out) 

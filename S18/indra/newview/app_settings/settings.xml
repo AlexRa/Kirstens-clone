@@ -5108,7 +5108,51 @@
       <string>S32</string>
       <key>Value</key>
       <integer>0</integer>
-    </map>
+      </map>
+     <key>LoginMRUClearPassword</key>
+       <map>
+          <key>Comment</key>
+          <string>Clear password upon changing the avatar name on the login screen</string>
+          <key>Persist</key>
+          <integer>1</integer>
+          <key>Type</key>
+          <string>Boolean</string>
+          <key>Value</key>
+          <integer>1</integer>
+        </map>
+      <key>LoginMRUEnabled</key>
+        <map>
+          <key>Comment</key>
+          <string>Allow saving a list of alternate avatar names upon login</string>
+          <key>Persist</key>
+          <integer>1</integer>
+          <key>Type</key>
+          <string>Boolean</string>
+          <key>Value</key>
+          <integer>0</integer>
+        </map>
+      <key>LoginMRUList</key>
+        <map>
+          <key>Comment</key>
+          <string>List of previous avatar names presented at login</string>
+         <key>Persist</key>
+          <integer>1</integer>
+          <key>Type</key>
+          <string>LLSD</string>
+          <key>Value</key>
+          <array/>
+       </map>
+      <key>LoginMRULength</key>
+       <map>
+          <key>Comment</key>
+          <string>Number of names to store in LoginMRUList</string>
+          <key>Persist</key>
+          <integer>1</integer>
+          <key>Type</key>
+          <string>S32</string>
+          <key>Value</key>
+          <integer>10</integer>
+       </map>
     <key>LSLFindCaseInsensitivity</key>
         <map>
         <key>Comment</key>
