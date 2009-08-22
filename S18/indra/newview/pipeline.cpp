@@ -276,7 +276,7 @@ void addDeferredAttachments(LLRenderTarget& target)
 {
     target.addColorAttachment(GL_RGBA); //specular	//target.addColorAttachment(GL_RGBA16F_ARB); //specular  // KL
     target.addColorAttachment(GL_RGBA); //normal+z	//target.addColorAttachment(GL_RGBA16F_ARB); //normal+z	
-//	target.addColorAttachment(GL_RGBA16F_ARB); //position
+	target.addColorAttachment(GL_RGBA); //position  KL RGBA is preferable to RGBA16F 
 }
 
 LLPipeline::LLPipeline() :
@@ -7959,7 +7959,7 @@ void LLPipeline::generateImpostor(LLVOAvatar* avatar)
 
 	if (muted)
 	{
-		mask  = 1 << LLPipeline::RENDER_TYPE_INVISIBLE; // Peachy ;)
+		mask  = 1 << LLPipeline::RENDER_TYPE_PASS_INVISIBLE; // Peachy ;)
 	}
 	else
 	{

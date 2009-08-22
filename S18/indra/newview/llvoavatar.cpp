@@ -4209,8 +4209,10 @@ U32 LLVOAvatar::renderSkinned(EAvatarRenderPass pass)
 	if (pass == AVATAR_RENDER_PASS_SINGLE)
 	{
 		bool should_alpha_mask = mHasBakedHair && isTextureDefined(TEX_HEAD_BAKED) && isTextureDefined(TEX_UPPER_BAKED) 
-								&& isTextureDefined(TEX_LOWER_BAKED) && mBakedTextureData[BAKED_HEAD].mIsLoaded
-								&& mBakedTextureData[BAKED_UPPER].mIsLoaded && mBakedTextureData[BAKED_LOWER].mIsLoaded;
+										&& isTextureDefined(TEX_LOWER_BAKED) 
+										&& mBakedTextureData[BAKED_HEAD].mIsLoaded
+										&& mBakedTextureData[BAKED_UPPER].mIsLoaded && mBakedTextureData[BAKED_LOWER].mIsLoaded
+										&& !(isSelf() && gAgent.cameraCustomizeAvatar()); // don't alpha mask if in customize mode
 		LLGLState test(GL_ALPHA_TEST, should_alpha_mask);
 
 		if (should_alpha_mask)
