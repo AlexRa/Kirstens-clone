@@ -7959,7 +7959,7 @@ void LLPipeline::generateImpostor(LLVOAvatar* avatar)
 
 	if (muted)
 	{
-		mask  = 1 << LLPipeline::RENDER_TYPE_PASS_INVISIBLE; // Peachy ;)
+		mask  = 1 << LLPipeline::RENDER_TYPE_INVISIBLE; // Peachy ;)
 	}
 	else
 	{
@@ -8068,8 +8068,8 @@ void LLPipeline::generateImpostor(LLVOAvatar* avatar)
 	{
 		if (LLPipeline::sRenderDeferred)
 		{
-			avatar->mImpostor.allocate(resX,resY,GL_RGBA16F_ARB,TRUE,TRUE);
-			addDeferredAttachments(avatar->mImpostor);
+			avatar->mImpostor.allocate(resX,resY,GL_RGBA,TRUE,TRUE);
+			//addDeferredAttachments(avatar->mImpostor);
 		}
 		else
 		{

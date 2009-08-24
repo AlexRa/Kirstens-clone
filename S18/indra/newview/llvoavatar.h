@@ -40,7 +40,7 @@
 #include <vector>
 
 #include "llchat.h"
-// #include "lldrawpoolalpha.h"  // KL not in SD branch SG only
+#include "lldrawpoolalpha.h"  // KL not in SD branch SG only cant harm to leave include :)
 #include "llviewerobject.h"
 #include "llcharacter.h"
 #include "llviewerjointmesh.h"
@@ -330,7 +330,7 @@ public:
 	static LLUUID			getDefaultTEImageID(LLVOAvatarDefines::ETextureIndex te );
 	static void		onChangeSelfInvisible(BOOL newvalue);
 	void			setInvisible(BOOL newvalue);
-	//static LLColor4 getDummyColor(); // KL SG
+	static LLColor4 getDummyColor(); // KL SG
 
 
 

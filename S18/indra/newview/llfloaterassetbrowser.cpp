@@ -2,7 +2,7 @@
  * @file llfloaterassetbrowser.cpp
  * @brief LLFloaterAssetBrowser class implementation
  *
- * Copyright (c) 2008 LudoCraft
+ * Copyright (c) 2008 LudoCraft & KL
  */
 
 #include "llviewerprecompiledheaders.h"
@@ -156,14 +156,14 @@ void LLFloaterAssetBrowser::createThumbnails()
 	{
 			mTextureAssets[i].mTexturep = gImageList.getImage(mTextureAssets[i].mAssetUUID, MIPMAP_YES, IMMEDIATE_NO);
 			mTextureAssets[i].mTexturep->setBoostLevel(LLViewerImageBoostLevel::BOOST_PREVIEW);
-			//mTextureAssets[i].mTexturep->processTextureStats();
+			mTextureAssets[i].mTexturep->processTextureStats();
 	}
 
 	//Generate the asset info text
-	/*for(S32 i = 0; i < items.count(); i++)
+	for(S32 i = 0; i < items.count(); i++)
 	{
-		LLString asset_info;
-		LLString dimensions;
+		std::string asset_info;
+		std::string dimensions;
 		
 		asset_info.append(mTextureAssets[i].mName);
 		
@@ -176,7 +176,7 @@ void LLFloaterAssetBrowser::createThumbnails()
 		asset_info.append(dimensions);
 		
 		mTextureAssets[i].mAssetInfo = asset_info;
-	}*/
+	}
 	
 	mFloaterTitle = llformat("Asset Browser (%d assets fetched)", mTextureAssets.size());
 	setTitle(mFloaterTitle);
@@ -313,7 +313,7 @@ void LLFloaterAssetBrowser::draw()
 				if(mImageAssetID.notNull())
 				{
 					mTexturep = gImageList.getImage(mImageAssetID, MIPMAP_YES, IMMEDIATE_NO);
-					//mTexturep->setBoostLevel(LLViewerImage::BOOST_PREVIEW);
+					mTexturep->setBoostLevel(LLViewerImageBoostLevel::BOOST_PREVIEW);
 					mTexturep->processTextureStats();
 					mTextureAssets[i].mWidth = mTexturep->mFullWidth;
 					mTextureAssets[i].mHeight = mTexturep->mFullHeight;
