@@ -299,6 +299,7 @@ set(viewer_SOURCE_FILES
     llpatchvertexarray.cpp
     llpolymesh.cpp
     llpolymorph.cpp
+    llpostprocess.cpp
     llprefschat.cpp
     llprefsim.cpp
     llprefsvoice.cpp
@@ -712,6 +713,7 @@ set(viewer_HEADER_FILES
     llpatchvertexarray.h
     llpolymesh.h
     llpolymorph.h
+    llpostprocess.h
     llprefschat.h
     llprefsim.h
     llprefsvoice.h

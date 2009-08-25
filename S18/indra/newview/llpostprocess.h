@@ -194,6 +194,8 @@ private:
 	LLPointer<LLImageGL> mSceneRenderTexture ;
 	LLPointer<LLImageGL> mNoiseTexture ;
 	LLPointer<LLImageGL> mTempBloomTexture ;
+     
+
 
 public:
 	LLPostProcess(void);
@@ -232,7 +234,7 @@ private:
 	glslUniforms colorFilterUniforms;
 
 	// the name of currently selected effect in mAllEffects
-	// invariant: tweaks == mAllEffects[mSelectedEffectName]
+	//invariant: tweaks == mAllEffects[mSelectedEffectName]
 	std::string mSelectedEffectName;
 
 	/// General functions

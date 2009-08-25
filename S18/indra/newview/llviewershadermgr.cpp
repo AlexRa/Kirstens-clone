@@ -773,9 +773,8 @@ BOOL LLViewerShaderMgr::loadShadersEffects()
 		}
 	}
 	
-#if 0
 	// disabling loading of postprocess shaders until we fix
-	// ATI sampler2DRect compatibility.
+	// ATI sampler2DRect compatibility.  KL re-enabling who gives a rats arse about ATI anyway?
 	
 	//load Color Filter Shader
 	if (success)
@@ -816,7 +815,7 @@ BOOL LLViewerShaderMgr::loadShadersEffects()
 		gPostNightVisionProgram.mShaderLevel = mVertexShaderLevel[SHADER_EFFECT];
 		success = gPostNightVisionProgram.createShader(NULL, &shaderUniforms);
 	}
-	#endif
+	
 
 	return success;
 

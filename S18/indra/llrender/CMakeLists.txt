@@ -32,7 +32,7 @@ set(llrender_SOURCE_FILES
     llgldbg.cpp
     llglslshader.cpp
     llimagegl.cpp
-    llpostprocess.cpp
+    
     llrendersphere.cpp
     llshadermgr.cpp
     lltextureatlas.cpp
@@ -54,7 +54,7 @@ set(llrender_HEADER_FILES
     llglstates.h
     llgltypes.h
     llimagegl.h
-    llpostprocess.h
+    
     llrender.h
     llrendersphere.h
     llshadermgr.h

@@ -840,7 +840,7 @@ void display(BOOL rebuild, F32 zoom_factor, int subfield, BOOL for_snapshot)
 		/// and then display it again with compositor effects.
 		/// Using render to texture would be faster/better, but I don't have a 
 		/// grasp of their full display stack just yet.
-		// gPostProcess->apply(gViewerWindow->getWindowDisplayWidth(), gViewerWindow->getWindowDisplayHeight());
+		gPostProcess->apply(gViewerWindow->getWindowDisplayWidth(), gViewerWindow->getWindowDisplayHeight()); // KL
 		
 		if (LLPipeline::sRenderDeferred && !LLPipeline::sUnderWaterRender)
 		{
