@@ -455,8 +455,15 @@ void LLFace::renderForSelect(U32 data_mask)
 
 void LLFace::renderSelected(LLImageGL *imagep, const LLColor4& color)
 {
-	if(mDrawablep.isNull() || mVertexBuffer.isNull() || mDrawablep->getSpatialGroup() == NULL ||
-		mDrawablep->getSpatialGroup()->isState(LLSpatialGroup::GEOM_DIRTY))
+	if (mDrawablep->getSpatialGroup() == NULL)
+	{
+		return;
+	}
+
+	mDrawablep->getSpatialGroup()->rebuildGeom();
+	mDrawablep->getSpatialGroup()->rebuildMesh();
+		
+	if(mDrawablep.isNull() || mVertexBuffer.isNull())
 	{
 		return;
 	}
@@ -475,14 +482,10 @@ void LLFace::renderSelected(LLImageGL *imagep, const LLColor4& color)
 			glMultMatrixf((GLfloat*)mDrawablep->getRegion()->mRenderMatrix.mMatrix);
 		}
 
-		setFaceColor(color);
-		renderSetColor();
-
+		glColor4fv(color.mV);
 		mVertexBuffer->setBuffer(LLVertexBuffer::MAP_VERTEX | LLVertexBuffer::MAP_TEXCOORD0);
 		mVertexBuffer->draw(LLRender::TRIANGLES, mIndicesCount, mIndicesIndex);
 
-		unsetFaceColor();
-		unsetFaceColor();
 		gGL.popMatrix();
 	}
 }

@@ -79,7 +79,7 @@ void main()
 	vec4 spec = texture2DRect(specularRect, frag.xy);
 	if (spec.a > 0.0)
 	{
-		float sa = dot(normalize(lv-normalize(pos)),norm);;
+		float sa = dot(normalize(lv-normalize(pos)),norm);
 		if (sa > 0.0)
 		{
 			sa = texture2D(lightFunc, vec2(sa, spec.a)).a * min(dist_atten*4.0, 1.0);

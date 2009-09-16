@@ -88,7 +88,12 @@ void LLDrawPoolAlpha::beginDeferredPass(S32 pass)
 
 void LLDrawPoolAlpha::endDeferredPass(S32 pass)
 {
-	gGL.setAlphaRejectSettings(LLRender::CF_GREATER, 0.4f);
+	
+}
+
+void LLDrawPoolAlpha::renderDeferred(S32 pass)
+{
+	gGL.setAlphaRejectSettings(LLRender::CF_GREATER, 0.f);
 	{
 		LLFastTimer t(LLFastTimer::FTM_RENDER_GRASS);
 		gDeferredTreeProgram.bind();
@@ -97,11 +102,6 @@ void LLDrawPoolAlpha::endDeferredPass(S32 pass)
 		LLRenderPass::renderTexture(LLRenderPass::PASS_ALPHA_MASK, getVertexDataMask());
 	}			
 	gGL.setAlphaRejectSettings(LLRender::CF_DEFAULT);
-}
-
-void LLDrawPoolAlpha::renderDeferred(S32 pass)
-{
-	
 }
 
 

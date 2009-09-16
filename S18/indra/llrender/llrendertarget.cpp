@@ -203,7 +203,8 @@ void LLRenderTarget::allocateDepth()
 		gGL.getTexUnit(0)->bindManual(mUsage, mDepth);
 		U32 internal_type = LLTexUnit::getInternalType(mUsage);
 		gGL.getTexUnit(0)->setTextureFilteringOption(LLTexUnit::TFO_POINT);
-		LLImageGL::setManualImage(internal_type, 0, GL_DEPTH_COMPONENT, mResX, mResY, GL_DEPTH_COMPONENT, GL_UNSIGNED_INT, NULL);
+		LLImageGL::setManualImage(internal_type, 0, GL_DEPTH24_STENCIL8_EXT, mResX, mResY, GL_DEPTH_STENCIL_EXT, GL_UNSIGNED_INT_24_8_EXT, NULL); // KL which to go with? DEPTH_COMPONENT GL spec > 2.0 or STENCIL_EXT?
+		//LLImageGL::setManualImage(internal_type, 0, GL_DEPTH_COMPONENT, mResX, mResY, GL_DEPTH_COMPONENT, GL_UNSIGNED_INT, NULL);
 	}
 }
 
@@ -349,7 +350,7 @@ U32 LLRenderTarget::getTexture(U32 attachment) const
 {
 	if (attachment > mTex.size()-1)
 	{
-		llerrs << "Invalid attachment index." << llendl;
+		llwarns << "Invalid attachment index." << llendl; // lets not crash KL its a pain in the ass!
 	}
 	return mTex[attachment];
 }
@@ -358,7 +359,7 @@ void LLRenderTarget::bindTexture(U32 index, S32 channel)
 {
 	if (index > mTex.size()-1)
 	{
-		llerrs << "Invalid attachment index." << llendl;
+		llwarns << "Invalid attachment index." << llendl;
 	}
 	gGL.getTexUnit(channel)->bindManual(mUsage, mTex[index]);
 }

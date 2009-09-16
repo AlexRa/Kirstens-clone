@@ -17,6 +17,9 @@ uniform sampler2DRectShadow shadowMap4;
 uniform sampler2DRectShadow shadowMap5;
 uniform sampler2D noiseMap;
 
+uniform sampler2D		lightFunc;
+
+
 // Inputs
 uniform mat4 shadow_matrix[6];
 uniform vec4 shadow_clip;
@@ -46,7 +49,7 @@ vec4 getPosition(vec2 pos_screen)
 	pos.w = 1.0;
 	return pos;
 }
-	
+
 //calculate decreases in ambient lighting when crowded out (SSAO)
 float calcAmbientOcclusion(vec4 pos, vec3 norm)
 {
@@ -94,7 +97,7 @@ float calcAmbientOcclusion(vec4 pos, vec3 norm)
 	
 	angle_hidden = min(ssao_factor*angle_hidden/float(points), 1.0);
 	
-	return 1.0 - (float(points != 0) * angle_hidden);
+	return (1.0 - (float(points != 0) * angle_hidden));
 }
 
 void main() 
@@ -159,7 +162,7 @@ void main()
 		//  * the blurred sun shadow in the light (shadow) map
 		//  * an unblurred dot product between the sun and this norm
 		// the goal is to err on the side of most-shadow to fill-in shadow holes and reduce artifacting
-		//shadow = min(shadow, dp_directional_light);
+		shadow = min(shadow, dp_directional_light);
 		
 		/*debug.r = lpos.y / (lpos.w*screen_res.y);
 		
@@ -190,7 +193,7 @@ void main()
 	lpos = shadow_matrix[5]*spos;
 	lpos.xy *= screen_res;
 	gl_FragColor[3] = shadow2DRectProj(shadowMap5, lpos).x; 
-	
+
 	//gl_FragColor.rgb = pos.xyz;
 	//gl_FragColor.b = shadow;
 	//gl_FragColor.rgb = debug;
