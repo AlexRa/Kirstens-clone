@@ -1095,10 +1095,10 @@ BOOL LLVOSky::updateSky()
 							   mLastTotalAmbient.mV[2] - mTotalAmbient.mV[2]);
 
 			if ( mForceUpdate 
-				 || ((dot_lighting < LIGHT_DIRECTION_THRESHOLD)
+				 || (((dot_lighting < LIGHT_DIRECTION_THRESHOLD)
 				 || (delta_color.length() > COLOR_CHANGE_THRESHOLD)
 				 || !mInitialized)
-				&& !direction.isExactlyZero())
+				&& !direction.isExactlyZero()))
 			{
 				mLastLightingDirection = direction;
 				mLastTotalAmbient = mTotalAmbient;
@@ -1197,8 +1197,6 @@ LLDrawable *LLVOSky::createDrawable(LLPipeline *pipeline)
 
 	LLDrawPoolSky *poolp = (LLDrawPoolSky*) gPipeline.getPool(LLDrawPool::POOL_SKY);
 	poolp->setSkyTex(mSkyTex);
-	poolp->setSun(&mSun);
-	poolp->setMoon(&mMoon);
 	mDrawable->setRenderType(LLPipeline::RENDER_TYPE_SKY);
 	
 	for (S32 i = 0; i < 6; ++i)

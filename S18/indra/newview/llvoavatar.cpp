@@ -164,6 +164,8 @@ const S32 MAX_BUBBLE_CHAT_UTTERANCES = 12;
 const F32 CHAT_FADE_TIME = 8.0;
 const F32 BUBBLE_CHAT_TIME = CHAT_FADE_TIME * 3.f;
 
+const LLColor4 DUMMY_COLOR = LLColor4(0.5,0.5,0.5,1.0);
+
 enum ERenderName
 {
 	RENDER_NAME_NEVER,
@@ -1586,7 +1588,7 @@ BOOL LLVOAvatar::lineSegmentIntersect(const LLVector3& start, const LLVector3& e
 		)
 {
 
-	if (mIsSelf && !gAgent.needsRenderAvatar() || !LLPipeline::sPickAvatar)
+	if ((mIsSelf && !gAgent.needsRenderAvatar()) || !LLPipeline::sPickAvatar)
 	{
 		return FALSE;
 	}
@@ -3508,7 +3510,7 @@ BOOL LLVOAvatar::updateCharacter(LLAgent &agent)
 
 	if (!visible)
 	{
-		//updateMotions(LLCharacter::HIDDEN_UPDATE);
+		updateMotions(LLCharacter::HIDDEN_UPDATE);
 		return FALSE;
 	}
 
@@ -4288,7 +4290,7 @@ U32 LLVOAvatar::renderTransparent(BOOL first_pass)
 		}
 		// Can't test for baked hair being defined, since that won't always be the case (not all viewers send baked hair)
 		// TODO: 1.25 will be able to switch this logic back to calling isTextureVisible();
-		if (getTEImage(TEX_HAIR_BAKED)->getID() != IMG_INVISIBLE) // KL mod for SD
+		if (getTEImage(TEX_HAIR_BAKED)->getID() != IMG_INVISIBLE || LLDrawPoolAlpha::sShowDebugAlpha)
 		{
 			num_indices += mMeshLOD[MESH_ID_HAIR]->render(mAdjustedPixelArea, first_pass, mIsDummy);
 			first_pass = FALSE;
@@ -6808,7 +6810,8 @@ LLGLuint LLVOAvatar::getScratchTexName( LLGLenum format, U32* texture_bytes )
 	{
 	case GL_LUMINANCE:			components = 1; internal_format = GL_LUMINANCE8;		break;
 	case GL_ALPHA:				components = 1; internal_format = GL_ALPHA8;			break;
-	case GL_COLOR_INDEX:		components = 1; internal_format = GL_COLOR_INDEX8_EXT;	break;
+//	Support for GL_EXT_paletted_texture is deprecated
+//	case GL_COLOR_INDEX:		components = 1; internal_format = GL_COLOR_INDEX8_EXT;	break;
 	case GL_LUMINANCE_ALPHA:	components = 2; internal_format = GL_LUMINANCE8_ALPHA8;	break;
 	case GL_RGB:				components = 3; internal_format = GL_RGB8;				break;
 	case GL_RGBA:				components = 4; internal_format = GL_RGBA8;				break;
@@ -7615,6 +7618,11 @@ void LLVOAvatar::setInvisible(BOOL newvalue)
 		requestLayerSetUploads();
 		gAgent.sendAgentSetAppearance();
 	}
+}
+
+LLColor4 LLVOAvatar::getDummyColor()
+{
+	return DUMMY_COLOR;
 }
 
 // Given a texture entry, determine which wearable type owns it.
@@ -9047,18 +9055,13 @@ void LLVOAvatar::updateFreezeCounter(S32 counter)
 
 BOOL LLVOAvatar::updateLOD()
 {
-	if (isImpostor())  // KL SD
-	{
-		return TRUE;
-	}
-
 	BOOL res = updateJointLODs();
 
 	LLFace* facep = mDrawable->getFace(0);
 	if (facep->mVertexBuffer.isNull() ||
-		LLVertexBuffer::sEnableVBOs &&
+		(LLVertexBuffer::sEnableVBOs &&
 		((facep->mVertexBuffer->getUsage() == GL_STATIC_DRAW ? TRUE : FALSE) !=
-		(facep->getPool()->getVertexShaderLevel() > 0 ? TRUE : FALSE)))
+		(facep->getPool()->getVertexShaderLevel() > 0 ? TRUE : FALSE))))
 	{
 		mDirtyMesh = TRUE;
 	}

@@ -1581,8 +1581,8 @@ bool LLViewerImage::doLoadedCallbacks()
 
 		destroyRawImage();
 		readBackRawImage(gl_discard);
-		llassert_always(mRawImage.notNull());
-		llassert_always(!mNeedsAux || mAuxRawImage.notNull());
+		//llassert_always(mRawImage.notNull());
+		//llassert_always(!mNeedsAux || mAuxRawImage.notNull());
 	}
 
 	//

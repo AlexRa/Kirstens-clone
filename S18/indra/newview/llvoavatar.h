@@ -765,7 +765,8 @@ inline BOOL LLVOAvatar::isTextureDefined(U8 te) const
 inline BOOL LLVOAvatar::isTextureVisible(U8 te) const
 {
 	return ((isTextureDefined(te) || isSelf())
-			&& (getTEImage(te)->getID() != IMG_INVISIBLE));
+			&& (getTEImage(te)->getID() != IMG_INVISIBLE 
+				|| LLDrawPoolAlpha::sShowDebugAlpha));
 }
 
 #endif // LL_VO_AVATAR_H

@@ -274,9 +274,9 @@ void validate_framebuffer_object();
 
 void addDeferredAttachments(LLRenderTarget& target)
 {
-    target.addColorAttachment(GL_RGBA); //specular	//target.addColorAttachment(GL_RGBA16F_ARB); //specular  // KL
-    target.addColorAttachment(GL_RGBA); //normal+z	//target.addColorAttachment(GL_RGBA16F_ARB); //normal+z	
-	target.addColorAttachment(GL_RGBA); //position  KL RGBA is preferable to RGBA16F 
+    target.addColorAttachment(GL_RGBA16F_ARB); //specular	//target.addColorAttachment(GL_RGBA16F_ARB); //specular  // KL
+    target.addColorAttachment(GL_RGBA16F_ARB); //normal+z	//target.addColorAttachment(GL_RGBA16F_ARB); //normal+z	
+	target.addColorAttachment(GL_RGBA16F_ARB); //position  KL RGBA is preferable to RGBA16F 
 }
 
 LLPipeline::LLPipeline() :
@@ -500,14 +500,14 @@ void LLPipeline::allocateScreenBuffer(U32 resX, U32 resY)
 	if (LLPipeline::sRenderDeferred)
 	{
 		//allocate deferred rendering color buffers
-        mDeferredScreen.allocate(resX, resY, GL_RGBA, TRUE, TRUE, LLTexUnit::TT_RECT_TEXTURE, FALSE);	// mDeferredScreen.allocate(resX, resY, GL_RGBA16F_ARB, TRUE, TRUE, LLTexUnit::TT_RECT_TEXTURE, FALSE);
+        mDeferredScreen.allocate(resX, resY, GL_RGBA16F_ARB, TRUE, TRUE, LLTexUnit::TT_RECT_TEXTURE, FALSE);	// mDeferredScreen.allocate(resX, resY, GL_RGBA16F_ARB, TRUE, TRUE, LLTexUnit::TT_RECT_TEXTURE, FALSE);
 		mDeferredDepth.allocate(resX, resY, 0, TRUE, FALSE, LLTexUnit::TT_RECT_TEXTURE, FALSE);
 		addDeferredAttachments(mDeferredScreen);
-		mScreen.allocate(resX, resY, GL_RGBA, FALSE, FALSE, LLTexUnit::TT_RECT_TEXTURE, FALSE); // mScreen.allocate(resX, resY, GL_RGBA16F_ARB, FALSE, FALSE, LLTexUnit::TT_RECT_TEXTURE, FALSE);		
+		mScreen.allocate(resX, resY, GL_RGBA16F_ARB, FALSE, FALSE, LLTexUnit::TT_RECT_TEXTURE, FALSE); // mScreen.allocate(resX, resY, GL_RGBA16F_ARB, FALSE, FALSE, LLTexUnit::TT_RECT_TEXTURE, FALSE);		
 		
 		for (U32 i = 0; i < 2; i++)
 		{
-			mDeferredLight[i].allocate(resX, resY, GL_RGBA, FALSE, FALSE, LLTexUnit::TT_RECT_TEXTURE);
+			mDeferredLight[i].allocate(resX, resY, GL_RGB, FALSE, FALSE, LLTexUnit::TT_RECT_TEXTURE); // was RGBA...
 		}
 
 		for (U32 i = 0; i < 6; i++)
@@ -2791,8 +2791,8 @@ void LLPipeline::renderGeom(LLCamera& camera, BOOL forceVBOUpdate)
 	//to guaranttee at least updating one VBO buffer every frame
 	//to walk around the bug caused by ATI card --> DEV-3855
 	//
-	if(forceVBOUpdate)
-		gSky.mVOSkyp->updateDummyVertexBuffer() ;
+	//if(forceVBOUpdate)
+	//	gSky.mVOSkyp->updateDummyVertexBuffer() ;
 
 	gFrameStats.start(LLFrameStats::RENDER_GEOM);
 
@@ -3430,23 +3430,6 @@ void LLPipeline::renderDebug()
 				}
 				gGL.end();
 			}
-
-			/*for (LLWorld::region_list_t::iterator iter = LLWorld::getInstance()->getRegionList().begin(); 
-					iter != LLWorld::getInstance()->getRegionList().end(); ++iter)
-			{
-				LLViewerRegion* region = *iter;
-				for (U32 j = 0; j < LLViewerRegion::NUM_PARTITIONS; j++)
-				{
-					LLSpatialPartition* part = region->getSpatialPartition(j);
-					if (part)
-					{
-						if (hasRenderType(part->mDrawableType))
-						{
-							part->renderIntersectingBBoxes(&mShadowCamera[i]);
-						}
-					}
-				}
-			}*/
 		}
 	}
 
@@ -5748,12 +5731,6 @@ void LLPipeline::bindDeferredShader(LLGLSLShader& shader, U32 light_index, LLRen
 			shader.uniform1f("gi_blend", gFrameIntervalSeconds);
 		}
 	}
-	
-	/*channel = shader.enableTexture(LLViewerShaderMgr::DEFERRED_POSITION, LLTexUnit::TT_RECT_TEXTURE);
-	if (channel > -1)
-	{
-		mDeferredScreen.bindTexture(3, channel);
-	}*/
 
 	channel = shader.enableTexture(LLViewerShaderMgr::DEFERRED_DEPTH, LLTexUnit::TT_RECT_TEXTURE);
 	if (channel > -1)
@@ -6548,6 +6525,10 @@ void LLPipeline::unbindDeferredShader(LLGLSLShader &shader)
 	shader.disableTexture(LLViewerShaderMgr::DEFERRED_SPECULAR, LLTexUnit::TT_RECT_TEXTURE);
 	shader.disableTexture(LLViewerShaderMgr::DEFERRED_DEPTH, LLTexUnit::TT_RECT_TEXTURE);
 	shader.disableTexture(LLViewerShaderMgr::DEFERRED_LIGHT, LLTexUnit::TT_RECT_TEXTURE);
+	shader.disableTexture(LLViewerShaderMgr::DEFERRED_GI_LIGHT, LLTexUnit::TT_RECT_TEXTURE);
+	shader.disableTexture(LLViewerShaderMgr::DEFERRED_SUN_LIGHT, LLTexUnit::TT_RECT_TEXTURE);
+	shader.disableTexture(LLViewerShaderMgr::DEFERRED_LOCAL_LIGHT, LLTexUnit::TT_RECT_TEXTURE);
+	shader.disableTexture(LLViewerShaderMgr::DEFERRED_LUMINANCE);
 	shader.disableTexture(LLViewerShaderMgr::DIFFUSE_MAP);
 	shader.disableTexture(LLViewerShaderMgr::DEFERRED_GI_NORMAL);
 	shader.disableTexture(LLViewerShaderMgr::DEFERRED_GI_DIFFUSE);
@@ -8068,7 +8049,7 @@ void LLPipeline::generateImpostor(LLVOAvatar* avatar)
 	{
 		if (LLPipeline::sRenderDeferred)
 		{
-			avatar->mImpostor.allocate(resX,resY,GL_RGBA,TRUE,TRUE);
+			avatar->mImpostor.allocate(resX,resY,GL_RGBA16F_ARB,TRUE,TRUE);
 			//addDeferredAttachments(avatar->mImpostor);
 		}
 		else

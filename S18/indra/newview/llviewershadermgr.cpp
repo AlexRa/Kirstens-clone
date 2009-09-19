@@ -122,7 +122,12 @@ LLGLSLShader			gDeferredShadowProgram;
 LLGLSLShader			gDeferredAvatarShadowProgram;
 LLGLSLShader			gDeferredAlphaProgram;
 LLGLSLShader			gDeferredFullbrightProgram;
+LLGLSLShader			gDeferredGIProgram;
 LLGLSLShader			gDeferredPostGIProgram;
+LLGLSLShader			gDeferredPostProgram;
+
+LLGLSLShader			gLuminanceGatherProgram;
+
 
 //current avatar shader parameter pointer
 GLint				gAvatarMatrixParam;
@@ -155,6 +160,8 @@ LLViewerShaderMgr::LLViewerShaderMgr() :
 	mShaderList.push_back(&gDeferredAlphaProgram);
 	mShaderList.push_back(&gDeferredFullbrightProgram);
 	mShaderList.push_back(&gDeferredPostGIProgram);   // KL
+	mShaderList.push_back(&gDeferredPostProgram);
+	mShaderList.push_back(&gDeferredGIProgram);
 	mShaderList.push_back(&gDeferredWaterProgram);
 	mShaderList.push_back(&gDeferredAvatarAlphaProgram);
 }
@@ -234,6 +241,10 @@ void LLViewerShaderMgr::initAttribsAndUniforms(void)
 		mReservedUniforms.push_back("noiseMap");
 		mReservedUniforms.push_back("lightFunc");   // KL
 		mReservedUniforms.push_back("lightMap");
+		mReservedUniforms.push_back("luminanceMap");
+		mReservedUniforms.push_back("giLightMap");
+		mReservedUniforms.push_back("sunLightMap");
+		mReservedUniforms.push_back("localLightMap");
 		mReservedUniforms.push_back("projectionMap");
 		mReservedUniforms.push_back("diffuseGIMap");
 		mReservedUniforms.push_back("specularGIMap");
@@ -843,7 +854,10 @@ BOOL LLViewerShaderMgr::loadShadersDeferred()
 		gDeferredAvatarAlphaProgram.unload();
 		gDeferredAlphaProgram.unload();
 		gDeferredFullbrightProgram.unload();
-		gDeferredPostGIProgram.unload();		//KL  SD
+		gDeferredPostGIProgram.unload();		
+		gDeferredPostProgram.unload();		
+		gLuminanceGatherProgram.unload();
+		gDeferredGIProgram.unload();
 		gDeferredWaterProgram.unload();
 		return FALSE;
 	}
@@ -993,6 +1007,26 @@ BOOL LLViewerShaderMgr::loadShadersDeferred()
 
 	if (success) // KL SD
 	{
+		gDeferredPostProgram.mName = "Deferred Post  Shader";
+		gDeferredPostProgram.mShaderFiles.clear();
+		gDeferredPostProgram.mShaderFiles.push_back(make_pair("deferred/postDeferredV.glsl", GL_VERTEX_SHADER_ARB));
+		gDeferredPostProgram.mShaderFiles.push_back(make_pair("deferred/postDeferredF.glsl", GL_FRAGMENT_SHADER_ARB));
+		gDeferredPostProgram.mShaderLevel = mVertexShaderLevel[SHADER_DEFERRED];
+		success = gDeferredPostProgram.createShader(NULL, NULL);
+	}
+
+	if (success)
+	{
+		gDeferredGIProgram.mName = "Deferred GI Shader";
+		gDeferredGIProgram.mShaderFiles.clear();
+		gDeferredGIProgram.mShaderFiles.push_back(make_pair("deferred/giV.glsl", GL_VERTEX_SHADER_ARB));
+		gDeferredGIProgram.mShaderFiles.push_back(make_pair("deferred/giF.glsl", GL_FRAGMENT_SHADER_ARB));
+		gDeferredGIProgram.mShaderLevel = mVertexShaderLevel[SHADER_DEFERRED];
+		success = gDeferredGIProgram.createShader(NULL, NULL);
+	}
+
+	if (success)
+	{
 		// load water shader
 		gDeferredWaterProgram.mName = "Deferred Water Shader";
 		gDeferredWaterProgram.mFeatures.calculatesAtmospherics = true;
@@ -1071,6 +1105,16 @@ BOOL LLViewerShaderMgr::loadShadersDeferred()
 		gDeferredAvatarAlphaProgram.mShaderFiles.push_back(make_pair("deferred/avatarAlphaF.glsl", GL_FRAGMENT_SHADER_ARB));
 		gDeferredAvatarAlphaProgram.mShaderLevel = mVertexShaderLevel[SHADER_DEFERRED];
 		success = gDeferredAvatarAlphaProgram.createShader(&mAvatarAttribs, &mAvatarUniforms);
+	}
+
+	if (success)
+	{
+		gLuminanceGatherProgram.mName = "Luminance Gather Shader";
+		gLuminanceGatherProgram.mShaderFiles.clear();
+		gLuminanceGatherProgram.mShaderFiles.push_back(make_pair("deferred/luminanceV.glsl", GL_VERTEX_SHADER_ARB));
+		gLuminanceGatherProgram.mShaderFiles.push_back(make_pair("deferred/luminanceF.glsl", GL_FRAGMENT_SHADER_ARB));
+		gLuminanceGatherProgram.mShaderLevel = mVertexShaderLevel[SHADER_DEFERRED];
+		success = gLuminanceGatherProgram.createShader(NULL, NULL);
 	}
 
 	return success;

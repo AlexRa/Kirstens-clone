@@ -125,6 +125,10 @@ public:
 		DEFERRED_NOISE,
 		DEFERRED_LIGHTFUNC,
 		DEFERRED_LIGHT,
+		DEFERRED_LUMINANCE,
+		DEFERRED_GI_LIGHT,
+		DEFERRED_SUN_LIGHT,
+		DEFERRED_LOCAL_LIGHT,
 		DEFERRED_PROJECTION,
 		DEFERRED_GI_DIFFUSE,
 		DEFERRED_GI_SPECULAR,
@@ -343,15 +347,19 @@ extern LLGLSLShader			gDeferredMultiLightProgram;
 extern LLGLSLShader			gDeferredSpotLightProgram;
 extern LLGLSLShader			gDeferredMultiSpotLightProgram;
 extern LLGLSLShader			gDeferredSunProgram;
+extern LLGLSLShader			gDeferredGIProgram;
 extern LLGLSLShader			gDeferredBlurLightProgram;
 extern LLGLSLShader			gDeferredAvatarProgram;
 extern LLGLSLShader			gDeferredSoftenProgram;
 extern LLGLSLShader			gDeferredShadowProgram;
 extern LLGLSLShader			gDeferredPostGIProgram;
+extern LLGLSLShader			gDeferredPostProgram;
 extern LLGLSLShader			gDeferredAvatarShadowProgram;
 extern LLGLSLShader			gDeferredAlphaProgram;
 extern LLGLSLShader			gDeferredFullbrightProgram;
 extern LLGLSLShader			gDeferredAvatarAlphaProgram;
+
+extern LLGLSLShader			gLuminanceGatherProgram;
 
 //current avatar shader parameter pointer
 extern GLint				gAvatarMatrixParam;
