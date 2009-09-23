@@ -21,7 +21,7 @@ void main()
 					  dot(norm,vary_mat1),
 					  dot(norm,vary_mat2));
 						
-	gl_FragData[0].rgb = gl_Color.rgb*col;
+	gl_FragData[0] = vec4(gl_Color.rgb*col, 0.0);
 	gl_FragData[1] = vec4(col*gl_Color.a, gl_Color.a);
 	gl_FragData[2] = vec4(normalize(tnorm)*0.5+0.5, 0.0);
 }

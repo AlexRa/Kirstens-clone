@@ -450,7 +450,7 @@ public:
 	LLRenderTarget			mScreen;
 	LLRenderTarget			mDeferredScreen;
 	LLRenderTarget			mDeferredDepth;
-	LLRenderTarget			mDeferredLight[2]; // KL 3 in render-pipeline & 2 in SG
+	LLRenderTarget			mDeferredLight[3];
 	LLMultisampleBuffer		mSampleBuffer;
 	LLRenderTarget			mGIMap;  // KL SD
 	LLRenderTarget			mGIMapPost[2];

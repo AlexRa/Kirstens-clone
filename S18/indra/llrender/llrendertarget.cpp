@@ -203,8 +203,7 @@ void LLRenderTarget::allocateDepth()
 		gGL.getTexUnit(0)->bindManual(mUsage, mDepth);
 		U32 internal_type = LLTexUnit::getInternalType(mUsage);
 		gGL.getTexUnit(0)->setTextureFilteringOption(LLTexUnit::TFO_POINT);
-		LLImageGL::setManualImage(internal_type, 0, GL_DEPTH24_STENCIL8_EXT, mResX, mResY, GL_DEPTH_STENCIL_EXT, GL_UNSIGNED_INT_24_8_EXT, NULL); // KL which to go with? DEPTH_COMPONENT GL spec > 2.0 or STENCIL_EXT?
-		//LLImageGL::setManualImage(internal_type, 0, GL_DEPTH_COMPONENT, mResX, mResY, GL_DEPTH_COMPONENT, GL_UNSIGNED_INT, NULL);
+		LLImageGL::setManualImage(internal_type, 0, GL_DEPTH_COMPONENT, mResX, mResY, GL_DEPTH_COMPONENT, GL_UNSIGNED_INT, NULL);
 	}
 }
 
@@ -212,7 +211,7 @@ void LLRenderTarget::shareDepthBuffer(LLRenderTarget& target)
 {
 	if (!mFBO || !target.mFBO)
 	{
-		llerrs << "Cannot share depth buffer between non FBO render targets." << llendl;
+		llwarns << "Cannot share depth buffer between non FBO render targets." << llendl;
 	}
 
 	if (mDepth)

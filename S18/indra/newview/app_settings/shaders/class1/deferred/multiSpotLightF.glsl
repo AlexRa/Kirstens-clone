@@ -97,11 +97,7 @@ void main()
 	proj_tc.xyz /= proj_tc.w;
 	
 	float fa = gl_Color.a+1.0;
-	float dist_atten = min(1.0-(dist2-1.0*(1.0-fa))/fa, 1.0);
-	if (dist_atten <= 0.0)
-	{
-		discard;
-	}
+	float dist_atten = clamp(1.0-(dist2-1.0*(1.0-fa))/fa, 0.0, 1.0);
 	
 	lv = proj_origin-pos.xyz;
 	lv = normalize(lv);
@@ -140,11 +136,11 @@ void main()
 		vec4 amb_plcol = texture2DLod(projectionMap, proj_tc.xy, proj_ambient_lod);
 							
 		amb_da += (da*da*0.5+0.5)*proj_ambiance;
-				
+			
 		amb_da *= dist_atten * noise;
-			
+		
 		amb_da = min(amb_da, 1.0-lit);
-			
+		
 		col += amb_da*gl_Color.rgb*diff_tex.rgb*amb_plcol.rgb*amb_plcol.a;
 	}
 	

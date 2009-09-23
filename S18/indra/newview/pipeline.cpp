@@ -540,8 +540,8 @@ void LLPipeline::allocateScreenBuffer(U32 resX, U32 resY)
 	else if (LLPipeline::sRenderDeferred)
 	{ //share depth buffer between deferred targets
 		mDeferredScreen.shareDepthBuffer(mScreen);
-		for (U32 i = 0; i < 2; i++)
-		{
+		for (U32 i = 0; i < 3; i++)
+		{ //share stencil buffer with screen space lightmap to stencil out sky
 			mDeferredScreen.shareDepthBuffer(mDeferredLight[i]);
 		}
 	}
@@ -586,8 +586,11 @@ void LLPipeline::releaseGLBuffers()
 	mSampleBuffer.releaseSampleBuffer();
 	mDeferredScreen.release();
 	mDeferredDepth.release();
-	mDeferredLight[0].release();
-	mDeferredLight[1].release();
+	for (U32 i = 0; i < 3; i++)
+	{
+		mDeferredLight[i].release();
+	}
+
 	mGIMap.release();
 	mGIMapPost[0].release();
 	mGIMapPost[1].release();
@@ -7750,7 +7753,10 @@ void LLPipeline::generateSunShadow(LLCamera& camera)
 			mShadow[j].clear();
 		}
 
-		renderShadow(view[j], proj[j], shadow_cam, FALSE);
+		{
+			LLGLEnable enable(GL_DEPTH_CLAMP_NV);
+			renderShadow(view[j], proj[j], shadow_cam, FALSE);
+		}
 
 		mShadow[j].flush();
  
