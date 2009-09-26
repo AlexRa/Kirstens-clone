@@ -173,7 +173,7 @@ LLDir_Mac::LLDir_Mac()
 		if (error == noErr)
 		{
 			FSRefToLLString(&cacheDirRef, mOSCacheDir);
-			(void)CFCreateDirectory(&cacheDirRef, CFSTR("SecondLife"),NULL);
+			(void)CFCreateDirectory(&cacheDirRef, CFSTR("Kirstens S18"),NULL);
 		}
 		
 		// mOSUserAppDir
