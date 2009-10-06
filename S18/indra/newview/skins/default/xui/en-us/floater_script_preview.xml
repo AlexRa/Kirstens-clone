@@ -4,6 +4,11 @@
      min_width="290" mouse_opaque="true" name="preview lsl text"
      rect_control="PreviewScriptRect" title="Script: Rotation Script"
      width="500">
+<panel bottom="0" follows="left|bottom|right|top" mouse_opaque="false" height="550" min_height="271" min_width="290" name="imagebg" width="500">
+     <icon bottom="0" color="255,255,255,245" scale_image="true"
+         follows="left|right|top|bottom" height="550" min_height="271" image_name="MapBg3.tga"
+         left="0" width="500" />
+</panel>     
 	<panel bottom="-550" enabled="true" follows="left|top|right|bottom" height="508"
 	     left="0" mouse_opaque="true" name="script panel" width="497" />
 	<icon bottom="-19" color="1 1 1 1" enabled="true" follows="top|right" height="16"

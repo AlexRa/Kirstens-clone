@@ -4,6 +4,11 @@
      min_height="140" min_width="220" mouse_opaque="true" name="mute floater"
      rect_control="FloaterMuteRect3" short_title="Mute List"
      title="Muted Residents &amp; Objects" width="300">
+<panel bottom="0" follows="left|bottom|right|top" mouse_opaque="false" height="300" min_height="140" min_width="222" name="imagebg" width="300">
+     <icon bottom="0" color="255,255,255,245" scale_image="true"
+         follows="left|right|top|bottom" height="300" min_height="140" image_name="MapBg3.tga"
+         left="0" width="300" />
+</panel>        
 	<scroll_list background_visible="true" bottom="-220" column_padding="5" draw_border="true"
 	     draw_heading="false" draw_stripes="true" enabled="true"
 	     follows="left|top|right|bottom" height="200"

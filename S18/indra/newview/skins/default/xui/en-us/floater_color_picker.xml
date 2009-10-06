@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <floater bottom="-613" can_close="true" can_drag_on_left="false" can_minimize="false"
-     can_resize="false" follows="left|top" height="380" left="272"
+     can_resize="false" follows="left|top" height="388" left="272"
      min_height="388" min_width="440" mouse_opaque="true" name="ColorPicker"
      title="Color Picker" width="440">
+<panel bottom="0" follows="left|bottom|right|top" mouse_opaque="false" height="388" min_height="388" min_width="440" name="imagebg" width="440">
+     <icon bottom="0" color="255,255,255,245" scale_image="true"
+         follows="left|right|top|bottom" height="388" min_height="388" image_name="MapBg3.tga"
+         left="0" width="440" />
+</panel>        
 	<text bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom="-45" drop_shadow_visible="true" follows="left|top" font="SansSerif"
 	     h_pad="0" halign="left" height="10" left="12" mouse_opaque="false"

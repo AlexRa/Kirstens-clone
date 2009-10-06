@@ -4,6 +4,13 @@
      min_width="400" mouse_opaque="true" name="Water Floater"
      rect_control="FloaterAdvancedWaterRect" title="Advanced Water Editor"
      width="700">
+     
+<panel bottom="0" follows="left|bottom|right|top" mouse_opaque="false" height="240" min_height="200" min_width="400" name="imagebg" width="700">
+     <icon bottom="0" color="255,255,255,245" scale_image="true"
+         follows="left|right|bottom" height="224" min_height="200" image_name="MapBg3.tga"
+         left="0" width="700" />
+</panel> 
+
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom="-50" drop_shadow_visible="true" follows="left|top|right"
 	     font="SansSerif" h_pad="0" halign="left" height="16"

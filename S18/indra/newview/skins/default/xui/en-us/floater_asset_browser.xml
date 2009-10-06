@@ -4,6 +4,12 @@
      can_resize="true" enabled="true" follows="left|bottom" height="620"
      hidden="false" left="300" min_height="420" min_width="630"
      mouse_opaque="true" name="asset browser" title="Asset Browser" width="720">
+     
+<panel bottom="0" follows="left|bottom|right|top" mouse_opaque="false" height="620" min_height="420" min_width="630" name="imagebg" width="720">
+     <icon bottom="0" color="255,255,255,245" scale_image="true"
+         follows="left|right|top|bottom" height="620" min_height="420" image_name="MapBg3.tga"
+         left="0" width="720" />
+</panel>      
 	
 	<inventory_panel allow_multi_select="false" border="true" bottom="-299" enabled="true"
 	     follows="left|top" height="280" hidden="false" left="10"

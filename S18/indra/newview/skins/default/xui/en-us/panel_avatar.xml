@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <panel bottom="-550" height="486" left="350" name="Panel Avatar" width="430">
+    <panel bottom="0" follows="left|bottom|right|top" height="486"  name="imagebg" width="430">
+     <icon bottom="0" color="255,255,255,245" scale_image="true"
+         follows="left|right|top|bottom" height="520"  image_name="MapBg3.tga"
+         left="0" width="419" />
+             
 	<tab_container bottom="-486" height="486" left="0" mouse_opaque="false" name="tab"
 	     tab_min_width="50" tab_position="top" width="419">
 		<panel border="true" bottom="-482" follows="left|top|right|bottom" height="466"
@@ -427,4 +432,5 @@ Disabled until you leave Orientation Island.
 	<string name="Loading">
 		Loading...
 	</string>
+    </panel> 
 </panel>

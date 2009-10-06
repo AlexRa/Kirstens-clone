@@ -4,6 +4,12 @@
      left="308" min_height="100" min_width="100" mouse_opaque="true"
      name="toolbox floater" rect_control="ToolboxRect" sound_flags="0" title=""
      short_title="Build" width="272">
+     
+<panel bottom="0" follows="left|bottom|right|top" mouse_opaque="false" height="550" min_height="100" min_width="100" name="imagebg" width="272">
+     <icon bottom="0" color="255,255,255,245" scale_image="true"
+         follows="left|right|top|bottom" height="550" min_height="100" image_name="MapBg3.tga"
+         left="0" width="272" />
+</panel>    
 
 <!-- Main floater tabs -->
 

@@ -2,6 +2,11 @@
 <floater can_close="true" can_drag_on_left="false" can_minimize="true"
      can_resize="false" name="regioninfo" rect_control="FloaterRegionInfo"
      title="Region/Estate">
+<panel bottom="0" follows="left|bottom|right|top" mouse_opaque="false" height="510" min_height="510" min_width="480" name="imagebg" width="480">
+     <icon bottom="0" color="255,255,255,245" scale_image="true"
+         follows="left|right|top|bottom" height="510" min_height="510" image_name="MapBg3.tga"
+         left="0" width="480" />
+</panel>   
 	<tab_container border="false" bottom="0" follows="left|right|top|bottom" left="1"
 	     name="region_panels" right="-1" tab_position="top" top="-20" />
 </floater>

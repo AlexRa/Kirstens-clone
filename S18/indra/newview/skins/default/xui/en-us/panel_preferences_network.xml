@@ -2,6 +2,11 @@
 <panel border="true" bottom="-409" enabled="true" follows="left|top|right|bottom"
      height="408" label="Network" left="102" mouse_opaque="true" name="network"
      width="517">
+     <panel bottom="0" follows="left|bottom|right|top" height="408"  name="imagebg" width="517">
+     <icon bottom="0" color="255,255,255,245" scale_image="true"
+         follows="left|right|top|bottom" height="408"  image_name="MapBg2.tga"
+         left="0" width="517" />
+</panel>              
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom="-20" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="10" left="12"

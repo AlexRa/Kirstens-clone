@@ -2,6 +2,11 @@
 <panel border="true" bottom="-409" enabled="true" follows="left|top|right|bottom"
      height="408" label="Graphics" left="102" mouse_opaque="true"
      name="Display panel" width="517">
+     <panel bottom="0" follows="left|bottom|right|top" height="408"  name="imagebg" width="517">
+     <icon bottom="0" color="255,255,255,245" scale_image="true"
+         follows="left|right|top|bottom" height="408"  image_name="MapBg2.tga"
+         left="0" width="517" />
+</panel>              
 	<button bottom="-22" follows="left|top" font="SansSerif" height="18" label="?"
 	     left="470" name="GraphicsPreferencesHelpButton" width="22" />
 	<check_box bottom="-23" enabled="true" follows="left|top" font="SansSerifSmall"

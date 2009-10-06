@@ -9,7 +9,7 @@
   
   <texture name="button_enabled_32x128.tga" preload="true" scale_left="16" scale_top="16" scale_right="112" scale_bottom="16" />
   
-  <texture name="toolbar_btn_enabled.tga" scale_left="7" scale_top="32" scale_right="121" scale_bottom="0" /> 
+  <texture name="toolbar_btn_enabled.tga" scale_left="7" scale_top="50" scale_right="121" scale_bottom="0" /> 
 
   <texture name="toolbar_btn_disabled.tga" scale_left="7" scale_top="32" scale_right="121" scale_bottom="0" /> 
   
@@ -21,8 +21,12 @@
   <texture name="checkbox_disabled_true.tga"	preload="true"/>
   <texture name="checkbox_enabled_false.tga"	preload="true"/>
   <texture name="checkbox_enabled_true.tga"	preload="true"/>
+  <texture name="login_panel" file_name="loginpane.png" preload="true" />
+  <texture name="connect_btn" file_name="Connect120.png" preload="true" />
+  <texture name="3dxcreative32_logo" file_name="3dxcreative32.png" preload="true" />
+  <texture name="OpenlifeBeta_logo" file_name="openlifegridbetalogo.png" preload="true" />
   
-  <texture name="close_in_blue.tga"	preload="true"/>
+  <texture name="closebox.png"	preload="true"/>
  
   <texture name="minimize.tga"	preload="true"/>
   <texture name="minimize_pressed.tga"	preload="true"/>
@@ -36,9 +40,9 @@
   
   <texture name="resize_handle_bottom_right_blue.tga" preload="true"/>
   
-  <texture name="rounded_square.tga"	file_name="rounded_square.j2c" preload="true" scale_left="16" scale_top="16" scale_right="112" scale_bottom="16"/>
+  <texture name="rounded_square.tga"	file_name="rounded_square.tga" preload="true" scale_left="16" scale_top="16" scale_right="112" scale_bottom="16"/>
   
-  <texture name="rounded_square_soft.tga"	file_name="rounded_square_soft.j2c" preload="true" scale_left="16" scale_top="16" scale_right="112" scale_bottom="16"/>
+  <texture name="rounded_square_soft.tga"	file_name="rounded_square_soft.tga" preload="true" scale_left="16" scale_top="16" scale_right="112" scale_bottom="16"/>
   
   <texture name="toolbar_tab.tga"	preload="true" scale_left="6" scale_top="42" scale_right="104" scale_bottom="8"/>
   <texture name="toolbar_bg.tga"	preload="true" scale_left="6" scale_top="42" scale_right="96" scale_bottom="16"/>
@@ -150,6 +154,7 @@
   
   <texture name="map_avatar_16.tga"/>
   <texture name="map_avatar_8.tga"/>
+  <texture name="map_avatar_you_8.tga"/>
   <texture name="map_event.tga"/>
   <texture name="map_event_mature.tga"/>
   <texture name="map_home.tga"/>
@@ -340,8 +345,8 @@
   <texture name="UIImgCreateSelectedUUID"	file_name="0098b015-3daf-4cfe-a72f-915369ea97c2.tga"/>
 
   <texture name="UIImgBtnCloseInactiveUUID" file_name="close_inactive_blue.tga"/>
-  <texture name="UIImgBtnCloseActiveUUID"	file_name="closebox.tga"/>
-  <texture name="UIImgBtnClosePressedUUID" file_name="close_in_blue.tga"/>
+  <texture name="UIImgBtnCloseActiveUUID"	file_name="closebox.png"/>
+  <texture name="UIImgBtnClosePressedUUID" file_name="closebox_active.png"/>
   <texture name="icn_clear_lineeditor.tga" />
   
   <texture name="up_arrow.tga" file_name="up_arrow.png"/>
@@ -368,8 +373,4 @@
   
   <texture name="skin_thumbnail_default.png" preload="true" />
   <texture name="skin_thumbnail_silver.png" preload="true" />
-
-  <texture name="default_land_picture.j2c"/>
-  <texture name="default_profile_picture.j2c"/>
-  <texture name="locked_image.j2c"/>
 </textures>

@@ -3,6 +3,11 @@
      height="300" min_height="200" min_width="180" name="active_speakers"
      rect_control="FloaterActiveSpeakersRect" title="Active Speakers"
      width="250">
+<panel bottom="0" follows="left|bottom|right|top" mouse_opaque="false" height="300" min_height="200" min_width="180" name="imagebg" width="250">
+     <icon bottom="0" color="255,255,255,245" scale_image="true"
+         follows="left|right|top|bottom" height="300" min_height="200" image_name="MapBg3.tga"
+         left="0" width="250" />
+     
 	<panel bottom="0" follows="left|top|right|bottom" left="0" mouse_opaque="false"
 	     name="active_speakers_panel" right="250" top="300">
 		<scroll_list bottom="35" can_resize="true" column_padding="0" draw_heading="true"
@@ -26,4 +31,5 @@
 			     width="25" />
 		</panel>
 	</panel>
+    </panel>
 </floater>

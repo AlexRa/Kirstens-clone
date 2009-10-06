@@ -125,6 +125,17 @@ private:
 	static void onCommitSearch(LLUICtrl*, void* data);
 	static void onClickSearch(void* data);
 	static void onClickStatGraph(void* data);
+	static void onClickInventory(void* data); // KL toolbar inventory callback to status bar
+	static void onClickFly(void*); // KL fly button to status bar
+	static void onClickSnapshot(void* data); // KL snapshot button to status bar
+	static void onClickRadar(void* data); // KL minimap to statusbar
+	static void onClickMap(void* data); // KL map button to status bar
+	static void onClickBuild(void* data); // Kl to status bar
+	static void onClickDirectory(void* data); // KL moved to status Bar
+	static void onClickCommunicate(LLUICtrl*, void*); // KL moved to status bar
+	static void onClickChat(void* data); // KL to status bar chat button
+
+	void updateCommunicateList(); // KL to statusbar
 
 private:
 	LLTextBox	*mTextBalance;

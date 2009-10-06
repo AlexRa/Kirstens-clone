@@ -2,6 +2,11 @@
 <floater bottom="-331" can_close="true" can_drag_on_left="false" can_minimize="true"
      can_resize="true" enabled="true" height="324" left="300" min_height="120"
      min_width="300" mouse_opaque="true" name="preview_texture" width="335">
+<panel bottom="0" follows="left|bottom|right|top" mouse_opaque="false" height="324" min_height="120" min_width="300" name="imagebg" width="335">
+     <icon bottom="0" color="255,255,255,245" scale_image="true"
+         follows="left|right|top|bottom" height="324" min_height="120" image_name="MapBg3.tga"
+         left="0" width="335" />
+</panel>        
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom="-40" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerif" h_pad="0" halign="left" height="19" left="13"

@@ -3,6 +3,11 @@
      can_resize="true" height="563" left="882" min_height="150" min_width="240"
      mouse_opaque="true" name="Inventory" rect_control="FloaterInventoryRect"
      title="Inventory" width="467">
+     <panel bottom="0" follows="left|bottom|right|top" mouse_opaque="false" height="563" min_height="150" min_width="240"  name="imagebg" width="467">
+     <icon bottom="0" top="-1" color="255,255,255,245" scale_image="true"
+         follows="left|right|top|bottom" height="563"  image_name="MapBg3.tga"
+         left="0" width="467" />
+         </panel>
 	<search_editor bottom="-50" follows="left|top|right" height="16" label="Type here to search"
 	     left="6" mouse_opaque="true" name="inventory search editor" width="455" />
 	<tab_container bottom_delta="-512" follows="left|top|right|bottom" height="508" left="2"

@@ -292,7 +292,6 @@ set(viewer_SOURCE_FILES
     llpanelpermissions.cpp
     llpanelpick.cpp
     llpanelplace.cpp
-    llpanelskins.cpp
     llpanelvolume.cpp
     llpanelweb.cpp
     llparcelselection.cpp
@@ -706,7 +705,6 @@ set(viewer_HEADER_FILES
     llpanelpermissions.h
     llpanelpick.h
     llpanelplace.h
-    llpanelskins.h
     llpanelvolume.h
     llpanelweb.h
     llparcelselection.h

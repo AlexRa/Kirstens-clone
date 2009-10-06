@@ -3,6 +3,11 @@
      can_resize="true" height="570" min_height="570" min_width="780"
      name="directory" rect_control="FloaterFindRect2" title="Search Second Life"
      width="780">
+<panel bottom="0" follows="left|bottom|right|top" mouse_opaque="false" height="570" min_height="570" min_width="780" name="imagebg" width="780">
+     <icon bottom="0" color="255,255,255,245" scale_image="true"
+         follows="left|right|top|bottom" height="570" min_height="570" image_name="MapBg3.tga"
+         left="0" width="780" />
+</panel>        
 	<tab_container bottom="-570" follows="left|top|right|bottom" height="550" left="0"
 	     mouse_opaque="false" name="Directory Tabs" tab_position="top" width="780">
 		<panel border="true" bottom="-549" follows="left|top|right|bottom" height="533"

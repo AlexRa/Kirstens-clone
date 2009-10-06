@@ -4,6 +4,11 @@
      left="367" min_height="420" min_width="460" mouse_opaque="true"
      name="floaterland" rect_control="FloaterLandRect5" title="About Land"
      width="460">
+<panel bottom="0" follows="left|bottom|right|top" mouse_opaque="false" height="420" min_height="420" min_width="460" name="imagebg" width="460">
+     <icon bottom="0" color="255,255,255,245" scale_image="true"
+         follows="left|right|top|bottom" height="420" min_height="420" image_name="MapBg3.tga"
+         left="0" width="460" />
+</panel>        
 	<tab_container bottom="-420" enabled="true" follows="left|top|right|bottom" height="400"
 	     left="1" mouse_opaque="false" name="landtab" tab_position="top" width="459">
 		<panel border="true" bottom="-349" enabled="true" follows="left|top|right|bottom"

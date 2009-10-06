@@ -3,6 +3,11 @@
      can_resize="true" enabled="true" follows="left|top" height="361" left="273"
      min_height="243" min_width="234" mouse_opaque="true"
      name="preview notecard" title="Note:" width="400">
+<panel bottom="0" follows="left|bottom|right|top" mouse_opaque="false" height="361" min_height="243" min_width="234" name="imagebg" width="400">
+     <icon bottom="0" color="255,255,255,245" scale_image="true"
+         follows="left|right|top|bottom" height="361" min_height="243" image_name="MapBg3.tga"
+         left="0" width="400" />
+</panel>      
 	<button bottom="-352" enabled="false" follows="left|bottom" font="SansSerif"
 	     halign="center" height="20" label="Save" label_selected="Save" left="9"
 	     mouse_opaque="false" name="Save" scale_image="true" width="100" />

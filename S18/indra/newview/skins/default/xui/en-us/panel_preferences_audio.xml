@@ -2,6 +2,11 @@
 <panel border="true" bottom="-409" enabled="true" follows="left|top|right|bottom"
      height="408" label="Audio &amp; Video" left="102" mouse_opaque="true"
      name="Media panel" width="517">
+     <panel bottom="0" follows="left|bottom|right|top" height="408"  name="imagebg" width="517">
+     <icon bottom="0" color="255,255,255,245" scale_image="true"
+         follows="left|right|top|bottom" height="408"  image_name="MapBg2.tga"
+         left="0" width="517" />
+</panel>              
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom="-22" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="12" left="10"
@@ -46,6 +51,11 @@
 	     enabled="true" follows="left|top" height="15" increment="0.1"
 	     initial_val="1" label="Doppler Effect" label_width="100" left="148"
 	     max_val="2" min_val="0" mouse_opaque="true" name="Doppler Effect"
+	     show_text="true" width="250" />
+	<slider bottom_delta="-20" control_name="AudioLevelDistance" edit_text="true"
+	     enabled="true" follows="left|top" height="15" increment="0.1"
+	     initial_val="1" label="Distance Factor" label_width="100" left="148"
+	     max_val="2" min_val="0" mouse_opaque="true" name="Distance Factor"
 	     show_text="true" width="250" />
 	<slider bottom_delta="-20" control_name="AudioLevelRolloff" edit_text="true"
 	     enabled="true" follows="left|top" height="15" increment="0.1"

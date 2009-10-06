@@ -3,6 +3,11 @@
      can_resize="false" can_tear_off="true" default_tab_group="1" enabled="true"
      height="460" left="330" min_height="213" min_width="324"
      mouse_opaque="true" name="Preferences" title="Preferences" width="620">
+     <panel bottom="0" follows="left|bottom|right|top" height="460" mouse_opaque="false" min_height="213" min_width="324"  name="imagebg" width="620">
+     <icon bottom="0" top="-1" color="255,255,255,245" scale_image="true"
+         follows="left|right|top|bottom" height="460"  image_name="MapBg3.tga"
+         left="0" width="620" />
+             
 	<button bottom="-455" enabled="true" follows="right|bottom" font="SansSerif"
 	     halign="center" height="20" label="OK" label_selected="OK" left="335"
 	     mouse_opaque="true" name="OK" scale_image="true" width="90" />
@@ -25,4 +30,5 @@
 	<tab_container bottom="-431" enabled="true" follows="left|top|right|bottom" height="410"
 	     left="0" mouse_opaque="false" name="pref core" tab_group="1"
 	     tab_position="left" tab_width="120" width="620" />
+         </panel> 
 </floater>

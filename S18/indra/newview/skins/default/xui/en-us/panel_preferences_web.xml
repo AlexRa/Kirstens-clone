@@ -2,6 +2,11 @@
 <panel border="true" bottom="-409" enabled="true" follows="left|top|right|bottom"
      height="408" label="Web" left="102" mouse_opaque="true" name="web"
      width="517">
+     <panel bottom="0" follows="left|bottom|right|top" height="408"  name="imagebg" width="517">
+     <icon bottom="0" color="255,255,255,245" scale_image="true"
+         follows="left|right|top|bottom" height="408"  image_name="MapBg2.tga"
+         left="0" width="517" />
+</panel>              
 	<radio_group bottom="-45" draw_border="false" follows="top|left" height="40" left="12"
 	     name="use_external_browser" width="480">
 		<radio_item bottom="-20" height="20" left="0" name="external" width="480" 

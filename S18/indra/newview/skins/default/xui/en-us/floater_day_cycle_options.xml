@@ -3,6 +3,12 @@
      can_resize="false" height="275" left="50" min_height="180"
      min_width="400" mouse_opaque="true" name="Day Cycle Floater"
      rect_control="FloaterDayCycleRect" title="Day Cycle Editor" width="646">
+     
+<panel bottom="0" follows="left|bottom|right|top" mouse_opaque="false" height="275" min_height="180" min_width="400" name="imagebg" width="646">
+     <icon bottom="0" color="255,255,255,245" scale_image="true"
+         follows="left|right|bottom" height="259" min_height="180" image_name="MapBg3.tga"
+         left="0" width="646" />
+        
 	<tab_container bottom="-275" follows="left|top" height="255" left="0"
 	     mouse_opaque="false" name="Day Cycle Tabs" tab_position="top" width="644">
 		<panel border="true" bottom="-255" follows="left|top|right|bottom" height="255"
@@ -247,4 +253,5 @@
 			     width="150" />
 		</panel>
 	</tab_container>
+  </panel>
 </floater>

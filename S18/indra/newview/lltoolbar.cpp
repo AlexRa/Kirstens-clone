@@ -95,7 +95,7 @@
 //
 
 LLToolBar *gToolBar = NULL;
-S32 TOOL_BAR_HEIGHT = 20;
+S32 TOOL_BAR_HEIGHT = 10;
 
 //
 // Statics
@@ -119,38 +119,39 @@ LLToolBar::LLToolBar()
 
 BOOL LLToolBar::postBuild()
 {
-	childSetCommitCallback("communicate_btn", onClickCommunicate, this);
-	childSetControlName("communicate_btn", "ShowCommunicate");
+	//childSetCommitCallback("communicate_btn", onClickCommunicate, this); // KL to status bar
+	//childSetControlName("communicate_btn", "ShowCommunicate"); // KL
 
-	childSetAction("chat_btn", onClickChat, this);
-	childSetControlName("chat_btn", "ChatVisible");
+	//childSetAction("chat_btn", onClickChat, this); // KL to status bar
+	//childSetControlName("chat_btn", "ChatVisible"); // KL
 
 	childSetAction("appearance_btn", onClickAppearance, this);
 	childSetControlName("appearance_btn", "");
 
-	childSetAction("fly_btn", onClickFly, this);
-	childSetControlName("fly_btn", "FlyBtnState");
+	//childSetAction("fly_btn", onClickFly, this);
+	//childSetAction("fly_btn", onClickFly, this);  // KL remove fly button from tool bar
+	//childSetControlName("fly_btn", "FlyBtnState"); // KL
 
 	childSetAction("sit_btn", onClickSit, this);
 	childSetControlName("sit_btn", "SitBtnState");
 
-	childSetAction("snapshot_btn", onClickSnapshot, this);
-	childSetControlName("snapshot_btn", "");
+	//childSetAction("snapshot_btn", onClickSnapshot, this); // KL moved to statusbar
+	//childSetControlName("snapshot_btn", ""); // KL
 
-	childSetAction("directory_btn", onClickDirectory, this);
-	childSetControlName("directory_btn", "ShowDirectory");
+	//childSetAction("directory_btn", onClickDirectory, this); // KL openlife web moved to statusbar
+	//childSetControlName("directory_btn", "ShowDirectory"); // KL
 
-	childSetAction("build_btn", onClickBuild, this);
-	childSetControlName("build_btn", "BuildBtnState");
+	//childSetAction("build_btn", onClickBuild, this); // KL moved to status bar
+	//childSetControlName("build_btn", "BuildBtnState"); // KL
 
-	childSetAction("radar_btn", onClickRadar, this);
-	childSetControlName("radar_btn", "ShowMiniMap");
+	//childSetAction("radar_btn", onClickRadar, this);// KL moved to status bar
+	//childSetControlName("radar_btn", "ShowMiniMap"); // KL
 
-	childSetAction("map_btn", onClickMap, this);
-	childSetControlName("map_btn", "ShowWorldMap");
+	//childSetAction("map_btn", onClickMap, this);  // KL moved to status bar
+	//childSetControlName("map_btn", "ShowWorldMap"); // KL
 
-	childSetAction("inventory_btn", onClickInventory, this);
-	childSetControlName("inventory_btn", "ShowInventory");
+	//childSetAction("inventory_btn", onClickInventory, this); // KL remove inventory button from toolbar
+	//childSetControlName("inventory_btn", "ShowInventory");   // KL
 
 	for (child_list_const_iter_t child_iter = getChildList()->begin();
 		 child_iter != getChildList()->end(); ++child_iter)
@@ -223,9 +224,9 @@ BOOL LLToolBar::handleDragAndDrop(S32 x, S32 y, MASK mask, BOOL drop,
 // static
 void LLToolBar::toggle(void*)
 {
-	BOOL show = gSavedSettings.getBOOL("ShowToolBar");                      
+	BOOL show = gSavedSettings.getBOOL("ShowToolBar");      // KL left here just for the saved setting ( should no longer toggle original tool bar!                
 	gSavedSettings.setBOOL("ShowToolBar", !show);                           
-	gToolBar->setVisible(!show);
+	//gToolBar->setVisible(!show);
 }
 
 
@@ -280,11 +281,15 @@ void LLToolBar::reshape(S32 width, S32 height, BOOL called_from_parent)
 // Per-frame updates of visibility
 void LLToolBar::refresh()
 {
-	BOOL show = gSavedSettings.getBOOL("ShowToolBar");
-	BOOL mouselook = gAgent.cameraMouselook();
-	setVisible(show && !mouselook);
+	//BOOL show = gSavedSettings.getBOOL("ShowToolBar"); // bottom toolbar are should no longer respond to toggle
+    BOOL chat = gSavedSettings.getBOOL("ChatVisible");
 
-	BOOL sitting = FALSE;
+	BOOL mouselook = gAgent.cameraMouselook();
+	setVisible(chat && !mouselook);
+
+	// Clothing button updated inside LLFloaterClothing
+
+	/*BOOL sitting = FALSE;
 	if (gAgent.getAvatarObject())
 	{
 		sitting = gAgent.getAvatarObject()->mIsSitting;
@@ -301,15 +306,12 @@ void LLToolBar::refresh()
 	{
 		build_mode = FALSE;
 	}
-	gSavedSettings.setBOOL("BuildBtnState", build_mode);
+	gSavedSettings.setBOOL("BuildBtnState", build_mode); */
 
-	if (isInVisibleChain())
-	{
-		updateCommunicateList();
-	}
+	//updateCommunicateList(); //KL To statusBar refresh!
 }
 
-void LLToolBar::updateCommunicateList()
+/* void LLToolBar::updateCommunicateList()
 {
 	LLFlyoutButton* communicate_button = getChild<LLFlyoutButton>("communicate_btn");
 	LLSD selected = communicate_button->getValue();
@@ -371,10 +373,10 @@ void LLToolBar::updateCommunicateList()
 
 	communicate_button->setToggleState(gSavedSettings.getBOOL("ShowCommunicate"));
 	communicate_button->setValue(selected);
-}
+} */
 
 
-// static
+/* / static KL to statusbar
 void LLToolBar::onClickCommunicate(LLUICtrl* ctrl, void* user_data)
 {
 	LLToolBar* toolbar = (LLToolBar*)user_data;
@@ -431,16 +433,16 @@ void LLToolBar::onClickCommunicate(LLUICtrl* ctrl, void* user_data)
 	{
 		LLFloaterChatterBox::showInstance(selected_option);
 	}
-}
+} */
 
 
-// static
+/* / static
 void LLToolBar::onClickChat(void* user_data)
 {
 	handle_chat(NULL);
-}
+} */
 
-// static
+// static deprecated still needed?? KL
 void LLToolBar::onClickAppearance(void*)
 {
 	if (gAgent.areWearablesLoaded())
@@ -450,11 +452,18 @@ void LLToolBar::onClickAppearance(void*)
 }
 
 
-// static
+// static also deprecated KL needed?
+//void LLToolBar::onClickClothing(void*)
+//{
+//	handle_clothing(NULL);
+//}
+
+
+/* / static
 void LLToolBar::onClickFly(void*)
 {
 	gAgent.toggleFlying();
-}
+} */
 
 
 // static
@@ -478,44 +487,44 @@ void LLToolBar::onClickSit(void*)
 }
 
 
-// static
+/* / static
 void LLToolBar::onClickSnapshot(void*)
 {
 	LLFloaterSnapshot::show (0);
-}
+} */
 
 
-// static
+/* / static
 void LLToolBar::onClickDirectory(void*)
 {
 	handle_find(NULL);
-}
+} */
 
 
-// static
+/* / static
 void LLToolBar::onClickBuild(void*)
 {
 	toggle_build_mode();
-}
+} */
 
 
-// static
+/* / static
 void LLToolBar::onClickRadar(void*)
 {
 	handle_mini_map(NULL);
-}
+} */
 
 
-// static
+/* / static
 void LLToolBar::onClickMap(void*)
 {
 	handle_map(NULL);
-}
+} */
 
 
-// static
+/* static this has gone to statusbar KL
 void LLToolBar::onClickInventory(void*)
 {
 	handle_inventory(NULL);
-}
+} */
 

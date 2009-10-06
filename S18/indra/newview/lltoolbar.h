@@ -71,23 +71,23 @@ public:
 	void refresh();
 
 	// callbacks
-	static void onClickCommunicate(LLUICtrl*, void*);
-	static void onClickChat(void* data);
+	//static void onClickCommunicate(LLUICtrl*, void*); // KL moved to status bar
+	//static void onClickChat(void* data); // KL to status bar
 	static void onClickAppearance(void* data);
 //	static void onClickClothing(void* data);
-	static void onClickFly(void*);
+	//static void onClickFly(void*); // KL to status bar
 	static void onClickSit(void*);
-	static void onClickSnapshot(void* data);
-	static void onClickDirectory(void* data);
-	static void onClickBuild(void* data);
-	static void onClickRadar(void* data);
-	static void onClickMap(void* data);
-	static void onClickInventory(void* data);
+	//static void onClickSnapshot(void* data); // KL to status bar
+	//static void onClickDirectory(void* data); // KL moved to status Bar
+	//static void onClickBuild(void* data); // Kl to status bar
+	//static void onClickRadar(void* data); // KL to status Bar
+	//static void onClickMap(void* data); // Kl to status bar
+	// static void onClickInventory(void* data);  // KL to status Bar
 
 	static F32 sInventoryAutoOpenTime;
 
 private:
-	void updateCommunicateList();
+	//void updateCommunicateList(); // KL to statusbar
 
 
 private:

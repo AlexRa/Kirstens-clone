@@ -39,6 +39,7 @@
 #include "llbutton.h"
 #include "llcommandhandler.h"
 #include "llviewercontrol.h"
+#include "llfocusmgr.h" // Kl added from toolbar
 #include "llfloaterbuycurrency.h"
 #include "llfloaterchat.h"
 #include "llfloaterdirectory.h"		// to spawn search
@@ -46,15 +47,26 @@
 #include "llfloaterland.h"
 #include "llfloaterregioninfo.h"
 #include "llfloaterscriptdebug.h"
+#include "llfloatersnapshot.h" // KL handle snapshot button!
+#include "llfloaterchatterbox.h" // KL communicate
+#include "llfloaterfriends.h" // KL comunicate button!
+#include "llfloaterchat.h" // KL communicate button
+#include "llfloatermute.h" // KL comunicate button
+#include "llcombobox.h" // KL communicate button
+#include "llscrolllistctrl.h" // Kl communicate button
+#include "llimview.h" // Kl added from toolbar
 #include "llhudicon.h"
 #include "llinventoryview.h"
 #include "llkeyboard.h"
 #include "lllineeditor.h"
 #include "llmenugl.h"
+#include "llmenucommands.h" // KL handle_inventory!
 #include "llnotify.h"
 #include "llimview.h"
+#include "llinventoryview.h" // KL inventory view req for inventory button
 #include "lltextbox.h"
 #include "llui.h"
+#include "llviewermenu.h" // Kl added from toolbar
 #include "llviewerparceloverlay.h"
 #include "llviewerregion.h"
 #include "llviewerstats.h"
@@ -70,6 +82,8 @@
 #include "lluictrlfactory.h"
 #include "llvoiceclient.h"	// for gVoiceClient
 
+#include "lltoolgrab.h" // For Toolbar buttons in status bar refresh
+#include "lltoolbar.h"
 #include "lltoolmgr.h"
 #include "llfocusmgr.h"
 #include "llappviewer.h"
@@ -91,7 +105,7 @@
 // Globals
 //
 LLStatusBar *gStatusBar = NULL;
-S32 STATUS_BAR_HEIGHT = 0;
+S32 STATUS_BAR_HEIGHT = 44; // KL reflect this in app settings and in the XML files for uniformity while modifying the UI
 extern S32 MENU_BAR_HEIGHT;
 
 
@@ -165,6 +179,33 @@ mSquareMetersCommitted(0)
 	childSetAction("restrictpush", onClickPush, this );
 	childSetAction("status_no_voice", onClickVoice, this );
 
+	childSetAction("inventory_btn", onClickInventory, this); // KL inventory button to status bar
+	childSetControlName("inventory_btn", "ShowInventory");   // KL
+
+	childSetAction("fly_btn", onClickFly, this);  // KL fly button from to status bar
+	childSetControlName("fly_btn", "FlyBtnState"); // KL
+
+	childSetAction("snapshot_btn", onClickSnapshot, this); // KL moved to statusbar
+	childSetControlName("snapshot_btn", ""); // KL
+
+	childSetAction("radar_btn", onClickRadar, this);// KL moved to status bar
+	childSetControlName("radar_btn", "ShowMiniMap"); // KL
+
+	childSetAction("map_btn", onClickMap, this);  // KL moved map button to status bar
+	childSetControlName("map_btn", "ShowWorldMap"); // KL
+
+	childSetAction("build_btn", onClickBuild, this); // KL build button moved to status bar
+	childSetControlName("build_btn", "BuildBtnState"); // KL
+
+	childSetAction("directory_btn", onClickDirectory, this); // KL openlife web moved to statusbar
+	childSetControlName("directory_btn", "ShowDirectory"); // KL
+
+	childSetCommitCallback("communicate_btn", onClickCommunicate, this); // KL to status bar
+	childSetControlName("communicate_btn", "ShowCommunicate"); // KL
+
+	childSetAction("chat_btn", onClickChat, this); // KL to status bar show chat button
+	childSetControlName("chat_btn", "ChatVisible"); // KL
+
 	childSetCommitCallback("search_editor", onCommitSearch, this);
 	childSetAction("search_btn", onClickSearch, this);
 
@@ -179,7 +220,8 @@ mSquareMetersCommitted(0)
 	S32 x = getRect().getWidth() - 2;
 	S32 y = 0;
 	LLRect r;
-	r.set( x-SIM_STAT_WIDTH, y+MENU_BAR_HEIGHT-1, x, y+1);
+	//r.set( x-SIM_STAT_WIDTH, y+MENU_BAR_HEIGHT-1, x, y+1);
+    r.setOriginAndSize( x-SIM_STAT_WIDTH, y+26, 8, 18); // KL this sorts out the lack of XML control
 	mSGBandwidth = new LLStatGraph("BandwidthGraph", r);
 	mSGBandwidth->setFollows(FOLLOWS_BOTTOM | FOLLOWS_RIGHT);
 	mSGBandwidth->setStat(&LLViewerStats::getInstance()->mKBitStat);
@@ -192,7 +234,7 @@ mSquareMetersCommitted(0)
 	addChild(mSGBandwidth);
 	x -= SIM_STAT_WIDTH + 2;
 
-	r.set( x-SIM_STAT_WIDTH, y+MENU_BAR_HEIGHT-1, x, y+1);
+	r.setOriginAndSize( x-SIM_STAT_WIDTH, y+26, 8, 18); // KL this sorts out the lack of XML control
 	mSGPacketLoss = new LLStatGraph("PacketLossPercent", r);
 	mSGPacketLoss->setFollows(FOLLOWS_BOTTOM | FOLLOWS_RIGHT);
 	mSGPacketLoss->setStat(&LLViewerStats::getInstance()->mPacketsLostPercentStat);
@@ -321,7 +363,7 @@ void LLStatusBar::refresh()
 	if (LLHUDIcon::iconsNearby())
 	{
 		childGetRect( "scriptout", buttonRect );
-		r.setOriginAndSize( x, y, buttonRect.getWidth(), buttonRect.getHeight());
+		r.setOriginAndSize( x, y+26, buttonRect.getWidth(), buttonRect.getHeight()); // KL
 		childSetRect("scriptout",r);
 		childSetVisible("scriptout", true);
 		x += buttonRect.getWidth();
@@ -348,7 +390,7 @@ void LLStatusBar::refresh()
 
 		// Health
 		childGetRect( "health", buttonRect );
-		r.setOriginAndSize( x, y, buttonRect.getWidth(), buttonRect.getHeight());
+		r.setOriginAndSize( x, y+26, buttonRect.getWidth(), buttonRect.getHeight());
 		childSetRect("health", r);
 		x += buttonRect.getWidth();
 
@@ -370,7 +412,7 @@ void LLStatusBar::refresh()
 		// No Fly Zone
 		childGetRect( "no_fly", buttonRect );
 		childSetVisible( "no_fly", true );
-		r.setOriginAndSize( x, y, buttonRect.getWidth(), buttonRect.getHeight());
+		r.setOriginAndSize( x, y+26, buttonRect.getWidth(), buttonRect.getHeight());
 		childSetRect( "no_fly", r );
 		x += buttonRect.getWidth();
 	}
@@ -386,7 +428,7 @@ void LLStatusBar::refresh()
 		childSetVisible("no_build", TRUE);
 		childGetRect( "no_build", buttonRect );
 		// No Build Zone
-		r.setOriginAndSize( x, y, buttonRect.getWidth(), buttonRect.getHeight());
+		r.setOriginAndSize( x, y+26, buttonRect.getWidth(), buttonRect.getHeight()); // KL layout fix
 		childSetRect( "no_build", r );
 		x += buttonRect.getWidth();
 	}
@@ -408,7 +450,7 @@ void LLStatusBar::refresh()
 		// No scripts
 		childSetVisible("no_scripts", TRUE);
 		childGetRect( "no_scripts", buttonRect );
-		r.setOriginAndSize( x, y, buttonRect.getWidth(), buttonRect.getHeight());
+		r.setOriginAndSize( x, y+26, buttonRect.getWidth(), buttonRect.getHeight()); // KL
 		childSetRect( "no_scripts", r );
 		x += buttonRect.getWidth();
 	}
@@ -424,7 +466,7 @@ void LLStatusBar::refresh()
 	{
 		childSetVisible("restrictpush", TRUE);
 		childGetRect( "restrictpush", buttonRect );
-		r.setOriginAndSize( x, y, buttonRect.getWidth(), buttonRect.getHeight());
+		r.setOriginAndSize( x, y+26, buttonRect.getWidth(), buttonRect.getHeight()); // KL layout change
 		childSetRect( "restrictpush", r );
 		x += buttonRect.getWidth();
 	}
@@ -442,7 +484,7 @@ void LLStatusBar::refresh()
 	{
 		childSetVisible("status_no_voice", TRUE);
 		childGetRect( "status_no_voice", buttonRect );
-		r.setOriginAndSize( x, y, buttonRect.getWidth(), buttonRect.getHeight());
+		r.setOriginAndSize( x, y+26, buttonRect.getWidth(), buttonRect.getHeight()); // KL
 		childSetRect( "status_no_voice", r );
 		x += buttonRect.getWidth();
 	}
@@ -456,7 +498,7 @@ void LLStatusBar::refresh()
 		//HACK: layout tweak until this is all xml
 		x += 9;
 		childGetRect( "buyland", buttonRect );
-		r.setOriginAndSize( x, y, buttonRect.getWidth(), buttonRect.getHeight());
+		r.setOriginAndSize( x, y+26, buttonRect.getWidth(), buttonRect.getHeight()); // Kl another layout change!
 		childSetRect( "buyland", r );
 		x += buttonRect.getWidth();
 	}
@@ -624,7 +666,7 @@ void LLStatusBar::refresh()
 	x += 8;
 
 	const S32 PARCEL_RIGHT =  llmin(mTextTime->getRect().mLeft, mTextParcelName->getTextPixelWidth() + x + 5);
-	r.set(x+4, getRect().getHeight() - 2, PARCEL_RIGHT, 0);
+	r.set(x+4, getRect().getHeight(), PARCEL_RIGHT, 24); // KL not -2 on get.height!
 	mTextParcelName->setRect(r);
 
 	// Set search bar visibility
@@ -634,6 +676,46 @@ void LLStatusBar::refresh()
 	mSGBandwidth->setVisible(! search_visible);
 	mSGPacketLoss->setVisible(! search_visible);
 	childSetEnabled("stat_btn", ! search_visible);
+    
+	//KL button states from toolbar into status bar
+	BOOL sitting = FALSE;
+	if (gAgent.getAvatarObject())
+	{
+		sitting = gAgent.getAvatarObject()->mIsSitting;
+	}
+
+	childSetEnabled("fly_btn", (gAgent.canFly() || gAgent.getFlying()) && !sitting );
+
+	childSetEnabled("build_btn", LLViewerParcelMgr::getInstance()->agentCanBuild() );
+
+	// Check to see if we're in build mode
+	BOOL build_mode = LLToolMgr::getInstance()->inEdit();
+	// And not just clicking on a scripted object
+	if (LLToolGrab::getInstance()->getHideBuildHighlight())
+	{
+		build_mode = FALSE;
+	}
+	gSavedSettings.setBOOL("BuildBtnState", build_mode);
+
+    BOOL show = gSavedSettings.getBOOL("ShowToolBar");
+	BOOL mouselook = gAgent.cameraMouselook();
+
+	if (mouselook)
+	{
+		childSetVisible("status2", FALSE);
+	}
+	else if (!mouselook && show)
+	{
+         childSetVisible("status2", TRUE);
+	}
+	else
+	{
+        childSetVisible("status2", FALSE);
+	}
+    
+	
+
+	updateCommunicateList(); //KL To statusBar refresh!
 }
 
 void LLStatusBar::setVisibleForMouselook(bool visible)
@@ -645,7 +727,7 @@ void LLStatusBar::setVisibleForMouselook(bool visible)
 	childSetVisible("search_btn", visible);
 	mSGBandwidth->setVisible(visible);
 	mSGPacketLoss->setVisible(visible);
-	setBackgroundVisible(visible);
+	//setBackgroundVisible(visible);
 }
 
 void LLStatusBar::debitBalance(S32 debit)
@@ -926,24 +1008,152 @@ BOOL can_afford_transaction(S32 cost)
 	return((cost <= 0)||((gStatusBar) && (gStatusBar->getBalance() >=cost)));
 }
 
-
-// Implements secondlife:///app/balance/request to request a L$ balance
-// update via UDP message system. JC
-class LLBalanceHandler : public LLCommandHandler
+//static  KL from toolbar inventory button changed to Status as opposed to Tool
+void LLStatusBar::onClickInventory(void*)
 {
-public:
-	// Requires "trusted" browser/URL source
-	LLBalanceHandler() : LLCommandHandler("balance", true) { }
-	bool handle(const LLSD& tokens, const LLSD& query_map, LLWebBrowserCtrl* web)
+	handle_inventory(NULL);
+} 
+
+// static KL from toolbar fly button
+void LLStatusBar::onClickFly(void*)
+{
+	gAgent.toggleFlying();
+}
+
+// static KL from toolbar
+void LLStatusBar::onClickSnapshot(void*)
+{
+	LLFloaterSnapshot::show (0);
+}
+
+// static from toolbar
+void LLStatusBar::onClickRadar(void*)
+{
+	handle_mini_map(NULL);
+}
+
+// static map button from toolbar
+void LLStatusBar::onClickMap(void*)
+{
+	handle_map(NULL);
+}
+
+// static build button from toolbar
+void LLStatusBar::onClickBuild(void*)
+{
+	toggle_build_mode();
+}
+
+// static openlife web button KL
+void LLStatusBar::onClickDirectory(void*)
+{
+	handle_find(NULL);
+}
+
+void LLStatusBar::updateCommunicateList() // KL communicate update to statusbar
+{
+	LLFlyoutButton* communicate_button = getChild<LLFlyoutButton>("communicate_btn");
+	LLSD selected = communicate_button->getValue();
+
+	communicate_button->removeall();
+
+	LLFloater* frontmost_floater = LLFloaterChatterBox::getInstance()->getActiveFloater();
+	LLScrollListItem* itemp = NULL;
+
+	itemp = communicate_button->add(LLFloaterMyFriends::getInstance()->getShortTitle(), LLSD("contacts"), ADD_TOP);
+	if (LLFloaterMyFriends::getInstance() == frontmost_floater)
 	{
-		if (tokens.size() == 1
-			&& tokens[0].asString() == "request")
+		((LLScrollListText*)itemp->getColumn(0))->setFontStyle(LLFontGL::BOLD);
+		// make sure current tab is selected in list
+		if (selected.isUndefined())
 		{
-			LLStatusBar::sendMoneyBalanceRequest();
-			return true;
+			selected = itemp->getValue();
 		}
-		return false;
 	}
-};
-// register with command dispatch system
-LLBalanceHandler gBalanceHandler;
+	itemp = communicate_button->add(LLFloaterChat::getInstance()->getShortTitle(), LLSD("local chat"), ADD_TOP);
+	if (LLFloaterChat::getInstance() == frontmost_floater)
+	{
+		((LLScrollListText*)itemp->getColumn(0))->setFontStyle(LLFontGL::BOLD);
+		if (selected.isUndefined())
+		{
+			selected = itemp->getValue();
+		}
+	}
+	communicate_button->addSeparator(ADD_TOP);
+	communicate_button->add(getString("Redock Windows"), LLSD("redock"), ADD_TOP);
+	communicate_button->addSeparator(ADD_TOP);
+	communicate_button->add(LLFloaterMute::getInstance()->getShortTitle(), LLSD("mute list"), ADD_TOP);
+	
+	std::set<LLHandle<LLFloater> >::const_iterator floater_handle_it;
+
+	if (gIMMgr->getIMFloaterHandles().size() > 0)
+	{
+		communicate_button->addSeparator(ADD_TOP);
+	}
+
+	
+}
+
+// static KL to status bar communicate button
+void LLStatusBar::onClickCommunicate(LLUICtrl* ctrl, void* user_data)
+{
+	LLStatusBar* toolbar = (LLStatusBar*)user_data;
+	LLFlyoutButton* communicate_button = toolbar->getChild<LLFlyoutButton>("communicate_btn");
+	
+	LLSD selected_option = communicate_button->getValue();
+    
+	if (selected_option.asString() == "contacts")
+	{
+		LLFloaterMyFriends::showInstance();
+	}
+	else if (selected_option.asString() == "local chat")
+	{
+		LLFloaterChat::showInstance();
+	}
+	else if (selected_option.asString() == "redock")
+	{
+		LLFloaterChatterBox::getInstance()->addFloater(LLFloaterMyFriends::getInstance(), FALSE);
+		LLFloaterChatterBox::getInstance()->addFloater(LLFloaterChat::getInstance(), FALSE);
+		LLUUID session_to_show;
+		
+		std::set<LLHandle<LLFloater> >::const_iterator floater_handle_it;
+		for(floater_handle_it = gIMMgr->getIMFloaterHandles().begin(); floater_handle_it != gIMMgr->getIMFloaterHandles().end(); ++floater_handle_it)
+		{
+			LLFloater* im_floaterp = floater_handle_it->get();
+			if (im_floaterp)
+			{
+				if (im_floaterp->isFrontmost())
+				{
+					session_to_show = ((LLFloaterIMPanel*)im_floaterp)->getSessionID();
+				}
+				LLFloaterChatterBox::getInstance()->addFloater(im_floaterp, FALSE);
+			}
+		}
+
+		LLFloaterChatterBox::showInstance(session_to_show);
+	}
+	else if (selected_option.asString() == "mute list")
+	{
+		LLFloaterMute::showInstance();
+	}
+	else if (selected_option.isUndefined()) // user just clicked the communicate button, treat as toggle
+	{
+		if (LLFloaterChatterBox::getInstance()->getFloaterCount() == 0)
+		{
+			LLFloaterMyFriends::toggleInstance();
+		}
+		else
+		{
+			LLFloaterChatterBox::toggleInstance();
+		}
+	}
+	else // otherwise selection_option is a specific IM session id
+	{
+		LLFloaterChatterBox::showInstance(selected_option);
+	}
+}
+// static KL chat button
+void LLStatusBar::onClickChat(void* user_data)
+{
+	handle_chat(NULL);
+}

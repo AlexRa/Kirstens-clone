@@ -2,7 +2,12 @@
 <floater bottom="-300" can_close="true" can_drag_on_left="false" can_minimize="false"
      can_resize="false" follows="left|top" height="526" name="Snapshot"
      rect_control="FloaterSnapshotRect" title="Snapshot Preview" width="215">
-	<text bottom_delta="-40" follows="top|left" height="15" left="10" name="type_label"
+     <panel bottom="0" follows="left|bottom|right|top" mouse_opaque="false" height="526" min_height="150" min_width="215"  name="imagebg" width="215">
+     <icon bottom="0" top="-1" color="255,255,255,245" scale_image="true"
+         follows="left|right|top|bottom" height="526"  image_name="MapBg3.tga"
+         left="0" width="215" />
+      </panel>
+	<text bottom="-40" follows="top|left" height="15" left="10" name="type_label"
 	     width="195">
     Snapshot destination
   </text>

@@ -3,6 +3,11 @@
      can_resize="true" can_tear_off="true" enabled="true" height="290"
      left="478" min_height="290" min_width="410" mouse_opaque="true"
      name="texture picker" title="Pick: Texture" width="410">
+<panel bottom="0" follows="left|bottom|right|top" mouse_opaque="false" height="290" min_height="290" min_width="410" name="imagebg" width="410">
+     <icon bottom="0" color="255,255,255,245" scale_image="true"
+         follows="left|right|top|bottom" height="290" min_height="290" image_name="MapBg3.tga"
+         left="0" width="410" />
+</panel>        
 	<string name="choose_picture">
 		Click to choose a picture
 	</string>

@@ -2,6 +2,11 @@
 <floater can_close="true" can_drag_on_left="false" can_minimize="false"
      can_resize="false" height="215" name="settings_debug"
      title="Debug Settings" width="350">
+<panel bottom="0" follows="left|bottom|right|top" mouse_opaque="false" height="215" min_height="215" min_width="350" name="imagebg" width="350">
+     <icon bottom="0" color="255,255,255,245" scale_image="true"
+         follows="left|right|bottom" height="199" min_height="199" image_name="MapBg3.tga"
+         left="0" width="350" />
+</panel>     
 	<combo_box allow_text_entry="true" bottom="-50" follows="top|left" font="SansSerifSmall"
 	     height="20" left="15" max_chars="255" name="settings_combo" />
 	<text_editor bottom_delta="-75" enabled="false" height="60" width="320" hide_scrollbar="true"
