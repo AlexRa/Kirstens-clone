@@ -113,7 +113,7 @@ ERROR:
 // virtual
 U32 LLBlowfishCipher::decrypt(const U8* src, U32 src_len, U8* dst, U32 dst_len)
 {
-	llerrs << "LLBlowfishCipher decrypt unsupported" << llendl;
+	llwarns << "LLBlowfishCipher decrypt unsupported" << llendl;
 	return 0;
 }
 

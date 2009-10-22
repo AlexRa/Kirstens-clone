@@ -108,7 +108,7 @@ LLDrawPool *LLDrawPool::createPool(const U32 type, LLViewerImage *tex0)
 		poolp = new LLDrawPoolWLSky();
 		break;
 	default:
-		llerrs << "Unknown draw pool type!" << llendl;
+		llwarns << "Unknown draw pool type!" << llendl;
 		return NULL;
 	}
 
@@ -424,7 +424,7 @@ LLDrawPool* LLRenderPass::instancePool()
 #if LL_RELEASE_FOR_DOWNLOAD
 	llwarns << "Attempting to instance a render pass.  Invalid operation." << llendl;
 #else
-	llerrs << "Attempting to instance a render pass.  Invalid operation." << llendl;
+	llwarns << "Attempting to instance a render pass.  Invalid operation." << llendl;
 #endif
 	return NULL;
 }

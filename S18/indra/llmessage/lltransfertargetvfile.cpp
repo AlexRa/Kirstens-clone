@@ -175,7 +175,7 @@ void LLTransferTargetVFile::completionCallback(const LLTSCode status)
 			LLVFile file(gAssetStorage->mVFS, mTempID, mParams.getAssetType(), LLVFile::WRITE);
 			if (!file.rename(mParams.getAssetID(), mParams.getAssetType()))
 			{
-				llerrs << "LLTransferTargetVFile: rename failed" << llendl;
+				llwarns << "LLTransferTargetVFile: rename failed" << llendl;
 			}
 		}
 		err_code = LL_ERR_NOERR;

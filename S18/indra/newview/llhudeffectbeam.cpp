@@ -122,7 +122,7 @@ void LLHUDEffectBeam::packData(LLMessageSystem *mesgsys)
 
 void LLHUDEffectBeam::unpackData(LLMessageSystem *mesgsys, S32 blocknum)
 {
-	llerrs << "Got beam!" << llendl;
+	llwarns << "Got beam!" << llendl;
 	BOOL use_target_object;
 	LLVector3d new_target;
 	U8 packed_data[41];

@@ -177,7 +177,7 @@ LLViewerRegion* LLWorld::addRegion(const U64 &region_handle, const LLHost &host)
 									getRegionWidthInMeters() );
 	if (!regionp)
 	{
-		llerrs << "Unable to create new region!" << llendl;
+		llwarns << "Unable to create new region!" << llendl;
 	}
 
 	regionp->mCloudLayer.create(regionp);
@@ -367,9 +367,14 @@ LLVector3d	LLWorld::clipToVisibleRegions(const LLVector3d &start_pos, const LLVe
 		clip_factor = (region_coord.mV[VY] - region_width) / delta_pos_abs.mdV[VY];
 	}
 
-	// clamp to < 256 to stay in sim
+	// clamp to within region dimensions
 	LLVector3d final_region_pos = LLVector3d(region_coord) - (delta_pos * clip_factor);
-	final_region_pos.clamp(0.0, 255.999);
+	final_region_pos.mdV[VX] = llclamp(final_region_pos.mdV[VX], 0.0,
+									   (F64)(region_width - F_ALMOST_ZERO));
+	final_region_pos.mdV[VY] = llclamp(final_region_pos.mdV[VY], 0.0,
+									   (F64)(region_width - F_ALMOST_ZERO));
+	final_region_pos.mdV[VZ] = llclamp(final_region_pos.mdV[VZ], 0.0,
+									   (F64)(LLWorld::getInstance()->getRegionMaxHeight() - F_ALMOST_ZERO));
 	return regionp->getPosGlobalFromRegion(LLVector3(final_region_pos));
 }
 
@@ -582,7 +587,7 @@ void LLWorld::updateVisibilities()
 		region_list_t::iterator curiter = iter++;
 		LLViewerRegion* regionp = *curiter;
 		F32 height = regionp->getLand().getMaxZ() - regionp->getLand().getMinZ();
-		F32 radius = 0.5f*fsqrtf(height * height + diagonal_squared);
+		F32 radius = 0.5f * F32(sqrt(height * height + diagonal_squared));
 		if (!regionp->getLand().hasZData()
 			|| LLViewerCamera::getInstance()->sphereInFrustum(regionp->getCenterAgent(), radius))
 		{
@@ -603,7 +608,7 @@ void LLWorld::updateVisibilities()
 		}
 
 		F32 height = regionp->getLand().getMaxZ() - regionp->getLand().getMinZ();
-		F32 radius = 0.5f*fsqrtf(height * height + diagonal_squared);
+		F32 radius = 0.5f * F32(sqrt(height * height + diagonal_squared));
 		if (LLViewerCamera::getInstance()->sphereInFrustum(regionp->getCenterAgent(), radius))
 		{
 			regionp->calculateCameraDistance();

@@ -193,7 +193,7 @@ void LLViewerAssetStorage::storeAssetData(
 	{
 		// LLAssetStorage metric: no filename
 		reportMetric( LLUUID::null, asset_type, LLStringUtil::null, LLUUID::null, 0, MR_VFS_CORRUPTION, __FILE__, __LINE__, "Filename missing" );
-		llerrs << "No filename specified" << llendl;
+		llwarns << "No filename specified" << llendl;
 		return;
 	}
 	

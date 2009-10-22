@@ -760,7 +760,7 @@ void LLSelectMgr::addAsIndividual(LLViewerObject *objectp, S32 face, BOOL undoab
 	}
 	else
 	{
-		llerrs << "LLSelectMgr::add face " << face << " out-of-range" << llendl;
+		llwarns << "LLSelectMgr::add face " << face << " out-of-range" << llendl;
 		return;
 	}
 
@@ -1182,7 +1182,7 @@ void LLSelectMgr::remove(LLViewerObject *objectp, S32 te, BOOL undoable)
 		}
 		else
 		{
-			llerrs << "LLSelectMgr::remove - tried to remove TE " << te << " that wasn't selected" << llendl;
+			llwarns << "LLSelectMgr::remove - tried to remove TE " << te << " that wasn't selected" << llendl;
 			return;
 		}
 
@@ -1205,7 +1205,7 @@ void LLSelectMgr::remove(LLViewerObject *objectp, S32 te, BOOL undoable)
 	else
 	{
 		// ...out of range face
-		llerrs << "LLSelectMgr::remove - TE " << te << " out of range" << llendl;
+		llwarns << "LLSelectMgr::remove - TE " << te << " out of range" << llendl;
 	}
 
 	updateSelectionCenter();
@@ -3339,7 +3339,7 @@ void LLSelectMgr::packPermissionsHead(void* user_data)
 /*
 void LLSelectMgr::sendSelect()
 {
-	llerrs << "Not implemented" << llendl;
+	llwarns << "Not implemented" << llendl;
 }
 */
 
@@ -3452,7 +3452,7 @@ void LLSelectMgr::deselectAllIfTooFar()
 		{
 			if (gDebugSelectMgr)
 			{
-				llinfos << "Selection manager: auto-deselecting, select_dist = " << fsqrtf(select_dist_sq) << llendl;
+				llinfos << "Selection manager: auto-deselecting, select_dist = " << F32(sqrt(select_dist_sq)) << llendl;
 				llinfos << "agent pos global = " << gAgent.getPositionGlobal() << llendl;
 				llinfos << "selection pos global = " << selectionCenter << llendl;
 			}
@@ -4143,7 +4143,7 @@ void LLSelectMgr::sendListToRegions(const std::string& message_name,
 		break;
 
 	default:
-		llerrs << "Bad send type " << send_type << " passed to SendListToRegions()" << llendl;
+		llwarns << "Bad send type " << send_type << " passed to SendListToRegions()" << llendl;
 	}
 
 	// bail if nothing selected

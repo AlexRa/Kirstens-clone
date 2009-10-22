@@ -115,7 +115,7 @@ LLTSCode LLTransferSourceAsset::dataCallback(const S32 packet_id,
 
 	if (packet_id != mLastPacketID + 1)
 	{
-		llerrs << "Can't handle out of order file transfer yet!" << llendl;
+		llwarns << "Can't handle out of order file transfer yet!" << llendl;
 	}
 
 	// grab a buffer from the right place in the file

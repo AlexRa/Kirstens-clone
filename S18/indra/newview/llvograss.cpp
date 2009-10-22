@@ -124,7 +124,7 @@ void LLVOGrass::initClass()
 
 	if (!grass_def_grass.parseFile(xml_filename))
 	{
-		llerrs << "Failed to parse grass file." << llendl;
+		llwarns << "Failed to parse grass file." << llendl;
 		return;
 	}
 
@@ -338,7 +338,7 @@ void LLVOGrass::updateTextures(LLAgent &agent)
 	{
 		if (gPipeline.hasRenderDebugMask(LLPipeline::RENDER_DEBUG_TEXTURE_AREA))
 		{
-			setDebugText(llformat("%4.0f", fsqrtf(mPixelArea)));
+			setDebugText(llformat("%4.0f", F32(sqrt(mPixelArea))));
 		}
 		getTEImage(0)->addTextureStats(mPixelArea);
 	}

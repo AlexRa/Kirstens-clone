@@ -62,7 +62,7 @@ LLSD LLIndraConfigFile::getConfig(const std::string& config_name)
 {
 	if (sConfigDir.empty())
 	{
-		llerrs << "LLIndraConfigFile::initClass() not called" << llendl;
+		llwarns << "LLIndraConfigFile::initClass() not called" << llendl;
 	}
 
 	LLFrameTimer::updateFrameTime();

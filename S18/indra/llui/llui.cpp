@@ -1570,7 +1570,7 @@ void LLUI::initClass(LLControlGroup* config,
 		|| sIgnoresGroup == NULL
 		|| sColorsGroup == NULL)
 	{
-		llerrs << "Failure to initialize configuration groups" << llendl;
+		llwarns << "Failure to initialize configuration groups" << llendl;
 	}
 
 	sImageProvider = image_provider;

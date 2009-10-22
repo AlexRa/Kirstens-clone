@@ -180,7 +180,7 @@ LLView* LLComboBox::fromXML(LLXMLNodePtr node, LLView *parent, LLUICtrlFactory *
 
 	if (contents.find_first_not_of(" \n\t") != contents.npos)
 	{
-		llerrs << "Legacy combo box item format used! Please convert to <combo_item> tags!" << llendl;
+		llwarns << "Legacy combo box item format used! Please convert to <combo_item> tags!" << llendl;
 	}
 	else
 	{

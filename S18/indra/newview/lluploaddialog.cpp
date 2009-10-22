@@ -109,7 +109,7 @@ void LLUploadDialog::setMessage( const std::string& msg)
 	//strcpy(temp_msg,"Uploading...\n\n");
 	if (temp_msg == NULL)
 	{
-		llerrs << "Memory Allocation Failed" << llendl;
+		llwarns << "Memory Allocation Failed" << llendl;
 		return;
 	}
 	

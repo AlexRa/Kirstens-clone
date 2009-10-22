@@ -126,9 +126,9 @@ public:
 	{
 #if MEM_TRACK_TYPE
 		if (type < 0 || type >= MTYPE_NUM_TYPES)
-			llerrs << "LLMemType error" << llendl;
+			llwarns << "LLMemType error" << llendl;
 		if (sCurDepth < 0 || sCurDepth >= MTYPE_MAX_DEPTH)
-			llerrs << "LLMemType error" << llendl;
+			llwarns << "LLMemType error" << llendl;
 		sType[sCurDepth] = sCurType;
 		sCurDepth++;
 		sCurType = type;

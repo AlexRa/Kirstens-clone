@@ -122,7 +122,7 @@ BOOL LLPolyMorphData::loadBinary(LLFILE *fp, LLPolyMeshSharedData *mesh)
 
 		if (mVertexIndices[v] > 10000)
 		{
-			llerrs << "Bad morph index: " << mVertexIndices[v] << llendl;
+			llwarns << "Bad morph index: " << mVertexIndices[v] << llendl;
 		}
 
 

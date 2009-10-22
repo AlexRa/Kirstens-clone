@@ -285,7 +285,7 @@ S32 LLXfer_File::flush()
 	{
 		if (mFp)
 		{
-			llerrs << "Overwriting open file pointer!" << llendl;
+			llwarns << "Overwriting open file pointer!" << llendl;
 		}
 		mFp = LLFile::fopen(mTempFilename,"a+b");		/* Flawfinder : ignore */
 

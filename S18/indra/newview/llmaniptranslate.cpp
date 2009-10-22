@@ -2219,7 +2219,7 @@ void LLManipTranslate::renderArrow(S32 which_arrow, S32 selected_arrow, F32 box_
 			axis.mV[0] = 1.0f;
 			break;
 		default:
-			llerrs << "renderArrow called with bad arrow " << which_arrow << llendl;
+			llwarns << "renderArrow called with bad arrow " << which_arrow << llendl;
 			break;
 		}
 

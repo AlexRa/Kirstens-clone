@@ -748,7 +748,7 @@ S32 LLTextEditor::getLineStart( S32 line ) const
 	S32 segoffset = mLineStartList[line].mOffset;
 	LLTextSegment* seg = mSegments[segidx];
 	S32 res = seg->getStart() + segoffset;
-	if (res > seg->getEnd()) llerrs << "wtf" << llendl;
+	if (res > seg->getEnd()) llwarns << "wtf" << llendl;
 	return res;
 }
 
@@ -4094,7 +4094,7 @@ BOOL LLTextEditor::importBuffer(const char* buffer, S32 length )
 	char* text = new char[ text_len + 1];
 	if (text == NULL)
 	{
-		llerrs << "Memory allocation failure." << llendl;			
+		llwarns << "Memory allocation failure." << llendl;			
 		return FALSE;
 	}
 	instream.get(text, text_len + 1, '\0');

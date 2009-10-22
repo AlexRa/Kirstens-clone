@@ -73,7 +73,7 @@ void LLViewerPartSource::updatePart(LLViewerPart &part, const F32 dt)
 
 void LLViewerPartSource::update(const F32 dt) 
 {
-	llerrs << "Creating default part source!" << llendl;
+	llwarns << "Creating default part source!" << llendl;
 }
 
 LLUUID LLViewerPartSource::getImageUUID() const

@@ -95,7 +95,7 @@ void LLSDMessageBuilder::nextBlock(const char* blockname)
 	}
 	else
 	{
-		llerrs << "existing block not array" << llendl;
+		llwarns << "existing block not array" << llendl;
 	}
 }
 

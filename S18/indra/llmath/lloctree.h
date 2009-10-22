@@ -454,7 +454,7 @@ public:
 			mChild[i]->validate();
 			if (mChild[i]->getParent() != this)
 			{
-				llerrs << "Octree child has invalid parent." << llendl;
+				llwarns << "Octree child has invalid parent." << llendl;
 			}
 		}
 #endif

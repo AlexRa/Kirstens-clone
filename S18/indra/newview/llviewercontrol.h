@@ -70,7 +70,7 @@ extern std::string gCurrentVersion;
 template <class T> 
 eControlType get_control_type(const T& in, LLSD& out)
 {
-	llerrs << "Usupported control type: " << typeid(T).name() << "." << llendl;
+	llwarns << "Usupported control type: " << typeid(T).name() << "." << llendl;
 	return TYPE_COUNT;
 }
 
@@ -98,7 +98,7 @@ public:
 			mControl = gSavedSettings.getControl(name);
 			if(mControl.isNull())
 			{
-				llerrs << "The control could not be created!!!" << llendl;
+				llwarns << "The control could not be created!!!" << llendl;
 			}
 
 			mCachedValue = default_value;

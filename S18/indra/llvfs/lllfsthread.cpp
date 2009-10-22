@@ -99,7 +99,7 @@ LLLFSThread::handle_t LLLFSThread::read(const std::string& filename,	/* Flawfind
 	bool res = addRequest(req);
 	if (!res)
 	{
-		llerrs << "LLLFSThread::read called after LLLFSThread::cleanupClass()" << llendl;
+		llwarns << "LLLFSThread::read called after LLLFSThread::cleanupClass()" << llendl;
 	}
 
 	return handle;
@@ -121,7 +121,7 @@ LLLFSThread::handle_t LLLFSThread::write(const std::string& filename,
 	bool res = addRequest(req);
 	if (!res)
 	{
-		llerrs << "LLLFSThread::read called after LLLFSThread::cleanupClass()" << llendl;
+		llwarns << "LLLFSThread::read called after LLLFSThread::cleanupClass()" << llendl;
 	}
 	
 	return handle;
@@ -168,7 +168,7 @@ void LLLFSThread::Request::deleteRequest()
 {
 	if (getStatus() == STATUS_QUEUED)
 	{
-		llerrs << "Attempt to delete a queued LLLFSThread::Request!" << llendl;
+		llwarns << "Attempt to delete a queued LLLFSThread::Request!" << llendl;
 	}	
 	if (mResponder.notNull())
 	{
@@ -233,7 +233,7 @@ bool LLLFSThread::Request::processRequest()
 	}
 	else
 	{
-		llerrs << "LLLFSThread::unknown operation: " << (S32)mOperation << llendl;
+		llwarns << "LLLFSThread::unknown operation: " << (S32)mOperation << llendl;
 	}
 	return complete;
 }

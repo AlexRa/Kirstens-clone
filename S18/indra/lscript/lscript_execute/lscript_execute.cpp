@@ -4033,7 +4033,7 @@ void lscript_run(const std::string& filename, BOOL b_debug)
 
 	if (filename.empty())
 	{
-		llerrs << "filename is NULL" << llendl;
+		llwarns << "filename is NULL" << llendl;
 		// Just reporting error is likely not enough. Need
 		// to check how to abort or error out gracefully
 		// from this function. XXXTBD

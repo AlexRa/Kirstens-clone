@@ -1345,14 +1345,14 @@ void LLVOAvatar::initClass()
 	BOOL success = sXMLTree.parseFile( xmlFile, FALSE );
 	if (!success)
 	{
-		llerrs << "Problem reading avatar configuration file:" << xmlFile << llendl;
+		llwarns << "Problem reading avatar configuration file:" << xmlFile << llendl;
 	}
 
 	// now sanity check xml file
 	LLXmlTreeNode* root = sXMLTree.getRoot();
 	if (!root) 
 	{
-		llerrs << "No root node found in avatar configuration file: " << xmlFile << llendl;
+		llwarns << "No root node found in avatar configuration file: " << xmlFile << llendl;
 		return;
 	}
 
@@ -1361,14 +1361,14 @@ void LLVOAvatar::initClass()
 	//-------------------------------------------------------------------------
 	if( !root->hasName( "linden_avatar" ) )
 	{
-		llerrs << "Invalid avatar file header: " << xmlFile << llendl;
+		llwarns << "Invalid avatar file header: " << xmlFile << llendl;
 	}
 	
 	std::string version;
 	static LLStdStringHandle version_string = LLXmlTree::addAttributeString("version");
 	if( !root->getFastAttributeString( version_string, version ) || (version != "1.0") )
 	{
-		llerrs << "Invalid avatar file version: " << version << " in file: " << xmlFile << llendl;
+		llwarns << "Invalid avatar file version: " << version << " in file: " << xmlFile << llendl;
 	}
 
 	S32 wearable_def_version = 1;
@@ -1381,7 +1381,7 @@ void LLVOAvatar::initClass()
 	LLXmlTreeNode* skeleton_node = root->getChildByName( "skeleton" );
 	if (!skeleton_node)
 	{
-		llerrs << "No skeleton in avatar configuration file: " << xmlFile << llendl;
+		llwarns << "No skeleton in avatar configuration file: " << xmlFile << llendl;
 		return;
 	}
 	
@@ -1389,14 +1389,14 @@ void LLVOAvatar::initClass()
 	static LLStdStringHandle file_name_string = LLXmlTree::addAttributeString("file_name");
 	if (!skeleton_node->getFastAttributeString(file_name_string, skeleton_file_name))
 	{
-		llerrs << "No file name in skeleton node in avatar config file: " << xmlFile << llendl;
+		llwarns << "No file name in skeleton node in avatar config file: " << xmlFile << llendl;
 	}
 	
 	std::string skeleton_path;
 	skeleton_path = gDirUtilp->getExpandedFilename(LL_PATH_CHARACTER,skeleton_file_name);
 	if (!parseSkeletonFile(skeleton_path))
 	{
-		llerrs << "Error parsing skeleton file: " << skeleton_path << llendl;
+		llwarns << "Error parsing skeleton file: " << skeleton_path << llendl;
 	}
 
 	// Process XML data
@@ -1664,7 +1664,7 @@ BOOL LLVOAvatar::parseSkeletonFile(const std::string& filename)
 
 	if (!success)
 	{
-		llerrs << "Can't parse skeleton file: " << filename << llendl;
+		llwarns << "Can't parse skeleton file: " << filename << llendl;
 		return FALSE;
 	}
 
@@ -1672,19 +1672,19 @@ BOOL LLVOAvatar::parseSkeletonFile(const std::string& filename)
 	LLXmlTreeNode* root = sSkeletonXMLTree.getRoot();
 	if (!root) 
 	{
-		llerrs << "No root node found in avatar skeleton file: " << filename << llendl;
+		llwarns << "No root node found in avatar skeleton file: " << filename << llendl;
 	}
 
 	if( !root->hasName( "linden_skeleton" ) )
 	{
-		llerrs << "Invalid avatar skeleton file header: " << filename << llendl;
+		llwarns << "Invalid avatar skeleton file header: " << filename << llendl;
 	}
 
 	std::string version;
 	static LLStdStringHandle version_string = LLXmlTree::addAttributeString("version");
 	if( !root->getFastAttributeString( version_string, version ) || (version != "1.0") )
 	{
-		llerrs << "Invalid avatar skeleton file version: " << version << " in file: " << filename << llendl;
+		llwarns << "Invalid avatar skeleton file version: " << version << " in file: " << filename << llendl;
 	}
 
 	return TRUE;
@@ -1771,7 +1771,7 @@ BOOL LLVOAvatar::buildSkeleton(const LLVOAvatarSkeletonInfo *info)
 	//-------------------------------------------------------------------------
 	if (!allocateCharacterJoints(info->mNumBones))
 	{
-		llerrs << "Can't allocate " << info->mNumBones << " joints" << llendl;
+		llwarns << "Can't allocate " << info->mNumBones << " joints" << llendl;
 		return FALSE;
 	}
 	
@@ -1782,7 +1782,7 @@ BOOL LLVOAvatar::buildSkeleton(const LLVOAvatarSkeletonInfo *info)
 	{
 		if (!allocateCollisionVolumes(info->mNumCollisionVolumes))
 		{
-			llerrs << "Can't allocate " << info->mNumCollisionVolumes << " collision volumes" << llendl;
+			llwarns << "Can't allocate " << info->mNumCollisionVolumes << " collision volumes" << llendl;
 			return FALSE;
 		}
 	}
@@ -1795,7 +1795,7 @@ BOOL LLVOAvatar::buildSkeleton(const LLVOAvatarSkeletonInfo *info)
 		LLVOAvatarBoneInfo *info = *iter;
 		if (!setupBone(info, NULL, current_volume_num, current_joint_num))
 		{
-			llerrs << "Error parsing bone in skeleton file" << llendl;
+			llwarns << "Error parsing bone in skeleton file" << llendl;
 			return FALSE;
 		}
 	}
@@ -1897,7 +1897,7 @@ void LLVOAvatar::buildCharacter()
 	{
 		if ( mIsSelf )
 		{
-			llerrs << "Unable to load user's avatar" << llendl;
+			llwarns << "Unable to load user's avatar" << llendl;
 		}
 		else
 		{
@@ -1950,7 +1950,7 @@ void LLVOAvatar::buildCharacter()
 		mEyeLeftp &&
 		mEyeRightp))
 	{
-		llerrs << "Failed to create avatar." << llendl;
+		llwarns << "Failed to create avatar." << llendl;
 		return;
 	}
 
@@ -2339,7 +2339,7 @@ void LLVOAvatar::updateMeshData()
 			//   the case of more than one avatar in the pool (thus > 0 instead of >= 0)
 			if (facep->getGeomIndex() > 0)
 			{
-				llerrs << "non-zero geom index: " << facep->getGeomIndex() << " in LLVOAvatar::restoreMeshData" << llendl;
+				llwarns << "non-zero geom index: " << facep->getGeomIndex() << " in LLVOAvatar::restoreMeshData" << llendl;
 			}
 
 			for(S32 k = j ; k < part_index ; k++)
@@ -4551,7 +4551,7 @@ void LLVOAvatar::updateTextures(LLAgent &agent) // KL SD version
 
 	if (gPipeline.hasRenderDebugMask(LLPipeline::RENDER_DEBUG_TEXTURE_AREA))
 	{
-		setDebugText(llformat("%4.0f:%4.0f", fsqrtf(mMinPixelArea),fsqrtf(mMaxPixelArea)));
+		setDebugText(llformat("%4.0f:%4.0f", F32(sqrt(mMinPixelArea)),F32(sqrt(mMaxPixelArea))));
 	}	
 	
 	if( render_avatar )
@@ -5766,7 +5766,7 @@ BOOL LLVOAvatar::updateGeometry(LLDrawable *drawable)
 
 	if (!drawable)
 	{
-		llerrs << "LLVOAvatar::updateGeometry() called with NULL drawable" << llendl;
+		llwarns << "LLVOAvatar::updateGeometry() called with NULL drawable" << llendl;
 	}
 
 	return TRUE;
@@ -8018,7 +8018,7 @@ void LLVOAvatar::onBakedTextureMasksLoaded( BOOL success, LLViewerImage *src_vi,
 		{
 			if (!aux_src->getData())
 			{
-				llerrs << "No auxiliary source data for onBakedTextureMasksLoaded" << llendl;
+				llwarns << "No auxiliary source data for onBakedTextureMasksLoaded" << llendl;
 				return;
 			}
 

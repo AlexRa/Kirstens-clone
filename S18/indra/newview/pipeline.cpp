@@ -790,7 +790,7 @@ void LLPipeline::unloadShaders()
 
 void LLPipeline::assertInitializedDoError()
 {
-	llerrs << "LLPipeline used when uninitialized." << llendl;
+	llwarns << "LLPipeline used when uninitialized." << llendl;
 }
 
 //============================================================================
@@ -966,7 +966,7 @@ LLDrawPool *LLPipeline::findPool(const U32 type, LLViewerImage *tex0)
 
 	default:
 		llassert(0);
-		llerrs << "Invalid Pool Type in  LLPipeline::findPool() type=" << type << llendl;
+		llwarns << "Invalid Pool Type in  LLPipeline::findPool() type=" << type << llendl;
 		break;
 	}
 
@@ -1081,7 +1081,7 @@ void LLPipeline::unlinkDrawable(LLDrawable *drawable)
 #ifdef LL_RELEASE_FOR_DOWNLOAD
 			llwarns << "Couldn't remove object from spatial group!" << llendl;
 #else
-			llerrs << "Couldn't remove object from spatial group!" << llendl;
+			llwarns << "Couldn't remove object from spatial group!" << llendl;
 #endif
 		}
 	}
@@ -1167,7 +1167,7 @@ void LLPipeline::createObject(LLViewerObject* vobj)
 	}
 	else
 	{
-		llerrs << "Redundant drawable creation!" << llendl;
+		llwarns << "Redundant drawable creation!" << llendl;
 	}
 		
 	llassert(drawablep);
@@ -1228,7 +1228,7 @@ void LLPipeline::updateMoveDampedAsync(LLDrawable* drawablep)
 	}
 	if (!drawablep)
 	{
-		llerrs << "updateMove called with NULL drawablep" << llendl;
+		llwarns << "updateMove called with NULL drawablep" << llendl;
 		return;
 	}
 	if (drawablep->isState(LLDrawable::EARLY_MOVE))
@@ -1258,7 +1258,7 @@ void LLPipeline::updateMoveNormalAsync(LLDrawable* drawablep)
 	}
 	if (!drawablep)
 	{
-		llerrs << "updateMove called with NULL drawablep" << llendl;
+		llwarns << "updateMove called with NULL drawablep" << llendl;
 	}
 	if (drawablep->isState(LLDrawable::EARLY_MOVE))
 	{
@@ -1574,7 +1574,7 @@ void LLPipeline::markNotCulled(LLSpatialGroup* group, LLCamera& camera)
 	
 	group->setVisible();
 
-	if (!sSkipUpdate && !sShadowRender)
+	if (!sSkipUpdate) // && !sShadowRender) KL?
 	{
 		group->updateDistance(camera);
 	}
@@ -1877,7 +1877,7 @@ void LLPipeline::markMoved(LLDrawable *drawablep, BOOL damped_motion)
 
 	if (!drawablep)
 	{
-		//llerrs << "Sending null drawable to moved list!" << llendl;
+		//llwarns << "Sending null drawable to moved list!" << llendl;
 		return;
 	}
 	
@@ -2026,10 +2026,10 @@ void LLPipeline::markRebuild(LLSpatialGroup* group, BOOL priority)
 		}
 		else if (!group->isState(LLSpatialGroup::IN_BUILD_Q2 | LLSpatialGroup::IN_BUILD_Q1))
 		{
-			//llerrs << "Non-priority updates not yet supported!" << llendl;
+			//llwarns << "Non-priority updates not yet supported!" << llendl;
 			if (std::find(mGroupQ2.begin(), mGroupQ2.end(), group) != mGroupQ2.end())
 			{
-				llerrs << "WTF?" << llendl;
+				llwarns << "WTF?" << llendl;
 			}
 			mGroupQ2.push_back(group);
 			group->setState(LLSpatialGroup::IN_BUILD_Q2);
@@ -2710,7 +2710,7 @@ void LLPipeline::renderHighlights()
 			LLFace *facep = mSelectedFaces[i];
 			if (!facep || facep->getDrawable()->isDead())
 			{
-				llerrs << "Bad face on selection" << llendl;
+				llwarns << "Bad face on selection" << llendl;
 				return;
 			}
 			
@@ -2783,7 +2783,7 @@ void LLPipeline::renderGeom(LLCamera& camera, BOOL forceVBOUpdate)
 	{
 		if (!verify())
 		{
-			llerrs << "Pipeline verification failed!" << llendl;
+			llwarns << "Pipeline verification failed!" << llendl;
 		}
 	}
 
@@ -2910,7 +2910,7 @@ void LLPipeline::renderGeom(LLCamera& camera, BOOL forceVBOUpdate)
 						if (depth > 3)
 						{
 							
-							llerrs << "GL matrix stack corrupted!" << llendl;
+							llwarns << "GL matrix stack corrupted!" << llendl;
 						}
 						std::string msg = llformat("%s pass %d", gPoolNames[cur_type].c_str(), i);
 						LLGLState::checkStates(msg);
@@ -3082,7 +3082,7 @@ void LLPipeline::renderGeomDeferred(LLCamera& camera)
 					glGetIntegerv(GL_MODELVIEW_STACK_DEPTH, &depth);
 					if (depth > 3)
 					{
-						llerrs << "GL matrix stack corrupted!" << llendl;
+						llwarns << "GL matrix stack corrupted!" << llendl;
 					}
 					LLGLState::checkStates();
 					LLGLState::checkTextureChannels();
@@ -3175,7 +3175,7 @@ void LLPipeline::renderGeomPostDeferred(LLCamera& camera)
 					glGetIntegerv(GL_MODELVIEW_STACK_DEPTH, &depth);
 					if (depth > 3)
 					{
-						llerrs << "GL matrix stack corrupted!" << llendl;
+						llwarns << "GL matrix stack corrupted!" << llendl;
 					}
 					LLGLState::checkStates();
 					LLGLState::checkTextureChannels();
@@ -4099,7 +4099,7 @@ static F32 calc_light_dist(LLVOVolume* light, const LLVector3& cam_pos, F32 max_
 	{
 		return max_dist;
 	}
-	F32 dist = fsqrtf(dist2);
+	F32 dist = F32(sqrt(dist2));
 	dist *= 1.f / inten;
 	dist -= radius;
 	if (selected)
@@ -5249,18 +5249,18 @@ void validate_framebuffer_object()
 			break;
 		case GL_FRAMEBUFFER_INCOMPLETE_DIMENSIONS_EXT:
 			// frame buffer not OK: probably means unsupported depth buffer format
-			llerrs << "Framebuffer Incomplete Dimensions." << llendl;
+			llwarns << "Framebuffer Incomplete Dimensions." << llendl;
 			break;
 		case GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT_EXT:
 			// frame buffer not OK: probably means unsupported depth buffer format
-			llerrs << "Framebuffer Incomplete Attachment." << llendl;
+			llwarns << "Framebuffer Incomplete Attachment." << llendl;
 			break; 
 		case GL_FRAMEBUFFER_UNSUPPORTED_EXT:                    
 			/* choose different formats */                        
-			llerrs << "Framebuffer unsupported." << llendl;
+			llwarns << "Framebuffer unsupported." << llendl;
 			break;                                                
 		default:                                                
-			llerrs << "Unknown framebuffer status." << llendl;
+			llwarns << "Unknown framebuffer status." << llendl;
 			break;
 	}
 }
@@ -7665,7 +7665,7 @@ void LLPipeline::generateSunShadow(LLCamera& camera)
 
 					if (fovx > cutoff || llround(fovz, 0.01f) > cutoff)
 					{
-					//	llerrs << "WTF?" << llendl;
+					//	llwarns << "WTF?" << llendl;
 					}
 
 					mShadowFOV.mV[j] = cutoff;

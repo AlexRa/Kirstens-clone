@@ -45,8 +45,8 @@ class LLDataPacker
 public:
 	virtual ~LLDataPacker() {}
 	
-	virtual void		reset()		{ llerrs << "Using unimplemented datapacker reset!" << llendl; };
-	virtual void dumpBufferToLog()	{ llerrs << "dumpBufferToLog not implemented for this type!" << llendl; }
+	virtual void		reset()		{ llwarns << "Using unimplemented datapacker reset!" << llendl; };
+	virtual void dumpBufferToLog()	{ llwarns << "dumpBufferToLog not implemented for this type!" << llendl; }
 
 	virtual BOOL		hasNext() const = 0;
 

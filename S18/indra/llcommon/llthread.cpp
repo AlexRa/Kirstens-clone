@@ -390,7 +390,7 @@ LLThreadSafeRefCount::~LLThreadSafeRefCount()
 { 
 	if (mRef != 0)
 	{
-		llerrs << "deleting non-zero reference" << llendl;
+		llwarns << "deleting non-zero reference" << llendl;
 	}
 }
 

@@ -978,7 +978,7 @@ void LLAgent::sendMessage()
 	}
 	if (!mRegionp)
 	{
-		llerrs << "No region for agent yet!" << llendl;
+		llwarns << "No region for agent yet!" << llendl;
 	}
 	gMessageSystem->sendMessage(mRegionp->getHost());
 }
@@ -1025,7 +1025,7 @@ void LLAgent::setPositionAgent(const LLVector3 &pos_agent)
 {
 	if (!pos_agent.isFinite())
 	{
-		llerrs << "setPositionAgent is not a number" << llendl;
+		llwarns << "setPositionAgent is not a number" << llendl;
 	}
 
 	if (mAvatarObject.notNull() && mAvatarObject->getParent())
@@ -1504,7 +1504,7 @@ BOOL LLAgent::calcCameraMinDistance(F32 &obj_min_distance)
 		llwarns << "Focus object with no drawable!" << llendl;
 #else
 		mFocusObject->dump();
-		llerrs << "Focus object with no drawable!" << llendl;
+		llwarns << "Focus object with no drawable!" << llendl;
 #endif
 		obj_min_distance = 0.f;
 		return TRUE;
@@ -2236,7 +2236,7 @@ void LLAgent::startAutoPilotGlobal(const LLVector3d &target_global, const std::s
 	else
 	{
 		// Guess at a reasonable stop distance.
-		mAutoPilotStopDistance = fsqrtf( distance );
+		mAutoPilotStopDistance = F32(sqrt( distance ));
 		if (mAutoPilotStopDistance < 0.5f) 
 		{
 			mAutoPilotStopDistance = 0.5f;
@@ -3987,6 +3987,8 @@ void LLAgent::changeCameraToMouselook(BOOL animate)
 
 	// visibility changes at end of animation
 	gViewerWindow->getWindow()->resetBusyCount();
+
+	LLMenuGL::sMenuContainer->hideMenus(); // kitty Patch Noice :)
 
 	// unpause avatar animation
 	mPauseRequest = NULL;
@@ -7744,7 +7746,7 @@ void LLAgent::parseTeleportMessages(const std::string& xml_filename)
 
 	if (!success || !root || !root->hasName( "teleport_messages" ))
 	{
-		llerrs << "Problem reading teleport string XML file: " 
+		llwarns << "Problem reading teleport string XML file: " 
 			   << xml_filename << llendl;
 		return;
 	}

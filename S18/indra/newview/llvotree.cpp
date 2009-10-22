@@ -108,7 +108,7 @@ void LLVOTree::initClass()
 
 	if (!tree_def_tree.parseFile(xml_filename))
 	{
-		llerrs << "Failed to parse tree file." << llendl;
+		llwarns << "Failed to parse tree file." << llendl;
 	}
 
 	LLXmlTreeNode* rootp = tree_def_tree.getRoot();
@@ -473,7 +473,7 @@ void LLVOTree::updateTextures(LLAgent &agent)
 	{
 		if (gPipeline.hasRenderDebugMask(LLPipeline::RENDER_DEBUG_TEXTURE_AREA))
 		{
-			setDebugText(llformat("%4.0f", fsqrtf(mPixelArea)));
+			setDebugText(llformat("%4.0f", F32(sqrt(mPixelArea))));
 		}
 		mTreeImagep->addTextureStats(mPixelArea);
 	}
@@ -962,7 +962,7 @@ void LLVOTree::appendMesh(LLStrider<LLVector3>& vertices,
 		if (idx[index] >= vert_start + vert_count ||
 			idx[index] < vert_start)
 		{
-			llerrs << "WTF?" << llendl;
+			llwarns << "WTF?" << llendl;
 		}
 		*indices++ = idx[index]-vert_start+cur_idx;
 	}

@@ -62,7 +62,7 @@ LLDrawPoolWLSky::LLDrawPoolWLSky(void) :
 	LLPointer<LLImageFormatted> cloudNoiseFile(LLImageFormatted::createFromExtension(cloudNoiseFilename));
 
 	if(cloudNoiseFile.isNull()) {
-		llerrs << "Error: Failed to load cloud noise image " << cloudNoiseFilename << llendl;
+		llwarns << "Error: Failed to load cloud noise image " << cloudNoiseFilename << llendl;
 	}
 
 	cloudNoiseFile->load(cloudNoiseFilename);

@@ -1043,7 +1043,7 @@ LLMenuItemBranchGL::LLMenuItemBranchGL( const std::string& name, const std::stri
 {
 	if(!dynamic_cast<LLMenuGL*>(branch.get()))
 	{
-		llerrs << "Non-menu handle passed as branch reference." << llendl;
+		llwarns << "Non-menu handle passed as branch reference." << llendl;
 	}
 
 	if(getBranch())
@@ -2507,7 +2507,7 @@ BOOL LLMenuGL::appendMenu( LLMenuGL* menu )
 {
 	if( menu == this )
 	{
-		llerrs << "** Attempt to attach menu to itself. This is certainly "
+		llwarns << "** Attempt to attach menu to itself. This is certainly "
 			   << "a logic error." << llendl;
 	}
 	BOOL success = TRUE;
@@ -3526,7 +3526,7 @@ BOOL LLPieMenu::appendPieMenu(LLPieMenu *menu)
 {
 	if (menu == this)
 	{
-		llerrs << "Can't attach a pie menu to itself" << llendl;
+		llwarns << "Can't attach a pie menu to itself" << llendl;
 	}
 	LLPieMenuBranch *item;
 	item = new LLPieMenuBranch(menu->getName(), menu->getLabel(), menu);
@@ -4115,7 +4115,7 @@ BOOL LLMenuBarGL::appendMenu( LLMenuGL* menu )
 {
 	if( menu == this )
 	{
-		llerrs << "** Attempt to attach menu to itself. This is certainly "
+		llwarns << "** Attempt to attach menu to itself. This is certainly "
 			   << "a logic error." << llendl;
 	}
 

@@ -2615,7 +2615,7 @@ void LLMultiFloater::addFloater(LLFloater* floaterp, BOOL select_added_floater, 
 
 	if (!mTabContainer)
 	{
-		llerrs << "Tab Container used without having been initialized." << llendl;
+		llwarns << "Tab Container used without having been initialized." << llendl;
 		return;
 	}
 
@@ -3047,7 +3047,7 @@ void LLFloater::initFloaterXML(LLXMLNodePtr node, LLView *parent, LLUICtrlFactor
 
 	if (!result)
 	{
-		llerrs << "Failed to construct floater " << name << llendl;
+		llwarns << "Failed to construct floater " << name << llendl;
 	}
 
 	applyRectControl();

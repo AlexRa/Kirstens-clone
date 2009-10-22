@@ -49,7 +49,7 @@ bool LLUITrans::parseStrings(const std::string& xml_filename)
 
 	if (!success || root.isNull() || !root->hasName( "strings" ))
 	{
-		llerrs << "Problem reading strings: " << xml_filename << llendl;
+		llwarns << "Problem reading strings: " << xml_filename << llendl;
 		return false;
 	}
 	

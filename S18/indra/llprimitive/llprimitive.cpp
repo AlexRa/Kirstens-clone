@@ -130,7 +130,7 @@ void LLPrimitive::setVolumeManager( LLVolumeMgr* volume_manager )
 {
 	if ( !volume_manager || sVolumeManager )
 	{
-		llerrs << "Unable to set LLPrimitive::sVolumeManager to NULL" << llendl;
+		llwarns << "Unable to set LLPrimitive::sVolumeManager to NULL" << llendl;
 	}
 	sVolumeManager = volume_manager;
 }
@@ -203,7 +203,7 @@ LLPrimitive *LLPrimitive::createPrimitive(LLPCode p_code)
 	}
 	else
 	{
-		llerrs << "primitive allocation failed" << llendl;
+		llwarns << "primitive allocation failed" << llendl;
 	}
 
 	return retval;
@@ -765,7 +765,7 @@ U8 LLPrimitive::pCodeToLegacy(const LLPCode pcode)
 
 
 // static
-// Don't crash or llerrs here!  This function is used for debug strings.
+// Don't crash or llwarns here!  This function is used for debug strings.
 std::string LLPrimitive::pCodeToString(const LLPCode pcode)
 {
 	std::string pcode_string;

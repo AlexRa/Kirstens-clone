@@ -93,7 +93,7 @@ BOOL LLDriverParamInfo::parseXml(LLXmlTreeNode* node)
 		}
 		else
 		{
-			llerrs << "<driven> Unable to resolve driven parameter: " << driven_id << llendl;
+			llwarns << "<driven> Unable to resolve driven parameter: " << driven_id << llendl;
 			return FALSE;
 		}
 	}
@@ -136,7 +136,7 @@ BOOL LLDriverParam::setInfo(LLDriverParamInfo *info)
 		}
 		else
 		{
-			llerrs << "<driven> Unable to resolve driven parameter: " << driven_id << llendl;
+			llwarns << "<driven> Unable to resolve driven parameter: " << driven_id << llendl;
 			mInfo = NULL;
 			return FALSE;
 		}

@@ -58,16 +58,16 @@ LLSDMessageReader::~LLSDMessageReader()
 
 LLSD getLLSD(const LLSD& input, const char* block, const char* var, S32 blocknum)
 {
-	// babbage: log error to llerrs if variable not found to mimic
+	// babbage: log error to llwarns if variable not found to mimic
 	// LLTemplateMessageReader::getData behaviour
 	if(NULL == block)
 	{
-		llerrs << "NULL block name" << llendl;
+		llwarns << "NULL block name" << llendl;
 		return LLSD();
 	}
 	if(NULL == var)
 	{
-		llerrs << "NULL var name" << llendl;
+		llwarns << "NULL var name" << llendl;
 		return LLSD();
 	}
 	if(! input[block].isArray())

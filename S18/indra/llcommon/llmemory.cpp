@@ -176,7 +176,7 @@ void* ll_allocate (size_t size)
 	if (p == NULL)
 	{
 		LLMemory::freeReserve();
-		llerrs << "Out of memory Error" << llendl;
+		llwarns << "Out of memory Error" << llendl;
 	}
 	LLMemType::sTotalMem += size;
 	LLMemType::sMaxTotalMem = llmax(LLMemType::sTotalMem, LLMemType::sMaxTotalMem);
@@ -186,7 +186,7 @@ void* ll_allocate (size_t size)
 #if MEM_TRACK_TYPE
 	if (LLMemType::sCurType < 0 || LLMemType::sCurType >= LLMemType::MTYPE_NUM_TYPES)
 	{
-		llerrs << "Memory Type Error: new" << llendl;
+		llwarns << "Memory Type Error: new" << llendl;
 	}
 	LLMemType::sOverheadMem += 4;
 	*(S32*)p = LLMemType::sCurType;
@@ -213,7 +213,7 @@ void ll_release (void *pin)
 	S32 type = *(S32*)p;
 	if (type < 0 || type >= LLMemType::MTYPE_NUM_TYPES)
 	{
-		llerrs << "Memory Type Error: delete" << llendl;
+		llwarns << "Memory Type Error: delete" << llendl;
 	}
 #endif
 	p -= 4;
@@ -240,7 +240,7 @@ void* ll_allocate (size_t size)
 	if (p == NULL)
 	{
 		LLMemory::freeReserve();
-		llerrs << "Out of memory Error" << llendl;
+		llwarns << "Out of memory Error" << llendl;
 	}
 	return p;
 }
@@ -287,7 +287,7 @@ LLRefCount::~LLRefCount()
 { 
 	if (mRef != 0)
 	{
-		llerrs << "deleting non-zero reference" << llendl;
+		llwarns << "deleting non-zero reference" << llendl;
 	}
 }
 	

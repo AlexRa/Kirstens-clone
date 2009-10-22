@@ -261,6 +261,8 @@ public:
 	void setEnd(const F32 end)					{ mEnd   = (end   <= 0.0f) ? 1.0f : ((int) (end * 100000))/100000.0f;}
 	void setHollow(const F32 hollow)			{ mHollow = ((int) (hollow * 100000))/100000.0f;}
 
+	bool validate();
+
 	friend std::ostream& operator<<(std::ostream &s, const LLProfileParams &profile_params);
 
 protected:
@@ -411,7 +413,7 @@ public:
 
 	void setCurveType(const U8 type)	{ mCurveType = type;	}
 	void setBegin(const F32 begin)		{ mBegin     = begin;	}
-	void setEnd(const F32 end)			{ mEnd       = end;	}
+	void setEnd(const F32 end)			{ mEnd       = end;		}
 
 	void setScale(const F32 x, const F32 y)		{ mScale.setVec(x,y); }
 	void setScaleX(const F32 v)					{ mScale.mV[VX] = v; }
@@ -429,6 +431,8 @@ public:
 	void setTaperY(const F32 v)					{ mTaper.mV[VY]	= v;			}
 	void setRevolutions(const F32 revolutions)	{ mRevolutions	= revolutions;	}
 	void setSkew(const F32 skew)				{ mSkew			= skew;			}
+
+	bool validate(U8 profile_type);
 
 	friend std::ostream& operator<<(std::ostream &s, const LLPathParams &path_params);
 
@@ -458,7 +462,7 @@ inline bool LLPathParams::operator==(const LLPathParams &params) const
 		(getBegin() == params.getBegin()) && 
 		(getEnd() == params.getEnd()) && 
 		(getShear() == params.getShear()) &&
-		(getTwist() == params.getTwist()) &&
+		(getTwistEnd() == params.getTwistEnd()) &&
 		(getTwistBegin() == params.getTwistBegin()) &&
 		(getRadiusOffset() == params.getRadiusOffset()) &&
 		(getTaper() == params.getTaper()) &&
@@ -474,7 +478,7 @@ inline bool LLPathParams::operator!=(const LLPathParams &params) const
 		(getBegin() != params.getBegin()) || 
 		(getEnd() != params.getEnd()) || 
 		(getShear() != params.getShear()) ||
-		(getTwist() != params.getTwist()) ||
+		(getTwistEnd() != params.getTwistEnd()) ||
 		(getTwistBegin() !=params.getTwistBegin()) ||
 		(getRadiusOffset() != params.getRadiusOffset()) ||
 		(getTaper() != params.getTaper()) ||
@@ -510,9 +514,9 @@ inline bool LLPathParams::operator<(const LLPathParams &params) const
 		return getShear() < params.getShear();
 	}
 	else
-	if( getTwist() != params.getTwist())
+	if( getTwistEnd() != params.getTwistEnd())
 	{
-		return getTwist() < params.getTwist();
+		return getTwistEnd() < params.getTwistEnd();
 	}
 	else
 	if( getTwistBegin() != params.getTwistBegin())
@@ -606,6 +610,10 @@ public:
 	bool setSkew(const F32 skew);
 	bool setSculptID(const LLUUID sculpt_id, U8 sculpt_type);
 
+	// returns 'true' if was valid, 
+	// changes any invalid values 
+	bool validate();
+
 	static bool validate(U8 prof_curve, F32 prof_begin, F32 prof_end, F32 hollow,
 		U8 path_curve, F32 path_begin, F32 path_end,
 		F32 scx, F32 scy, F32 shx, F32 shy,
@@ -618,7 +626,8 @@ public:
  	const F32&  getEndT() 		const	{ return mPathParams.getEnd(); }
  
  	const F32&  getHollow() 	const   { return mProfileParams.getHollow(); }
- 	const F32&  getTwist() 	const   	{ return mPathParams.getTwist(); }
+ 	const F32&  getTwistEnd() 	const   { return mPathParams.getTwistEnd(); }
+ 	const F32&  getTwist() 	const   	{ return mPathParams.getTwistEnd(); }	// deprecated
  	const F32&  getRatio() 	const		{ return mPathParams.getScaleX(); }
  	const F32&  getRatioX() 	const   { return mPathParams.getScaleX(); }
  	const F32&  getRatioY() 	const   { return mPathParams.getScaleY(); }

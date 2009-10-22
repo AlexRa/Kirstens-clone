@@ -72,7 +72,7 @@ LLTextureAtlas::~LLTextureAtlas()
 {
 	if(mSpatialGroupList.size() > 0)
 	{
-		llerrs << "Not clean up the spatial groups!" << llendl ;
+		llwarns << "Not clean up the spatial groups!" << llendl ;
 	}
 	releaseUsageBits() ;
 }
@@ -105,7 +105,7 @@ LLGLuint LLTextureAtlas::insertSubTexture(const LLImageRaw* raw_image, S16 slot_
 	}
 
 	BOOL res = gGL.getTexUnit(0)->bindManual(LLTexUnit::TT_TEXTURE, getTexName());
-	if (!res) llerrs << "bindTexture failed" << llendl;
+	if (!res) llwarns << "bindTexture failed" << llendl;
 	stop_glerror();
 
 	GLint xoffset = sSlotSize * slot_col ;
@@ -337,7 +337,7 @@ BOOL LLTextureAtlas::areUsageBitsMarked(S8 bits_len, U8 mask, S16 col, S16 row)
 
 	if(ret != ret2)
 	{
-		llerrs << "bits map corrupted." << llendl ;
+		llwarns << "bits map corrupted." << llendl ;
 	}
 #endif
 	return ret ;//FALSE ;

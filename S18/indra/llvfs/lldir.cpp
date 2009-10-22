@@ -556,7 +556,7 @@ void LLDir::setLindenUserDir(const std::string &first, const std::string &last)
 	}
 	else
 	{
-		llerrs << "Invalid name for LLDir::setLindenUserDir" << llendl;
+		llwarns << "Invalid name for LLDir::setLindenUserDir" << llendl;
 	}
 
 	dumpCurrentDirectories();	
@@ -686,12 +686,12 @@ void dir_exists_or_crash(const std::string &dir_name)
 		{
 		   if(0 != LLFile::mkdir(dir_name, 0700))		// octal
 		   {
-			   llerrs << "Unable to create directory: " << dir_name << llendl;
+			   llwarns << "Unable to create directory: " << dir_name << llendl;
 		   }
 		}
 		else
 		{
-			llerrs << "Unable to stat: " << dir_name << " errno = " << stat_rv
+			llwarns << "Unable to stat: " << dir_name << " errno = " << stat_rv
 				   << llendl;
 		}
 	}
@@ -700,7 +700,7 @@ void dir_exists_or_crash(const std::string &dir_name)
 		// data_dir exists, make sure it's a directory.
 		if(!S_ISDIR(dir_stat.st_mode))
 		{
-			llerrs << "Data directory collision: " << dir_name << llendl;
+			llwarns << "Data directory collision: " << dir_name << llendl;
 		}
 	}
 #endif

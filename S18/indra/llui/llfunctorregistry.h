@@ -82,7 +82,7 @@ public:
 		}
 		else
 		{
-			llerrs << "attempt to store duplicate name '" << name << "' in LLFunctorRegistry. NOT ADDED." << llendl;
+			llwarns << "attempt to store duplicate name '" << name << "' in LLFunctorRegistry. NOT ADDED." << llendl;
 			retval = false;
 		}
 		

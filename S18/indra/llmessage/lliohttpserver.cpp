@@ -957,7 +957,7 @@ LLHTTPNode& LLIOHTTPServer::create(
         port);
     if(!socket)
     {
-        llerrs << "Unable to initialize socket" << llendl;
+        llwarns << "Unable to initialize socket" << llendl;
     }
 
     LLHTTPResponseFactory* factory = new LLHTTPResponseFactory;

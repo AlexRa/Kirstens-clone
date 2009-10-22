@@ -73,13 +73,13 @@ void LLTemplateMessageReader::getData(const char *blockname, const char *varname
 	// is there a message ready to go?
 	if (mReceiveSize == -1)
 	{
-		llerrs << "No message waiting for decode 2!" << llendl;
+		llwarns << "No message waiting for decode 2!" << llendl;
 		return;
 	}
 
 	if (!mCurrentRMessageData)
 	{
-		llerrs << "Invalid mCurrentMessageData in getData!" << llendl;
+		llwarns << "Invalid mCurrentMessageData in getData!" << llendl;
 		return;
 	}
 
@@ -90,7 +90,7 @@ void LLTemplateMessageReader::getData(const char *blockname, const char *varname
 
 	if (iter == mCurrentRMessageData->mMemberBlocks.end())
 	{
-		llerrs << "Block " << blockname << " #" << blocknum
+		llwarns << "Block " << blockname << " #" << blocknum
 			<< " not in message " << mCurrentRMessageData->mName << llendl;
 		return;
 	}
@@ -100,14 +100,14 @@ void LLTemplateMessageReader::getData(const char *blockname, const char *varname
 
 	if (!vardata.getName())
 	{
-		llerrs << "Variable "<< vnamep << " not in message "
+		llwarns << "Variable "<< vnamep << " not in message "
 			<< mCurrentRMessageData->mName<< " block " << bnamep << llendl;
 		return;
 	}
 
 	if (size && size != vardata.getSize())
 	{
-		llerrs << "Msg " << mCurrentRMessageData->mName 
+		llwarns << "Msg " << mCurrentRMessageData->mName 
 			<< " variable " << vnamep
 			<< " is size " << vardata.getSize()
 			<< " but copying into buffer of size " << size
@@ -156,13 +156,13 @@ S32 LLTemplateMessageReader::getNumberOfBlocks(const char *blockname)
 	// is there a message ready to go?
 	if (mReceiveSize == -1)
 	{
-		llerrs << "No message waiting for decode 3!" << llendl;
+		llwarns << "No message waiting for decode 3!" << llendl;
 		return -1;
 	}
 
 	if (!mCurrentRMessageData)
 	{
-		llerrs << "Invalid mCurrentRMessageData in getData!" << llendl;
+		llwarns << "Invalid mCurrentRMessageData in getData!" << llendl;
 		return -1;
 	}
 
@@ -183,13 +183,13 @@ S32 LLTemplateMessageReader::getSize(const char *blockname, const char *varname)
 	// is there a message ready to go?
 	if (mReceiveSize == -1)
 	{	// This is a serious error - crash 
-		llerrs << "No message waiting for decode 4!" << llendl;
+		llwarns << "No message waiting for decode 4!" << llendl;
 		return LL_MESSAGE_ERROR;
 	}
 
 	if (!mCurrentRMessageData)
 	{	// This is a serious error - crash
-		llerrs << "Invalid mCurrentRMessageData in getData!" << llendl;
+		llwarns << "Invalid mCurrentRMessageData in getData!" << llendl;
 		return LL_MESSAGE_ERROR;
 	}
 
@@ -218,7 +218,7 @@ S32 LLTemplateMessageReader::getSize(const char *blockname, const char *varname)
 
 	if (mCurrentRMessageTemplate->mMemberBlocks[bnamep]->mType != MBT_SINGLE)
 	{	// This is a serious error - crash
-		llerrs << "Block " << bnamep << " isn't type MBT_SINGLE,"
+		llwarns << "Block " << bnamep << " isn't type MBT_SINGLE,"
 			" use getSize with blocknum argument!" << llendl;
 		return LL_MESSAGE_ERROR;
 	}
@@ -231,13 +231,13 @@ S32 LLTemplateMessageReader::getSize(const char *blockname, S32 blocknum, const 
 	// is there a message ready to go?
 	if (mReceiveSize == -1)
 	{	// This is a serious error - crash
-		llerrs << "No message waiting for decode 5!" << llendl;
+		llwarns << "No message waiting for decode 5!" << llendl;
 		return LL_MESSAGE_ERROR;
 	}
 
 	if (!mCurrentRMessageData)
 	{	// This is a serious error - crash
-		llerrs << "Invalid mCurrentRMessageData in getData!" << llendl;
+		llwarns << "Invalid mCurrentRMessageData in getData!" << llendl;
 		return LL_MESSAGE_ERROR;
 	}
 
@@ -590,7 +590,7 @@ BOOL LLTemplateMessageReader::decodeData(const U8* buffer, const LLHost& sender 
 		}
 		else
 		{
-			llerrs << "Unknown block type" << llendl;
+			llwarns << "Unknown block type" << llendl;
 			return FALSE;
 		}
 
@@ -657,7 +657,7 @@ BOOL LLTemplateMessageReader::decodeData(const U8* buffer, const LLHost& sender 
 							htonmemcpy(&tsize, &buffer[decode_pos], MVT_U32, 4);
 							break;
 						default:
-							llerrs << "Attempting to read variable field with unknown size of " << data_size << llendl;
+							llwarns << "Attempting to read variable field with unknown size of " << data_size << llendl;
 							break;
 						}
 					}

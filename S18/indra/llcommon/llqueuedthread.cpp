@@ -367,7 +367,7 @@ bool LLQueuedThread::check()
 		{
 			if (entry->getHashKey() > mNextHandle)
 			{
-				llerrs << "Hash Error" << llendl;
+				llwarns << "Hash Error" << llendl;
 				return false;
 			}
 			entry = entry->getNextEntry();

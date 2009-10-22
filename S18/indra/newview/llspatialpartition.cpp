@@ -96,7 +96,7 @@ void sg_assert(BOOL expr)
 #if LL_OCTREE_PARANOIA_CHECK
 	if (!expr)
 	{
-		llerrs << "Octree invalid!" << llendl;
+		llwarns << "Octree invalid!" << llendl;
 	}
 #endif
 }
@@ -284,7 +284,7 @@ LLSpatialGroup::~LLSpatialGroup()
 {
 	/*if (sNoDelete)
 	{
-		llerrs << "Illegal deletion of LLSpatialGroup!" << llendl;
+		llwarns << "Illegal deletion of LLSpatialGroup!" << llendl;
 	}*/
 
 	if (isState(DEAD))
@@ -472,7 +472,7 @@ void LLSpatialGroup::validate()
 			LLSpatialPartition* part = drawable->asPartition();
 			if (!part)
 			{
-				llerrs << "Drawable reports it is a spatial bridge but not a partition." << llendl;
+				llwarns << "Drawable reports it is a spatial bridge but not a partition." << llendl;
 			}
 			LLSpatialGroup* group = (LLSpatialGroup*) part->mOctree->getListener(0);
 			group->validate();
@@ -535,7 +535,7 @@ public:
 
 		if (mInheritedMask && !group->isState(mInheritedMask))
 		{
-			llerrs << "Spatial group failed inherited mask test." << llendl;
+			llwarns << "Spatial group failed inherited mask test." << llendl;
 		}
 
 		if (group->isState(LLSpatialGroup::DIRTY))
@@ -551,7 +551,7 @@ public:
 		{
 			if (!parent->isState(state))
 			{
-				llerrs << "Spatial group failed parent state check." << llendl;
+				llwarns << "Spatial group failed parent state check." << llendl;
 			}
 			parent = parent->getParent();
 		}
@@ -572,23 +572,23 @@ void validate_draw_info(LLDrawInfo& params)
 #if LL_OCTREE_PARANOIA_CHECK
 	if (params.mVertexBuffer.isNull())
 	{
-		llerrs << "Draw batch has no vertex buffer." << llendl;
+		llwarns << "Draw batch has no vertex buffer." << llendl;
 	}
 	
 	//bad range
 	if (params.mStart >= params.mEnd)
 	{
-		llerrs << "Draw batch has invalid range." << llendl;
+		llwarns << "Draw batch has invalid range." << llendl;
 	}
 	
 	if (params.mEnd >= (U32) params.mVertexBuffer->getNumVerts())
 	{
-		llerrs << "Draw batch has buffer overrun error." << llendl;
+		llwarns << "Draw batch has buffer overrun error." << llendl;
 	}
 	
 	if (params.mOffset + params.mCount > (U32) params.mVertexBuffer->getNumIndices())
 	{
-		llerrs << "Draw batch has index buffer ovverrun error." << llendl;
+		llwarns << "Draw batch has index buffer ovverrun error." << llendl;
 	}
 	
 	//bad indices
@@ -599,12 +599,12 @@ void validate_draw_info(LLDrawInfo& params)
 		{
 			if (indicesp[i] < (U16)params.mStart) //KL
 			{
-				llerrs << "Draw batch has vertex buffer index out of range error (index too low)." << llendl;
+				llwarns << "Draw batch has vertex buffer index out of range error (index too low)." << llendl;
 			}
 			
 			if (indicesp[i] > (U16)params.mEnd) // KL
 			{
-				llerrs << "Draw batch has vertex buffer index out of range error (index too high)." << llendl;
+				llwarns << "Draw batch has vertex buffer index out of range error (index too high)." << llendl;
 			}
 		}
 	}
@@ -706,7 +706,7 @@ void LLSpatialPartition::rebuildGeom(LLSpatialGroup* group)
 	{
 		/*if (!group->isState(LLSpatialGroup::GEOM_DIRTY) && mRenderByGroup)
 		{
-			llerrs << "WTF?" << llendl;
+			llwarns << "WTF?" << llendl;
 		}*/
 		return;
 	}
@@ -1117,7 +1117,7 @@ void LLSpatialGroup::updateDistance(LLCamera &camera)
 #if !LL_RELEASE_FOR_DOWNLOAD
 	if (isState(LLSpatialGroup::OBJECT_DIRTY))
 	{
-		llerrs << "Spatial group dirty on distance update." << llendl;
+		llwarns << "Spatial group dirty on distance update." << llendl;
 	}
 #endif
 	if (!getData().empty() && !LLSpatialPartition::sFreezeState)
@@ -1838,7 +1838,7 @@ public:
 	{
 		if (group->isState(LLSpatialGroup::DIRTY) || group->getData().empty())
 		{
-			llerrs << "WTF?" << llendl;
+			llwarns << "WTF?" << llendl;
 		}
 
 		if (mRes < 2)
@@ -3213,13 +3213,13 @@ LLDrawInfo::LLDrawInfo(U16 start, U16 end, U32 count, U32 offset,
 	if (mStart >= mVertexBuffer->getRequestedVerts() ||
 		mEnd >= mVertexBuffer->getRequestedVerts())
 	{
-		llerrs << "Invalid draw info vertex range." << llendl;
+		llwarns << "Invalid draw info vertex range." << llendl;
 	}
 
 	if (mOffset >= (U32) mVertexBuffer->getRequestedIndices() ||
 		mOffset + mCount > (U32) mVertexBuffer->getRequestedIndices())
 	{
-		llerrs << "Invalid draw info index range." << llendl;
+		llwarns << "Invalid draw info index range." << llendl;
 	}
 }
 
@@ -3227,7 +3227,7 @@ LLDrawInfo::~LLDrawInfo()
 {
 	/*if (LLSpatialGroup::sNoDelete)
 	{
-		llerrs << "LLDrawInfo deleted illegally!" << llendl;
+		llwarns << "LLDrawInfo deleted illegally!" << llendl;
 	}*/
 
 	if (mFace)
@@ -3433,7 +3433,7 @@ void LLCullResult::assertDrawMapsEmpty()
 	{
 		if (mRenderMapSize[i] != 0)
 		{
-			llerrs << "Stale LLDrawInfo's in LLCullResult!" << llendl;
+			llwarns << "Stale LLDrawInfo's in LLCullResult!" << llendl;
 		}
 	}
 }

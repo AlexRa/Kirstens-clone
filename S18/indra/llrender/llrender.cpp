@@ -422,7 +422,7 @@ void LLTexUnit::setTextureBlendType(eTextureBlendType type)
 			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE_ARB);
 			break;
 		default:
-			llerrs << "Unknown Texture Blend Type: " << type << llendl;
+			llwarns << "Unknown Texture Blend Type: " << type << llendl;
 			break;
 	}
 	setColorScale(scale_amount);
@@ -814,7 +814,7 @@ void LLRender::setSceneBlendType(eBlendType type)
 			glBlendFunc(GL_ONE, GL_ZERO);
 			break;
 		default:
-			llerrs << "Unknown Scene Blend Type: " << type << llendl;
+			llwarns << "Unknown Scene Blend Type: " << type << llendl;
 			break;
 	}
 }
@@ -888,7 +888,7 @@ void LLRender::begin(const GLuint& mode)
 		}
 		else if (mCount != 0)
 		{
-			llerrs << "gGL.begin() called redundantly." << llendl;
+			llwarns << "gGL.begin() called redundantly." << llendl;
 		}
 		
 		mMode = mode;
@@ -919,22 +919,22 @@ void LLRender::flush()
 #if 0
 		if (!glIsEnabled(GL_VERTEX_ARRAY))
 		{
-			llerrs << "foo 1" << llendl;
+			llwarns << "foo 1" << llendl;
 		}
 
 		if (!glIsEnabled(GL_COLOR_ARRAY))
 		{
-			llerrs << "foo 2" << llendl;
+			llwarns << "foo 2" << llendl;
 		}
 
 		if (!glIsEnabled(GL_TEXTURE_COORD_ARRAY))
 		{
-			llerrs << "foo 3" << llendl;
+			llwarns << "foo 3" << llendl;
 		}
 
 		if (glIsEnabled(GL_NORMAL_ARRAY))
 		{
-			llerrs << "foo 7" << llendl;
+			llwarns << "foo 7" << llendl;
 		}
 
 		GLvoid* pointer;
@@ -942,19 +942,19 @@ void LLRender::flush()
 		glGetPointerv(GL_VERTEX_ARRAY_POINTER, &pointer);
 		if (pointer != &(mBuffer[0].v))
 		{
-			llerrs << "foo 4" << llendl;
+			llwarns << "foo 4" << llendl;
 		}
 
 		glGetPointerv(GL_COLOR_ARRAY_POINTER, &pointer);
 		if (pointer != &(mBuffer[0].c))
 		{
-			llerrs << "foo 5" << llendl;
+			llwarns << "foo 5" << llendl;
 		}
 
 		glGetPointerv(GL_TEXTURE_COORD_ARRAY_POINTER, &pointer);
 		if (pointer != &(mBuffer[0].uv))
 		{
-			llerrs << "foo 6" << llendl;
+			llwarns << "foo 6" << llendl;
 		}
 #endif
 				

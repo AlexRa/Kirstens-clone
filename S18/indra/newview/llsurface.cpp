@@ -149,7 +149,7 @@ LLSurface::~LLSurface()
 	}
 	else
 	{
-		llerrs << "Terrain pool not empty!" << llendl;
+		llwarns << "Terrain pool not empty!" << llendl;
 	}
 }
 
@@ -1151,12 +1151,12 @@ LLSurfacePatch *LLSurface::getPatch(const S32 x, const S32 y) const
 {
 	if ((x < 0) || (x >= mPatchesPerEdge))
 	{
-		llerrs << "Asking for patch out of bounds" << llendl;
+		llwarns << "Asking for patch out of bounds" << llendl;
 		return NULL;
 	}
 	if ((y < 0) || (y >= mPatchesPerEdge))
 	{
-		llerrs << "Asking for patch out of bounds" << llendl;
+		llwarns << "Asking for patch out of bounds" << llendl;
 		return NULL;
 	}
 

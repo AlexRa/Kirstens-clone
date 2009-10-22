@@ -185,7 +185,7 @@ LLToolContainer* LLToolView::findToolContainer( LLTool *tool )
 			return contain;
 		}
 	}
-	llerrs << "LLToolView::findToolContainer - tool not found" << llendl;
+	llwarns << "LLToolView::findToolContainer - tool not found" << llendl;
 	return NULL;
 }
 

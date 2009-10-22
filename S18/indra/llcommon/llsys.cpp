@@ -267,7 +267,7 @@ S32 LLOSInfo::getMaxOpenFiles()
 			}
 			else
 			{
-				llerrs << "LLOSInfo::getMaxOpenFiles: sysconf error for _SC_OPEN_MAX" << llendl;
+				llwarns << "LLOSInfo::getMaxOpenFiles: sysconf error for _SC_OPEN_MAX" << llendl;
 			}
 		}
 	}

@@ -475,7 +475,7 @@ void LLFloaterCompileQueue::scriptArrived(LLVFS *vfs, const LLUUID& asset_id,
 				}
 				else
 				{
-					llerrs << "Unable to find object to compile" << llendl;
+					llwarns << "Unable to find object to compile" << llendl; // why an error? KL
 				}
 
 				// TODO: babbage: No compile if no cap.

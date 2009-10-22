@@ -765,7 +765,7 @@ BOOL LLProfile::generate(const LLProfileParams& params, BOOL path_open,F32 detai
 		}
 		break;
 	default:
-	    llerrs << "Unknown profile: getCurveType()=" << params.getCurveType() << llendl;
+	    llwarns << "Unknown profile: getCurveType()=" << params.getCurveType() << llendl;
 		break;
 	};
 
@@ -974,6 +974,82 @@ void LLProfileParams::copyParams(const LLProfileParams &params)
 	setHollow(params.getHollow());
 }
 
+// returns 'true' if was valid, 
+// changes any invalid values 
+bool LLProfileParams::validate()
+{
+	bool was_valid = true;
+
+	// validat type
+	U8 curve_type	= getCurveType() & LL_PCODE_PROFILE_MASK;
+	U8 profile_type	= curve_type & LL_PCODE_PROFILE_MASK;
+	if (profile_type > LL_PCODE_PROFILE_MAX)
+	{
+		// Bad profile.  Make it square.
+		profile_type = LL_PCODE_PROFILE_SQUARE;
+		was_valid = false;
+	}
+	U8 hole_type 	= (curve_type & LL_PCODE_HOLE_MASK) >> 4;
+	if (hole_type > LL_PCODE_HOLE_MAX)
+	{
+		// Bad hole.  Make it the same.
+		hole_type = profile_type;
+		was_valid = false;
+	}
+	if (!was_valid)
+	{
+		setCurveType(profile_type | (hole_type << 4) );
+	}
+
+	// validate cut
+	F32 begin = llclamp(mBegin, 0.f, 1.f - MIN_CUT_DELTA);
+	F32 end = llclamp(mEnd, MIN_CUT_DELTA, 1.f);
+	if (end - begin < MIN_CUT_DELTA)
+	{
+		if (end <= MIN_CUT_DELTA)
+		{
+			begin = 0.f;
+			end = MIN_CUT_DELTA;
+		}
+		else if (begin >= 1.f - MIN_CUT_DELTA)
+		{
+			end = 1.f;
+			begin = end - MIN_CUT_DELTA;
+		}
+		else
+		{
+			end = begin + MIN_CUT_DELTA;
+		}
+	}
+	if (begin != mBegin
+		|| end != mEnd)
+	{
+		setBegin(begin);
+		setEnd(end);
+		was_valid = false;
+	}
+
+	// validate hollow
+	F32 max_hollow = HOLLOW_MAX;
+	// Only square holes have trouble.
+	if (LL_PCODE_HOLE_SQUARE == hole_type)
+	{
+		switch(profile_type)
+		{
+		case LL_PCODE_PROFILE_CIRCLE:
+		case LL_PCODE_PROFILE_CIRCLE_HALF:
+		case LL_PCODE_PROFILE_EQUALTRI:
+			max_hollow = HOLLOW_MAX_SQUARE;
+		}
+	}
+	F32 hollow = llclamp(mHollow, HOLLOW_MIN, max_hollow);
+	if (hollow != mHollow)
+	{
+		setHollow(hollow); 
+		was_valid = false;
+	}
+	return was_valid;
+}
 
 LLPath::~LLPath()
 {
@@ -1285,6 +1361,166 @@ BOOL LLPath::generate(const LLPathParams& params, F32 detail, S32 split,
 	return TRUE;
 }
 
+// returns 'true' if was valid, 
+// changes any invalid values 
+bool LLPathParams::validate(U8 profile_type)
+{
+	bool was_valid = true;
+	U8 path_type = getCurveType();
+
+	// twist
+	F32 twist_begin = llclamp(mTwistBegin, TWIST_MIN, TWIST_MAX);
+	if (twist_begin != mTwistBegin)
+	{
+		setTwistBegin(twist_begin);
+		was_valid = false;
+	}
+	F32 twist_end = llclamp(mTwistEnd, TWIST_MIN, TWIST_MAX);
+	if (twist_end != mTwistEnd)
+	{
+		setTwistEnd(twist_end);
+		was_valid = false;
+	}
+
+	// scale
+	F32 min_x = RATIO_MIN;
+	F32 max_x = RATIO_MAX;
+	F32 min_y = RATIO_MIN;
+	F32 max_y = RATIO_MAX;
+	// If this is a circular path (and not a sphere) then 'ratio' is actually hole size.
+	if ( LL_PCODE_PATH_CIRCLE == path_type &&
+		 LL_PCODE_PROFILE_CIRCLE_HALF != profile_type)
+	{
+		// Holes are more restricted...
+		min_x = HOLE_X_MIN;
+		max_x = HOLE_X_MAX;
+		min_y = HOLE_Y_MIN;
+		max_y = HOLE_Y_MAX;
+	}
+	F32 ratio_x = llclamp(mScale.mV[VX], min_x, max_x);
+	F32 ratio_y = llclamp(mScale.mV[VY], min_y, max_y);
+	if (ratio_x != mScale.mV[VX]
+		|| ratio_y != mScale.mV[VY])
+	{
+		setScale(ratio_x, ratio_y);
+		was_valid = false;
+	}
+
+	// shear
+	F32 shear_x = llclamp(mShear.mV[VX], SHEAR_MIN, SHEAR_MAX);
+	F32 shear_y = llclamp(mShear.mV[VY], SHEAR_MIN, SHEAR_MAX);
+	if (shear_x != mShear.mV[VX]
+		|| shear_y != mShear.mV[VY])
+	{
+		setShear(shear_x, shear_y);
+		was_valid = false;
+	}
+
+	// taper
+	F32 taper_x = llclamp(mTaper.mV[VX], TAPER_MIN, TAPER_MAX);
+	F32 taper_y = llclamp(mTaper.mV[VY], TAPER_MIN, TAPER_MAX);
+	if (mTaper.mV[VX] != taper_x
+		|| mTaper.mV[VY] != taper_y)
+	{
+		setTaperX(taper_x);
+		setTaperY(taper_y);
+		was_valid = false;
+	}
+
+	// revolutions
+	F32 revolutions = llclamp(mRevolutions, REV_MIN, REV_MAX);
+	if (mRevolutions != revolutions)
+	{
+		setRevolutions(revolutions);
+		was_valid = false;
+	}
+
+	// radius offset
+	// If this is a sphere, just set it to 0 and get out.
+	if ( LL_PCODE_PROFILE_CIRCLE_HALF == profile_type 
+		|| LL_PCODE_PATH_CIRCLE != path_type )
+	{
+		if (0.f != mRadiusOffset)
+		{
+			setRadiusOffset(0.f);
+			was_valid = false;
+		}
+	}
+	else
+	{
+		// Limit radius offset, based on taper and hole size y.
+		F32 radius_offset	= mRadiusOffset;
+		F32 taper_y    		= getTaperY();
+		F32 radius_mag		= fabs(radius_offset);
+		F32 hole_y_mag 		= fabs(getScaleY());
+		F32 taper_y_mag		= fabs(taper_y);
+		// Check to see if the taper effects us.
+		if ( (radius_offset > 0.f && taper_y < 0.f) ||
+				(radius_offset < 0.f && taper_y > 0.f) )
+		{
+			// The taper does not help increase the radius offset range.
+			taper_y_mag = 0.f;
+		}
+		F32 max_radius_mag = 1.f - hole_y_mag * (1.f - taper_y_mag) / (1.f - hole_y_mag);
+
+		// Enforce the maximum magnitude.
+		F32 delta = max_radius_mag - radius_mag;
+		if (delta < 0.f)
+		{
+			// Check radius offset sign.
+			if (radius_offset < 0.f)
+			{
+				radius_offset = -max_radius_mag;
+			}
+			else
+			{
+				radius_offset = max_radius_mag;
+			}
+		}
+	
+		if (radius_offset != mRadiusOffset)
+		{
+			setRadiusOffset(radius_offset);
+			was_valid = false;
+		}
+	}
+
+	// skew
+	// Check the skew value against the revolutions.
+	F32 skew = llclamp(mSkew, SKEW_MIN, SKEW_MAX);
+	F32 skew_mag	= fabs(skew);
+	revolutions = getRevolutions();
+	F32 scale_x		= getScaleX();
+	F32 min_skew_mag = 1.0f - 1.0f / (revolutions * scale_x + 1.0f);
+	// Discontinuity; A revolution of 1 allows skews below 0.5.
+	if ( fabs(revolutions - 1.0f) < 0.001)
+	{
+		min_skew_mag = 0.0f;
+	}
+	// Clip skew.
+	F32 delta = skew_mag - min_skew_mag;
+	if (delta < 0.f)
+	{
+		// Check skew sign.
+		if (skew < 0.0f)
+		{
+			skew = -min_skew_mag;
+		}
+		else 
+		{
+			skew = min_skew_mag;
+		}
+	}
+
+	if (skew != mSkew)
+	{
+		setSkew(skew);
+		was_valid = false;
+	}
+
+	return was_valid;
+}
+
 BOOL LLDynamicPath::generate(const LLPathParams& params, F32 detail, S32 split,
 							 BOOL is_sculpted, S32 sculpt_size)
 {
@@ -1389,7 +1625,7 @@ BOOL LLPathParams::importFile(LLFILE *fp)
 		else if (!strcmp("twist",keyword))
 		{
 			sscanf(valuestr,"%g",&tempF32);
-			setTwist(tempF32);
+			setTwistEnd(tempF32);
 		}
 		else if (!strcmp("twist_begin", keyword))
 		{
@@ -1531,7 +1767,7 @@ BOOL LLPathParams::importLegacyStream(std::istream& input_stream)
 		else if (!strcmp("twist",keyword))
 		{
 			sscanf(valuestr,"%g",&tempF32);
-			setTwist(tempF32);
+			setTwistEnd(tempF32);
 		}
 		else if (!strcmp("twist_begin", keyword))
 		{
@@ -1606,7 +1842,9 @@ LLSD LLPathParams::asLLSD() const
 	sd["scale_y"] = getScaleY();
 	sd["shear_x"] = getShearX();
 	sd["shear_y"] = getShearY();
-	sd["twist"] = getTwist();
+	// TODO -- someday in 2010 (when all servers accept "twist_end")
+	// we can start saving this as "twist_end" instead of "twist"
+	sd["twist"] = getTwistEnd();
 	sd["twist_begin"] = getTwistBegin();
 	sd["radius_offset"] = getRadiusOffset();
 	sd["taper_x"] = getTaperX();
@@ -1626,7 +1864,15 @@ bool LLPathParams::fromLLSD(LLSD& sd)
 	setScaleY((F32)sd["scale_y"].asReal());
 	setShearX((F32)sd["shear_x"].asReal());
 	setShearY((F32)sd["shear_y"].asReal());
-	setTwist((F32)sd["twist"].asReal());
+	if (sd.has("twist_end"))
+	{
+		setTwistEnd((F32)sd["twist_end"].asReal());
+	}
+	else if (sd.has("twist"))
+	{
+		// support for legacy format
+		setTwistEnd((F32)sd["twist"].asReal());
+	}
 	setTwistBegin((F32)sd["twist_begin"].asReal());
 	setRadiusOffset((F32)sd["radius_offset"].asReal());
 	setTaperX((F32)sd["taper_x"].asReal());
@@ -1643,7 +1889,7 @@ void LLPathParams::copyParams(const LLPathParams &params)
 	setEnd(params.getEnd());
 	setScale(params.getScaleX(), params.getScaleY() );
 	setShear(params.getShearX(), params.getShearY() );
-	setTwist(params.getTwist());
+	setTwistEnd(params.getTwist());
 	setTwistBegin(params.getTwistBegin());
 	setRadiusOffset(params.getRadiusOffset());
 	setTaper( params.getTaperX(), params.getTaperY() );
@@ -1656,7 +1902,7 @@ LLProfile::~LLProfile()
 {
 	if(profile_delete_lock)
 	{
-		llerrs << "LLProfile should not be deleted here!" << llendl ;
+		llwarns << "LLProfile should not be deleted here!" << llendl ;
 	}
 }
 
@@ -1773,7 +2019,7 @@ BOOL LLVolume::generate()
 		llinfos << "more info to check if mProfilep is deleted or not." << llendl ;
 		llinfos << mProfilep->mNormals.size() << " : " << mProfilep->mFaces.size() << " : " << mProfilep->mEdgeNormals.size() << " : " << mProfilep->mEdgeCenters.size() << llendl ;
 
-		llerrs << "LLVolume corrupted!" << llendl ;
+		llwarns << "LLVolume corrupted!" << llendl ;
 	}
 	//********************************************************************
 
@@ -1796,7 +2042,7 @@ BOOL LLVolume::generate()
 			llinfos << "more info to check if mProfilep is deleted or not." << llendl ;
 			llinfos << mProfilep->mNormals.size() << " : " << mProfilep->mFaces.size() << " : " << mProfilep->mEdgeNormals.size() << " : " << mProfilep->mEdgeCenters.size() << llendl ;
 
-			llerrs << "LLVolume corrupted!" << llendl ;
+			llwarns << "LLVolume corrupted!" << llendl ;
 		}
 		//********************************************************************
 
@@ -2182,7 +2428,7 @@ void sculpt_calc_mesh_resolution(U16 width, U16 height, U8 type, F32 detail, S32
 		ratio = (F32) width / (F32) height;
 
 	
-	s = (S32)fsqrtf(((F32)vertices / ratio));
+	s = S32(sqrt(((F32)vertices / ratio)));
 
 	s = llmax(s, 4);              // no degenerate sizes, please
 	t = vertices / s;
@@ -2360,6 +2606,30 @@ bool LLVolumeParams::setBeginAndEndS(const F32 b, const F32 e)
 
 	valid &= limit_range(begin, 0.f, end - MIN_CUT_DELTA, .01f);
 
+	// BUG -- The above is not enough.  Input such as:
+	// begin = 1.469367938527859384960921e-39;
+	// end = 9.183549615799121156005754e-41;
+	// will return valid=true because of the 0.01m tolerance in limit_range()
+	// This code below fixes it.
+	if (end - begin < MIN_CUT_DELTA)
+	{
+		valid = false;
+		if (end <= MIN_CUT_DELTA)
+		{
+			begin = 0.f;
+			end = MIN_CUT_DELTA;
+		}
+		else if (begin >= 1.f - MIN_CUT_DELTA)
+		{
+			end = 1.f;
+			begin = end - MIN_CUT_DELTA;
+		}
+		else
+		{
+			end = begin + MIN_CUT_DELTA;
+		}
+	}
+
 	// Now set them.
 	mProfileParams.setBegin(begin);
 	mProfileParams.setEnd(end);
@@ -2379,6 +2649,30 @@ bool LLVolumeParams::setBeginAndEndT(const F32 b, const F32 e)
 	valid &= limit_range(end, MIN_CUT_DELTA, 1.f);
 
 	valid &= limit_range(begin, 0.f, end - MIN_CUT_DELTA, .01f);
+
+	// BUG -- The above is not enough.  Input such as:
+	// begin = 1.469367938527859384960921e-39;
+	// end = 9.183549615799121156005754e-41;
+	// will return valid=true because of the 0.01m tolerance in limit_range()
+	// This code below fixes it.
+	if (end - begin < MIN_CUT_DELTA)
+	{
+		valid = false;
+		if (end <= MIN_CUT_DELTA)
+		{
+			begin = 0.f;
+			end = MIN_CUT_DELTA;
+		}
+		else if (begin >= 1.f - MIN_CUT_DELTA)
+		{
+			end = 1.f;
+			begin = end - MIN_CUT_DELTA;
+		}
+		else
+		{
+			end = begin + MIN_CUT_DELTA;
+		}
+	}
 
 	// Now set them.
 	mPathParams.setBegin(begin);
@@ -2621,6 +2915,16 @@ bool LLVolumeParams::setType(U8 profile, U8 path)
 	mProfileParams.setCurveType(profile);
 	mPathParams.setCurveType(path);
 	return result;
+}
+
+// returns true if was valid
+// changes any invalid values 
+bool LLVolumeParams::validate()
+{
+	U8 profile_type	= mProfileParams.getCurveType() & LL_PCODE_PROFILE_MASK;
+	bool was_valid = getProfileParams().validate();
+	was_valid = getPathParams().validate(profile_type) && was_valid;
+	return was_valid;
 }
 
 // static 
@@ -3283,7 +3587,7 @@ S32 *LLVolume::getTriangleIndices(U32 &num_indices) const
 	// assert that we computed the correct number of indices
 	if (count != expected_num_triangle_indices )
 	{
-		llerrs << "bad index count prediciton:"
+		llwarns << "bad index count prediciton:"
 			<< "  expected=" << expected_num_triangle_indices 
 			<< " actual=" << count << llendl;
 	}
@@ -4104,6 +4408,7 @@ bool LLVolumeParams::fromLLSD(LLSD& sd)
 {
 	mPathParams.fromLLSD(sd["path"]);
 	mProfileParams.fromLLSD(sd["profile"]);
+	validate();
 	return true;
 }
 
@@ -4262,7 +4567,7 @@ LLFaceID LLVolume::generateFaceMask()
 		}
 		break;
 	default:
-		llerrs << "Unknown profile!" << llendl;
+		llwarns << "Unknown profile!" << llendl;
 		break;
 	}
 
@@ -4399,7 +4704,7 @@ BOOL LLVolumeFace::create(LLVolume* volume, BOOL partial_build)
 	}
 	else
 	{
-		llerrs << "Unknown/uninitialized face type!" << llendl;
+		llwarns << "Unknown/uninitialized face type!" << llendl;
 		return FALSE;
 	}
 }

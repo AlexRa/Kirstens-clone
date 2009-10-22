@@ -724,7 +724,7 @@ private:
 
 	static void initClass()
 	{
-		llerrs << "No static initClass() method defined for " << typeid(T).name() << llendl;
+		llwarns << "No static initClass() method defined for " << typeid(T).name() << llendl;
 	}
 };
 
@@ -739,7 +739,7 @@ private:
 
 	static void destroyClass()
 	{
-		llerrs << "No static destroyClass() method defined for " << typeid(T).name() << llendl;
+		llwarns << "No static destroyClass() method defined for " << typeid(T).name() << llendl;
 	}
 };
 

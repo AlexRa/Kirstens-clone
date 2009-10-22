@@ -61,7 +61,7 @@ public:
 
 	// returns overlap distance
 	// negative overlap is closest approach
-	F32 getOverlap(const LLSphere& other_sphere) const;
+	F32 getClosestApproach(const LLSphere& other_sphere) const;
 
 	// removes any spheres that are contained in others
 	static void collapse(std::vector<LLSphere>& sphere_list);

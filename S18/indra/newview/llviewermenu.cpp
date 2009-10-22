@@ -6086,7 +6086,7 @@ void queue_actions(LLFloaterScriptQueue* q, const std::string& noscriptmsg, cons
 		}
 		else
 		{
-			llerrs << "Bad logic." << llendl;
+			llwarns << "Bad logic." << llendl;
 		}
 	}
 	else

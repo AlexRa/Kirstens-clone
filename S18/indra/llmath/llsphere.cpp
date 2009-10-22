@@ -35,6 +35,8 @@
 
 #include "llsphere.h"
 
+const F32 ONE_PART_IN_A_MILLION = 0.000001f;
+
 LLSphere::LLSphere()
 :	mCenter(0.f, 0.f, 0.f),
 	mRadius(0.f)
@@ -89,9 +91,9 @@ BOOL LLSphere::overlaps(const LLSphere& other_sphere) const
 	return (separation <= mRadius + other_sphere.mRadius) ? TRUE : FALSE;
 }
 
-// returns overlap
-// negative overlap is closest approach
-F32 LLSphere::getOverlap(const LLSphere& other_sphere) const
+// returns distance between closest points 
+// approach is negative when they overlap, and is the measure of deepest overlap
+F32 LLSphere::getClosestApproach(const LLSphere& other_sphere) const
 {
 	// separation is distance from other_sphere's edge and this center
 	return (mCenter - other_sphere.mCenter).length() - mRadius - other_sphere.mRadius;
@@ -130,7 +132,7 @@ void LLSphere::collapse(std::vector<LLSphere>& sphere_list)
 			}
 			else if (first_itr->contains(*second_itr))
 			{
-				sphere_list.erase(second_itr++);
+				second_itr = sphere_list.erase(second_itr);
 			}
 			else
 			{
@@ -140,7 +142,7 @@ void LLSphere::collapse(std::vector<LLSphere>& sphere_list)
 
 		if (delete_from_front)
 		{
-			sphere_list.erase(first_itr++);
+			first_itr = sphere_list.erase(first_itr);
 		}
 		else
 		{
@@ -155,13 +157,6 @@ LLSphere LLSphere::getBoundingSphere(const LLSphere& first_sphere, const LLSpher
 {
 	LLVector3 direction = second_sphere.mCenter - first_sphere.mCenter;
 
-	// HACK -- it is possible to get enough floating point error in the 
-	// other getBoundingSphere() method that we have to add some slop
-	// at the end.  Unfortunately, this breaks the link-order invarience
-	// for the linkability tests... unless we also apply the same slop
-	// here.
-	F32 half_milimeter = 0.0005f;
-
 	F32 distance = direction.length();
 	if (0.f == distance)
 	{
@@ -175,8 +170,8 @@ LLSphere LLSphere::getBoundingSphere(const LLSphere& first_sphere, const LLSpher
 	F32 max_edge = 0.f;
 	F32 min_edge = 0.f;
 
-	max_edge = llmax(max_edge + first_sphere.getRadius(), max_edge + distance + second_sphere.getRadius() + half_milimeter);
-	min_edge = llmin(min_edge - first_sphere.getRadius(), min_edge + distance - second_sphere.getRadius() - half_milimeter);
+	max_edge = llmax(max_edge + first_sphere.getRadius(), max_edge + distance + second_sphere.getRadius());
+	min_edge = llmin(min_edge - first_sphere.getRadius(), min_edge + distance - second_sphere.getRadius());
 	F32 radius = 0.5f * (max_edge - min_edge);
 	LLVector3 center = first_sphere.mCenter + (0.5f * (max_edge + min_edge)) * direction;
 	return LLSphere(center, radius);
@@ -246,24 +241,29 @@ LLSphere LLSphere::getBoundingSphere(const std::vector<LLSphere>& sphere_list)
 			}
 		}
 
+		// We now have an AABB that encloses all the sphere.  The maximum
+		// possible radius that final bounding sphere can have is the half the
+		// diagonal of the box, and the minimum possible is half the max
+		// dimension of the box.
+
 		// get the starting center and radius from the AABB
 		LLVector3 diagonal = max_corner - min_corner;
 		F32 bounding_radius = 0.5f * diagonal.length();
 		LLVector3 bounding_center = 0.5f * (max_corner + min_corner);
 
 		// compute the starting step-size
-		F32 minimum_radius = 0.5f * llmin(diagonal.mV[VX], llmin(diagonal.mV[VY], diagonal.mV[VZ]));
+		F32 minimum_radius = 0.5f * llmax(diagonal.mV[VX], llmax(diagonal.mV[VY], diagonal.mV[VZ]));
 		F32 step_length = bounding_radius - minimum_radius;
 		S32 step_count = 0;
 		S32 max_step_count = 12;
-		F32 half_milimeter = 0.0005f;
+		F32 acceptable_tolerance = 0.5f * (bounding_radius + minimum_radius) * ONE_PART_IN_A_MILLION;
 
 		// wander the center around in search of tighter solutions
 		S32 last_dx = 2;	// 2 is out of bounds --> no match
 		S32 last_dy = 2;
 		S32 last_dz = 2;
 
-		while (step_length > half_milimeter
+		while (step_length > acceptable_tolerance
 				&& step_count < max_step_count)
 		{
 			// the algorithm for testing the maximum radius could be expensive enough
@@ -345,31 +345,27 @@ LLSphere LLSphere::getBoundingSphere(const std::vector<LLSphere>& sphere_list)
 			}
 		}
 
-		// HACK -- it is possible to get enough floating point error for the
-		// bounding sphere to too small on the order of 10e-6, but we only need
-		// it to be accurate to within about half a millimeter
-		bounding_radius += half_milimeter;
-
-		// this algorithm can get relatively inaccurate when the sphere 
-		// collection is 'small' (contained within a bounding sphere of about 
-		// 2 meters or less)
-		// TODO -- fix this
-		/* debug code
-		{
-			std::vector<LLSphere>::const_iterator sphere_itr;
-			for (sphere_itr = sphere_list.begin(); sphere_itr != sphere_list.end(); ++sphere_itr)
-			{
-				F32 radius = (sphere_itr->getCenter() - bounding_center).length() + sphere_itr->getRadius();
-				if (radius + 0.1f > bounding_radius)
-				{
-					std::cout << " rad = " << radius << "  bounding - rad = " << (bounding_radius - radius) << std::endl;
-				}
-			}
-			std::cout << "\n" << std::endl;
-		}
-		*/ 
-
 		bounding_sphere.set(bounding_center, bounding_radius);
+
+		// final check
+		F32 max_expansion = 0.f;
+		std::vector<LLSphere>::const_iterator sphere_itr;
+		for (sphere_itr = sphere_list.begin(); sphere_itr != sphere_list.end(); ++sphere_itr)
+		{
+			// remember that closestApproach() should be negative for all bounded spheres
+			F32 required_expansion = 2.f * (sphere_itr->getRadius()) + bounding_sphere.getClosestApproach(*sphere_itr);
+			if (required_expansion > max_expansion)
+			{
+				max_expansion = required_expansion;
+			}
+		}
+		if (max_expansion > 0.f)
+		{
+			// TODO -- a small accuracy optimization here would be to split
+			// the difference between the radius and shifting the center.
+			bounding_radius += max_expansion;
+			bounding_sphere.setRadius(bounding_radius);
+		}
 	}
 	return bounding_sphere;
 }

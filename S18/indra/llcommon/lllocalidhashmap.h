@@ -701,7 +701,7 @@ void LLLocalIDHashMap<DATA_TYPE, SIZE>::removeIter(LLLocalIDHashMapIter<DATA_TYP
 			return;
 		}
 	}
-	llerrs << "Iterator " << iter << " not found for removal in hash map!" << llendl;
+	llwarns << "Iterator " << iter << " not found for removal in hash map!" << llendl;
 }
 
 template <class DATA_TYPE, int SIZE>
@@ -717,7 +717,7 @@ void LLLocalIDHashMap<DATA_TYPE, SIZE>::addIter(LLLocalIDHashMapIter<DATA_TYPE, 
 			return;
 		}
 	}
-	llerrs << "More than " << MAX_ITERS << " iterating over a map simultaneously!" << llendl;
+	llwarns << "More than " << MAX_ITERS << " iterating over a map simultaneously!" << llendl;
 }
 
 

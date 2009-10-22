@@ -178,7 +178,7 @@ S32 LLCamera::AABBInFrustum(const LLVector3 &center, const LLVector3& radius)
 	U8 mask = 0;
 	S32 result = 2;
 
-	/*if (mFrustumCornerDist > 0.f && radius.magVecSquared() > mFrustumCornerDist * mFrustumCornerDist)
+	if (radius.magVecSquared() > mFrustumCornerDist * mFrustumCornerDist)
 	{ //box is larger than frustum, check frustum quads against box planes
 
 		static const LLVector3 dir[] = 
@@ -241,7 +241,7 @@ S32 LLCamera::AABBInFrustum(const LLVector3 &center, const LLVector3& radius)
 			result = 1;
 		}
 	}
-	else*/
+	else
 	{
 		for (U32 i = 0; i < mPlaneCount; i++)
 		{
@@ -249,7 +249,7 @@ S32 LLCamera::AABBInFrustum(const LLVector3 &center, const LLVector3& radius)
 			if (mask == 0xff)
 			{
 				continue;
-			}
+			} 
 			LLPlane p = mAgentPlanes[i].p;
 			LLVector3 n = LLVector3(p);
 			float d = p.mV[3];
@@ -301,7 +301,7 @@ S32 LLCamera::AABBInFrustumNoFarClip(const LLVector3 &center, const LLVector3& r
 		if (mask == 0xff)
 		{
 			continue;
-		}
+		} 
 		LLPlane p = mAgentPlanes[i].p;
 		LLVector3 n = LLVector3(p);
 		float d = p.mV[3];
@@ -448,7 +448,7 @@ int LLCamera::sphereInFrustum(const LLVector3 &sphere_center, const F32 radius) 
 		if (mAgentPlanes[i].mask == 0xff)
 		{
 			continue;
-		}
+		} 
 
 		float d = mAgentPlanes[i].p.dist(sphere_center);
 

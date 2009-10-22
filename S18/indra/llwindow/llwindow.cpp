@@ -113,7 +113,7 @@ void LLWindowCallbacks::handleQuit(LLWindow *window)
 {
 	if(LLWindowManager::destroyWindow(window) == FALSE)	
 	{
-		llerrs << "LLWindowCallbacks::handleQuit() : Couldn't destroy window" << llendl;
+		llwarns << "LLWindowCallbacks::handleQuit() : Couldn't destroy window" << llendl;
 	}
 }
 
@@ -514,7 +514,7 @@ BOOL LLWindowManager::destroyWindow(LLWindow* window)
 {
 	if (sWindowList.find(window) == sWindowList.end())
 	{
-		llerrs << "LLWindowManager::destroyWindow() : Window pointer not valid, this window doesn't exist!" 
+		llwarns << "LLWindowManager::destroyWindow() : Window pointer not valid, this window doesn't exist!" 
 			<< llendl;
 		return FALSE;
 	}

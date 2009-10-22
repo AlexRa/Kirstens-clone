@@ -677,7 +677,7 @@ BOOL LLViewerImage::createTexture(S32 usename/*= 0*/)
 	mNeedsCreateTexture	= FALSE;
 	if (mRawImage.isNull())
 	{
-		llerrs << "LLViewerImage trying to create texture with no Raw Image" << llendl;
+		llwarns << "LLViewerImage trying to create texture with no Raw Image" << llendl;
 	}
 // 	llinfos << llformat("IMAGE Creating (%d) [%d x %d] Bytes: %d ",
 // 						mRawDiscardLevel, 
@@ -974,7 +974,7 @@ F32 LLViewerImage::calcDecodePriority()
 
 	S32 cur_discard = getDiscardLevel();
 	bool have_all_data = (cur_discard >= 0 && (cur_discard <= mDesiredDiscardLevel));
-	F32 pixel_priority = fsqrtf(mMaxVirtualSize);
+	F32 pixel_priority = F32(sqrt(mMaxVirtualSize));
 	const S32 MIN_NOT_VISIBLE_FRAMES = 30; // NOTE: this function is not called every frame
 	mDecodeFrame++;
 	if (pixel_priority > 0.f)
@@ -1766,7 +1766,7 @@ LLImageRaw* LLViewerImage::readBackRawImage(S8 discard_level)
 	llassert_always(mComponents > 0);
 	if (mRawImage.notNull())
 	{
-		llerrs << "called with existing mRawImage" << llendl;
+		llwarns << "called with existing mRawImage" << llendl;
 		mRawImage = NULL;
 	}
 	

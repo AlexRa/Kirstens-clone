@@ -36,8 +36,8 @@
 #include "llline.h"
 #include "llrand.h"
 
-const F32 SOME_SMALL_NUMBER = 1.0e-5f;
 const F32 SOME_VERY_SMALL_NUMBER = 1.0e-8f;
+const F32 MIN_DIRECTION_ERROR = 1.5e-6f;
 
 LLLine::LLLine()
 :	mPoint(0.f, 0.f, 0.f),
@@ -61,12 +61,14 @@ void LLLine::setPointDirection( const LLVector3& first_point, const LLVector3& s
 	setPoints(first_point, first_point + second_point);
 }
 
-bool LLLine::intersects( const LLVector3& point, F32 radius ) const
+bool LLLine::intersects( const LLVector3& point ) const
 {
 	LLVector3 other_direction = point - mPoint;
 	LLVector3 nearest_point = mPoint + mDirection * (other_direction * mDirection);
 	F32 nearest_approach = (nearest_point - point).length();
-	return (nearest_approach <= radius);
+	F32 distance_from_anchor = (point - mPoint).length();
+	F32 max_allowable_error = MIN_DIRECTION_ERROR * distance_from_anchor;
+	return (nearest_approach <= max_allowable_error);
 }
 
 // returns the point on this line that is closest to some_point
@@ -124,8 +126,8 @@ std::ostream& operator<<( std::ostream& output_stream, const LLLine& line )
 }
 
 
-F32 ALMOST_PARALLEL = 0.99f;
-F32 TOO_SMALL_FOR_DIVISION = 0.0001f;
+const F32 ALMOST_PARALLEL = 0.99f;
+const F32 TOO_SMALL_FOR_DIVISION = 0.00001f;
 
 // returns 'true' if this line intersects the plane
 // on success stores the intersection point in 'result'

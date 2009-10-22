@@ -224,7 +224,7 @@ void LLFace::initClass()
 
 void LLFace::setWorldMatrix(const LLMatrix4 &mat)
 {
-	llerrs << "Faces on this drawable are not independently modifiable\n" << llendl;
+	llwarns << "Faces on this drawable are not independently modifiable\n" << llendl;
 }
 
 void LLFace::setPool(LLFacePool* new_pool, LLViewerImage *texturep)
@@ -233,7 +233,7 @@ void LLFace::setPool(LLFacePool* new_pool, LLViewerImage *texturep)
 	
 	if (!new_pool)
 	{
-		llerrs << "Setting pool to null!" << llendl;
+		llwarns << "Setting pool to null!" << llendl;
 	}
 
 	if (new_pool != mDrawPoolp)
@@ -1576,7 +1576,7 @@ void LLFace::setAtlasInfo(LLTextureAtlasSlot* atlasp)
 	{
 		if(mAtlasInfop)
 		{
-			//llerrs << "Atlas slot changed!" << llendl ;
+			//llwarns << "Atlas slot changed!" << llendl ;
 		}
 		mAtlasInfop = atlasp ;
 	}

@@ -496,7 +496,7 @@ void LLPrimitive::setPosition(const F32 x, const F32 y, const F32 z)
 	}
 	else
 	{
-		llerrs << "Non Finite in LLPrimitive::setPosition(x,y,z) for " << pCodeToString(mPrimitiveCode) << llendl;
+		llwarns << "Non Finite in LLPrimitive::setPosition(x,y,z) for " << pCodeToString(mPrimitiveCode) << llendl;
 	}
 }
 
@@ -509,7 +509,7 @@ void LLPrimitive::setPosition(const LLVector3& pos)
 	}
 	else
 	{
-		llerrs << "Non Finite in LLPrimitive::setPosition(LLVector3) for " << pCodeToString(mPrimitiveCode) << llendl;
+		llwarns << "Non Finite in LLPrimitive::setPosition(LLVector3) for " << pCodeToString(mPrimitiveCode) << llendl;
 	}
 }
 
@@ -545,7 +545,7 @@ void LLPrimitive::setVelocity(const LLVector3& vel)
 	}
 	else
 	{
-		llerrs << "Non Finite in LLPrimitive::setVelocity(LLVector3) for " << pCodeToString(mPrimitiveCode) << llendl;
+		llwarns << "Non Finite in LLPrimitive::setVelocity(LLVector3) for " << pCodeToString(mPrimitiveCode) << llendl;
 	}
 }
 
@@ -557,7 +557,7 @@ void LLPrimitive::setVelocity(const F32 x, const F32 y, const F32 z)
 	}
 	else
 	{
-		llerrs << "Non Finite in LLPrimitive::setVelocity(F32,F32,F32) for " << pCodeToString(mPrimitiveCode) << llendl;
+		llwarns << "Non Finite in LLPrimitive::setVelocity(F32,F32,F32) for " << pCodeToString(mPrimitiveCode) << llendl;
 	}
 }
 
@@ -617,7 +617,7 @@ void LLPrimitive::setAcceleration(const LLVector3& accel)
 	}
 	else
 	{
-		llerrs << "Non Finite in LLPrimitive::setAcceleration(LLVector3) for " << pCodeToString(mPrimitiveCode) << llendl;
+		llwarns << "Non Finite in LLPrimitive::setAcceleration(LLVector3) for " << pCodeToString(mPrimitiveCode) << llendl;
 	}
 }
 
@@ -629,7 +629,7 @@ void LLPrimitive::setAcceleration(const F32 x, const F32 y, const F32 z)
 	}
 	else
 	{
-		llerrs << "Non Finite in LLPrimitive::setAcceleration(F32,F32,F32) for " << pCodeToString(mPrimitiveCode) << llendl;
+		llwarns << "Non Finite in LLPrimitive::setAcceleration(F32,F32,F32) for " << pCodeToString(mPrimitiveCode) << llendl;
 	}
 }
 #endif // CHECK_FOR_FINITE

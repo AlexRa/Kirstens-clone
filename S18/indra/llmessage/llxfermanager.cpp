@@ -398,7 +398,7 @@ U64 LLXferManager::registerXfer(const void *datap, const S32 length)
 	}
 	else
 	{
-		llerrs << "Xfer allocation error" << llendl;
+		llwarns << "Xfer allocation error" << llendl;
 		xfer_id = 0;
 	}	
 
@@ -461,7 +461,7 @@ void LLXferManager::requestFile(const std::string& local_filename,
 	}
 	else
 	{
-		llerrs << "Xfer allocation error" << llendl;
+		llwarns << "Xfer allocation error" << llendl;
 	}
 }
 
@@ -489,7 +489,7 @@ void LLXferManager::requestFile(const std::string& remote_filename,
 	}
 	else
 	{
-		llerrs << "Xfer allocation error" << llendl;
+		llwarns << "Xfer allocation error" << llendl;
 	}
 }
 
@@ -534,7 +534,7 @@ void LLXferManager::requestVFile(const LLUUID& local_id,
 	}
 	else
 	{
-		llerrs << "Xfer allocation error" << llendl;
+		llwarns << "Xfer allocation error" << llendl;
 	}
 
 }
@@ -576,7 +576,7 @@ void LLXferManager::requestXfer(
 	}
 	else
 	{
-		llerrs << "Xfer allcoation error" << llendl;
+		llwarns << "Xfer allcoation error" << llendl;
 	}
 }
 
@@ -595,7 +595,7 @@ void LLXferManager::requestXfer(U64 xfer_id, const LLHost &remote_host, BOOL del
 	}
 	else
 	{
-		llerrs << "Xfer allcoation error" << llendl;
+		llwarns << "Xfer allcoation error" << llendl;
 	}
 }
 */
@@ -845,7 +845,7 @@ void LLXferManager::processFileRequest (LLMessageSystem *mesgsys, void ** /*user
 		}
 		else
 		{
-			llerrs << "Xfer allcoation error" << llendl;
+			llwarns << "Xfer allcoation error" << llendl;
 		}
 	}
 	else if (!local_filename.empty())
@@ -904,7 +904,7 @@ void LLXferManager::processFileRequest (LLMessageSystem *mesgsys, void ** /*user
 		}
 		else
 		{
-			llerrs << "Xfer allcoation error" << llendl;
+			llwarns << "Xfer allcoation error" << llendl;
 		}
 	}
 	else

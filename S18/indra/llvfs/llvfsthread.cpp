@@ -94,7 +94,7 @@ LLVFSThread::handle_t LLVFSThread::read(LLVFS* vfs, const LLUUID &file_id, const
 	bool res = addRequest(req);
 	if (!res)
 	{
-		llerrs << "LLVFSThread::read called after LLVFSThread::cleanupClass()" << llendl;
+		llwarns << "LLVFSThread::read called after LLVFSThread::cleanupClass()" << llendl;
 		req->deleteRequest();
 		handle = nullHandle();
 	}
@@ -113,7 +113,7 @@ S32 LLVFSThread::readImmediate(LLVFS* vfs, const LLUUID &file_id, const LLAssetT
 	S32 res = addRequest(req) ? 1 : 0;
 	if (res == 0)
 	{
-		llerrs << "LLVFSThread::read called after LLVFSThread::cleanupClass()" << llendl;
+		llwarns << "LLVFSThread::read called after LLVFSThread::cleanupClass()" << llendl;
 		req->deleteRequest();
 	}
 	else
@@ -136,7 +136,7 @@ LLVFSThread::handle_t LLVFSThread::write(LLVFS* vfs, const LLUUID &file_id, cons
 	bool res = addRequest(req);
 	if (!res)
 	{
-		llerrs << "LLVFSThread::read called after LLVFSThread::cleanupClass()" << llendl;
+		llwarns << "LLVFSThread::read called after LLVFSThread::cleanupClass()" << llendl;
 		req->deleteRequest();
 		handle = nullHandle();
 	}
@@ -155,7 +155,7 @@ S32 LLVFSThread::writeImmediate(LLVFS* vfs, const LLUUID &file_id, const LLAsset
 	S32 res = addRequest(req) ? 1 : 0;
 	if (res == 0)
 	{
-		llerrs << "LLVFSThread::read called after LLVFSThread::cleanupClass()" << llendl;
+		llwarns << "LLVFSThread::read called after LLVFSThread::cleanupClass()" << llendl;
 		req->deleteRequest();
 	}
 	else
@@ -181,7 +181,7 @@ S32 LLVFSThread::writeImmediate(LLVFS* vfs, const LLUUID &file_id, const LLAsset
 // 	bool res = addRequest(req);
 // 	if (!res)
 // 	{
-// 		llerrs << "LLVFSThread::read called after LLVFSThread::cleanupClass()" << llendl;
+// 		llwarns << "LLVFSThread::read called after LLVFSThread::cleanupClass()" << llendl;
 // 		req->deleteRequest();
 // 		handle = nullHandle();
 // 	}
@@ -254,7 +254,7 @@ void LLVFSThread::Request::deleteRequest()
 {
 	if (getStatus() == STATUS_QUEUED)
 	{
-		llerrs << "Attempt to delete a queued LLVFSThread::Request!" << llendl;
+		llwarns << "Attempt to delete a queued LLVFSThread::Request!" << llendl;
 	}	
 	if (mOperation == FILE_WRITE)
 	{
@@ -298,7 +298,7 @@ bool LLVFSThread::Request::processRequest()
 	}
 	else
 	{
-		llerrs << llformat("LLVFSThread::unknown operation: %d", mOperation) << llendl;
+		llwarns << llformat("LLVFSThread::unknown operation: %d", mOperation) << llendl;
 	}
 	return complete;
 }

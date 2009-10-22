@@ -120,7 +120,7 @@ void LLJoystick::updateSlop()
 		break;
 
 	default:
-		llerrs << "LLJoystick::LLJoystick() - bad switch case" << llendl;
+		llwarns << "LLJoystick::LLJoystick() - bad switch case" << llendl;
 		break;
 	}
 
@@ -847,7 +847,7 @@ void LLJoystickCameraZoom::updateSlop()
 		break;
 
 	default:
-		llerrs << "LLJoystick::LLJoystick() - bad switch case" << llendl;
+		llwarns << "LLJoystick::LLJoystick() - bad switch case" << llendl;
 		break;
 	}
 

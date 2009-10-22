@@ -205,7 +205,7 @@ BOOL LLVFile::write(const U8 *buffer, S32 bytes)
 	}
 	if (mHandle != LLVFSThread::nullHandle())
 	{
-		llerrs << "Attempt to write to vfile object " << mFileID << " with pending async operation" << llendl;
+		llwarns << "Attempt to write to vfile object " << mFileID << " with pending async operation" << llendl;
 		return FALSE;
 	}
 	BOOL success = TRUE;

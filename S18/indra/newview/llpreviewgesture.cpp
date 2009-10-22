@@ -1604,7 +1604,7 @@ void LLPreviewGesture::onClickAdd(void* data)
 
 	if( library_item_index >= STEP_EOF )
 	{
-		llerrs << "Unknown step type: " << library_text << llendl;
+		llwarns << "Unknown step type: " << library_text << llendl;
 		return;
 	}
 
@@ -1633,7 +1633,7 @@ LLScrollListItem* LLPreviewGesture::addStep( const EStepType step_type )
 			step = new LLGestureStepWait();
 			break;
 		default:
-			llerrs << "Unknown step type: " << (S32)step_type << llendl;
+			llwarns << "Unknown step type: " << (S32)step_type << llendl;
 			return NULL;
 	}
 

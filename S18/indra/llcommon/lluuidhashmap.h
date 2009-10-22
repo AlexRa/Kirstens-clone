@@ -66,7 +66,7 @@
 	{
 		if (source_ids[cur.mValue] != cur.mUUID)
 		{
-			llerrs << "Incorrect value iterated!" << llendl;
+			llwarns << "Incorrect value iterated!" << llendl;
 		}
 		//llinfos << cur.mValue << ":" << cur.mUUID << llendl;
 		//ms_sleep(1);
@@ -78,7 +78,7 @@
 		cur = foo.get(source_ids[q]);
 		if (source_ids[cur.mValue] != cur.mUUID)
 		{
-			llerrs << "Incorrect value found!" << llendl;
+			llwarns << "Incorrect value found!" << llendl;
 		}
 		//llinfos << res.mValue << ":" << res.mUUID << llendl;
 		//ms_sleep(1);
@@ -89,7 +89,7 @@
 	{
 		if (!foo.remove(source_ids[q]))
 		{
-			llerrs << "Remove failed!" << llendl;
+			llwarns << "Remove failed!" << llendl;
 		}
 		//ms_sleep(1);
 	}
@@ -99,7 +99,7 @@
 	{
 		if (source_ids[cur.mValue] != cur.mUUID)
 		{
-			llerrs << "Incorrect value found!" << llendl;
+			llwarns << "Incorrect value found!" << llendl;
 		}
 		//llinfos << cur.mValue << ":" << cur.mUUID << llendl;
 		//ms_sleep(1);
@@ -364,7 +364,7 @@ inline BOOL LLUUIDHashMap<DATA_TYPE, SIZE>::remove(const LLUUID &uuid)
 	if (mIterCount)
 	{
 		// We don't allow remove when we're iterating, it's bad karma!
-		llerrs << "Attempted remove while an outstanding iterator in LLUUIDHashMap!" << llendl;
+		llwarns << "Attempted remove while an outstanding iterator in LLUUIDHashMap!" << llendl;
 	}
 	// Remove is the trickiest operation.
 	// What we want to do is swap the last element of the last

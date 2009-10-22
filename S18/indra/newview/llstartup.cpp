@@ -2950,7 +2950,8 @@ bool update_dialog_callback(const LLSD& notification, const LLSD& response)
 	// *TODO change userserver to be grid on both viewer and sim, since
 	// userserver no longer exists.
 	query_map["userserver"] = LLViewerLogin::getInstance()->getGridLabel();
-	query_map["channel"] = gSavedSettings.getString("VersionChannelName");
+	std::string channel = llformat("%s",DX_CHANNEL);
+	query_map["channel"] = channel; //gSavedSettings.getString("VersionChannelName"); // DX_CHANNEL KL
 	// *TODO constantize this guy
 	// *NOTE: This URL is also used in win_setup/lldownloader.cpp
 	LLURI update_url = LLURI::buildHTTP("secondlife.com", 80, "update.php", query_map);

@@ -595,8 +595,8 @@ S32 LLCurl::Multi::process()
 			else
 			{
 				response = 499;
-				//*TODO: change to llwarns
-				llerrs << "cleaned up curl request completed!" << llendl;
+				//*TODO: change to llwarns // KL no problemo LL :)
+				llwarns << "cleaned up curl request completed!" << llendl;
 			}
 			if (response >= 400)
 			{

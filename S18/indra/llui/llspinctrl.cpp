@@ -377,7 +377,7 @@ void LLSpinCtrl::setPrecision(S32 precision)
 {
 	if (precision < 0 || precision > 10)
 	{
-		llerrs << "LLSpinCtrl::setPrecision - precision out of range" << llendl;
+		llwarns << "LLSpinCtrl::setPrecision - precision out of range" << llendl;
 		return;
 	}
 

@@ -125,7 +125,7 @@ void LLDrawable::destroy()
 
 	if (LLSpatialGroup::sNoDelete)
 	{
-		llerrs << "Illegal deletion of LLDrawable!" << llendl;
+		llwarns << "Illegal deletion of LLDrawable!" << llendl;
 	}
 
 	std::for_each(mFaces.begin(), mFaces.end(), DeletePointer());
@@ -234,7 +234,7 @@ LLFace*	LLDrawable::addFace(LLFacePool *poolp, LLViewerImage *texturep)
 	LLMemType mt(LLMemType::MTYPE_DRAWABLE);
 	
 	LLFace *face = new LLFace(this, mVObjp);
-	if (!face) llerrs << "Allocating new Face: " << mFaces.size() << llendl;
+	if (!face) llwarns << "Allocating new Face: " << mFaces.size() << llendl;
 	
 	if (face)
 	{
@@ -346,7 +346,7 @@ void LLDrawable::deleteFaces(S32 offset, S32 count)
 
 void LLDrawable::update()
 {
-	llerrs << "Shouldn't be called!" << llendl;
+	llwarns << "Shouldn't be called!" << llendl;
 }
 
 
@@ -368,7 +368,7 @@ void LLDrawable::makeActive()
 			pcode == LLViewerObject::LL_VO_GROUND ||
 			pcode == LLViewerObject::LL_VO_SKY)
 		{
-			llerrs << "Static viewer object has active drawable!" << llendl;
+			llwarns << "Static viewer object has active drawable!" << llendl;
 		}
 	}
 #endif
@@ -1141,26 +1141,26 @@ void LLDrawable::setVisible(LLCamera& camera, std::vector<LLDrawable*>* results,
 		{
 			if (isActive() && !mParent->isActive())
 			{
-				llerrs << "Active drawable has static parent!" << llendl;
+				llwarns << "Active drawable has static parent!" << llendl;
 			}
 			
 			if (isStatic() && !mParent->isStatic())
 			{
-				llerrs << "Static drawable has active parent!" << llendl;
+				llwarns << "Static drawable has active parent!" << llendl;
 			}
 			
 			if (mSpatialBridge)
 			{
-				llerrs << "Child drawable has spatial bridge!" << llendl;
+				llwarns << "Child drawable has spatial bridge!" << llendl;
 			}
 		}
 		else if (isActive() && !mSpatialBridge)
 		{
-			llerrs << "Active root drawable has no spatial bridge!" << llendl;
+			llwarns << "Active root drawable has no spatial bridge!" << llendl;
 		}
 		else if (isStatic() && mSpatialBridge.notNull())
 		{
-			llerrs << "Static drawable has spatial bridge!" << llendl;
+			llwarns << "Static drawable has spatial bridge!" << llendl;
 		}
 	}
 #endif
@@ -1324,7 +1324,7 @@ void LLSpatialBridge::updateDistance(LLCamera& camera_in, bool force_update)
 
 void LLSpatialBridge::makeActive()
 { //it is an error to make a spatial bridge active (it's already active)
-	llerrs << "makeActive called on spatial bridge" << llendl;
+	llwarns << "makeActive called on spatial bridge" << llendl;
 }
 
 void LLSpatialBridge::move(LLDrawable *drawablep, LLSpatialGroup *curp, BOOL immediate)

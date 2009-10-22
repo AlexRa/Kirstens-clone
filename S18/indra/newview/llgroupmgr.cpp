@@ -1746,7 +1746,7 @@ bool LLGroupMgr::parseRoleActions(const std::string& xml_filename)
 	
 	if (!success || !root || !root->hasName( "role_actions" ))
 	{
-		llerrs << "Problem reading UI role_actions file: " << xml_filename << llendl;
+		llwarns << "Problem reading UI role_actions file: " << xml_filename << llendl;
 		return false;
 	}
 

@@ -44,9 +44,9 @@ LLPacketBuffer::LLPacketBuffer(const LLHost &host, const char *datap, const S32 
 {
 	if (size > NET_BUFFER_SIZE)
 	{
-		llerrs << "Sending packet > " << NET_BUFFER_SIZE << " of size " << size << llendl;
+		llwarns << "Sending packet > " << NET_BUFFER_SIZE << " of size " << size << llendl;
 	}
-	else // we previously relied on llerrs being fatal to not get here...
+	else // we previously relied on llwarns being fatal to not get here...
 	{
 		if (datap != NULL)
 		{

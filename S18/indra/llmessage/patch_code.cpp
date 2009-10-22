@@ -94,7 +94,7 @@ void	code_patch_header(LLBitPack &bitpack, LLPatchHeader *ph, S32 *patch)
 	if (  (wbits > 17)
 		||(wbits < 2))
 	{
-		llerrs << "Bits needed per word in code_patch_header out of legal range.  Adjust compression quatization." << llendl;
+		llwarns << "Bits needed per word in code_patch_header out of legal range.  Adjust compression quatization." << llendl;
 	}
 
 	ph->quant_wbits |= (wbits - 2);
@@ -141,7 +141,7 @@ void code_patch(LLBitPack &bitpack, S32 *patch, S32 postquant)
 	if (  (postquant > patch_size*patch_size)
 		||(postquant < 0))
 	{
-		llerrs << "Bad postquant in code_patch!"  << llendl;
+		llwarns << "Bad postquant in code_patch!"  << llendl;
 	}
 
 	if (postquant)

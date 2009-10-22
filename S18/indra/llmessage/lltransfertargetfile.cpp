@@ -50,7 +50,7 @@ LLTransferTargetFile::~LLTransferTargetFile()
 {
 	if (mFP)
 	{
-		llerrs << "LLTransferTargetFile::~LLTransferTargetFile - Should have been cleaned up in completion callback" << llendl;
+		llwarns << "LLTransferTargetFile::~LLTransferTargetFile - Should have been cleaned up in completion callback" << llendl;
 		fclose(mFP);
 		mFP = NULL;
 	}

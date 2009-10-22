@@ -3,8 +3,8 @@
      <icon bottom="0" color="255,255,255,245" scale_image="true"
          follows="left|right|top|bottom" height="408"  image_name="MapBg2.tga"
          left="0" width="517" />
-<panel border="true" bottom="-409" enabled="true" follows="left|top|right|bottom"
-     height="408" label="Voice Chat" left="102" mouse_opaque="true" name="chat"
+<panel border="true" bottom="0" enabled="true" follows="left|top|right|bottom"
+     height="408" label="Voice Chat" left="0" mouse_opaque="true" name="chat"
      width="517">
 	<text_editor type="string" length="1" allow_html="false" bg_readonly_color="0 0 0 0" bottom_delta="-26"
 	     embedded_items="false" enabled="false" follows="left|top"

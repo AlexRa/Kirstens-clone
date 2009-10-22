@@ -468,12 +468,12 @@ void LLViewerPartSim::checkParticleCount(U32 size)
 {
 	if(LLViewerPartSim::sParticleCount2 != LLViewerPartSim::sParticleCount)
 	{
-		llerrs << "sParticleCount: " << LLViewerPartSim::sParticleCount << " ; sParticleCount2: " << LLViewerPartSim::sParticleCount2 << llendl ;
+		llwarns << "sParticleCount: " << LLViewerPartSim::sParticleCount << " ; sParticleCount2: " << LLViewerPartSim::sParticleCount2 << llendl ;
 	}
 
 	if(size > (U32)LLViewerPartSim::sParticleCount2)
 	{
-		llerrs << "curren particle size: " << LLViewerPartSim::sParticleCount2 << " array size: " << size << llendl ;
+		llwarns << "curren particle size: " << LLViewerPartSim::sParticleCount2 << " array size: " << size << llendl ;
 	}
 }
 

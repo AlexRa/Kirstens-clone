@@ -522,7 +522,7 @@ LLAppViewer::LLAppViewer() :
 {
 	if(NULL != sInstance)
 	{
-		llerrs << "Oh no! An instance of LLAppViewer already exists! LLAppViewer is sort of like a singleton." << llendl;
+		llwarns << "Oh no! An instance of LLAppViewer already exists! LLAppViewer is sort of like a singleton." << llendl;
 	}
 
 	sInstance = this;
@@ -1058,7 +1058,7 @@ bool LLAppViewer::mainLoop()
 				//output possible call stacks to log file.
 				LLError::LLCallStacks::print() ;
 
-				llerrs << "Bad memory allocation in LLAppViewer::mainLoop()!" << llendl ;
+				llwarns << "Bad memory allocation in LLAppViewer::mainLoop()!" << llendl ;
 			}
 		}
 	}
@@ -1417,8 +1417,8 @@ bool LLAppViewer::cleanup()
 	return true;
 }
 
-// A callback for llerrs to call during the watchdog error.
-void watchdog_llerrs_callback(const std::string &error_string)
+// A callback for llwarns to call during the watchdog error.
+void watchdog_llwarns_callback(const std::string &error_string)
 {
 	gLLErrorActivated = true;
 
@@ -1432,8 +1432,8 @@ void watchdog_llerrs_callback(const std::string &error_string)
 // A callback for the watchdog to call.
 void watchdog_killer_callback()
 {
-	LLError::setFatalFunction(watchdog_llerrs_callback);
-	llerrs << "Watchdog killer event" << llendl;
+	LLError::setFatalFunction(watchdog_llwarns_callback);
+	llwarns << "Watchdog killer event" << llendl;
 }
 
 bool LLAppViewer::initThreads()
@@ -1510,7 +1510,7 @@ bool LLAppViewer::loadSettingsFromDirectory(const std::string& location_key,
 	// Find and vet the location key.
 	if(!mSettingsLocationList.has(location_key))
 	{
-		llerrs << "Requested unknown location: " << location_key << llendl;
+		llwarns << "Requested unknown location: " << location_key << llendl;
 		return false;
 	}
 
@@ -1518,13 +1518,13 @@ bool LLAppViewer::loadSettingsFromDirectory(const std::string& location_key,
 
 	if(!location.has("PathIndex"))
 	{
-		llerrs << "Settings location is missing PathIndex value. Settings cannot be loaded." << llendl;
+		llwarns << "Settings location is missing PathIndex value. Settings cannot be loaded." << llendl;
 		return false;
 	}
 	ELLPath path_index = (ELLPath)(location.get("PathIndex").asInteger());
 	if(path_index <= LL_PATH_NONE || path_index >= LL_PATH_LAST)
 	{
-		llerrs << "Out of range path index in app_settings/settings_files.xml" << llendl;
+		llwarns << "Out of range path index in app_settings/settings_files.xml" << llendl;
 		return false;
 	}
 
@@ -1623,7 +1623,7 @@ bool LLAppViewer::initConfiguration()
 	llinfos << "Loading settings file list" << settings_file_list << llendl;
 	if (0 == settings_control.loadFromFile(settings_file_list))
 	{
-        llerrs << "Cannot load default configuration file " << settings_file_list << llendl;
+        llwarns << "Cannot load default configuration file " << settings_file_list << llendl;
 	}
 
 	mSettingsLocationList = settings_control.getLLSD("Locations");
@@ -1901,7 +1901,7 @@ bool LLAppViewer::initConfiguration()
 
 	//	if (!skin_def_tree.parseFile(skin_def_file))
 	//	{
-	//		llerrs << "Failed to parse skin definition." << llendl;
+	//		llwarns << "Failed to parse skin definition." << llendl;
 	//	}
 
 	//}
@@ -3809,7 +3809,7 @@ void LLAppViewer::disconnectViewer()
 
 void LLAppViewer::forceErrorLLError()
 {
-   	llerrs << "This is an llerror" << llendl;
+   	llwarns << "This is an llerror" << llendl;
 }
 
 void LLAppViewer::forceErrorBreakpoint()

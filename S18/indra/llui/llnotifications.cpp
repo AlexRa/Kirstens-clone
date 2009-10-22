@@ -1056,7 +1056,7 @@ LLNotificationChannelPtr LLNotifications::getChannel(const std::string& channelN
 	ChannelMap::iterator p = mChannels.find(channelName);
 	if(p == mChannels.end())
 	{
-		llerrs << "Did not find channel named " << channelName << llendl;
+		llwarns << "Did not find channel named " << channelName << llendl;
 	}
 	return p->second;
 }
@@ -1243,7 +1243,7 @@ bool LLNotifications::loadTemplates()
 	
 	if (!success || root.isNull() || !root->hasName( "notifications" ))
 	{
-		llerrs << "Problem reading UI Notifications file: " << xml_filename << llendl;
+		llwarns << "Problem reading UI Notifications file: " << xml_filename << llendl;
 		return false;
 	}
 	
@@ -1417,7 +1417,7 @@ void LLNotifications::add(const LLNotificationPtr pNotif)
 	LLNotificationSet::iterator it=mItems.find(pNotif);
 	if (it != mItems.end())
 	{
-		llerrs << "Notification added a second time to the master notification channel." << llendl;
+		llwarns << "Notification added a second time to the master notification channel." << llendl;
 	}
 
 	updateItem(LLSD().insert("sigtype", "add").insert("id", pNotif->id()), pNotif);
@@ -1428,7 +1428,7 @@ void LLNotifications::cancel(LLNotificationPtr pNotif)
 	LLNotificationSet::iterator it=mItems.find(pNotif);
 	if (it == mItems.end())
 	{
-		llerrs << "Attempted to delete nonexistent notification " << pNotif->getName() << llendl;
+		llwarns << "Attempted to delete nonexistent notification " << pNotif->getName() << llendl;
 	}
 	updateItem(LLSD().insert("sigtype", "delete").insert("id", pNotif->id()), pNotif);
 	pNotif->cancel();

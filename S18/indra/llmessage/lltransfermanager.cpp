@@ -80,7 +80,7 @@ void LLTransferManager::init()
 {
 	if (mValid)
 	{
-		llerrs << "Double initializing LLTransferManager!" << llendl;
+		llwarns << "Double initializing LLTransferManager!" << llendl;
 	}
 	mValid = TRUE;
 
@@ -865,7 +865,7 @@ void LLTransferSourceChannel::updateTransfers()
 			iter = next;
 			break;
 		default:
-			llerrs << "Unknown transfer error code!" << llendl;
+			llwarns << "Unknown transfer error code!" << llendl;
 		}
 
 		// At this point, we should do priority adjustment (since some transfers like
@@ -911,7 +911,7 @@ BOOL LLTransferSourceChannel::deleteTransfer(LLTransferSource *tsp)
 		}
 	}
 
-	llerrs << "Unable to find transfer source to delete!" << llendl;
+	llwarns << "Unable to find transfer source to delete!" << llendl;
 	return FALSE;
 }
 
@@ -1026,7 +1026,7 @@ BOOL LLTransferTargetChannel::deleteTransfer(LLTransferTarget *ttp)
 		}
 	}
 
-	llerrs << "Unable to find transfer target to delete!" << llendl;
+	llwarns << "Unable to find transfer target to delete!" << llendl;
 	return FALSE;
 }
 
@@ -1106,7 +1106,7 @@ void LLTransferSource::registerSourceType(const LLTransferSourceType stype, LLTr
 	{
 		// Disallow changing what class handles a source type
 		// Unclear when you would want to do this, and whether it would work.
-		llerrs << "Reregistering source type " << stype << llendl;
+		llwarns << "Reregistering source type " << stype << llendl;
 	}
 	else
 	{
@@ -1252,7 +1252,7 @@ bool LLTransferTarget::addDelayedPacket(
 #ifdef _DEBUG
 	if (mDelayedPacketMap.find(packet_id) != mDelayedPacketMap.end())
 	{
-		llerrs << "Packet ALREADY in delayed packet map!" << llendl;
+		llwarns << "Packet ALREADY in delayed packet map!" << llendl;
 	}
 #endif
 

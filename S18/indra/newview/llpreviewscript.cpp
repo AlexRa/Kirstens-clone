@@ -1924,7 +1924,7 @@ void LLLiveLSLEditor::onLoadComplete(LLVFS *vfs, const LLUUID& asset_id,
 // {
 // 	if(!filename)
 // 	{
-// 		llerrs << "Filename is Empty!" << llendl;
+// 		llwarns << "Filename is Empty!" << llendl;
 // 		return;
 // 	}
 // 	LLFILE* file = LLFile::fopen(filename, "rb");		/*Flawfinder: ignore*/

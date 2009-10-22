@@ -145,7 +145,7 @@ S32 LLXfer::receiveData (char *datap, S32 data_size)
 		}
 		else
 		{
-			llerrs << "NULL data passed in receiveData" << llendl;
+			llwarns << "NULL data passed in receiveData" << llendl;
 		}
 	}
 

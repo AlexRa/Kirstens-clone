@@ -219,7 +219,7 @@ U32 LLVOVolume::processUpdateMessage(LLMessageSystem *mesgsys,
 				std::string mask;
 				mask = gDirUtilp->getDirDelimiter() + "*.slc";
 				gDirUtilp->deleteFilesInDir(gDirUtilp->getExpandedFilename(LL_PATH_CACHE,""), mask);
-// 				llerrs << "Bogus TE data in " << getID() << ", crashing!" << llendl;
+// 				llwarns << "Bogus TE data in " << getID() << ", crashing!" << llendl;
 				llwarns << "Bogus TE data in " << getID() << llendl;
 			}
 			else if (res2 & (TEM_CHANGE_TEXTURE|TEM_CHANGE_COLOR))
@@ -582,15 +582,15 @@ void LLVOVolume::updateTextures()
 
 	if (gPipeline.hasRenderDebugMask(LLPipeline::RENDER_DEBUG_TEXTURE_AREA))
 	{
-		setDebugText(llformat("%.0f:%.0f", fsqrtf(min_vsize),fsqrtf(max_vsize)));
+		setDebugText(llformat("%.0f:%.0f", F32(sqrt(min_vsize)),F32(sqrt(max_vsize))));
 	}
 	else if (gPipeline.hasRenderDebugMask(LLPipeline::RENDER_DEBUG_TEXTURE_PRIORITY))
 	{
-		setDebugText(llformat("%.0f:%.0f", fsqrtf(min_vsize),fsqrtf(max_vsize)));
+		setDebugText(llformat("%.0f:%.0f", F32(sqrt(min_vsize)),F32(sqrt(max_vsize))));
 	}
 	else if (gPipeline.hasRenderDebugMask(LLPipeline::RENDER_DEBUG_FACE_AREA))
 	{
-		setDebugText(llformat("%.0f:%.0f", fsqrtf(min_vsize),fsqrtf(max_vsize)));
+		setDebugText(llformat("%.0f:%.0f", F32(sqrt(min_vsize)),F32(sqrt(max_vsize))));
 	}
 
 	if (mPixelArea == 0)
@@ -831,7 +831,7 @@ void LLVOVolume::sculpt()
 		else
 		{
 			if (raw_image->getDataSize() < sculpt_height * sculpt_width * sculpt_components)
-				llerrs << "Sculpt: image data size = " << raw_image->getDataSize()
+				llwarns << "Sculpt: image data size = " << raw_image->getDataSize()
 					   << " < " << sculpt_height << " x " << sculpt_width << " x " <<sculpt_components << llendl;
 					   
 			sculpt_data = raw_image->getData();
@@ -2290,7 +2290,7 @@ void LLVolumeGeometryManager::registerFace(LLSpatialGroup* group, LLFace* facep,
 
 	if (facep->mVertexBuffer.isNull())
 	{
-		llerrs << "WTF?" << llendl;
+		llwarns << "WTF?" << llendl;
 	}
 
 	if (idx >= 0 && 

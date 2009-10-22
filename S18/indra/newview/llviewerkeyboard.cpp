@@ -701,7 +701,7 @@ BOOL LLViewerKeyboard::bindKey(const S32 mode, const KEY key, const MASK mask, c
 
 	if (!function)
 	{
-		llerrs << "Can't bind key to function " << function_name << ", no function with this name found" << llendl;
+		llwarns << "Can't bind key to function " << function_name << ", no function with this name found" << llendl;
 		return FALSE;
 	}
 
@@ -714,7 +714,7 @@ BOOL LLViewerKeyboard::bindKey(const S32 mode, const KEY key, const MASK mask, c
 
 	if (index >= MAX_KEY_BINDINGS)
 	{
-		llerrs << "LLKeyboard::bindKey() - too many keys for mode " << mode << llendl;
+		llwarns << "LLKeyboard::bindKey() - too many keys for mode " << mode << llendl;
 		return FALSE;
 	}
 
@@ -755,7 +755,7 @@ S32 LLViewerKeyboard::loadBindings(const std::string& filename)
 
 	if(filename.empty())
 	{
-		llerrs << " No filename specified" << llendl;
+		llwarns << " No filename specified" << llendl;
 		return 0;
 	}
 

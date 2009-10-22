@@ -77,7 +77,7 @@ int vfs_seek(void *datasource, ogg_int64_t offset, int whence)
 		origin = -1;
 		break;
 	default:
-		llerrs << "Invalid whence argument to vfs_seek" << llendl;
+		llwarns << "Invalid whence argument to vfs_seek" << llendl;
 		return -1;
 	}
 

@@ -159,7 +159,7 @@ void LLViewerLogin::setGridChoice(EGridInfo grid)
 {	
 	if(grid < 0 || grid >= GRID_INFO_COUNT)
 	{
-		llerrs << "Invalid grid index specified." << llendl;
+		llwarns << "Invalid grid index specified." << llendl;
 	}
 
 	if(mGridChoice != grid || gSavedSettings.getS32("ServerChoice") != grid)

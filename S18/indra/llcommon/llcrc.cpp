@@ -168,7 +168,7 @@ void LLCRC::update(const std::string& filename)
 {
 	if (filename.empty())
 	{
-		llerrs << "No filename specified" << llendl;
+		llwarns << "No filename specified" << llendl;
 		return;
 	}
 

@@ -627,7 +627,7 @@ void LLVFS::presizeDataFile(const U32 size)
 {
 	if (!mDataFP)
 	{
-		llerrs << "LLVFS::presizeDataFile() with no data file open" << llendl;
+		llwarns << "LLVFS::presizeDataFile() with no data file open" << llendl;
 		return;
 	}
 
@@ -656,7 +656,7 @@ BOOL LLVFS::getExists(const LLUUID &file_id, const LLAssetType::EType file_type)
 		
 	if (!isValid())
 	{
-		llerrs << "Attempting to use invalid VFS!" << llendl;
+		llwarns << "Attempting to use invalid VFS!" << llendl;
 	}
 
 	lockData();
@@ -682,7 +682,7 @@ S32	 LLVFS::getSize(const LLUUID &file_id, const LLAssetType::EType file_type)
 	
 	if (!isValid())
 	{
-		llerrs << "Attempting to use invalid VFS!" << llendl;
+		llwarns << "Attempting to use invalid VFS!" << llendl;
 
 	}
 
@@ -709,7 +709,7 @@ S32  LLVFS::getMaxSize(const LLUUID &file_id, const LLAssetType::EType file_type
 	
 	if (!isValid())
 	{
-		llerrs << "Attempting to use invalid VFS!" << llendl;
+		llwarns << "Attempting to use invalid VFS!" << llendl;
 	}
 
 	lockData();
@@ -745,11 +745,11 @@ BOOL LLVFS::setMaxSize(const LLUUID &file_id, const LLAssetType::EType file_type
 {
 	if (!isValid())
 	{
-		llerrs << "Attempting to use invalid VFS!" << llendl;
+		llwarns << "Attempting to use invalid VFS!" << llendl;
 	}
 	if (mReadOnly)
 	{
-		llerrs << "Attempt to write to read-only VFS" << llendl;
+		llwarns << "Attempt to write to read-only VFS" << llendl;
 	}
 	if (max_size <= 0)
 	{
@@ -800,7 +800,7 @@ BOOL LLVFS::setMaxSize(const LLUUID &file_id, const LLAssetType::EType file_type
 			if (block->mLength < block->mSize)
 			{
 				// JC: Was a warning, but Ian says it's bad.
-				llerrs << "Truncating virtual file " << file_id << " to " << block->mLength << " bytes" << llendl;
+				llwarns << "Truncating virtual file " << file_id << " to " << block->mLength << " bytes" << llendl;
 				block->mSize = block->mLength;
 			}
     
@@ -945,11 +945,11 @@ void LLVFS::renameFile(const LLUUID &file_id, const LLAssetType::EType file_type
 {
 	if (!isValid())
 	{
-		llerrs << "Attempting to use invalid VFS!" << llendl;
+		llwarns << "Attempting to use invalid VFS!" << llendl;
 	}
 	if (mReadOnly)
 	{
-		llerrs << "Attempt to write to read-only VFS" << llendl;
+		llwarns << "Attempt to write to read-only VFS" << llendl;
 	}
 
 	lockData();
@@ -981,7 +981,7 @@ void LLVFS::renameFile(const LLUUID &file_id, const LLAssetType::EType file_type
 			{
 				if(dest_block->mLocks[i])
 				{
-					llerrs << "Renaming VFS block to a locked file." << llendl;
+					llwarns << "Renaming VFS block to a locked file." << llendl;
 				}
 				dest_block->mLocks[i] = src_block->mLocks[i];
 			}
@@ -1033,11 +1033,11 @@ void LLVFS::removeFile(const LLUUID &file_id, const LLAssetType::EType file_type
 {
 	if (!isValid())
 	{
-		llerrs << "Attempting to use invalid VFS!" << llendl;
+		llwarns << "Attempting to use invalid VFS!" << llendl;
 	}
 	if (mReadOnly)
 	{
-		llerrs << "Attempt to write to read-only VFS" << llendl;
+		llwarns << "Attempt to write to read-only VFS" << llendl;
 	}
 
     lockData();
@@ -1064,7 +1064,7 @@ S32 LLVFS::getData(const LLUUID &file_id, const LLAssetType::EType file_type, U8
 	
 	if (!isValid())
 	{
-		llerrs << "Attempting to use invalid VFS!" << llendl;
+		llwarns << "Attempting to use invalid VFS!" << llendl;
 	}
 	llassert(location >= 0);
 	llassert(length >= 0);
@@ -1111,11 +1111,11 @@ S32 LLVFS::storeData(const LLUUID &file_id, const LLAssetType::EType file_type, 
 {
 	if (!isValid())
 	{
-		llerrs << "Attempting to use invalid VFS!" << llendl;
+		llwarns << "Attempting to use invalid VFS!" << llendl;
 	}
 	if (mReadOnly)
 	{
-		llerrs << "Attempt to write to read-only VFS" << llendl;
+		llwarns << "Attempt to write to read-only VFS" << llendl;
 	}
     
 	llassert(length > 0);
@@ -1287,7 +1287,7 @@ void LLVFS::eraseBlockLength(LLVFSBlock *block)
 	}
 	if(!found_block)
 	{
-		llerrs << "eraseBlock could not find block" << llendl;
+		llwarns << "eraseBlock could not find block" << llendl;
 	}
 }
 
@@ -1310,7 +1310,7 @@ void LLVFS::addFreeBlock(LLVFSBlock *block)
 	size_t dbgcount = mFreeBlocksByLocation.count(block->mLocation);
 	if(dbgcount > 0)
 	{
-		llerrs << "addFreeBlock called with block already in list" << llendl;
+		llwarns << "addFreeBlock called with block already in list" << llendl;
 	}
 #endif
 
@@ -1391,7 +1391,7 @@ void LLVFS::addFreeBlock(LLVFSBlock *block)
 //{
 // 	if (!isValid())
 // 	{
-// 		llerrs << "Attempting to use invalid VFS!" << llendl;
+// 		llwarns << "Attempting to use invalid VFS!" << llendl;
 // 	}
 // 	// TODO: could we optimize this with hints from the calling code?
 // 	blocks_location_map_t::iterator iter = mFreeBlocksByLocation.begin();	
@@ -1450,7 +1450,7 @@ void LLVFS::sync(LLVFSFileBlock *block, BOOL remove)
 {
 	if (!isValid())
 	{
-		llerrs << "Attempting to use invalid VFS!" << llendl;
+		llwarns << "Attempting to use invalid VFS!" << llendl;
 	}
 	if (mReadOnly)
 	{
@@ -1464,7 +1464,7 @@ void LLVFS::sync(LLVFSFileBlock *block, BOOL remove)
 	}
 	if (block->mLength == 0)
 	{
-		llerrs << "VFS syncing zero-length block" << llendl;
+		llwarns << "VFS syncing zero-length block" << llendl;
 	}
 
     BOOL set_index_to_end = FALSE;
@@ -1532,7 +1532,7 @@ LLVFSBlock *LLVFS::findFreeBlock(S32 size, LLVFSFileBlock *immune)
 {
 	if (!isValid())
 	{
-		llerrs << "Attempting to use invalid VFS!" << llendl;
+		llwarns << "Attempting to use invalid VFS!" << llendl;
 	}
 
 	LLVFSBlock *block = NULL;
@@ -1639,7 +1639,7 @@ void LLVFS::pokeFiles()
 {
 	if (!isValid())
 	{
-		llerrs << "Attempting to use invalid VFS!" << llendl;
+		llwarns << "Attempting to use invalid VFS!" << llendl;
 	}
 	U32 word;
 	

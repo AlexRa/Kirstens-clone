@@ -468,7 +468,7 @@ LLMotion *LLKeyframeMotion::create(const LLUUID &id)
 //-----------------------------------------------------------------------------
 LLPointer<LLJointState>& LLKeyframeMotion::getJointState(U32 index)
 {
-	llassert_always (index < (S32)mJointStates.size());
+	llassert_always (index < mJointStates.size());
 	return mJointStates[index];
 }
 
@@ -477,7 +477,7 @@ LLPointer<LLJointState>& LLKeyframeMotion::getJointState(U32 index)
 //-----------------------------------------------------------------------------
 LLJoint* LLKeyframeMotion::getJoint(U32 index)
 {
-	llassert_always (index < (S32)mJointStates.size());
+	llassert_always (index < mJointStates.size());
 	LLJoint* joint = mJointStates[index]->getJoint();
 	llassert_always (joint);
 	return joint;
@@ -561,7 +561,7 @@ LLMotion::LLMotionInitStatus LLKeyframeMotion::onInitialize(LLCharacter *charact
 
 	if (!sVFS)
 	{
-		llerrs << "Must call LLKeyframeMotion::setVFS() first before loading a keyframe file!" << llendl;
+		llwarns << "Must call LLKeyframeMotion::setVFS() first before loading a keyframe file!" << llendl;
 	}
 
 	BOOL success = FALSE;
@@ -1146,7 +1146,7 @@ void LLKeyframeMotion::applyConstraint(JointConstraint* constraint, F32 time, U8
 			constraint->mPositions[joint_num] = new_pos;
 		}
 		constraint->mFixupDistanceRMS *= 1.f / (constraint->mTotalLength * (F32)(shared_data->mChainLength - 1));
-		constraint->mFixupDistanceRMS = fsqrtf(constraint->mFixupDistanceRMS);
+		constraint->mFixupDistanceRMS = F32(sqrt(constraint->mFixupDistanceRMS));
 
 		//reset old joint rots
 		for (joint_num = 0; joint_num <= shared_data->mChainLength; joint_num++)
@@ -1202,7 +1202,7 @@ BOOL LLKeyframeMotion::deserialize(LLDataPacker& dp)
 		llwarns << "Bad animation version " << version << "." << sub_version << llendl;
 		return FALSE;
 #else
-		llerrs << "Bad animation version " << version << "." << sub_version << llendl;
+		llwarns << "Bad animation version " << version << "." << sub_version << llendl;
 #endif
 	}
 

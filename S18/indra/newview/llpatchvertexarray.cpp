@@ -134,7 +134,7 @@ void LLPatchVertexArray::create(U32 surface_width, U32 patch_width, F32 meters_p
 	{
 		// init() and some other things all want to deref these
 		// pointers, so this is serious.
-		llerrs << "mRenderLevelp or mRenderStridep was NULL; we'd crash soon." << llendl;
+		llwarns << "mRenderLevelp or mRenderStridep was NULL; we'd crash soon." << llendl;
 		return;
 	}
 

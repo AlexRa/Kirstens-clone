@@ -378,7 +378,7 @@ LLMotion* LLMotionController::createMotion( const LLUUID &id )
 		    mLoadedMotions.insert(motion);
 			break;
 		default:
-			llerrs << "Invalid initialization status" << llendl;
+			llwarns << "Invalid initialization status" << llendl;
 			break;
 		}
 

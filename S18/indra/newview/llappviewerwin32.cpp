@@ -72,7 +72,7 @@
 extern "C" {
     void _wassert(const wchar_t * _Message, const wchar_t *_File, unsigned _Line)
     {
-        llerrs << _Message << llendl;
+        llwarns << _Message << llendl;
     }
 }
 #endif

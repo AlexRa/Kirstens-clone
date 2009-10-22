@@ -272,7 +272,7 @@ void LLHTTPAssetRequest::setupCurlHandle()
 	}
 	else
 	{
-		llerrs << "LLHTTPAssetRequest::setupCurlHandle - No asset storage associated with this request!" << llendl;
+		llwarns << "LLHTTPAssetRequest::setupCurlHandle - No asset storage associated with this request!" << llendl;
 	}
 }
 
@@ -286,7 +286,7 @@ void LLHTTPAssetRequest::cleanupCurlHandle()
 	}
 	else
 	{
-		llerrs << "LLHTTPAssetRequest::~LLHTTPAssetRequest - No asset storage associated with this request!" << llendl;
+		llwarns << "LLHTTPAssetRequest::~LLHTTPAssetRequest - No asset storage associated with this request!" << llendl;
 	}
 	mCurlHandle = NULL;
 }
@@ -308,7 +308,7 @@ void LLHTTPAssetRequest::prepareCompressedUpload()
 
 	if (r != Z_OK)
 	{
-		llerrs << "LLHTTPAssetRequest::prepareCompressedUpload defalateInit2() failed" << llendl;
+		llwarns << "LLHTTPAssetRequest::prepareCompressedUpload defalateInit2() failed" << llendl;
 	}
 
 	mZInitialized = true;
@@ -1307,7 +1307,7 @@ void LLHTTPAssetStorage::addRunningRequest(ERequestType rt, LLHTTPAssetRequest* 
 	}
 	else
 	{
-		llerrs << "LLHTTPAssetStorage::addRunningRequest - Request is not an upload OR download, this is bad!" << llendl;
+		llwarns << "LLHTTPAssetStorage::addRunningRequest - Request is not an upload OR download, this is bad!" << llendl;
 	}
 }
 
@@ -1320,7 +1320,7 @@ void LLHTTPAssetStorage::removeRunningRequest(ERequestType rt, LLHTTPAssetReques
 	}
 	else
 	{
-		llerrs << "LLHTTPAssetStorage::removeRunningRequest - Destroyed request is not an upload OR download, this is bad!" << llendl;
+		llwarns << "LLHTTPAssetStorage::removeRunningRequest - Destroyed request is not an upload OR download, this is bad!" << llendl;
 	}
 }
 

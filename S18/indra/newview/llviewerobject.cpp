@@ -683,7 +683,7 @@ U32 LLViewerObject::processUpdateMessage(LLMessageSystem *mesgsys,
 		U32 x, y;
 		from_region_handle(region_handle, &x, &y);
 
-		llerrs << "Object has invalid region " << x << ":" << y << "!" << llendl;
+		llwarns << "Object has invalid region " << x << ":" << y << "!" << llendl;
 		return retval;
 	}
 
@@ -1649,7 +1649,7 @@ U32 LLViewerObject::processUpdateMessage(LLMessageSystem *mesgsys,
 				//LLViewerObjectList::getUUIDFromLocal(parent_uuid, parent_id, mesgsys->getSenderIP(), mesgsys->getSenderPort() );
 				//if (parent_uuid != cur_parentp->getID() )
 				//{
-				//	llerrs << "Local ID match but UUID mismatch of viewer object" << llendl;
+				//	llwarns << "Local ID match but UUID mismatch of viewer object" << llendl;
 				//}
 			}
 			else
@@ -3948,7 +3948,7 @@ LLViewerImage *LLViewerObject::getTEImage(const U8 face) const
 		}
 	}
 
-	llerrs << llformat("Requested Image from invalid face: %d/%d",face,getNumTEs()) << llendl;
+	llwarns << llformat("Requested Image from invalid face: %d/%d",face,getNumTEs()) << llendl;
 
 	return NULL;
 }

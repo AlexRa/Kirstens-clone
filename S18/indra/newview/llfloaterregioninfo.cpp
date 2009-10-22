@@ -2876,7 +2876,7 @@ void LLPanelEstateCovenant::onLoadComplete(LLVFS *vfs,
 			char* buffer = new char[file_length+1];
 			if (buffer == NULL)
 			{
-				llerrs << "Memory Allocation Failed" << llendl;
+				llwarns << "Memory Allocation Failed" << llendl;
 				return;
 			}
 

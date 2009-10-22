@@ -140,7 +140,7 @@ namespace
 		LLViewerRegion *regionp = gAgent.getRegion();
 		if (!regionp)
 		{
-			llerrs << "LLEventPoll initialized before region is added." << llendl;
+			llwarns << "LLEventPoll initialized before region is added." << llendl;
 		}
 		mSender = sender.getIPandPort();
 		llinfos << "LLEventPoll initialized with sender " << mSender << llendl;

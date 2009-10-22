@@ -4796,7 +4796,7 @@ void LLInventoryFilter::setModified(EFilterBehavior behavior)
 			mMustPassGeneration = llmin(mMustPassGeneration, mFilterGeneration);
 			break;
 		default:
-			llerrs << "Bad filter behavior specified" << llendl;
+			llwarns << "Bad filter behavior specified" << llendl;
 		}
 	}
 	else

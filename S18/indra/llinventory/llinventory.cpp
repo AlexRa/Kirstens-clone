@@ -649,7 +649,7 @@ BOOL LLInventoryItem::importFile(LLFILE* fp)
 			const char *donkey = mDescription.c_str();
 			if (donkey[0] == '|')
 			{
-				llerrs << "Donkey" << llendl;
+				llwarns << "Donkey" << llendl;
 			}
 			*/
 		}
@@ -848,11 +848,11 @@ BOOL LLInventoryItem::importLegacyStream(std::istream& input_stream)
 
 			mDescription.assign(valuestr);
 			LLStringUtil::replaceNonstandardASCII(mDescription, ' ');
-			/* TODO -- ask Ian about this code
+			/* TODO -- ask Ian about this code     // WTF LL ??? 
 			const char *donkey = mDescription.c_str();
 			if (donkey[0] == '|')
 			{
-				llerrs << "Donkey" << llendl;
+				llwarns << "Donkey" << llendl;
 			}
 			*/
 		}
@@ -1270,7 +1270,7 @@ void LLInventoryItem::unpackBinaryBucket(U8* bin_bucket, S32 bin_bucket_size)
 	}
 	else
 	{
-		llerrs << "unpackBinaryBucket failed. item_buffer or bin_bucket is Null." << llendl;
+		llwarns << "unpackBinaryBucket failed. item_buffer or bin_bucket is Null." << llendl;
 		delete[] item_buffer;
 		return;
 	}

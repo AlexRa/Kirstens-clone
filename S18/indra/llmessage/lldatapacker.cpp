@@ -102,7 +102,7 @@ BOOL LLDataPacker::packFixed(const F32 value, const char *name,
 	}
 	else
 	{
-		llerrs << "Using fixed-point packing of " << total_bits << " bits, why?!" << llendl;
+		llwarns << "Using fixed-point packing of " << total_bits << " bits, why?!" << llendl;
 	}
 	return success;
 }
@@ -152,7 +152,7 @@ BOOL LLDataPacker::unpackFixed(F32 &value, const char *name,
 	else
 	{
 		fixed_val = 0;
-		llerrs << "Bad bit count: " << total_bits << llendl;
+		llwarns << "Bad bit count: " << total_bits << llendl;
 	}
 
 	//llinfos << "Fixed_val:" << fixed_val << llendl;
@@ -544,7 +544,7 @@ const LLDataPackerBinaryBuffer&	LLDataPackerBinaryBuffer::operator=(const LLData
 	if (a.getBufferSize() > getBufferSize())
 	{
 		// We've got problems, ack!
-		llerrs << "Trying to do an assignment with not enough room in the target." << llendl;
+		llwarns << "Trying to do an assignment with not enough room in the target." << llendl;
 	}
 	memcpy(mBufferp, a.mBufferp, a.getBufferSize());	/*Flawfinder: ignore*/
 	return *this;

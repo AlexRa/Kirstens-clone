@@ -273,7 +273,7 @@ bool LLMessageConfig::isValidMessage(const std::string& msg_name)
 {
 	if (sServerName.empty())
 	{
-		llerrs << "LLMessageConfig::initClass() not called" << llendl;
+		llwarns << "LLMessageConfig::initClass() not called" << llendl;
 	}
 	LLMessageConfigFile& file = LLMessageConfigFile::instance();
 	return file.mMessages.has(msg_name);
@@ -299,7 +299,7 @@ LLSD LLMessageConfig::getConfigForMessage(const std::string& msg_name)
 {
 	if (sServerName.empty())
 	{
-		llerrs << "LLMessageConfig::isMessageTrusted(name) before"
+		llwarns << "LLMessageConfig::isMessageTrusted(name) before"
 				<< " LLMessageConfig::initClass()" << llendl;
 	}
 	LLMessageConfigFile& file = LLMessageConfigFile::instance();

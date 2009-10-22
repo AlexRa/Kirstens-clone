@@ -270,7 +270,7 @@ BOOL LLImageTGA::updateData()
 			mColorMap = new U8[ color_map_bytes ];  
 			if (!mColorMap)
 			{
-				llerrs << "Out of Memory in BOOL LLImageTGA::updateData()" << llendl;
+				llwarns << "Out of Memory in BOOL LLImageTGA::updateData()" << llendl;
 				return FALSE;
 			}
 			memcpy( mColorMap, getData() + mDataOffset, color_map_bytes );	/* Flawfinder: ignore */
@@ -1047,7 +1047,7 @@ BOOL LLImageTGA::decodeAndProcess( LLImageRaw* raw_image, F32 domain, F32 weight
 	// Only works for unflipped monochrome RLE images
 	if( (getComponents() != 1) || (mImageType != 11) || mOriginTopBit || mOriginRightBit ) 
 	{
-		llerrs << "LLImageTGA trying to alpha-gradient process an image that's not a standard RLE, one component image" << llendl;
+		llwarns << "LLImageTGA trying to alpha-gradient process an image that's not a standard RLE, one component image" << llendl;
 		return FALSE;
 	}
 

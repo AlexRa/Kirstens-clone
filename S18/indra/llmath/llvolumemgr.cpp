@@ -154,7 +154,7 @@ void LLVolumeMgr::unrefVolume(LLVolume *volumep)
 	volume_lod_group_map_t::iterator iter = mVolumeLODGroups.find(params);
 	if( iter == mVolumeLODGroups.end() )
 	{
-		llerrs << "Warning! Tried to cleanup unknown volume type! " << *params << llendl;
+		llwarns << "Warning! Tried to cleanup unknown volume type! " << *params << llendl;
 		if (mDataMutex)
 		{
 			mDataMutex->unlock();
@@ -329,7 +329,7 @@ BOOL LLVolumeLODGroup::derefLOD(LLVolume *volumep)
 			return TRUE;
 		}
 	}
-	llerrs << "Deref of non-matching LOD in volume LOD group" << llendl;
+	llwarns << "Deref of non-matching LOD in volume LOD group" << llendl;
 	return FALSE;
 }
 

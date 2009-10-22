@@ -71,7 +71,7 @@ void LLVLManager::addLayerData(LLVLData *vl_datap, const S32 mesg_size)
 	}
 	else
 	{
-		llerrs << "Unknown layer type!" << (S32)vl_datap->mType << llendl;
+		llwarns << "Unknown layer type!" << (S32)vl_datap->mType << llendl;
 	}
 
 	mPacketData.put(vl_datap);

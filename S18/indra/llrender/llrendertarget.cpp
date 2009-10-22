@@ -141,7 +141,7 @@ void LLRenderTarget::addColorAttachment(U32 color_fmt)
 	if (offset >= 4 ||
 		offset > 0 && (mFBO == 0 || !gGLManager.mHasDrawBuffers))
 	{
-		llerrs << "Too many color attachments!" << llendl;
+		llwarns << "Too many color attachments!" << llendl; // KL
 	}
 
 	U32 tex;
@@ -440,7 +440,7 @@ void LLRenderTarget::copyContents(LLRenderTarget& source, S32 srcX0, S32 srcY0, 
 #if !LL_DARWIN
 	if (!source.mFBO || !mFBO)
 	{
-		llerrs << "Cannot copy framebuffer contents for non FBO render targets." << llendl;
+		llwarns << "Cannot copy framebuffer contents for non FBO render targets." << llendl;
 	}
 
 	if (mSampleBuffer)
@@ -568,14 +568,14 @@ void LLMultisampleBuffer::allocate(U32 resx, U32 resy, U32 color_fmt, BOOL depth
 
 	if (!gGLManager.mHasFramebufferMultisample)
 	{
-		llerrs << "Attempting to allocate unsupported render target type!" << llendl;
+		llwarns << "Attempting to allocate unsupported render target type!" << llendl;
 	}
 
 	mSamples = samples;
 	
 	if (mSamples <= 1)
 	{
-		llerrs << "Cannot create a multisample buffer with less than 2 samples." << llendl;
+		llwarns << "Cannot create a multisample buffer with less than 2 samples." << llendl;
 	}
 
 	stop_glerror();
@@ -625,7 +625,7 @@ void LLMultisampleBuffer::addColorAttachment(U32 color_fmt)
 	if (offset >= 4 ||
 		offset > 0 && (mFBO == 0 || !gGLManager.mHasDrawBuffers))
 	{
-		llerrs << "Too many color attachments!" << llendl;
+		llwarns << "Too many color attachments!" << llendl;
 	}
 
 	U32 tex;
@@ -646,10 +646,10 @@ void LLMultisampleBuffer::addColorAttachment(U32 color_fmt)
 		case GL_FRAMEBUFFER_COMPLETE_EXT:
 			break;
 		case GL_FRAMEBUFFER_UNSUPPORTED_EXT:
-			llerrs << "WTF?" << llendl;
+			llwarns << "WTF?" << llendl;
 			break;
 		default:
-			llerrs << "WTF?" << llendl;
+			llwarns << "WTF?" << llendl;
 		}
 
 		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);

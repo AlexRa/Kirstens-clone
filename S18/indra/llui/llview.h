@@ -198,7 +198,7 @@ public:
 		if (registry->isTagRegistered(tag))
 		{
 			//error!
-			llerrs << "Widget named " << tag << " already registered!" << llendl;
+			llwarns << "Widget named " << tag << " already registered!" << llendl;
 		}
 		else
 		{

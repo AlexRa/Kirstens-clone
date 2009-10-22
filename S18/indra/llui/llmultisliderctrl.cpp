@@ -430,7 +430,7 @@ void LLMultiSliderCtrl::setPrecision(S32 precision)
 {
 	if (precision < 0 || precision > 10)
 	{
-		llerrs << "LLMultiSliderCtrl::setPrecision - precision out of range" << llendl;
+		llwarns << "LLMultiSliderCtrl::setPrecision - precision out of range" << llendl;
 		return;
 	}
 

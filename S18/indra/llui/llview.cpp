@@ -268,7 +268,7 @@ void LLView::addChild(LLView* child, S32 tab_group)
 {
 	if (mParentView == child) 
 	{
-		llerrs << "Adding view " << child->getName() << " as child of itself" << llendl;
+		llwarns << "Adding view " << child->getName() << " as child of itself" << llendl;
 	}
 	// remove from current parent
 	if (child->mParentView) 
@@ -295,7 +295,7 @@ void LLView::addChildAtEnd(LLView* child, S32 tab_group)
 {
 	if (mParentView == child) 
 	{
-		llerrs << "Adding view " << child->getName() << " as child of itself" << llendl;
+		llwarns << "Adding view " << child->getName() << " as child of itself" << llendl;
 	}
 	// remove from current parent
 	if (child->mParentView) 
@@ -335,7 +335,7 @@ void LLView::removeChild(LLView* child, BOOL deleteIt)
 	}
 	else
 	{
-		llerrs << "LLView::removeChild called with non-child" << llendl;
+		llwarns << "LLView::removeChild called with non-child" << llendl;
 	}
 	updateBoundingRect();
 }
@@ -709,11 +709,9 @@ BOOL LLView::handleToolTip(S32 x, S32 y, std::string& msg, LLRect* sticky_rect_s
 		LLView* viewp = *child_it;
 		S32 local_x = x - viewp->mRect.mLeft;
 		S32 local_y = y - viewp->mRect.mBottom;
-		// Allow tooltips for disabled views so we can explain to the user why
-		// the view is disabled. JC
 		if( viewp->pointInView(local_x, local_y) 
 			&& viewp->getVisible() 
-			// && viewp->getEnabled()
+			&& viewp->getEnabled()
 			&& viewp->handleToolTip(local_x, local_y, msg, sticky_rect_screen ))
 		{
 			// child provided a tooltip, just return
@@ -741,20 +739,24 @@ BOOL LLView::handleToolTip(S32 x, S32 y, std::string& msg, LLRect* sticky_rect_s
 
 	// don't allow any siblings to handle this event
 	// even if we don't have a tooltip
-	if (blockMouseEvent(x, y) || show_names_text_box)
+	if (blockMouseEvent(x, y) || show_names_text_box) // KL for XUI via jira
 	{
-		if(!tool_tip.empty())
+
+	if(!tool_tip.empty())
+
 		{
 			msg = tool_tip;
 
-			// Convert rect local to screen coordinates
+         	// Convert rect local to screen coordinates
 			localPointToScreen(
 				0, 0,
 				&(sticky_rect_screen->mLeft), &(sticky_rect_screen->mBottom) );
 			localPointToScreen(
 				mRect.getWidth(), mRect.getHeight(),
-				&(sticky_rect_screen->mRight), &(sticky_rect_screen->mTop) );		
+				&(sticky_rect_screen->mRight), &(sticky_rect_screen->mTop) );
 		}
+		
+		
 		handled = TRUE;
 	}
 
@@ -2157,7 +2159,7 @@ LLView*	LLView::findSnapEdge(S32& new_edge_val, const LLCoordGL& mouse_dir, ESna
 			}
 			break;
 		default:
-			llerrs << "Invalid snap edge" << llendl;
+			llwarns << "Invalid snap edge" << llendl;
 		}
 	}
 
@@ -2259,7 +2261,7 @@ LLView*	LLView::findSnapEdge(S32& new_edge_val, const LLCoordGL& mouse_dir, ESna
 				}
 				break;
 			default:
-				llerrs << "Invalid snap edge" << llendl;
+				llwarns << "Invalid snap edge" << llendl;
 			}
 		}
 	}

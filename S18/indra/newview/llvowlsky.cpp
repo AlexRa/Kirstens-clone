@@ -325,7 +325,7 @@ BOOL LLVOWLSky::updateGeometry(LLDrawable * drawable)
 
 		if(!success) 
 		{
-			llerrs << "Failed updating WindLight sky geometry." << llendl;
+			llwarns << "Failed updating WindLight sky geometry." << llendl;
 		}
 
 		buildFanBuffer(vertices, texCoords, indices);
@@ -385,7 +385,7 @@ BOOL LLVOWLSky::updateGeometry(LLDrawable * drawable)
 
 			if(!success) 
 			{
-				llerrs << "Failed updating WindLight sky geometry." << llendl;
+				llwarns << "Failed updating WindLight sky geometry." << llendl;
 			}
 
 			// fill it
@@ -783,7 +783,7 @@ BOOL LLVOWLSky::updateStarGeometry(LLDrawable *drawable)
 
 	if(!success)
 	{
-		llerrs << "Failed updating star geometry." << llendl;
+		llwarns << "Failed updating star geometry." << llendl;
 	}
 
 	// *TODO: fix LLStrider with a real prefix increment operator so it can be

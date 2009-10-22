@@ -221,7 +221,7 @@ const LLMatrix4&	LLMatrix4::transpose()
 
 F32 LLMatrix4::determinant() const
 {
-	llerrs << "Not implemented!" << llendl;
+	llwarns << "Not implemented!" << llendl;
 	return 0.f;
 }
 

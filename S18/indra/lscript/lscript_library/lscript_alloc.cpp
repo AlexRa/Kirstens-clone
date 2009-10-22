@@ -441,7 +441,7 @@ S32 lsa_create_data_block(U8 **buffer, LLScriptLibData *data, S32 base_offset)
 				U8 *tbuff = new U8[size + listsize];
 				if (tbuff == NULL)
 				{
-					llerrs << "Memory Allocation Failed" << llendl;
+					llwarns << "Memory Allocation Failed" << llendl;
 				}
 				memcpy(tbuff, *buffer, size);	/*Flawfinder: ignore*/
 				memcpy(tbuff + size, listbuf, listsize);		/*Flawfinder: ignore*/

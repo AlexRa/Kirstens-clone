@@ -586,7 +586,7 @@ char	*LLNameValue::getString()
 	}
 	else
 	{
-		llerrs << mName << " not a string!" << llendl;
+		llwarns << mName << " not a string!" << llendl;
 		return NULL;
 	}
 }
@@ -599,7 +599,7 @@ const char *LLNameValue::getAsset() const
 	}
 	else
 	{
-		llerrs << mName << " not an asset!" << llendl;
+		llwarns << mName << " not an asset!" << llendl;
 		return NULL;
 	}
 }
@@ -612,7 +612,7 @@ F32		*LLNameValue::getF32()
 	}
 	else
 	{
-		llerrs << mName << " not a F32!" << llendl;
+		llwarns << mName << " not a F32!" << llendl;
 		return NULL;
 	}
 }
@@ -625,7 +625,7 @@ S32		*LLNameValue::getS32()
 	}
 	else
 	{
-		llerrs << mName << " not a S32!" << llendl;
+		llwarns << mName << " not a S32!" << llendl;
 		return NULL;
 	}
 }
@@ -638,7 +638,7 @@ U32		*LLNameValue::getU32()
 	}
 	else
 	{
-		llerrs << mName << " not a U32!" << llendl;
+		llwarns << mName << " not a U32!" << llendl;
 		return NULL;
 	}
 }
@@ -651,7 +651,7 @@ U64		*LLNameValue::getU64()
 	}
 	else
 	{
-		llerrs << mName << " not a U64!" << llendl;
+		llwarns << mName << " not a U64!" << llendl;
 		return NULL;
 	}
 }
@@ -664,7 +664,7 @@ void	LLNameValue::getVec3(LLVector3 &vec)
 	}
 	else
 	{
-		llerrs << mName << " not a Vec3!" << llendl;
+		llwarns << mName << " not a Vec3!" << llendl;
 	}
 }
 
@@ -676,7 +676,7 @@ LLVector3	*LLNameValue::getVec3()
 	}
 	else
 	{
-		llerrs << mName << " not a Vec3!" << llendl;
+		llwarns << mName << " not a Vec3!" << llendl;
 		return NULL;
 	}
 }
@@ -732,7 +732,7 @@ LLNameValue &LLNameValue::operator=(const LLNameValue &a)
 		*mNameValueReference.u64 = *a.mNameValueReference.u64;
 		break;
 	default:
-		llerrs << "Unknown Name value type " << (U32)a.mType << llendl;
+		llwarns << "Unknown Name value type " << (U32)a.mType << llendl;
 		break;
 	}
 
@@ -871,7 +871,7 @@ void LLNameValue::setU32(const U32 a)
 		*mNameValueReference.f32 = (F32)a;
 		break;
 	default:
-		llerrs << "NameValue: Trying to set U32 into a " << mStringType << ", unknown conversion" << llendl;
+		llwarns << "NameValue: Trying to set U32 into a " << mStringType << ", unknown conversion" << llendl;
 		break;
 	}
 	return;
@@ -889,7 +889,7 @@ void LLNameValue::setVec3(const LLVector3 &a)
 		*mNameValueReference.vec3 = a;
 		break;
 	default:
-		llerrs << "NameValue: Trying to set LLVector3 into a " << mStringType << ", unknown conversion" << llendl;
+		llwarns << "NameValue: Trying to set LLVector3 into a " << mStringType << ", unknown conversion" << llendl;
 		break;
 	}
 	return;
@@ -934,7 +934,7 @@ std::string LLNameValue::printData() const
 	  	buffer = llformat( "%f, %f, %f", mNameValueReference.vec3->mV[VX], mNameValueReference.vec3->mV[VY], mNameValueReference.vec3->mV[VZ]);
 		break;
 	default:
-		llerrs << "Trying to print unknown NameValue type " << mStringType << llendl;
+		llwarns << "Trying to print unknown NameValue type " << mStringType << llendl;
 		break;
 	}
 	return buffer;
@@ -967,7 +967,7 @@ std::ostream&		operator<<(std::ostream& s, const LLNameValue &a)
 		s << *(a.mNameValueReference.vec3);
 		break;
 	default:
-		llerrs << "Trying to print unknown NameValue type " << a.mStringType << llendl;
+		llwarns << "Trying to print unknown NameValue type " << a.mStringType << llendl;
 		break;
 	}
 	return s;

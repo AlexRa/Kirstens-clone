@@ -198,7 +198,7 @@ void LLViewerGestureList::xferCallback(void *data, S32 size, void** /*user_data*
 
 		if (end - buffer > size)
 		{
-			llerrs << "Read off of end of array, error in serialization" << llendl;
+			llwarns << "Read off of end of array, error in serialization" << llendl;
 		}
 
 		gGestureList.mIsLoaded = TRUE;

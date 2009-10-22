@@ -2472,7 +2472,7 @@ bool LLInventoryModel::loadFromFile(const std::string& filename,
 {
 	if(filename.empty())
 	{
-		llerrs << "Filename is Null!" << llendl;
+		llwarns << "Filename is Null!" << llendl;
 		return false;
 	}
 	llinfos << "LLInventoryModel::loadFromFile(" << filename << ")" << llendl;
@@ -2544,7 +2544,7 @@ bool LLInventoryModel::saveToFile(const std::string& filename,
 {
 	if(filename.empty())
 	{
-		llerrs << "Filename is Null!" << llendl;
+		llwarns << "Filename is Null!" << llendl;
 		return false;
 	}
 	llinfos << "LLInventoryModel::saveToFile(" << filename << ")" << llendl;

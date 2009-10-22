@@ -142,7 +142,7 @@ void LLFastTimer::reset()
 	
 	if (sCurDepth != 0)
 	{
-		llerrs << "LLFastTimer::Reset() when sCurDepth != 0" << llendl;
+		llwarns << "LLFastTimer::Reset() when sCurDepth != 0" << llendl;
 	}
 	if (sPauseHistory)
 	{

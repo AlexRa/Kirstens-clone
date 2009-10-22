@@ -51,7 +51,7 @@ public:
 	void setPointDirection( const LLVector3& first_point, const LLVector3& second_point );
 	void setPoints( const LLVector3& first_point, const LLVector3& second_point );
 
-	bool intersects( const LLVector3& point, F32 radius = DEFAULT_INTERSECTION_ERROR ) const;
+	bool intersects( const LLVector3& point ) const;
 
 	// returns the point on this line that is closest to some_point
 	LLVector3 nearestApproach( const LLVector3& some_point ) const;

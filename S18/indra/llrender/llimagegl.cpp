@@ -107,7 +107,7 @@ void LLImageGL::checkTexSize() const
 		if (texname != mTexName)
 		{
 			
-				llerrs << "Invalid texture bound!" << llendl;
+				llwarns << "Invalid texture bound!" << llendl;
 			
 		}
 		stop_glerror() ;
@@ -123,13 +123,13 @@ void LLImageGL::checkTexSize() const
 		{
 			error = TRUE;
 			
-				llerrs << "wrong texture size and discard level!" << llendl;
+				llwarns << "wrong texture size and discard level!" << llendl;
 			
 		}
 
 		if (error)
 		{
-			llerrs << "LLImageGL::checkTexSize failed." << llendl;
+			llwarns << "LLImageGL::checkTexSize failed." << llendl;
 		}
 	}
 }
@@ -155,7 +155,7 @@ S32 LLImageGL::dataFormatBits(S32 dataformat)
 	  case GL_RGBA:								return 32;
 	  case GL_BGRA:								return 32;		// Used for QuickTime media textures on the Mac
 	  default:
-		llerrs << "LLImageGL::Unknown format: " << dataformat << llendl;
+		llwarns << "LLImageGL::Unknown format: " << dataformat << llendl;
 		return 0;
 	}
 }
@@ -190,7 +190,7 @@ S32 LLImageGL::dataFormatComponents(S32 dataformat)
 	  case GL_RGBA:								return 4;
 	  case GL_BGRA:								return 4;		// Used for QuickTime media textures on the Mac
 	  default:
-		llerrs << "LLImageGL::Unknown format: " << dataformat << llendl;
+		llwarns << "LLImageGL::Unknown format: " << dataformat << llendl;
 		return 0;
 	}
 }
@@ -267,7 +267,7 @@ void LLImageGL::restoreGL()
 		LLImageGL* glimage = *iter;
 		if(glimage->getTexName())
 		{
-			llerrs << "tex name is not 0." << llendl ;
+			llwarns << "tex name is not 0." << llendl ;
 		}
 		if (glimage->mSaveData.notNull())
 		{
@@ -427,7 +427,7 @@ void LLImageGL::setSize(S32 width, S32 height, S32 ncomponents)
 		// Check if dimensions are a power of two!
 		if (!checkSize(width,height))
 		{
-			llerrs << llformat("Texture has non power of two dimention: %dx%d",width,height) << llendl;
+			llwarns << llformat("Texture has non power of two dimention: %dx%d",width,height) << llendl;
 		}
 		
 		if (mTexName)
@@ -726,7 +726,7 @@ void LLImageGL::setImage(const U8* data_in, BOOL data_hasmips)
 		}
 		else
 		{
-			llerrs << "Compressed Image has mipmaps but data does not (can not auto generate compressed mips)" << llendl;
+			llwarns << "Compressed Image has mipmaps but data does not (can not auto generate compressed mips)" << llendl;
 		}
 		mHasMipMaps = true;
 	}
@@ -849,7 +849,7 @@ BOOL LLImageGL::setSubImage(const U8* datap, S32 data_width, S32 data_height, S3
 		if (mUseMipMaps)
 		{
 			dump();
-			llerrs << "setSubImage called with mipmapped image (not supported)" << llendl;
+			llwarns << "setSubImage called with mipmapped image (not supported)" << llendl;
 		}
 		llassert_always(mCurrentDiscardLevel == 0);
 		llassert_always(x_pos >= 0 && y_pos >= 0);
@@ -858,7 +858,7 @@ BOOL LLImageGL::setSubImage(const U8* datap, S32 data_width, S32 data_height, S3
 			(y_pos + height) > getHeight())
 		{
 			dump();
-			llerrs << "Subimage not wholly in target image!" 
+			llwarns << "Subimage not wholly in target image!" 
 				   << " x_pos " << x_pos
 				   << " y_pos " << y_pos
 				   << " width " << width
@@ -872,7 +872,7 @@ BOOL LLImageGL::setSubImage(const U8* datap, S32 data_width, S32 data_height, S3
 			(y_pos + height) > data_height)
 		{
 			dump();
-			llerrs << "Subimage not wholly in source image!" 
+			llwarns << "Subimage not wholly in source image!" 
 				   << " x_pos " << x_pos
 				   << " y_pos " << y_pos
 				   << " width " << width
@@ -895,7 +895,7 @@ BOOL LLImageGL::setSubImage(const U8* datap, S32 data_width, S32 data_height, S3
 		datap += (y_pos * data_width + x_pos) * getComponents();
 		// Update the GL texture
 		BOOL res = gGL.getTexUnit(0)->bindManual(mBindTarget, mTexName);
-		if (!res) llerrs << "LLImageGL::setSubImage(): bindTexture failed" << llendl;
+		if (!res) llwarns << "LLImageGL::setSubImage(): bindTexture failed" << llendl;
 		stop_glerror();
 
 		glTexSubImage2D(mTarget, 0, x_pos, y_pos, 
@@ -984,7 +984,7 @@ BOOL LLImageGL::createGLTexture()
 	stop_glerror();
 	if (!mTexName)
 	{
-		llerrs << "LLImageGL::createGLTexture failed to make an empty texture" << llendl;
+		llwarns << "LLImageGL::createGLTexture failed to make an empty texture" << llendl;
 	}
 
 	return TRUE ;
@@ -1048,7 +1048,7 @@ BOOL LLImageGL::createGLTextureInAtlas(S32 discard_level, const LLImageRaw* imag
 			mFormatType = GL_UNSIGNED_BYTE;
 			break;
 		  default:
-			llerrs << "Bad number of components for texture: " << (U32)getComponents() << llendl;
+			llwarns << "Bad number of components for texture: " << (U32)getComponents() << llendl;
 		}
 	}
 
@@ -1118,7 +1118,7 @@ BOOL LLImageGL::createGLTexture(S32 discard_level, const LLImageRaw* imageraw, S
 			mFormatType = GL_UNSIGNED_BYTE;
 			break;
 		  default:
-			llerrs << "Bad number of components for texture: " << (U32)getComponents() << llendl;
+			llwarns << "Bad number of components for texture: " << (U32)getComponents() << llendl;
 		}
 	}
 
@@ -1165,7 +1165,7 @@ BOOL LLImageGL::createGLTexture(S32 discard_level, const U8* data_in, BOOL data_
 	}
 	if (!mTexName)
 	{
-		llerrs << "LLImageGL::createGLTexture failed to make texture" << llendl;
+		llwarns << "LLImageGL::createGLTexture failed to make texture" << llendl;
 	}
 
 	if (mUseMipMaps)
@@ -1241,7 +1241,7 @@ BOOL LLImageGL::setDiscardLevel(S32 discard_level)
 	{
 		// larger image
 		dump();
-		llerrs << "LLImageGL::setDiscardLevel() called with larger discard level; use createGLTexture()" << llendl;
+		llwarns << "LLImageGL::setDiscardLevel() called with larger discard level; use createGLTexture()" << llendl;
 		return FALSE;
 	}
 	else if (mUseMipMaps)
@@ -1266,7 +1266,7 @@ BOOL LLImageGL::setDiscardLevel(S32 discard_level)
 	{
 #if !LL_LINUX && !LL_SOLARIS
 		 // *FIX: This should not be skipped for the linux client.
-		llerrs << "LLImageGL::setDiscardLevel() called on image without mipmaps" << llendl;
+		llwarns << "LLImageGL::setDiscardLevel() called on image without mipmaps" << llendl;
 #endif
 		return FALSE;
 	}
@@ -1334,7 +1334,7 @@ BOOL LLImageGL::readBackRaw(S32 discard_level, LLImageRaw* imageraw, bool compre
 
 	if (width <= 0 || width > 2048 || height <= 0 || height > 2048 || ncomponents < 1 || ncomponents > 4)
 	{
-		llerrs << llformat("LLImageGL::readBackRaw: bogus params: %d x %d x %d",width,height,ncomponents) << llendl;
+		llwarns << llformat("LLImageGL::readBackRaw: bogus params: %d x %d x %d",width,height,ncomponents) << llendl;
 	}
 	
 	LLGLint is_compressed = 0;
@@ -1703,7 +1703,7 @@ void LLImageGL::updatePickMask(S32 width, S32 height, const U8* data_in)
 				U32 pick_offset = pick_bit%8;
 				if (pick_idx >= size)
 				{
-					llerrs << "WTF?" << llendl;
+					llwarns << "WTF?" << llendl;
 				}
 
 				mPickMask[pick_idx] |= 1 << pick_offset;
@@ -1729,7 +1729,7 @@ BOOL LLImageGL::getMask(const LLVector2 &tc)
 		if (u < 0.f || u > 1.f ||
 		    v < 0.f || v > 1.f)
 		{
-			llerrs << "WTF?" << llendl;
+			llwarns << "WTF?" << llendl; // WTF really useful info NOT
 		}
 		
 		S32 x = (S32)(u * width);

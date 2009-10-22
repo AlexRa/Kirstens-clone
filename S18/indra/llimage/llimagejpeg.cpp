@@ -379,7 +379,7 @@ boolean LLImageJPEG::encodeEmptyOutputBuffer( j_compress_ptr cinfo )
   U8* new_buffer = new U8[ new_buffer_size ];
   if (!new_buffer)
   {
-  	llerrs << "Out of memory in LLImageJPEG::encodeEmptyOutputBuffer( j_compress_ptr cinfo )" << llendl;
+  	llwarns << "Out of memory in LLImageJPEG::encodeEmptyOutputBuffer( j_compress_ptr cinfo )" << llendl;
   	return FALSE;
   }
   memcpy( new_buffer, self->mOutputBuffer, self->mOutputBufferSize );	/* Flawfinder: ignore */

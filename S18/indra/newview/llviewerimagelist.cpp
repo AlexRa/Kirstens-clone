@@ -448,7 +448,7 @@ void LLViewerImageList::addImageToList(LLViewerImage *image)
 	llassert(image);
 	if (image->mInImageList)
 	{
-		llerrs << "LLViewerImageList::addImageToList - Image already in list" << llendl;
+		llwarns << "LLViewerImageList::addImageToList - Image already in list" << llendl;
 	}
 	llverify((mImageList.insert(image)).second == true);
 	image->mInImageList = TRUE;
@@ -465,7 +465,7 @@ void LLViewerImageList::removeImageFromList(LLViewerImage *image)
 		{
 			llinfos << "Image is not in mUUIDMap!" << llendl ;
 		}
-		llerrs << "LLViewerImageList::removeImageFromList - Image not in list" << llendl;
+		llwarns << "LLViewerImageList::removeImageFromList - Image not in list" << llendl;
 	}
 	llverify(mImageList.erase(image) == 1);
 	image->mInImageList = FALSE;
@@ -1140,7 +1140,7 @@ void LLViewerImageList::receiveImageHeader(LLMessageSystem *msg, void **user_dat
 	{
 		// msg->getSizeFast() is probably trying to tell us there
 		// was an error.
-		llerrs << "image header chunk size was negative: "
+		llwarns << "image header chunk size was negative: "
 		<< data_size << llendl;
 		return;
 	}
@@ -1201,13 +1201,13 @@ void LLViewerImageList::receiveImagePacket(LLMessageSystem *msg, void **user_dat
 	{
 		// msg->getSizeFast() is probably trying to tell us there
 		// was an error.
-		llerrs << "image data chunk size was negative: "
+		llwarns << "image data chunk size was negative: "
 		<< data_size << llendl;
 		return;
 	}
 	if (data_size > MTUBYTES)
 	{
-		llerrs << "image data chunk too large: " << data_size << " bytes" << llendl;
+		llwarns << "image data chunk too large: " << data_size << " bytes" << llendl;
 		return;
 	}
 	U8 *data = new U8[data_size];
@@ -1338,7 +1338,7 @@ LLUIImagePtr LLUIImageList::preloadUIImage(const std::string& name, const std::s
 	if (found_it != mUIImages.end())
 	{
 		// image already loaded!
-		llerrs << "UI Image " << name << " already loaded." << llendl;
+		llwarns << "UI Image " << name << " already loaded." << llendl;
 	}
 
 	return loadUIImageByName(name, filename, use_mips, scale_rect);

@@ -1035,7 +1035,7 @@
 				Transparency %
 			</text>
 			<spinner bottom_delta="-20" decimal_digits="0" follows="left|top" height="16"
-			     increment="2" initial_val="0" left="180" max_val="90" min_val="0"
+			     increment="2" initial_val="0" left="180" max_val="100" min_val="0"
 			     mouse_opaque="true" name="ColorTrans" width="80" />
 			<text bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 			     bottom_delta="-12" drop_shadow_visible="true" follows="left|top"
@@ -1043,8 +1043,8 @@
 			     left="180" mouse_opaque="true" name="glow label" v_pad="0" width="80">
 				Glow
 			</text>
-			<spinner bottom_delta="-20" decimal_digits="2" follows="left|top" height="16"
-			     increment="0.1" initial_val="0" left="180" max_val="1"
+			<spinner bottom_delta="-20" decimal_digits="3" follows="left|top" height="16"
+			     increment="0.05" initial_val="0.05" left="180" max_val="1"
 			     min_val="0" mouse_opaque="true" name="glow" width="80" />
 			<check_box bottom_delta="-23" follows="left|top" font="SansSerifSmall" height="16"
 			     initial_value="false" label="Full Bright" left="180" mouse_opaque="true"

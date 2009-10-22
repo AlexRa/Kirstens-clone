@@ -99,19 +99,19 @@ const int LL_ERR_PRICE_MISMATCH = -23018;
 #define llendflush				llendl
 
 
-#define llerror(msg, num)		llerrs << "Error # " << num << ": " << msg << llendl;
+#define llerror(msg, num)		llwarns << "Error # " << num << ": " << msg << llendl;
 
 #define llwarning(msg, num)		llwarns << "Warning # " << num << ": " << msg << llendl;
 
 #ifdef SHOW_ASSERT
-#define llassert(func)			if (!(func)) llerrs << "ASSERT (" << #func << ")" << llendl;
+#define llassert(func)			if (!(func)) llwarns << "ASSERT (" << #func << ")" << llendl;
 #else
 #define llassert(func)
 #endif
-#define llassert_always(func)	if (!(func)) llerrs << "ASSERT (" << #func << ")" << llendl;
+#define llassert_always(func)	if (!(func)) llwarns << "ASSERT (" << #func << ")" << llendl;
 
 #ifdef SHOW_ASSERT
-#define llverify(func)			if (!(func)) llerrs << "ASSERT (" << #func << ")" << llendl;
+#define llverify(func)			if (!(func)) llwarns << "ASSERT (" << #func << ")" << llendl;
 #else
 #define llverify(func)			(func); // get rid of warning C4189
 #endif

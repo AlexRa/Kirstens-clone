@@ -111,7 +111,7 @@ LLControlVariable::LLControlVariable(const std::string& name, eControlType type,
 {
 	if (mPersist && mComment.empty())
 	{
-		llerrs << "Must supply a comment for control " << mName << llendl;
+		llwarns << "Must supply a comment for control " << mName << llendl;
 	}
 	//Push back versus setValue'ing here, since we don't want to call a signal yet
 	mValues.push_back(initial);
@@ -1104,7 +1104,7 @@ U32 LLControlGroup::loadFromFile(const std::string& filename, bool set_default_v
 				}
 				else
 				{
-					llerrs << "Mismatched type of control variable '"
+					llwarns << "Mismatched type of control variable '"
 						   << name << "' found while loading '"
 						   << filename << "'." << llendl;
 				}

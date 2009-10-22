@@ -49,7 +49,7 @@ LLTransferSourceFile::~LLTransferSourceFile()
 {
 	if (mFP)
 	{
-		llerrs << "Destructor called without the completion callback being called!" << llendl;
+		llwarns << "Destructor called without the completion callback being called!" << llendl;
 	}
 }
 
@@ -98,13 +98,13 @@ LLTSCode LLTransferSourceFile::dataCallback(const S32 packet_id,
 
 	if (!mFP)
 	{
-		llerrs << "Data callback without file set!" << llendl;
+		llwarns << "Data callback without file set!" << llendl;
 		return LLTS_ERROR;
 	}
 
 	if (packet_id != mLastPacketID + 1)
 	{
-		llerrs << "Can't handle out of order file transfer yet!" << llendl;
+		llwarns << "Can't handle out of order file transfer yet!" << llendl;
 	}
 
 	// Grab up until the max number of bytes from the file.

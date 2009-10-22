@@ -896,7 +896,7 @@ LLSD LLMessageSystem::getBuiltMessageLLSD() const
 	else
 	{
 		// TODO: implement as below?
-		llerrs << "Message not built as LLSD." << llendl; 
+		llwarns << "Message not built as LLSD." << llendl; 
 	}
 	return result;
 }

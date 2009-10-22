@@ -84,14 +84,22 @@ class LLVector3d
 		BOOL		clamp(const F64 min, const F64 max);		// Clamps all values to (min,max), returns TRUE if data changed
 		BOOL		abs();						// sets all values to absolute value of original value (first octant), returns TRUE if changed
 
-		inline const LLVector3d&	clearVec();		// Clears LLVector3d to (0, 0, 0, 1)
-		inline const LLVector3d&	setZero();		// Zero LLVector3d to (0, 0, 0, 0)
+		inline const LLVector3d&	clear();		// Clears LLVector3d to (0, 0, 0)
+		inline const LLVector3d&	set(const F64 x, const F64 y, const F64 z);	// Sets LLVector3d to (x, y, z)
+		inline const LLVector3d&	set(const LLVector3d &vec);	// Sets LLVector3d to vec
+		inline const LLVector3d&	set(const F64 *vec);			// Sets LLVector3d to vec
+		inline const LLVector3d&	set(const LLVector3 &vec);
+
+		// deprecated
+		inline const LLVector3d&	clearVec();		// Clears LLVector3d to (0, 0, 0)
+		inline const LLVector3d&	setZero();		// Zero LLVector3d to (0, 0, 0)
 		inline const LLVector3d&	zeroVec();		// deprecated
-		inline const LLVector3d&	setVec(const F64 x, const F64 y, const F64 z);	// Sets LLVector3d to (x, y, z, 1)
+		inline const LLVector3d&	setVec(const F64 x, const F64 y, const F64 z);	// Sets LLVector3d to (x, y, z)
 		inline const LLVector3d&	setVec(const LLVector3d &vec);	// Sets LLVector3d to vec
 		inline const LLVector3d&	setVec(const F64 *vec);			// Sets LLVector3d to vec
 		inline const LLVector3d&	setVec(const LLVector3 &vec);
 
+		// deprecated
 		F64		magVec() const;				// Returns magnitude of LLVector3d
 		F64		magVecSquared() const;		// Returns magnitude squared of LLVector3d
 		inline F64		normVec();					// Normalizes and returns the magnitude of LLVector3d
@@ -138,15 +146,6 @@ class LLVector3d
 };
 
 typedef LLVector3d LLGlobalVec;
-
-const LLVector3d &LLVector3d::setVec(const LLVector3 &vec)
-{
-	mdV[0] = vec.mV[0];
-	mdV[1] = vec.mV[1];
-	mdV[2] = vec.mV[2];
-	return *this;
-}
-
 
 inline LLVector3d::LLVector3d(void)
 {
@@ -196,11 +195,19 @@ inline BOOL LLVector3d::isFinite() const
 
 // Clear and Assignment Functions
 
+inline const LLVector3d&	LLVector3d::clear(void)
+{
+	mdV[0] = 0.f;
+	mdV[1] = 0.f;
+	mdV[2] = 0.f;
+	return (*this);
+}
+
 inline const LLVector3d&	LLVector3d::clearVec(void)
 {
 	mdV[0] = 0.f;
 	mdV[1] = 0.f;
-	mdV[2]= 0.f;
+	mdV[2] = 0.f;
 	return (*this);
 }
 
@@ -218,6 +225,46 @@ inline const LLVector3d&	LLVector3d::zeroVec(void)
 	mdV[1] = 0.f;
 	mdV[2] = 0.f;
 	return (*this);
+}
+
+const LLVector3d &LLVector3d::set(const LLVector3 &vec)
+{
+	mdV[0] = vec.mV[0];
+	mdV[1] = vec.mV[1];
+	mdV[2] = vec.mV[2];
+	return *this;
+}
+
+inline const LLVector3d&	LLVector3d::set(const F64 x, const F64 y, const F64 z)
+{
+	mdV[VX] = x;
+	mdV[VY] = y;
+	mdV[VZ] = z;
+	return (*this);
+}
+
+inline const LLVector3d&	LLVector3d::set(const LLVector3d &vec)
+{
+	mdV[0] = vec.mdV[0];
+	mdV[1] = vec.mdV[1];
+	mdV[2] = vec.mdV[2];
+	return (*this);
+}
+
+inline const LLVector3d&	LLVector3d::set(const F64 *vec)
+{
+	mdV[0] = vec[0];
+	mdV[1] = vec[1];
+	mdV[2] = vec[2];
+	return (*this);
+}
+
+const LLVector3d &LLVector3d::setVec(const LLVector3 &vec)
+{
+	mdV[0] = vec.mV[0];
+	mdV[1] = vec.mV[1];
+	mdV[2] = vec.mV[2];
+	return *this;
 }
 
 inline const LLVector3d&	LLVector3d::setVec(const F64 x, const F64 y, const F64 z)
@@ -246,7 +293,7 @@ inline const LLVector3d&	LLVector3d::setVec(const F64 *vec)
 
 inline F64 LLVector3d::normVec(void)
 {
-	F64 mag = fsqrtf(mdV[0]*mdV[0] + mdV[1]*mdV[1] + mdV[2]*mdV[2]);
+	F64 mag = F32(sqrt(mdV[0]*mdV[0] + mdV[1]*mdV[1] + mdV[2]*mdV[2]));
 	F64 oomag;
 
 	if (mag > FP_MAG_THRESHOLD)
@@ -268,7 +315,7 @@ inline F64 LLVector3d::normVec(void)
 
 inline F64 LLVector3d::normalize(void)
 {
-	F64 mag = fsqrtf(mdV[0]*mdV[0] + mdV[1]*mdV[1] + mdV[2]*mdV[2]);
+	F64 mag = F32(sqrt(mdV[0]*mdV[0] + mdV[1]*mdV[1] + mdV[2]*mdV[2]));
 	F64 oomag;
 
 	if (mag > FP_MAG_THRESHOLD)
@@ -292,7 +339,7 @@ inline F64 LLVector3d::normalize(void)
 
 inline F64	LLVector3d::magVec(void) const
 {
-	return fsqrtf(mdV[0]*mdV[0] + mdV[1]*mdV[1] + mdV[2]*mdV[2]);
+	return F32(sqrt(mdV[0]*mdV[0] + mdV[1]*mdV[1] + mdV[2]*mdV[2]));
 }
 
 inline F64	LLVector3d::magVecSquared(void) const
@@ -302,7 +349,7 @@ inline F64	LLVector3d::magVecSquared(void) const
 
 inline F64	LLVector3d::length(void) const
 {
-	return fsqrtf(mdV[0]*mdV[0] + mdV[1]*mdV[1] + mdV[2]*mdV[2]);
+	return F32(sqrt(mdV[0]*mdV[0] + mdV[1]*mdV[1] + mdV[2]*mdV[2]));
 }
 
 inline F64	LLVector3d::lengthSquared(void) const
@@ -412,7 +459,7 @@ inline F64	dist_vec(const LLVector3d &a, const LLVector3d &b)
 	F64 x = a.mdV[0] - b.mdV[0];
 	F64 y = a.mdV[1] - b.mdV[1];
 	F64 z = a.mdV[2] - b.mdV[2];
-	return fsqrtf( x*x + y*y + z*z );
+	return F32(sqrt( x*x + y*y + z*z ));
 }
 
 inline F64	dist_vec_squared(const LLVector3d &a, const LLVector3d &b)
