@@ -429,8 +429,6 @@ set(viewer_SOURCE_FILES
     llxmlrpctransaction.cpp
     noise.cpp
     pipeline.cpp
-    dxchatcmd.cpp
-    
     )
 
 if (LINUX)
@@ -462,7 +460,6 @@ set(viewer_HEADER_FILES
     llassetuploadqueue.h
     llaudiosourcevo.h
     llbbox.h
-    
     llbox.h
     llcallbacklist.h
     llcallingcard.h
@@ -832,7 +829,6 @@ set(viewer_HEADER_FILES
     randgauss.h
     VertexCache.h
     VorbisFramework.h
-    dxchatcmd.h
     )
 
 source_group("CMake Rules" FILES ViewerInstall.cmake)

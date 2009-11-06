@@ -405,7 +405,7 @@ void LLChatBar::sendChat( EChatType type )
 
 			utf8_revised_text = utf8str_trim(utf8_revised_text);
 
-			if (!utf8_revised_text.empty() && dxcmd(utf8_revised_text, type))
+			if (!utf8_revised_text.empty())
 			{
 				// Chat with animation
 				sendChatFromViewer(utf8_revised_text, type, TRUE);

@@ -500,7 +500,10 @@ class WindowsSetup(PlatformSetup):
         gen = gen.lower()
         try:
             import _winreg
-            key_str = (r'SOFTWARE\Microsoft\VisualStudio\%s\Setup\VS' %
+			# 32bit
+		    #	key_str = (r'SOFTWARE\Microsoft\VisualStudio\%s\Setup\VS' %
+			# 64bit
+            key_str = (r'SOFTWARE\Wow6432Node\Microsoft\VisualStudio\%s\Setup\VS' %  
                        self.gens[gen]['ver'])
             value_str = (r'EnvironmentDirectory')
             print ('Reading VS environment from HKEY_LOCAL_MACHINE\%s\%s' %
