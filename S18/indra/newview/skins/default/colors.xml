@@ -67,7 +67,7 @@
 <MenuBarGodBgColor value="62, 128, 62, 255"/>
 <MenuNonProductionBgColor value="62, 62, 62, 255"/>
 <MenuNonProductionGodBgColor value="0,0,0,255"/>
-<MenuDefaultBgColor value="0, 120, 175, 200"/>
+<MenuDefaultBgColor value="0, 0, 0, 200"/>
 <MenuItemDisabledColor value="133, 133, 133, 128"/>		<!-- Menu text color; also text color for pie menus and treeviews (like Inventory) -->
 <MenuItemEnabledColor value="255, 255, 255, 255"/>		<!-- Menu text color; also text color for pie menus and treeviews (like Inventory) -->
 <MenuItemHighlightBgColor value="183, 184, 188, 100"/>

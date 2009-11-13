@@ -4397,7 +4397,7 @@ U32 LLVOAvatar::renderFootShadows()
 	return num_indices;
 }
 
-U32 LLVOAvatar::renderImpostor(LLColor4U color, S32 diffuse_channel) // KL SD
+U32 LLVOAvatar::renderImpostor(LLColor4U color)
 {
 	if (!mImpostor.isComplete())
 	{
@@ -4417,7 +4417,7 @@ U32 LLVOAvatar::renderImpostor(LLColor4U color, S32 diffuse_channel) // KL SD
 	gGL.setAlphaRejectSettings(LLRender::CF_GREATER, 0.f);
 
 	gGL.color4ubv(color.mV);
-	gGL.getTexUnit(diffuse_channel)->bind(&mImpostor);  // KL SD
+	gGL.getTexUnit(0)->bind(&mImpostor);
 	gGL.begin(LLRender::QUADS);
 	gGL.texCoord2f(0,0);
 	gGL.vertex3fv((pos+left-up).mV);
