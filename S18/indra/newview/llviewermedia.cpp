@@ -433,7 +433,8 @@ void LLViewerMediaImpl::updateBrowserUserAgent()
 
 	// Just in case we need to check browser differences in A/B test
 	// builds.
-	std::string channel = gSavedSettings.getString("VersionChannelName");
+	std::string channel = llformat("%s",DX_CHANNEL); // KL version from headers not saved settings!
+	//std::string channel = gSavedSettings.getString("VersionChannelName");
 
 	// append our magic version number string to the browser user agent id
 	// See the HTTP 1.0 and 1.1 specifications for allowed formats:

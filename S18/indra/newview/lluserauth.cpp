@@ -207,7 +207,8 @@ void LLUserAuth::authenticate(
 	XMLRPC_REQUEST request = XMLRPC_RequestNew();
 	XMLRPC_RequestSetMethodName(request, method.c_str());
 	XMLRPC_RequestSetRequestType(request, xmlrpc_request_call);
-
+    
+	std::string channel = llformat("%s",DX_CHANNEL);
 	// stuff the parameters
 	XMLRPC_VALUE params = XMLRPC_CreateVector(NULL, xmlrpc_vector_struct);
 	XMLRPC_VectorAppendString(params, "first", firstname.c_str(), 0);
@@ -215,7 +216,7 @@ void LLUserAuth::authenticate(
 	XMLRPC_VectorAppendString(params, "passwd", dpasswd.c_str(), 0);
 	XMLRPC_VectorAppendString(params, "start", start.c_str(), 0);
 	XMLRPC_VectorAppendString(params, "version", gCurrentVersion.c_str(), 0); // Includes channel name
-	XMLRPC_VectorAppendString(params, "channel", gSavedSettings.getString("VersionChannelName").c_str(), 0);
+	XMLRPC_VectorAppendString(params, "channel", channel.c_str(),0);// gSavedSettings.getString("VersionChannelName").c_str(), 0);
 	XMLRPC_VectorAppendString(params, "platform", PLATFORM_STRING, 0);
 	XMLRPC_VectorAppendString(params, "mac", hashed_mac.c_str(), 0);
 	// A bit of security through obscurity: id0 is volume_serial
