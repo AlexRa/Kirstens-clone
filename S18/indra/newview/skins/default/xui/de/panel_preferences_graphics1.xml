@@ -1,10 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <panel label="Grafik" name="Display panel">
+	<tab_container label="Page 1" name="tab">
+	  <panel label="Einfach" name="Simple">
 	<text type="string" length="1" name="text">
 		Anzeigeauflösung:
 	</text>
 	<button label=" ?" name="GraphicsPreferencesHelpButton" />
-	<check_box label="Second Life in einem Fenster ausführen" name="windowed mode" />
+	<check_box label="Meherer Viewer erlauben" name="MultipleViewers" />
+	<check_box label="Fenstermodus" name="windowed mode" />
 	<text_editor name="voice_chat_description">
 		Wenn deaktiviert Anzeige bei Anmeldung in Vollbild.
 	</text_editor>
@@ -20,7 +23,7 @@
 	<text name="WindowSizeLabel">
 		Fenstergröße:
 	</text>
-	<combo_box left="115" name="windowsize combo">
+	<combo_box left="235" name="windowsize combo">
 		<combo_item name="640x480">
 			640x480
 		</combo_item>
@@ -60,7 +63,7 @@
 	</combo_box>
 	<check_box label="Verhältnis automatisch erkennen" left="275" name="aspect_auto_detect" />
 	<text type="string" length="1" name="UI Size:">
-		UI-Größe:
+		UI-GröÃŸe:
 	</text>
 	<text type="string" length="1" name="(meters, lower is faster)">
 		(Meter, niedriger ist schneller)
@@ -68,7 +71,7 @@
 	<text type="string" length="1" name="text2">
 		Anzeigeoptionen:
 	</text>
-	<check_box label="Auflösungsunabhängigen Maßstab verwenden" name="ui_auto_scale" />
+	<check_box label="Auflösungsunabhängigen MaÃŸstab verwenden" name="ui_auto_scale" />
 	<spinner label="Sichtweite:" name="draw_distance" />
 	<check_box label="Avatar in Mouselook anzeigen" name="avfp" />
 	<text name="HigherText">
@@ -78,7 +81,7 @@
 		Performance:
 	</text>
 	<text name="FasterText">
-		Schneller
+		Schnell
 	</text>
 	<text name="ShadersPrefText">
 		Niedrig
@@ -104,8 +107,10 @@
 	</text>
 	<check_box label="Bumpmapping und Glanz" name="BumpShiny" />
 	<check_box label="Einfache Shader" name="BasicShaders"
-	     tool_tip="Deaktivieren Sie diese Option, wenn der Grafikkartentreiber Abstürze verursacht." />
+	     tool_tip="Deaktivieren Sie diese Option, wenn der Grafikkartentreiber AbstÃ¼rze verursacht." />
 	<check_box label="Atmosphären-Shader" name="WindLightUseAtmosShaders" />
+	<check_box label="OpenGL Objekt Framebuffer" name="OGLFBO" />
+	<check_box label="Schatten / Projektionsschatten" name="Shadows" />
 	<check_box label="Wasserreflexionen" name="Reflections" />
 	<text name="ReflectionDetailText">
 		Spiegelung:
@@ -138,6 +143,7 @@
 	</text>
 	<slider label="Sichtweite:" name="DrawDistance" />
 	<slider label="Max. Partikelzahl:" name="MaxParticleCount" />
+	<slider label="Max. Avatare:" name="MaxAvatarCount"/>
 	<slider label="Post-Processing-Qualität:" name="RenderPostProcess" />
 	<text name="MeshDetailText">
 		Gitterdetails:
@@ -180,6 +186,7 @@
 			Lokale Lichtquellen
 		</radio_item>
 	</radio_group>
+	<check_box label="Deferred Vollbild Lichter" name="FullscreenLights"/>
 	<text name="TerrainDetailText">
 		Terraindetails:
 	</text>
@@ -200,4 +207,47 @@
 	<text name="aspect_ratio_text">
 		[NUM]:[DEN]
 	</text>
+     </panel>
+    <panel label="Erweitert" name="Advanced">
+	<text name="ShadowsText">
+		Schatten Optionen:
+	</text>
+	<check_box label="Schattenblur" name="BlurShadows"/>
+	<slider label="Deferred Noise:" name="Noise"/>
+	<slider label="Schatten Blur Reichweite:" name="BlurDist"/>
+	<slider label="SSAO Faktor:" name="SSAOFactor"/>
+	<text name="TextText" v_pad="0" width="128">
+		Textur Optionen:
+	</text>
+	<check_box label="Texturen animieren" name="AnimateTextures"/>
+	<check_box label="Textur Auditting" name="AuditTexture"/>
+	<check_box label="HTTP Get Textur Feature" name="HTTPGetTextures"/>
+	<check_box label="Anisotropischer Filter" name="Anosotropic"/>
+	<text name="PerfText">
+		Performance Optionen:
+	</text>
+	<check_box label="Dynamisches LOD" name="DynamicLOD"/>
+	<check_box label="Objekt-Objekt Occlusion nutzen" name="Occlusion"/>
+	<check_box label="Schnelles Alpha Rendern" name="FastAlpha"/>
+	<check_box label="Volles Gamma / Hartgecodetes 2" name="FullGamma" tool_tip="Stelle ein welche Art von Ganz Hell du nutzen willst / (An - Benutzt Volles Gamma) (Aus - Benutzt fest in den Viewer eingecodeten 2 Wert)" width="256" />
+	<check_box label="Wasser Mip Maps" name="MipMapWater"/>
+	<check_box label="VSync deaktivieren" name="VSync"/>
+	<check_box label="Bäume animieren" name="Animate Trees"/>
+	<check_box label="Leuchteffekte Rendern" name="RenderGlow" tool_tip="Diese Option nicht deaktivieren während der Deferred Renderer aktiv ist!"/>
+	<slider label="Stärke:" name="Strength"/>
+	<slider label="Textur Speicher (MB):" name="GrapicsCardTextureMemory" tool_tip="Legt den Speicher (MB) fest der für die Texturen gebraucht werden darf, standartweise der Grafikkartenspeicher. Niedrigere Werte können die Performance erhöhen aber führen zu verschwommenen Texturen"/>
+	<text name="FUNText">
+		Krimskrams:
+	</text>
+	<check_box label="Eigenen AV verstecken" name="InvisibleAvatar"/>
+	<check_box label="Auswahlpartikel zeigen" name="SelectionBeam"/>
+	<text name="MiscText">
+		Verschiedenes:
+	</text>
+	<check_box label="Ungeladene AVs zeigen" name="UnloadedAvatar"/>
+	<check_box label="Lichtradius Rendern" name="LightRadius" tool_tip="Rendert den Lichtradius als Volumetrischen Ball"/>
+	<check_box label="Multiple Threads nutzen" name="Multiple Threads" tool_tip="Erlaubt mehreren Anwendungen im Hintergrund mit Voller Leistung weiter zu laufen"/>
+	<check_box label="Sound/Textur vorladen" name="NoPreload" tool_tip="Deaktiviert das vorausladen von Sounds und Texturen"/>
+   </panel>
+ </tab_container>
 </panel>

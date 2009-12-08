@@ -1399,9 +1399,9 @@ if (INSTALL)
 endif (INSTALL)
 
 # Add tests
-ADD_VIEWER_BUILD_TEST(llagentaccess viewer)
-ADD_VIEWER_BUILD_TEST(llworldmap viewer)
-ADD_VIEWER_BUILD_TEST(llworldmipmap viewer)
-ADD_VIEWER_BUILD_TEST(lltextureinfo viewer)
-ADD_VIEWER_BUILD_TEST(lltextureinfodetails viewer)
+#ADD_VIEWER_BUILD_TEST(llagentaccess viewer)
+#ADD_VIEWER_BUILD_TEST(llworldmap viewer)
+#ADD_VIEWER_BUILD_TEST(llworldmipmap viewer)
+#ADD_VIEWER_BUILD_TEST(lltextureinfo viewer)
+#ADD_VIEWER_BUILD_TEST(lltextureinfodetails viewer)
 

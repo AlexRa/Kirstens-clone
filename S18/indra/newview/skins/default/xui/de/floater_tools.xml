@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <floater name="toolbox floater" title="">
 	<button label="" label_selected="" name="button focus" tool_tip="Fokus"/>
 	<button label="" label_selected="" name="button move" tool_tip="Verschieben"/>
@@ -14,8 +14,8 @@
 	<check_box label="Position" name="radio position"/>
 	<check_box label="Drehen (Strg)" name="radio rotate"/>
 	<check_box label="Dehnen (Strg-Umschalt)" name="radio stretch"/>
-	<check_box label="Textur auswählen" name="radio select face"/>
-	<check_box label="Verknüpfte Teile bearbeiten" name="checkbox edit linked parts"/>
+	<check_box label="Textur auswÃ¤hlen" name="radio select face"/>
+	<check_box label="VerknÃ¼pfte Teile bearbeiten" name="checkbox edit linked parts"/>
 	<text name="text ruler mode">
 		Lineal:
 	</text>
@@ -37,7 +37,7 @@
 	<text name="text status">
 		Zum Verschieben ziehen, zum Kopieren Umschalttaste-Ziehen
 	</text>
-	<button label="" label_selected="" name="ToolCube" tool_tip="Würfel"/>
+	<button label="" label_selected="" name="ToolCube" tool_tip="WÃ¼rfel"/>
 	<button label="" label_selected="" name="ToolPrism" tool_tip="Prisma"/>
 	<button label="" label_selected="" name="ToolPyramid" tool_tip="Pyramide"/>
 	<button label="" label_selected="" name="ToolTetrahedron" tool_tip="Tetraeder"/>
@@ -56,25 +56,25 @@
 	<check_box label="Auswahl kopieren" name="checkbox copy selection"/>
 	<check_box label="Zentrieren" name="checkbox copy centers"/>
 	<check_box label="Drehen" name="checkbox copy rotates"/>
-	<check_box label="Land auswählen" name="radio select land"/>
+	<check_box label="Land auswÃ¤hlen" name="radio select land"/>
 	<check_box label="Einebnen" name="radio flatten"/>
 	<check_box label="Anheben" name="radio raise"/>
 	<check_box label="Absenken" name="radio lower"/>
-	<check_box label="Glätten" name="radio smooth"/>
+	<check_box label="GlÃ¤tten" name="radio smooth"/>
 	<check_box label="Aufrauen" name="radio noise"/>
-	<check_box label="Zurücksetzen" name="radio revert"/>
-	<button label="Übernehmen" label_selected="Übernehmen" name="button apply to selection" tool_tip="Ausgewähltes Land ändern"/>
+	<check_box label="ZurÃ¼cksetzen" name="radio revert"/>
+	<button label="Ãœbernehmen" label_selected="Ãœbernehmen" name="button apply to selection" tool_tip="AusgewÃ¤hltes Land Ã¤ndern"/>
 	<text name="Bulldozer:">
 		Planierraupe:
 	</text>
 	<text name="Dozer Size:">
-		Größe
+		GrÃ¶ÃŸe
 	</text>
 	<text name="Strength:">
-		Stärke
+		StÃ¤rke
 	</text>
 	<text name="obj_count">
-		Ausgewählte Objekte: [COUNT]
+		AusgewÃ¤hlte Objekte: [COUNT]
 	</text>
 	<text name="prim_count">
 		Primitive: [COUNT]
@@ -95,7 +95,7 @@
 			</text>
 			<button label="Profil..." label_selected="Profil..." name="button creator profile"/>
 			<text name="Owner:">
-				Eigentümer:
+				EigentÃ¼mer:
 			</text>
 			<text name="Owner Name">
 				Thrax Linden
@@ -112,16 +112,16 @@
 				Berechtigungen:
 			</text>
 			<text name="perm_modify">
-				Sie können dieses Objekt ändern.
+				Sie kÃ¶nnen dieses Objekt Ã¤ndern.
 			</text>
-			<check_box label="Mit Gruppe teilen" left="6" name="checkbox share with group" tool_tip="Allen Mitgliedern der zugeordneten Gruppe die Erlaubnis erteilen, Ihre Berechtigungen für dieses Objekt zu teilen und zu verwenden. Sie müssen Übereignen, um Rollenbeschränkungen zu aktivieren."/>
+			<check_box label="Mit Gruppe teilen" left="6" name="checkbox share with group" tool_tip="Allen Mitgliedern der zugeordneten Gruppe die Erlaubnis erteilen, Ihre Berechtigungen fÃ¼r dieses Objekt zu teilen und zu verwenden. Sie mÃ¼ssen Ãœbereignen, um RollenbeschrÃ¤nkungen zu aktivieren."/>
 			<string name="text deed continued">
-				Übertragung...
+				Ãœbertragung...
 			</string>
 			<string name="text deed">
-				Übertragung
+				Ãœbertragung
 			</string>
-			<button label="Übertragung..." label_selected="Übertragung..." name="button deed" tool_tip="In der Gruppe gemeinsam verwendete Objekte können von einem Gruppenfunktionär übertragen werden."/>
+			<button label="Ãœbertragung..." label_selected="Ãœbertragung..." name="button deed" tool_tip="In der Gruppe gemeinsam verwendete Objekte kÃ¶nnen von einem GruppenfunktionÃ¤r Ã¼bertragen werden."/>
 			<check_box label="Verschieben durch beliebige Personen zulassen" left="6" name="checkbox allow everyone move"/>
 			<check_box label="Kopieren durch beliebige Personen zulassen" left="6" name="checkbox allow everyone copy"/>
 			<check_box label="In Suche anzeigen" left="6" name="search_check" tool_tip="Dieses Objekt in Suchergebnissen anzeigen"/>
@@ -141,9 +141,9 @@
 				</radio_item>
 			</radio_group>
 			<text name="Next owner can:">
-				Nächster Eigentümer kann:
+				NÃ¤chster EigentÃ¼mer kann:
 			</text>
-			<check_box label="Ändern" name="checkbox next owner can modify"/>
+			<check_box label="Ã„ndern" name="checkbox next owner can modify"/>
 			<check_box label="Kopieren" name="checkbox next owner can copy"/>
 			<check_box label="Wiederverkaufen" left_delta="75" name="checkbox next owner can transfer"/>
 			<text name="label click action">
@@ -151,7 +151,7 @@
 			</text>
 			<combo_box name="clickaction" width="178">
 				<combo_item name="Touch/grab(default)">
-					Berühren/Greifen (Standard)
+					BerÃ¼hren/Greifen (Standard)
 				</combo_item>
 				<combo_item name="Sitonobject">
 					Auf Objekt sitzen
@@ -163,13 +163,13 @@
 					Objekt bezahlen
 				</combo_item>
 				<combo_item name="Open">
-					Öffnen
+					Ã–ffnen
 				</combo_item>
 				<combo_item name="Play">
 					Parzellenmedien wiedergeben
 				</combo_item>
 				<combo_item name="Opemmedia">
-					Parzellenmedien öffnen
+					Parzellenmedien Ã¶ffnen
 				</combo_item>
 			</combo_box>
 			<text name="B:">
@@ -191,19 +191,19 @@
 				F:
 			</text>
 			<string name="text modify info 1">
-				Sie können dieses Objekt ändern.
+				Sie kÃ¶nnen dieses Objekt Ã¤ndern.
 			</string>
 			<string name="text modify info 2">
-				Sie können diese Objekte ändern.
+				Sie kÃ¶nnen diese Objekte Ã¤ndern.
 			</string>
 			<string name="text modify info 3">
-				Sie können dieses Objekt nicht ändern.
+				Sie kÃ¶nnen dieses Objekt nicht Ã¤ndern.
 			</string>
 			<string name="text modify info 4">
-				Sie können diese Objekte nicht ändern.
+				Sie kÃ¶nnen diese Objekte nicht Ã¤ndern.
 			</string>
 			<string name="text modify warning">
-				Gesamtes Objekt muss gewählt werden, um Berechtigungen festzulegen.
+				Gesamtes Objekt muss gewÃ¤hlt werden, um Berechtigungen festzulegen.
 			</string>
 			<string name="Cost Default">
 				Preis:L$
@@ -212,7 +212,7 @@
 				Summe:L$
 			</string>
 			<string name="Cost Per Unit">
-				Stückpreis:L$
+				StÃ¼ckpreis:L$
 			</string>
 			<string name="Cost Mixed">
 				Mischpreis
@@ -223,14 +223,14 @@
 		</panel>
 		<panel label="Objekt" name="Object">
 			<text name="select_single">
-				Wählen Sie nur ein Primitivum aus, um Parameter zu bearbeiten.
+				WÃ¤hlen Sie nur ein Primitivum aus, um Parameter zu bearbeiten.
 			</text>
 			<text name="edit_object">
 				Objektparameter bearbeiten:
 			</text>
-			<check_box label="Gesperrt" name="checkbox locked" tool_tip="Verhindert, dass Objekt verschoben oder gelöscht wird. Oft beim Bauen nützlich, um unbeabsichtigte Bearbeitungen zu vermeiden."/>
+			<check_box label="Gesperrt" name="checkbox locked" tool_tip="Verhindert, dass Objekt verschoben oder gelÃ¶scht wird. Oft beim Bauen nÃ¼tzlich, um unbeabsichtigte Bearbeitungen zu vermeiden."/>
 			<check_box label="Physisch" name="Physical Checkbox Ctrl" tool_tip="Gestattet, das Objekt geschoben und von Schwerkraft beeinflusst wird"/>
-			<check_box label="Temporär" name="Temporary Checkbox Ctrl" tool_tip="Verursacht, dass Objekt 1 Minute nach Erstellung gelöscht wird."/>
+			<check_box label="TemporÃ¤r" name="Temporary Checkbox Ctrl" tool_tip="Verursacht, dass Objekt 1 Minute nach Erstellung gelÃ¶scht wird."/>
 			<check_box label="Phantom" name="Phantom Checkbox Ctrl" tool_tip="Verursacht, dass Objekt nicht mit anderen Objekten oder Avataren kollidiert"/>
 			<text name="label position">
 				Position (Meter)
@@ -239,7 +239,7 @@
 			<spinner label="Y" name="Pos Y"/>
 			<spinner label="Z" name="Pos Z"/>
 			<text name="label size">
-				Größe (Meter)
+				GrÃ¶ÃŸe (Meter)
 			</text>
 			<spinner label="X" name="Scale X"/>
 			<spinner label="Y" name="Scale Y"/>
@@ -341,10 +341,10 @@
 			<spinner label="B" left="115" name="Twist Begin"/>
 			<spinner label="E" left="115" name="Twist End"/>
 			<text left="115" name="scale_taper">
-				Verjüngung
+				VerjÃ¼ngung
 			</text>
 			<text left="115" name="scale_hole">
-				Lochgröße
+				LochgrÃ¶ÃŸe
 			</text>
 			<spinner label="X" left="115" name="Taper Scale X"/>
 			<spinner label="Y" left="115" name="Taper Scale Y"/>
@@ -365,7 +365,7 @@
 			<spinner label="B" left="115" name="Path Limit Begin"/>
 			<spinner label="E" name="Path Limit End"/>
 			<text left="115" name="text taper2">
-				Verjüngung
+				VerjÃ¼ngung
 			</text>
 			<spinner label="X" left="115" name="Taper X"/>
 			<spinner label="Y" name="Taper Y"/>
@@ -376,10 +376,10 @@
 				Umdrehungen
 			</text>
 			<spinner left="115" name="Radius Offset"/>
-			<texture_picker label="Textur für gestaltetes 
-Primitiv" name="sculpt texture control" tool_tip="Klicken Sie hier, um ein Bild auszuwählen"/>
+			<texture_picker label="Textur fÃ¼r gestaltetes 
+Primitiv" name="sculpt texture control" tool_tip="Klicken Sie hier, um ein Bild auszuwÃ¤hlen"/>
 			<check_box bottom_delta="-34" label="Spiegeln" name="sculpt mirror control" tool_tip="Geformtes Primitiv entlang der X-Achse spiegeln."/>
-			<check_box label="Wenden" name="sculpt invert control" tool_tip="Dreht die Normalen des geformten Primitivs von innen nach außen."/>
+			<check_box label="Wenden" name="sculpt invert control" tool_tip="Dreht die Normalen des geformten Primitivs von innen nach auÃŸen."/>
 			<text name="label sculpt type">
 				Naht
 			</text>
@@ -394,16 +394,16 @@ Primitiv" name="sculpt texture control" tool_tip="Klicken Sie hier, um ein Bild 
 					Torus
 				</combo_item>
 				<combo_item name="Plane">
-					Fläche
+					FlÃ¤che
 				</combo_item>
 				<combo_item name="Cylinder">
 					Zylinder
 				</combo_item>
 			</combo_box>
 		</panel>
-		<panel label="Eigenschaften" name="Features">
+		<panel label="Feature" name="Features">
 			<text name="select_single">
-				Wählen Sie nur einen einzelnen Baustein aus, um Eigenschaften zu bearbeiten.
+				WÃ¤hlen Sie nur einen einzelnen Baustein aus, um Eigenschaften zu bearbeiten.
 			</text>
 			<text name="edit_object">
 				Objekteigenschaften bearbeiten:
@@ -421,14 +421,14 @@ Primitiv" name="sculpt texture control" tool_tip="Klicken Sie hier, um ein Bild 
 			<text name="label color">
 				Farbe
 			</text>
-			<color_swatch label="" name="colorswatch" tool_tip="Klicken, um Farbauswahl zu öffnen"/>
-			<spinner label="Intensität" name="Light Intensity"/>
+			<color_swatch label="" name="colorswatch" tool_tip="Klicken, um Farbauswahl zu Ã¶ffnen"/>
+			<spinner label="IntensitÃ¤t" name="Light Intensity"/>
 			<spinner label="Radius" name="Light Radius"/>
 			<spinner label="Abnehmend" name="Light Falloff"/>
 		</panel>
 		<panel label="Textur" name="Texture">
-			<texture_picker label="Textur" name="texture control" tool_tip="Klicken, um ein Bild zu wählen"/>
-			<color_swatch label="Farbe" name="colorswatch" tool_tip="Klicken, um Farbauswahl zu öffnen"/>
+			<texture_picker label="Textur" name="texture control" tool_tip="Klicken, um ein Bild zu wÃ¤hlen"/>
+			<color_swatch label="Farbe" name="colorswatch" tool_tip="Klicken, um Farbauswahl zu Ã¶ffnen"/>
 			<text name="color trans">
 				Transparenz %
 			</text>
@@ -537,12 +537,12 @@ Primitiv" name="sculpt texture control" tool_tip="Klicken Sie hier, um ein Bild 
 				Kacheln pro Meter
 			</string>
 			<string name="string repeats per face">
-				Wiederholungen pro Fläche
+				Wiederholungen pro FlÃ¤che
 			</string>
 			<text name="rpt">
 				Kacheln pro Meter
 			</text>
-			<button label="Übernehmen" label_selected="Übernehmen" name="button apply"/>
+			<button label="Ãœbernehmen" label_selected="Ãœbernehmen" name="button apply"/>
 			<text name="tex offset">
 				Versatz
 			</text>
@@ -564,16 +564,16 @@ Primitiv" name="sculpt texture control" tool_tip="Klicken Sie hier, um ein Bild 
 			Parzelleninformation
 		</text>
 		<text name="label_area_price">
-			Preis: L$ [PRICE] für [AREA] m2.
+			Preis: L$ [PRICE] fÃ¼r [AREA] m2.
 		</text>
 		<text name="label_area">
-			Fläche: [AREA] m2
+			FlÃ¤che: [AREA] m2
 		</text>
 		<button label="Info zu Land..." label_selected="Info zu Land..." name="button about land" width="110"/>
-		<check_box label="Eigentümer anzeigen" name="checkbox show owners" tool_tip="Parzellen nach Eigentümer farbig kennzeichnen"/>
+		<check_box label="EigentÃ¼mer anzeigen" name="checkbox show owners" tool_tip="Parzellen nach EigentÃ¼mer farbig kennzeichnen"/>
 		<button label="?" label_selected="?" name="button show owners help" left_delta="130"/>
 		<text name="label_parcel_modify">
-			Parzelle ändern
+			Parzelle Ã¤ndern
 		</text>
 		<button label="Unterteilen..." label_selected="Unterteilen..." name="button subdivide land" width="110"/>
 		<button label="Zusammenlegen" label_selected="Zusammenlegen" name="button join land" width="110"/>
@@ -584,10 +584,10 @@ Primitiv" name="sculpt texture control" tool_tip="Klicken Sie hier, um ein Bild 
 		<button label="Land aufgeben..." label_selected="Land aufgeben..." name="button abandon land" width="110"/>
 	</panel>
 	<string name="status_rotate">
-		An den farbigen Bändern ziehen, um das Objekt zu drehen
+		An den farbigen BÃ¤ndern ziehen, um das Objekt zu drehen
 	</string>
 	<string name="status_scale">
-		Klicken und ziehen, um die ausgewählte Seite zu dehnen
+		Klicken und ziehen, um die ausgewÃ¤hlte Seite zu dehnen
 	</string>
 	<string name="status_move">
 		Maus verschiebt, Umschalt-Taste und Maus kopiert
@@ -596,7 +596,7 @@ Primitiv" name="sculpt texture control" tool_tip="Klicken Sie hier, um ein Bild 
 		Klicken und halten, um das Land zu bearbeiten
 	</string>
 	<string name="status_camera">
-		Klicken und ziehen, um die Ansicht zu ändern
+		Klicken und ziehen, um die Ansicht zu Ã¤ndern
 	</string>
 	<string name="status_grab">
 		Ziehen, um Objekte zu verschieben, Strg zum Heben, Strg-Umschalt zum Drehen
@@ -605,7 +605,7 @@ Primitiv" name="sculpt texture control" tool_tip="Klicken Sie hier, um ein Bild 
 		Inworld klicken, um zu bauen.
 	</string>
 	<string name="status_selectland">
-		Klicken und ziehen, um Land auszuwählen
+		Klicken und ziehen, um Land auszuwÃ¤hlen
 	</string>
 	<string name="grid_screen_text">
 		Bildschirm

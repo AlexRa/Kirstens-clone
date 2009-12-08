@@ -15,13 +15,13 @@
 	</text>
 	<slider bottom_delta="-25" can_edit_text="true"
 	     decimal_digits="0" enabled="true" follows="left|top" height="15"
-	     increment="10" initial_val="50" left_delta="0" max_val="5000" min_val="50"
+	     increment="10" initial_val="50" left_delta="0" max_val="18000" min_val="50"
 	     mouse_opaque="true" name="max_bandwidth" show_text="true" value="500"
-	     width="180" />
+	     width="250" />
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom_delta="4" drop_shadow_visible="true" enabled="true"
 	     follows="left|top" font="SansSerifSmall" h_pad="0" halign="left"
-	     height="10" left_delta="186" mouse_opaque="false" name="text_box2"
+	     height="10" left_delta="256" mouse_opaque="false" name="text_box2"
 	     v_pad="0" width="200">
 		kbps (kilobits per second)
 	</text>
@@ -34,12 +34,12 @@
 	</text>
 	<slider bottom_delta="-25" can_edit_text="true"
 	     decimal_digits="0" enabled="true" follows="left|top" height="15"
-	     increment="10" initial_val="50" left_delta="0" max_val="1000" min_val="10"
-	     mouse_opaque="true" name="cache_size" show_text="true" width="180" />
+	     increment="10" initial_val="50" left_delta="0" max_val="4000" min_val="10"
+	     mouse_opaque="true" name="cache_size" show_text="true" width="250" />
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom_delta="4" drop_shadow_visible="true" enabled="true"
 	     follows="left|top" font="SansSerifSmall" h_pad="0" halign="left"
-	     height="10" left_delta="186" mouse_opaque="false" name="text_box5"
+	     height="10" left_delta="256" mouse_opaque="false" name="text_box5"
 	     v_pad="0" width="40">
 		MB
 	</text>

@@ -2,33 +2,52 @@
 <panel border="true" bottom="-409" enabled="true" follows="left|top|right|bottom"
      height="408" label="Graphics" left="102" mouse_opaque="true"
      name="Display panel" width="517">
-     <panel bottom="0" follows="left|bottom|right|top" height="408"  name="imagebg" width="517">
-     <icon bottom="0" color="255,255,255,245" scale_image="true"
-         follows="left|right|top|bottom" height="408"  image_name="MapBg2.tga"
-         left="0" width="517" />
-</panel>              
-	<button bottom="-22" follows="left|top" font="SansSerif" height="18" label="?"
-	     left="470" name="GraphicsPreferencesHelpButton" width="22" />
+  <tab_container label="Page 1" bottom="0" height="408" left="0" mouse_opaque="false" name="tab"
+	     tab_min_width="50" tab_position="top" width="495" bg_opaque_color="0,0,0,0.0">
+    <panel border="true" bottom="-408" follows="left|top|right|bottom" height="408"
+		     label="Simple" left="1" mouse_opaque="true" name="Simple" width="517">
+	<check_box bottom_delta="-67" control_name="AllowMultipleViewers" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
+	     label="Allow Multiple Viewers" left="10" mouse_opaque="true"
+	     name="MultipleViewers" radio_style="false" width="256" />
 	<check_box bottom="-23" enabled="true" follows="left|top" font="SansSerifSmall"
 	     height="16" initial_value="false"
-	     label="Run Second Life in a window" left="10" mouse_opaque="true"
+	     label="Window Mode" left="10" mouse_opaque="true"
 	     name="windowed mode" radio_style="false" width="100" />
-	<text_editor type="string" length="1" allow_html="false" bg_readonly_color="0 0 0 0" bottom="-43"
-	     embedded_items="false" enabled="false" follows="left|top"
-	     font="SansSerifSmall" height="20" hide_border="true"
-	     hide_scrollbar="true" left="10" max_length="65535" mouse_opaque="true"
-	     name="FullScreenInfo" tab_stop="false" width="350" word_wrap="true">
-		If unchecked, viewer will display full-screen when logged in.
-	</text_editor>
+  <combo_box bottom="-41" control_name="RenderFSAASamples" enabled="true" follows="left|top"
+		font="SansSerifSmall" height="16" initial_value="false"
+		label="Antialiasing" left="330"
+		mouse_opaque="true" name="fsaa" width="96">
+    <combo_item name="FSAADisabled" value="0">
+      Disabled
+    </combo_item>
+    <combo_item name="2x" value="2">
+      2x
+    </combo_item>
+    <combo_item name="4x" value="4">
+      4x
+    </combo_item>
+    <combo_item name="8x" value="8">
+      8x
+    </combo_item>
+    <combo_item name="16x" value="16">
+      16x
+    </combo_item>
+  </combo_box>
+	<slider bottom="-45" can_edit_text="false" control_name="RenderGamma"
+	     decimal_digits="0" enabled="true" follows="left|top" height="16"
+	     increment="0.1" initial_val="160" label="Gamma:"
+	     label_width="50" left="150" max_val="2" min_val="0.1" mouse_opaque="true"
+	     name="Gamma" show_text="false" width="150" />
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom="-62" drop_shadow_visible="true" enabled="true" follows="left|top"
-	     font="SansSerifSmall" h_pad="0" halign="left" height="12" left="10"
+	     bottom="-18" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     font="SansSerifSmall" h_pad="0" halign="left" height="12" left="150"
 	     mouse_opaque="true" name="WindowSizeLabel" v_pad="0" width="128">
 		Window Size:
 	</text>
-	<combo_box allow_text_entry="false" bottom="-67" enabled="true" follows="left|top"
-	     height="18" left="185" max_chars="20" mouse_opaque="true"
-	     name="windowsize combo" width="150">
+	<combo_box allow_text_entry="false" bottom="-23" enabled="true" follows="left|top"
+	     height="16" left="255" max_chars="20" mouse_opaque="true"
+	     name="windowsize combo" width="125">
 		<combo_item type="string" length="1" enabled="true" name="640x480" value="640 x 480">
 			640x480
 		</combo_item>
@@ -77,100 +96,54 @@
 		<combo_item type="string" length="1" enabled="true" name="16:9(Widescreen)" value="1.7777777">
 			16:9 (Widescreen)
 		</combo_item>
-	</combo_box>
+	</combo_box>	
+	     <text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom="-63" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     font="SansSerifSmall" h_pad="0" halign="left" height="12"
+	     left="290" mouse_opaque="true" name="FasterText" v_pad="0" width="80">
+		Faster
 	<check_box bottom="-44" control_name="FullScreenAutoDetectAspectRatio" enabled="true"
 	     follows="left|top" font="SansSerifSmall" height="16" initial_value="false"
 	     label="Auto-detect ratio" left="358" mouse_opaque="true"
 	     name="aspect_auto_detect" radio_style="false" width="256" />
-	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom="-85" drop_shadow_visible="true" enabled="true" follows="left|top"
-	     font="SansSerifSmall" h_pad="0" halign="left" height="12"
-	     left="10" mouse_opaque="true" name="HigherText" v_pad="0" width="80">
-		Quality and
-	</text>
-	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom_delta="-14" drop_shadow_visible="true" enabled="true"
-	     follows="left|top" font="SansSerifSmall" h_pad="0" halign="left"
-	     height="12" left_delta="0" mouse_opaque="true"
-	     name="QualityText" v_pad="0" width="95">
-		Performance:
-	</text>
-	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom="-86" drop_shadow_visible="true" enabled="true" follows="left|top"
-	     font="SansSerifSmall" h_pad="0" halign="left" height="12"
-	     left="115" mouse_opaque="true" name="FasterText" v_pad="0" width="80">
-		Faster
-	</text>
-	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom="-105" drop_shadow_visible="true" enabled="true" follows="left|top"
-	     font="SansSerifSmall" h_pad="0" halign="left" height="12"
-	     left="158" mouse_opaque="true" name="ShadersPrefText" v_pad="0" width="40">
-		Low
 	</text>
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom_delta="0" drop_shadow_visible="true" enabled="true"
 	     follows="left|top" font="SansSerifSmall" h_pad="0" halign="left"
-	     height="12" left_delta="47" mouse_opaque="true"
-	     name="ShadersPrefText2" v_pad="0" width="40">
-		Mid
-	</text>
-	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom_delta="0" drop_shadow_visible="true" enabled="true"
-	     follows="left|top" font="SansSerifSmall" h_pad="0" halign="left"
-	     height="12" left_delta="47" mouse_opaque="true"
-	     name="ShadersPrefText3" v_pad="0" width="40">
-		High
-	</text>
-	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom_delta="0" drop_shadow_visible="true" enabled="true"
-	     follows="left|top" font="SansSerifSmall" h_pad="0" halign="left"
-	     height="12" left_delta="47" mouse_opaque="true"
-	     name="ShadersPrefText4" v_pad="0" width="40">
-		Ultra
-	</text>
-	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom="-80" drop_shadow_visible="true" enabled="true" follows="left|top"
-	     font="SansSerifSmall" h_pad="0" halign="left" height="12"
-	     left="334" mouse_opaque="true" name="HigherText2" v_pad="0" width="80">
-		Higher
-	</text>
-	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom_delta="-14" drop_shadow_visible="true" enabled="true"
-	     follows="left|top" font="SansSerifSmall" h_pad="0" halign="left"
-	     height="12" left_delta="0" mouse_opaque="true"
+	     height="12" left_delta="160" mouse_opaque="true"
 	     name="QualityText2" v_pad="0" width="95">
 		Quality
 	</text>
-	<icon bottom="-89" color="0.12 0.12 0.12 1.0" height="14"
-	     image_name="rounded_square.tga" left="173" name="LowGraphicsDivet"
+	<icon bottom="-67" color="0.12 0.12 0.12 1.0" height="14"
+	     image_name="rounded_square.tga" left="330" name="LowGraphicsDivet"
+	     width="2" />
+	<icon bottom_delta="-17" color="0.12 0.12 0.12 1.0" height="14"
+	     image_name="rounded_square.tga" left_delta="37" name="MidGraphicsDivet"
 	     width="2" />
 	<icon bottom_delta="0" color="0.12 0.12 0.12 1.0" height="14"
-	     image_name="rounded_square.tga" left_delta="44" name="MidGraphicsDivet"
+	     image_name="rounded_square.tga" left_delta="37" name="HighGraphicsDivet"
 	     width="2" />
 	<icon bottom_delta="0" color="0.12 0.12 0.12 1.0" height="14"
-	     image_name="rounded_square.tga" left_delta="44" name="HighGraphicsDivet"
+	     image_name="rounded_square.tga" left_delta="37" name="UltraGraphicsDivet"
 	     width="2" />
-	<icon bottom_delta="0" color="0.12 0.12 0.12 1.0" height="14"
-	     image_name="rounded_square.tga" left_delta="44" name="UltraGraphicsDivet"
-	     width="2" />
-	<slider bottom="-90" can_edit_text="false" control_name="RenderQualityPerformance"
+	<slider bottom="-68" can_edit_text="false" control_name="RenderQualityPerformance"
 	     decimal_digits="0" enabled="true" follows="left|top" height="16"
 	     increment="1" initial_val="0" label="" label_width="0"
-	     left="165" max_val="3" min_val="0" mouse_opaque="true"
-	     name="QualityPerformanceSelection" show_text="false" width="150" />
-	<check_box bottom="-91" control_name="RenderCustomSettings" enabled="true"
+	     left="325" max_val="3" min_val="0" mouse_opaque="true"
+	     name="QualityPerformanceSelection" show_text="false" width="125" />
+	<check_box bottom="-45" control_name="RenderCustomSettings" enabled="true"
 	     follows="left|top" font="SansSerifSmall" height="16"
-	     initial_value="true" label="Custom" left="385" mouse_opaque="true"
-	     name="CustomSettings" radio_style="false" width="256" />
-	<view_border bevel_style="none" border_thickness="1" bottom="-375" follows="top|left"
-	     height="260" left="5" name="GraphicsBorder" width="485" />
+	     initial_value="true" label="Costum Settings" left="10" mouse_opaque="true"
+	     name="CustomSettings" radio_style="false" width="0" />
+	<view_border bevel_style="none" border_thickness="1" bottom="-395" follows="top|left"
+	     height="305" left="5" name="GraphicsBorder" width="485" />
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom="-130" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     bottom="-105" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="12"
 	     left="10" mouse_opaque="true" name="ShadersText" v_pad="0" width="128">
 		Shaders:
 	</text>
-	<check_box bottom="-153" control_name="RenderObjectBump" enabled="true" follows="left|top"
+	<check_box bottom="-125" control_name="RenderObjectBump" enabled="true" follows="left|top"
 	     font="SansSerifSmall" height="16" initial_value="true"
 	     label="Bump Mapping and Shiny" left="10" mouse_opaque="true"
 	     name="BumpShiny" radio_style="false" width="256" />
@@ -185,12 +158,24 @@
 	     initial_value="true" label="Atmospheric Shaders" left_delta="0"
 	     mouse_opaque="true" name="WindLightUseAtmosShaders" radio_style="false"
 	     width="256" />
+	<check_box bottom_delta="-17" control_name="RenderUseFBO" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16"
+	     initial_value="true" label="OpenGL Framebuffer Objects" left_delta="0"
+	     mouse_opaque="true" name="OGLFBO" radio_style="false" width="256" />
+	<check_box bottom_delta="-17" control_name="RenderDeferred" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16"
+	     initial_value="true" label="Deferred Renderer" left_delta="0"
+	     mouse_opaque="true" name="DeferredRender" radio_style="false" width="256" />
+	<check_box bottom_delta="-17" control_name="RenderDeferredSunShadow" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16"
+	     initial_value="true" label="Shadows/Projected Shadows" left_delta="0"
+	     mouse_opaque="true" name="Shadows" radio_style="false" width="256" />
 	<check_box bottom_delta="-17" control_name="RenderWaterReflections" enabled="true"
 	     follows="left|top" font="SansSerifSmall" height="16"
 	     initial_value="true" label="Water Reflections" left_delta="0"
 	     mouse_opaque="true" name="Reflections" radio_style="false" width="256" />
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom="-223" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     bottom="-243" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="12"
 	     left="10" mouse_opaque="true" name="ReflectionDetailText" v_pad="0"
 	     width="128">
@@ -218,7 +203,7 @@
 		</radio_item>
 	</radio_group>
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom="-313" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     bottom="-333" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="12" left="10"
 	     mouse_opaque="true" name="AvatarRenderingText" v_pad="0" width="128">
 		Avatar Rendering:
@@ -236,20 +221,20 @@
 	     label="Avatar Cloth" left_delta="0" mouse_opaque="true" name="AvatarCloth"
 	     radio_style="false" width="256" />
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom="-131" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     bottom="-106" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="12"
 	     left="457" mouse_opaque="true" name="DrawDistanceMeterText1" v_pad="0"
 	     width="128">
 		m
 	</text>
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom="-131" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     bottom="-106" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="12"
 	     left="463" mouse_opaque="true" name="DrawDistanceMeterText2" v_pad="0"
 	     width="128">
 		m
 	</text>
-	<slider bottom="-135" can_edit_text="false" control_name="RenderFarClip"
+	<slider bottom="-110" can_edit_text="false" control_name="RenderFarClip"
 	     decimal_digits="0" enabled="true" follows="left|top" height="16"
 	     increment="8" initial_val="160" label="Draw Distance:"
 	     label_width="140" left="215" max_val="512" min_val="64" mouse_opaque="true"
@@ -260,13 +245,19 @@
 	     label="Max. Particle Count:" label_width="140" left_delta="0"
 	     max_val="8192" min_val="0" mouse_opaque="true" name="MaxParticleCount"
 	     show_text="true" width="262" />
+	<slider bottom_delta="-20" can_edit_text="false" control_name="RenderAvatarMaxVisible"
+	     decimal_digits="0" enabled="true" follows="left|top" height="16"
+	     increment="1" initial_val="35"
+	     label="Max. Avatars:" label_width="140" left_delta="0"
+	     max_val="50" min_val="2" mouse_opaque="true" name="MaxAvatarCount"
+	     show_text="true" width="249" />
 	<slider bottom_delta="-20" can_edit_text="false" control_name="RenderGlowResolutionPow"
 	     decimal_digits="0" enabled="true" follows="left|top" height="16"
 	     increment="1" initial_val="8" label="Post Process Quality:"
 	     label_width="140" left_delta="0" max_val="9" min_val="8"
 	     mouse_opaque="true" name="RenderPostProcess" show_text="false" width="223" />
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom_delta="-17" drop_shadow_visible="true" enabled="true"
+	     bottom_delta="-15" drop_shadow_visible="true" enabled="true"
 	     follows="left|top" font="SansSerifSmall" h_pad="0" halign="left"
 	     height="12" left="215" mouse_opaque="true" name="MeshDetailText" v_pad="0"
 	     width="128">
@@ -303,13 +294,13 @@
 	     label_width="140" left_delta="0" max_val="128" min_val="16"
 	     mouse_opaque="true" name="SkyMeshDetail" show_text="false" width="223" />
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom="-172" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     bottom="-167" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="12"
 	     left="444" mouse_opaque="true" name="PostProcessText" v_pad="0" width="128">
 		Low
 	</text>
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom="-210" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     bottom="-203" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="12"
 	     left="444" mouse_opaque="true" name="ObjectMeshDetailText" v_pad="0"
 	     width="128">
@@ -364,14 +355,18 @@
 		     left="3" mouse_opaque="true" name="SunMoon" width="156">
 			Sun and moon only
 		</radio_item>
-		<radio_item type="string" length="1" bottom="-35" enabled="true" follows="left|top" height="16"
+		<radio_item type="string" length="1" bottom="-37" enabled="true" follows="left|top" height="16"
 		     left="3" mouse_opaque="true" name="LocalLights" width="156">
 			Nearby local lights
 		</radio_item>
 	</radio_group>
+	<check_box bottom_delta="-17" control_name="RenderDeferredFullscreenLights" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
+	     label="Deferred Fullscreen Lights" left_delta="3" mouse_opaque="true" name="FullscreenLights"
+	     radio_style="false" width="256" />
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom="-331" drop_shadow_visible="true" enabled="true" follows="left|top"
-	     font="SansSerifSmall" h_pad="0" halign="left" height="12" left="360"
+	     font="SansSerifSmall" h_pad="0" halign="left" height="12" left="390"
 	     mouse_opaque="true" name="TerrainDetailText" v_pad="0" width="128">
 		Terrain Detail:
 	</text>
@@ -387,17 +382,156 @@
 			High
 		</radio_item>
 	</radio_group>
-	<button bottom="-400" enabled="true" font="SansSerif" halign="center" height="20"
-	     label="Recommended Settings" left="130" mouse_opaque="true"
+	<button bottom="-91" enabled="true" font="SansSerif" halign="center" height="20"
+	     label="Recommended Settings" left="10" mouse_opaque="true"
 	     name="Defaults" scale_image="true" width="170" />
-	<button bottom="-400" enabled="true" font="SansSerif" halign="center" height="20"
+	<btton bottom="-395" enabled="true" font="SansSerif" halign="center" height="20"
 	     label="Hardware Options" label_selected="Hardware Options"
 	     left="310" mouse_opaque="true" name="GraphicsHardwareButton"
 	     scale_image="true" width="170" />
+
 	<string name="resolution_format">
 		[RES_X] x [RES_Y]
 	</string>
 	<string name="aspect_ratio_text">
 		[NUM]:[DEN]
 	</string>
+    </panel>
+    <panel border="true" bottom="-580" follows="left|top|right|bottom" height="525"
+		     label="Advanced" left="1" mouse_opaque="true" name="Advanced" width="418">
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom="-20" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     font="SansSerifSmall" h_pad="0" halign="left" height="12" left="10"
+	     mouse_opaque="true" name="ShadowsText" v_pad="0" width="128">
+		Shadow Options:
+	</text>
+	<check_box bottom_delta="-23" control_name="RenderDeferredBlurLight" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
+	     label="Blur Shadows" left_delta="0" mouse_opaque="true"
+	     name="BlurShadows" radio_style="false" width="256" />
+	<slider bottom="-44" can_edit_text="false" control_name="RenderDeferredNoise"
+	     decimal_digits="0" enabled="true" follows="left|top" height="16"
+	     increment="10" initial_val="160" label="Deferred Noise:"
+	     label_width="150" left="150" max_val="50" min_val="0" mouse_opaque="true"
+	     name="Noise" show_text="true" width="250" />
+	<slider bottom_delta="-17" can_edit_text="false" control_name="RenderShadowBlurDistFactor"
+	     decimal_digits="1" enabled="true" follows="left|top" height="16"
+	     increment="0.1" initial_val="160" label="Shadow Blur Distance:"
+	     label_width="150" left="150" max_val="10" min_val="0" mouse_opaque="true"
+	     name="BlurDist" show_text="true" width="261" />
+	<slider bottom_delta="-17" can_edit_text="false" control_name="RenderSSAOFactor"
+	     decimal_digits="1" enabled="true" follows="left|top" height="16"
+	     increment="0.1" initial_val="160" label="SSAO Factor:"
+	     label_width="150" left="150" max_val="10" min_val="0" mouse_opaque="true"
+	     name="SSAOFactor" show_text="true" width="261" />
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom="-105" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     font="SansSerifSmall" h_pad="0" halign="left" height="12" left="10"
+	     mouse_opaque="true" name="TextText" v_pad="0" width="128">
+		Texture Options:
+	</text>
+	<check_box bottom_delta="-25" control_name="AnimateTextures" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
+	     label="Animate Textures" left_delta="0" mouse_opaque="true"
+	     name="AnimateTextures" radio_style="false" width="256" />
+	<check_box bottom_delta="-17" control_name="AuditTexture" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
+	     label="Texture Auditing" left_delta="0" mouse_opaque="true"
+	     name="AuditTexture" radio_style="false" width="256" />
+	<check_box bottom_delta="-17" control_name="ImagePipelineUseHTTP" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
+	     label="HTTP Get Textures" left_delta="0" mouse_opaque="true"
+	     name="HTTPGetTextures" radio_style="false" width="256" />
+	<check_box bottom_delta="-17" control_name="RenderAnisotropic" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
+	     label="Anisotropic Filtering" left_delta="0" mouse_opaque="true"
+	     name="Anosotropic" radio_style="false" width="256" />
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom="-200" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     font="SansSerifSmall" h_pad="0" halign="left" height="12" left="10"
+	     mouse_opaque="true" name="PerfText" v_pad="0" width="128">
+		Performance Options:
+	</text>
+	<check_box bottom_delta="-25" control_name="RenderDynamicLOD" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
+	     label="Dynamic LOD" left_delta="0" mouse_opaque="true"
+	     name="DynamicLOD" radio_style="false" width="256" />
+	<check_box bottom_delta="-17" control_name="UseOcclusion" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
+	     label="Use Object-Object Occlusion" left_delta="0" mouse_opaque="true"
+	     name="Occlusion" radio_style="false" width="256" />
+	<check_box bottom_delta="-17" control_name="RenderFastAlpha" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
+	     label="Fast Alpha" left_delta="0" mouse_opaque="true"
+	     name="FastAlpha" radio_style="false" width="256" />
+	<check_box bottom_delta="-17" control_name="RenderGammaFull" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
+	     label="Full Gamma / Hardcoded 2" left_delta="0" mouse_opaque="true"
+	     name="FullGamma" radio_style="false" tool_tip="Sets which Full Bright you want to use / (On - Uses Full Gamma) (Off - Uses Hardcoded 2 Value)" width="256" />
+	<check_box bottom_delta="-17" control_name="RenderWaterMipNormal" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
+	     label="Water Mip Maps" left_delta="0" mouse_opaque="true"
+	     name="MipMapWater" radio_style="false" width="256" />
+	<check_box bottom_delta="-17" control_name="DisableVerticalSync" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
+	     label="Disable VSync" left_delta="0" mouse_opaque="true"
+	     name="VSync" radio_style="false" width="256" />
+	<check_box bottom_delta="-17" control_name="RenderAnimateTrees" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
+	     label="Animate Trees" left_delta="0" mouse_opaque="true"
+	     name="Animate Trees" radio_style="false" width="256" />
+	<check_box bottom_delta="-17" control_name="RenderGlow" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
+	     label="Render Glow Effects" left_delta="0" mouse_opaque="true"
+	     name="RenderGlow" radio_style="false" tool_tip="Dont deactivate this with active Deferred Renderer!"  width="256" />
+	<slider bottom_delta="-17" can_edit_text="false" control_name="RenderGlowIterations"
+	     decimal_digits="0" enabled="true" follows="left|top" height="16"
+	     increment="1" initial_val="160" label="Strength:"
+	     label_width="50" left_delta="10" max_val="3" min_val="1" mouse_opaque="true"
+	     name="Strength" show_text="true" width="120" />
+	  <slider bottom_delta="-21" can_edit_text="false" control_name="TextureMemory" 
+		decimal_digits="0" enabled="true"
+		follows="left|top" height="16" increment="16"
+		initial_val="32" label="Texture Memory (MB):" label_width="135" left="100"
+		max_val="2048" min_val="0" mouse_opaque="true" name="GrapicsCardTextureMemory"
+		tool_tip="Amount of memory to allocate for textures. Defaults to Video Card Memory. Reducing this may improve performance but may also make textures blurry."
+		width="300" />
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom="-105" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     font="SansSerifSmall" h_pad="0" halign="left" height="12" left="300"
+	     mouse_opaque="true" name="FUNText" v_pad="0" width="128">
+		FUN Stuff:
+	</text>
+	<check_box bottom_delta="-25" control_name="RenderAvatarInvisible" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
+	     label="Set Avatar Invisible" left_delta="0" mouse_opaque="true"
+	     name="InvisibleAvatar" radio_style="false" width="256" />
+	<check_box bottom_delta="-17" control_name="ShowSelectionBeam" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
+	     label="Show Selection Beam" left_delta="0" mouse_opaque="true"
+	     name="SelectionBeam" radio_style="false" width="256" />
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom="-200" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     font="SansSerifSmall" h_pad="0" halign="left" height="12" left="300"
+	     mouse_opaque="true" name="MiscText" v_pad="0" width="128">
+		Miscellaeous Options:
+	</text>
+	<check_box bottom_delta="-25" control_name="RenderUnloadedAvatar" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
+	     label="Show Unloaded Avatars" left_delta="0" mouse_opaque="true"
+	     name="UnloadedAvatar" radio_style="false" width="256" />
+	<check_box bottom_delta="-17" control_name="RenderLightRadius" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
+	     label="Render Light Radius" left_delta="0" mouse_opaque="true"
+	     name="LightRadius" radio_style="false" tool_tip="Renders the Light Radius as a Ball"  width="256" />
+	<check_box bottom_delta="-17" control_name="RunMultipleThreads" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
+	     label="Use Multiple Threads" left_delta="0" mouse_opaque="true"
+	     name="Multiple Threads" radio_style="false" width="256" />
+	<check_box bottom_delta="-17" control_name="NoPreload" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
+	     label="Disable Sound/Image Preload" left_delta="0" mouse_opaque="true"
+	     name="NoPreload" radio_style="false" tool_tip="Renders the Light Radius as a Ball"  width="256" />
+   </panel>
+ </tab_container>
 </panel>

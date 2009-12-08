@@ -3,12 +3,12 @@
      can_resize="false" follows="left|top" height="550" 
      left="308" min_height="100" min_width="100" mouse_opaque="true"
      name="toolbox floater" rect_control="ToolboxRect" sound_flags="0" title=""
-     short_title="Build" width="272">
+     short_title="Build" width="300">
      
 <panel bottom="0" follows="left|bottom|right|top" mouse_opaque="false" height="550" min_height="100" min_width="100" name="imagebg" width="272">
      <icon bottom="0" color="255,255,255,245" scale_image="true"
          follows="left|right|top|bottom" height="550" min_height="100" image_name="MapBg3.tga"
-         left="0" width="272" />
+         left="0" width="300" />
 </panel>    
 
 <!-- Main floater tabs -->
@@ -317,7 +317,7 @@
 
 	<tab_container bottom="-550" follows="left|top" height="384" left="0" mouse_opaque="false"
 	     name="Object Info Tabs" tab_max_width="52" tab_min_width="40"
-	     tab_position="top" width="272">
+	     tab_position="top" width="300">
 		<panel border="true" bottom="-383" follows="left|top|right|bottom" height="367"
 		     label="General" left="1" mouse_opaque="false" name="General" width="270">
 			<text bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
@@ -607,15 +607,15 @@
 			     mouse_opaque="true" name="label position" v_pad="0" width="121">
 				Position (meters)
 			</text>
-			<spinner bottom_delta="-20" decimal_digits="3" follows="left|top" height="16"
+			<spinner bottom_delta="-20" decimal_digits="5" follows="left|top" height="16"
 			     increment="0.01" initial_val="0" label="X" label_width="10" left="10"
 			     max_val="512" min_val="-256" mouse_opaque="true" name="Pos X"
 			     text_enabled_color="110, 15, 15, 255" width="87" />
-			<spinner bottom_delta="-18" decimal_digits="3" follows="left|top" height="16"
+			<spinner bottom_delta="-18" decimal_digits="5" follows="left|top" height="16"
 			     increment="0.01" initial_val="0" label="Y" label_width="10" left="10"
 			     max_val="512" min_val="-256" mouse_opaque="true" name="Pos Y"
 			     text_enabled_color="0, 100, 40, 255" width="87" />
-			<spinner bottom_delta="-18" decimal_digits="3" follows="left|top" height="16"
+			<spinner bottom_delta="-18" decimal_digits="5" follows="left|top" height="16"
 			     increment="0.01" initial_val="0" label="Z" label_width="10" left="10"
 			     max_val="4096" min_val="0" mouse_opaque="true" name="Pos Z"
 			     text_enabled_color="0, 67, 132, 255" width="87" />
@@ -625,15 +625,15 @@
 			     mouse_opaque="true" name="label size" v_pad="0" width="121">
 				Size (meters)
 			</text>
-			<spinner bottom_delta="-20" decimal_digits="3" follows="left|top" height="16"
+			<spinner bottom_delta="-20" decimal_digits="5" follows="left|top" height="16"
 			     increment="0.01" initial_val="0" label="X" label_width="10" left="10"
 			     max_val="10" min_val="0.01" mouse_opaque="true" name="Scale X"
 			     text_enabled_color="1, 1, 1, 1" width="87" />
-			<spinner bottom_delta="-18" decimal_digits="3" follows="left|top" height="16"
+			<spinner bottom_delta="-18" decimal_digits="5" follows="left|top" height="16"
 			     increment="0.01" initial_val="0" label="Y" label_width="10" left="10"
 			     max_val="10" min_val="0.01" mouse_opaque="true" name="Scale Y"
 			     text_enabled_color="1, 1, 1, 1" width="87" />
-			<spinner bottom_delta="-18" decimal_digits="3" follows="left|top" height="16"
+			<spinner bottom_delta="-18" decimal_digits="5" follows="left|top" height="16"
 			     increment="0.01" initial_val="0" label="Z" label_width="10" left="10"
 			     max_val="10" min_val="0.01" mouse_opaque="true" name="Scale Z"
 			     text_enabled_color="1, 1, 1, 1" width="87" />
@@ -643,15 +643,15 @@
 			     mouse_opaque="true" name="label rotation" v_pad="0" width="121">
 				Rotation (degrees)
 			</text>
-			<spinner bottom_delta="-22" decimal_digits="2" follows="left|top" height="16"
+			<spinner bottom_delta="-22" decimal_digits="4" follows="left|top" height="16"
 			     increment="1" initial_val="0" label="X" label_width="10" left="10"
 			     max_val="9999" min_val="-9999" mouse_opaque="true" name="Rot X"
 			     text_enabled_color="1, 1, 1, 1" width="87" />
-			<spinner bottom_delta="-18" decimal_digits="2" follows="left|top" height="16"
+			<spinner bottom_delta="-18" decimal_digits="4" follows="left|top" height="16"
 			     increment="1" initial_val="0" label="Y" label_width="10" left="10"
 			     max_val="9999" min_val="-9999" mouse_opaque="true" name="Rot Y"
 			     text_enabled_color="1, 1, 1, 1" width="87" />
-			<spinner bottom_delta="-18" decimal_digits="2" follows="left|top" height="16"
+			<spinner bottom_delta="-18" decimal_digits="4" follows="left|top" height="16"
 			     increment="1" initial_val="0" label="Z" label_width="10" left="10"
 			     max_val="9999" min_val="-9999" mouse_opaque="true" name="Rot Z"
 			     text_enabled_color="1, 1, 1, 1" width="87" />
@@ -918,7 +918,7 @@
 <!-- Features sub-tab -->
 
 		<panel border="true" bottom="-383" follows="left|top|right|bottom" height="367"
-		     label="Features" left="1" mouse_opaque="false" name="Features" width="270">
+		     label="Features" left="1" mouse_opaque="false" name="Features" width="250">
 			<text bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 			     bottom="-20" drop_shadow_visible="true" follows="left|top"
 			     font="SansSerifSmall" h_pad="0" halign="left" height="10" left="10"
