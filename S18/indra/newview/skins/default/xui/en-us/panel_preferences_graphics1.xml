@@ -133,7 +133,7 @@
 	     name="QualityPerformanceSelection" show_text="false" width="125" />
 	<check_box bottom="-45" control_name="RenderCustomSettings" enabled="true"
 	     follows="left|top" font="SansSerifSmall" height="16"
-	     initial_value="true" label="Costum Settings" left="10" mouse_opaque="true"
+	     initial_value="true" label="Custom Settings" left="10" mouse_opaque="true"
 	     name="CustomSettings" radio_style="false" width="0" />
 	<view_border bevel_style="none" border_thickness="1" bottom="-395" follows="top|left"
 	     height="305" left="5" name="GraphicsBorder" width="485" />
