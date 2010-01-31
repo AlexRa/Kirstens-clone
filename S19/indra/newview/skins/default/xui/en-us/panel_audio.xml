@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<panel border="false" follows="left|top|right|bottom" height="175"
+     label="Audio &amp; Video" name="Media panel" width="175">
+  <tab_container label="Page 1" bottom="0" height="165" left="0" mouse_opaque="false" name="tab"
+	     tab_min_width="50" tab_position="top" width="210" bg_opaque_color="0,0,0,0.0">
+    <panel border="false" bottom="0" follows="left|top|right|bottom" height="175"
+		     label="Audio" left="1" mouse_opaque="true" name="Simple" width="200">
+	<slider bottom_delta="-20" control_name="AudioLevelMaster" follows="left|top|right"
+	     height="15" increment="0.05" initial_val="0.5" label="Master"
+	     label_width="55" left="10" max_val="1" min_val="0" mouse_opaque="true"
+	     name="System Volume" show_text="false" volume="true" width="180" />
+	<button bottom_delta="0" control_name="MuteAudio" follows="top|right" height="16"
+	     image_selected="icn_speaker-muted_dark.tga"
+	     image_unselected="icn_speaker_dark.tga" label="" label_width="55"
+	     left="185" name="mute_audio" tab_stop="false" toggle="true" width="25" />
+	<slider bottom_delta="-30" control_name="AudioLevelMusic" follows="left|top|right"
+	     height="15" increment="0.05" initial_val="0.5" label="Music"
+	     label_width="55" left="10" max_val="1" min_val="0" name="Music Volume"
+	     show_text="false" volume="true" width="180" />
+	<button bottom_delta="0" control_name="MuteMusic" follows="top|right" height="16"
+	     image_selected="icn_speaker-muted_dark.tga"
+	     image_unselected="icn_speaker_dark.tga" label="" label_width="55"
+	     left="185" name="mute_music" tab_stop="false" toggle="true" width="25" />
+	<slider bottom_delta="-20" control_name="AudioLevelMedia" follows="left|top|right"
+	     height="15" increment="0.05" initial_val="0.5" label="Media"
+	     label_width="55" left="10" max_val="1" min_val="0" name="Media Volume"
+	     show_text="false" volume="true" width="180" />
+	<button bottom_delta="0" control_name="MuteMedia" follows="top|right" height="16"
+	     image_selected="icn_speaker-muted_dark.tga"
+	     image_unselected="icn_speaker_dark.tga" label="" label_width="55"
+	     left="185" name="mute_media" tab_stop="false" toggle="true" width="25" />
+	<slider bottom_delta="-20" control_name="AudioLevelVoice" follows="left|top|right"
+	     height="15" increment="0.05" initial_val="0.5" label="Voice"
+	     label_width="55" left="10" max_val="1" min_val="0" name="Voice Volume"
+	     show_text="false" volume="true" width="180" />
+	<button bottom_delta="0" control_name="MuteVoice" follows="top|right" height="16"
+	     image_selected="icn_speaker-muted_dark.tga"
+	     image_unselected="icn_speaker_dark.tga" label="" label_width="55"
+	     left="185" name="mute_voice" tab_stop="false" toggle="true" width="25" />
+	<slider bottom_delta="-20" control_name="AudioLevelSFX" follows="left|top|right"
+	     height="15" increment="0.05" initial_val="0.5" label="Sounds"
+	     label_width="55" left="10" max_val="1" min_val="0" name="SFX Volume"
+	     show_text="false" volume="true" width="180" />
+	<button bottom_delta="0" control_name="MuteSounds" follows="top|right" height="16"
+	     image_selected="icn_speaker-muted_dark.tga"
+	     image_unselected="icn_speaker_dark.tga" label="" label_width="55"
+	     left="185" name="mute_sfx" tab_stop="false" toggle="true" width="25" />
+	<slider bottom_delta="-20" control_name="AudioLevelAmbient" follows="left|top|right"
+	     height="15" increment="0.05" initial_val="0.5" label="Ambient"
+	     label_width="55" left="10" max_val="1" min_val="0" name="Wind Volume"
+	     show_text="false" volume="true" width="180" />
+	<button bottom_delta="0" control_name="MuteAmbient" follows="top|right" height="16"
+	     image_selected="icn_speaker-muted_dark.tga"
+	     image_unselected="icn_speaker_dark.tga" label="" label_width="55"
+	     left="185" name="mute_wind" tab_stop="false" toggle="true" width="25" />
+	<slider bottom_delta="-20" control_name="AudioLevelUI" follows="left|top|right"
+	     height="15" increment="0.05" initial_val="0.5" label="UI" label_width="55"
+	     left="10" max_val="1" min_val="0" name="UI Volume" show_text="false"
+	     volume="true" width="180" />
+	<button bottom_delta="0" control_name="MuteUI" follows="top|right" height="16"
+	     image_selected="icn_speaker-muted_dark.tga"
+	     image_unselected="icn_speaker_dark.tga" label="" label_width="55"
+	     left="185" name="mute_ui" tab_stop="false" toggle="true" width="25" />
+     </panel>
+    <panel border="false" bottom="0" follows="left|top|right|bottom" height="160"
+		     label="Graphics" left="1" mouse_opaque="true" name="Graphics" width="175">
+	<slider bottom_delta="-20" can_edit_text="true" control_name="RenderFarClip"
+	     decimal_digits="0" enabled="true" follows="left|top" height="16"
+	     increment="8" initial_val="160" label="Draw Distance:"
+	     label_width="85" left="10" max_val="512" min_val="64" mouse_opaque="true"
+	     name="DrawDistance" show_text="true" width="200" />
+	<slider bottom_delta="-20" can_edit_text="false" control_name="RenderMaxPartCount"
+	     decimal_digits="0" enabled="true" follows="left|top" height="16"
+	     increment="256" initial_val="4096"
+	     label="Max. Particles:" label_width="85" left_delta="0"
+	     max_val="8192" min_val="0" mouse_opaque="true" name="MaxParticleCount"
+	     show_text="true" width="207" />
+	<slider bottom_delta="-20" can_edit_text="false" control_name="RenderAvatarMaxVisible"
+	     decimal_digits="0" enabled="true" follows="left|top" height="16"
+	     increment="1" initial_val="35"
+	     label="Max. Avatars:" label_width="85" left_delta="0"
+	     max_val="50" min_val="2" mouse_opaque="true" name="MaxAvatarCount"
+	     show_text="true" width="193" />
+	<check_box bottom_delta="-60" control_name="RenderUseFBO" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16"
+	     initial_value="true" label="OGL FBO" left_delta="10"
+	     mouse_opaque="true" name="OGLFBO" radio_style="false" width="256" />
+	<check_box bottom_delta="-20" control_name="RenderDeferred" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16"
+	     initial_value="true" label="Deferred" left_delta="0"
+	     mouse_opaque="true" name="DeferredRender" radio_style="false" width="256" />
+	<check_box bottom_delta="10" control_name="RenderDeferredSunShadow" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16"
+	     initial_value="true" label="Shadows" left_delta="100"
+	     mouse_opaque="true" name="Shadows" radio_style="false" width="256" />
+	<view_border bevel_style="none" border_thickness="2" bottom_delta="-15" follows="top|left"
+	     height="50" left_delta="-110" name="GraphicsBorder" width="200" />
+   </panel>
+ </tab_container>

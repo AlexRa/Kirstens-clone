@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+
+<floater bottom="-300" can_close="true" can_drag_on_left="false" can_minimize="true"
+     can_resize="true" enabled="true" follows="left|bottom" height="620"
+     hidden="false" left="300" min_height="420" min_width="630"
+     mouse_opaque="true" name="asset browser" title="Asset Browser" width="720">
+     
+<panel bottom="0" follows="left|bottom|right|top" mouse_opaque="false" height="620" min_height="420" min_width="630" name="imagebg" width="720">
+     <icon bottom="0" color="255,255,255,245" scale_image="true"
+         follows="left|right|top|bottom" height="620" min_height="420" image_name="MapBg3.tga"
+         left="0" width="720" />
+</panel>      
+	
+	<inventory_panel allow_multi_select="false" border="true" bottom="-299" enabled="true"
+	     follows="left|top" height="280" hidden="false" left="10"
+	     mouse_opaque="true" name="inventory panel"
+	     sort_order="TexturePickerSortOrder" width="231"/>
+
+	<button bottom="-350" follows="left|top" font="SansSerifSmall"
+		halign="center" height="20" hidden="false" label="Next &gt;&gt;"
+		left="160" mouse_opaque="true" name="button next" scale_image="TRUE"
+		width="80"/>
+		
+	<button bottom_delta="-30" follows="left|top" font="SansSerifSmall" 
+		halign="center" height="20" hidden="false" label="&lt;&lt; Previous"
+		left_delta="0" mouse_opaque="true" name="button previous" scale_image="TRUE"
+		width="80"/>
+		
+	<button bottom_delta="-30" follows="left|top" font="SansSerifSmall" 
+		halign="center" height="20" hidden="false" label="Refresh"
+		left_delta="0" mouse_opaque="true" name="button refresh" scale_image="TRUE"
+		width="80"/>
+		
+</floater>
+

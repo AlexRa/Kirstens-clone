@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater bottom="-380" can_close="true" can_drag_on_left="false" can_minimize="true"
+     can_resize="true" height="380" left="400" min_height="380" min_width="240"
+     mouse_opaque="true" name="scanner" title="Scanner" width="240">
+<panel bottom="0" follows="left|bottom|right|top" mouse_opaque="false" height="380" min_height="380" min_width="240" name="imagebg" width="240">
+     <icon bottom="0" color="255,255,255,245" scale_image="true"
+         follows="left|right|top|bottom" height="380" min_height="380" image_name="MapBg3.tga"
+         left="0" width="240" />
+        
+		
+	<button bottom="-48" follows="top|right" font="SansSerif" halign="center"
+	     height="20" label="ON/OFF" label_selected="ON/OFF" left_delta="140"
+	     mouse_opaque="true" name="Find ON" scale_image="TRUE" width="80" />
+    <scroll_list background_visible="true" bottom_delta="-264" column_padding="5"
+	     draw_border="true" draw_heading="true" draw_stripes="true" search_column="0"
+	     follows="left|top|right|bottom" height="256" left="12" mouse_opaque="true"
+	     multi_select="true" name="Names" width="220" />
+	<column name="name" label="Name" dynamicwidth="true" />
+	<column name="distance" label="Distance" width="80"/>
+	
+	<button bottom_delta="-28" follows="left|bottom" font="SansSerif" halign="center"
+	     height="20" label="Close" label_selected="Close" mouse_opaque="true"
+	     name="Close" right="230" scale_image="TRUE" width="105" />
+	<button bottom_delta="0" follows="left|bottom" font="SansSerif" halign="center"
+	     height="20" label="Offer TP" label_selected="Offer TP" mouse_opaque="true"
+	     name="Select" right="119" scale_image="TRUE" width="105" />
+	</panel>
+</floater>

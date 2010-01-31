@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<panel background_opaque="true" background_visible="false"
+     bg_opaque_color="0.25 0.25 0.25 0.00" bottom="0" enabled="true"
+     follows="top|left|right" height="44" left="0" mouse_opaque="false"
+     name="status" width="1000">
+ <icon bottom="0" color="255,255,255,180" scale_image="true"
+         follows="left|right|top|bottom" height="44"  image_name="menu_bar.tga" 
+         left="0" width="1024" />    
+     <!-- redock needed for communicate dropdown -->
+     <string name="Redock Windows">Redock Windows</string>
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom="-22" drop_shadow_visible="true" enabled="true"
+	     follows="top|left|right" font="SansSerifSmall" h_pad="0" halign="left"
+	     height="18" hover="true" left="561" mouse_opaque="true"
+	     name="ParcelNameText" text_color="ParcelTextColor" hover_color="ParcelHoverColor"
+	     tool_tip="Name of land parcel on which you are standing. Click for About Land."
+	     v_pad="2" width="1039">
+		parcel name goes here
+	</text>
+ <panel background_opaque="true" background_visible="false"
+     bg_opaque_color="0.25 0.25 0.25 0.00" bottom="0" enabled="true"
+     follows="right|bottom" height="26" right="-470" mouse_opaque="false"
+     name="status2" width="550"> 
+ <icon bottom="0" color="255,255,255,255" scale_image="true"
+         follows="left|right|top|bottom" height="26" image_name="menu_bar2.tga" 
+         left="0" width="550" />      
+    <!-- Chat button -->
+    <button bottom="0" font="SansSerif" height="24"
+	       image_selected="btn_chatbar_selected.tga" scale_image="true"
+	       image_unselected="btn_chatbar.tga" label="" left="10" name="chat_btn"
+	       image_overlay="icn_chatbar.tga" tool_tip="Show Chat Bar. (Enter)"
+           width="50" auto_resize="false" follows="left|bottom" user_resize="false"/>
+    <!-- Chat Button End -->       
+    <!-- Communicate button -->
+    <flyout_button bottom="0" font="SansSerif" height="24" label="" left="70"
+	       name="communicate_btn" tool_tip="Communicate with your Friends and Social Groups."
+	       list_position="below"
+	       width="50" follows="left|bottom" user_resize="false"/>
+    <icon image_name="spacer24.tga" width="2" height="2" follows="left|bottom" auto_resize="false" color="0,0,0,0"/>
+    <!-- Communicate button end -->
+    <!-- snapshot button -->
+    <button bottom="0" font="SansSerif" height="24" label="" left="130"
+             image_overlay="icn_toolbar_snapshot.tga" image_overlay_alignment="left"
+                        image_selected="toolbar_btn_selected.tga"
+             image_unselected="toolbar_btn_enabled.tga"
+             image_disabled="toolbar_btn_disabled.tga" scale_image="true"
+	       name="snapshot_btn" tool_tip="Save a screen shot to disk or inventory."
+	       width="50" follows="left|bottom" user_resize="false"/>
+    <!-- snapshot end -->
+    <!-- Fly button -->
+    <button bottom="0" font="SansSerif" height="24" label=""
+        image_overlay="icn_toolbar_fly.tga" image_overlay_alignment="left"
+                        image_selected="toolbar_btn_selected.tga"
+             image_unselected="toolbar_btn_enabled.tga"
+             image_disabled="toolbar_btn_disabled.tga" scale_image="true"
+	       label_selected="" left="190" name="fly_btn"
+	       tool_tip="Start flying. Use E/C or PgUp/PgDn to fly up and down."
+	       width="50" follows="left|bottom" user_resize="false"/>
+    <!-- Fly button end -->
+    <!-- Build button -->
+    <button bottom="0" font="SansSerif" height="24" label="" left="250" name="build_btn"
+                         image_overlay="icn_toolbar_build.tga" image_overlay_alignment="left"
+                        image_selected="toolbar_btn_selected.tga"
+             image_unselected="toolbar_btn_enabled.tga"
+             image_disabled="toolbar_btn_disabled.tga" scale_image="true"
+	       tool_tip="Create new objects." width="50" follows="left|bottom" user_resize="false"/>
+    <!-- Build button end -->       
+    <!-- Minimap button -->
+    <button bottom="0" font="SansSerif" height="24" label="" left="310"
+                         image_overlay="icn_toolbar_minimap.tga" image_overlay_alignment="left"
+                        image_selected="toolbar_btn_selected.tga"
+             image_unselected="toolbar_btn_enabled.tga"
+             image_disabled="toolbar_btn_disabled.tga" scale_image="true"
+	       name="radar_btn" tool_tip="Map of the area around you. (Ctrl-Shift-M)"
+	       width="50" follows="left|bottom" user_resize="false"/>
+    <!-- Minimap button end --> 
+    <!-- Worldmap button -->
+    <button bottom="0" font="SansSerif" height="24" label="" left="370" name="map_btn"
+                         image_overlay="icn_toolbar_map.tga" image_overlay_alignment="left"
+                        image_selected="toolbar_btn_selected.tga"
+             image_unselected="toolbar_btn_enabled.tga"
+             image_disabled="toolbar_btn_disabled.tga" scale_image="true"
+	       tool_tip="Map of the world. (Ctrl-M)" width="50" follows="left|bottom" user_resize="false"/>  
+    <!-- Worldmapbutton end --> 
+    <!-- Openlife Web! -->
+    <button bottom="0" font="SansSerif" height="24" label="" left="430"
+             image_overlay="icn_toolbar_search.tga" image_overlay_alignment="left"
+             image_selected="toolbar_btn_selected.tga"
+             image_unselected="toolbar_btn_enabled.tga"
+             image_disabled="toolbar_btn_disabled.tga" scale_image="true"
+	       name="directory_btn"
+	       tool_tip="Search for places, events, people, and more." width="50" follows="left|bottom" user_resize="false"/> 
+    <!-- Openlife Web end -->           
+    <!-- inventory button -->
+    <button bottom="0" font="SansSerif" height="24" label="" left="490"
+                         image_overlay="icn_toolbar_inventory.tga" image_overlay_alignment="left"
+                        image_selected="toolbar_btn_selected.tga"
+             image_unselected="toolbar_btn_enabled.tga"
+             image_disabled="toolbar_btn_disabled.tga" scale_image="true"
+	       name="inventory_btn" tool_tip="Your items. (Ctrl-I)" width="50" follows="left|bottom" user_resize="false"/>
+     <!-- inventory button end --> 
+</panel>     
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom="-20" disabled_color="BalanceTextColor" drop_shadow_visible="true"
+	     enabled="true" follows="right|bottom" font="SansSerifSmall" h_pad="0"
+	     halign="right" height="18" left="-210" mouse_opaque="true"
+	     name="BalanceText" text_color="BalanceTextColor" tool_tip="Account Balance"
+	     v_pad="2" width="76">
+		Loading...
+	</text>
+	<button bottom="-17" enabled="true" follows="right|bottom" font="SansSerif"
+	     halign="center" height="16"
+	     image_selected="status_buy_currency_pressed.tga"
+	     image_unselected="status_buy_currency.tga" label="" label_selected=""
+	     left="-210" mouse_opaque="true" name="buycurrency" scale_image="true"
+	     tool_tip="Buy currency" width="16" />
+	<text type="string" length="12" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom="-20" disabled_color="TimeTextColor" drop_shadow_visible="true"
+	     enabled="true" follows="right|bottom" font="SansSerifSmall" h_pad="0"
+	     halign="right" height="18" left="-300" mouse_opaque="true" name="TimeText"
+	     text_color="TimeTextColor" tool_tip="Current Time (Pacific)" v_pad="2" width="80">
+		12:00 AM
+	</text>
+	<string name="StatBarDaysOfWeek">
+		Sunday:Monday:Tuesday:Wednesday:Thursday:Friday:Saturday
+	</string>
+	<string name="StatBarMonthsOfYear">
+		January:February:March:April:May:June:July:August:September:October:November:December
+	</string>
+	<button bottom="-18" enabled="true" follows="right|bottom" font="SansSerif"
+	     halign="center" height="16" image_selected="status_script_debug.tga"
+	     image_unselected="status_script_debug.tga" label="" label_selected=""
+	     left="378" mouse_opaque="true" name="scriptout" scale_image="false"
+	     tool_tip="Script Warnings and Errors" visible="false" width="16" />
+	<button bottom="-22" enabled="true" follows="right|bottom" font="SansSerif"
+	     halign="center" height="18" image_selected="status_health.tga"
+	     image_unselected="status_health.tga" label="" label_selected="" left="394"
+	     mouse_opaque="true" name="health" scale_image="false" tool_tip="Health"
+	     visible="false" width="24" />
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom="-18" disabled_color="HealthTextColor" drop_shadow_visible="true"
+	     enabled="true" follows="rsight|bottom" font="SansSerifSmall" h_pad="0"
+	     halign="left" height="18" left="418" mouse_opaque="true" name="HealthText"
+	     text_color="HealthTextColor" tool_tip="Health" v_pad="2" visible="false" width="31">
+		100%
+	</text>
+	<button bottom="-22" enabled="true" follows="right|bottom" font="SansSerif"
+	     halign="center" height="18" image_selected="status_no_fly.tga"
+	     image_unselected="status_no_fly.tga" label="" label_selected="" left="449"
+	     mouse_opaque="true" name="no_fly" scale_image="false"
+	     tool_tip="Flying not allowed" visible="false" width="24" />
+	<button bottom="-22" enabled="true" follows="top|right" font="SansSerif"
+	     halign="center" height="18" image_selected="status_no_build.tga"
+	     image_unselected="status_no_build.tga" label="" label_selected=""
+	     left="473" name="no_build" scale_image="false"
+	     tool_tip="Building/Rezzing not allowed" visible="false" width="24" />
+	<button bottom="-22" enabled="true" follows="right|bottom" font="SansSerif"
+	     halign="center" height="18" image_selected="status_no_scripts.tga"
+	     image_unselected="status_no_scripts.tga" label="" label_selected=""
+	     left="497" mouse_opaque="true" name="no_scripts" scale_image="false"
+	     tool_tip="Scripts not allowed" visible="false" width="24" />
+	<button bottom="0" enabled="true" follows="right|bottom" font="SansSerif"
+	     halign="center" height="18" image_selected="status_no_push.tga"
+	     image_unselected="status_no_push.tga" label="" label_selected="" left="521"
+	     mouse_opaque="true" name="restrictpush" scale_image="false"
+	     tool_tip="No Pushing" visible="false" width="24" />
+	<button bottom="-22" enabled="true" follows="right|bottom" font="SansSerif"
+	     halign="center" height="18" image_selected="status_no_voice.tga"
+	     image_unselected="status_no_voice.tga" label="" label_selected=""
+	     left="545" mouse_opaque="true" name="status_no_voice" scale_image="false"
+	     tool_tip="Voice not available here" visible="false" width="24" />
+	<button bottom="-17" enabled="true" follows="right|bottom" font="SansSerif"
+	     halign="center" height="16" image_selected="status_buy_land_pressed.tga"
+	     image_unselected="status_buy_land.tga" label="" label_selected=""
+	     left="576" mouse_opaque="true" name="buyland" scale_image="true"
+	     tool_tip="Buy this parcel" visible="false" width="16" />
+
+  <!-- Totally unsexy button hack to get a sexy bevel for sexy search bevel -brent -->
+  <button bottom="-17" height="16" left="-95" width="94" 
+          image_unselected="sm_rounded_corners_simple.tga"
+          image_selected="sm_rounded_corners_simple.tga"
+          image_hover_selected="sm_rounded_corners_simple.tga"
+          image_hover_unselected="sm_rounded_corners_simple.tga"
+          image_disabled_selected="sm_rounded_corners_simple.tga"
+          image_disabled="sm_rounded_corners_simple.tga"
+          label="" scale_image="true" enabled="true" mouse_opaque="false" name="menubar_search_bevel_bg"/>
+
+  <line_editor bevel_style="none" border_style="line" border_thickness="0" border_drop_shadow_visible="false" bottom="-16"
+	     commit_on_focus_lost="false" enabled="true" follows="right|bottom"
+	     font="SansSerifSmall" handle_edit_keys_directly="false" height="11"
+	     label="Search" left="-94" max_length="254" mouse_opaque="true"
+	     name="search_editor" select_all_on_focus_received="false"
+	     select_on_focus="false" tab_group="1" tool_tip="Search Second Life"
+	     width="78"/>
+	<button bottom="-17" enabled="true" follows="right|bottom" font="SansSerifSmall"
+	     halign="center" height="16" image_unselected="status_search_btn.png" image_selected="status_search_btn_pressed.png" image_disabled_selected="status_search_btn_pressed.png" image_disabled="status_search_btn.png"
+	     label="" label_selected="" left="-16" mouse_opaque="true" name="search_btn"
+	     tool_tip="Search Second Life" width="16" scale_image="false"/>
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom="-16" enabled="false" follows="right|bottom" font="SansSerifSmall"
+	     halign="center" height="12" left="-20" mouse_opaque="true"
+	     name="stat_btn" width="20" />
+	<string name="packet_loss_tooltip">
+		Packet Loss
+	</string>
+	<string name="bandwidth_tooltip">
+		Bandwidth
+	</string>
+</panel>

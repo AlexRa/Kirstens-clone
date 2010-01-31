@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<panel background_opaque="false" background_visible="true" bottom="0" can_close="true" mouse_opaque="true"
+     can_minimize="false" can_resize="false" follows="left|right|bottom"
+     height="10" name="toolbar" width="1024">
+    
+  <!--<string name="Redock Windows">Redock Windows</string>  -->
+   <panel bottom="0" filename="panel_bg_toolbar.xml" height="10" left="0" width="1024" />
+  <layout_stack name="toolbar_stack" follows="left|right|bottom|top" bottom="0" left="1" width="1022" height="10" min_width="200" min_height="0"  orientation="horizontal" border_size="0">
+  </layout_stack>
+
+</panel>

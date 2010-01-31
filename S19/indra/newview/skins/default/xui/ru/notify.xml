@@ -1,0 +1,1043 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<notifications>
+	<notify name="SystemMessageTip">
+		<message name="message">
+			[MESSAGE]
+		</message>
+	</notify>
+	<notify name="Cancelled">
+		<message name="message">
+			Отменено
+		</message>
+	</notify>
+	<notify name="CancelledSit">
+		<message name="message">
+			Нельзя сесть
+		</message>
+	</notify>
+	<notify name="CancelledAttach">
+		<message name="message">
+			Нельзя прикрепить
+		</message>
+	</notify>
+	<notify name="ReplacedMissingWearable">
+		<message name="message">
+			Отсутствующая часть одежды/тела заменена базовым значением.
+		</message>
+	</notify>
+	<notify name="FriendOnline">
+		<message name="message">
+			[FIRST] [LAST] Онлайн
+		</message>
+	</notify>
+	<notify name="FriendOffline">
+		<message name="message">
+			[FIRST] [LAST] вышел из SL
+		</message>
+	</notify>
+	<notify name="AddSelfFriend">
+		<message name="message">
+			Вы не можете добавить себя в друзья
+		</message>
+	</notify>
+	<notify name="UploadingAuctionSnapshot">
+		<message name="message">
+			Загрузка снимков из-мира и Интернета
+(Займет примерно 5 минут)
+		</message>
+	</notify>
+	<notify name="UploadPayment">
+		<message name="message">
+			Вы заплатили для загрузки L$[AMOUNT]
+		</message>
+	</notify>
+	<notify name="UploadingSnapshot">
+		<message name="message">
+			Загрузка снимка из-мира...
+(Займет минуту или больше)
+		</message>
+	</notify>
+	<notify name="UploadWebSnapshotDone">
+		<message name="message">
+			Загрузка снимка на вебсайт завершена
+		</message>
+	</notify>
+	<notify name="UploadSnapshotDone">
+		<message name="message">
+			Загрузка снимка из-мира завершена
+		</message>
+	</notify>
+	<notify name="TerrainDownloaded">
+		<message name="message">
+			Terrain.raw загружен
+		</message>
+	</notify>
+	<notify name="InMaxGroups">
+		<message name="message">
+			Вы уже находитесь в максимальном количестве групп. Вам сначала надо покинуть одну из них, чтобы создать новую.
+		</message>
+	</notify>
+	<notify name="GestureMissing">
+		<message name="message">
+			Жеста [NAME] нет в базе данных.
+		</message>
+	</notify>
+	<notify name="UnableToLoadGesture">
+		<message name="message">
+			Загрузка жеста [NAME] не выполнена. 
+Пожалуйста, попробуйте еще раз.
+		</message>
+	</notify>
+	<notify name="InventoryLoaded">
+		<message name="message">
+			Ваш инвентарь загружен.
+		</message>
+	</notify>
+	<notify name="LandmarkMissing">
+		<message name="message">
+			Закладки нет в базе данных.
+		</message>
+	</notify>
+	<notify name="UnableToLoadLandmark">
+		<message name="message">
+			Загрузка закладки не выполнена. Пожалуйста, попробуйте еще раз.
+		</message>
+	</notify>
+	<notify name="CapsKeyOn">
+		<message name="message">
+			Ваша клавиша Caps Lock включена. Это может влиять 
+на правильность ввода пароля. Возможно, Вам лучше ее выключить
+		</message>
+	</notify>
+	<notify name="NotecardMissing">
+		<message name="message">
+			Заметки нет в базе данных.
+		</message>
+	</notify>
+	<notify name="NotecardNoPermissions">
+		<message name="message">
+			У Вас нет прав для просмотра заметки
+		</message>
+	</notify>
+	<notify name="RezItemNoPermissions">
+		<message name="message">
+			Недостаточно прав для создания объекта.
+		</message>
+	</notify>
+	<notify name="UnableToLoadNotecard">
+		<message name="message">
+			Невозможно загрузить заметку.
+Пожалуйста попробуйте еще раз.
+		</message>
+	</notify>
+	<notify name="ScriptMissing">
+		<message name="message">
+			Скрипта нет в базе данных.
+		</message>
+	</notify>
+	<notify name="ScriptNoPermissions">
+		<message name="message">
+			У Вас нет прав для просмотра скрипта.
+		</message>
+	</notify>
+	<notify name="UnableToLoadScript">
+		<message name="message">
+			Невозможно загрузить скрипт. Пожалуйста, попробуйте еще раз.
+		</message>
+	</notify>
+	<notify name="IncompleteInventory">
+		<message name="message">
+			Полное содержание, к которому вы обращаетесь еще недоступно. Пожалуйста попытайтесь снова через минуту.
+		</message>
+	</notify>
+	<notify name="CannotModifyProtectedCategories">
+		<message name="message">
+			Вы не можете изменить защищенные категории.
+		</message>
+	</notify>
+	<notify name="CannotRemoveProtectedCategories">
+		<message name="message">
+			Вы не можете удалить защищенные категории.
+		</message>
+	</notify>
+	<notify name="OfferedCard">
+		<message name="message">
+			Вы предложили визитку [FIRST] [LAST]
+		</message>
+	</notify>
+	<notify name="OfferedFriendship">
+		<message name="message">
+			Вы предложили дружбу [FIRST] [LAST]
+		</message>
+	</notify>
+	<notify name="UnableToBuyWhileDownloading">
+		<message name="message">
+			Нельзя купить, пока объекты не загрузятся
+Пожалуйста, попробуйте еще раз.
+		</message>
+	</notify>
+	<notify name="UnableToLinkWhileDownloading">
+		<message name="message">
+			Нельзя связать объекты, пока они не загрузятся
+Пожалуйста, попробуйте еще раз.
+		</message>
+	</notify>
+	<notify name="CannotBuyObjectsFromDifferentOwners">
+		<message name="message">
+			Невозможно купить объекты у разных владельцев в одно и тоже время.
+Пожалуйста выберите один объект.
+		</message>
+	</notify>
+	<notify name="ObjectNotForSale">
+		<message name="message">
+			Объекты не предназначены для продажи
+		</message>
+	</notify>
+	<notify name="EnteringGodMode">
+		<message name="message">
+			Режим бога, уровень [LEVEL]
+		</message>
+	</notify>
+	<notify name="LeavingGodMode">
+		<message name="message">
+			Выход из режима бога уровня [LEVEL]
+		</message>
+	</notify>
+	<notify name="CopyFailed">
+		<message name="message">
+			Копирование невозможно, так как у Вас нет права на копирование
+		</message>
+	</notify>
+	<notify name="InventoryAccepted">
+		<message name="message">
+			[NAME] принял ваш инвентарь.
+		</message>
+	</notify>
+	<notify name="InventoryDeclined">
+		<message name="message">
+			[NAME] отклонил ваш инвентарь.
+		</message>
+	</notify>
+	<notify name="ObjectMessage">
+		<message name="message">
+			[NAME]: [MESSAGE]
+		</message>
+	</notify>
+	<notify name="CallingCardAccepted">
+		<message name="message">
+			Ваша визитка была принята.
+		</message>
+	</notify>
+	<notify name="CallingCardDeclined">
+		<message name="message">
+			Ваша визитка была отклонена.
+		</message>
+	</notify>
+	<notify name="TeleportToLandmark">
+		<message name="message">
+			Теперь Вы достигли материка и можете телепортироваться в позицию [NAME], кликнув на нижнюю кнопку в окне Инвентаря, и затем выбрать папку Закладок.
+Дважды щелкните на Закладке и нажмите там кнопку &apos;&apos;Телепорт сюда&apos;&apos;
+		</message>
+	</notify>
+	<notify name="TeleportToPerson">
+		<message name="message">
+			Теперь Вы достигли материка и можете связаться с резидентом [NAME], кликнув на нижнюю кнопку в окне Инвентаря, и затем выбрать папку Визиток.
+Дважды щелкните на Визитке, нажмите кнопку &apos;&apos;Мговенное Сообщение&apos;&apos;, и затем напечатайте сообщение.
+		</message>
+	</notify>
+	<notify name="CantSelectLandFromMultipleRegions">
+		<message name="message">
+			Вы не можете выбрать Землю с другого сима.
+Попробуйте выбрать участок земли поменьше.
+		</message>
+	</notify>
+	<notify name="GenerticNotify">
+		<message name="message">
+			[MESSAGE]
+		</message>
+	</notify>
+	<notify name="GroupVote">
+		<message name="message">
+			[NAME] предложил голосовать:
+[MESSAGE]
+		</message>
+		<option name="VoteNow">
+			Голосовать сейчас
+		</option>
+		<option name="Later">
+			Позже
+		</option>
+	</notify>
+	<notify name="GroupElection">
+		<message name="message">
+			[NAME] начал голосование:
+[MESSAGE]
+		</message>
+		<option name="VoteNow">
+			Голосовать сейчас
+		</option>
+		<option name="Later">
+			Позже
+		</option>
+	</notify>
+	<notify name="SystemMessage">
+		<message name="message">
+			[MESSAGE]
+		</message>
+	</notify>
+	<notify name="EventNotification">
+		<message name="message">
+			Уведомление о событиях:
+
+[NAME]
+[DATE]
+		</message>
+		<option name="Teleport">
+			Телепорт
+		</option>
+		<option name="Description">
+			Описание
+		</option>
+		<option name="Cancel">
+			Отмена
+		</option>
+	</notify>
+	<notify name="TransferObjectsHighlighted">
+		<message name="message">
+			Все объекты на этом участке, которые будут переданы покупателю этого участка, теперь подсвечены.
+* Деревья и трава, которые будут переданы, не подсвечиваются.
+		</message>
+		<option name="Done">
+			Готово
+		</option>
+	</notify>
+	<notify name="DeactivatedGesturesTrigger">
+		<message name="message">
+			Жесты отключаются одинаковой ключевой фразой:
+[NAMES]
+		</message>
+	</notify>
+	<notify name="InventoryNetworkCorruption">
+		<message name="message">
+			Инвентарь не мог быть загружен из-за проблем в сети. Это указывает на плохое качество связи.
+		</message>
+	</notify>
+	<notify name="NoQuickTime">
+		<message name="message">
+			Кажется, в Вашей системе не установлено ПО QuickTime. Если вы хотите просматривать потоковое видео, то
+Вам нужно посетить сайт QuickTime (http://www.apple.com/quicktime) и установить QuickTime Player.
+		</message>
+	</notify>
+	<notify name="OwnedObjectsReturned">
+		<message name="message">
+			Объекты с выбранного участка земли, принадлежащие Вам, были возвращены в Ваш инвентарь.
+		</message>
+	</notify>
+	<notify name="OtherObjectsReturned">
+		<message name="message">
+			Принадлежащие [FIRST] [LAST] объекты были 
+возвращены в его(ее) инвентарь с выбранного участка земли.
+		</message>
+	</notify>
+	<notify name="OtherObjectsReturned2">
+		<message name="message">
+			Принадлежащие [NAME] объекты 
+возвращены в его(ее) инвентарь с выбранного участка земли.
+		</message>
+	</notify>
+	<notify name="GroupObjectsReturned">
+		<message name="message">
+			Объекты с выбранного участка земли, принадлежащего группе [GROUPNAME], были возвращены своим владельцам.
+Передаваемые используемые объекты были возвращены предыдущим владельцам.
+А непередаваемые принадлежащие группе - были уничтожены.
+		</message>
+	</notify>
+	<notify name="UnOwnedObjectsReturned">
+		<message name="message">
+			Объекты этого участка, не принадлежащие Вам, были возвращены своим владельцам.
+		</message>
+	</notify>
+	<notify name="NotSafe">
+		<message name="message">
+			Эта земля имеет разрешение на повреждения (&apos;notsafe&apos;).
+Вам здесь могут нанести повреждения. Если вы умрете, вы будете телепортированы в свой Дом.
+		</message>
+	</notify>
+	<notify name="NoFly">
+		<message name="message">
+			Полеты на этой земле запрещены (&apos;no fly&apos;).
+Вы не можете летать здесь.
+		</message>
+	</notify>
+	<notify name="PushRestricted">
+		<message name="message">
+			На этой земле запрещено толкать других резидентов.
+Вы не можете толкнуть никого на этой земле,если только Вы не владелец земли.
+		</message>
+	</notify>
+	<notify name="NoVoice">
+		<message name="message">
+			На этой земле отключен голосовой чат.
+		</message>
+	</notify>
+	<notify name="NoBuild">
+		<message name="message">
+			На этой земле запрещено строительство (&apos;no build&apos;). Вы не можете создавать здесь объекты.
+		</message>
+	</notify>
+	<notify name="ScriptsStopped">
+		<message name="message">
+			Администратор временно приостановил выполнение скриптов в этом регионе.
+		</message>
+	</notify>
+	<notify name="ScriptsNotRunning">
+		<message name="message">
+			В этом регионе не выполняются скрипты.
+		</message>
+	</notify>
+	<notify name="NoOutsideScripts">
+		<message name="message">
+			В этом регионе запрещено выполнение чужих скриптов.
+(&apos;no outside scripts&apos;).
+Запрещено выполнение любых скриптов, кроме принадлежащих владельцу Земли.
+		</message>
+	</notify>
+	<notify name="ApproveURL">
+		<message name="message">
+			Объект хочет показать веб-страницу на своей поверхности:
+[URL]
+		</message>
+		<option name="LoadPage">
+			Загрузить страницу
+		</option>
+		<option name="Don&apos;tLoad">
+			Не загружать
+		</option>
+	</notify>
+	<notify name="ClaimPublicLand">
+		<message name="message">
+			Провозгласить территорию свободной для посещения Вы можете только находясь на ней
+		</message>
+	</notify>
+	<notify name="ObjectGiveItem">
+		<message name="message">
+			[OBJECTTYPE] названный как [OBJECTNAME] передал Вам [OBJECTFROMNAME] принадлежащий [FIRST] [LAST].
+		</message>
+		<option name="Keep">
+			Принять
+		</option>
+		<option name="Discard">
+			Отказаться
+		</option>
+		<option name="Mute">
+			Заглушить
+		</option>
+	</notify>
+	<notify name="ObjectGiveItemUnknownUser">
+		<message name="message">
+			[OBJECTTYPE] названный как [OBJECTNAME] передал Вам [OBJECTFROMNAME] принадлежащий неизвестному лицу.
+		</message>
+		<option name="Keep">
+			Принять
+		</option>
+		<option name="Discard">
+			Отказаться
+		</option>
+		<option name="Mute">
+			Заглушить
+		</option>
+	</notify>
+	<notify name="UserGiveItem">
+		<message name="message">
+			[NAME] предоставил Вам [OBJECTTYPE] названный как &apos;[OBJECTNAME]&apos;.
+		</message>
+		<option name="Keep">
+			Принять
+		</option>
+		<option name="Discard">
+			Отказаться
+		</option>
+		<option name="Mute">
+			Заглушить
+		</option>
+	</notify>
+	<notify name="GodMessage">
+		<message name="message">
+			[NAME]
+[MESSAGE]
+		</message>
+	</notify>
+	<notify name="JoinGroup">
+		<message name="message">
+			[MESSAGE]
+		</message>
+		<option name="Join">
+			Присоединиться
+		</option>
+		<option name="Decline">
+			Отказаться
+		</option>
+		<option name="Info">
+			Информация
+		</option>
+	</notify>
+	<notify name="JoinGroupOfficerNoFee">
+		<message name="message">
+			[NAME] пригласил Вас присоединиться 
+к группе в качестве офицера.
+Вступление в группу бесплатное.
+
+[MESSAGE]
+		</message>
+		<option name="Join">
+			Присоединиться
+		</option>
+		<option name="Decline">
+			Отказаться
+		</option>
+		<option name="Info">
+			Информация
+		</option>
+	</notify>
+	<notify name="JoinGroupMember">
+		<message name="message">
+			[NAME] пригласил Вас присоединиться 
+к группе, как участнику.
+Для вступления в эту группу, Вам необходимо заплатить взнос в L$[COST]
+
+[MESSAGE]
+		</message>
+		<option name="Join">
+			Присоединиться
+		</option>
+		<option name="Decline">
+			Отказаться
+		</option>
+		<option name="Info">
+			Информация
+		</option>
+	</notify>
+	<notify name="JoinGroupMemberNoFee">
+		<message name="message">
+			[NAME] пригласил Вас присоединиться 
+к группе, как участнику.
+Вступление в группу бесплатное.
+
+[MESSAGE]
+		</message>
+		<option name="Join">
+			Присоединиться
+		</option>
+		<option name="Decline">
+			Отказаться
+		</option>
+		<option name="Info">
+			Информация
+		</option>
+	</notify>
+	<notify name="OfferTeleport">
+		<message name="message">
+			[NAME] предложил Вам телепортироваться к нему:
+ 
+
+[MESSAGE]
+		</message>
+		<option name="Teleport">
+			Телепорт
+		</option>
+		<option name="Cancel">
+			Отмена
+		</option>
+	</notify>
+	<notify name="GotoURL">
+		<message name="message">
+			[MESSAGE]
+[URL]
+		</message>
+		<option name="Later">
+			Позже
+		</option>
+		<option name="GoNow...">
+			Сейчас...
+		</option>
+	</notify>
+	<notify name="OfferFriendship">
+		<message name="message">
+			[NAME] предлагает Вам дружбу.
+
+По умолчанию, вы сможете 
+видеть онлайн-статус друг друга.
+		</message>
+		<option name="Accept">
+			Согласиться
+		</option>
+		<option name="Decline">
+			Отказаться
+		</option>
+	</notify>
+	<notify name="FriendshipAccepted">
+		<message name="message">
+			[NAME] Ваше предложение дружбы принято.
+		</message>
+	</notify>
+	<notify name="FriendshipDeclined">
+		<message name="message">
+			[NAME] Ваше предложение дружбы отклонено.
+		</message>
+	</notify>
+	<notify name="OfferCallingCard">
+		<message name="message">
+			[FIRST] [LAST] предлагает свою визитку.
+Она будет добавлена в Ваш инвентарь, и Вы сможете
+ быстро связаться с этим резидентом по IM.
+		</message>
+		<option name="Accept">
+			Принять
+		</option>
+		<option name="Decline">
+			Отклонить
+		</option>
+	</notify>
+	<notify name="RegionRestartMinutes">
+		<message name="message">
+			Регион перезагрузиться через [MINUTES] мин.
+Если вы останетесь в этом регионе вас выкинет.
+		</message>
+	</notify>
+	<notify name="RegionRestartSeconds">
+		<message name="message">
+			Регион перезагрузиться через [SECONDS] секунд.
+Если вы останетесь в этом регионе вас выкинет.
+		</message>
+	</notify>
+	<notify name="LoadWebPage">
+		<message name="message">
+			Загрузить веб страницу [URL]?
+ 
+[MESSAGE]
+ 
+От объекта: [OBJECTNAME], владелец: [NAME]?
+		</message>
+		<option name="Gotopage">
+			Перейти к странице
+		</option>
+		<option name="Cancel">
+			Отмена
+		</option>
+	</notify>
+	<notify name="FailedToLoadWearableUnnamed">
+		<message name="message">
+			Не удалось загрузить [TYPE] .
+Пожалуйста, сообщите продавцу, у которого Вы приобрели этот элемент.
+		</message>
+	</notify>
+	<notify name="FailedToLoadWearable">
+		<message name="message">
+			Не удалось загрузить [TYPE] названый [DESC].
+Пожалуйста, сообщите продавцу, у которого Вы приобрели этот элемент.
+		</message>
+	</notify>
+	<notify name="FailedToFindWearableUnnamed">
+		<message name="message">
+			Не удалось найти [TYPE] в базе данных.
+		</message>
+	</notify>
+	<notify name="FailedToFindWearable">
+		<message name="message">
+			Не удалось найти [TYPE] названый [DESC] в базе данных.
+		</message>
+	</notify>
+	<notify name="ScriptTakeMoney">
+		<message name="message">
+			Получить с Вас Линден-доллары (L$)
+		</message>
+	</notify>
+	<notify name="ActOnControlInputs">
+		<message name="message">
+			Работать на Ваших клавишах
+		</message>
+	</notify>
+	<notify name="RemapControlInputs">
+		<message name="message">
+			Перенастроить управление
+		</message>
+	</notify>
+	<notify name="AnimateYourAvatar">
+		<message name="message">
+			Анимировать Ваш аватар
+		</message>
+	</notify>
+	<notify name="AttachToYourAvatar">
+		<message name="message">
+			Прикрепить к Вашему аватару
+		</message>
+	</notify>
+	<notify name="ReleaseOwnership">
+		<message name="message">
+			Убрать из собственности и сделать достоянием общественности
+		</message>
+	</notify>
+	<notify name="LinkAndDelink">
+		<message name="message">
+			Соединить/отсоединить от других объектов
+		</message>
+	</notify>
+	<notify name="AddAndRemoveJoints">
+		<message name="message">
+			Добавьте и удалите соединения с другими объектами
+		</message>
+	</notify>
+	<notify name="ChangePermissions">
+		<message name="message">
+			Изменить его права
+		</message>
+	</notify>
+	<notify name="TrackYourCamera">
+		<message name="message">
+			Слежение за Вашей камерой
+		</message>
+	</notify>
+	<notify name="ControlYourCamera">
+		<message name="message">
+			Управление Вашей камерой
+		</message>
+	</notify>
+	<notify name="ScriptQuestion">
+		<message name="message">
+			Принадлежащий &apos;[NAME]&apos; объект с именем &apos;[OBJECTNAME]&apos; хочет:
+
+[QUESTIONS]
+это правильно?
+		</message>
+		<option name="Yes">
+			Да
+		</option>
+		<option name="No">
+			Нет
+		</option>
+		<option name="Mute">
+			Заглушить
+		</option>
+	</notify>
+	<notify name="ScriptQuestionCautionChatGranted">
+		<message name="message">
+			&apos;[OBJECTNAME]&apos;, объект принадлежащий &apos;[OWNERNAME]&apos;,находящийся в [REGIONNAME] at [REGIONPOS], получил разрешения: [PERMISSIONS].
+		</message>
+	</notify>
+	<notify name="ScriptQuestionCautionChatDenied">
+		<message name="message">
+			&apos;[OBJECTNAME]&apos;, объект принадлежащий &apos;[OWNERNAME]&apos;, находящийся в [REGIONNAME] at [REGIONPOS], потерял разрешения: [PERMISSIONS].
+		</message>
+	</notify>
+	<notify name="ScriptQuestionCautionWarn">
+		<message name="message">
+			Объект хочет разрешения взять Линден-доллары с Вашего аккаунта.
+		</message>
+	</notify>
+	<notify name="ScriptQuestionCaution">
+		<message name="message">
+			&apos;[OBJECTNAME]&apos;, объект, принадлежащий &apos;[NAME]&apos;, хочет:
+
+[QUESTIONS]
+Если Вы не доверяете этому объекту или его создателю, Вы можете запретить запрос. Для дополнительной информации кликните Детали.
+
+Одобрить запрос?
+		</message>
+		<option name="Grant">
+			Одобрить
+		</option>
+		<option name="Deny">
+			Отказать
+		</option>
+		<option name="Details">
+			Детали...
+		</option>
+	</notify>
+	<notify name="ScriptDialog">
+		<message name="message">
+			[FIRST] [LAST]&apos;s &apos;[TITLE]&apos;
+[MESSAGE]
+		</message>
+		<option name="Ignore">
+			Игнорировать
+		</option>
+	</notify>
+	<notify name="ScriptDialogGroup">
+		<message name="message">
+			[GROUPNAME]&apos;s &apos;[TITLE]&apos;
+[MESSAGE]
+		</message>
+		<option name="Ignore">
+			Игнорировать
+		</option>
+	</notify>
+	<notify name="FirstBalanceIncrease">
+		<message name="message">
+			Вы только что получили L$[AMOUNT].
+Объекты и другие пользователи могут давать Вам L$
+Ваш баланс показывается в правом
+верхнем углу экрана
+		</message>
+	</notify>
+	<notify name="FirstBalanceDecrease">
+		<message name="message">
+			Вы только что заплатили L$[AMOUNT].
+Ваш баланс показывается в правом
+верхнем углу экрана
+		</message>
+	</notify>
+	<notify name="FirstSit">
+		<message name="message">
+			Вы сидите.
+Используйте клавиши стрелок, чтобы смотреть по сторонам.
+Нажмите на кнопку &apos;Встать&apos;, чтобы встать.
+		</message>
+	</notify>
+	<notify name="FirstMap">
+		<message name="message">
+			Нажмите и тяните, чтобы листать карту.
+Дважды щелкните для телепорта в выбранную местность.
+Используйте элементы справа, чтобы найти на карте
+разные вещи и показать разные фоны.
+		</message>
+	</notify>
+	<notify name="FirstBuild">
+		<message name="message">
+			Вы можете строить объекты в различных областях [SECOND_LIFE].
+Выберите сверху слева необходимый инструмент и попробуйте 
+удерживая клавиши Ctrl или Alt быстро менять инструменты.
+Нажмите Esc, чтобы прекратить строительство.
+		</message>
+	</notify>
+	<notify name="FirstLeftClickNoHit">
+		<message name="message">
+			Левый щелчок мыши взаимодействует со специальными объектами.
+Если курсор мыши меняется на ладонь -- 
+Вы можете взаимодействовать с объектом.
+Правая кнопка мыши отображает меню команд, которые Вы можете применить.
+		</message>
+	</notify>
+	<notify name="FirstTeleport">
+		<message name="message">
+			Вы только что телепортировались.
+Вы находитесь возле ближайшего к Вашей точке назначения Инфохаба.
+Ваша точка назначения отмечена красной стрелкой.
+		</message>
+	</notify>
+	<notify name="FirstOverrideKeys">
+		<message name="message">
+			Ваши клавиши перемещения теперь задействованы объектом..  
+Попробуйте клавиши стрелок или AWSD и увидите, что произойдет.
+Некоторые предметы (напр., оружие) требуют использовать их в режиме &apos;&apos;вид мышью&apos;&apos;.
+Чтобы сделать это нажмите &apos;M&apos;.
+		</message>
+	</notify>
+	<notify name="FirstAppearance">
+		<message name="message">
+			Вы редактируете свою внешность..  
+Для вращения и масштабирования используйте клавиши стрелок.
+Когда закончите нажмите &apos;Сохранить Все&apos; 
+чтобы сохранить Ваш вид и выйти из редактора.
+Вы можете корректировать внешность так часто, как Вам захочется.
+		</message>
+	</notify>
+	<notify name="FirstInventory">
+		<message name="message">
+			Это Ваш Инвентарь. Он содержит визитки, одежду и другие принадлежащие Вам вещи.
+* Чтобы надеть предмет или папку набора -- перетащите его на себя.
+* Чтобы вытащить предмет в мир, перетащите его на землю.
+* Чтобы прочесть визитку, дважды щелкните по ней.
+		</message>
+	</notify>
+	<notify name="FirstSandbox">
+		<message name="message">
+			Это песочница.
+Созданные Вами объекты исчезнут после того, как
+Вы покинете это место. Песочницы очищаются регулярно. О частоте очистки Вы можете узнать из информации сверху экрана справа от названия региона.
+
+Области песочниц необыкновенные, поэтому помечаются знаками.
+		</message>
+	</notify>
+	<notify name="FirstFlexible">
+		<message name="message">
+			Этот объект гибкий.
+Гибкие объекты не могут быть физическими и должны быть фантомами.
+до тех пор, пока Вы не снимите птичку с &apos;&apos;Гибкость&apos;&apos;.
+		</message>
+	</notify>
+	<notify name="FirstDebugMenus">
+		<message name="message">
+			Вы включили меню отладки Клиент/Сервер.
+Это меню содержит средства, полезные для разработчиков Second Life.
+Чтобы включить(отключить) меню используйте комбинацию клавиш Ctrl+Alt+D. На Маке исп-те Cmd-Opt-Shift-D.
+		</message>
+	</notify>
+	<notify name="FirstSculptedPrim">
+		<message name="message">
+			Вы правите скульптурный прим.
+Вид скульптурного прима задается специальной текстурой.
+Вы можете найти примеры скульптурных текстур в Библиотеке.
+		</message>
+	</notify>
+	<notify name="FirstMedia">
+		<message name="message">
+			Вы начали проигрывать медиа. Медиа можно играть автоматически, выставив соответствующую опцию в настройках. Имейте в виду, что рискованно ставить эту опцию для сайтов, которым Вы не доверяете.
+		</message>
+	</notify>
+	<notify name="MaxListSelectMessage">
+		<message name="message">
+			Вы можете выбрать из списка максимум 
+[MAX_SELECT] элементов.
+		</message>
+	</notify>
+	<notify name="VoiceInviteP2P">
+		<message name="message">
+			[NAME] приглашает Вас в голосовой чат.
+Нажмите Принять, чтобы присоединиться или Отказ для отмены. Или Заглушите его.
+		</message>
+		<option name="Accept">
+			Согласиться
+		</option>
+		<option name="Decline">
+			Отказаться
+		</option>
+		<option name="Mute">
+			Заглушить
+		</option>
+	</notify>
+	<notify name="AutoUnmuteByIM">
+		<message name="message">
+			Мгновенное сообщение было отправлено [FIRST] [LAST] и он(а) автоматически разблокирован.
+		</message>
+	</notify>
+	<notify name="AutoUnmuteByMoney">
+		<message name="message">
+			[FIRST] [LAST] получил деньги и был(а) автоматически разблокирован.
+		</message>
+	</notify>
+	<notify name="AutoUnmuteByInventory">
+		<message name="message">
+			Инвентарь был предложен [FIRST] [LAST] и он(а) автоматически разблокирован.
+		</message>
+	</notify>
+	<notify name="VoiceInviteGroup">
+		<message name="message">
+			[NAME] присоединился к голосовому чату в группе [GROUP]. 
+Нажмите Принять, чтобы присоединиться или Отказ для отмены. Или Заглушите его.
+		</message>
+		<option name="Accept">
+			Принять
+		</option>
+		<option name="Decline">
+			Отказать
+		</option>
+		<option name="Mute">
+			Заглушить
+		</option>
+	</notify>
+	<notify name="VoiceInviteAdHoc">
+		<message name="message">
+			[NAME] приглашает Вас в голосовую конференцию.
+Нажмите Принять, чтобы присоединиться или Отказ для отмены. Или Заглушите его.
+		</message>
+		<option name="Accept">
+			Принять
+		</option>
+		<option name="Decline">
+			Отказать
+		</option>
+		<option name="Mute">
+			Заглушить
+		</option>
+	</notify>
+	<notify name="InviteAdHoc">
+		<message name="message">
+			[NAME] приглашает Вас в конференц-чат
+Нажмите Принять, чтобы присоединиться или Отказ для отмены. Или Заглушите его.
+		</message>
+		<option name="Accept">
+			Принять
+		</option>
+		<option name="Decline">
+			Отказать
+		</option>
+		<option name="Mute">
+			Заглушить
+		</option>
+	</notify>
+	<notify name="VoiceChannelFull">
+		<message name="message">
+			Голосовой вызов отменен, [VOICE_CHANNEL_NAME], из-за достижения максимальной загрузки. Попробуйте позже.
+		</message>
+	</notify>
+	<notify name="ProximalVoiceChannelFull">
+		<message name="message">
+			К сожалению, на этой территории достигнут предел голосового общения. Попробуйте поговорить на другой территории.
+		</message>
+	</notify>
+	<notify name="VoiceChannelDisconnected">
+		<message name="message">
+			Вы отсоединились от [VOICE_CHANNEL_NAME]. Сейчас Вы будете подсоединены к общему голосовому каналу.
+		</message>
+	</notify>
+	<notify name="VoiceChannelDisconnectedP2P">
+		<message name="message">
+			[VOICE_CHANNEL_NAME] завершил звонок.  Сейчас Вы будете подсоединены к общему голосовому каналу.
+		</message>
+	</notify>
+	<notify name="P2PCallDeclined">
+		<message name="message">
+			[VOICE_CHANNEL_NAME] отменил звонок.  Сейчас Вы будете подсоединены к общему голосовому каналу.
+		</message>
+	</notify>
+	<notify name="P2PCallNoAnswer">
+		<message name="message">
+			[VOICE_CHANNEL_NAME] недоступен для звонка. Сейчас Вы будете подсоединены к общему голосовому каналу.
+		</message>
+	</notify>
+	<notify name="VoiceChannelJoinFailed">
+		<message name="message">
+			Ошибка подключения к [VOICE_CHANNEL_NAME], повторите позже. Вас сейчас пересоединят с голосовым чатом.
+		</message>
+	</notify>
+	<notify name="VoiceLoginRetry">
+		<message name="message">
+			Мы готовим для Вас голосовой канал. Это может занять около минуты.
+		</message>
+	</notify>
+	<notify name="Cannot enter parcel: not a group member">
+		<message name="message">
+			Невозможно попасть на участок, т.к. Вы не член соответствующей группы.
+		</message>
+	</notify>
+	<notify name="Cannot enter parcel: banned">
+		<message name="message">
+			Невозможно попасть на участок, т.к. Вас забанили
+		</message>
+	</notify>
+	<notify name="Cannot enter parcel: not on access list">
+		<message name="message">
+			Невозможно попасть на участок, т.к. Вас нет в списке допущенных.
+		</message>
+	</notify>
+	<notify name="VoiceNotAllowed">
+		<message name="message">
+			У Вас нет прав для голосового чата на  [VOICE_CHANNEL_NAME].
+		</message>
+	</notify>
+	<notify name="VoiceCallGenericError">
+		<message name="message">
+			Возникла ошибка при подключении к голосовому чату [VOICE_CHANNEL_NAME].Попробуйте позже.
+		</message>
+	</notify>
+	<notify name="ServerVersionChanged">
+		<message name="message">
+			Этот регион работает, используя другую версию симулятора. Нажмите на это сообщение для подробностей.
+		</message>
+	</notify>
+	<notify name="UnableToOpenCommandURL">
+		<message name="message">
+			URL, на который Вы кликнули, не может быть открыт этим браузером.
+		</message>
+	</notify>
+</notifications>
