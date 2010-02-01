@@ -36,7 +36,7 @@
 const S32 LL_VERSION_MAJOR = 1;
 const S32 LL_VERSION_MINOR = 19;
 const S32 LL_VERSION_PATCH = 0;
-const S32 LL_VERSION_BUILD = 372; // Build version s18 (215) + s19 commits so far 157! = build 372 thats how KL rolls :)
+const S32 LL_VERSION_BUILD = 373; // Build version s18 (215) + s19 commits so far 157! = build 372 thats how KL rolls :)
 
 const char * const KL_CHANNEL = "Kirstens S19"; // KL my login channel, so grids can ident me from other viewers
 
