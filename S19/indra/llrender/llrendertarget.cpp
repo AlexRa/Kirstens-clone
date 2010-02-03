@@ -349,16 +349,16 @@ U32 LLRenderTarget::getTexture(U32 attachment) const
 {
 	if (attachment > mTex.size()-1)
 	{
-		llwarns << "Invalid attachment index." << llendl; // lets not crash KL its a pain in the ass!
+		llwarns << "Invalid attachment index [getTexture]." << llendl; // lets not crash KL its a pain in the ass!
 	}
 	return mTex[attachment];
 }
 
 void LLRenderTarget::bindTexture(U32 index, S32 channel)
 {
-	if (index > mTex.size()-1)
+	if (index > 6)//mTex.size()-1) // KL yeah i know its a bit arbitary but make the number big enough as some unused render defer elements cause this to go wild
 	{
-		llwarns << "Invalid attachment index." << llendl;
+		llwarns << "Invalid attachment index [bindtexture]." << llendl;
 	}
 	gGL.getTexUnit(channel)->bindManual(mUsage, mTex[index]);
 }

@@ -61,7 +61,7 @@ void LLCallbackList::addFunction( callback_t func, void *data)
 {
 	if (!func)
 	{
-		llerrs << "LLCallbackList::addFunction - function is NULL" << llendl;
+		llwarns << "LLCallbackList::addFunction - function is NULL" << llendl;
 		return;
 	}
 

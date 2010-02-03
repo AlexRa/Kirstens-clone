@@ -461,11 +461,11 @@ public:
 	static S8  sCameraMovingDiscardBias;
 	static F32 sDesiredDiscardBias;
 	static F32 sDesiredDiscardScale;
-	static S32 sBoundTextureMemoryInBytes;
-	static S32 sTotalTextureMemoryInBytes;
-	static S32 sMaxBoundTextureMemInMegaBytes;
-	static S32 sMaxTotalTextureMemInMegaBytes;
-	static S32 sMaxDesiredTextureMemInBytes ;
+	static S32 sBoundTextureMemory;
+	static S32 sTotalTextureMemory;
+	static S32 sMaxBoundTextureMem;
+	static S32 sMaxTotalTextureMem;
+	static S32 sMaxDesiredTextureMem ;
 	static BOOL sDontLoadVolumeTextures;
 
 	static S32 sMaxSculptRez ;

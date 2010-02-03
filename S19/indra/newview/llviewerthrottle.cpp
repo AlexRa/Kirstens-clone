@@ -74,8 +74,8 @@ const std:: string LLViewerThrottle::sNames[TC_EOF] = {
 //                                Resend Land Wind Cloud Task Texture Asset
 const F32 BW_PRESET_50[TC_EOF]   = {   5,  10,   3,   3,  10,  10,   9 };
 const F32 BW_PRESET_300[TC_EOF]  = {  30,  40,   9,   9,  86,  86,  40 };
-const F32 BW_PRESET_500[TC_EOF]  = {  50,  70,  14,  14, 136, 136,  80 };
-const F32 BW_PRESET_1000[TC_EOF] = { 300, 300,  100,  100, 420, 1200, 420 }; // KL max BW settings to sync with llmessage throttle setup
+const F32 BW_PRESET_500[TC_EOF]  = {  150,  170,  14,  14, 236, 936,  180 };
+const F32 BW_PRESET_1000[TC_EOF] = { 300, 300,  100,  100, 420, 1200, 420 }; // more like it kirsten!
 
 LLViewerThrottleGroup::LLViewerThrottleGroup()
 {

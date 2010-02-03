@@ -191,13 +191,12 @@ BOOL LLVOPartGroup::updateGeometry(LLDrawable *drawable)
 	S32 count=0;
 	mDepth = 0.f;
 	S32 i = 0 ;
-	LLVector3 camera_agent = getCameraPosition();
 	for (i = 0 ; i < (S32)mViewerPartGroupp->mParticles.size(); i++)
 	{
 		const LLViewerPart *part = mViewerPartGroupp->mParticles[i];
 
 		LLVector3 part_pos_agent(part->mPosAgent);
-		LLVector3 at(part_pos_agent - camera_agent);
+		LLVector3 at(part_pos_agent - LLViewerCamera::getInstance()->getOrigin());
 
 		F32 camera_dist_squared = at.lengthSquared();
 		F32 inv_camera_dist_squared;
@@ -320,7 +319,7 @@ void LLVOPartGroup::getGeometry(S32 idx,
 	up *= 0.5f*part.mScale.mV[1];
 
 
-	LLVector3 normal = -LLViewerCamera::getInstance()->getXAxis();
+	const LLVector3& normal = -LLViewerCamera::getInstance()->getXAxis();
 		
 	*verticesp++ = part_pos_agent + up - right;
 	*verticesp++ = part_pos_agent - up - right;

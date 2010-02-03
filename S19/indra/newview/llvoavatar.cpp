@@ -1330,7 +1330,7 @@ void LLVOAvatar::deleteCachedImages(bool clearAll)
 
 		sScratchTexNames.deleteAllData();
 		LLVOAvatar::sScratchTexLastBindTime.deleteAllData();
-		LLImageGL::sGlobalTextureMemoryInBytes -= sScratchTexBytes;
+		LLImageGL::sGlobalTextureMemory -= sScratchTexBytes;
 		sScratchTexBytes = 0;
 	}
 
@@ -4410,7 +4410,7 @@ U32 LLVOAvatar::renderFootShadows()
 	return num_indices;
 }
 
-U32 LLVOAvatar::renderImpostor(LLColor4U color, S32 diffuse_channel)
+U32 LLVOAvatar::renderImpostor(LLColor4U color)
 {
 	if (!mImpostor.isComplete())
 	{
@@ -4430,7 +4430,7 @@ U32 LLVOAvatar::renderImpostor(LLColor4U color, S32 diffuse_channel)
 	gGL.setAlphaRejectSettings(LLRender::CF_GREATER, 0.f);
 
 	gGL.color4ubv(color.mV);
-	gGL.getTexUnit(diffuse_channel)->bind(&mImpostor);
+	gGL.getTexUnit(0)->bind(&mImpostor);
 	gGL.begin(LLRender::QUADS);
 	gGL.texCoord2f(0,0);
 	gGL.vertex3fv((pos+left-up).mV);
@@ -6866,7 +6866,7 @@ LLGLuint LLVOAvatar::getScratchTexName( LLGLenum format, U32* texture_bytes )
 		LLVOAvatar::sScratchTexNames.addData( format, new LLGLuint( name ) );
 
 		LLVOAvatar::sScratchTexBytes += *texture_bytes;
-		LLImageGL::sGlobalTextureMemoryInBytes += *texture_bytes;
+		LLImageGL::sGlobalTextureMemory += *texture_bytes;
 		return name;
 	}
 }

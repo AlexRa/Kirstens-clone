@@ -124,7 +124,7 @@ void LLImageBase::sanityCheck()
 		|| mComponents > (S8)MAX_IMAGE_COMPONENTS
 		)
 	{
-		llerrs << "Failed LLImageBase::sanityCheck "
+		llwarns << "Failed LLImageBase::sanityCheck "
 			   << "width " << mWidth
 			   << "height " << mHeight
 			   << "datasize " << mDataSize
@@ -154,12 +154,12 @@ U8* LLImageBase::allocateData(S32 size)
 		size = mWidth * mHeight * mComponents;
 		if (size <= 0)
 		{
-			llerrs << llformat("LLImageBase::allocateData called with bad dimentions: %dx%dx%d",mWidth,mHeight,mComponents) << llendl;
+			llwarns << llformat("LLImageBase::allocateData called with bad dimentions: %dx%dx%d",mWidth,mHeight,mComponents) << llendl;
 		}
 	}
 	else if (size <= 0 || (size > 4096*4096*16 && sSizeOverride == FALSE))
 	{
-		llerrs << "LLImageBase::allocateData: bad size: " << size << llendl;
+		llwarns << "LLImageBase::allocateData: bad size: " << size << llendl;
 	}
 	
 	if (!mData || size != mDataSize)
@@ -205,7 +205,7 @@ const U8* LLImageBase::getData() const
 { 
 	if(mBadBufferAllocation)
 	{
-		llerrs << "Bad memory allocation for the image buffer!" << llendl ;
+		llwarns << "Bad memory allocation for the image buffer!" << llendl ;
 	}
 
 	return mData; 
@@ -215,7 +215,7 @@ U8* LLImageBase::getData()
 { 
 	if(mBadBufferAllocation)
 	{
-		llerrs << "Bad memory allocation for the image buffer!" << llendl ;
+		llwarns << "Bad memory allocation for the image buffer!" << llendl ;
 	}
 
 	return mData; 
@@ -333,7 +333,7 @@ U8 * LLImageRaw::getSubImage(U32 x_pos, U32 y_pos, U32 width, U32 height) const
 	// Should do some simple bounds checking
 	if (!data)
 	{
-		llerrs << "Out of memory in LLImageRaw::getSubImage" << llendl;
+		llwarns << "Out of memory in LLImageRaw::getSubImage" << llendl;
 		return NULL;
 	}
 
@@ -415,7 +415,7 @@ void LLImageRaw::verticalFlip()
 	U8* line_buffer = new U8[row_bytes];
 	if (!line_buffer )
 	{
-		llerrs << "Out of memory in LLImageRaw::verticalFlip()" << llendl;
+		llwarns << "Out of memory in LLImageRaw::verticalFlip()" << llendl;
 		return;
 	}
 	S32 mid_row = getHeight() / 2;
@@ -1237,28 +1237,25 @@ bool LLImageRaw::createFromFile(const std::string &filename, bool j2c_lowest_mip
 	ifs.read ((char*)buffer, length);	/* Flawfinder: ignore */
 	ifs.close();
 	
-	BOOL success;
-
-	success = image->updateData();
-	if (success)
+	image->updateData();
+	
+	if (j2c_lowest_mip_only && codec == IMG_CODEC_J2C)
 	{
-		if (j2c_lowest_mip_only && codec == IMG_CODEC_J2C)
+		S32 width = image->getWidth();
+		S32 height = image->getHeight();
+		S32 discard_level = 0;
+		while (width > 1 && height > 1 && discard_level < MAX_DISCARD_LEVEL)
 		{
-			S32 width = image->getWidth();
-			S32 height = image->getHeight();
-			S32 discard_level = 0;
-			while (width > 1 && height > 1 && discard_level < MAX_DISCARD_LEVEL)
-			{
-				width >>= 1;
-				height >>= 1;
-				discard_level++;
-			}
-			((LLImageJ2C *)((LLImageFormatted*)image))->setDiscardLevel(discard_level);
+			width >>= 1;
+			height >>= 1;
+			discard_level++;
 		}
-		success = image->decode(this, 100000.0f);
+		((LLImageJ2C *)((LLImageFormatted*)image))->setDiscardLevel(discard_level);
 	}
-
+	
+	BOOL success = image->decode(this, 100000.0f);
 	image = NULL; // deletes image
+
 	if (!success)
 	{
 		deleteData();
@@ -1454,7 +1451,7 @@ void LLImageFormatted::sanityCheck()
 
 	if (mCodec >= IMG_CODEC_EOF)
 	{
-		llerrs << "Failed LLImageFormatted::sanityCheck "
+		llwarns << "Failed LLImageFormatted::sanityCheck "
 			   << "decoding " << S32(mDecoding)
 			   << "decoded " << S32(mDecoded)
 			   << "codec " << S32(mCodec)
@@ -1620,7 +1617,7 @@ void LLImageBase::generateMip(const U8* indata, U8* mipdata, S32 width, S32 heig
 				*(U8*)data = (U8)(((U32)(indata[0]) + indata[1] + indata[in_width] + indata[in_width+1])>>2);
 				break;
 			  default:
-				llerrs << "generateMmip called with bad num channels" << llendl;
+				llwarns << "generateMmip called with bad num channels" << llendl;
 			}
 			indata += nchannels*2;
 			data += nchannels;

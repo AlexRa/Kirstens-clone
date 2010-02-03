@@ -364,7 +364,7 @@ inline BOOL LLUUIDHashMap<DATA_TYPE, SIZE>::remove(const LLUUID &uuid)
 	if (mIterCount)
 	{
 		// We don't allow remove when we're iterating, it's bad karma!
-		llerrs << "Attempted remove while an outstanding iterator in LLUUIDHashMap!" << llendl;
+		llwarns << "Attempted remove while an outstanding iterator in LLUUIDHashMap!" << llendl;
 	}
 	// Remove is the trickiest operation.
 	// What we want to do is swap the last element of the last

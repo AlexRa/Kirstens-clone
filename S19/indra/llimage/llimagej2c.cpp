@@ -290,7 +290,7 @@ BOOL LLImageJ2C::decodeChannels(LLImageRaw *raw_imagep, F32 decode_time, S32 fir
 	if (!getData() || (getDataSize() < 16))
 	{
 		setLastError("LLImageJ2C uninitialized");
-		res = TRUE; // done
+		res = FALSE; // KL was true eg done but SD wants FALSE and so do I !!
 	}
 	else
 	{

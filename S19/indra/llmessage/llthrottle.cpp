@@ -139,9 +139,9 @@ F32 gThrottleMaximumBPS[TC_EOF] =
 	170000.f, // TC_LAND
 	34000.f, // TC_WIND
 	34000.f, // TC_CLOUD
-	972000.f, // TC_TASK     //
-	1200000.f, // TC_TEXTURE //  KL The R16 onwards settings for viewer throttle
-	440000.f, // TC_ASSET    //
+	972000.f, // TC_TASK
+	1200000.f, // TC_TEXTURE // These Settings may not work on every grid bandwidth is serverside KL
+	440000.f, // TC_ASSET
 };
 
 // Start low until viewer informs us of capability
@@ -152,13 +152,13 @@ F32 gThrottleMaximumBPS[TC_EOF] =
 
 F32 gThrottleDefaultBPS[TC_EOF] =
 {
-	100000.f, // TC_RESEND
+	150000.f, // TC_RESEND
 	4000.f, // TC_LAND
 	4000.f, // TC_WIND
 	4000.f, // TC_CLOUD
-	4000.f, // TC_TASK
+	20000.f, // TC_TASK
 	4000.f, // TC_TEXTURE
-	100000.f, // TC_ASSET
+	200000.f, // TC_ASSET
 };
 
 // Don't throttle down lower than this

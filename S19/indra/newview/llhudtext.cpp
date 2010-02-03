@@ -1087,6 +1087,8 @@ void LLHUDText::renderAllHUD()
 	
 	LLVertexBuffer::unbind();
 
+    LLVertexBuffer::unbind(); // KL not entirely sure why but render pipeline has this twice?
+
 	LLGLState::checkStates();
 	LLGLState::checkTextureChannels();
 	LLGLState::checkClientArrays();

@@ -244,7 +244,7 @@ inline LLPtrSkipMap<INDEX_T, DATA_T, BINARY_DEPTH>::LLPtrSkipMap()
 {
 	if (BINARY_DEPTH < 2)
 	{
-		llerrs << "Trying to create skip list with too little depth, "
+		llwarns << "Trying to create skip list with too little depth, "
 			"must be 2 or greater" << llendl;
 	}
 	S32 i;
@@ -266,7 +266,7 @@ inline LLPtrSkipMap<INDEX_T, DATA_T, BINARY_DEPTH>::LLPtrSkipMap(insert_func ins
 {
 	if (BINARY_DEPTH < 2)
 	{
-		llerrs << "Trying to create skip list with too little depth, "
+		llwarns << "Trying to create skip list with too little depth, "
 			"must be 2 or greater" << llendl;
 	}
 	mLevel = 1;

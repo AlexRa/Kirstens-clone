@@ -122,7 +122,7 @@ LLWorkerThread::handle_t LLWorkerThread::addWorkRequest(LLWorkerClass* workercla
 	bool res = addRequest(req);
 	if (!res)
 	{
-		llerrs << "add called after LLWorkerThread::cleanupClass()" << llendl;
+		llwarns << "add called after LLWorkerThread::cleanupClass()" << llendl;
 		req->deleteRequest();
 		handle = nullHandle();
 	}
@@ -188,7 +188,7 @@ LLWorkerClass::LLWorkerClass(LLWorkerThread* workerthread, const std::string& na
 {
 	if (!mWorkerThread)
 	{
-		llerrs << "LLWorkerClass() called with NULL workerthread: " << name << llendl;
+		llwarns << "LLWorkerClass() called with NULL workerthread: " << name << llendl;
 	}
 }
 
@@ -202,12 +202,12 @@ LLWorkerClass::~LLWorkerClass()
 		LLWorkerThread::WorkRequest* workreq = (LLWorkerThread::WorkRequest*)mWorkerThread->getRequest(mRequestHandle);
 		if (!workreq)
 		{
-			llerrs << "LLWorkerClass destroyed with stale work handle" << llendl;
+			llwarns << "LLWorkerClass destroyed with stale work handle" << llendl;
 		}
 		if (workreq->getStatus() != LLWorkerThread::STATUS_ABORTED &&
 			workreq->getStatus() != LLWorkerThread::STATUS_COMPLETE)
 		{
-			llerrs << "LLWorkerClass destroyed with active worker! Worker Status: " << workreq->getStatus() << llendl;
+			llwarns << "LLWorkerClass destroyed with active worker! Worker Status: " << workreq->getStatus() << llendl;
 		}
 	}
 }
@@ -217,7 +217,7 @@ void LLWorkerClass::setWorkerThread(LLWorkerThread* workerthread)
 	mMutex.lock();
 	if (mRequestHandle != LLWorkerThread::nullHandle())
 	{
-		llerrs << "LLWorkerClass attempt to change WorkerThread with active worker!" << llendl;
+		llwarns << "LLWorkerClass attempt to change WorkerThread with active worker!" << llendl;
 	}
 	mWorkerThread = workerthread;
 	mMutex.unlock();
@@ -277,7 +277,7 @@ void LLWorkerClass::addWork(S32 param, U32 priority)
 	llassert_always(!(mWorkFlags & (WCF_WORKING|WCF_HAVE_WORK)));
 	if (mRequestHandle != LLWorkerThread::nullHandle())
 	{
-		llerrs << "LLWorkerClass attempt to add work with active worker!" << llendl;
+		llwarns << "LLWorkerClass attempt to add work with active worker!" << llendl;
 	}
 #if _DEBUG
 // 	llinfos << "addWork: " << mWorkerClassName << " Param: " << param << llendl;

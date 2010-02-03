@@ -327,7 +327,7 @@ BOOL LLImageBMP::updateData()
 		mColorPalette = new U8[color_palette_size];
 		if (!mColorPalette)
 		{
-			llerrs << "Out of memory in LLImageBMP::updateData()" << llendl;
+			llwarns << "Out of memory in LLImageBMP::updateData()" << llendl;
 			return FALSE;
 		}
 		memcpy( mColorPalette, mdata + FILE_HEADER_SIZE + BITMAP_HEADER_SIZE + extension_size, color_palette_size );	/* Flawfinder: ignore */

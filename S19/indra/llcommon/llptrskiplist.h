@@ -182,7 +182,7 @@ LLPtrSkipList<DATA_TYPE, BINARY_DEPTH>::LLPtrSkipList()
 {
 	if (BINARY_DEPTH < 2)
 	{
-		llerrs << "Trying to create skip list with too little depth, "
+		llwarns << "Trying to create skip list with too little depth, "
 			"must be 2 or greater" << llendl;
 	}
 	S32 i;
@@ -203,7 +203,7 @@ LLPtrSkipList<DATA_TYPE, BINARY_DEPTH>::LLPtrSkipList(BOOL	(*insert_first)(DATA_
 {
 	if (BINARY_DEPTH < 2)
 	{
-		llerrs << "Trying to create skip list with too little depth, "
+		llwarns << "Trying to create skip list with too little depth, "
 			"must be 2 or greater" << llendl;
 	}
 	mLevel = 1;

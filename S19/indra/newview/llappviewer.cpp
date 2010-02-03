@@ -1070,7 +1070,7 @@ bool LLAppViewer::mainLoop()
 				//output possible call stacks to log file.
 				LLError::LLCallStacks::print() ;
 
-				llerrs << "Bad memory allocation in LLAppViewer::mainLoop()!" << llendl ;
+				llwarns << "Bad memory allocation in LLAppViewer::mainLoop()!" << llendl ;
 			}
 		}
 	}
@@ -1354,11 +1354,8 @@ bool LLAppViewer::cleanup()
 		pending += LLAppViewer::getTextureFetch()->update(1); // unpauses the texture fetch thread
 		pending += LLVFSThread::updateClass(0);
 		pending += LLLFSThread::updateClass(0);
-		if (pending == 0)
-		{
-			break;
-		}
-		if (idleTimer.getElapsedTimeF64() >= max_idle_time)
+		F64 idle_time = idleTimer.getElapsedTimeF64();
+		if (!pending || idle_time >= max_idle_time)
 		{
 			llwarns << "Quitting with pending background tasks." << llendl;
 			break;
@@ -1442,8 +1439,8 @@ bool LLAppViewer::cleanup()
 	return true;
 }
 
-// A callback for llerrs to call during the watchdog error.
-void watchdog_llerrs_callback(const std::string &error_string)
+// A callback for llwarns to call during the watchdog error.
+void watchdog_llwarns_callback(const std::string &error_string)
 {
 	gLLErrorActivated = true;
 
@@ -1457,8 +1454,8 @@ void watchdog_llerrs_callback(const std::string &error_string)
 // A callback for the watchdog to call.
 void watchdog_killer_callback()
 {
-	LLError::setFatalFunction(watchdog_llerrs_callback);
-	llerrs << "Watchdog killer event" << llendl;
+	LLError::setFatalFunction(watchdog_llwarns_callback);
+	llwarns << "Watchdog killer event" << llendl;
 }
 
 bool LLAppViewer::initThreads()
@@ -1513,12 +1510,12 @@ bool LLAppViewer::initLogging()
 	
 	// Remove the last ".old" log file.
 	std::string old_log_file = gDirUtilp->getExpandedFilename(LL_PATH_LOGS,
-							     "SecondLife.old");
+							     "Kirstens S19.old");
 	LLFile::remove(old_log_file);
 
 	// Rename current log file to ".old"
 	std::string log_file = gDirUtilp->getExpandedFilename(LL_PATH_LOGS,
-							     "SecondLife.log");
+							     "Kirstens S19.log");
 	LLFile::rename(log_file, old_log_file);
 
 	// Set the log file to SecondLife.log
@@ -1535,7 +1532,7 @@ bool LLAppViewer::loadSettingsFromDirectory(const std::string& location_key,
 	// Find and vet the location key.
 	if(!mSettingsLocationList.has(location_key))
 	{
-		llerrs << "Requested unknown location: " << location_key << llendl;
+		llwarns << "Requested unknown location: " << location_key << llendl;
 		return false;
 	}
 
@@ -1543,13 +1540,13 @@ bool LLAppViewer::loadSettingsFromDirectory(const std::string& location_key,
 
 	if(!location.has("PathIndex"))
 	{
-		llerrs << "Settings location is missing PathIndex value. Settings cannot be loaded." << llendl;
+		llwarns << "Settings location is missing PathIndex value. Settings cannot be loaded." << llendl;
 		return false;
 	}
 	ELLPath path_index = (ELLPath)(location.get("PathIndex").asInteger());
 	if(path_index <= LL_PATH_NONE || path_index >= LL_PATH_LAST)
 	{
-		llerrs << "Out of range path index in app_settings/settings_files.xml" << llendl;
+		llwarns << "Out of range path index in app_settings/settings_files.xml" << llendl;
 		return false;
 	}
 
@@ -1648,7 +1645,7 @@ bool LLAppViewer::initConfiguration()
 	llinfos << "Loading settings file list" << settings_file_list << llendl;
 	if (0 == settings_control.loadFromFile(settings_file_list))
 	{
-        llerrs << "Cannot load default configuration file " << settings_file_list << llendl;
+        llwarns << "Cannot load default configuration file " << settings_file_list << llendl;
 	}
 
 	mSettingsLocationList = settings_control.getLLSD("Locations");
@@ -1774,16 +1771,6 @@ bool LLAppViewer::initConfiguration()
 
 	// - apply command line settings 
 	clp.notify(); 
-
-	// Register the core crash option as soon as we can
-	// if we want gdb post-mortum on cores we need to be up and running
-	// ASAP or we might miss init issue etc.
-	
-	if(clp.hasOption("disablecrashlogger"))
-	{
-		llwarns << "Crashes will be handled by system, stack trace logs and crash logger are both disabled" <<llendl;
-		sDisableCrashlogger=TRUE;
-	}
 
 	// Handle initialization from settings.
 	// Start up the debugging console before handling other options.
@@ -1936,7 +1923,7 @@ bool LLAppViewer::initConfiguration()
 
 	//	if (!skin_def_tree.parseFile(skin_def_file))
 	//	{
-	//		llerrs << "Failed to parse skin definition." << llendl;
+	//		llwarns << "Failed to parse skin definition." << llendl;
 	//	}
 
 	//}
@@ -2353,11 +2340,6 @@ void LLAppViewer::handleViewerCrash()
 	if (pApp->beingDebugged())
 	{
 		// This will drop us into the debugger.
-		abort();
-	}
-
-	if(pApp->sDisableCrashlogger==TRUE)
-	{
 		abort();
 	}
 
@@ -3928,7 +3910,7 @@ void LLAppViewer::disconnectViewer()
 
 void LLAppViewer::forceErrorLLError()
 {
-   	llerrs << "This is an llerror" << llendl;
+   	llwarns << "This is an llerror" << llendl;
 }
 
 void LLAppViewer::forceErrorBreakpoint()
@@ -4030,7 +4012,7 @@ void LLAppViewer::handleLoginComplete()
 	initMainloopTimeout("Mainloop Init");
 
 	// Store some data to DebugInfo in case of a freeze.
-	//gDebugInfo["ClientInfo"]["Name"] = gSavedSettings.getString("VersionChannelName");
+	gDebugInfo["ClientInfo"]["Name"] = KL_CHANNEL; //gSavedSettings.getString("VersionChannelName");
 
 	gDebugInfo["ClientInfo"]["MajorVersion"] = LL_VERSION_MAJOR;
 	gDebugInfo["ClientInfo"]["MinorVersion"] = LL_VERSION_MINOR;
@@ -4064,4 +4046,3 @@ void LLAppViewer::handleLoginComplete()
 	}
 	writeDebugInfo();
 }
-

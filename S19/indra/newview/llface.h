@@ -200,14 +200,6 @@ public:
 	const LLTextureAtlas* getAtlas()const ;
 	void                  removeAtlas() ;
 	BOOL                  switchTexture() ;
-	F32         getTextureVirtualSize() ;
-	F32         getImportanceToCamera()const {return mImportanceToCamera ;}
-
-private:	
-	F32         adjustPartialOverlapPixelArea(F32 cos_angle_to_view_dir, F32 radius );
-	F32         calcPixelArea(F32& cos_angle_to_view_dir, F32& radius) ;
-public:
-	static F32  calcImportanceToCamera(F32 to_view_dir, F32 dist);
 
 public:
 	
@@ -256,9 +248,7 @@ protected:
 	//atlas
 	LLPointer<LLTextureAtlasSlot> mAtlasInfop ;
 	BOOL                              mUsingAtlas ;
-	F32         mImportanceToCamera ; 
-	F32         mBoundingSphereRadius ;
-
+	
 protected:
 	static BOOL	sSafeRenderSelect;
 	
