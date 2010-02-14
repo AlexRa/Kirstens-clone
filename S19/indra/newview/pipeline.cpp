@@ -7624,6 +7624,10 @@ void LLPipeline::renderHighlight(const LLViewerObject* obj, F32 fade)
 
 void LLPipeline::generateHighlight(LLCamera& camera)
 {
+   if (!gSavedSettings.getBOOL("RenderHighlightSelections")) //  KL need this to make the mouseover Highlights toggle ^^
+	{
+		return;
+	}
 	//render highlighted object as white into offscreen render target
 	
 	if (mHighlightObject.notNull())
