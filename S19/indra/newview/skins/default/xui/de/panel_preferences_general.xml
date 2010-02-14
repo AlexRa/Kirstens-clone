@@ -1,5 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <panel label="Allgemein" name="general_panel">
+	<tab_container label="Seite 1" name="tab">
+	<panel label="Allgemein" name="General">
+	<text name="alt_avatars_textbox">
+		Allgemeine Logins:
+	</text>
+	<check_box label="Namen in der Liste speichern" name="save_names_checkbox" tool_tip="Speichert deine eingegeben Namen in einer Liste um sie schnell anzuwählen."/>
+	<check_box label="Passworteingabe leeren" name="clear_password_checkbox" tool_tip="Leert die Passwort eingabezeile wenn ein anderer Name ausgewählt wird."/>
 	<radio_group name="default_start_location">
 		<radio_item name="MyHome" tool_tip="Als Standardeinstellung in Zuhauseposition anmelden.">
 			Mein Heimatort
@@ -9,12 +16,124 @@
 		</radio_item>
 	</radio_group>
 	<check_box label="Startposition auf Anmeldebildschirm anzeigen" name="show_location_checkbox"/>
-	<combo_box name="fade_out_combobox">
+	<check_box label="Fliegen beim Login" name="flyatexit" tool_tip="Loggt dich im Flugmodus ein wenn du dich im Flugmodus ausgeloggt hast."/>
+	<spinner label="Timeout für Abwesenheit:" name="afk_timeout_spinner"/>
+	<text name="Notwhen">
+		Benachrichtigen wenn:
+	</text>
+	<check_box label="L$ Eingänge und Ausgaben melden" name="notify_money_change_checkbox"/>
+	<check_box label="Freunde On/Offline gehen" name="notify_online_friends"/>
+	<check_box label="Vorm Beenden fragen" name="askquit"/>
+	<check_box label="Auto AFK" name="goafk"/>
+	<text name="maturity_desired_label" bottom="-312">
+		Einstufung:
+	</text>
+	<text name="maturity_desired_prompt" bottom="-312">
+		Ich mÃ¶chte auf Inhalt mit folgender
+Alterseinstufung zugreifen:
+	</text>
+	<combo_box name="maturity_desired_combobox" bottom="-330" left="336">
+		<combo_item name="Desired_Adult">
+			PG, Mature und Adult
+		</combo_item>
+		<combo_item name="Desired_Mature">
+			PG und Mature
+		</combo_item>
+		<combo_item name="Desired_PG">
+			Nur PG
+		</combo_item>
+	</combo_box>
+	<text name="maturity_desired_textbox" bottom="-324" left="336">
+		Nur PG
+	</text>
+	<text name="start_location_textbox">
+		Startposition:
+	</text>
+	<text name="language_textbox">
+		Sprache:
+	</text>
+	<text left_delta="313" name="language_textbox2">
+		(Erfordert Neustart)
+	</text>
+	<string name="region_name_prompt">
+		&lt;Region eingeben&gt;
+	</string>
+	<combo_box name="crash_behavior_combobox" width="166">
+		<combo_item name="Askbeforesending">
+			Vor dem Senden fragen
+		</combo_item>
+		<combo_item name="Alwayssend">
+			Immer senden
+		</combo_item>
+		<combo_item name="Neversend">
+			Nie senden
+		</combo_item>
+	</combo_box>
+	<combo_box name="language_combobox" width="166">
+		<combo_item name="System Default Language">
+			Betriebssystem-Einstellung
+		</combo_item>
+		<combo_item name="English">
+			English (Englisch)
+		</combo_item>
+		<combo_item name="Danish">
+			Danks (DÃ¤nisch) - Beta
+		</combo_item>
+		<combo_item name="Deutsch(German)">
+			Deutsch - Beta
+		</combo_item>
+		<combo_item name="Spanish">
+			EspaÃ±ol (Spanisch) - Beta
+		</combo_item>
+		<combo_item name="French">
+			FranÃ§ais (FranzÃ¶sisch) - Beta
+		</combo_item>
+		<combo_item name="Italian">
+			Italiano (Italienisch) - Beta
+		</combo_item>
+		<combo_item name="Hungarian">
+			Magyar (Ungarisch) - Beta
+		</combo_item>
+		<combo_item name="Dutch">
+			Nederlands (NiederlÃ¤ndisch) - Beta
+		</combo_item>
+		<combo_item name="Polish">
+			Polski (Polnisch) - Beta
+		</combo_item>
+		<combo_item name="Portugese">
+			PortuguÃªs (Portugiesisch) - Beta
+		</combo_item>
+		<combo_item name="Russian">
+			Ð ÑƒÑÑÐºÐ¸Ð¹ (Russian) - Beta
+		</combo_item>
+		<combo_item name="Turkish">
+			TÃ¼rkÃ§e (TÃ¼rkisch) - Beta
+		</combo_item>
+		<combo_item name="Ukrainian">
+			Ð£ÐºÑ€Ð°Ñ—Ð½ÑÑŒÐºÐ° (Ukrainisch) - Beta
+		</combo_item>
+		<combo_item name="Chinese">
+			ä¸­æ–‡ (ç®€ä½“) (Chinesisch) - Beta
+		</combo_item>
+		<combo_item name="(Japanese)">
+			æ—¥æœ¬èªž (Japanisch) - Beta
+		</combo_item>
+		<combo_item name="(Korean)">
+			í•œêµ­ì–´ (Koreanisch) - Beta
+		</combo_item>
+	</combo_box>
+	<check_box label="Objekten Sprache mitteilen" name="language_is_public" tool_tip="In-Welt-Objekten wird Ihre bevorzugte Spracheinstellung mitgeteilt."/>
+	</panel>
+	<panel label="Personalisierung" name="Personalising">  
+	<text name="Personalise">
+		Personalisierung:
+	</text>
+		<combo_box name="fade_out_combobox">
 		<combo_item name="Never">
 			Nie
 		</combo_item>
 		<combo_item name="Show Temporarily">
-			Temporär anzeigen
+			TemporÃ¤r anzeigen
 		</combo_item>
 		<combo_item name="Always">
 			Immer
@@ -27,19 +146,11 @@
 	</text>
 	<check_box label="Alle Gruppentitel ausblenden" name="show_all_title_checkbox"/>
 	<check_box label="Meinen Gruppentitel ausblenden" name="show_my_title_checkbox"/>
-	<color_swatch label="" name="effect_color_swatch" tool_tip="Klicken Sie hier, um die Farbauswahl zu öffnen"/>
+	<color_swatch label="" name="effect_color_swatch" tool_tip="Klicken Sie hier, um die Farbauswahl zu Ã¶ffnen"/>
 	<text name="UI Size:">
 		UI-Größe:
 	</text>
 	<check_box label="Auflösungsunabhängigen Maßstab verwenden" name="ui_auto_scale"/>
-	<spinner label="Timeout für Abwesenheit:" name="afk_timeout_spinner"/>
-	<check_box label="Minikarte drehen" name="rotate_mini_map_checkbox"/>
-	<check_box label="L$ Eingänge und Ausgaben melden" name="notify_money_change_checkbox"/>
-	<check_box label="Standard-Farbauswahl verwenden" name="use_system_color_picker_checkbox" tool_tip="Standard-Farbauswahl des Systems anstelle des Second Life-eigenen verwenden."/>
-	<check_box label="Suchleiste in Menüleiste anzeigen" name="show_search_panel" tool_tip="Die eingebettete Suchleiste anzeigen."/>
-	<text name="start_location_textbox">
-		Startposition:
-	</text>
 	<text name="show_names_textbox">
 		Namen anzeigen:
 	</text>
@@ -52,63 +163,32 @@
 	<text name="crash_report_textbox">
 		Crash-Berichte:
 	</text>
-	<text name="language_textbox">
-		Sprache:
+	<text name="LMNCTO">
+		NC,LM,Textur Angebote:
 	</text>
-	<text name="language_textbox2">
-		(Erfordert Neustart)
+	<text name="Controls">
+		Steuerungsoptionen:
 	</text>
-	<string name="region_name_prompt">
-		&lt;Region eingeben&gt;
-	</string>
-	<combo_box name="crash_behavior_combobox">
-		<combo_item name="Askbeforesending">
-			Vor dem Senden fragen
-		</combo_item>
-		<combo_item name="Alwayssend">
-			Immer senden
-		</combo_item>
-		<combo_item name="Neversend">
-			Nie senden
-		</combo_item>
-	</combo_box>
-	<combo_box name="language_combobox">
-		<combo_item name="System Default Language">
-			Betriebssystem-Einstellung
-		</combo_item>
-		<combo_item name="English">
-			English (Englisch)
-		</combo_item>
-		<combo_item name="Danish">
-			Danks (Dänisch) - Beta
-		</combo_item>
-		<combo_item name="Deutsch(German)">
-			Deutsch - Beta
-		</combo_item>
-		<combo_item name="Spanish">
-			Español (Spanisch) - Beta
-		</combo_item>
-		<combo_item name="French">
-			Français (Französisch) - Beta
-		</combo_item>
-		<combo_item name="Hungarian">
-			Magyar (Ungarisch) - Beta
-		</combo_item>
-		<combo_item name="Polish">
-			Polski (Polnisch) - Beta
-		</combo_item>
-		<combo_item name="Portugese">
-			Português (Portugiesisch) - Beta
-		</combo_item>
-		<combo_item name="Chinese">
-			中文 (简体) (Chinesisch) - Beta
-		</combo_item>
-		<combo_item name="(Japanese)">
-			日本語 (Japanisch) - Beta
-		</combo_item>
-		<combo_item name="(Korean)">
-			한국어 (Koreanisch) - Beta
-		</combo_item>
-	</combo_box>
-	<check_box label="Objekten Sprache mitteilen" name="language_is_public" tool_tip="In-Welt-Objekten wird Ihre bevorzugte Spracheinstellung mitgeteilt."/>
+	<text name="MapOpts">
+		Karten Optionen:
+	</text>
+	<spinner label="Auto AFK nach:" name="afk_timeout_spinner"/>
+	<check_box label="Automatisch annehmen" name="accept_new_inventory"/>
+	<check_box label="und sie zeigen!" name="show_new_inventory"/>
+	<check_box label="Automatisch neue Objekte im Inventar zeigen" name="show_in_inventory"/>
+	<check_box label="Doppelklick Laufen" name="twicekeyrun" tool_tip="Doppeldrücken in eine Richtung, dann Festhalten beim zweiten mal um deinen Avatar direkt Rennen zu lassen"/>
+	<check_box label="RotierendeMinikarte" name="minimaprotate" tool_tip="Erlaubt der Minikarte sich mitzudrehen wenn die/der Kamera/Avatar gedreht wird"/>
+	<spinner label="Max. Primgröße auf Minikarte(m):" name="minimapmaxprim"/>
+	<slider label="Ausblend Zeit:" name="fadetime_slider"/>
+   	</panel>
+ 	<panel border="true" bottom="-408" follows="left|top|right|bottom" height="408"
+	 label="Personalisierung 2" left="1" mouse_opaque="true" name="Personalising 2" width="517">   
+	<text name="Personalise">
+		Personalisierung:
+	</text>
+	<check_box label="Doppelklick Autopilot" name="Autopilot"/>
+	<check_box label="Doppelklick Teleport" name="DoubleclickTP" tool_tip="Doppelclick mit der Maus auf eine Position um sich direkt dort hin zu Teleportieren"/>
+	<check_box label="Unendliche Auswahlreichweite Deaktivieren" name="SelectUnlimited"/>
+	</panel>
+</tab_container>
 </panel>

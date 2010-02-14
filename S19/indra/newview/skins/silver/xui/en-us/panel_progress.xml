@@ -17,6 +17,6 @@
     </layout_panel>
     <layout_panel name="panel6" user_resize="false" min_width="10" width="150"/>
   </layout_stack>
-  <button name="cancel_btn" left="-86" bottom="16" width="70" height="20" follows="right|bottom"/>
+  <button name="cancel_btn" left="-86" bottom="16" width="70" height="22" follows="right|bottom"/>
 </panel>
 

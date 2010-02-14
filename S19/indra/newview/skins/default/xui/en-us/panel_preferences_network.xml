@@ -3,33 +3,33 @@
      height="408" label="Network" left="102" mouse_opaque="true" name="network"
      width="517">
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom="-20" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     bottom="-40" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="10" left="12"
 	     mouse_opaque="false" name="text_box" v_pad="0" width="200">
 		Maximum Bandwidth:
 	</text>
-	<slider bottom_delta="-25" can_edit_text="true"
+	<slider bottom_delta="-5" can_edit_text="true"
 	     decimal_digits="0" enabled="true" follows="left|top" height="15"
-	     increment="10" initial_val="50" left_delta="0" max_val="5000" min_val="50"
+	     increment="10" initial_val="50" left_delta="140" max_val="5000" min_val="50"
 	     mouse_opaque="true" name="max_bandwidth" show_text="true" value="500"
-	     width="180" />
+	     width="187" />
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom_delta="4" drop_shadow_visible="true" enabled="true"
 	     follows="left|top" font="SansSerifSmall" h_pad="0" halign="left"
-	     height="10" left_delta="186" mouse_opaque="false" name="text_box2"
+	     height="10" left_delta="195" mouse_opaque="false" name="text_box2"
 	     v_pad="0" width="200">
 		kbps (kilobits per second)
 	</text>
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom_delta="-25" drop_shadow_visible="true" enabled="true"
+	     bottom_delta="-35" drop_shadow_visible="true" enabled="true"
 	     follows="left|top" font="SansSerifSmall" h_pad="0" halign="left"
 	     height="10" left="12" mouse_opaque="false" name="cache_size_label_l"
 	     v_pad="0" width="200">
 		Disk Cache Size:
 	</text>
-	<slider bottom_delta="-25" can_edit_text="true"
+	<slider bottom_delta="-5" can_edit_text="true"
 	     decimal_digits="0" enabled="true" follows="left|top" height="15"
-	     increment="10" initial_val="50" left_delta="0" max_val="1000" min_val="10"
+	     increment="10" initial_val="50" left_delta="140" max_val="1000" min_val="10"
 	     mouse_opaque="true" name="cache_size" show_text="true" width="180" />
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom_delta="4" drop_shadow_visible="true" enabled="true"
@@ -66,16 +66,21 @@
 	     initial_value="false" label="Custom Port Connection" left="12"
 	     mouse_opaque="true" name="connection_port_enabled" radio_style="false"
 	     width="256" />
-	<spinner bottom="-193" bottom_delta="-20"
+	<check_box bottom="-200"
+	     enabled="true" follows="left|top" font="SansSerifSmall" height="16"
+	     initial_value="false" label="No Inventory Library" left="202" control_name="NoInventoryLibrary"
+	     mouse_opaque="true" name="nolibrary" radio_style="false"
+	     width="256" />
+	<spinner bottom="-223" 
 	     decimal_digits="0" enabled="true" follows="left|top" height="16"
 	     increment="1" initial_val="13000" label="Port Number:" label_width="75"
-	     left_delta="20" max_val="13050" min_val="13000" mouse_opaque="true"
+	     left="30" max_val="13050" min_val="13000" mouse_opaque="true"
 	     name="connection_port" width="150" />
 
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom_delta="-24" drop_shadow_visible="true" enabled="true"
 	     follows="left|top" font="SansSerifSmall" h_pad="0" halign="left"
-	     height="10" left="12" mouse_opaque="false" name="socks5_auth_label"
+	     height="10" left="17" mouse_opaque="false" name="socks5_auth_label"
 	     v_pad="0" width="128">
 		Http Proxy:
 	</text>
@@ -98,7 +103,7 @@
 
 	<check_box bottom_delta="-24" enabled="true"
 	     follows="left|top" font="SansSerifSmall" height="16" initial_value="false"
-	     label="Enable SOCKS 5 Proxy" left="6" mouse_opaque="true"
+	     label="Enable SOCKS 5 Proxy" left="12" mouse_opaque="true"
 	     name="socks5_proxy_enabled" radio_style="false" width="256" />
 
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
@@ -121,15 +126,15 @@
 
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom_delta="-20" drop_shadow_visible="true" enabled="true"
-	     follows="left|top" font="SansSerifSmall" h_pad="0" halign="left"
-	     height="10" left="12" mouse_opaque="false" name="socks5_auth_label"
+	     follows="left|top" font="SansSerifSmall" h_pad="0" halign="left" label_with="140"
+	     height="10" left="12" mouse_opaque="false" name="socks5_auth_label2"
 	     v_pad="0" width="128">
 		Socks5 Authentication:
 	</text>
 
  <radio_group bottom_delta="-6" draw_border="false" follows="left|top" height="20" left="12"
 	     name="socks5_auth" width="420">
-    <radio_item bottom_delta="0" height="20" left_delta="80" name="None" width="50"
+    <radio_item bottom_delta="-11" height="20" left_delta="80" name="None" width="50"
 		  tool_tip="No authentication">
       None
     </radio_item>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <panel label="Kamera" name="Input panel">
 	<text length="1" name=" Mouselook Options:" type="string">
 		Mouselook-Optionen:
@@ -14,14 +14,14 @@
 	<text length="1" name=" Camera Options:" type="string">
 		Kameraoptionen:
 	</text>
-	<text length="1" name="Camera Springiness:" type="string">
-		Kamerafederung:
+	<text length="1" name="camera_fov_label" type="string">
+		Kamera Sichtwinkel:
 	</text>
 	<text name="Camera Follow Distance:">
 		Kameraabstand:
 	</text>
-	<text name="Camera Transition Time:">
-		Zeit für Kamerawechsel:
+	<text name="Camera Strenght:">
+		Kamera Dynamik:
 	</text>
 	<text name="Camera Smoothing:">
 		Bewegungsglättung:
@@ -32,6 +32,8 @@
 		Avatar-Anzeigeoptionen:
 	</text>
 	<check_box label="Avatar in Mouselook anzeigen" name="first_person_avatar_visible"/>
+	<check_box label="Mouselook Fadenkreuz anzeigen" name="Crosshairs"/>
+	<check_box label="Mouselook federn" name="Mousesmooth"/>
 	<text name="text5">
 		Joystick-Optionen:
 	</text>

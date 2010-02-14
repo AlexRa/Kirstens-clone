@@ -57,6 +57,17 @@
 	     increment=".025" initial_val="1" left="276" min_val=".5" max_val="3"
 	     mouse_opaque="true" name="camera_offset_scale" show_text="false" value="1"
 	     width="128" />
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom_delta="-14" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     font="SansSerifSmall" h_pad="0" halign="left" height="10" left="148"
+	     mouse_opaque="true" name="Camera Strenght:" v_pad="0" width="128">
+		Dynamic Camera Strenght:
+	</text>
+	<slider bottom_delta="-6" can_edit_text="true" control_name="DynamicCameraStrength" 
+	     decimal_digits="2" enabled="true" follows="left|top" height="16"
+	     increment=".5" initial_val="1" left="276" min_val="1" max_val="30"
+	     mouse_opaque="true" name="camera_strength" show_text="false" value="1"
+	     width="128" />
 	<check_box bottom_delta="-24" enabled="true"
 	     follows="left|top" font="SansSerifSmall" height="16" initial_value="false"
 	     label="Automatic Edit Camera Movement" left="148" mouse_opaque="true"
@@ -78,6 +89,16 @@
 	     follows="left|top" font="SansSerifSmall" height="16" initial_value="false"
 	     label="Show Avatar in Mouselook" left="148" mouse_opaque="true" name="first_person_avatar_visible"
 	     radio_style="false" width="256" />
+	<check_box bottom_delta="-18" enabled="true" control_name="ShowCrosshairs"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="false"
+	     label="Show Crosshairs in Mouselook" left_delta="12" mouse_opaque="true"
+	     name="Crosshairs" radio_style="false"
+	     tool_tip="Show Crosshairs in Mouselook" width="242" />
+	<check_box bottom_delta="-18" enabled="true" control_name="MouseSmooth"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="false"
+	     label="Mouselook Smoothing" left_delta="0" mouse_opaque="true"
+	     name="Mousesmooth" radio_style="false"
+	     tool_tip="Smoothes the Mouselook" width="242" />
 	<button bottom_delta="-30" follows="left|top" font="SansSerif" height="20"
 	     label="Joystick Setup" left_delta="0" mouse_opaque="true"
 	     name="joystick_setup_button" width="155" />

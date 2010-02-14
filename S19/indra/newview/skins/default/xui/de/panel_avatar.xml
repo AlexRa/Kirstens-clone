@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <panel name="Panel Avatar">
+	<panel name="imagebg">
 	<tab_container name="tab">
 		<panel label="2. Leben" name="2nd Life">
 			<string name="CaptionTextAcctInfo">
@@ -92,7 +93,7 @@
 				</flyout_button_item>
 			</flyout_button>
 			<button label="?" label_selected="?" name="web_profile_help"/>
-			<check_box label="Web-Profile automatisch laden" name="auto_load" tool_tip="Ohne Nachfrage ALLE Profil-Webseiten automatisch laden."/>
+			<check_box left_delta="40" label="Web-Profile automatisch laden" name="auto_load" tool_tip="Ohne Nachfrage ALLE Profil-Webseiten automatisch laden."/>
 		</panel>
 		<panel label="Interessen" name="Interests">
 			<text name="I Want To:">
@@ -151,7 +152,7 @@
 				250 Zeichen
 			</text>
 		</panel>
-		<panel label="Meine Notizen" name="My Notes">
+		<panel label="Notizen" name="My Notes">
 			<string name="Loading">
 				Wird geladen...
 			</string>

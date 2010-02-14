@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <panel label="Voice-Chat" name="chat">
 	<text_editor name="voice_unavailable">
 		Voice-Chat ist nicht verfügbar
@@ -28,7 +28,12 @@
 	<text name="privacy_heading">
 		Privatsphäre
 	</text>
+	<text name="lip_sync_heading">
+		Lippen Syncronisation
+	</text>
+	<check_box label="Lippen Syncronisation aktivieren" name="enable_lip_sync_check"/>
 	<check_box label="Anrufe nur von Personen auf meiner Freundesliste annehmen" name="voice_call_friends_only_check"/>
+	<check_box label="Mikro ausschalten beim beenden eines IM Anrufs" name="auto_disengage_mic_check"/>
 	<text_editor name="device_settings_text">
 		HINWEIS: Beim Öffnen der Geräte-Einstellungen werden Sie vorübergehend vom Voice-Chat getrennt. Vorgenommene Änderungen werden sofort gültig.
 	</text_editor>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <panel label="Netzwerk" name="network">
 	<text name="text_box">
 		Maximale Bandbreite:
@@ -20,4 +20,49 @@
 	<button label="Zurücksetzen" label_selected="Festlegen" name="reset_cache"/>
 	<check_box label="Benutzerdefinierter Port" name="connection_port_enabled"/>
 	<spinner label="Port-Nummer:" name="connection_port"/>
+	  <radio_group name="socks5_http_proxy_type">
+    <radio_item name="None"
+		  tool_tip="Kein HTTP Proxy">
+      Keine
+    </radio_item>
+	<radio_item height="20" bottom="0" left="170" name="Socks" width="50"
+		  tool_tip="Socks für HTTP Proxy nutzen">
+      Socks
+    </radio_item>
+    <radio_item height="20" bottom="0" left="250" name="Web" width="50"
+		  tool_tip="Web Proxy für HTTP Proxy nutzen">
+      Web
+    </radio_item>
+  </radio_group>
+	<check_box label="SOCKS 5 Proxy erlauben" name="socks5_proxy_enabled"/>
+	<check_box label="Keine LL Inventar Library nutzen" name="nolibrary"/>
+	<line_editor name="socks5_proxy_host"
+	     tool_tip="Der Name oder die IP Adresse des SOCKS5 Proxy den sie nutzen möchten"/>
+	<spinner label="Port-Nummer:" name="socks5_proxy_port"/>
+	<text name="socks5_auth_label">
+		Authentifikation:
+	</text>
+	<text name="socks5_auth_label2">
+		Socks5 Authentifikation
+	</text>
+	<radio_group name="socks5_auth">
+    <radio_item name="None"
+		  tool_tip="Keine Authentifikation">
+      Keine
+    </radio_item>
+    <radio_item name="UserPass"
+		  tool_tip="Benutzername / Passwort Authentifikation">
+      Benutzername/Passwort
+    </radio_item>
+  </radio_group>
+	<text name="socks5_username_label">
+		Benutzername:
+	</text>
+	<text name="socks5_password_label">
+		Passwort:
+	</text>
+	<line_editor name="socks5_proxy_password"
+	     tool_tip="Passwort für den Socks5 Proxy"/>
+	<line_editor name="socks5_proxy_username"
+	     tool_tip="Benutzername für den Socks5 Proxy"/>
 </panel>

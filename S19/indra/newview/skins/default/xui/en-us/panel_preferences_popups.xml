@@ -20,23 +20,4 @@
 	     name="skip_dialogs_btn"
 	     tool_tip="Disable all of the optional popups and &apos;first time use&apos; notifications."
 	     width="175" />
-	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom_delta="-24" drop_shadow_visible="true" enabled="true"
-	     follows="left|top" font="SansSerifSmall" h_pad="0" halign="left"
-	     height="10" left="15" mouse_opaque="false" name="text_box2" v_pad="0"
-	     width="270">
-		Offers of notecards, textures and landmarks:
-	</text>
-	<check_box bottom_delta="-25" enabled="true"
-	     follows="left|top" font="SansSerifSmall" height="16" initial_value="false"
-	     label="Automatically accept" left="40" mouse_opaque="true"
-	     name="accept_new_inventory" radio_style="false" width="270" />
-	<check_box bottom_delta="-20" enabled="true"
-	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
-	     label="Automatically view after accepting" left="40" mouse_opaque="true"
-	     name="show_new_inventory" radio_style="false" width="270" />
-   	<check_box bottom_delta="-20" enabled="true"
-	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
-	     label="Automatically show newly accepted objects in inventory" left="18" mouse_opaque="true"
-	     name="show_in_inventory" radio_style="false" width="270" />
 </panel>

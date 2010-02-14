@@ -1,5 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <panel name="status">
+	<panel name="status2"> 
+	<button name="chat_btn" tool_tip="Chatleiste anzeigen"/>
+	<flyout_button name="communicate_btn" tool_tip="Kommiziere mit Freunden und Sozialen Gruppen"/>
+	<button name="snapshot_btn" tool_tip="Mache Fotos von deinen Freunden ,der Umgebung oder schönen Plätzen"/>
+	<button name="fly_btn" tool_tip="Erhebe dich !, du bist nicht an den Boden gebunden"/>
+	<button name="build_btn" tool_tip="Erstelle und Kreiere deine eigenen Bauwerke"/>
+	<button name="radar_btn" tool_tip="Öffne das Radar und schau wer alles in deiner Nähe ist"/>
+	<button name="map_btn" tool_tip="Öffne die Weltkarte und besuche andere Orte oder Suche LMs oder Freunde dort"/>
+	<button name="directory_btn" tool_tip="Suche nach Veranstaltungen,Personen,Orte,Gruppen und mehr"/>
+	<button name="inventory_btn" tool_tip="Durchsuche dein Inventar noch nach den letzten Cent"/>
+	</panel>
 	<text length="1" name="ParcelNameText" tool_tip="Der Name der Parzelle, auf der Sie sich befinden. Klicken Sie für Land-Informationen." type="string">
 		Parzellenname hier
 	</text>

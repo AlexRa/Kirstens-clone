@@ -2,6 +2,11 @@
 <panel border="true" bottom="-409" enabled="true" follows="left|top|right|bottom"
      height="408" label="Audio &amp; Video" left="102" mouse_opaque="true"
      name="Media panel" width="517">
+     <panel bottom="0" follows="left|bottom|right|top" height="408"  name="imagebg" width="517">
+     <icon bottom="0" color="255,255,255,245" scale_image="true"
+         follows="left|right|top|bottom" height="408"  image_name="MapBg2.tga"
+         left="0" width="517" />
+</panel>              
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom="-22" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="12" left="10"
@@ -9,21 +14,76 @@
 		Volume:
 	</text>
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom="-215" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     bottom="-245" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="12" left="10"
 	     mouse_opaque="true" name="streaming_prefs_text" v_pad="0" width="128">
 		Streaming Preferences:
 	</text>
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom="-280" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     bottom="-310" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="12" left="10"
 	     mouse_opaque="true" name="audio_prefs_text" v_pad="0" width="128">
 		Audio Preferences:
 	</text>
-	<panel border="true" bottom="-145" enabled="true" filename="panel_audio.xml"
-	     follows="left|top|right|bottom" height="180" label="Volume" left="148"
+	<panel border="true" bottom="-181" enabled="true"	     follows="left|top|right|bottom" height="170" label="Volume" left="148"
 	     mouse_opaque="true" name="Volume Panel" width="260" />
-	<check_box bottom="-220" control_name="AudioStreamingMusic" enabled="true"
+	<slider bottom_delta="140" control_name="AudioLevelMaster" follows="left|top|right"
+	     height="15" increment="0.05" initial_val="0.5" label="Master"
+	     label_width="55" left="160" max_val="1" min_val="0" mouse_opaque="true"
+	     name="System Volume" show_text="false" volume="true" width="180" />
+	<button bottom_delta="0" control_name="MuteAudio" follows="top|right" height="16"
+	     image_selected="icn_speaker-muted_dark.tga"
+	     image_unselected="icn_speaker_dark.tga" label="" label_width="55"
+	     left="375" name="mute_audio" tab_stop="false" toggle="true" width="25" />
+	<slider bottom_delta="-30" control_name="AudioLevelMusic" follows="left|top|right"
+	     height="15" increment="0.05" initial_val="0.5" label="Music"
+	     label_width="55" left="160" max_val="1" min_val="0" name="Music Volume"
+	     show_text="false" volume="true" width="180" />
+	<button bottom_delta="0" control_name="MuteMusic" follows="top|right" height="16"
+	     image_selected="icn_speaker-muted_dark.tga"
+	     image_unselected="icn_speaker_dark.tga" label="" label_width="55"
+	     left="375" name="mute_music" tab_stop="false" toggle="true" width="25" />
+	<slider bottom_delta="-20" control_name="AudioLevelMedia" follows="left|top|right"
+	     height="15" increment="0.05" initial_val="0.5" label="Media"
+	     label_width="55" left="160" max_val="1" min_val="0" name="Media Volume"
+	     show_text="false" volume="true" width="180" />
+	<button bottom_delta="0" control_name="MuteMedia" follows="top|right" height="16"
+	     image_selected="icn_speaker-muted_dark.tga"
+	     image_unselected="icn_speaker_dark.tga" label="" label_width="55"
+	     left="375" name="mute_media" tab_stop="false" toggle="true" width="25" />
+	<slider bottom_delta="-20" control_name="AudioLevelVoice" follows="left|top|right"
+	     height="15" increment="0.05" initial_val="0.5" label="Voice"
+	     label_width="55" left="160" max_val="1" min_val="0" name="Voice Volume"
+	     show_text="false" volume="true" width="180" />
+	<button bottom_delta="0" control_name="MuteVoice" follows="top|right" height="16"
+	     image_selected="icn_speaker-muted_dark.tga"
+	     image_unselected="icn_speaker_dark.tga" label="" label_width="55"
+	     left="375" name="mute_voice" tab_stop="false" toggle="true" width="25" />
+	<slider bottom_delta="-20" control_name="AudioLevelSFX" follows="left|top|right"
+	     height="15" increment="0.05" initial_val="0.5" label="Sounds"
+	     label_width="55" left="160" max_val="1" min_val="0" name="SFX Volume"
+	     show_text="false" volume="true" width="180" />
+	<button bottom_delta="0" control_name="MuteSounds" follows="top|right" height="16"
+	     image_selected="icn_speaker-muted_dark.tga"
+	     image_unselected="icn_speaker_dark.tga" label="" label_width="55"
+	     left="375" name="mute_sfx" tab_stop="false" toggle="true" width="25" />
+	<slider bottom_delta="-20" control_name="AudioLevelAmbient" follows="left|top|right"
+	     height="15" increment="0.05" initial_val="0.5" label="Ambient"
+	     label_width="55" left="160" max_val="1" min_val="0" name="Wind Volume"
+	     show_text="false" volume="true" width="180" />
+	<button bottom_delta="0" control_name="MuteAmbient" follows="top|right" height="16"
+	     image_selected="icn_speaker-muted_dark.tga"
+	     image_unselected="icn_speaker_dark.tga" label="" label_width="55"
+	     left="375" name="mute_wind" tab_stop="false" toggle="true" width="25" />
+	<slider bottom_delta="-20" control_name="AudioLevelUI" follows="left|top|right"
+	     height="15" increment="0.05" initial_val="0.5" label="UI" label_width="55"
+	     left="160" max_val="1" min_val="0" name="UI Volume" show_text="false"
+	     volume="true" width="180" />
+	<button bottom_delta="0" control_name="MuteUI" follows="top|right" height="16"
+	     image_selected="icn_speaker-muted_dark.tga"
+	     image_unselected="icn_speaker_dark.tga" label="" label_width="55"
+	     left="375" name="mute_ui" tab_stop="false" toggle="true" width="25" />
+	<check_box bottom="-252" control_name="AudioStreamingMusic" enabled="true"
 	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
 	     label="Play Streaming Music When Available (uses more bandwidth)"
 	     left="142" mouse_opaque="true" name="streaming_music" radio_style="false"
@@ -46,6 +106,11 @@
 	     enabled="true" follows="left|top" height="15" increment="0.1"
 	     initial_val="1" label="Doppler Effect" label_width="100" left="148"
 	     max_val="2" min_val="0" mouse_opaque="true" name="Doppler Effect"
+	     show_text="true" width="250" />
+	<slider bottom_delta="-20" control_name="AudioLevelDistance" edit_text="true"
+	     enabled="true" follows="left|top" height="15" increment="0.1"
+	     initial_val="1" label="Distance Factor" label_width="100" left="148"
+	     max_val="2" min_val="0" mouse_opaque="true" name="Distance Factor"
 	     show_text="true" width="250" />
 	<slider bottom_delta="-20" control_name="AudioLevelRolloff" edit_text="true"
 	     enabled="true" follows="left|top" height="15" increment="0.1"

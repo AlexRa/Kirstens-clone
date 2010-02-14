@@ -13,7 +13,7 @@
 	     image_selected="icn_speaker-muted_dark.tga"
 	     image_unselected="icn_speaker_dark.tga" label="" label_width="55"
 	     left="185" name="mute_audio" tab_stop="false" toggle="true" width="25" />
-	<slider bottom_delta="-30" control_name="AudioLevelMusic" follows="left|top|right"
+	<slider bottom_delta="-20" control_name="AudioLevelMusic" follows="left|top|right"
 	     height="15" increment="0.05" initial_val="0.5" label="Music"
 	     label_width="55" left="10" max_val="1" min_val="0" name="Music Volume"
 	     show_text="false" volume="true" width="180" />
@@ -41,8 +41,7 @@
 	     height="15" increment="0.05" initial_val="0.5" label="Sounds"
 	     label_width="55" left="10" max_val="1" min_val="0" name="SFX Volume"
 	     show_text="false" volume="true" width="180" />
-	<button bottom_delta="0" control_name="MuteSounds" follows="top|right" height="16"
-	     image_selected="icn_speaker-muted_dark.tga"
+	<button bottom_delta="0" control_name="" follows="top|right" height="16"
 	     image_unselected="icn_speaker_dark.tga" label="" label_width="55"
 	     left="185" name="mute_sfx" tab_stop="false" toggle="true" width="25" />
 	<slider bottom_delta="-20" control_name="AudioLevelAmbient" follows="left|top|right"

@@ -187,7 +187,7 @@
 			     width="130" />
 		</panel>
 		<panel border="true" bottom="-482" follows="left|top|right|bottom" height="466"
-		       label="Web" left="1" mouse_opaque="true" name="WebProfile" width="418">
+		       label="Web" left="1" mouse_opaque="true" name="WebProfile" width="420">
 		  <line_editor bevel_style="in" border_style="line"
 			     border_thickness="1" bottom_delta="-18" enabled="false" follows="left|top"
 			     font="SansSerifSmall" height="16" is_unicode="false" left="10"

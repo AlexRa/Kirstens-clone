@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <panel label="Text-Chat" name="chat">
 	<text length="1" name="text_box" type="string">
 		Chat-Schriftgröße:
@@ -54,6 +54,13 @@
 	<text length="1" name="text_box8" type="string">
 		Skriptfehler:
 	</text>
+	<text length="1" name="text_translate_chat" type="string">
+		Chat Übersetzen:
+	</text>
+	<text length="1" name="text_translate_chat2" type="string">
+		Chat übersetzen in:
+	</text>
+	<check_box label="Google Übersetzung nutzen beim Chatten" name="translate_chat"/>
 	<check_box label="Skriptfehler und Warnungen als normalen Chat anzeigen" name="script_errors_as_chat"/>
 	<color_swatch label="Fehler" name="script_error"/>
 </panel>

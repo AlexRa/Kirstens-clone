@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <floater name="directory" title="Suchen">
 	<tab_container name="Directory Tabs">
 		<panel label="Alle" name="all_panel">
@@ -9,7 +9,9 @@
 			</text>
 			<line_editor left_delta="48" name="name" />
 			<button label="Suchen" label_selected="Suchen" name="Search" />
-			<check_box label="Ab-18-Inhalte einschließen" name="incmature" />
+			<check_box label="Ab 18 Inhalte" name="incmature" />
+			<check_box label="Adult Inhalte" name="incadult" />
+			<check_box label="PG Inhalte" name="incpg" />
 			<scroll_list name="results">
 				<column label="" name="icon" />
 				<column label="Name" name="name" />
@@ -57,7 +59,9 @@
 					Wiki
 				</combo_item>
 			</combo_box>
-			<check_box label="Ab-18-Inhalte einschließen" name="mature_check" />
+			<check_box label="Ab 18 Inhalte" name="incmature" />
+			<check_box label="Adult Inhalte" name="incadult" />
+			<check_box label="PG Inhalte" name="incpg" />
 			<text name="loading_text">
 				Wird geladen...
 			</text>
@@ -77,14 +81,13 @@
 			</string>
 			<button label="&lt; Vorherige" label_selected="&lt; Vorherige" name="&lt; Prev" />
 			<button label="Weiter &gt;" label_selected="Weiter &gt;" name="Next &gt;" />
-			<text left_delta="38" name="find">
+			<text name="find">
 				Suchen:
 			</text>
-			<line_editor left_delta="48" name="name" width="116" />
-			<check_box bottom_delta="-18" control_name="ShowMatureClassifieds" follows="left|top"
-			     font="SansSerifSmall" height="16" initial_value="true"
-			     label="Ab-18-Inhalte einschließen" left="49" mouse_opaque="true"
-			     name="incmature" width="156" />
+			<line_editor name="name"/>
+			<check_box label="Ab 18 Inhalte" name="incmature"/>
+			<check_box label="Adult Inhalte" name="incadult" />
+			<check_box label="PG Inhalte" name="incpg" />
 			<combo_box name="Category">
 				<combo_item name="AnyCategory">
 					Alle Kategorien
@@ -153,13 +156,13 @@
 			     tool_tip="Einen Tag weiter" />
 			<button label="Heute" label_selected="Heute" name="Today"
 			     tool_tip="Heutige Events anzeigen" />
-			<text name="text" width="90">
+			<text name="text">
 				Kategorie:
 			</text>
-			<text name="text2" width="90">
+			<text name="text2">
 				Name/Beschr.:
 			</text>
-			<combo_box left="374" name="category combo" width="185">
+			<combo_box name="category combo">
 				<combo_item name="All">
 					Alle
 				</combo_item>
@@ -197,8 +200,10 @@
 					Sonstiges
 				</combo_item>
 			</combo_box>
-			<line_editor left="374" name="event_search_text" width="185" />
-			<check_box label="Ab 18 anzeigen" name="incmature" />
+			<line_editor name="event_search_text"/>
+			<check_box label="Ab 18 Events" name="incmature" />
+			<check_box label="Adult Events" name="incadult" />
+			<check_box label="PG Events" name="incpg" />
 			<button label="Suchen" label_selected="Suchen" name="Search" tool_tip="Suchen" />
 			<button label="Löschen" label_selected="Löschen" name="Delete" />
 			<scroll_list name="results">
@@ -286,8 +291,11 @@ Zeit gemessen, die Benutzer dort verbringen.
 					Nur ab 18
 				</combo_item>
 			</combo_box>
-			<check_box label="Preis &lt;= L$" name="pricecheck" />
-			<check_box label="Gebiet &gt;= qm" name="areacheck" />
+			<check_box label="Preis &lt;= " name="pricecheck" />
+			<check_box label="Gebiet &gt;" name="areacheck" />
+			<check_box label="Ab 18 Gebiete" name="incmature" />
+			<check_box label="Adult Gebiete" name="incadult" />
+			<check_box label="PG Gebiete " name="incpg" />
 			<button label="Suchen" label_selected="Suchen" name="Search" />
 			<text bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 			     bottom="-38" drop_shadow_visible="true" follows="left|top"
@@ -315,11 +323,13 @@ Namen des Landes in der Titelleiste
 			</string>
 			<button label="&lt; Vorherige" label_selected="&lt; Vorherige" name="&lt; Prev" />
 			<button label="Weiter &gt;" label_selected="Weiter &gt;" name="Next &gt;" />
-			<text left_delta="38" name="find">
+			<text name="find">
 				Suchen:
 			</text>
-			<line_editor left_delta="48" name="name" width="118" />
-			<check_box label="Parzellen mit Ab-18-Inhalten einschließen" name="incmature" />
+			<line_editor name="name"/>
+			<check_box label="Ab 18 Orte" name="incmature" />
+			<check_box label="Adult Orte" name="incadult" />
+			<check_box label="PG Orte" name="incpg" />
 			<combo_box name="Category">
 				<combo_item name="AnyCategory">
 					Alle Kategorien
@@ -378,10 +388,10 @@ Namen des Landes in der Titelleiste
 			</string>
 			<button label="&lt; Vorherige" label_selected="&lt; Vorherige" name="&lt; Prev" />
 			<button label="Weiter &gt;" label_selected="Weiter &gt;" name="Next &gt;" />
-			<text left_delta="38" name="find">
+			<text name="find">
 				Suchen:
 			</text>
-			<line_editor left_delta="48" name="name" />
+			<line_editor name="name" />
 			<button label="Suchen" label_selected="Suchen" name="Search" />
 			<scroll_list name="results">
 				<column label="" name="icon" />
@@ -398,12 +408,14 @@ Namen des Landes in der Titelleiste
 			</string>
 			<button label="&lt; Vorherige" label_selected="&lt; Vorherige" name="&lt; Prev" />
 			<button label="Weiter &gt;" label_selected="Weiter &gt;" name="Next &gt;" />
-			<text left_delta="38" name="find">
+			<text name="find">
 				Suchen:
 			</text>
-			<line_editor left_delta="48" name="name" />
+			<line_editor name="name" />
 			<button label="Suchen" label_selected="Suchen" name="Search" />
-			<check_box label="Ab-18-Gruppen einschließen" name="incmature" />
+			<check_box label="Ab 18 Gruppen" name="incmature" />
+			<check_box label="Adult Gruppen" name="incadult" />
+			<check_box label="PG Gruppen" name="incpg" />
 			<scroll_list name="results">
 				<column label="" name="icon" />
 				<column label="" name="type" />
@@ -415,7 +427,6 @@ Namen des Landes in der Titelleiste
 			<button label="Weiter" name="forward_btn" />
 			<line_editor label="Suchen" name="search_editor" tool_tip="Second Life durchsuchen" />
 			<button label="Suchen" name="search_btn" />
-			<check_box label="Ab-18-Inhalte einschließen" name="mature_check" />
 			<string name="loading_text">
 				Wird geladen...
 			</string>
@@ -430,12 +441,15 @@ Namen des Landes in der Titelleiste
 			<string name="not_found_text">
 				Nicht gefunden.
 			</string>
+			<check_box label="Ab 18 Inhalte" name="incmature" />
+			<check_box label="PG Inhalte" name="incpg" />
+			<check_box label="Adult Inhalte" name="incadult" />
 			<button label="&lt; Vorherige/s" label_selected="&lt; Vorherige/s" name="&lt; Prev" />
 			<button label="Weiter &gt;" label_selected="Weiter &gt;" name="Next &gt;" />
-			<text left_delta="38" name="find">
+			<text name="find">
 				Suchen:
 			</text>
-			<line_editor left_delta="48" name="name" />
+			<line_editor name="name" />
 			<button label="Suchen" label_selected="Suchen" name="Search" />
 			<check_box label="Ab-18-Inhalte einschließen" name="incmature" />
 			<scroll_list name="results">

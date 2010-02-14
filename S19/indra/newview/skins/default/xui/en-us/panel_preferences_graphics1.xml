@@ -2,9 +2,9 @@
 <panel border="true" bottom="-409" enabled="true" follows="left|top|right|bottom"
      height="408" label="Graphics" left="102" mouse_opaque="true"
      name="Display panel" width="517">
-  <tab_container label="Page 1" bottom="0" height="408" left="0" mouse_opaque="false" name="tab"
+  <tab_container label="Page 1" bottom="0" height="443" left="0" mouse_opaque="false" name="tab"
 	     tab_min_width="50" tab_position="top" width="495" bg_opaque_color="0,0,0,0.0">
-    <panel border="true" bottom="-408" follows="left|top|right|bottom" height="408"
+    <panel border="true" bottom="-378" follows="left|top|right|bottom" height="408"
 		     label="Simple" left="1" mouse_opaque="true" name="Simple" width="517">
 	<check_box bottom_delta="-67" control_name="AllowMultipleViewers" enabled="true"
 	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
@@ -14,26 +14,10 @@
 	     height="16" initial_value="false"
 	     label="Run S19 in a window" left="10" mouse_opaque="true"
 	     name="windowed mode" radio_style="false" width="100" />
-  <combo_box bottom="-23" control_name="RenderFSAASamples" enabled="true" follows="left|top"
-		font="SansSerifSmall" height="16" initial_value="false"
-		label="Antialiasing" left="360"
-		mouse_opaque="true" name="fsaa" width="96">
-    <combo_item name="FSAADisabled" value="0">
-      Disabled
-    </combo_item>
-    <combo_item name="2x" value="2">
-      2x
-    </combo_item>
-    <combo_item name="4x" value="4">
-      4x
-    </combo_item>
-    <combo_item name="8x" value="8">
-      8x
-    </combo_item>
-    <combo_item name="16x" value="16">
-      16x
-    </combo_item>
-  </combo_box>
+  	<button bottom_delta="-10" control_name="" follows="top|right" height="28"
+	     image_selected="AAactive.tga" scale_image="false" tool_tip="Antialiasing has been completly removed from the Graphic Menu because Second Life AA is very slow ,to activate it Anyway go to NVidea Driversettings and add Kirsten S19 as a seperate Profile, then set AA to your desired Number and select -Replace Applications Settings- something like that, then press Apply and restart Kirsten. WARNING! AA Disables when you activate OpenGL FBO and enables when you deactivate it!"
+	     image_unselected="AA.tga" label="" label_width="28"
+	     left="485" name="AA?" tab_stop="false" toggle="false" width="28" />
 	<slider bottom="-45" can_edit_text="false" control_name="RenderGamma"
 	     decimal_digits="0" enabled="true" follows="left|top" height="16"
 	     increment="0.1" initial_val="160" label="Gamma:"
@@ -70,10 +54,6 @@
 	     font="SansSerifSmall" h_pad="0" halign="left" height="12"
 	     left="290" mouse_opaque="true" name="FasterText" v_pad="0" width="80">
 		Faster
-	<check_box bottom="-44" control_name="FullScreenAutoDetectAspectRatio" enabled="true"
-	     follows="left|top" font="SansSerifSmall" height="16" initial_value="false"
-	     label="Auto-detect ratio" left="358" mouse_opaque="true"
-	     name="aspect_auto_detect" radio_style="false" width="256" />
 	</text>
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom_delta="0" drop_shadow_visible="true" enabled="true"
@@ -82,16 +62,16 @@
 	     name="QualityText2" v_pad="0" width="95">
 		Quality
 	</text>
-	<icon bottom="-67" color="0.12 0.12 0.12 1.0" height="14"
+	<icon bottom="-68" color="0.12 0.12 0.12 1.0" height="18"
 	     image_name="rounded_square.tga" left="330" name="LowGraphicsDivet"
 	     width="2" />
-	<icon bottom_delta="-17" color="0.12 0.12 0.12 1.0" height="14"
+	<icon bottom_delta="18" color="0.12 0.12 0.12 1.0" height="15"
 	     image_name="rounded_square.tga" left_delta="37" name="MidGraphicsDivet"
 	     width="2" />
-	<icon bottom_delta="0" color="0.12 0.12 0.12 1.0" height="14"
+	<icon bottom_delta="0" color="0.12 0.12 0.12 1.0" height="15"
 	     image_name="rounded_square.tga" left_delta="37" name="HighGraphicsDivet"
 	     width="2" />
-	<icon bottom_delta="0" color="0.12 0.12 0.12 1.0" height="14"
+	<icon bottom_delta="0" color="0.12 0.12 0.12 1.0" height="18"
 	     image_name="rounded_square.tga" left_delta="37" name="UltraGraphicsDivet"
 	     width="2" />
 	<slider bottom="-68" can_edit_text="false" control_name="RenderQualityPerformance"
@@ -353,17 +333,6 @@
 	<button bottom="-91" enabled="true" font="SansSerif" halign="center" height="20"
 	     label="Recommended Settings" left="10" mouse_opaque="true"
 	     name="Defaults" scale_image="true" width="170" />
-	<btton bottom="-395" enabled="true" font="SansSerif" halign="center" height="20"
-	     label="Hardware Options" label_selected="Hardware Options"
-	     left="310" mouse_opaque="true" name="GraphicsHardwareButton"
-	     scale_image="true" width="170" />
-
-	<string name="resolution_format">
-		[RES_X] x [RES_Y]
-	</string>
-	<string name="aspect_ratio_text">
-		[NUM]:[DEN]
-	</string>
     </panel>
     <panel border="true" bottom="-580" follows="left|top|right|bottom" height="525"
 		     label="Advanced" left="1" mouse_opaque="true" name="Advanced" width="418">
@@ -377,10 +346,6 @@
 	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
 	     label="Animate Textures" left_delta="0" mouse_opaque="true"
 	     name="AnimateTextures" radio_style="false" width="256" />
-	<check_box bottom_delta="-17" control_name="RenderHighlightSelections" enabled="true"
-	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
-	     label="Mouseover Highlights" left_delta="0" mouse_opaque="true"
-	     name="RenderHighlightSelections" radio_style="false" width="256" />
 	<check_box bottom_delta="-17" control_name="ImagePipelineUseHTTP" enabled="true"
 	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
 	     label="HTTP Get Textures" left_delta="0" mouse_opaque="true"
@@ -422,7 +387,7 @@
 	<check_box bottom_delta="-34" control_name="SafeMode" enabled="true" follows="left|top"
 	     font="SansSerifSmall" height="16" initial_value="true"
 	     label="Safe Mode" left_delta="0"
-	     mouse_opaque="true" name="vbo" radio_style="false"
+	     mouse_opaque="true" name="SafeMode" radio_style="false"
 	     tool_tip="Reset preferences, run in safe mode. Attention!"
 	     width="315" />
 	<spinner bottom_delta="-23" decimal_digits="0" enabled="true" control_name="RenderResolutionDivisor"
@@ -433,14 +398,14 @@
 		decimal_digits="0" enabled="true"
 		follows="left|top" height="16" increment="16"
 		initial_val="32" label="Texture Memory (MB):" label_width="135" left="100"
-		max_val="1024" min_val="0" mouse_opaque="true" name="GrapicsCardTextureMemory"
+		max_val="512" min_val="0" mouse_opaque="true" name="GrapicsCardTextureMemory"
 		tool_tip="Amount of memory to allocate for textures. Defaults to Video Card Memory. Reducing this may improve performance but may also make textures blurry."
 		width="300" />
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom="-30" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="12" left="300"
 	     mouse_opaque="true" name="FUNText" v_pad="0" width="128">
-		More Options:
+		Other Stuff:
 	</text>
 	<check_box bottom_delta="-25" control_name="RenderAvatarInvisible" enabled="true"
 	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
@@ -468,10 +433,6 @@
 	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
 	     label="Show Unloaded Avatars" left_delta="0" mouse_opaque="true"
 	     name="UnloadedAvatar" radio_style="false" width="256" />
-	<check_box bottom_delta="-17" control_name="RenderLightRadius" enabled="true"
-	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
-	     label="Render Light Radius" left_delta="0" mouse_opaque="true"
-	     name="LightRadius" radio_style="false" tool_tip="Renders the Light Radius as a Ball"  width="256" />
 	<check_box bottom_delta="-17" control_name="RunMultipleThreads" enabled="true"
 	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
 	     label="Use Multiple Threads" left_delta="0" mouse_opaque="true"
@@ -479,7 +440,7 @@
 	<check_box bottom_delta="-17" control_name="NoPreload" enabled="true"
 	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
 	     label="Disable Sound/Image Preload" left_delta="0" mouse_opaque="true"
-	     name="NoPreload" radio_style="false" tool_tip="Renders the Light Radius as a Ball"  width="256" />
+	     name="NoPreload" radio_style="false" tool_tip="Disables Texture/Sound preloading"  width="256" />
 	<check_box bottom_delta="-17" control_name="RenderVBOEnable" enabled="true" follows="left|top"
 	     font="SansSerifSmall" height="16" initial_value="true"
 	     label="Enable OpenGL VBO" left_delta="0"
@@ -493,7 +454,7 @@
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom_delta="-20" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="12" left="10"
-	     mouse_opaque="true" name="MiscText" v_pad="0" width="128">
+	     mouse_opaque="true" name="GlowOpts" v_pad="0" width="128">
 		Glow Options:
 	</text>
 	<check_box bottom_delta="-23" control_name="RenderGlow" enabled="true"
@@ -519,12 +480,12 @@
 	     decimal_digits="1" enabled="true" follows="left|top" height="16"
 	     increment="0.1" initial_val="3" label="Glow Width:"
 	     label_width="100" left_delta="0" max_val="4" min_val="0" mouse_opaque="true"
-	     name="Width" show_text="true" width="202" />
+	     name="Width" show_text="true" width="203" />
 	<slider bottom_delta="-17" can_edit_text="false" control_name="RenderGlowMaxExtractAlpha"
 	     decimal_digits="3" enabled="true" follows="left|top" height="16"
 	     increment="0.001" initial_val="0.065" label="Glow MaxAlpha:"
 	     label_width="100" left_delta="0" max_val="0.1" min_val="0" mouse_opaque="true"
-	     name="MaxAlpha" show_text="true" width="202" />
+	     name="MaxAlpha" show_text="true" width="210" />
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom_delta="-30" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="12" left="10"
@@ -553,7 +514,7 @@
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom_delta="-30" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="12" left="10"
-	     mouse_opaque="true" name="ShadowsText" v_pad="0" width="128">
+	     mouse_opaque="true" name="AlphaText" v_pad="0" width="128">
 		Alpha Options:
 	</text>
 	<check_box bottom_delta="-23" control_name="RenderFastAlpha" enabled="true"
@@ -565,7 +526,46 @@
 	     increment="0.001" initial_val="0.075" label="Def-Alpha Soften:"
 	     label_width="100" left_delta="30" max_val="0.100" min_val="0.001" mouse_opaque="true"
 	     name="DefAlpha" show_text="true" width="300" />
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom_delta="-40" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     font="SansSerifSmall" h_pad="0" halign="left" height="12" left="10"
+	     mouse_opaque="true" name="HighlightText" v_pad="0" width="128">
+		Highlight Options:
 	</text>
+	<radio_group bottom_delta="-33" control_name="RenderHighlightSelections" draw_border="false"
+	     enabled="true" follows="left|top" height="38" left_delta="0"
+	     mouse_opaque="true" name="highlighting" width="321">
+		<radio_item type="string" length="1" bottom="0" enabled="true" follows="left|top" height="16"
+		     left="115" mouse_opaque="true" name="false" width="315">
+			Off
+		</radio_item>
+		<radio_item type="string" length="1" bottom="0" enabled="true" follows="left|top" height="16"
+		     left="33" mouse_opaque="true" name="true" width="315">
+			On
+		</radio_item>
+	</radio_group>
+	<color_swatch border_color="0.45098 0.517647 0.607843 1" bottom_delta="-60"
+	     can_apply_immediately="true" color="1 1 1 1"
+	     enabled="true" follows="left|top" height="48" label="Color" left="220"
+	     mouse_opaque="true" name="highlight_color_swatch" control_name="RenderHighlightColor"
+	     tool_tip="Set the color of your Highlight Feature" width="32" />
+	<spinner bottom_delta="33" decimal_digits="3" enabled="true" control_name="RenderHighlightFadeTime"
+	     follows="left|top" height="16" increment="0.1" initial_val="1"
+	     label="Fade Time:" label_width="60" left_delta="70" max_val="3"
+	     min_val="0" mouse_opaque="true" name="Highlight Fade" width="130" />
+	<spinner bottom_delta="-17" decimal_digits="3" enabled="true" control_name="RenderHighlightThickness"
+	     follows="left|top" height="16" increment="0.1" initial_val="1"
+	     label="Thickness:" label_width="60" left_delta="0" max_val="1.5"
+	     min_val="0" mouse_opaque="true" name="Highlight Thickness" width="130" />
+	<spinner bottom_delta="-17" decimal_digits="3" enabled="true" control_name="RenderHighlightBrightness"
+	     follows="left|top" height="16" increment="0.5" initial_val="1"
+	     label="Brightness:" label_width="60" left_delta="0" max_val="12"
+	     min_val="0" mouse_opaque="true" name="Highlight Brightness" width="130" />
+	<button left="10" bottom_delta="-115" width="160" height="80" name="classic_preview" label="" scale_image="true" 
+	image_selected="glowtouchables.tga" 
+	image_unselected="glowtouchables.tga" 
+	image_hover_selected="glowtouchables.tga" 
+	image_hover_unselected="glowtouchables.tga"/>
    </panel>
  </tab_container>
 </panel>

@@ -24,6 +24,7 @@
 		</combo_item>
 	</combo_box>
 	<check_box label="Kennwort merken" name="remember_check"/>
+	<check_box label="Einwohner Namen merken" name="remember_name_check"/>
 	<text name="full_screen_text">
 		Die Anzeige schaltet bei Anmeldung auf Vollbild um.
 	</text>

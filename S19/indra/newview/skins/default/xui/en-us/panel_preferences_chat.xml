@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <panel border="true" bottom="-499" enabled="true" follows="left|top|right|bottom"
     height="548" label="Text Chat" left="102" mouse_opaque="true" name="chat"
     width="517">
@@ -168,7 +168,7 @@
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom="-432" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="10" left="149"
-	     mouse_opaque="false" name="text_translate_chat" v_pad="0" width="160">
+	     mouse_opaque="false" name="text_translate_chat2" v_pad="0" width="160">
 		Translate into this language:
 	</text>	
 	<combo_box allow_text_entry="true" bottom="-438" enabled="true"

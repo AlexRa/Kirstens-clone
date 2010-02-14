@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <panel label="Audio und Video" name="Media panel">
 	<text type="string" length="1" name="muting_text">
 		Lautstärke:
@@ -20,18 +20,13 @@
 	<check_box label="Streaming-Musik abspielen, falls verfügbar" name="streaming_music" />
 	<check_box label="Streaming-Media abspielen, falls verfügbar (mehr Bandbreite)"
 	     name="streaming_video" />
-	<text type="string" length="1" name="system_volume_text">
-		Soundeffekte:
-	</text>
-	<text type="string" length="1" name="wind_volume_text">
-		Windlautstärke:
-	</text>
-	<text type="string" length="1" name="footsteps_volume_text">
-		Schrittlautstärke:
-	</text>
-	<text type="string" length="1" name="ui_volume_text">
-		UI-Volumen:
-	</text>
+	<slider label="Gesamt" name="System Volume" />
+	<slider label="Musik" name="Music Volume" />
+	<slider label="Medien" name="Media Volume" />
+	<slider label="Voice" name="Voice Volume" />
+	<slider label="Geräusche" name="SFX Volume" />
+	<slider label="Umgebung" name="Wind Volume" />
+	<slider label="Interface" name="UI Volume" />
 	<slider label="Dopplereffekt" name="Doppler Effect" />
 	<slider label="Distanzfaktor" name="Distance Factor" />
 	<slider label="Rolloff-Faktor" name="Rolloff Factor" />

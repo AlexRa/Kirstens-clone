@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <floater name="Inventory" title="Inventar">
 	<search_editor label="Suchanfrage hier eintippen" name="inventory search editor" />
 	<tab_container name="inventory filter tabs">
 		<inventory_panel label="Alle Objekte" name="All Items" />
 		<inventory_panel label="Letzte Objekte" name="Recent Items" />
+		<inventory_panel label="Getragene Objekte" name="Worn Items" />
 	</tab_container>
 	<menu_bar name="Inventory Menu">
 		<menu label="Datei" name="File">

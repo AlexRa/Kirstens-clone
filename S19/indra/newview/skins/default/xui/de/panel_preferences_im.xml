@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <panel label="Kommunikation" name="im">
 	<text length="1" name="text_box" type="string">
 		Mein Onlinestatus:
@@ -14,6 +14,7 @@
 	<check_box label="IM in lokalen Chat einschließen" name="include_im_in_chat_history"/>
 	<check_box label="Zeitstempel in IM anzeigen" name="show_timestamps_check"/>
 	<check_box label="Online-Freundbenachrichtigungen anzeigen" name="friends_online_notify_checkbox"/>
+	<check_box label="IMs im Chat Verlauf anzeigen" name="include_im_in_chat_console"/>
 	<text length="1" name="text_box3" type="string">
 		Antwort für 
 Beschäftigt-Modus:
