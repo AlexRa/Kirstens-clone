@@ -139,7 +139,7 @@
 	<check_box bottom_delta="2" follows="left|top" control_name="WarnConfirmQuit"
 	     font="SansSerifSmall" height="16" initial_value="false"
 	     label="Ask before Quit" left_delta="10" mouse_opaque="true"
-	     tool_tip="Asks for Quit before closing Second Life"
+	     tool_tip="Asks for Quit before closing Kirstens S19"
 	     name="askquit" radio_style="false" width="200" />
 	<combo_box bottom_delta="124" follows="left|top" height="18" left_delta="-100"
 	     mouse_opaque="true" name="maturity_desired_combobox" width="150" control_name="PreferredMaturity">

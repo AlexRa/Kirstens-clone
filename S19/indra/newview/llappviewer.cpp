@@ -1665,7 +1665,7 @@ bool LLAppViewer::initConfiguration()
 	if(!loadSettingsFromDirectory("Default", set_defaults))
 	{
 		std::ostringstream msg;
-		msg << "Second Life could not load its default settings file. \n" 
+		msg << "Kirstens S19 could not load its default settings file. \n" 
 		    << "The installation may be corrupted. \n";
 
 		OSMessageBox(
@@ -1740,7 +1740,7 @@ bool LLAppViewer::initConfiguration()
 		llinfos	<< "Command	line usage:\n" << clp << llendl;
 
 		std::ostringstream msg;
-		msg << "Second Life found an error parsing the command line. \n" 
+		msg << "Kirstens S19 found an error parsing the command line. \n" 
 			<< "Please see: http://wiki.secondlife.com/wiki/Client_parameters \n"
 			<< "Error: " << clp.getErrorMessage();
 

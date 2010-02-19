@@ -602,7 +602,7 @@ void LLNotification::init(const std::string& template_name, const LLSD& form_ele
 
 	// add default substitutions
 	// TODO: change this to read from the translatable strings file!
-	mSubstitutions["SECOND_LIFE"] = "Second Life";
+	mSubstitutions["SECOND_LIFE"] = "Kirstens S19";
 	mSubstitutions["_URL"] = getURL();
 	mSubstitutions["_NAME"] = template_name;
 	// TODO: something like this so that a missing alert is sensible:
