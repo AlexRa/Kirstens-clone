@@ -257,6 +257,7 @@
 		Schatten Optionen:
 	</text>
 	<check_box label="Schattenblur" name="BlurShadows"/>
+	<spinner label="Ebenen" name="blursamples"/>
 	<slider label="Blurgröße:" name="BlurSize"/>
 	<slider label="Schatten Blur Reichweite:" name="BlurDist"/>
 	<slider label="SSAO Faktor:" name="SSAOFactor"/>

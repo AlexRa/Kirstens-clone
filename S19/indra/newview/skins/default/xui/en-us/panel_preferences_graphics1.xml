@@ -14,10 +14,26 @@
 	     height="16" initial_value="false"
 	     label="Run S19 in a window" left="10" mouse_opaque="true"
 	     name="windowed mode" radio_style="false" width="100" />
-  	<button bottom_delta="-10" control_name="" follows="top|right" height="28"
-	     image_selected="AAactive.tga" scale_image="false" tool_tip="Antialiasing has been completly removed from the Graphic Menu because Second Life AA is very slow ,to activate it Anyway go to NVidea Driversettings and add Kirsten S19 as a seperate Profile, then set AA to your desired Number and select -Replace Applications Settings- something like that, then press Apply and restart Kirsten. WARNING! AA Disables when you activate OpenGL FBO and enables when you deactivate it!"
-	     image_unselected="AA.tga" label="" label_width="28"
-	     left="485" name="AA?" tab_stop="false" toggle="false" width="28" />
+  <combo_box bottom="-23" control_name="RenderFSAASamples" enabled="true" follows="left|top"
+		font="SansSerifSmall" height="16" initial_value="false"
+		label="Antialiasing" left="370"
+		mouse_opaque="true" name="fsaa" width="96">
+    <combo_item name="FSAADisabled" value="0">
+      Disabled
+    </combo_item>
+    <combo_item name="2x" value="2">
+      2x
+    </combo_item>
+    <combo_item name="4x" value="4">
+      4x
+    </combo_item>
+    <combo_item name="8x" value="8">
+      8x
+    </combo_item>
+    <combo_item name="16x" value="16">
+      16x
+    </combo_item>
+  </combo_box>
 	<slider bottom="-45" can_edit_text="false" control_name="RenderGamma"
 	     decimal_digits="0" enabled="true" follows="left|top" height="16"
 	     increment="0.1" initial_val="160" label="Gamma:"
@@ -83,8 +99,8 @@
 	     follows="left|top" font="SansSerifSmall" height="16"
 	     initial_value="true" label="Custom Settings" left="10" mouse_opaque="true"
 	     name="CustomSettings" radio_style="false" width="0" />
-	<view_border bevel_style="none" border_thickness="1" bottom="-395" follows="top|left"
-	     height="305" left="5" name="GraphicsBorder" width="485" />
+	<view_border bevel_style="none" border_thickness="1" bottom="-425" follows="top|left"
+	     height="335" left="5" name="GraphicsBorder" width="485" />
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
 	     bottom="-105" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="12"
@@ -118,12 +134,16 @@
 	     follows="left|top" font="SansSerifSmall" height="16"
 	     initial_value="true" label="Shadows/Projected Shadows" left_delta="0"
 	     mouse_opaque="true" name="Shadows" radio_style="false" width="256" />
+	<!--check_box bottom_delta="-17" control_name="RenderDeferredSunShadowGI" enabled="false"
+	     follows="left|top" font="SansSerifSmall" height="16"
+	     initial_value="false" label="Global Illumination" left_delta="0"
+	     mouse_opaque="true" name="Shadows" radio_style="false" width="256" /-->
 	<check_box bottom_delta="-17" control_name="RenderWaterReflections" enabled="true"
 	     follows="left|top" font="SansSerifSmall" height="16"
 	     initial_value="true" label="Water Reflections" left_delta="0"
 	     mouse_opaque="true" name="Reflections" radio_style="false" width="256" />
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom="-243" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     bottom="-263" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="12"
 	     left="10" mouse_opaque="true" name="ReflectionDetailText" v_pad="0"
 	     width="128">
@@ -151,7 +171,7 @@
 		</radio_item>
 	</radio_group>
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom="-333" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     bottom="-353" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="12" left="10"
 	     mouse_opaque="true" name="AvatarRenderingText" v_pad="0" width="128">
 		Avatar Rendering:
@@ -205,7 +225,7 @@
 	     label_width="140" left_delta="0" max_val="9" min_val="8"
 	     mouse_opaque="true" name="RenderPostProcess" show_text="false" width="223" />
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom_delta="-15" drop_shadow_visible="true" enabled="true"
+	     bottom_delta="-25" drop_shadow_visible="true" enabled="true"
 	     follows="left|top" font="SansSerifSmall" h_pad="0" halign="left"
 	     height="12" left="215" mouse_opaque="true" name="MeshDetailText" v_pad="0"
 	     width="128">
@@ -290,7 +310,7 @@
 		Low
 	</text>
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom="-331" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     bottom="-341" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="12"
 	     left="210" mouse_opaque="true" name="LightingDetailText" v_pad="0"
 	     width="128">
@@ -313,7 +333,7 @@
 	     label="Deferred Fullscreen Lights" left_delta="3" mouse_opaque="true" name="FullscreenLights"
 	     radio_style="false" width="256" />
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom="-331" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     bottom="-341" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="12" left="390"
 	     mouse_opaque="true" name="TerrainDetailText" v_pad="0" width="128">
 		Terrain Detail:
@@ -496,9 +516,13 @@
 	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
 	     label="Blur Shadows" left_delta="0" mouse_opaque="true"
 	     name="BlurShadows" radio_style="false" width="256" />
-	<slider bottom_delta="0" can_edit_text="false" control_name="RenderShadowBlurSize"
+	<spinner bottom_delta="-17" decimal_digits="0" enabled="true" control_name="RenderShadowBlurSamples"
+	     follows="left|top" height="16" increment="1" initial_val="4"
+	     label="Samples" label_width="50" left_delta="20" max_val="5"
+	     min_val="1" mouse_opaque="true" name="blursamples" width="85" />
+	<slider bottom_delta="17" can_edit_text="false" control_name="RenderShadowBlurSize"
 	     decimal_digits="0" enabled="true" follows="left|top" height="16"
-	     increment="10" initial_val="160" label="Shadow Blur Size:"
+	     increment="1" initial_val="160" label="Shadow Blur Size:"
 	     label_width="150" left="150" max_val="50" min_val="0" mouse_opaque="true"
 	     name="BlurSize" show_text="true" width="250" />
 	<slider bottom_delta="-17" can_edit_text="false" control_name="RenderShadowBlurDistFactor"

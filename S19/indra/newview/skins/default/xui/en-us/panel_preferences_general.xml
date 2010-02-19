@@ -169,10 +169,10 @@
 </panel>
 	<panel border="true" bottom="-408" follows="left|top|right|bottom" height="408"
 	 label="Personalising" left="1" mouse_opaque="true" name="Personalising" width="517">   
-	<view_border bevel_style="none" border_thickness="1" bottom="-385" follows="top|left"
-	     height="380" left="5" name="GraphicsBorder" width="485" />
+	<view_border bevel_style="none" border_thickness="1" bottom="-425" follows="top|left"
+	     height="420" left="5" name="GraphicsBorder" width="485" />
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom_delta="365" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     bottom_delta="405" drop_shadow_visible="true" enabled="true" follows="left|top"
 	     font="SansSerifSmall" h_pad="0" halign="left" height="10" left="10"
 	     mouse_opaque="true" name="Personalise" v_pad="0" width="394">
 		Personalising:
@@ -303,35 +303,31 @@
 	     follows="left|top" height="16" increment="1" initial_val="256"
 	     label="Minimap Max Prim(m):" label_width="150" left_delta="75" max_val="1024"
 	     min_val="1" mouse_opaque="true" name="minimapmaxprim" width="202" />
-	<string name="region_name_prompt">
-		&lt;Type region name&gt;
-	</string>
-    </panel>
-	<panel border="true" bottom="-408" follows="left|top|right|bottom" height="408"
-	 label="Personalising 2" left="1" mouse_opaque="true" name="Personalising 2" width="517">   
-	<view_border bevel_style="none" border_thickness="1" bottom="-385" follows="top|left"
-	     height="380" left="5" name="GraphicsBorder" width="485" />
 	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
-	     bottom_delta="365" drop_shadow_visible="true" enabled="true" follows="left|top"
-	     font="SansSerifSmall" h_pad="0" halign="left" height="10" left="10"
-	     mouse_opaque="true" name="Personalise" v_pad="0" width="394">
-		Personalising:
+	     bottom_delta="-25" drop_shadow_visible="true" enabled="true"
+	     follows="left|top" font="SansSerifSmall" h_pad="0" halign="left"
+	     height="10" left="10" mouse_opaque="false" name="Doubleclickopts" v_pad="0"
+	     width="270">
+		Doubleclick
 	</text>
-	<check_box bottom_delta="-30" follows="left|top" control_name="DoubleClickAutoPilot"
+	<check_box bottom_delta="-6" follows="left|top" control_name="DoubleClickAutoPilot"
 	     font="SansSerifSmall" height="16" initial_value="false"
-	     label="Double Click Autopilot" left="7" mouse_opaque="true"
+	     label="Autopilot" left="80" mouse_opaque="true"
 	     tool_tip="Double Click anywhere to start Autopiloting there"
 	     name="Autopilot" radio_style="false" width="200" />
-	<check_box bottom_delta="-20" follows="left|top" control_name="DoubleClickTeleport"
+	<check_box bottom_delta="0" follows="left|top" control_name="DoubleClickTeleport"
 	     font="SansSerifSmall" height="16" initial_value="false"
-	     label="Double Click Teleport" left="7" mouse_opaque="true"
+	     label="Teleport" left_delta="80" mouse_opaque="true"
 	     tool_tip="Double Click anywhere to TP there instantly"
 	     name="DoubleclickTP" radio_style="false" width="200" />
-	<check_box bottom_delta="-20" follows="left|top" control_name="LimitSelectDistance"
+	<check_box bottom_delta="-30" follows="left|top" control_name="LimitSelectDistance"
 	     font="SansSerifSmall" height="16" initial_value="false"
 	     label="Disable Unlimited Select Distance" left="7" mouse_opaque="true"
 	     tool_tip="Disables Unlimited Select Distance"
 	     name="SelectUnlimited" radio_style="false" width="200" />
-  </panel>
+	<string name="region_name_prompt">
+		&lt;Type region name&gt;
+	</string>
+    </panel>
 </tab_container>
 </panel>

@@ -91,7 +91,6 @@ protected:
 	void removeFromNetworkQueue(LLTextureFetchWorker* worker, bool cancel);
 	void addToHTTPQueue(const LLUUID& id);
 	void removeFromHTTPQueue(const LLUUID& id);
-	S32 getHTTPQueueSize() { return (S32)mHTTPTextureQueue.size(); }
 	void removeRequest(LLTextureFetchWorker* worker, bool cancel);
 	// Called from worker thread (during doWork)
 	void processCurlRequests();	

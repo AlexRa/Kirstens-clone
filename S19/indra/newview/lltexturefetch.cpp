@@ -395,7 +395,7 @@ LLTextureFetchWorker::LLTextureFetchWorker(LLTextureFetch* fetcher,
 	  mBuffer(NULL),
 	  mBufferSize(0),
 	  mRequestedSize(0),
-	  mDesiredSize(TEXTURE_CACHE_ENTRY_SIZE),
+	  mDesiredSize(FIRST_PACKET_SIZE),
 	  mFileSize(0),
 	  mCachedSize(0),
 	  mLoaded(FALSE),
@@ -678,7 +678,7 @@ bool LLTextureFetchWorker::doWork(S32 param)
 
 	if (mState == CACHE_POST)
 	{
-		mDesiredSize = llmax(mDesiredSize, TEXTURE_CACHE_ENTRY_SIZE);
+		mDesiredSize = llmax(mDesiredSize, FIRST_PACKET_SIZE);
 		mCachedSize = mFormattedImage.notNull() ? mFormattedImage->getDataSize() : 0;
 		// Successfully loaded
 		if ((mCachedSize >= mDesiredSize) || mHaveAllData)
@@ -753,11 +753,6 @@ bool LLTextureFetchWorker::doWork(S32 param)
 		}
 		else
 		{
-			// Shouldn't need to do anything here
-			//llassert_always(mFetcher->mNetworkQueue.find(mID) != mFetcher->mNetworkQueue.end());
-			// Make certain this is in the network queue
-			//mFetcher->addToNetworkQueue(this);
-			//setPriority(LLWorkerThread::PRIORITY_LOW | mWorkPriority);
 			return false;
 		}
 	}
@@ -798,7 +793,7 @@ bool LLTextureFetchWorker::doWork(S32 param)
 			// Set the throttle to the entire bandwidth, assuming UDP packets will get priority
 			// when they are needed
 			F32 max_bandwidth = mFetcher->mMaxBandwidth;
-			if ((mFetcher->getHTTPQueueSize() >= HTTP_QUEUE_MAX_SIZE) ||
+			if ((mFetcher->getNumHTTPRequests() >= HTTP_QUEUE_MAX_SIZE) ||
 				(mFetcher->getTextureBandwidth() > max_bandwidth))
 			{
 				// Make normal priority and return (i.e. wait until there is room in the queue)
@@ -1419,7 +1414,7 @@ bool LLTextureFetch::createRequest(const std::string& url, const LLUUID& id, con
 	}
 	else
 	{
-		desired_size = TEXTURE_CACHE_ENTRY_SIZE;
+		desired_size = FIRST_PACKET_SIZE;
 		desired_discard = MAX_DISCARD_LEVEL;
 	}
 
@@ -1471,14 +1466,8 @@ void LLTextureFetch::deleteRequest(const LLUUID& id, bool cancel)
 void LLTextureFetch::addToNetworkQueue(LLTextureFetchWorker* worker)
 {
 	LLMutexLock lock(&mNetworkQueueMutex);
-	if (mRequestMap.find(worker->mID) != mRequestMap.end())
-	{
-		// only add to the queue if in the request map
-		// i.e. a delete has not been requested
-		mNetworkQueue.insert(worker->mID);
-	}
-	for (cancel_queue_t::iterator iter1 = mCancelQueue.begin();
-		 iter1 != mCancelQueue.end(); ++iter1)
+	mNetworkQueue.insert(worker->mID);
+	for (cancel_queue_t::iterator iter1 = mCancelQueue.begin(); iter1 != mCancelQueue.end(); ++iter1)
 	{
 		iter1->second.erase(worker->mID);
 	}
@@ -1704,8 +1693,10 @@ void LLTextureFetch::sendRequestListToSimulators()
 		LLTextureFetchWorker* req = getWorker(*curiter);
 		if (!req)
 		{
+			// This happens when a request was removed from mRequestMap in a race
+			// with adding it to mNetworkQueue by doWork (see SNOW-196).
 			mNetworkQueue.erase(curiter);
-			continue; // paranoia
+			continue;
 		}
 		llassert(req->mState == LLTextureFetchWorker::LOAD_FROM_NETWORK || LLTextureFetchWorker::LOAD_FROM_SIMULATOR);
 		if ((req->mState != LLTextureFetchWorker::LOAD_FROM_NETWORK) &&

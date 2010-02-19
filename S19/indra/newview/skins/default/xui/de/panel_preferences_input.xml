@@ -20,8 +20,11 @@
 	<text name="Camera Follow Distance:">
 		Kameraabstand:
 	</text>
-	<text name="Camera Strenght:">
-		Kamera Dynamik:
+	<text name="Camera Strength:">
+		Dynamische Kamera Stärke:
+	</text>
+	<text name="Camera Transition Time:">
+		Kameraübergangszeit:
 	</text>
 	<text name="Camera Smoothing:">
 		Bewegungsglättung:

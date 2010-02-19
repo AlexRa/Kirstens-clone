@@ -202,22 +202,22 @@ target_link_libraries(
     ${ZLIB_LIBRARIES}
     )
 
-if(HAVE_64_BIT)
-	add_library (llcommonPIC ${llcommon_SOURCE_FILES})
-	add_dependencies(llcommonPIC prepare)
+if(WORD_SIZE EQUAL 64)
+    add_library (llcommonPIC ${llcommon_SOURCE_FILES})
+    add_dependencies(llcommonPIC prepare)
 
-	if(WINDOWS)
-		add_definitions(/FIXED:NO)
-	else(WINDOWS) # not windows therefore gcc LINUX and DARWIN
-		add_definitions(-fPIC)
-	endif(WINDOWS)
-	
-	target_link_libraries(
-		llcommonPIC
-		${APRUTIL_LIBRARIES}
-		${APR_LIBRARIES}
-		${EXPAT_LIBRARIES}
-		${ZLIB_LIBRARIES}
-		)
-endif(HAVE_64_BIT)
+    if(WINDOWS)
+        add_definitions(/FIXED:NO)
+    else(WINDOWS) # not windows therefore gcc LINUX and DARWIN
+        add_definitions(-fPIC)
+    endif(WINDOWS)
+
+    target_link_libraries(
+    llcommonPIC
+    ${APRUTIL_LIBRARIES}
+    ${APR_LIBRARIES}
+    ${EXPAT_LIBRARIES}
+    ${ZLIB_LIBRARIES}
+    )
+endif(WORD_SIZE EQUAL 64)
 

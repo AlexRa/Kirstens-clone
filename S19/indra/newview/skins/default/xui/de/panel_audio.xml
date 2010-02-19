@@ -3,11 +3,11 @@
 	<tab_container label="Page 1" name="tab">
 	<panel label="Audio" name="Simple">
 	<check_box label="Stummschalten" name="disable audio" />
-	<slider label="Allgemein" name="System Volume" />
+	<slider label="Gesamt" name="System Volume" />
 	<slider label="Musik" name="Music Volume" />
 	<slider label="Medien" name="Media Volume" />
-	<slider label="Sprache" name="Voice Volume" />
-	<slider label="Sounds" name="SFX Volume" />
+	<slider label="Voice" name="Voice Volume" />
+	<slider label="Sound" name="SFX Volume" />
 	<slider label="Umgebung" name="Wind Volume" />
 	<slider label="UI" name="UI Volume" />
      </panel>

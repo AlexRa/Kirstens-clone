@@ -180,15 +180,15 @@ Alterseinstufung zugreifen:
 	<check_box label="RotierendeMinikarte" name="minimaprotate" tool_tip="Erlaubt der Minikarte sich mitzudrehen wenn die/der Kamera/Avatar gedreht wird"/>
 	<spinner label="Max. Primgröße auf Minikarte(m):" name="minimapmaxprim"/>
 	<slider label="Ausblend Zeit:" name="fadetime_slider"/>
+	<check_box label="Autopilot" name="Autopilot" tool_tip="Doppelklick mit der Maus auf eine Position um dich automatisch auf direktem Wege dorthin zu navigieren"/>
+	<check_box label="Teleport" name="DoubleclickTP" tool_tip="Doppelklick mit der Maus auf eine Position um sich direkt dort hin zu Teleportieren"/>
+	<check_box label="Unendliche Auswahlreichweite Deaktivieren" name="SelectUnlimited"/>
+	<text name="Doubleclick">
+		Doppelklick
+	</text>
    	</panel>
  	<panel border="true" bottom="-408" follows="left|top|right|bottom" height="408"
 	 label="Personalisierung 2" left="1" mouse_opaque="true" name="Personalising 2" width="517">   
-	<text name="Personalise">
-		Personalisierung:
-	</text>
-	<check_box label="Doppelklick Autopilot" name="Autopilot"/>
-	<check_box label="Doppelklick Teleport" name="DoubleclickTP" tool_tip="Doppelclick mit der Maus auf eine Position um sich direkt dort hin zu Teleportieren"/>
-	<check_box label="Unendliche Auswahlreichweite Deaktivieren" name="SelectUnlimited"/>
 	</panel>
 </tab_container>
 </panel>
