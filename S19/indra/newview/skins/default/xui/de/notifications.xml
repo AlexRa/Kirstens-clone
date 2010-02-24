@@ -1,0 +1,1065 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<notifications>
+	<global name="skipnexttime">
+
+		Nächtes mal nicht mehr anzeigen
+  	</global>
+	<notification name="SystemMessageTip">
+		
+			[MESSAGE]
+
+	</notification>
+	<notification name="Cancelled">
+		
+			Abgebrochen
+
+	</notification>
+	<notification name="CancelledSit">
+		
+			Sitzen beendet
+
+	</notification>
+	<notification name="ConfirmQuit">
+			Sicher das sie Second Life beenden wollen?
+	</notification>
+	<notification name="CancelledAttach">
+		
+			Anhängen abgebrochen
+
+	</notification>
+	<notification name="ReplacedMissingWearable">
+		
+			Fehlende(s) Kleidung/Körperteil mit Standard ersetzt.
+
+	</notification>
+	<notification name="FriendOnline">
+		
+			[FIRST] [LAST] ist online
+
+	</notification>
+	<notification name="FriendOffline">
+		
+			[FIRST] [LAST] ist offline
+
+	</notification>
+	<notification name="AddSelfFriend">
+		
+			Sie können sich nicht selbst als Freund hinzufügen.
+
+	</notification>
+	<notification name="UploadingAuctionSnapshot">
+		
+			In-Welt- und Website-Fotos werden hochgeladen...
+(Dauert ca. 5 Minuten.)
+
+	</notification>
+	<notification name="UploadPayment">
+		
+			Sie haben für das Hochladen [AMOUNT] L$ bezahlt.
+
+	</notification>
+	<notification name="UploadingSnapshot">
+		
+			In-Welt-Foto wird hochgeladen...
+(Dauert ca. 1 Minute.)
+
+	</notification>
+	<notification name="UploadWebSnapshotDone">
+		
+			Das Website-Foto wurde hochgeladen.
+
+	</notification>
+	<notification name="UploadSnapshotDone">
+		
+			In-Welt-Foto hochgeladen
+
+	</notification>
+	<notification name="TerrainDownloaded">
+		
+			Terrain.raw heruntergeladen
+
+	</notification>
+	<notification name="InMaxGroups">
+		
+			Sie können keiner weiteren Gruppe beitreten. Sie müssen erst eine Gruppe verlassen, um eine neue zu gründen.
+
+	</notification>
+	<notification name="GestureMissing">
+		
+			Geste [NAME] fehlt in Datenbank.
+
+	</notification>
+	<notification name="UnableToLoadGesture">
+		
+			Geste [NAME] konnte nicht geladen werden.
+Bitte versuchen Sie es erneut.
+
+	</notification>
+	<notification name="InventoryLoaded">
+		
+			Ihr Inventar wird geladen.
+
+	</notification>
+	<notification name="LandmarkMissing">
+		
+			Landmarke fehlt in Datenbank.
+
+	</notification>
+	<notification name="UnableToLoadLandmark">
+		
+			Landmarke konnte nicht geladen werden.  Bitte versuchen Sie es erneut.
+
+	</notification>
+	<notification name="CapsKeyOn">
+		
+			Die Feststelltaste ist aktiv.
+Da dies Auswirkung auf die Kennworteingabe hat, sollten Sie die Taste besser ausschalten.
+
+	</notification>
+	<notification name="NotecardMissing">
+		
+			Notizkarte fehlt in Datenbank.
+
+	</notification>
+	<notification name="NotecardNoPermissions">
+		
+			Unzureichende Rechte zur Anzeige der Notizkarte.
+
+	</notification>
+	<notification name="RezItemNoPermissions">
+		
+			Keine Berechtigung zum Rezzen von Objekten.
+
+	</notification>
+	<notification name="UnableToLoadNotecard">
+		
+			Notizkarte konnte nicht geladen werden.
+Bitte versuchen Sie es erneut.
+
+	</notification>
+	<notification name="ScriptMissing">
+		
+			Skript fehlt in Datenbank.
+
+	</notification>
+	<notification name="ScriptNoPermissions">
+		
+			Unzureichende Rechte zur Anzeige des Skripts.
+
+	</notification>
+	<notification name="UnableToLoadScript">
+		
+			Skript konnte nicht geladen werden.  Bitte versuchen Sie es erneut.
+
+	</notification>
+	<notification name="IncompleteInventory">
+		
+			Die von Ihnen angebotenen Inhalte sind noch nicht vollständig lokal verfügbar. Warten Sie kurz und wiederholen Sie dann das Angebot.
+
+	</notification>
+	<notification name="CannotModifyProtectedCategories">
+		
+			Geschützte Kategorien können nicht geändert werden.
+
+	</notification>
+	<notification name="CannotRemoveProtectedCategories">
+		
+			Geschützte Kategorien können nicht entfernt werden.
+
+	</notification>
+	<notification name="OfferedCard">
+		
+			Sie haben [FIRST] [LAST] eine Visitenkarte angeboten.
+
+	</notification>
+	<notification name="OfferedFriendship">
+		
+			Sie haben [FIRST] [LAST] die Freundschaft angeboten.
+
+	</notification>
+	<notification name="UnableToBuyWhileDownloading">
+		
+			Kauf nicht möglich. Objektdaten werden noch geladen.
+Bitte versuchen Sie es erneut.
+
+	</notification>
+	<notification name="UnableToLinkWhileDownloading">
+		
+			Verknüpfung nicht möglich. Objektdaten werden noch geladen.
+Bitte versuchen Sie es erneut.
+
+	</notification>
+	<notification name="CannotBuyObjectsFromDifferentOwners">
+		
+			Objekte können nicht von mehreren Eigentümern gleichzeitig gekauft werden.
+Wählen Sie ein einzelnes Objekt aus.
+
+	</notification>
+	<notification name="ObjectNotForSale">
+		
+			Objekt ist nicht zu verkaufen.
+
+	</notification>
+	<notification name="EnteringGodMode">
+		
+			Gott-Modus aktiviert, Level [LEVEL]
+
+	</notification>
+	<notification name="LeavingGodMode">
+		
+			Gott-Modus deaktiviert, Level [LEVEL]
+
+	</notification>
+	<notification name="CopyFailed">
+		
+			Kopieren aufgrund fehlender Kopierrechte fehlgeschlagen
+
+	</notification>
+	<notification name="InventoryAccepted">
+		
+			[NAME] hat Ihr Inventarangebot akzeptiert.
+
+	</notification>
+	<notification name="InventoryDeclined">
+		
+			[NAME] hat Ihr Inventarangebot abgelehnt.
+
+	</notification>
+	<notification name="ObjectMessage">
+		
+			[NAME]: [MESSAGE]
+
+	</notification>
+	<notification name="CallingCardAccepted">
+		
+			Ihre Visitenkarte wurde akzeptiert.
+
+	</notification>
+	<notification name="CallingCardDeclined">
+		
+			Ihre Visitenkarte wurde abgelehnt.
+
+	</notification>
+	<notification name="TeleportToLandmark">
+		
+			Jetzt, nachdem Sie das Mainland erreicht haben, können Sie sich an Positionen wie „[NAME]“ teleportieren, indem Sie unten rechts im Fenster auf „Inventar“ klicken und den Ordner „Landmarken“ auswählen.
+Klicken Sie eine Landmarke doppelt an und wählen Sie „Teleportieren“, um an diesen Ort zu gelangen.
+
+	</notification>
+	<notification name="TeleportToPerson">
+		
+			Jetzt, nachdem Sie das Mainland erreicht haben, können Sie mit Einwohnern wie „[NAME]“ Kontakt aufnehmen, indem Sie unten rechts im Fenster auf „Inventar“ klicken und den Ordner „Visitenkarten“ auswählen.
+Klicken Sie die Karte doppelt an, wählen Sie „Instant Message“ und geben Sie eine Nachricht ein.
+
+	</notification>
+	<notification name="CantSelectLandFromMultipleRegions">
+		
+			Land kann nicht über Servergrenzen hinweg ausgewählt werden.
+Wählen Sie eine kleinere Landfläche.
+
+	</notification>
+	<notification name="Generticnotification">
+		
+			[MESSAGE]
+
+	</notification>
+	<notification name="GroupVote">
+		
+			[NAME] hat eine Abstimmung vorgeschlagen über:
+[MESSAGE]
+
+		<option name="VoteNow">
+			Abstimmen
+		</option>
+		<option name="Later">
+			Später
+		</option>
+	</notification>
+	<notification name="GroupElection">
+		
+			[NAME] hat eine Wahl gestartet:
+[MESSAGE]
+
+		<option name="VoteNow">
+			Abstimmen
+		</option>
+		<option name="Later">
+			Später
+		</option>
+	</notification>
+	<notification name="SystemMessage">
+		
+			[MESSAGE]
+
+	</notification>
+	<notification name="EventNotification">
+		
+			Event-Benachrichtigung:
+ 
+[NAME]
+[DATE]
+
+		<option name="Teleport">
+			Teleportieren
+		</option>
+		<option name="Description">
+			Beschreibung
+		</option>
+		<option name="Cancel">
+			Abbrechen
+		</option>
+	</notification>
+	<notification name="TransferObjectsHighlighted">
+		
+			Alle Objekte auf dieser Parzelle, die an den Käufer der Parzelle übertragen werden, sind jetzt markiert.
+ 
+* Übertragene Bäume und Gräser sind nicht markiert.
+
+		<option name="Done">
+			Fertig
+		</option>
+	</notification>
+	<notification name="DeactivatedGesturesTrigger">
+		
+			Gesten mit demselben Trigger wurden deaktiviert:
+[NAMES]
+
+	</notification>
+	<notification name="InventoryNetworkCorruption">
+		
+			Das Inventar konnte aufgrund eines Netzwerkfehlers nicht geladen werden. Mögliche Ursache ist eine schlechte Netzwerkverbindung.
+
+	</notification>
+	<notification name="NoQuickTime">
+		
+			Apple QuickTime ist auf Ihrem System anscheinend nicht installiert.
+Laden Sie QuickTime von der QuickTime-Webseite (http://www.apple.com/de/quicktime) herunter, um auf Parzellen, die diese Funktion unterstützen, Streaming-Inhalte wiederzugeben.
+
+	</notification>
+	<notification name="OwnedObjectsReturned">
+		
+			Ihre Objekte auf der ausgewählten Parzelle wurden in Ihr Inventar transferiert.
+
+	</notification>
+	<notification name="OtherObjectsReturned">
+		
+			Die Objekte von [FIRST] [LAST] auf dieser Parzelle wurden in das Inventar dieser Person transferiert.
+
+	</notification>
+	<notification name="OtherObjectsReturned2">
+		
+			Die Objekte von [FIRST] [LAST] auf dieser 
+Parzelle von „[NAME]“ wurden an ihren Eigentümer zurückgegeben.
+
+	</notification>
+	<notification name="GroupObjectsReturned">
+		
+			Die mit der Gruppe [GROUPNAME] gemeinsam genutzten Objekte auf dieser Parzelle wurden in das Inventar ihrer Eigentümer transferiert.
+Transferierbare übertragene Objekte wurden an ihre früheren Eigentümer zurückgegeben.
+Nicht transferierbare an die Gruppe übertragene Objekte wurden gelöscht.
+
+	</notification>
+	<notification name="UnOwnedObjectsReturned">
+		
+			Alle Objekte auf der ausgewählten Parzelle, die NICHT Ihnen gehören, wurden ihren Eigentümern zurückgegeben.
+
+	</notification>
+	<notification name="NotSafe">
+		
+			Auf diesem Land ist Schaden aktiviert („Unsicher“).
+Verletzungen sind möglich. Wenn Sie sterben, werden Sie zu Ihrem Heimatstandort teleportiert.
+
+	</notification>
+	<notification name="NoFly">
+		
+			Auf diesem Land ist Fliegen deaktiviert („Fliegen aus“).
+Fliegen ist hier nicht möglich.
+
+	</notification>
+	<notification name="PushRestricted">
+		
+			Auf diesem Land gilt „Kein Stoßen“.
+Sie können keine anderen Personen stoßen, außer Ihnen gehört das Land.
+
+	</notification>
+	<notification name="VoiceAvailablity">
+		
+			Auf diesem Land ist Voice aktiviert.
+
+	</notification>
+	<notification name="NoVoice">
+		
+			Auf diesem Land ist Voice deaktiviert.
+
+	</notification>
+	<notification name="NoBuild">
+		
+			Auf diesem Land ist Bauen deaktiviert („Bauen aus“).
+Sie können hier keine Objekte erstellen.
+
+	</notification>
+	<notification name="ScriptsStopped">
+		
+			Ein Administrator hat die Skriptausführung in dieser Region vorübergehend deaktiviert.
+
+	</notification>
+	<notification name="ScriptsNotRunning">
+		
+			In dieser Region werden keine Skipts ausgeführt.
+
+	</notification>
+	<notification name="NoOutsideScripts">
+		
+			Auf diesem Land sind externe Skripts deaktiviert
+(„Externe Skripts aus“).
+Nur Skripts, die dem Landeigentümer gehören, funktionieren.
+
+	</notification>
+	<notification name="ApproveURL">
+		
+			Ein Objekt möchte auf seiner Oberfläche folgende Webseite anzeigen:
+[URL]
+
+		<option name="LoadPage">
+			Seite laden
+		</option>
+		<option name="Don&apos;tLoad">
+			Nicht laden
+		</option>
+	</notification>
+	<notification name="ClaimPublicLand">
+		
+			Öffentliches Land kann nur in der Region in Besitz genommen werden, in der Sie sich befinden.
+
+	</notification>
+	<notification name="ObjectGiveItem">
+		
+			Das Objekt [OBJECTFROMNAME] von [FIRST] [LAST] hat Ihnen Folgendes übergeben: [OBJECTTYPE] ([OBJECTNAME]).
+
+		<option name="Keep">
+			Behalten
+		</option>
+		<option name="Discard">
+			Verwerfen
+		</option>
+		<option name="Mute">
+			Stummschalten
+		</option>
+	</notification>
+	<notification name="ObjectGiveItemUnknownUser">
+		
+			Das Objekt [OBJECTFROMNAME] von (unbekannt) hat Ihnen Folgendes übergeben: [OBJECTTYPE] ([OBJECTNAME]).
+
+		<option name="Keep">
+			Behalten
+		</option>
+		<option name="Discard">
+			Verwerfen
+		</option>
+		<option name="Mute">
+			Stummschalten
+		</option>
+	</notification>
+	<notification name="UserGiveItem">
+		
+			[NAME] hat Ihnen ein [OBJECTTYPE] namens „[OBJECTNAME]“ gegeben.
+
+		<option name="Keep">
+			Behalten
+		</option>
+		<option name="Discard">
+			Verwerfen
+		</option>
+		<option name="Mute">
+			Stummschalten
+		</option>
+	</notification>
+	<notification name="GodMessage">
+		
+			[NAME]
+[MESSAGE]
+
+	</notification>
+	<notification name="JoinGroup">
+		
+			[MESSAGE]
+
+		<option name="Join">
+			Beitreten
+		</option>
+		<option name="Decline">
+			Ablehnen
+		</option>
+		<option name="Info">
+			Info
+		</option>
+	</notification>
+	<notification name="JoinGroupOfficerNoFee">
+		
+			[NAME] hat Sie eingeladen einer Gruppe als Officer beizutreten.
+Der Beitritt ist kostenlos.
+ 
+[MESSAGE]
+
+		<option name="Join">
+			Beitreten
+		</option>
+		<option name="Decline">
+			Ablehnen
+		</option>
+		<option name="Info">
+			Info
+		</option>
+	</notification>
+	<notification name="JoinGroupMember">
+		
+			[NAME] hat Sie eingeladen einer Gruppe beizutreten.
+Die Beitrittsgebühr beträgt [COST] L$
+ 
+[MESSAGE]
+
+		<option name="Join">
+			Beitreten
+		</option>
+		<option name="Decline">
+			Ablehnen
+		</option>
+		<option name="Info">
+			Info
+		</option>
+	</notification>
+	<notification name="JoinGroupMemberNoFee">
+		
+			[NAME] hat Sie eingeladen
+einer Gruppe beizutreten.
+Der Beitritt ist kostenlos.
+ 
+[MESSAGE]
+
+		<option name="Join">
+			Beitreten
+		</option>
+		<option name="Decline">
+			Ablehnen
+		</option>
+		<option name="Info">
+			Info
+		</option>
+	</notification>
+	<notification name="OfferTeleport">
+		
+			[NAME] hat angeboten, Sie zu ihrem/seinem Standort zu teleportieren:
+ 
+[MESSAGE]
+
+		<option name="Teleport">
+			Teleportieren
+		</option>
+		<option name="Cancel">
+			Abbrechen
+		</option>
+	</notification>
+	<notification name="GotoURL">
+		
+			[MESSAGE]
+[URL]
+
+		<option name="Later">
+			Später
+		</option>
+		<option name="GoNow...">
+			Jetzt gehen...
+		</option>
+	</notification>
+	<notification name="OfferFriendship">
+		
+			[NAME] bietet Ihnen die Freundschaft an.
+ 
+[MESSAGE]
+ 
+(Standardmäßig werden Sie gegenseitig ihren Online-Status sehen können.)
+
+		<option name="Accept">
+			Akzeptieren
+		</option>
+		<option name="Decline">
+			Ablehnen
+		</option>
+	</notification>
+	<notification name="OfferFriendshipNoMessage">
+		
+			[NAME] bietet Ihnen die Freundschaft an.
+
+(Sie werden dadurch den gegenseitigen Online-Status sehen können.)
+
+		<option name="Accept">
+			Akzeptieren
+		</option>
+		<option name="Decline">
+			Ablehnen
+		</option>
+	</notification>
+	<notification name="FriendshipAccepted">
+		
+			[NAME] hat Ihr Freundschaftsangebot akzeptiert.
+
+	</notification>
+	<notification name="FriendshipDeclined">
+		
+			[NAME] hat Ihr Freundschaftsangebot abgelehnt.
+
+	</notification>
+	<notification name="OfferCallingCard">
+		
+			[FIRST] [LAST] bietet Ihnen eine Visitenkarte an.
+Dies erstellt ein Lesezeichen in Ihrem Inventar, damit Sie diesen Einwohner jederzeit über IM erreichen.
+
+		<option name="Accept">
+			Akzeptieren
+		</option>
+		<option name="Decline">
+			Ablehnen
+		</option>
+	</notification>
+	<notification name="RegionRestartMinutes">
+		
+			Region wird in [MINUTES] Minuten neu gestartet.
+Wenn Sie in dieser Region bleiben, werden Sie abgemeldet.
+
+	</notification>
+	<notification name="RegionRestartSeconds">
+		
+			Region wird in [SECONDS] Sekunden neu gestartet.
+Wenn Sie in dieser Region bleiben, werden Sie abgemeldet.
+
+	</notification>
+	<notification name="LoadWebPage">
+		
+			Webseite [URL] laden?
+ 
+[MESSAGE]
+ 
+Von Objekt: [OBJECTNAME], Eigentümer: [NAME]?
+
+		<option name="Gotopage">
+			Gehe zu Seite
+		</option>
+		<option name="Cancel">
+			Abbrechen
+		</option>
+	</notification>
+	<notification name="FailedToLoadWearableUnnamed">
+		
+			Hoppla!
+Sie haben versucht, ein(e)/einen [TYPE] anzuziehen, aber das Laden hat nicht funktioniert.
+
+Keine Panik.
+Versuchen Sie es in einer Minute erneut, dann wird es schon klappen.
+
+	</notification>
+	<notification name="FailedToLoadWearable">
+		
+			Hoppla!
+Sie haben versucht, ein(e)/einen [TYPE] namens [DESC] anzuziehen, aber das Laden hat nicht funktioniert.
+
+Keine Panik.
+Versuchen Sie es in einer Minute erneut, dann wird es schon klappen.
+
+	</notification>
+	<notification name="FailedToFindWearableUnnamed">
+		
+			[TYPE] nicht in Datenbank.
+
+	</notification>
+	<notification name="FailedToFindWearable">
+		
+			[TYPE] namens [DESC] nicht in Datenbank.
+
+	</notification>
+	<notification name="ScriptTakeMoney">
+		
+			Linden-Dollar (L$) von Ihnen nehmen
+
+	</notification>
+	<notification name="ActOnControlInputs">
+		
+			Steuerung festlegen
+
+	</notification>
+	<notification name="RemapControlInputs">
+		
+			Steuerung neu zuweisen
+
+	</notification>
+	<notification name="AnimateYourAvatar">
+		
+			Avatar animieren
+
+	</notification>
+	<notification name="AttachToYourAvatar">
+		
+			An Avatar anhängen
+
+	</notification>
+	<notification name="ReleaseOwnership">
+		
+			Eigentum aufgeben und öffentlich machen
+
+	</notification>
+	<notification name="LinkAndDelink">
+		
+			Mit Objekten verknüpfen und davon trennen
+
+	</notification>
+	<notification name="AddAndRemoveJoints">
+		
+			Verbindungen zu anderen Objekten hinzufügen und entfernen
+
+	</notification>
+	<notification name="ChangePermissions">
+		
+			Berechtigungen ändern
+
+	</notification>
+	<notification name="TrackYourCamera">
+		
+			Kameraverfolgung
+
+	</notification>
+	<notification name="ControlYourCamera">
+		
+			Kamerasteuerung
+
+	</notification>
+	<notification name="ScriptQuestion">
+		
+			Das Objekt „[OBJECTNAME]“, Eigentum von „[NAME]“, möchte:
+ 
+[QUESTIONS]
+Ist das OK?
+
+		<option name="Yes">
+			Ja
+		</option>
+		<option name="No">
+			Nein
+		</option>
+		<option name="Mute">
+			Stummschalten
+		</option>
+	</notification>
+	<notification name="ScriptQuestionCautionChatGranted">
+		
+			Dem Objekt „[OBJECTNAME]“, Eigentum von „[OWNERNAME]“, in [REGIONNAME] auf [REGIONPOS], wurde folgende Erlaubnis gewährt: [PERMISSIONS].
+
+	</notification>
+	<notification name="ScriptQuestionCautionChatDenied">
+		
+			Dem Objekt „[OBJECTNAME]“, Eigentum von „[OWNERNAME]“, in [REGIONNAME] auf [REGIONPOS], wurde folgende Erlaubnis verweigert: [PERMISSIONS].
+
+	</notification>
+	<notification name="ScriptQuestionCautionWarn">
+		
+			Ein Objekt bittet um Erlaubnis, von Ihrem Konto Linden-Dollar (L$) abbuchen zu dürfen.
+
+	</notification>
+	<notification name="ScriptQuestionCaution">
+		
+			Das Objekt „[OBJECTNAME]“, Eigentum von „[NAME]“, möchte:
+ 
+[QUESTIONS]
+Wenn Sie diesem Objekt und seinem Ersteller nicht vertrauen, sollten Sie diese Anfrage ablehnen. Klicken Sie für weitere Informationen auf „Details“.
+
+Anfrage gestatten?
+
+		<option name="Grant">
+			Gewähren
+		</option>
+		<option name="Deny">
+			Verweigern
+		</option>
+		<option name="Details">
+			Details...
+		</option>
+	</notification>
+	<notification name="ScriptDialog">
+		
+			[FIRST] [LAST]s „[TITLE]“
+[MESSAGE]
+
+		<option name="Ignore">
+			Ignorieren
+		</option>
+	</notification>
+	<notification name="ScriptDialogGroup">
+		
+			[GROUPNAME]s „[TITLE]“
+[MESSAGE]
+
+		<option name="Ignore">
+			Ignorieren
+		</option>
+	</notification>
+	<notification name="FirstBalanceIncrease">
+		
+			Sie haben gerade [AMOUNT] L$ erhalten.
+Objekte und andere Benutzer können Ihnen L$ geben.
+Ihren Kontostand sehen Sie in der oberen rechten Ecke des Bildschirms.
+
+	</notification>
+	<notification name="FirstBalanceDecrease">
+		
+			Sie haben gerade [AMOUNT] L$ bezahlt.
+Ihren Kontostand sehen Sie in der oberen rechten Ecke des Bildschirms.
+
+	</notification>
+	<notification name="FirstSit">
+		
+			Sie sitzen.
+Benutzen Sie die Pfeil- oder WASD-Tasten, um die Ansicht zu ändern.
+Klicken Sie auf „Aufstehen“, um aufzustehen.
+
+	</notification>
+	<notification name="FirstMap">
+		
+			Zum Verschieben der Karte klicken und ziehen.
+Zum Teleportieren doppelklicken.
+Nutzen Sie die Optionen links, um Dinge zu finden und um verschiedene Hintergründe anzuzeigen.
+
+	</notification>
+	<notification name="FirstBuild">
+		
+			In einigen Bereichen von [SECOND_LIFE] können Sie neue Objekte erstellen.
+Verwenden Sie zum Bauen die Werkzeuge oben links. 
+Mit den Strg- und Alt-Tasten können Sie schnell zwischen den Werkzeugen umschalten.
+Drücken Sie Esc, um das Bauen abzubrechen.
+
+	</notification>
+	<notification name="FirstLeftClickNoHit">
+		
+			Die linke Maustaste ermöglicht Objektinteraktionen. 
+Der Mauszeiger zeigt eine Hand, wenn Sie 
+mit dem Objekt interagieren können.  
+Die rechte Maustaste zeigt immer ein Aktionsmenü an.
+
+	</notification>
+	<notification name="FirstTeleport">
+		
+			Diese Region unterstützt keine direkten Teleports. Sie wurden zum nächstgelegenen Telehub transportiert. 
+Ihr Ziel ist mit einem großen roten Strahl markiert. Folgen Sie dem roten Pfeil zum Strahl oder klicken Sie auf den Pfeil, um den Strahl zu entfernen.
+
+	</notification>
+	<notification name="FirstOverrideKeys">
+		
+			Ihre Bewegungstasten werden jetzt von einem Objekt gesteuert.  
+Probieren Sie die Pfeil- oder WASD-Tasten aus.
+Manche Objekte (wie Waffen) müssen per Mouselook gesteuert werden. 
+Drücken Sie dazu „M“.
+
+	</notification>
+	<notification name="FirstAppearance">
+		
+			Sie bearbeiten gerade Ihr Aussehen.  
+Benutzen Sie die Pfeiltasten zum Drehen und Zoomen. 
+Klicken Sie auf „Alles speichern“, wenn Sie fertig sind, um Ihr Aussehen zu speichern.  
+Sie können Ihr Aussehen jederzeit verändern.
+
+	</notification>
+	<notification name="FirstInventory">
+		
+			Ihr Inventar. Es enthält Objekte, Notizkarten, Kleidung und andere Dinge in Ihrem Besitz.
+* Zum Anziehen eines Objekts oder Outfit-Ordners ziehen Sie es/ihn auf sich.
+* Um ein Objekt in der Welt abzulegen, ziehen Sie es auf den Boden.
+* Zum Lesen einer Notizkarte klicken Sie sie doppelt an.
+
+	</notification>
+	<notification name="FirstSandbox">
+		
+			Dies ist eine Sandkastenregion.
+Objekte, die Sie hier bauen, können gelöscht werden, wenn Sie das Gebiet verlassen. Sandkästen werden regelmäßig gereinigt. Weitere Informationen hierzu finden Sie oben im Bild neben dem Regionsnamen.
+ 
+Sandkastenregionen kommen selten vor und sind entsprechend gekennzeichnet.
+
+	</notification>
+	<notification name="FirstFlexible">
+		
+			Dieses Objekt ist flexibel. 
+Ein flexibles Objekt ist ein Phantom und nicht physisch, bis die Option „Flexibel“ deaktiviert wurde.
+
+	</notification>
+	<notification name="FirstDebugMenus">
+		
+			Sie haben das Advanced-Menü aktiviert. 
+Dieses Menü enthält nützliche Funktionen zum Debuggen von Second Life.
+Drücken Sie in Windows Strg-Alt-D (Mac: Befehl-Opt-Umschalt-D) zum Ein- und Ausschalten dieses Menüs.
+
+	</notification>
+	<notification name="FirstSculptedPrim">
+		
+			Sie bearbeiten ein geformtes Primitiv.  
+Geformte Primitive benötigen eine spezielle Textur, die ihre Form definiert.  
+Beispiele für Formtexturen finden Sie in der Inventarbibliothek.
+
+	</notification>
+	<notification name="FirstMedia">
+		
+			Sie haben die Medienwiedergabe gestartet.  Unter „Audio und Video“ im Fenster „Einstellungen“ können Sie festlegen, dass Medien automatisch wiedergegeben werden. Beachten Sie, dass dies bei nicht vertrauenswürdigen Medienseiten ein Sicherheitsrisiko darstellen kann.
+
+	</notification>
+	<notification name="MaxListSelectMessage">
+		
+			Sie können maximal [MAX_SELECT] Objekte
+von der Liste auswählen.
+
+	</notification>
+	<notification name="VoiceInviteP2P">
+		
+			[NAME] lädt Sie zu einem Voice-Chat ein. 
+Klicken Sie auf „Akzeptieren“, um dem Gespräch beizutreten, oder auf „Ablehnen“, um die Einladung auszuschlagen. Klicken Sie auf „Stummschalten“, um diesen Anrufer stumm zu schalten.
+
+		<option name="Accept">
+			Akzeptieren
+		</option>
+		<option name="Decline">
+			Ablehnen
+		</option>
+		<option name="Mute">
+			Stummschalten
+		</option>
+	</notification>
+	<notification name="AutoUnmuteByIM">
+		
+			[FIRST] [LAST] hat eine Instant Message erhalten; die Stummschaltung wurde aufgehoben.
+
+	</notification>
+	<notification name="AutoUnmuteByMoney">
+		
+			[FIRST] [LAST] hat Geld erhalten; die Stummschaltung wurde aufgehoben.
+
+	</notification>
+	<notification name="AutoUnmuteByInventory">
+		
+			[FIRST] [LAST] wurde ein Inventarobjekt angeboten; die Stummschaltung wurde aufgehoben.
+
+	</notification>
+	<notification name="VoiceInviteGroup">
+		
+			[NAME] ist einem Voice-Chat mit der Gruppe [GROUP] beigetreten. 
+Klicken Sie auf „Akzeptieren“, um dem Gespräch beizutreten, oder auf „Ablehnen“, um die Einladung auszuschlagen. Klicken Sie auf „Stummschalten“, um diesen Anrufer stumm zu schalten.
+
+		<option name="Accept">
+			Akzeptieren
+		</option>
+		<option name="Decline">
+			Ablehnen
+		</option>
+		<option name="Mute">
+			Stummschalten
+		</option>
+	</notification>
+	<notification name="VoiceInviteAdHoc">
+		
+			[NAME] ist einem Voice-Konferenz-Chat beigetreten. 
+Klicken Sie auf „Akzeptieren“, um dem Gespräch beizutreten, oder auf „Ablehnen“, um die Einladung auszuschlagen. Klicken Sie auf „Stummschalten“, um diesen Benutzer stumm zu schalten.
+
+		<option name="Accept">
+			Akzeptieren
+		</option>
+		<option name="Decline">
+			Ablehnen
+		</option>
+		<option name="Mute">
+			Stummschalten
+		</option>
+	</notification>
+	<notification name="InviteAdHoc">
+		
+			[NAME] lädt Sie zu einem Konferenz-Chat ein. 
+Klicken Sie auf „Akzeptieren“, um dem Chat beizutreten, oder auf „Ablehnen“, um die Einladung auszuschlagen. Klicken Sie auf „Stummschalten“, um diesen Benutzer stumm zu schalten.
+
+		<option name="Accept">
+			Akzeptieren
+		</option>
+		<option name="Decline">
+			Ablehnen
+		</option>
+		<option name="Mute">
+			Stummschalten
+		</option>
+	</notification>
+	<notification name="VoiceChannelFull">
+		
+			Der Voice-Chat, dem Sie beitreten möchten, [VOICE_CHANNEL_NAME], hat seine maximale Teilnehmerzahl erreicht. Bitte versuchen Sie es erneut.
+
+	</notification>
+	<notification name="ProximalVoiceChannelFull">
+		
+			Es tut uns Leid.  Dieses Gebiet hat seine maximale Kapazität für Voice-Gespräche erreicht.  Bitte versuchen Sie es in einem anderen Gebiet.
+
+	</notification>
+	<notification name="VoiceChannelDisconnected">
+		
+			Sie haben [VOICE_CHANNEL_NAME] verlassen.  Sie werden nun wieder mit dem Umgebungs-Voice-Chat verbunden.
+
+	</notification>
+	<notification name="VoiceChannelDisconnectedP2P">
+		
+			[VOICE_CHANNEL_NAME] hat das Gespräch beendet.  Sie werden nun wieder mit dem Umgebungs-Voice-Chat verbunden.
+
+	</notification>
+	<notification name="P2PCallDeclined">
+		
+			[VOICE_CHANNEL_NAME] hat Ihren Anruf abgelehnt.  Sie werden nun wieder mit dem Umgebungs-Voice-Chat verbunden.
+
+	</notification>
+	<notification name="P2PCallNoAnswer">
+		
+			[VOICE_CHANNEL_NAME] ist zurzeit nicht erreichbar.  Sie werden nun wieder mit dem Umgebungs-Voice-Chat verbunden.
+
+	</notification>
+	<notification name="VoiceChannelJoinFailed">
+		
+			Verbindung zu [VOICE_CHANNEL_NAME] nicht möglich. Bitte versuchen Sie es später.  Sie werden nun wieder mit dem Umgebungs-Voice-Chat verbunden.
+
+	</notification>
+	<notification name="VoiceLoginRetry">
+		
+			Wir erstellen einen Voice-Kanal für Sie. Bitte warten Sie einen Moment.
+
+	</notification>
+	<notification name="Cannot enter parcel: not a group member">
+		
+			Zugang zur Parzelle verweigert, Sie gehören keiner berechtigten Gruppe an.
+
+	</notification>
+	<notification name="Cannot enter parcel: banned">
+		
+			Zugang zur Parzelle verweigert. Sie wurden verbannt.
+
+	</notification>
+	<notification name="Cannot enter parcel: not on access list">
+		
+			Zugang zur Parzelle verweigert. Sie stehen nicht auf der Zugangsliste.
+
+	</notification>
+	<notification name="VoiceNotAllowed">
+		
+			Sie sind nicht berechtigt, einem Voice-Chat in [VOICE_CHANNEL_NAME] beizutreten.
+
+	</notification>
+	<notification name="VoiceCallGenericError">
+		
+			Fehler beim Versuch, eine Voice-Chat-Verbindung zu [VOICE_CHANNEL_NAME] herzustellen.  Bitte versuchen Sie es erneut.
+
+	</notification>
+	<notification name="ServerVersionChanged">
+		
+			Die Region, die Sie betreten haben, verwendet eine andere Simulatorversion. Klicken Sie auf diese Nachricht, um weitere Informationen zu erhalten.
+
+	</notification>
+	<notification name="UnableToOpenCommandURL">
+		
+			Die URL, die Sie angeklickt haben, kann in diesem Web Browser nicht geöffnet werden.
+
+	</notification>
+</notifications>

@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<panel border="true" bottom="-409" enabled="true" follows="left|top|right|bottom"
+     height="408" label="General" left="102" mouse_opaque="true"
+     name="general_panel" width="517">
+     <panel bottom="0" follows="left|bottom|right|top" height="408"  name="imagebg" width="517">
+     <icon bottom="0" color="255,255,255,245" scale_image="true"
+         follows="left|right|top|bottom" height="408"  image_name="MapBg2.tga"
+         left="0" width="517" />
+</panel>
+  <tab_container label="Page 1" bottom="0" height="443" left="0" mouse_opaque="false" name="tab"
+	     tab_min_width="50" tab_position="top" width="495" bg_opaque_color="0,0,0,0.0">
+    <panel border="true" bottom="-408" follows="left|top|right|bottom" height="408"
+		     label="General" left="1" mouse_opaque="true" name="General" width="517">         
+	<text type="string" length="1" bottom="-25" follows="left|top" font="SansSerifSmall" h_pad="0"
+	     halign="left" height="16" left="10" name="alt_avatars_textbox" v_pad="0"
+	     width="394">
+		Recent Logins:
+	</text>
+	<check_box name="save_names_checkbox" follows="left|top"
+	     left_delta="0" bottom_delta="-23" width="149" height="16"
+	     label="Save name list" initial_value="true"
+	     radio_style="false" font="SansSerifSmall"
+	     tool_tip="Save a list of recently used avatar names. You may wish to turn this off if more than one person has access to this computer."/>
+	<check_box bottom_delta="-17" follows="left|top"
+	     font="SansSerifSmall" height="16" initial_value="false"
+	     label="Clear password when selecting" left_delta="0" mouse_opaque="true"
+	     tool_tip="Clears the password entry box when selecting a different avatar name at login."
+	     name="clear_password_checkbox" radio_style="false" width="200" />
+	<combo_box allow_text_entry="true" bottom_delta="60" enabled="true"
+	     follows="left|bottom" height="16" left="250" max_chars="135"
+	     mouse_opaque="true" name="language_combobox" width="146">
+		<combo_item type="string" length="1" enabled="true" name="System Default Language" value="default">
+			System Default
+		</combo_item>
+		<combo_item type="string" length="1" enabled="true" name="English" value="en-us">
+			English
+		</combo_item>
+		
+		<!-- After "System Default" and "English", please keep the rest of these combo_items in alphabetical order by the first character in the string. -->
+		
+		<combo_item type="string" length="1" enabled="true" name="Danish" value="da">
+			Dansk (Danish) - Beta
+		</combo_item>
+		<combo_item type="string" length="1" enabled="true" name="Deutsch(German)" value="de">
+			Deutsch (German) - Beta
+		</combo_item>
+		<combo_item type="string" length="1" enabled="true" name="Spanish" value="es">
+			EspaÃ±ol (Spanish) - Beta
+		</combo_item>
+		<combo_item type="string" length="1" enabled="true" name="French" value="fr">
+			FranÃ§ais (French) - Beta
+		</combo_item>
+		<combo_item type="string" length="1" enabled="true" name="Italian" value="it">
+			Italiano (Italian) - Beta
+		</combo_item>
+		<combo_item type="string" length="1" enabled="true" name="Hungarian" value="hu">
+			Magyar (Hungarian) - Beta
+		</combo_item>
+		<combo_item type="string" length="1" enabled="true" name="Dutch" value="nl">
+			Nederlands (Dutch) - Beta
+		</combo_item>
+		<combo_item type="string" length="1" enabled="true" name="Polish" value="pl">
+			Polski (Polish) - Beta
+		</combo_item>
+		<combo_item type="string" length="1" enabled="true" name="Portugese" value="pt">
+			PortuguÃ©s (Portuguese) - Beta
+		</combo_item>
+ 		<combo_item type="string" length="1" enabled="true" name="Russian" value="ru">
+ 			Ð ÑƒÑÑÐºÐ¸Ð¹ (Russian) - Beta
+ 		</combo_item>
+		<combo_item type="string" length="1" enabled="true" name="Turkish" value="tr">
+			TÃ¼rkÃ§e (Turkish) - Beta
+		</combo_item>
+ 		<combo_item type="string" length="1" enabled="true" name="Ukrainian" value="uk">
+ 			Ð£ÐºÑ€Ð°Ñ—Ð½ÑÑŒÐºÐ° (Ukrainian) - Beta
+ 		</combo_item>
+		<combo_item type="string" length="1" enabled="true" name="Chinese" value="zh">
+			ä¸­æ–‡ (ç®€ä½“) (Chinese) - Beta
+		</combo_item>
+		<combo_item type="string" length="1" enabled="true" name="(Japanese)" value="ja">
+			æ—¥æœ¬èªž (Japanese) - Beta
+		</combo_item>
+		<combo_item type="string" length="1" enabled="true" name="(Korean)" value="ko">
+			í•œêµ­ì–´ (Korean) - Beta
+		</combo_item>
+	</combo_box>
+	<check_box bottom_delta="-40" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" hidden="false"
+	     initial_value="false" label="Share language with objects" left_delta="20"
+	     mouse_opaque="true" name="language_is_public"
+	     radio_style="false"
+	     tool_tip="This lets in-world objects know your preferred language."
+	     width="256" />
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom="-90" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     font="SansSerifSmall" h_pad="0" halign="left" height="10" left="10"
+	     mouse_opaque="true" name="start_location_textbox" v_pad="0" width="394">
+		Start Location:
+	</text>
+  <radio_group bottom_delta="-35" draw_border="false" follows="left|bottom" height="40" left_delta="0"
+	     name="default_start_location" width="220">
+    <radio_item bottom_delta="-17" height="20" left_delta="0" name="MyHome" width="50"
+		  tool_tip="Log into my home location by default.">
+      My Home
+    </radio_item>
+    <radio_item bottom="-17" height="20" left_delta="0" name="MyLastLocation" width="50"
+		  tool_tip="Log into my last location by default.">
+      My Last Location
+    </radio_item>
+  </radio_group>
+	<check_box bottom_delta="-42" enabled="true" follows="left|top"
+      	     font="SansSerifSmall" height="16" initial_value="true"
+      	     label="Show Start Location on Login Screen" left_delta="0" mouse_opaque="true"
+      	     name="show_location_checkbox" radio_style="false" width="256" />
+	<check_box bottom_delta="-17" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="false"
+	     label="Flying on Login" left_delta="7" control_name="FlyingAtExit"
+	     mouse_opaque="true" name="flyatexit" radio_style="false"
+	     tool_tip="Logs you in Fly Mode if you logged out in Fly Mode"
+	     width="256" />
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom_delta="80" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     font="SansSerifSmall" h_pad="0" halign="left" height="10" left="251"
+	     mouse_opaque="true" name="Notwhen" v_pad="0" width="394">
+		Notification when:
+	</text>
+	<check_box bottom_delta="-29" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="false"
+	     label="L$ spent or received" left_delta="0"
+	     mouse_opaque="true" name="notify_money_change_checkbox" radio_style="false"
+	     width="256" />
+	<check_box bottom_delta="-17" enabled="true" control_name="ChatOnlineNotification"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="false"
+	     label="Friends come on/off" left_delta="0"
+	     mouse_opaque="true" name="notify_online_friends" radio_style="false"
+	     width="256" />
+	<view_border bevel_style="none" border_thickness="1" bottom="-193" follows="top|left"
+	     height="25" left="340" name="GraphicsBorder" width="150" />
+	<check_box bottom_delta="2" follows="left|top" control_name="WarnConfirmQuit"
+	     font="SansSerifSmall" height="16" initial_value="false"
+	     label="Ask before Quit" left_delta="10" mouse_opaque="true"
+	     tool_tip="Asks for Quit before closing Second Life"
+	     name="askquit" radio_style="false" width="200" />
+	<combo_box bottom_delta="124" follows="left|top" height="18" left_delta="-100"
+	     mouse_opaque="true" name="maturity_desired_combobox" width="150" control_name="PreferredMaturity">
+		<combo_item name="Desired_Adult" value="42">
+			PG, Mature and Adult
+		</combo_item>
+		<combo_item name="Desired_Mature" value="21">
+			PG and Mature
+		</combo_item>
+		<combo_item name="Desired_PG" value="13">
+			PG only
+		</combo_item>
+	</combo_box>
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom_delta="400" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     font="SansSerifSmall" h_pad="0" halign="left" height="10" left="250"
+	     mouse_opaque="true" name="maturity_desired_textbox" v_pad="0" width="150">
+		 PG only
+	</text>
+	<check_box bottom="-218" follows="left|top" control_name="AllowIdleAFK"
+	     font="SansSerifSmall" height="16" initial_value="false"
+	     label="Automatic AFK" left="350" mouse_opaque="true"
+	     tool_tip="Enables/Disables Automatic AFK and Disconnecting after 30 minutes"
+	     name="goafk" radio_style="false" width="200" />
+	<view_border bevel_style="none" border_thickness="1" bottom="-220" follows="top|left"
+	     height="25" left="340" name="GraphicsBorder" width="150" />
+</panel>
+	<panel border="true" bottom="-408" follows="left|top|right|bottom" height="408"
+	 label="Personalising" left="1" mouse_opaque="true" name="Personalising" width="517">   
+	<view_border bevel_style="none" border_thickness="1" bottom="-425" follows="top|left"
+	     height="420" left="5" name="GraphicsBorder" width="485" />
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom_delta="405" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     font="SansSerifSmall" h_pad="0" halign="left" height="10" left="10"
+	     mouse_opaque="true" name="Personalise" v_pad="0" width="394">
+		Personalising:
+	</text>
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom_delta="-30" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     font="SansSerifSmall" h_pad="0" halign="left" height="10" left_delta="0"
+	     mouse_opaque="true" name="effects_color_textbox" v_pad="0" width="394">
+		Color For My Effects:
+	</text>
+	<color_swatch border_color="0.45098 0.517647 0.607843 1" bottom_delta="-27"
+	     can_apply_immediately="false" color="1 1 1 1"
+	     enabled="true" follows="left|top" height="48" label="" left_delta="157"
+	     mouse_opaque="true" name="effect_color_swatch"
+	     tool_tip="Click to open Color Picker" width="32" />
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom_delta="-5" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     font="SansSerifSmall" h_pad="0" halign="left" height="10" left="10"
+	     mouse_opaque="true" name="show_names_textbox" v_pad="0" width="394">
+		Show Name Tags:
+	</text>
+	<combo_box bottom_delta="-4" follows="left|top" height="18" left="155"
+	     mouse_opaque="true" name="fade_out_combobox" width="146">
+		<combo_item name="Never" value="Never">
+			Never
+		</combo_item>
+		<combo_item name="Show Temporarily" value="Show Temporarily">
+			Show Temporarily
+		</combo_item>
+		<combo_item name="Always" value="Always">
+			Always
+		</combo_item>
+	</combo_box>
+	<slider bottom_delta="18" can_edit_text="true" control_name="RenderNameFadeDuration"
+	     decimal_digits="1" enabled="true" height="16" increment="0.1" label="Fade Time"
+	     initial_val="1" left="310" max_val="10" min_val="0" mouse_opaque="true"
+	     name="fadetime_slider" show_text="true" value="1" width="175" />
+	<check_box bottom_delta="-40" follows="left|top"
+	     font="SansSerifSmall" height="16" initial_value="false"
+	     label="Hide My Name On My Screen" left="10" name="show_my_name_checkbox"
+	     width="180" />
+	<check_box bottom_delta="-0" follows="left|top"
+	     font="SansSerifSmall" height="16" initial_value="true"
+	     label="Small Avatar Names" left_delta="310" name="small_avatar_names_checkbox"
+	     width="200" />
+	     width="149" />
+	<text type="string" length="1" bottom_delta="-23" follows="left|top" font="SansSerifSmall" h_pad="0"
+	     halign="left" height="16" left="10" name="group_titles_textbox" v_pad="0"
+	     width="394">
+		Group Titles:
+	</text>
+	<check_box bottom_delta="0" follows="left|top"
+	     font="SansSerifSmall" height="16" initial_value="false"
+	     label="Hide My Group Title" left="151" name="show_my_title_checkbox"
+	     radio_style="false" width="149" />
+	<check_box bottom_delta="-19" follows="left|top"
+	     font="SansSerifSmall" height="16" initial_value="false"
+	     label="Hide All Group Titles" left_delta="0" mouse_opaque="true"
+	     name="show_all_title_checkbox" radio_style="false" width="200" />
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom_delta="-23" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     font="SansSerifSmall" h_pad="0" halign="left" height="12" left="10"
+	     mouse_opaque="true" name="UI Size:" v_pad="0" width="128">
+		UI Size:
+	</text>
+	<slider bottom_delta="12" can_edit_text="true"
+	     decimal_digits="3" enabled="true" height="16" increment="0.025"
+	     initial_val="1" left="148" max_val="1.4" min_val="0.75" mouse_opaque="true"
+	     name="ui_scale_slider" show_text="true" value="1" width="256" />
+	<check_box bottom_delta="-40" enabled="true" follows="left|top"
+	     font="SansSerifSmall" height="16" initial_value="false"
+	     label="Use resolution independent scale" left="151" mouse_opaque="true"
+	     name="ui_auto_scale" radio_style="false" width="256" />
+	<spinner bottom_delta="-23" decimal_digits="0" enabled="true"
+	     follows="left|top" height="16" increment="1" initial_val="300"
+	     label="Away Timeout:" label_width="141" left="10" max_val="600"
+	     min_val="30" mouse_opaque="true" name="afk_timeout_spinner" width="202" />
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom_delta="4" drop_shadow_visible="true" enabled="true" follows="left|top"
+	     font="SansSerifSmall" h_pad="0" halign="left" height="10" left="220"
+	     mouse_opaque="true" name="seconds_textbox" v_pad="0" width="128">
+		seconds
+	</text>
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom_delta="-25" drop_shadow_visible="true" enabled="true"
+	     follows="left|top" font="SansSerifSmall" h_pad="0" halign="left"
+	     height="10" left="10" mouse_opaque="false" name="LMNCTO" v_pad="0"
+	     width="270">
+		NC,LM,Texture Offers:
+	</text>
+	<check_box bottom_delta="-7" enabled="true"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="false"
+	     label="Automatically accept" left_delta="145" mouse_opaque="true"
+	     name="accept_new_inventory" radio_style="false" width="270" />
+	<check_box bottom_delta="0" enabled="true" control_name="ShowNewInventory"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true" 
+	     label="and view them!" left_delta="150" mouse_opaque="true"
+	     name="show_new_inventory" radio_style="false" width="270" />
+   	<check_box bottom_delta="-20" enabled="true" control_name="ShowInInventory"
+	     follows="left|top" font="SansSerifSmall" height="16" initial_value="true"
+	     label="Automatically show newly accepted objects in inventory" left="10" mouse_opaque="true"
+	     name="show_in_inventory" radio_style="false" width="270" />
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom_delta="-25" drop_shadow_visible="true" enabled="true"
+	     follows="left|top" font="SansSerifSmall" h_pad="0" halign="left"
+	     height="10" left="10" mouse_opaque="false" name="Controls" v_pad="0"
+	     width="270">
+		Control Options:
+	</text>
+	<check_box bottom_delta="-7" follows="left|top" control_name="AllowTapTapHoldRun"
+	     font="SansSerifSmall" height="16" initial_value="false"
+	     label="Double Tap Run" left="150" mouse_opaque="true"
+	     tool_tip="Double Tap a direction , then holding the direction down lets your Avatar run"
+	     name="twicekeyrun" radio_style="false" width="200" />
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom_delta="-25" drop_shadow_visible="true" enabled="true"
+	     follows="left|top" font="SansSerifSmall" h_pad="0" halign="left"
+	     height="10" left="10" mouse_opaque="false" name="MapOpts" v_pad="0"
+	     width="270">
+		Map Options:
+	</text>
+	<check_box bottom_delta="-7" follows="left|top" control_name="MiniMapRotate"
+	     font="SansSerifSmall" height="16" initial_value="false"
+	     label="Rotating Minimap" left="150" mouse_opaque="true"
+	     tool_tip="Allows the minimap to rotate with your movement"
+	     name="minimaprotate" radio_style="false" width="200" />
+	<spinner bottom_delta="-19" decimal_digits="0" enabled="true" control_name="MiniMapPrimMaxRadius"
+	     follows="left|top" height="16" increment="1" initial_val="256"
+	     label="Minimap Max Prim(m):" label_width="150" left_delta="75" max_val="1024"
+	     min_val="1" mouse_opaque="true" name="minimapmaxprim" width="202" />
+	<text type="string" length="1" bg_visible="false" border_drop_shadow_visible="false" border_visible="false"
+	     bottom_delta="-25" drop_shadow_visible="true" enabled="true"
+	     follows="left|top" font="SansSerifSmall" h_pad="0" halign="left"
+	     height="10" left="10" mouse_opaque="false" name="Doubleclickopts" v_pad="0"
+	     width="270">
+		Doubleclick
+	</text>
+	<check_box bottom_delta="-6" follows="left|top" control_name="DoubleClickAutoPilot"
+	     font="SansSerifSmall" height="16" initial_value="false"
+	     label="Autopilot" left="80" mouse_opaque="true"
+	     tool_tip="Double Click anywhere to start Autopiloting there"
+	     name="Autopilot" radio_style="false" width="200" />
+	<check_box bottom_delta="0" follows="left|top" control_name="DoubleClickTeleport"
+	     font="SansSerifSmall" height="16" initial_value="false"
+	     label="Teleport" left_delta="80" mouse_opaque="true"
+	     tool_tip="Double Click anywhere to TP there instantly"
+	     name="DoubleclickTP" radio_style="false" width="200" />
+	<check_box bottom_delta="-30" follows="left|top" control_name="LimitSelectDistance"
+	     font="SansSerifSmall" height="16" initial_value="false"
+	     label="Disable Unlimited Select Distance" left="7" mouse_opaque="true"
+	     tool_tip="Disables Unlimited Select Distance"
+	     name="SelectUnlimited" radio_style="false" width="200" />
+	<string name="region_name_prompt">
+		&lt;Type region name&gt;
+	</string>
+    </panel>
+</tab_container>
+</panel>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<panel border="true" bottom="0" height="500" label="Popups" left="0" name="popups"
+     title="Popups" width="400">
+	<text bottom="-20" follows="top|left" left="15" width="300" name="dont_show_label">
+		Do not show these popups:
+	</text>
+	<scroll_list follows="top|left" height="88" left="15" name="disabled_popups" width="480" />
+	<button follows="top|left" height="20" label="Enable this popup" left="15"
+	     name="enable_popup" width="175" />
+	<button follows="top|left" height="20" label="Enable all popups..." left="200"
+	     name="reset_dialogs_btn"
+	     tool_tip="Enable all of the optional popups and &apos;first time use&apos; notifications."
+	     width="175" bottom_delta="0" />
+	<text follows="top|left" left="15" width="128" name="show_label" bottom_delta="-24">
+		Show these popups:
+	</text>
+	<scroll_list follows="top|left" height="88" left="15" name="enabled_popups" width="480" />
+	<button bottom_delta="-24" follows="top|left" height="20"
+	     label="Disable all these popups..." left="200"
+	     name="skip_dialogs_btn"
+	     tool_tip="Disable all of the optional popups and &apos;first time use&apos; notifications."
+	     width="175" />
+</panel>
