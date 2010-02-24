@@ -556,7 +556,7 @@
 	     mouse_opaque="true" name="HighlightText" v_pad="0" width="128">
 		Highlight Options:
 	</text>
-	<radio_group bottom_delta="-33" control_name="RenderHighlightSelections" draw_border="false"
+	<radio_group bottom_delta="-33" control_name="renderhighlights" draw_border="false"
 	     enabled="true" follows="left|top" height="38" left_delta="0"
 	     mouse_opaque="true" name="highlighting" width="321">
 		<radio_item type="string" length="1" bottom="0" enabled="true" follows="left|top" height="16"

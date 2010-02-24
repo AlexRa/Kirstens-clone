@@ -7595,7 +7595,7 @@ void LLPipeline::generateGI(LLCamera& camera, LLVector3& lightDir, std::vector<L
 
 void LLPipeline::renderHighlight(const LLViewerObject* obj, F32 fade)
 {
-   if (!gSavedSettings.getBOOL("RenderHighlightSelections")) //  KL need this to make the mouseover Highlights toggle ^^
+   if (!gSavedSettings.getBOOL("renderhighlights")) //  KL need this to make the mouseover Highlights toggle ^^
 	{
 		return;
 	}
@@ -7624,7 +7624,7 @@ void LLPipeline::renderHighlight(const LLViewerObject* obj, F32 fade)
 
 void LLPipeline::generateHighlight(LLCamera& camera)
 {
-   if (!gSavedSettings.getBOOL("RenderHighlightSelections")) //  KL need this to make the mouseover Highlights toggle ^^
+   if (!gSavedSettings.getBOOL("renderhighlights")) //  KL need this to make the mouseover Highlights toggle ^^
 	{
 		return;
 	}
