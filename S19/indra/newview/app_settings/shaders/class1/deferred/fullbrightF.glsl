@@ -9,10 +9,6 @@
 
 uniform sampler2D diffuseMap;
 uniform sampler2DRect depthMap;
-uniform sampler2DShadow shadowMap0;
-uniform sampler2DShadow shadowMap1;
-uniform sampler2DShadow shadowMap2;
-uniform sampler2DShadow shadowMap3;
 uniform sampler2D noiseMap;
 
 uniform vec4 shadow_clip;
@@ -60,10 +56,10 @@ void main()
 
 	color.rgb = fullbrightScaleSoftClip(color.rgb);
 
-	if (samp_pos.z != 0.0)
+	if (samp_pos.z != 0.0 && color.a < 1.0)
 	{
 		float dist_factor = alpha_soften;
-		float a = gl_Color.a;
+		float a = color.a;
 		a *= a;
 		dist_factor *= 1.0/(1.0-a);
 		color.a *= min((pos.z-samp_pos.z)*dist_factor, 1.0);

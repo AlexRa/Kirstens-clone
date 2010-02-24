@@ -36,7 +36,7 @@ void main()
 	vec4 pos = (gl_ModelViewMatrix * gl_Vertex);
 	vec3 norm = normalize(gl_NormalMatrix * gl_Normal);
 	// KL this works around ATI not compiling the shader but maintains shadow offset and bias vec3 not vec4
-	vary_position = vec3(pos.xyz + norm.xyz * (-pos.z/64.0*shadow_offset+shadow_bias));
+	vary_position = pos.xyz + norm.xyz * (-pos.z/64.0*shadow_offset+shadow_bias);
 		
 	calcAtmospherics(pos.xyz);
 

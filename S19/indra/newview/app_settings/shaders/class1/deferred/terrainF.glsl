@@ -27,7 +27,7 @@ void main()
 	float alphaFinal = texture2D(alpha_ramp, gl_TexCoord[1].zw).a;
 	vec4 outColor = mix( mix(color3, color2, alpha2), mix(color1, color0, alpha1), alphaFinal );
 	
-	gl_FragData[0] = vec4(outColor.rgb, 1.0);
+	gl_FragData[0] = vec4(outColor.rgb, 0.0); // Kl 0.0 looks fine atm however check grass above waterline when GI enabled in future releases!
 	gl_FragData[1] = vec4(outColor.rgb*0.2, 0.2);
 	gl_FragData[2] = vec4(normalize(vary_normal)*0.5+0.5, 0.0);
 }

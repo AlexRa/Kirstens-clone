@@ -224,7 +224,17 @@ BOOL LLVorbisDecodeState::initDecode()
 	size_guess *= vi->channels;
 	size_guess *= 2;
 	size_guess += 2048;
-	
+
+	// X makes problem , People get pissed because they crash , Y adds fix to emerald
+	// People Love Emerald.... Btw X & Y are either the same person or best buddies
+	// Perhaps I should create more client crashes to fix so I look good also.... hey ho
+	if(size_guess >= 157286400)
+	{
+		llwarns << "Lameness happens here...Somebody wants to screw up audio apparently" << llendl;
+		delete mInFilep;
+		mInFilep = NULL;
+		return FALSE;
+	}
 	bool abort_decode = false;
 	
 	if( vi->channels < 1 || vi->channels > LLVORBIS_CLIP_MAX_CHANNELS )
