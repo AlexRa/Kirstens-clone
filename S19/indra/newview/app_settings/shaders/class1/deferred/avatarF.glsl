@@ -18,7 +18,7 @@ void main()
 		discard;
 	}
 	
-	gl_FragData[0] = vec4(diff.rgb, 0.0);
+	gl_FragData[0] = vec4(diff.rgb, 1.0);
 	gl_FragData[1] = vec4(0,0,0,0);
 	gl_FragData[2] = vec4(normalize(vary_normal)*0.5+0.5, 0.0);
 }
