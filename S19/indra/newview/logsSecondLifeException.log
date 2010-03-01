@@ -4,7 +4,7 @@
         <array>
             <map>
             <key>CallOffset</key>
-                <integer>6963257</integer>
+                <integer>6965705</integer>
             <key>ModuleAddress</key>
                 <integer>4194304</integer>
             <key>ModuleName</key>
@@ -14,11 +14,11 @@
                     <string>Exception Offset</string>
                 </array>
             <key>ReturnAddress</key>
-                <integer>11157561</integer>
+                <integer>11160009</integer>
             </map>
             <map>
             <key>CallOffset</key>
-                <integer>6937305</integer>
+                <integer>6939737</integer>
             <key>ModuleAddress</key>
                 <integer>4194304</integer>
             <key>ModuleName</key>
@@ -26,49 +26,49 @@
             <key>Parameters</key>
                 <array>
                     <integer>1</integer>
-                    <integer>728704840</integer>
+                    <integer>463866424</integer>
                     <integer>0</integer>
-                    <integer>25996376</integer>
+                    <integer>25996696</integer>
                     <integer>0</integer>
                 </array>
             <key>ReturnAddress</key>
-                <integer>11131609</integer>
+                <integer>11134041</integer>
             </map>
             <map>
             <key>CallOffset</key>
-                <integer>6938234</integer>
+                <integer>6940666</integer>
             <key>ModuleAddress</key>
                 <integer>4194304</integer>
             <key>ModuleName</key>
                 <string>c:\Dev\linden\indra\build-vc80\newview\release\secondlife-bin.exe</string>
             <key>Parameters</key>
                 <array>
-                    <integer>1588886584</integer>
-                    <integer>26002292</integer>
-                    <integer>25995648</integer>
-                    <integer>25996376</integer>
+                    <integer>-1346204989</integer>
+                    <integer>26002612</integer>
+                    <integer>25995968</integer>
+                    <integer>25996696</integer>
                     <integer>37093040</integer>
                 </array>
             <key>ReturnAddress</key>
-                <integer>11132538</integer>
+                <integer>11134970</integer>
             </map>
             <map>
             <key>CallOffset</key>
-                <integer>5729345</integer>
+                <integer>5730737</integer>
             <key>ModuleAddress</key>
                 <integer>4194304</integer>
             <key>ModuleName</key>
                 <string>c:\Dev\linden\indra\build-vc80\newview\release\secondlife-bin.exe</string>
             <key>Parameters</key>
                 <array>
-                    <integer>1588886548</integer>
-                    <integer>-1633282646</integer>
-                    <integer>69913116</integer>
+                    <integer>-1346204945</integer>
+                    <integer>347766694</integer>
+                    <integer>69782044</integer>
                     <integer>1</integer>
-                    <integer>63680264</integer>
+                    <integer>67415816</integer>
                 </array>
             <key>ReturnAddress</key>
-                <integer>9923649</integer>
+                <integer>9925041</integer>
             </map>
             <map>
             <key>CallOffset</key>
@@ -79,11 +79,11 @@
                 <string>C:\Windows\WinSxS\x86_microsoft.vc80.crt_1fc8b3b9a1e18e3b_8.0.50727.4927_none_d08a205e442db5b5\MSVCR80.dll</string>
             <key>Parameters</key>
                 <array>
-                    <integer>1588651831</integer>
-                    <integer>26817912</integer>
-                    <integer>1662547</integer>
+                    <integer>-1344469755</integer>
+                    <integer>26818336</integer>
+                    <integer>1400403</integer>
                     <integer>0</integer>
-                    <integer>69913116</integer>
+                    <integer>69782044</integer>
                 </array>
             <key>ReturnAddress</key>
                 <integer>1925323224</integer>
@@ -100,7 +100,7 @@
                     <integer>0</integer>
                     <integer>0</integer>
                     <integer>0</integer>
-                    <integer>14625261</integer>
+                    <integer>14627709</integer>
                     <integer>0</integer>
                 </array>
             <key>ReturnAddress</key>
@@ -119,7 +119,7 @@
                     <integer>37093332</integer>
                     <integer>2003344754</integer>
                     <integer>2130567168</integer>
-                    <integer>1947319565</integer>
+                    <integer>1960615011</integer>
                 </array>
             <key>ReturnAddress</key>
                 <integer>1971140215</integer>
@@ -134,7 +134,7 @@
             <key>Parameters</key>
                 <array>
                     <integer>2130567168</integer>
-                    <integer>1947319565</integer>
+                    <integer>1960615011</integer>
                     <integer>0</integer>
                     <integer>0</integer>
                     <integer>2130567168</integer>
@@ -151,7 +151,7 @@
                 <string>C:\Windows\SysWOW64\ntdll.dll</string>
             <key>Parameters</key>
                 <array>
-                    <integer>14625713</integer>
+                    <integer>14628161</integer>
                     <integer>2130567168</integer>
                     <integer>0</integer>
                     <integer>0</integer>
@@ -167,7 +167,7 @@
         <integer>0</integer>
     <key>Threads</key>
         <map>
-        <key>ID 4084</key>
+        <key>ID 1644</key>
             <map>
             <key>CallStack</key>
                 <array>
@@ -180,8 +180,8 @@
                         <string>C:\Windows\syswow64\kernel32.dll</string>
                     <key>Parameters</key>
                         <array>
-                            <integer>228785660</integer>
-                            <integer>228785776</integer>
+                            <integer>230555132</integer>
+                            <integer>230555248</integer>
                             <integer>0</integer>
                             <integer>-1</integer>
                             <integer>0</integer>
@@ -216,8 +216,8 @@
                         <string>C:\Windows\syswow64\USER32.dll</string>
                     <key>Parameters</key>
                         <array>
-                            <integer>904</integer>
-                            <integer>228786016</integer>
+                            <integer>872</integer>
+                            <integer>230555488</integer>
                             <integer>-1</integer>
                             <integer>1279</integer>
                             <integer>0</integer>
@@ -235,7 +235,7 @@
                     <key>Parameters</key>
                         <array>
                             <integer>5</integer>
-                            <integer>228786016</integer>
+                            <integer>230555488</integer>
                             <integer>0</integer>
                             <integer>-1</integer>
                             <integer>1279</integer>
@@ -253,10 +253,10 @@
                     <key>Parameters</key>
                         <array>
                             <integer>0</integer>
-                            <integer>228786132</integer>
+                            <integer>230555604</integer>
                             <integer>2003344754</integer>
                             <integer>0</integer>
-                            <integer>2072427789</integer>
+                            <integer>2069142627</integer>
                         </array>
                     <key>ReturnAddress</key>
                         <integer>1971140215</integer>
@@ -271,7 +271,7 @@
                     <key>Parameters</key>
                         <array>
                             <integer>0</integer>
-                            <integer>2072427789</integer>
+                            <integer>2069142627</integer>
                             <integer>0</integer>
                             <integer>0</integer>
                             <integer>0</integer>
@@ -303,117 +303,135 @@
             <key>HeuristicWalkI</key>
                 <integer>0</integer>
             </map>
-        <key>ID 4328</key>
+        <key>ID 2848</key>
             <map>
             <key>CallStack</key>
                 <array>
                     <map>
                     <key>CallOffset</key>
-                        <integer>70020</integer>
+                        <integer>34581</integer>
                     <key>ModuleAddress</key>
-                        <integer>1971060736</integer>
+                        <integer>1889271808</integer>
                     <key>ModuleName</key>
-                        <string>C:\Windows\syswow64\kernel32.dll</string>
+                        <string>C:\Windows\system32\dsound.dll</string>
                     <key>Parameters</key>
                         <array>
-                            <integer>1252</integer>
-                            <integer>100</integer>
+                            <integer>480</integer>
+                            <integer>1889306389</integer>
                             <integer>0</integer>
-                            <integer>2052032</integer>
-                            <integer>238812984</integer>
+                            <integer>62573432</integer>
+                            <integer>399834808</integer>
                         </array>
                     <key>ReturnAddress</key>
-                        <integer>1971130756</integer>
+                        <integer>1889306389</integer>
                     </map>
                     <map>
                     <key>CallOffset</key>
-                        <integer>69944</integer>
+                        <integer>27723</integer>
                     <key>ModuleAddress</key>
-                        <integer>1971060736</integer>
+                        <integer>1889271808</integer>
                     <key>ModuleName</key>
-                        <string>C:\Windows\syswow64\kernel32.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>1252</integer>
-                            <integer>100</integer>
-                            <integer>0</integer>
-                            <integer>238813000</integer>
-                            <integer>1772897233</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1971130680</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>6046673</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1766850560</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\system32\nvoglv32.DLL</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>1252</integer>
-                            <integer>100</integer>
-                            <integer>238813036</integer>
-                            <integer>1772416784</integer>
-                            <integer>1252</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1772897233</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>5566224</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1766850560</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\system32\nvoglv32.DLL</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>1252</integer>
-                            <integer>100</integer>
-                            <integer>2064240</integer>
-                            <integer>2051968</integer>
-                            <integer>2064240</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1772416784</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>5568749</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1766850560</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\system32\nvoglv32.DLL</string>
+                        <string>C:\Windows\system32\dsound.dll</string>
                     <key>Parameters</key>
                         <array>
                             <integer>0</integer>
-                            <integer>0</integer>
-                            <integer>238813064</integer>
-                            <integer>1772896281</integer>
-                            <integer>2064240</integer>
+                            <integer>1889299009</integer>
+                            <integer>399834916</integer>
+                            <integer>137887508</integer>
+                            <integer>1764</integer>
                         </array>
                     <key>ReturnAddress</key>
-                        <integer>1772419309</integer>
+                        <integer>1889299531</integer>
                     </map>
                     <map>
                     <key>CallOffset</key>
-                        <integer>6045721</integer>
+                        <integer>26975</integer>
                     <key>ModuleAddress</key>
-                        <integer>1766850560</integer>
+                        <integer>1889271808</integer>
                     <key>ModuleName</key>
-                        <string>C:\Windows\system32\nvoglv32.DLL</string>
+                        <string>C:\Windows\system32\dsound.dll</string>
                     <key>Parameters</key>
                         <array>
-                            <integer>2064240</integer>
-                            <integer>238813076</integer>
+                            <integer>336137172</integer>
+                            <integer>-62573448</integer>
+                            <integer>399834876</integer>
+                            <integer>62483728</integer>
+                            <integer>3840</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1889298783</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>19210</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1889271808</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\system32\dsound.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>137887508</integer>
+                            <integer>1</integer>
+                            <integer>399834908</integer>
+                            <integer>1</integer>
+                            <integer>399834916</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1889291018</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>18922</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1889271808</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\system32\dsound.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>137886276</integer>
+                            <integer>137885696</integer>
+                            <integer>1889287600</integer>
+                            <integer>0</integer>
+                            <integer>137885708</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1889290730</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>16968</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1889271808</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\system32\dsound.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>137885720</integer>
+                            <integer>137885708</integer>
+                            <integer>1971131490</integer>
+                            <integer>480000</integer>
+                            <integer>-1</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1889288776</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>20419</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1889271808</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\system32\dsound.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                            <integer>137885708</integer>
+                            <integer>399835028</integer>
                             <integer>1971140215</integer>
-                            <integer>2064240</integer>
-                            <integer>238813140</integer>
                         </array>
                     <key>ReturnAddress</key>
-                        <integer>1772896281</integer>
+                        <integer>1889292227</integer>
                     </map>
                     <map>
                     <key>CallOffset</key>
@@ -424,11 +442,11 @@
                         <string>C:\Windows\syswow64\kernel32.dll</string>
                     <key>Parameters</key>
                         <array>
-                            <integer>2064240</integer>
-                            <integer>238813140</integer>
+                            <integer>137885708</integer>
+                            <integer>399835092</integer>
                             <integer>2003344754</integer>
-                            <integer>2064240</integer>
-                            <integer>2015345933</integer>
+                            <integer>137885708</integer>
+                            <integer>1631427683</integer>
                         </array>
                     <key>ReturnAddress</key>
                         <integer>1971140215</integer>
@@ -442,11 +460,11 @@
                         <string>C:\Windows\SysWOW64\ntdll.dll</string>
                     <key>Parameters</key>
                         <array>
-                            <integer>2064240</integer>
-                            <integer>2015345933</integer>
+                            <integer>137885708</integer>
+                            <integer>1631427683</integer>
                             <integer>0</integer>
                             <integer>0</integer>
-                            <integer>2064240</integer>
+                            <integer>137885708</integer>
                         </array>
                     <key>ReturnAddress</key>
                         <integer>2003344754</integer>
@@ -460,8 +478,8 @@
                         <string>C:\Windows\SysWOW64\ntdll.dll</string>
                     <key>Parameters</key>
                         <array>
-                            <integer>1772896272</integer>
-                            <integer>2064240</integer>
+                            <integer>1889292189</integer>
+                            <integer>137885708</integer>
                             <integer>0</integer>
                             <integer>0</integer>
                             <integer>0</integer>
@@ -475,7 +493,7 @@
             <key>HeuristicWalkI</key>
                 <integer>0</integer>
             </map>
-        <key>ID 4452</key>
+        <key>ID 3260</key>
             <map>
             <key>CallStack</key>
                 <array>
@@ -490,7 +508,107 @@
                         <array>
                             <integer>10</integer>
                             <integer>0</integer>
-                            <integer>2</integer>
+                            <integer>439943048</integer>
+                            <integer>268510717</integer>
+                            <integer>10</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1974285600</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>75261</integer>
+                    <key>ModuleAddress</key>
+                        <integer>268435456</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Dev\linden\indra\newview\fmod.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>10</integer>
+                            <integer>268615134</integer>
+                            <integer>10</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>268510717</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>79479</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1971060736</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\syswow64\kernel32.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>0</integer>
+                            <integer>439943124</integer>
+                            <integer>2003344754</integer>
+                            <integer>0</integer>
+                            <integer>1825676387</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1971140215</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>236914</integer>
+                    <key>ModuleAddress</key>
+                        <integer>2003107840</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>0</integer>
+                            <integer>1825676387</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>2003344754</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>236869</integer>
+                    <key>ModuleAddress</key>
+                        <integer>2003107840</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>268615014</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>2003344709</integer>
+                    </map>
+                </array>
+            <key>EbpUsed</key>
+                <boolean>1</boolean>
+            <key>HeuristicWalkI</key>
+                <integer>0</integer>
+            </map>
+        <key>ID 3972</key>
+            <map>
+            <key>CallStack</key>
+                <array>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>79136</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1974206464</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\syswow64\KERNELBASE.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>10</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
                             <integer>268510717</integer>
                             <integer>10</integer>
                         </array>
@@ -546,7 +664,7 @@
                             <integer>429916116</integer>
                             <integer>2003344754</integer>
                             <integer>0</integer>
-                            <integer>1874574605</integer>
+                            <integer>1870044259</integer>
                         </array>
                     <key>ReturnAddress</key>
                         <integer>1971140215</integer>
@@ -561,7 +679,7 @@
                     <key>Parameters</key>
                         <array>
                             <integer>0</integer>
-                            <integer>1874574605</integer>
+                            <integer>1870044259</integer>
                             <integer>0</integer>
                             <integer>0</integer>
                             <integer>0</integer>
@@ -845,789 +963,7 @@
             <key>HeuristicWalkI</key>
                 <integer>20</integer>
             </map>
-        <key>ID 4956</key>
-            <map>
-            <key>CallStack</key>
-                <array>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>71213</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1971060736</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\syswow64\kernel32.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>399834772</integer>
-                            <integer>399834888</integer>
-                            <integer>0</integer>
-                            <integer>-1</integer>
-                            <integer>0</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1971131949</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>71969</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1971060736</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\syswow64\kernel32.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>2</integer>
-                            <integer>2130567168</integer>
-                            <integer>0</integer>
-                            <integer>-1</integer>
-                            <integer>0</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1971132705</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>17024</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1889271808</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\system32\dsound.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>2</integer>
-                            <integer>68876316</integer>
-                            <integer>0</integer>
-                            <integer>-1</integer>
-                            <integer>68876312</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1889288832</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>20419</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1889271808</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\system32\dsound.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                            <integer>68876300</integer>
-                            <integer>399835028</integer>
-                            <integer>1971140215</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1889292227</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>79479</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1971060736</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\syswow64\kernel32.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>68876300</integer>
-                            <integer>399835092</integer>
-                            <integer>2003344754</integer>
-                            <integer>68876300</integer>
-                            <integer>1643166989</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1971140215</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>236914</integer>
-                    <key>ModuleAddress</key>
-                        <integer>2003107840</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>68876300</integer>
-                            <integer>1643166989</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                            <integer>68876300</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>2003344754</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>236869</integer>
-                    <key>ModuleAddress</key>
-                        <integer>2003107840</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>1889292189</integer>
-                            <integer>68876300</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>2003344709</integer>
-                    </map>
-                </array>
-            <key>EbpUsed</key>
-                <boolean>1</boolean>
-            <key>HeuristicWalkI</key>
-                <integer>0</integer>
-            </map>
-        <key>ID 5396</key>
-            <map>
-            <key>CallStack</key>
-                <array>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>79479</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1971060736</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\syswow64\kernel32.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>2167736</integer>
-                            <integer>995557332</integer>
-                            <integer>2003344754</integer>
-                            <integer>2167736</integer>
-                            <integer>1299365133</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1971140215</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>236914</integer>
-                    <key>ModuleAddress</key>
-                        <integer>2003107840</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>2167736</integer>
-                            <integer>1299365133</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                            <integer>2167736</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>2003344754</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>236869</integer>
-                    <key>ModuleAddress</key>
-                        <integer>2003107840</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>2003512465</integer>
-                            <integer>2167736</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>2003344709</integer>
-                    </map>
-                </array>
-            <key>EbpUsed</key>
-                <boolean>1</boolean>
-            <key>HeuristicWalkI</key>
-                <integer>0</integer>
-            </map>
-        <key>ID 5416</key>
-            <map>
-            <key>CallStack</key>
-                <array>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>71213</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1971060736</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\syswow64\kernel32.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>350420336</integer>
-                            <integer>350420452</integer>
-                            <integer>0</integer>
-                            <integer>-1</integer>
-                            <integer>0</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1971131949</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>71969</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1971060736</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\syswow64\kernel32.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>1</integer>
-                            <integer>2130567168</integer>
-                            <integer>0</integer>
-                            <integer>-1</integer>
-                            <integer>0</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1971132705</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>4826</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1889271808</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\system32\dsound.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>1</integer>
-                            <integer>350420568</integer>
-                            <integer>0</integer>
-                            <integer>-1</integer>
-                            <integer>350420824</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1889276634</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>11795</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1889271808</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\system32\dsound.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>1</integer>
-                            <integer>-1</integer>
-                            <integer>0</integer>
-                            <integer>350420568</integer>
-                            <integer>68821312</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1889283603</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>189593</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1889271808</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\system32\dsound.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>-1</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                            <integer>1889282478</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1889461401</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>79479</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1971060736</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\syswow64\kernel32.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>68821312</integer>
-                            <integer>350420948</integer>
-                            <integer>2003344754</integer>
-                            <integer>68821312</integer>
-                            <integer>1657191693</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1971140215</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>236914</integer>
-                    <key>ModuleAddress</key>
-                        <integer>2003107840</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>68821312</integer>
-                            <integer>1657191693</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                            <integer>68821312</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>2003344754</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>236869</integer>
-                    <key>ModuleAddress</key>
-                        <integer>2003107840</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>1889461409</integer>
-                            <integer>68821312</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>2003344709</integer>
-                    </map>
-                </array>
-            <key>EbpUsed</key>
-                <boolean>1</boolean>
-            <key>HeuristicWalkI</key>
-                <integer>0</integer>
-            </map>
-        <key>ID 5448</key>
-            <map>
-            <key>CallStack</key>
-                <array>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>79479</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1971060736</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\syswow64\kernel32.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>2167736</integer>
-                            <integer>192413652</integer>
-                            <integer>2003344754</integer>
-                            <integer>2167736</integer>
-                            <integer>2102639885</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1971140215</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>236914</integer>
-                    <key>ModuleAddress</key>
-                        <integer>2003107840</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>2167736</integer>
-                            <integer>2102639885</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                            <integer>2167736</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>2003344754</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>236869</integer>
-                    <key>ModuleAddress</key>
-                        <integer>2003107840</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>2003512465</integer>
-                            <integer>2167736</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>2003344709</integer>
-                    </map>
-                </array>
-            <key>EbpUsed</key>
-                <boolean>1</boolean>
-            <key>HeuristicWalkI</key>
-                <integer>0</integer>
-            </map>
-        <key>ID 5612</key>
-            <map>
-            <key>CallStack</key>
-                <array>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>79136</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1974206464</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\syswow64\KERNELBASE.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>10</integer>
-                            <integer>0</integer>
-                            <integer>439943048</integer>
-                            <integer>268510717</integer>
-                            <integer>10</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1974285600</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>75261</integer>
-                    <key>ModuleAddress</key>
-                        <integer>268435456</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Dev\linden\indra\newview\fmod.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>10</integer>
-                            <integer>268615134</integer>
-                            <integer>10</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>268510717</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>79479</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1971060736</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\syswow64\kernel32.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>0</integer>
-                            <integer>439943124</integer>
-                            <integer>2003344754</integer>
-                            <integer>0</integer>
-                            <integer>1813822733</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1971140215</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>236914</integer>
-                    <key>ModuleAddress</key>
-                        <integer>2003107840</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>0</integer>
-                            <integer>1813822733</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>2003344754</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>236869</integer>
-                    <key>ModuleAddress</key>
-                        <integer>2003107840</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>268615014</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>2003344709</integer>
-                    </map>
-                </array>
-            <key>EbpUsed</key>
-                <boolean>1</boolean>
-            <key>HeuristicWalkI</key>
-                <integer>0</integer>
-            </map>
-        <key>ID 5780</key>
-            <map>
-            <key>CallStack</key>
-                <array>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>79479</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1971060736</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\syswow64\kernel32.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>2171832</integer>
-                            <integer>419889108</integer>
-                            <integer>2003344754</integer>
-                            <integer>2171832</integer>
-                            <integer>1864547597</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1971140215</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>236914</integer>
-                    <key>ModuleAddress</key>
-                        <integer>2003107840</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>2171832</integer>
-                            <integer>1864547597</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                            <integer>2171832</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>2003344754</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>236869</integer>
-                    <key>ModuleAddress</key>
-                        <integer>2003107840</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>2003512465</integer>
-                            <integer>2171832</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>2003344709</integer>
-                    </map>
-                </array>
-            <key>EbpUsed</key>
-                <boolean>1</boolean>
-            <key>HeuristicWalkI</key>
-                <integer>0</integer>
-            </map>
-        <key>ID 5844</key>
-            <map>
-            <key>CallStack</key>
-                <array>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>71213</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1971060736</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\syswow64\kernel32.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>360447472</integer>
-                            <integer>360447588</integer>
-                            <integer>0</integer>
-                            <integer>-1</integer>
-                            <integer>1</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1971131949</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>132058</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1965162496</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\syswow64\USER32.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>1</integer>
-                            <integer>2130567168</integer>
-                            <integer>0</integer>
-                            <integer>-1</integer>
-                            <integer>1</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1965294554</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>9400</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1875902464</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\system32\MMDevAPI.DLL</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>2424</integer>
-                            <integer>0</integer>
-                            <integer>-1</integer>
-                            <integer>1279</integer>
-                            <integer>6</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1875911864</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>12150</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1875902464</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\system32\MMDevAPI.DLL</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>360447892</integer>
-                            <integer>1971140215</integer>
-                            <integer>248337032</integer>
-                            <integer>360447956</integer>
-                            <integer>2003344754</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1875914614</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>79479</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1971060736</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\syswow64\kernel32.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>248337032</integer>
-                            <integer>360447956</integer>
-                            <integer>2003344754</integer>
-                            <integer>248337032</integer>
-                            <integer>1667218701</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1971140215</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>236914</integer>
-                    <key>ModuleAddress</key>
-                        <integer>2003107840</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>248337032</integer>
-                            <integer>1667218701</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                            <integer>248337032</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>2003344754</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>236869</integer>
-                    <key>ModuleAddress</key>
-                        <integer>2003107840</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>1875914601</integer>
-                            <integer>248337032</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>2003344709</integer>
-                    </map>
-                </array>
-            <key>EbpUsed</key>
-                <boolean>1</boolean>
-            <key>HeuristicWalkI</key>
-                <integer>0</integer>
-            </map>
-        <key>ID 5848</key>
-            <map>
-            <key>CallStack</key>
-                <array>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>79479</integer>
-                    <key>ModuleAddress</key>
-                        <integer>1971060736</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\syswow64\kernel32.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>0</integer>
-                            <integer>84738004</integer>
-                            <integer>2003344754</integer>
-                            <integer>0</integer>
-                            <integer>1932049677</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>1971140215</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>236914</integer>
-                    <key>ModuleAddress</key>
-                        <integer>2003107840</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>0</integer>
-                            <integer>1932049677</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>2003344754</integer>
-                    </map>
-                    <map>
-                    <key>CallOffset</key>
-                        <integer>236869</integer>
-                    <key>ModuleAddress</key>
-                        <integer>2003107840</integer>
-                    <key>ModuleName</key>
-                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
-                    <key>Parameters</key>
-                        <array>
-                            <integer>1749621807</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                            <integer>0</integer>
-                        </array>
-                    <key>ReturnAddress</key>
-                        <integer>2003344709</integer>
-                    </map>
-                </array>
-            <key>EbpUsed</key>
-                <boolean>1</boolean>
-            <key>HeuristicWalkI</key>
-                <integer>0</integer>
-            </map>
-        <key>ID 6092</key>
+        <key>ID 5288</key>
             <map>
             <key>CallStack</key>
                 <array>
@@ -1716,7 +1052,7 @@
                             <integer>0</integer>
                             <integer>0</integer>
                             <integer>0</integer>
-                            <integer>68814908</integer>
+                            <integer>137824316</integer>
                         </array>
                     <key>ReturnAddress</key>
                         <integer>1889283476</integer>
@@ -1731,7 +1067,7 @@
                     <key>Parameters</key>
                         <array>
                             <integer>0</integer>
-                            <integer>68814908</integer>
+                            <integer>137824316</integer>
                             <integer>1889461481</integer>
                             <integer>0</integer>
                             <integer>1889461422</integer>
@@ -1748,11 +1084,11 @@
                         <string>C:\Windows\syswow64\kernel32.dll</string>
                     <key>Parameters</key>
                         <array>
-                            <integer>68814908</integer>
+                            <integer>137824316</integer>
                             <integer>379781076</integer>
                             <integer>2003344754</integer>
-                            <integer>68814908</integer>
-                            <integer>1619442957</integer>
+                            <integer>137824316</integer>
+                            <integer>1615567971</integer>
                         </array>
                     <key>ReturnAddress</key>
                         <integer>1971140215</integer>
@@ -1766,11 +1102,11 @@
                         <string>C:\Windows\SysWOW64\ntdll.dll</string>
                     <key>Parameters</key>
                         <array>
-                            <integer>68814908</integer>
-                            <integer>1619442957</integer>
+                            <integer>137824316</integer>
+                            <integer>1615567971</integer>
                             <integer>0</integer>
                             <integer>0</integer>
-                            <integer>68814908</integer>
+                            <integer>137824316</integer>
                         </array>
                     <key>ReturnAddress</key>
                         <integer>2003344754</integer>
@@ -1785,7 +1121,7 @@
                     <key>Parameters</key>
                         <array>
                             <integer>1889461409</integer>
-                            <integer>68814908</integer>
+                            <integer>137824316</integer>
                             <integer>0</integer>
                             <integer>0</integer>
                             <integer>0</integer>
@@ -1799,7 +1135,7 @@
             <key>HeuristicWalkI</key>
                 <integer>0</integer>
             </map>
-        <key>ID 6136</key>
+        <key>ID 5396</key>
             <map>
             <key>CallStack</key>
                 <array>
@@ -1813,10 +1149,10 @@
                     <key>Parameters</key>
                         <array>
                             <integer>0</integer>
-                            <integer>133431252</integer>
+                            <integer>86638548</integer>
                             <integer>2003344754</integer>
-                            <integer>2171264</integer>
-                            <integer>1909964045</integer>
+                            <integer>0</integer>
+                            <integer>1942002787</integer>
                         </array>
                     <key>ReturnAddress</key>
                         <integer>1971140215</integer>
@@ -1830,11 +1166,311 @@
                         <string>C:\Windows\SysWOW64\ntdll.dll</string>
                     <key>Parameters</key>
                         <array>
-                            <integer>2171264</integer>
-                            <integer>1909964045</integer>
+                            <integer>0</integer>
+                            <integer>1942002787</integer>
                             <integer>0</integer>
                             <integer>0</integer>
-                            <integer>2171264</integer>
+                            <integer>0</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>2003344754</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>236869</integer>
+                    <key>ModuleAddress</key>
+                        <integer>2003107840</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>1749621807</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>2003344709</integer>
+                    </map>
+                </array>
+            <key>EbpUsed</key>
+                <boolean>1</boolean>
+            <key>HeuristicWalkI</key>
+                <integer>0</integer>
+            </map>
+        <key>ID 5448</key>
+            <map>
+            <key>CallStack</key>
+                <array>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>79479</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1971060736</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\syswow64\kernel32.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>1909744</integer>
+                            <integer>419889108</integer>
+                            <integer>2003344754</integer>
+                            <integer>1909744</integer>
+                            <integer>1877974115</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1971140215</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>236914</integer>
+                    <key>ModuleAddress</key>
+                        <integer>2003107840</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>1909744</integer>
+                            <integer>1877974115</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                            <integer>1909744</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>2003344754</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>236869</integer>
+                    <key>ModuleAddress</key>
+                        <integer>2003107840</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>2003512465</integer>
+                            <integer>1909744</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>2003344709</integer>
+                    </map>
+                </array>
+            <key>EbpUsed</key>
+                <boolean>1</boolean>
+            <key>HeuristicWalkI</key>
+                <integer>0</integer>
+            </map>
+        <key>ID 5592</key>
+            <map>
+            <key>CallStack</key>
+                <array>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>70020</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1971060736</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\syswow64\kernel32.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>1240</integer>
+                            <integer>100</integer>
+                            <integer>0</integer>
+                            <integer>135865856</integer>
+                            <integer>260636472</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1971130756</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>69944</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1971060736</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\syswow64\kernel32.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>1240</integer>
+                            <integer>100</integer>
+                            <integer>0</integer>
+                            <integer>260636488</integer>
+                            <integer>1772897233</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1971130680</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>6046673</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1766850560</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\system32\nvoglv32.DLL</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>1240</integer>
+                            <integer>100</integer>
+                            <integer>260636524</integer>
+                            <integer>1772416784</integer>
+                            <integer>1240</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1772897233</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>5566224</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1766850560</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\system32\nvoglv32.DLL</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>1240</integer>
+                            <integer>100</integer>
+                            <integer>135878064</integer>
+                            <integer>135865792</integer>
+                            <integer>135878064</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1772416784</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>5568749</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1766850560</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\system32\nvoglv32.DLL</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                            <integer>260636552</integer>
+                            <integer>1772896281</integer>
+                            <integer>135878064</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1772419309</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>6045721</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1766850560</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\system32\nvoglv32.DLL</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>135878064</integer>
+                            <integer>260636564</integer>
+                            <integer>1971140215</integer>
+                            <integer>135878064</integer>
+                            <integer>260636628</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1772896281</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>79479</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1971060736</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\syswow64\kernel32.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>135878064</integer>
+                            <integer>260636628</integer>
+                            <integer>2003344754</integer>
+                            <integer>135878064</integer>
+                            <integer>2036440163</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1971140215</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>236914</integer>
+                    <key>ModuleAddress</key>
+                        <integer>2003107840</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>135878064</integer>
+                            <integer>2036440163</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                            <integer>135878064</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>2003344754</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>236869</integer>
+                    <key>ModuleAddress</key>
+                        <integer>2003107840</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>1772896272</integer>
+                            <integer>135878064</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>2003344709</integer>
+                    </map>
+                </array>
+            <key>EbpUsed</key>
+                <boolean>1</boolean>
+            <key>HeuristicWalkI</key>
+                <integer>0</integer>
+            </map>
+        <key>ID 5700</key>
+            <map>
+            <key>CallStack</key>
+                <array>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>79479</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1971060736</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\syswow64\kernel32.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>0</integer>
+                            <integer>135331796</integer>
+                            <integer>2003344754</integer>
+                            <integer>1909176</integer>
+                            <integer>2130287715</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1971140215</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>236914</integer>
+                    <key>ModuleAddress</key>
+                        <integer>2003107840</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>1909176</integer>
+                            <integer>2130287715</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                            <integer>1909176</integer>
                         </array>
                     <key>ReturnAddress</key>
                         <integer>2003344754</integer>
@@ -1849,7 +1485,425 @@
                     <key>Parameters</key>
                         <array>
                             <integer>2003508351</integer>
-                            <integer>2171264</integer>
+                            <integer>1909176</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>2003344709</integer>
+                    </map>
+                </array>
+            <key>EbpUsed</key>
+                <boolean>1</boolean>
+            <key>HeuristicWalkI</key>
+                <integer>0</integer>
+            </map>
+        <key>ID 5712</key>
+            <map>
+            <key>CallStack</key>
+                <array>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>71213</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1971060736</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\syswow64\kernel32.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>352124272</integer>
+                            <integer>352124388</integer>
+                            <integer>0</integer>
+                            <integer>-1</integer>
+                            <integer>0</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1971131949</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>71969</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1971060736</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\syswow64\kernel32.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>1</integer>
+                            <integer>2130567168</integer>
+                            <integer>0</integer>
+                            <integer>-1</integer>
+                            <integer>0</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1971132705</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>4826</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1889271808</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\system32\dsound.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>1</integer>
+                            <integer>352124504</integer>
+                            <integer>0</integer>
+                            <integer>-1</integer>
+                            <integer>352124760</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1889276634</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>11795</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1889271808</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\system32\dsound.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>1</integer>
+                            <integer>-1</integer>
+                            <integer>0</integer>
+                            <integer>352124504</integer>
+                            <integer>137830720</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1889283603</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>189593</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1889271808</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\system32\dsound.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>-1</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                            <integer>1889282478</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1889461401</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>79479</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1971060736</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\syswow64\kernel32.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>137830720</integer>
+                            <integer>352124884</integer>
+                            <integer>2003344754</integer>
+                            <integer>137830720</integer>
+                            <integer>1645583459</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1971140215</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>236914</integer>
+                    <key>ModuleAddress</key>
+                        <integer>2003107840</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>137830720</integer>
+                            <integer>1645583459</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                            <integer>137830720</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>2003344754</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>236869</integer>
+                    <key>ModuleAddress</key>
+                        <integer>2003107840</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>1889461409</integer>
+                            <integer>137830720</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>2003344709</integer>
+                    </map>
+                </array>
+            <key>EbpUsed</key>
+                <boolean>1</boolean>
+            <key>HeuristicWalkI</key>
+                <integer>0</integer>
+            </map>
+        <key>ID 6012</key>
+            <map>
+            <key>CallStack</key>
+                <array>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>71213</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1971060736</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\syswow64\kernel32.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>362151408</integer>
+                            <integer>362151524</integer>
+                            <integer>0</integer>
+                            <integer>-1</integer>
+                            <integer>1</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1971131949</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>132058</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1965162496</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\syswow64\USER32.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>1</integer>
+                            <integer>2130567168</integer>
+                            <integer>0</integer>
+                            <integer>-1</integer>
+                            <integer>1</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1965294554</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>9400</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1875902464</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\system32\MMDevAPI.DLL</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>2432</integer>
+                            <integer>0</integer>
+                            <integer>-1</integer>
+                            <integer>1279</integer>
+                            <integer>6</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1875911864</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>12150</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1875902464</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\system32\MMDevAPI.DLL</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>362151828</integer>
+                            <integer>1971140215</integer>
+                            <integer>141074784</integer>
+                            <integer>362151892</integer>
+                            <integer>2003344754</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1875914614</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>79479</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1971060736</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\syswow64\kernel32.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>141074784</integer>
+                            <integer>362151892</integer>
+                            <integer>2003344754</integer>
+                            <integer>141074784</integer>
+                            <integer>1669110883</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1971140215</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>236914</integer>
+                    <key>ModuleAddress</key>
+                        <integer>2003107840</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>141074784</integer>
+                            <integer>1669110883</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                            <integer>141074784</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>2003344754</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>236869</integer>
+                    <key>ModuleAddress</key>
+                        <integer>2003107840</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>1875914601</integer>
+                            <integer>141074784</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>2003344709</integer>
+                    </map>
+                </array>
+            <key>EbpUsed</key>
+                <boolean>1</boolean>
+            <key>HeuristicWalkI</key>
+                <integer>0</integer>
+            </map>
+        <key>ID 6692</key>
+            <map>
+            <key>CallStack</key>
+                <array>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>79479</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1971060736</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\syswow64\kernel32.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>1905504</integer>
+                            <integer>217710548</integer>
+                            <integer>2003344754</integer>
+                            <integer>1905504</integer>
+                            <integer>2047908963</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1971140215</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>236914</integer>
+                    <key>ModuleAddress</key>
+                        <integer>2003107840</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>1905504</integer>
+                            <integer>2047908963</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                            <integer>1905504</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>2003344754</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>236869</integer>
+                    <key>ModuleAddress</key>
+                        <integer>2003107840</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>2003512465</integer>
+                            <integer>1905504</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>2003344709</integer>
+                    </map>
+                </array>
+            <key>EbpUsed</key>
+                <boolean>1</boolean>
+            <key>HeuristicWalkI</key>
+                <integer>0</integer>
+            </map>
+        <key>ID 7112</key>
+            <map>
+            <key>CallStack</key>
+                <array>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>79479</integer>
+                    <key>ModuleAddress</key>
+                        <integer>1971060736</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\syswow64\kernel32.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>1905504</integer>
+                            <integer>207683540</integer>
+                            <integer>2003344754</integer>
+                            <integer>1905504</integer>
+                            <integer>2055838819</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>1971140215</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>236914</integer>
+                    <key>ModuleAddress</key>
+                        <integer>2003107840</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>1905504</integer>
+                            <integer>2055838819</integer>
+                            <integer>0</integer>
+                            <integer>0</integer>
+                            <integer>1905504</integer>
+                        </array>
+                    <key>ReturnAddress</key>
+                        <integer>2003344754</integer>
+                    </map>
+                    <map>
+                    <key>CallOffset</key>
+                        <integer>236869</integer>
+                    <key>ModuleAddress</key>
+                        <integer>2003107840</integer>
+                    <key>ModuleName</key>
+                        <string>C:\Windows\SysWOW64\ntdll.dll</string>
+                    <key>Parameters</key>
+                        <array>
+                            <integer>2003512465</integer>
+                            <integer>1905504</integer>
                             <integer>0</integer>
                             <integer>0</integer>
                             <integer>0</integer>

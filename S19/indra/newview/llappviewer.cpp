@@ -1105,6 +1105,8 @@ bool LLAppViewer::mainLoop()
 
 bool LLAppViewer::cleanup()
 {
+	
+
 	//----------------------------------------------
 	//this test code will be removed after the test
 	//test manual call stack tracer
@@ -1229,14 +1231,24 @@ bool LLAppViewer::cleanup()
 		llinfos << "Waiting for pending IO to finish: " << pending << llendflush;
 		ms_sleep(100);
 	}
-	llinfos << "Shutting down." << llendflush;
+	llinfos << "Shutting down Views" << llendflush;
 
 	// Destroy the UI
 	gViewerWindow->shutdownViews();
 
+	llinfos << "Cleaning up Inventory" << llendflush;
+	
+	// Cleanup Inventory after the UI since it will delete any remaining observers
+	// (Deleted observers should have already removed themselves)
+	gInventory.cleanupInventory();
+
+	llinfos << "Cleaning up Selections" << llendflush;
+	
 	// Clean up selection managers after UI is destroyed, as UI may be observing them.
 	// Clean up before GL is shut down because we might be holding on to objects with texture references
 	LLSelectMgr::cleanupGlobals();
+	
+	llinfos << "Shutting down OpenGL" << llendflush;
 
 	// Shut down OpenGL
 	gViewerWindow->shutdownGL();
@@ -1248,10 +1260,14 @@ bool LLAppViewer::cleanup()
 	gViewerWindow = NULL;
 	llinfos << "ViewerWindow deleted" << llendflush;
 
+	llinfos << "Cleaning up Keyboard & Joystick" << llendflush;
+	
 	// viewer UI relies on keyboard so keep it aound until viewer UI isa gone
 	delete gKeyboard;
 	gKeyboard = NULL;
 
+	llinfos << "Cleaning up Objects" << llendflush;
+	
 	LLViewerObject::cleanupVOClasses();
 
 	LLWaterParamManager::cleanupClass();
@@ -1280,6 +1296,8 @@ bool LLAppViewer::cleanup()
 	}
 	LLPrimitive::cleanupVolumeManager();
 
+	llinfos << "Additional Cleanup..." << llendflush;	
+	
 	LLViewerParcelMgr::cleanupGlobals();
 
 	// *Note: this is where gViewerStats used to be deleted.
@@ -1299,9 +1317,11 @@ bool LLAppViewer::cleanup()
 	// Also after shutting down the messaging system since it has VFS dependencies
 
 	//
+	llinfos << "Cleaning up VFS" << llendflush;
 	LLVFile::cleanupClass();
-	llinfos << "VFS cleaned up" << llendflush;
 
+	llinfos << "Saving Data" << llendflush;
+	
 	// Quitting with "Remember Password" turned off should always stomp your
 	// saved password, whether or not you successfully logged in.  JC
 	if (!gSavedSettings.getBOOL("RememberPassword"))
@@ -1342,6 +1362,8 @@ bool LLAppViewer::cleanup()
 	
 	writeDebugInfo();
 
+	llinfos << "Shutting down Threads" << llendflush;
+	
 	// Let threads finish
 	LLTimer idleTimer;
 	idleTimer.reset();
@@ -1367,12 +1389,15 @@ bool LLAppViewer::cleanup()
 	sTextureCache->shutdown();
 	sTextureFetch->shutdown();
 	sImageDecodeThread->shutdown();
+	
 	delete sTextureCache;
     sTextureCache = NULL;
 	delete sTextureFetch;
     sTextureFetch = NULL;
 	delete sImageDecodeThread;
     sImageDecodeThread = NULL;
+
+	llinfos << "Cleaning up Media and Textures" << llendflush;
 
 	//Note:
 	//LLViewerMedia::cleanupClass() has to be put before gImageList.shutdown()
@@ -1388,27 +1413,27 @@ bool LLAppViewer::cleanup()
 	LLVFSThread::cleanupClass();
 	LLLFSThread::cleanupClass();
 
-	llinfos << "VFS Thread finished" << llendflush;
-
 #ifndef LL_RELEASE_FOR_DOWNLOAD
 	llinfos << "Auditing VFS" << llendl;
 	gVFS->audit();
 #endif
 
+	llinfos << "Misc Cleanup" << llendflush;
+	
 	// For safety, the LLVFS has to be deleted *after* LLVFSThread. This should be cleaned up.
 	// (LLVFS doesn't know about LLVFSThread so can't kill pending requests) -Steve
 	delete gStaticVFS;
 	gStaticVFS = NULL;
 	delete gVFS;
 	gVFS = NULL;
-
-	// Cleanup settings last in case other clases reference them
+	
 	gSavedSettings.cleanup();
 	gColors.cleanup();
 	gCrashSettings.cleanup();
-	
+
 	LLWatchdog::getInstance()->cleanup();
 
+	llinfos << "Shutting down message system" << llendflush;
 	end_messaging_system();
 	llinfos << "Message system deleted." << llendflush;
 
@@ -1433,7 +1458,7 @@ bool LLAppViewer::cleanup()
 		llinfos << "File launched." << llendflush;
 	}
 
-    llinfos << "Goodbye" << llendflush;
+    llinfos << "We are outta here! Goodbye :) " << llendflush;
 
 	// return 0;
 	return true;
@@ -2143,8 +2168,8 @@ bool LLAppViewer::initWindow()
 		
 	if (gSavedSettings.getBOOL("FullScreen"))
 	{
+		// request to go full screen... which will be delayed until login
 		gViewerWindow->toggleFullscreen(FALSE);
-			// request to go full screen... which will be delayed until login
 	}
 	
 	if (gSavedSettings.getBOOL("WindowMaximized"))
@@ -3206,7 +3231,6 @@ void LLAppViewer::idle()
 	//
 	// Special case idle if still starting up
 	//
-
 	if (LLStartUp::getStartupState() < STATE_STARTED)
 	{
 		// Skip rest if idle startup returns false (essentially, no world yet)
@@ -3246,7 +3270,7 @@ void LLAppViewer::idle()
 	    //	When appropriate, update agent location to the simulator.
 	    F32 agent_update_time = agent_update_timer.getElapsedTimeF32();
 	    BOOL flags_changed = gAgent.controlFlagsDirty() || (last_control_flags != gAgent.getControlFlags());
-    
+		    
 	    if (flags_changed || (agent_update_time > (1.0f / (F32) AGENT_UPDATES_PER_SECOND)))
 	    {
 		    // Send avatar and camera info
@@ -3261,7 +3285,6 @@ void LLAppViewer::idle()
 	// Manage statistics
 	//
 	//
-
 	{
 		// Initialize the viewer_stats_timer with an already elapsed time
 		// of SEND_STATS_PERIOD so that the initial stats report will
@@ -3581,7 +3604,7 @@ void LLAppViewer::idleShutdown()
 		S32 finished_uploads = total_uploads - pending_uploads;
 		F32 percent = 100.f * finished_uploads / total_uploads;
 		gViewerWindow->setProgressPercent(percent);
-		gViewerWindow->setProgressString("Saving final data...");
+		gViewerWindow->setProgressString("Saving your settings...");
 		return;
 	}
 
@@ -3752,6 +3775,7 @@ void LLAppViewer::idleNetwork()
 				break;
 #endif
 		}
+
 		// Handle per-frame message system processing.
 		gMessageSystem->processAcks();
 
@@ -3910,7 +3934,7 @@ void LLAppViewer::disconnectViewer()
 
 void LLAppViewer::forceErrorLLError()
 {
-   	llwarns << "This is an llerror" << llendl;
+   	llerrs << "This is an llerror" << llendl;
 }
 
 void LLAppViewer::forceErrorBreakpoint()
