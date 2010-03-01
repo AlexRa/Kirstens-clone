@@ -274,7 +274,6 @@ void addDeferredAttachments(LLRenderTarget& target)
 {
     target.addColorAttachment(GL_RGBA); //specular	//target.addColorAttachment(GL_RGBA16F_ARB); //specular  // KL
     target.addColorAttachment(GL_RGBA); //normal+z	//target.addColorAttachment(GL_RGBA16F_ARB); //normal+z	
-	target.addColorAttachment(GL_RGBA16F_ARB); //position  KL not part of SD code may need more attention later.
 }
 
 LLPipeline::LLPipeline() :
@@ -382,6 +381,9 @@ LLPipeline::~LLPipeline()
 void LLPipeline::cleanup()
 {
 	assertInitialized();
+
+	mGroupQ1.clear() ;
+	mGroupQ2.clear() ;
 
 	for(pool_set_t::iterator iter = mPools.begin();
 		iter != mPools.end(); )
@@ -1155,7 +1157,7 @@ void LLPipeline::unlinkDrawable(LLDrawable *drawable)
 		{
 			mHighlightObject = NULL;
 		}
-	} 
+	}
 
 	for (U32 i = 0; i < 2; ++i)
 	{
@@ -1319,6 +1321,7 @@ void LLPipeline::updateMoveNormalAsync(LLDrawable* drawablep)
 	if (!drawablep)
 	{
 		llwarns << "updateMove called with NULL drawablep" << llendl;
+		return;
 	}
 	if (drawablep->isState(LLDrawable::EARLY_MOVE))
 	{

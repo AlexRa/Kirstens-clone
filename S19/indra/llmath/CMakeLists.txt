@@ -10,10 +10,12 @@ include_directories(
     )
 
 set(llmath_SOURCE_FILES
+    llbbox.cpp
     llbboxlocal.cpp
     llcamera.cpp
     llcoordframe.cpp
     llline.cpp
+    llmodularmath.cpp
     llperlin.cpp
     llquaternion.cpp
     llrect.cpp
@@ -39,6 +41,7 @@ set(llmath_HEADER_FILES
 
     camera.h
     coordframe.h
+    llbbox.h
     llbboxlocal.h
     llcamera.h
     llcoord.h
@@ -46,6 +49,7 @@ set(llmath_HEADER_FILES
     llinterp.h
     llline.h
     llmath.h
+    llmodularmath.h
     lloctree.h
     llperlin.h
     llplane.h

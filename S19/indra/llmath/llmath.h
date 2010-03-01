@@ -4,7 +4,7 @@
  *
  * $LicenseInfo:firstyear=2000&license=viewergpl$
  * 
- * Copyright (c) 2000-2009, Linden Research, Inc.
+ * Copyright (c) 2000-2010, Linden Research, Inc.
  * 
  * Second Life Viewer Source Code
  * The source code in this file ("Source Code") is provided by Linden Lab
@@ -61,11 +61,11 @@
 #endif
 
 // Single Precision Floating Point Routines
-#ifndef sqrtf
-#define sqrtf(x)	((F32)sqrt((F64)(x)))
-#endif
 #ifndef fsqrtf
-#define fsqrtf(x)	sqrtf(x)
+#define fsqrtf(x)		((F32)sqrt((F64)(x)))
+#endif
+#ifndef sqrtf
+#define sqrtf(x)		((F32)sqrt((F64)(x)))
 #endif
 
 #ifndef cosf
@@ -78,7 +78,7 @@
 #define tanf(x)		((F32)tan((F64)(x)))
 #endif
 #ifndef acosf
-#define acosf(x)	((F32)acos((F64)(x)))
+#define acosf(x)		((F32)acos((F64)(x)))
 #endif
 
 #ifndef powf
@@ -206,7 +206,7 @@ inline S32 llfloor( F32 f )
 		}
 		return result;
 #else
-		return (S32)floor(f);
+		return (S32)floorf(f);
 #endif
 }
 
