@@ -479,44 +479,69 @@ void LLPipeline::resizeScreenTexture()
 		GLuint resX = gViewerWindow->getWindowDisplayWidth();
 		GLuint resY = gViewerWindow->getWindowDisplayHeight();
 	
-		U32 res_mod = gSavedSettings.getU32("RenderResolutionDivisor");
-		if (res_mod > 1 && res_mod < resX && res_mod < resY)
-		{
-			resX /= res_mod;
-			resY /= res_mod;
-		}
-
 		allocateScreenBuffer(resX,resY);
-
-		llinfos << "RESIZED SCREEN TEXTURE: " << resX << "x" << resY << llendl;
 	}
 }
 
 void LLPipeline::allocateScreenBuffer(U32 resX, U32 resY)
 {
+	
 	U32 samples = gSavedSettings.getU32("RenderFSAASamples");
+	U32 res_mod = gSavedSettings.getU32("RenderResolutionDivisor");
+
+	if (res_mod > 1 && res_mod < resX && res_mod < resY)
+	{
+		resX /= res_mod;
+		resY /= res_mod;
+	}
+
+	if (gSavedSettings.getBOOL("RenderUIBuffer"))
+	{
+		//mUIScreen.allocate(resX,resY, GL_RGBA, FALSE, FALSE, LLTexUnit::TT_RECT_TEXTURE, FALSE);
+	}	
+
 	if (LLPipeline::sRenderDeferred)
 	{
 		//allocate deferred rendering color buffers
 		mDeferredScreen.allocate(resX, resY, GL_RGBA, TRUE, TRUE, LLTexUnit::TT_RECT_TEXTURE, FALSE);
 		mDeferredDepth.allocate(resX, resY, 0, TRUE, FALSE, LLTexUnit::TT_RECT_TEXTURE, FALSE);
 		addDeferredAttachments(mDeferredScreen);
+	
+		// always set viewport to desired size, since allocate resets the viewport
+
 		mScreen.allocate(resX, resY, GL_RGBA, FALSE, FALSE, LLTexUnit::TT_RECT_TEXTURE, FALSE);		
-		
+
 		for (U32 i = 0; i < 3; i++)
 		{
-			mDeferredLight[i].allocate(resX, resY, GL_RGBA, FALSE, FALSE, LLTexUnit::TT_RECT_TEXTURE); // was rgba
+			mDeferredLight[i].allocate(resX, resY, GL_RGBA, FALSE, FALSE, LLTexUnit::TT_RECT_TEXTURE);
 		}
 
 		for (U32 i = 0; i < 2; i++)
 		{
-			mGIMapPost[i].allocate(resX,resY, GL_RGB16F_ARB, FALSE, FALSE, LLTexUnit::TT_RECT_TEXTURE);
-		} 
-
-		for (U32 i = 0; i < 6; i++)
-		{
-			mShadow[i].allocate(resX,resY, 0, TRUE, FALSE, LLTexUnit::TT_RECT_TEXTURE);
+			mGIMapPost[i].allocate(resX,resY, GL_RGB, FALSE, FALSE, LLTexUnit::TT_RECT_TEXTURE);
 		}
+
+		F32 scale = gSavedSettings.getF32("RenderShadowResolutionScale");
+
+		for (U32 i = 0; i < 4; i++)
+		{
+			mShadow[i].allocate(U32(resX*scale),U32(resY*scale), 0, TRUE, FALSE, LLTexUnit::TT_RECT_TEXTURE);
+		}
+
+
+		U32 width = nhpo2(U32(resX*scale))/2;
+		U32 height = width;
+
+		for (U32 i = 4; i < 6; i++)
+		{
+			mShadow[i].allocate(width, height, 0, TRUE, FALSE);
+		}
+
+
+
+		width = nhpo2(resX)/2;
+		height = nhpo2(resY)/2;
+		mLuminanceMap.allocate(width,height, GL_RGBA, FALSE, FALSE);
 	}
 	else
 	{
@@ -526,21 +551,19 @@ void LLPipeline::allocateScreenBuffer(U32 resX, U32 resY)
 
 	if (gGLManager.mHasFramebufferMultisample && samples > 1)
 	{
+		mSampleBuffer.allocate(resX,resY,GL_RGBA,TRUE,TRUE,LLTexUnit::TT_RECT_TEXTURE,FALSE,samples);
 		if (LLPipeline::sRenderDeferred)
 		{
-			mSampleBuffer.allocate(resX,resY,GL_RGBA,TRUE,TRUE,LLTexUnit::TT_RECT_TEXTURE,FALSE,samples);
 			addDeferredAttachments(mSampleBuffer);
 			mDeferredScreen.setSampleBuffer(&mSampleBuffer);
 		}
-		else
-		{
-			mSampleBuffer.allocate(resX,resY,GL_RGBA,TRUE,TRUE,LLTexUnit::TT_RECT_TEXTURE,FALSE,samples);
-		}
 
 		mScreen.setSampleBuffer(&mSampleBuffer);
+
 		stop_glerror();
 	}
-	else if (LLPipeline::sRenderDeferred)
+	
+	if (LLPipeline::sRenderDeferred)
 	{ //share depth buffer between deferred targets
 		mDeferredScreen.shareDepthBuffer(mScreen);
 		for (U32 i = 0; i < 3; i++)
@@ -637,6 +660,9 @@ void LLPipeline::createGLBuffers()
 
 	stop_glerror();
 
+     GLuint resX = gViewerWindow->getWindowDisplayWidth();
+     GLuint resY = gViewerWindow->getWindowDisplayHeight();
+	
 	if (LLPipeline::sRenderGlow)
 	{ //screen space glow buffers
 		const U32 glow_res = llmax(1, 
@@ -646,16 +672,13 @@ void LLPipeline::createGLBuffers()
 		{
 			mGlow[i].allocate(512,glow_res,GL_RGBA,FALSE,FALSE);
 		}
+
+		allocateScreenBuffer(resX,resY);
+
 	}
-
-	GLuint resX = gViewerWindow->getWindowDisplayWidth();
-	GLuint resY = gViewerWindow->getWindowDisplayHeight();
 	
-	allocateScreenBuffer(resX,resY);
-
 	if (sRenderDeferred)
 	{
-
 		if (!mNoiseMap)
 		{
 			const U32 noiseRes = 128;
@@ -709,10 +732,8 @@ void LLPipeline::createGLBuffers()
 					//F32 sp = acosf(sa)/(1.f-spec);
 
 					sa = powf(sa, gSavedSettings.getF32("RenderSpecularExponent"));
-					//F32 a = acosf(sa);  F32 a = acosf(sa*0.25f+0.75f);
-			    	//	F32 m = 1.f-spec; F32 m = llmax(0.5f-spec*0.5f, 0.001f);
 					F32 a = acosf(sa*0.25f+0.75f);
-			    	F32 m = llmax(0.5f-spec*0.5f, 0.001f);
+					F32 m = llmax(0.5f-spec*0.5f, 0.001f);
 					F32 t2 = tanf(a)/m;
 					t2 *= t2;
 
@@ -5952,7 +5973,7 @@ void LLPipeline::bindDeferredShader(LLGLSLShader& shader, U32 light_index, LLRen
 
 	stop_glerror();
 
-	for (U32 i = 0; i < 6; i++)
+	for (U32 i = 0; i < 4; i++)
 	{
 		channel = shader.enableTexture(LLViewerShaderMgr::DEFERRED_SHADOW0+i, LLTexUnit::TT_RECT_TEXTURE);
 		stop_glerror();
@@ -5960,16 +5981,30 @@ void LLPipeline::bindDeferredShader(LLGLSLShader& shader, U32 light_index, LLRen
 		{
 			stop_glerror();
 			gGL.getTexUnit(channel)->bind(&mShadow[i], TRUE);
-			gGL.getTexUnit(channel)->setTextureFilteringOption(LLTexUnit::TFO_POINT);
+			gGL.getTexUnit(channel)->setTextureFilteringOption(LLTexUnit::TFO_BILINEAR);
 			gGL.getTexUnit(channel)->setTextureAddressMode(LLTexUnit::TAM_CLAMP);
 			stop_glerror();
 			
-		//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE_ARB, GL_COMPARE_R_TO_TEXTURE_ARB);
-		//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC_ARB, GL_LEQUAL);
-		
-		glTexParameteri(GL_TEXTURE_RECTANGLE_ARB, GL_TEXTURE_COMPARE_MODE_ARB, GL_COMPARE_R_TO_TEXTURE_ARB);
-		glTexParameteri(GL_TEXTURE_RECTANGLE_ARB, GL_TEXTURE_COMPARE_FUNC_ARB, GL_LESS);
-		
+			glTexParameteri(GL_TEXTURE_RECTANGLE_ARB, GL_TEXTURE_COMPARE_MODE_ARB, GL_COMPARE_R_TO_TEXTURE_ARB);
+			glTexParameteri(GL_TEXTURE_RECTANGLE_ARB, GL_TEXTURE_COMPARE_FUNC_ARB, GL_LEQUAL);
+			stop_glerror();
+		}
+	}
+
+	for (U32 i = 4; i < 6; i++)
+	{
+		channel = shader.enableTexture(LLViewerShaderMgr::DEFERRED_SHADOW0+i);
+		stop_glerror();
+		if (channel > -1)
+		{
+			stop_glerror();
+			gGL.getTexUnit(channel)->bind(&mShadow[i], TRUE);
+			gGL.getTexUnit(channel)->setTextureFilteringOption(LLTexUnit::TFO_BILINEAR);
+			gGL.getTexUnit(channel)->setTextureAddressMode(LLTexUnit::TAM_CLAMP);
+			stop_glerror();
+			
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE_ARB, GL_COMPARE_R_TO_TEXTURE_ARB);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC_ARB, GL_LEQUAL);
 			stop_glerror();
 		}
 	}
@@ -6923,13 +6958,22 @@ void LLPipeline::unbindDeferredShader(LLGLSLShader &shader)
 	shader.disableTexture(LLViewerShaderMgr::DEFERRED_GI_LAST_MIN_POS);
 	shader.disableTexture(LLViewerShaderMgr::DEFERRED_GI_LAST_MAX_POS);
 
-	for (U32 i = 0; i < 6; i++)
+	for (U32 i = 0; i < 4; i++)
 	{
 		if (shader.disableTexture(LLViewerShaderMgr::DEFERRED_SHADOW0+i, LLTexUnit::TT_RECT_TEXTURE) > -1)
+		{
+			glTexParameteri(GL_TEXTURE_RECTANGLE_ARB, GL_TEXTURE_COMPARE_MODE_ARB, GL_NONE);
+		}
+	}
+
+	for (U32 i = 4; i < 6; i++)
+	{
+		if (shader.disableTexture(LLViewerShaderMgr::DEFERRED_SHADOW0+i) > -1)
 		{
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE_ARB, GL_NONE);
 		}
 	}
+
 	shader.disableTexture(LLViewerShaderMgr::DEFERRED_NOISE);
 	shader.disableTexture(LLViewerShaderMgr::DEFERRED_LIGHTFUNC);
 
@@ -7341,15 +7385,15 @@ BOOL LLPipeline::getVisiblePointCloud(LLCamera& camera, LLVector3& min, LLVector
 {
 	LLFastTimer ftm(LLFastTimer::FTM_TEMP2);
 	//get point cloud of intersection of frust and min, max
-		
+
+	//get set of planes
+	std::vector<LLPlane> ps;
+	
 	if (getVisibleExtents(camera, min, max))
 	{
 		return FALSE;
 	}
 
-	//get set of planes
-	std::vector<LLPlane> ps;
-	
 	ps.push_back(LLPlane(min, LLVector3(-1,0,0)));
 	ps.push_back(LLPlane(min, LLVector3(0,-1,0)));
 	ps.push_back(LLPlane(min, LLVector3(0,0,-1)));
@@ -7396,12 +7440,20 @@ BOOL LLPipeline::getVisiblePointCloud(LLCamera& camera, LLVector3& min, LLVector
 
 	//get set of points where planes intersect and points are not above any plane
 	fp.clear();
+	
 	for (U32 i = 0; i < ps.size(); ++i)
 	{
-		for (U32 j = i+1; j < ps.size(); ++j)
+		for (U32 j = 0; j < ps.size(); ++j)
 		{
-			for (U32 k = j+1; k < ps.size(); ++k)
+			for (U32 k = 0; k < ps.size(); ++k)
 			{
+				if (i == j ||
+					i == k ||
+					k == j)
+				{
+					continue;
+				}
+
 				LLVector3 n1,n2,n3;
 				F32 d1,d2,d3;
 
@@ -7413,17 +7465,18 @@ BOOL LLPipeline::getVisiblePointCloud(LLCamera& camera, LLVector3& min, LLVector
 				d2 = ps[j].mV[3];
 				d3 = ps[k].mV[3];
 			
+				//get point of intersection of 3 planes "p"
 				LLVector3 p = (-d1*(n2%n3)-d2*(n3%n1)-d3*(n1%n2))/(n1*(n2%n3));
 				
 				if (llround(p*n1+d1, 0.0001f) == 0.f &&
 					llround(p*n2+d2, 0.0001f) == 0.f &&
 					llround(p*n3+d3, 0.0001f) == 0.f)
-				{
+				{ //point is on all three planes
 					BOOL found = TRUE;
 					for (U32 l = 0; l < ps.size() && found; ++l)
 					{
-						if (llround(ps[l].dist(p), 0.0001f) > 0.f)
-						{ //above plane, not contained
+						if (llround(ps[l].dist(p), 0.0001f) > 0.0f)
+						{ //point is above some plane, not contained
 							found = FALSE;	
 						}
 					}
@@ -7572,7 +7625,6 @@ void LLPipeline::generateGI(LLCamera& camera, LLVector3& lightDir, std::vector<L
 	stop_glerror();
 	gGLLastMatrix = NULL;
 
-	mGIMap.bindTarget();
 	mGIMap.clear();
 
 	{
@@ -7730,11 +7782,6 @@ void LLPipeline::generateSunShadow(LLCamera& camera)
 									(1 << LLPipeline::RENDER_TYPE_PASS_SHINY));
 
 	gGL.setColorMask(false, false);
-
-	//LLGLEnable offset(GL_POLYGON_OFFSET_FILL);
-
-	//glPolygonOffset(gSavedSettings.getF32("RenderDeferredSpotShadowOffset"),
-	//				gSavedSettings.getF32("RenderDeferredSpotShadowBias"));
 
 	//get sun view matrix
 	
@@ -7976,60 +8023,25 @@ void LLPipeline::generateSunShadow(LLCamera& camera)
 			wpf[i].mV[2] = fabsf(wpf[i].mV[2]);
 		}
 
-		//remove "non-significant" points
-		std::vector<LLVector3> pts = wpf;
-
-		/*for (U32 i = 0; i < wpf.size(); ++i)
-		{
-			BOOL significant = TRUE;
-			for (U32 j = 0; j < wpf.size(); ++j)
-			{
-				if (i != j)
-				{
-					LLVector3 p1 = wpf[i];
-					LLVector3 p2 = wpf[j];
-
-					if (p2.mV[0] > p1.mV[0] && fabsf((p1.mV[1]-p2.mV[1])/(p1.mV[0]-p2.mV[0])) < slope_threshold)
-					{  //not a significant point
-						significant = FALSE;
-						break;
-					}
-				}
-			}
-
-			if (significant)
-			{
-				pts.push_back(wpf[i]);
-			}
-		}*/
-
-		if (!pts.empty())
-		{
+		if (!wpf.empty())
+		{ 
 			F32 sx = 0.f;
 			F32 sx2 = 0.f;
 			F32 sy = 0.f;
 			F32 sxy = 0.f;
 			
-			for (U32 i = 0; i < pts.size(); ++i)
+			for (U32 i = 0; i < wpf.size(); ++i)
 			{		
-				sx += pts[i].mV[0];
-				sx2 += pts[i].mV[0]*pts[i].mV[0];
-				sy += pts[i].mV[1];
-				sxy += pts[i].mV[0]*pts[i].mV[1]; 
+				sx += wpf[i].mV[0];
+				sx2 += wpf[i].mV[0]*wpf[i].mV[0];
+				sy += wpf[i].mV[1];
+				sxy += wpf[i].mV[0]*wpf[i].mV[1]; 
 			}
 
-			bfm = (sy*sx-pts.size()*sxy)/(sx*sx-pts.size()*sx2);
+			bfm = (sy*sx-wpf.size()*sxy)/(sx*sx-wpf.size()*sx2);
 			bfb = (sx*sxy-sy*sx2)/(sx*sx-bfm*sx2);
 		}
 		
-		/*if (pts.empty() || bfm > gSavedSettings.getF32("RenderShadowOrthoCutoff"))
-		{ //just use ortho projection
-			origin.clearVec();
-			proj[j] = gl_ortho(min.mV[0], max.mV[0],
-							min.mV[1], max.mV[1],
-							-max.mV[2], -min.mV[2]);
-		}
-		else*/
 		{
 			// best fit line is y=bfm*x+bfb
 		
@@ -8178,13 +8190,17 @@ void LLPipeline::generateSunShadow(LLCamera& camera)
 					view[j] = view[j].inverse();
 
 					glh::vec3f origin_agent(origin.mV);
+					
 					//translate view to origin
 					view[j].mult_matrix_vec(origin_agent);
 
+					eye = LLVector3(origin_agent.v);
+
 					if (!hasRenderDebugMask(LLPipeline::RENDER_DEBUG_SHADOW_FRUSTA))
 					{
-						mShadowFrustOrigin[j] = LLVector3(origin_agent.v);
+						mShadowFrustOrigin[j] = eye;
 					}
+				
 					view[j] = look(LLVector3(origin_agent.v), lightDir, -up);
 
 					F32 fx = 1.f/tanf(fovx);
