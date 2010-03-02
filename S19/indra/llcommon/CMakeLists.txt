@@ -22,6 +22,7 @@ set(llcommon_SOURCE_FILES
     llcriticaldamp.cpp
     llcursortypes.cpp
     lldate.cpp
+    lldictionary.cpp
     llerror.cpp
     llerrorthread.cpp
     llevent.cpp
@@ -100,6 +101,7 @@ set(llcommon_HEADER_FILES
     lldefs.h
     lldeleteutils.h
     lldepthstack.h
+    lldictionary.h
     lldlinked.h
     lldqueueptr.h
     llendianswizzle.h
