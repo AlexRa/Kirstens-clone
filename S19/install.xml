@@ -48,7 +48,7 @@
         <key>copyright</key>
         <string>Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002  Sam Lantinga</string>
         <key>description</key>
-        <string>The Simple DirectMedia Layer libraries are used for handling input and basic window/GL setup on the Linux client.</string>
+        <string>The Simple DirectMedia Layer libraries are used for handling input and basic window/GL setup on the Linux client.  Packages also include cursors.</string>
         <key>license</key>
         <string>lgpl</string>
         <key>packages</key>
@@ -63,9 +63,9 @@
           <key>linux</key>
           <map>
             <key>md5sum</key>
-            <string>25f8a8fc4ea94169fe6222571b8d5e55</string>
+            <string>fce0ff7d2cdf0f36c1647e6a3916e29e</string>
             <key>url</key>
-            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/SDL-1.2.12-linux-20081222c.tar.bz2</uri>
+            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/SDL-1.2.12-linux-20090218.tar.bz2</uri>
           </map>
           <key>windows</key>
           <map>
@@ -85,9 +85,9 @@
           <key>darwin</key>
           <map>
             <key>md5sum</key>
-            <string>abd07d760cdc7d23da3b861f34b09c92</string>
+            <string>115d8ac44a91efdb173e9b3e478c46b6</string>
             <key>url</key>
-            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/apr_suite-1.2.8-darwin-20080812.tar.bz2</uri>
+            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/apr_suite-1.3.7-darwin-20090805.tar.bz2</uri>
           </map>
           <key>linux</key>
           <map>
@@ -207,30 +207,30 @@
           <key>darwin</key>
           <map>
             <key>md5sum</key>
-            <string>609c469ee1857723260b5a9943b9c2c1</string>
+            <string>84821102cb819257a66c8f38732647fc</string>
             <key>url</key>
-            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/boost-1.39.0-darwin-20091202.tar.bz2</uri>
+            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/boost-1.39.0-darwin-20100119.tar.bz2</uri>
           </map>
           <key>linux</key>
           <map>
             <key>md5sum</key>
-            <string>7085044567999489d82b9ed28f16e480</string>
+            <string>ee8e1b4bbcf137a84d6a85a1c51386ff</string>
             <key>url</key>
-            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/boost-1.39.0-linux-20091202.tar.bz2</uri>
+            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/boost-1.39.0-linux-20100119.tar.bz2</uri>
           </map>
           <key>linux64</key>
           <map>
             <key>md5sum</key>
-            <string>b4aeefcba3d749f1e9f2a12c6f70192b</string>
+            <string>af4badd6b2c10bc4db82ff1256695892</string>
             <key>url</key>
-            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/boost-1.39.0-linux64-20091202.tar.bz2</uri>
+            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/boost-1.39.0-linux64-20100119.tar.bz2</uri>
           </map>
           <key>windows</key>
           <map>
             <key>md5sum</key>
-            <string>ed53511382d0fd9fec59a9f6544d9672</string>
+            <string>acbf7a4165a917a4e087879d1756b355</string>
             <key>url</key>
-            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/boost-1.39.0-windows-20091029.tar.bz2</uri>
+            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/boost-1.39.0-windows-20100119.tar.bz2</uri>
           </map>
         </map>
       </map>
@@ -340,9 +340,9 @@
           <key>darwin</key>
           <map>
             <key>md5sum</key>
-            <string>9c5603e328e9f543e0a599d6b25be973</string>
+            <string>c457a0a041ac4946265889a503d26c3d</string>
             <key>url</key>
-            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/expat-1.95.8-darwin-20080812.tar.bz2</uri>
+            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/expat-1.95.8-darwin-20090805.tar.bz2</uri>
           </map>
           <key>linux</key>
           <map>
@@ -443,16 +443,16 @@
           <key>darwin</key>
           <map>
             <key>md5sum</key>
-            <string>694173293a483c01472a30cc7d895c5a</string>
+            <string>f00144dfb597140f328774c3244f0c3e</string>
             <key>url</key>
-            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/freetype-2.1.5-darwin-20080812.tar.bz2</uri>
+            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/freetype-2.3.9-darwin-20090922.tar.bz2</uri>
           </map>
           <key>linux</key>
           <map>
             <key>md5sum</key>
-            <string>eeffb03bd6672b6e7751448e5306d874</string>
+            <string>978ad7c67fe4a2419bfc841e2956ff9f</string>
             <key>url</key>
-            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/freetype-2.1.5-linux-20081201.tar.bz2</uri>
+            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/freetype-2.3.9-linux-20090521c.tar.bz2</uri>
           </map>
           <key>linux64</key>
           <map>
@@ -475,7 +475,7 @@
         <key>copyright</key>
         <string>Copyright (c) 2000 Cass Everitt; Copyright (c) 2000 NVIDIA Corporation; All rights reserved.</string>
         <key>description</key>
-        <string>nVidia NVParse SDK: platform-indepenedent C++ Apple OpenGL helper library</string>
+        <string>nVidia NVParse SDK: platform-independent C++ Apple OpenGL helper library</string>
         <key>license</key>
         <string>glh_linear</string>
         <key>packages</key>
@@ -575,6 +575,58 @@
             <string>40db900872612615e849f17cbdfd2c27</string>
             <key>url</key>
             <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/google-linux-20080812.tar.bz2</uri>
+          </map>
+        </map>
+      </map>
+      <key>google-perftools</key>
+      <map>
+        <key>copyright</key>
+        <string>Copyright (c) 2005, Google Inc.</string>
+        <key>description</key>
+        <string>Heap performance and validity checking tools from google. Includes TCMalloc, heap-checker, heap-profiler and cpu-profiler.</string>
+        <key>license</key>
+        <string>bsd</string>
+        <key>packages</key>
+        <map>
+          <key>windows</key>
+          <map>
+            <key>md5sum</key>
+            <string>32dba32ddd460a08e082898ebba6315c</string>
+            <key>url</key>
+            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/google-perftools-1.0-windows-20090406.tar.bz2</uri>
+          </map>
+        </map>
+      </map>
+      <key>googlemock</key>
+      <map>
+        <key>copyright</key>
+        <string>Copyright 2008, Google Inc.</string>
+        <key>description</key>
+        <string>Google C++ Mocking Framework (or Google Mock for short) is a library for writing and using C++ mock classes.</string>
+        <key>license</key>
+        <string>bsd</string>
+        <key>packages</key>
+        <map>
+          <key>darwin</key>
+          <map>
+            <key>md5sum</key>
+            <string>4863e9fea433d0a4be761ea5d3e8346a</string>
+            <key>url</key>
+            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/googlemock-1.1.0-darwin-20090626.tar.bz2</uri>
+          </map>
+          <key>linux</key>
+          <map>
+            <key>md5sum</key>
+            <string>877dabecf84339690191c6115c76366e</string>
+            <key>url</key>
+            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/googlemock-1.1.0-linux32-20090527.tar.bz2</uri>
+          </map>
+          <key>windows</key>
+          <map>
+            <key>md5sum</key>
+            <string>f601a82ea91030974072da8924cae41e</string>
+            <key>url</key>
+            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/googlemock-1.1.0-windows-20090921.tar.bz2</uri>
           </map>
         </map>
       </map>
@@ -950,23 +1002,23 @@ anguage Infrstructure (CLI) international standard</string>
           <key>darwin</key>
           <map>
             <key>md5sum</key>
-            <string>7f818f13faf7c02838fe66f7d27e1913</string>
+            <string>95f44f0023dddc80be4398fc4f213861</string>
             <key>url</key>
-            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/llqtwebkit-darwin-20091124.tar.bz2</uri>
+            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/llqtwebkit-4.6-darwin-20100208.tar.bz2</uri>
           </map>
           <key>linux</key>
           <map>
             <key>md5sum</key>
-            <string>ffede2775355676096b1085cbb9d0da7</string>
+            <string>4c75b2f1e8524c7844ee3ea1cd59a3db</string>
             <key>url</key>
-            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/llqtwebkit-linux-20091117.tar.bz2</uri>
+            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/llqtwebkit-linux-20100209b.tar.bz2</uri>
           </map>
           <key>windows</key>
           <map>
             <key>md5sum</key>
-            <string>92cff05661b5547caae7cc6c66d09870</string>
+            <string>1e9798dc424a6f6c2bea50649bbcc7ae</string>
             <key>url</key>
-            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/llqtwebkit-windows-20091123.tar.bz2</uri>
+            <uri>http://viewer-source-downloads.s3.amazonaws.com/install_pkgs/llqtwebkit-windows-qt4.6-20100210.tar.bz2</uri>
           </map>
         </map>
       </map>
@@ -1161,9 +1213,9 @@ anguage Infrstructure (CLI) international standard</string>
           <key>linux</key>
           <map>
             <key>md5sum</key>
-            <string>c8223e9454223e3d519fe40d71c3ddd2</string>
+            <string>75a7004ab14bea46594b1c652f1a6040</string>
             <key>url</key>
-            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/openal-linux-20091216-56cc0386.tar.bz2</uri>
+            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/openal-linux-20100120-3ad86a1c.tar.bz2</uri>
           </map>
           <key>linux64</key>
           <map>
@@ -1218,6 +1270,53 @@ anguage Infrstructure (CLI) international standard</string>
             <string>41541a98106894e28a6bf585010fea65</string>
             <key>url</key>
             <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/openjpeg-1.3-windows-20090407.tar.bz2</uri>
+          </map>
+        </map>
+      </map>
+      <key>pth</key>
+      <map>
+        <key>copyright</key>
+        <string>Copyright (c) 1999-2006 Ralf S. Engelschall &lt;rse@gnu.org&gt;</string>
+        <key>description</key>
+        <string>Portable cooperative threads package, used to support Boost.Coroutine on Mac OS X 10.4</string>
+        <key>license</key>
+        <string>lgpl</string>
+        <key>packages</key>
+        <map>
+          <key>darwin</key>
+          <map>
+            <key>md5sum</key>
+            <string>216cb6217a06c64dfae30a55ab8b975c</string>
+            <key>url</key>
+            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/pth-2.0.7-darwin-20090923.tar.bz2</uri>
+          </map>
+          <key>linux</key>
+          <map>
+            <key>md5sum</key>
+            <string>c5c2f73847c126e679d925beab48c7d4</string>
+            <key>url</key>
+            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/pth-2.0.7-linux-20090427.tar.bz2</uri>
+          </map>
+          <key>linux32</key>
+          <map>
+            <key>md5sum</key>
+            <string>c5c2f73847c126e679d925beab48c7d4</string>
+            <key>url</key>
+            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/pth-2.0.7-linux32-20090427.tar.bz2</uri>
+          </map>
+          <key>linux64</key>
+          <map>
+            <key>md5sum</key>
+            <string>c5c2f73847c126e679d925beab48c7d4</string>
+            <key>url</key>
+            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/pth-2.0.7-linux64-20090427.tar.bz2</uri>
+          </map>
+          <key>windows</key>
+          <map>
+            <key>md5sum</key>
+            <string>c5c2f73847c126e679d925beab48c7d4</string>
+            <key>url</key>
+            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/pth-2.0.7-windows-20090427.tar.bz2</uri>
           </map>
         </map>
       </map>
