@@ -4,7 +4,7 @@
  *
  * $LicenseInfo:firstyear=2001&license=viewergpl$
  * 
- * Copyright (c) 2001-2009, Linden Research, Inc.
+ * Copyright (c) 2001-2010, Linden Research, Inc.
  * 
  * Second Life Viewer Source Code
  * The source code in this file ("Source Code") is provided by Linden Lab
@@ -32,6 +32,11 @@
 
 #ifndef LL_LINDEN_COMMON_H
 #define LL_LINDEN_COMMON_H
+
+// *NOTE:  Please keep includes here to a minimum!
+//
+// Files included here are included in every library .cpp file and
+// are not precompiled.
 
 #if defined(LL_WINDOWS) && defined(_DEBUG)
 # if _MSC_VER >= 1400 // Visual C++ 2005 or later

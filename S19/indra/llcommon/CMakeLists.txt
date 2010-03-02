@@ -98,6 +98,7 @@ set(llcommon_HEADER_FILES
     lldarrayptr.h
     lldate.h
     lldefs.h
+    lldeleteutils.h
     lldepthstack.h
     lldlinked.h
     lldqueueptr.h
