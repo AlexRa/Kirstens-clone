@@ -125,6 +125,7 @@ set(llcommon_HEADER_FILES
     llindexedqueue.h
     llindraconfigfile.h
     llkeythrottle.h
+    lllazy.h
     lllinkedqueue.h
     llliveappconfig.h
     lllivefile.h
