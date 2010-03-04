@@ -61,9 +61,9 @@ BOOL LLPanelMsgs::postBuild()
 	childSetAction("skip_dialogs_btn", onClickSkipDialogs, this);
 	buildLists();
 
-	childSetValue("accept_new_inventory", gSavedSettings.getBOOL("AutoAcceptNewInventory"));
-	childSetValue("show_new_inventory", gSavedSettings.getBOOL("ShowNewInventory"));
-	childSetValue("show_in_inventory", gSavedSettings.getBOOL("ShowInInventory"));
+	//childSetValue("accept_new_inventory", gSavedSettings.getBOOL("AutoAcceptNewInventory"));
+	//childSetValue("show_new_inventory", gSavedSettings.getBOOL("ShowNewInventory"));
+	//childSetValue("show_in_inventory", gSavedSettings.getBOOL("ShowInInventory"));
 
 	return TRUE;
 }
@@ -151,9 +151,9 @@ void LLPanelMsgs::draw()
 
 void LLPanelMsgs::apply()
 {
-	gSavedSettings.setBOOL("AutoAcceptNewInventory", childGetValue("accept_new_inventory"));
-	gSavedSettings.setBOOL("ShowNewInventory", childGetValue("show_new_inventory"));
-	gSavedSettings.setBOOL("ShowInInventory", childGetValue("show_in_inventory"));
+	//gSavedSettings.setBOOL("AutoAcceptNewInventory", childGetValue("accept_new_inventory"));
+	//gSavedSettings.setBOOL("ShowNewInventory", childGetValue("show_new_inventory"));
+	//gSavedSettings.setBOOL("ShowInInventory", childGetValue("show_in_inventory"));
 }
 
 void LLPanelMsgs::cancel()

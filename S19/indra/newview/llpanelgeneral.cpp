@@ -66,6 +66,10 @@ BOOL LLPanelGeneral::postBuild()
 	childSetValue("afk_timeout_spinner", gSavedSettings.getF32("AFKTimeout"));
 	childSetValue("notify_money_change_checkbox", gSavedSettings.getBOOL("NotifyMoneyChange"));
 
+	childSetValue("accept_new_inventory", gSavedSettings.getBOOL("AutoAcceptNewInventory")); // KL moved due to niran modding without testing.
+	childSetValue("show_new_inventory", gSavedSettings.getBOOL("ShowNewInventory"));
+	childSetValue("show_in_inventory", gSavedSettings.getBOOL("ShowInInventory"));
+
 	getChild<LLColorSwatchCtrl>("effect_color_swatch")->set(gSavedSettings.getColor4("EffectColor"));
 
 	childSetValue("ui_scale_slider", gSavedSettings.getF32("UIScaleFactor"));
@@ -130,6 +134,10 @@ void LLPanelGeneral::apply()
 	gSavedSettings.setF32("UIScaleFactor", childGetValue("ui_scale_slider").asReal());
 	gSavedSettings.setBOOL("UIAutoScale", childGetValue("ui_auto_scale"));
 	gSavedSettings.setString("Language", childGetValue("language_combobox"));
+
+	gSavedSettings.setBOOL("AutoAcceptNewInventory", childGetValue("accept_new_inventory")); // KL moved from panelmsgs.
+	gSavedSettings.setBOOL("ShowNewInventory", childGetValue("show_new_inventory"));
+	gSavedSettings.setBOOL("ShowInInventory", childGetValue("show_in_inventory"));
 
 	LLURLSimString::setString(childGetValue("location_combobox"));
 
