@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<panel name="toolbar">
+	<panel.string name="Redock Windows">
+		ウィンドウを再置する
+	</panel.string>
+	<panel.string name="Blocked List">
+		「ブロックされた住人とオブジェクト」
+	</panel.string>
+	<layout_stack name="toolbar_stack">
+		<button label="" name="chat_btn" tool_tip="チャット入力欄を表示します。（Enterキー）"/>
+		<flyout_button label="コミュニケート" name="communicate_btn" tool_tip="友人やグループと交流します。"/>
+		<button label="飛行" label_selected="" name="fly_btn" tool_tip="飛行を開始します。 E キーか PageUp キーで上昇、C キーか PageDown キーで下降します。"/>
+		<button label="スナップショット" name="snapshot_btn" tool_tip="スクリーンショットをディスクか持ち物に保存します。"/>
+		<button label="検索" name="directory_btn" tool_tip="場所、イベント、人などを検索します。"/>
+		<button label="制作" name="build_btn" tool_tip="新しいオブジェクトを作成します。"/>
+		<button label="地図" name="map_btn" tool_tip="世界地図を表示します。（Ctrl + M キー）"/>
+		<button label="ミニマップ" name="radar_btn" tool_tip="あなたの周りの地図を表示します。（Ctrl + Shift + M キー）"/>
+		<button label="持ち物" name="inventory_btn" tool_tip="あなたのアイテムを表示します。（Ctrl + I キー）"/>
+	</layout_stack>
+</panel>

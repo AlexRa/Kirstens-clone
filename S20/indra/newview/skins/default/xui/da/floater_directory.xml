@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<floater name="directory" title="SØG I [SECOND_LIFE]">
+	<tab_container name="Directory Tabs">
+		<panel label="Alt" name="find_all_panel">
+			<string name="searching_text">
+				Søger...
+			</string>
+			<string name="not_found_text">
+				Intet fundet.
+			</string>
+			<text name="find">
+				Find:
+			</text>
+			<line_editor label="Søg" name="search_editor" tool_tip="Søg i [SECOND_LIFE]"/>
+			<button label="Retur" name="back_btn"/>
+			<button label="Frem" name="forward_btn"/>
+			<button label="Søg" name="search_btn"/>
+			<combo_box name="Category">
+				<combo_box.item name="item0" label="Enhver kategori"/>
+				<combo_box.item name="item1" label="Events"/>
+				<combo_box.item name="item2" label="Grupper"/>
+				<combo_box.item name="item3" label="Personer"/>
+				<combo_box.item name="item4" label="Steder"/>
+				<combo_box.item name="item5" label="Wiki"/>
+			</combo_box>
+			<check_box label="PG indhold" name="incpg"/>
+			<check_box label="Mature indhold" name="incmature"/>
+			<check_box label="Adult indhold" name="incadult"/>
+			<button label="?" label_selected="?" name="?"/>
+			<string name="loading_text">
+				Indlæser...
+			</string>
+			<string name="done_text">
+				Færdig
+			</string>
+			<string name="redirect_404_url">
+				http://secondlife.com/app/search/notfound.html
+			</string>
+			<string name="default_search_page">
+				http://secondlife.com/app/search/index.php?
+			</string>
+		</panel>
+		<panel label="Annoncer" name="classified_panel">
+			<string name="searching_text">
+				Søger...
+			</string>
+			<string name="not_found_text">
+				Intet Fundet.
+			</string>
+			<text name="find">
+				Find:
+			</text>
+			<check_box label="PG indhold" name="incpg"/>
+			<check_box label="Mature indhold" name="incmature"/>
+			<check_box label="Adult indhold" name="incadult"/>
+			<combo_box name="Category">
+				<combo_box.item name="item0" label="Enhver kategori"/>
+				<combo_box.item name="item1" label="Shopping"/>
+				<combo_box.item name="item2" label="Land til leje"/>
+				<combo_box.item name="item3" label="Grund til leje"/>
+				<combo_box.item name="item4" label="Speciel attraktion"/>
+				<combo_box.item name="item5" label="Nye produkter"/>
+				<combo_box.item name="item6" label="Jobs"/>
+				<combo_box.item name="item7" label="Søges"/>
+				<combo_box.item name="item8" label="Service"/>
+				<combo_box.item name="item9" label="Personlig"/>
+			</combo_box>
+			<button label="Gennemse" label_selected="Browse" name="Browse"/>
+			<button label="Søg" label_selected="Søg" name="Search"/>
+			<button label="Indsæt annonce..." label_selected="Indsæt annonce..." name="Place an Ad..."/>
+			<button label="Slet" label_selected="Slet" name="Delete"/>
+			<scroll_list name="results">
+				<column label="" name="icon"/>
+				<column label="" name="type"/>
+				<column label="Navn" name="name"/>
+				<column label="Pris" name="price"/>
+			</scroll_list>
+			<button label="Næste &gt;" label_selected="Næste &gt;" name="Next &gt;"/>
+			<button label="&lt; Forrige" label_selected="&lt; Forrige" name="&lt; Prev"/>
+		</panel>
+		<panel label="Events" name="events_panel">
+			<string name="searching_text">
+				Søger...
+			</string>
+			<string name="not_found_text">
+				Intet Fundet.
+			</string>
+			<text name="text2">
+				Find:
+			</text>
+			<radio_group name="date_mode">
+				<radio_item name="current" label="Igang eller kommende" />
+				<radio_item name="date" label="Dato" />
+			</radio_group>
+			<button label="&lt;&lt;" label_selected="&lt;&lt;" name="&lt;&lt;" tool_tip="Gå en dag tilbage"/>
+			<text name="date_text">
+				6/6
+			</text>
+			<button label="&gt;&gt;" label_selected="&gt;&gt;" name="&gt;&gt;" tool_tip="Gå en dag frem"/>
+			<button label="Idag" label_selected="Idag" name="Today" tool_tip="Vis events for idag"/>
+			<text name="text">
+				Kategori:
+			</text>
+			<combo_box name="category combo" width="175">
+				<combo_box.item name="item0" label="Alt"/>
+				<combo_box.item name="item18" label="Diskussion"/>
+				<combo_box.item name="item19" label="Sport"/>
+				<combo_box.item name="item20" label="Live musik"/>
+				<combo_box.item name="item22" label="Kommercielt"/>
+				<combo_box.item name="item23" label="Natteliv/Underholdning"/>
+				<combo_box.item name="item24" label="Spil/Konkurrencer"/>
+				<combo_box.item name="item25" label="Modelkonkurrencer"/>
+				<combo_box.item name="item26" label="Undervisning"/>
+				<combo_box.item name="item27" label="Kunst og kultur"/>
+				<combo_box.item name="item28" label="Velgørenhed/Støtte grupper"/>
+				<combo_box.item name="item29" label="Blandet"/>
+			</combo_box>
+			<check_box label="PG indhold" name="incpg"/>
+			<check_box label="Mature indhold" name="incmature"/>
+			<check_box label="Adult indhold" name="incadult"/>
+			<button label="Søg" label_selected="Søg" name="Search" tool_tip="Søg"/>
+			<button label="Slet" label_selected="Slet" name="Delete"/>
+			<scroll_list name="results">
+				<column label="" name="icon"/>
+				<column label="" name="type"/>
+				<column label="Navn" name="name"/>
+				<column label="Tid (SL)" name="date"/>
+				<column label="" name="event_id"/>
+				<column label="Tid" name="time"/>
+			</scroll_list>
+			<button label="Næste &gt;" label_selected="Næste &gt;" name="Next &gt;"/>
+			<button label="&lt; Forrige" label_selected="&lt; Forrige" name="&lt; Prev"/>
+		</panel>
+		<panel label="Udstilling" name="showcase_panel">
+			<string name="searching_text">
+				Søger...
+			</string>
+			<string name="not_found_text">
+				Ingen fundet.
+			</string>
+			<button label="Retur" name="back_btn"/>
+			<button label="Frem" name="forward_btn"/>
+			<string name="loading_text">
+				Indlæser...
+			</string>
+			<string name="done_text">
+				Færdig
+			</string>
+			<string name="redirect_404_url">
+				http://secondlife.com/app/search/notfound.html
+			</string>
+			<string name="default_search_page">
+				http://secondlife.com/app/showcase/index.php?
+			</string>
+		</panel>
+		<panel label="Salg af land" name="land_sales_panel">
+			<string name="searching_text">
+				Søger...
+			</string>
+			<string name="not_found_text">
+				Intet Fundet.
+			</string>
+			<string name="land_help_text">
+				Land kan købes direkte for Linden Dollars (L$) eller på en auktion for enten L$ eller US$.
+for at købe direkte, besøg landet du vil købe og klik på stedets navn i den øverste titel-linie.
+			</string>
+			<text name="find">
+				Find:
+			</text>
+			<check_box label="PG indhold" name="incpg"/>
+			<check_box label="Mature indhold" name="incmature"/>
+			<check_box label="Adult indhold" name="incadult"/>
+			<combo_box name="type">
+				<combo_box.item name="AllTypes" label="Alle typer"/>
+				<combo_box.item name="Auction" label="Auktioner"/>
+				<combo_box.item name="MainlandSales" label="Til salg - Mainland"/>
+				<combo_box.item name="EstateSales" label="Til salg - Estate"/>
+			</combo_box>
+			<check_box label="Pris &#8804; " name="pricecheck"/>
+			<text name="pricecheck_symbol">
+				L$
+			</text>
+			<check_box label="Areal &#8805; " name="areacheck"/>
+			<text name="areacheck_symbol">
+				m²
+			</text>
+			<line_editor name="priceedit"/>
+			<line_editor name="areaedit"/>
+			<button label="Søg" label_selected="Søg" name="Search"/>
+			<scroll_list name="results">
+				<column label="" name="icon"/>
+				<column label="" name="type"/>
+				<column label="Navn" name="name"/>
+				<column label="Type" name="landtype"/>
+				<column label="L$ Pris" name="price"/>
+				<column label="Areal" name="area"/>
+				<column label="L$/m²" name="per_meter"/>
+			</scroll_list>
+			<button label="Næste &gt;" label_selected="Næste &gt;" name="Next &gt;"/>
+			<button label="&lt; Forrige" label_selected="&lt; Forrige" name="&lt; Prev"/>
+		</panel>
+		<panel label="Steder" name="places_panel">
+			<string name="searching_text">
+				Søger...
+			</string>
+			<string name="not_found_text">
+				Intet Fundet.
+			</string>
+			<text name="find">
+				Find:
+			</text>
+			<check_box label="PG indhold" name="incpg"/>
+			<check_box label="Mature indhold" name="incmature"/>
+			<check_box label="Adult indhold" name="incadult"/>
+			<combo_box name="Category">
+				<combo_box.item name="item0" label="Enhver kategori"/>
+				<combo_box.item name="item1" label="Linden steder"/>
+				<combo_box.item name="item3" label="Kunst &amp; kultur"/>
+				<combo_box.item name="item4" label="Forretning"/>
+				<combo_box.item name="item5" label="Uddannelse"/>
+				<combo_box.item name="item6" label="Spil"/>
+				<combo_box.item name="item7" label="Opholdssteder"/>
+				<combo_box.item name="item8" label="Nybegynder venligt"/>
+				<combo_box.item name="item9" label="Parker &amp; natur"/>
+				<combo_box.item name="item10" label="Beboelse"/>
+				<combo_box.item name="item11" label="Shopping"/>
+				<combo_box.item name="item12" label="Andet"/>
+			</combo_box>
+			<combo_box name="Category_Adult">
+				<combo_box.item name="AnyCategory" label="Enhver kategori"
+				/>
+				<combo_box.item name="LindenLocation" label="Linden sted"
+				/>
+				<combo_box.item name="Adult" label="Adult"
+				/>
+				<combo_box.item name="Arts&amp;Culture" label="Kunst &amp; kultur"
+				/>
+				<combo_box.item name="Business" label="Business"
+				/>
+				<combo_box.item name="Educational" label="Uddannelse"
+				/>
+				<combo_box.item name="Gaming" label="Spil"
+				/>
+				<combo_box.item name="Hangout" label="Opholdssteder"
+				/>
+				<combo_box.item name="NewcomerFriendly" label="Nybegynder venligt"
+				/>
+				<combo_box.item name="Parks&amp;Nature" label="Parker &amp; natur"
+				/>
+				<combo_box.item name="Residential" label="Beboelse"
+				/>
+				<combo_box.item name="Shopping" label="Shopping"
+				/>
+				<combo_box.item name="Other" label="Andet"
+				/>
+			</combo_box>
+			<button label="Søg" label_selected="Søg" name="Search"/>
+			<scroll_list name="results">
+				<column label="" name="icon"/>
+				<column label="" name="type"/>
+				<column label="Navn" name="name"/>
+				<column label="Trafik" name="dwell"/>
+			</scroll_list>
+			<button label="Næste &gt;" label_selected="Næste &gt;" name="Next &gt;"/>
+			<button label="&lt; Forrige" label_selected="&lt; Forrige" name="&lt; Prev"/>
+		</panel>
+		<panel label="Personer" name="people_panel">
+			<string name="searching_text">
+				Søger...
+			</string>
+			<string name="not_found_text">
+				Ingen fundet.
+			</string>
+			<text name="find">
+				Find:
+			</text>
+			<button label="Søg" label_selected="Søg" name="Search"/>
+			<scroll_list name="results">
+				<column label="" name="icon"/>
+				<column label="" name="type"/>
+				<column label="Navn" name="name"/>
+			</scroll_list>
+			<button label="Næste &gt;" label_selected="Næste &gt;" name="Next &gt;"/>
+			<button label="&lt; Forrige" label_selected="&lt; Forrige" name="&lt; Prev"/>
+		</panel>
+		<panel label="Grupper" name="groups_panel">
+			<string name="searching_text">
+				Søger...
+			</string>
+			<string name="not_found_text">
+				Ingen fundet.
+			</string>
+			<text name="find">
+				Find:
+			</text>
+			<line_editor label="Søg" name="search_editor" tool_tip="Søg i [SECOND_LIFE]"/>
+			<button label="Retur" name="back_btn"/>
+			<button label="Frem" name="forward_btn"/>
+			<button label="Søg" name="search_btn"/>
+			<check_box label="PG indhold" name="incpg"/>
+			<check_box label="Mature indhold" name="incmature"/>
+			<check_box label="Adult indhold" name="incadult"/>
+			<string name="loading_text">
+				Indlæser...
+			</string>
+			<string name="done_text">
+				Færdig
+			</string>
+			<string name="redirect_404_url">
+				http://secondlife.com/app/search/notfound.html
+			</string>
+			<string name="default_search_page">
+				http://secondlife.com/app/search/index_groups.php?
+			</string>
+		</panel>
+	</tab_container>
+</floater>

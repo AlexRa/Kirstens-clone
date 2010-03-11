@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<panel name="toolbar">
+	<panel.string name="Redock Windows">
+		Rétablir les fenêtres
+	</panel.string>
+	<panel.string name="Blocked List">
+		Résidents et objets ignorés
+	</panel.string>
+	<layout_stack name="toolbar_stack">
+		<button label="" name="chat_btn" tool_tip="Afficher la barre de chat (Entrée)"/>
+		<flyout_button label="Communiquer" name="communicate_btn" tool_tip="Communiquer avec vos amis et vos groupes"/>
+		<button label="Voler" label_selected="" name="fly_btn" tool_tip="Voler. Appuyer sur E/C ou Pg suiv./Pg préc. pour voler vers le haut et vers le bas"/>
+		<button label="Photo" name="snapshot_btn" tool_tip="Enregistrer une capture d&apos;écran sur le disque ou dans l&apos;inventaire"/>
+		<button label="Rechercher" name="directory_btn" tool_tip="Rechercher des lieux, des événements, des personnes et plus"/>
+		<button label="Construire" name="build_btn" tool_tip="Créer des objets"/>
+		<button label="Carte" name="map_btn" tool_tip="Carte du monde (Ctrl+M)"/>
+		<button label="Mini-carte" name="radar_btn" tool_tip="Carte de la zone dans laquelle vous vous trouvez (Ctrl+Maj+M)"/>
+		<button label="Inventaire" name="inventory_btn" tool_tip="Vos objets (Ctrl+I)"/>
+	</layout_stack>
+</panel>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="bug_reporter" title="FEHLER MELDEN">
+	<text name="reporter_title">
+		Melder:
+	</text>
+	<text name="sim_title">
+		Region:
+	</text>
+	<text name="pos_title">
+		Position:
+	</text>
+	<text bottom_delta="-38" height="32" name="select_object_label">
+		Klicken Sie auf die Schaltfläche, 
+dann auf das Objekt:
+	</text>
+	<button label="" label_selected="" name="pick_btn"
+	     tool_tip="Objektauswahl – Wählen Sie ein Objekt als Thema dieses Berichts aus" />
+	<text name="object_name_label">
+		Name:
+	</text>
+	<text name="object_name">
+		Consetetur Sadipscing
+	</text>
+	<text name="owner_name_label">
+		Eigentümer:
+	</text>
+	<check_box label="Screenshot einschließen" name="screen_check" />
+	<texture_picker label="Arbeitet..." name="screenshot" />
+	<text name="owner_name">
+		Hendrerit Vulputate
+	</text>
+	<combo_box name="category_combo"
+	     tool_tip="Category -- select the category that best describes this report">
+		<combo_box.item name="Selectcategory" label="Kategorie auswählen" />
+		<combo_box.item name="Building" label="Gebäude" />
+		<combo_box.item name="Character" label="Charakter" />
+		<combo_box.item name="Chat/IM" label="Chat/IM" />
+		<combo_box.item name="Documentation" label="Dokumentation" />
+		<combo_box.item name="Exploit" label="Exploit" />
+		<combo_box.item name="Graphics" label="Grafik" />
+		<combo_box.item name="Inventory" label="Inventar" />
+		<combo_box.item name="Lag" label="Lag" />
+		<combo_box.item name="MissingContent" label="Fehlender Inhalt" />
+		<combo_box.item name="LindenDollars(L$)" label="Linden Dollar (L$)" />
+		<combo_box.item name="Permissions" label="Berechtigungen" />
+		<combo_box.item name="Physics" label="Physik" />
+		<combo_box.item name="Script" label="Skript" />
+		<combo_box.item name="Sound" label="Sound" />
+		<combo_box.item name="Stipends" label="Stipendium" />
+		<combo_box.item name="Userinterface" label="Benutzeroberfläche" />
+		<combo_box.item name="Miscellaneous" label="Sonstiges" />
+	</combo_box>
+	<text name="sum_title">
+		Zusammenfassung:
+	</text>
+	<text name="dscr_title">
+		Details: (Bitte machen Sie so viele Angaben wie möglich.)
+	</text>
+	<text_editor name="details_edit">
+		Schritte zur Fehler-Reproduktion:
+
+Beobachtete Ergebnisse:
+
+Erwartete Ergebnisse:
+	</text_editor>
+	<text name="bug_aviso">
+		Hinweis: Unvollständige Meldungen werden nicht bearbeitet.
+Sollte Ihnen dieser Fehler unerlaubte Aktionen ermöglichen, 
+die sich eventuell nachteilig auf Leistung oder Sicherheit auswirken, 
+wählen Sie die Kategorie „Exploit“. Vielen Dank!
+	</text>
+	<button label="Fehler melden" label_selected="Fehler melden" name="send_btn" />
+	<button label="Abbrechen" label_selected="Abbrechen" name="cancel_btn" />
+</floater>

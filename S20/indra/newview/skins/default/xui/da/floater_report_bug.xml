@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="bug_reporter" title="RAPPORTER FEJL">
+	<texture_picker label="" name="screenshot" />
+	<check_box label="Inkluder Skærmbillede" name="screen_check" />
+	<text name="reporter_title">
+		Reporter:
+	</text>
+	<text name="sim_title">
+		Region:
+	</text>
+	<text name="pos_title">
+		Position:
+	</text>
+	<text name="select_object_label">
+		Klik på knappen derefter objektet:
+	</text>
+	<button label="" label_selected="" name="pick_btn"
+	     tool_tip="Objekt Vælger - Identificer et objekt som emne for denne rapport" />
+	<text name="object_name_label">
+		Navn:
+	</text>
+	<text name="object_name">
+		Consetetur Sadipscing
+	</text>
+	<text name="owner_name_label">
+		Ejer:
+	</text>
+	<text name="owner_name">
+		Hendrerit Vulputate
+	</text>
+	<combo_box name="category_combo"
+	     tool_tip="Kategori -- Vælg den kategori der bedste beskriver denne rapport">
+		<combo_box.item name="Selectcategory" label="Vælg Kategori" />
+		<combo_box.item name="Building" label="Bygge" />
+		<combo_box.item name="Character" label="Figur" />
+		<combo_box.item name="Chat/IM" label="Chat/PB" />
+		<combo_box.item name="Documentation" label="Dokumentation" />
+		<combo_box.item name="Exploit" label="Udnyttelse" />
+		<combo_box.item name="Graphics" label="Grafik" />
+		<combo_box.item name="Inventory" label="Beholdning" />
+		<combo_box.item name="Lag" label="Lag" />
+		<combo_box.item name="MissingContent" label="Mangler Indhold" />
+		<combo_box.item name="LindenDollars(L$)" label="Linden Dollars (L$)" />
+		<combo_box.item name="Permissions" label="Rettigheder" />
+		<combo_box.item name="Physics" label="Fysik" />
+		<combo_box.item name="Script" label="Koder" />
+		<combo_box.item name="Sound" label="Lyd" />
+		<combo_box.item name="Stipends" label="Stipendier" />
+		<combo_box.item name="Userinterface" label="Brugerflade" />
+		<combo_box.item name="Miscellaneous" label="Andet" />
+	</combo_box>
+	<text name="sum_title">
+		Opsummering:
+	</text>
+	<text name="dscr_title">
+		Detaljer: (Medgiv venligst så meget information som muligt)
+	</text>
+	<text_editor name="details_edit">
+		Trin for at genskabe fejl:
+
+Observerede Resultater:
+
+Forventet Resultat:
+	</text_editor>
+	<text name="bug_aviso">
+		Note: Ufuldstændige rapporter vil ikke blive undersøgt
+Hvis denne fejl giver dig mulighed for at gøre noget, du ikke bør være i stand
+til at gøre, især hvis det påvirker ydeevnen eller sikkerhed, skal du
+vælge "Udnyttelse" i kategori. Tak!
+	</text>
+	<button label="Annuller" label_selected="Annuller" name="cancel_btn" />
+	<button label="Rapporter Fejl" label_selected="Rapporter Fejl" name="send_btn" />
+</floater>

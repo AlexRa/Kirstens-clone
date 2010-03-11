@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<panel label="Eventi" name="Event" title="Evento">
+	<panel.string name="none">
+		nessuno
+	</panel.string>
+	<panel.string name="notify">
+		Notifica
+	</panel.string>
+	<panel.string name="dont_notify">
+		Annulla Notifica
+	</panel.string>
+	<text name="event_name_label">
+		Nome:
+	</text>
+	<text left="140" name="event_name">
+		(nessuno)
+	</text>
+	<text name="event_category_label">
+		Tipo:
+	</text>
+	<text left="140" name="event_category">
+		(nessuno)
+	</text>
+	<text name="event_mature_label">
+		Contenuto Mature:
+	</text>
+	<text left="140" name="event_mature_yes">
+		Si
+	</text>
+	<text left="140" name="event_mature_no">
+		No
+	</text>
+	<text name="event_date_label">
+		Data:
+	</text>
+	<text left="140" name="event_date">
+		(nessuno)
+	</text>
+	<text name="event_duration_label">
+		Durata dell&apos;evento:
+	</text>
+	<text left="140" name="event_duration">
+		(nessuno)
+	</text>
+	<text name="event_runby_label">
+		Organizzato da:
+	</text>
+	<text left="140" name="event_runby">
+		(nessuno)
+	</text>
+	<text name="event_location_label">
+		Luogo:
+	</text>
+	<text left="140" name="event_location">
+		(nessuno)
+	</text>
+	<text name="event_cover_label">
+		Costo:
+	</text>
+	<text left="140" name="event_cover">
+		(nessuno)
+	</text>
+	<text name="event_desc_label">
+		Descrizione:
+	</text>
+	<button label="Teleport" name="teleport_btn"/>
+	<button label="Mappa" name="map_btn"/>
+	<button label="Mandami una notifica" name="notify_btn"/>
+	<button label="Crea evento..." name="create_event_btn"/>
+</panel>

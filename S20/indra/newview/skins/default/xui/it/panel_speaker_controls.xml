@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<panel name="active_speakers_panel">
+	<string name="moderator_label">
+		(Moderatore)
+	</string>
+	<layout_stack name="panels">
+		<layout_panel name="moderation_mode_panel">
+			<combo_box name="moderation_mode">
+				<combo_box.item label="Voices on by default" name="OpenVoice"/>
+				<combo_box.item label="Voices off by default" name="ModeratedVoice"/>
+			</combo_box>
+		</layout_panel>
+		<layout_panel name="moderate_chat_panel">
+			<scroll_list name="speakers_list">
+				<column label="Nome" name="speaker_name"/>
+			</scroll_list>
+			<panel name="speaker_controls">
+				<text name="resident_name">
+					Rumplstiltskin Califragilistic
+				</text>
+				<button label="" name="mute_btn" tool_tip="Muta il voice per questo residente"/>
+				<check_box label="Muta la chat di testo" name="mute_text_btn"/>
+			</panel>
+		</layout_panel>
+		<layout_panel name="moderator_controls">
+			<text name="moderator_controls_label">
+				Controlli del moderatore:
+			</text>
+			<check_box label="Abilita chat vocale" name="moderator_allow_voice"/>
+			<check_box label="Abilita chat scritta" name="moderator_allow_text"/>
+		</layout_panel>
+	</layout_stack>
+</panel>

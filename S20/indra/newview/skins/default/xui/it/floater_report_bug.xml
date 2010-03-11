@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<floater name="bug_reporter" title="SEGNALA UN BUG">
+	<check_box label="Includi una fotografia dello schermo" name="screen_check"/>
+	<text name="reporter_title">
+		Segnalato da:
+	</text>
+	<text name="sim_title">
+		Regione:
+	</text>
+	<text name="pos_title">
+		Posizione:
+	</text>
+	<text name="select_object_label">
+		Clicca il pulsante e poi l&apos;oggetto:
+	</text>
+	<button label="" label_selected="" name="pick_btn" tool_tip="Selezionatore di oggetti - Identifica un oggetto quale argomento di questa denuncia"/>
+	<text name="object_name_label">
+		Nome:
+	</text>
+	<text name="object_name">
+		Consetetur Sadipscing
+	</text>
+	<text name="owner_name_label">
+		Proprietario:
+	</text>
+	<text name="owner_name">
+		Hendrerit Vulputate
+	</text>
+	<combo_box name="category_combo" tool_tip="Categoria -- seleziona la categoria che descrive meglio questa denuncia">
+		<combo_box.item name="Selectcategory" label="Seleziona categoria"/>
+		<combo_box.item name="Building" label="Costruzioni"/>
+		<combo_box.item name="Character" label="Personaggio"/>
+		<combo_box.item name="Chat/IM" label="Chat/IM"/>
+		<combo_box.item name="Documentation" label="Documentazione"/>
+		<combo_box.item name="Exploit" label="Exploit"/>
+		<combo_box.item name="Graphics" label="Grafica"/>
+		<combo_box.item name="Inventory" label="Inventario"/>
+		<combo_box.item name="Lag" label="Lag"/>
+		<combo_box.item name="MissingContent" label="Contenuto mancante"/>
+		<combo_box.item name="LindenDollars(L$)" label="Linden Dollar (L$)"/>
+		<combo_box.item name="Permissions" label="Permessi"/>
+		<combo_box.item name="Physics" label="Fisica"/>
+		<combo_box.item name="Script" label="Script"/>
+		<combo_box.item name="Sound" label="Audio"/>
+		<combo_box.item name="Stipends" label="Stipendi"/>
+		<combo_box.item name="Userinterface" label="Interfaccia utente"/>
+		<combo_box.item name="Miscellaneous" label="Varie"/>
+	</combo_box>
+	<text name="sum_title">
+		Riassunto:
+	</text>
+	<text name="dscr_title">
+		Dettagli: (fornisci più informazioni possibili)
+	</text>
+	<text_editor name="details_edit">
+		Passi per riprodurre il bug:
+
+Risultati osservati:
+
+Risultati attesi:
+	</text_editor>
+	<text name="bug_aviso">
+		Nota: I rapporti incompleti non saranno esaminati
+Se questo bug ti permette di fare qualcosa che in teoria non potresti fare, soprattutto se ha effetti sulle prestazioni o sulla sicurezza,  per favore seleziona la categoria &apos;Exploit&apos;. Grazie!
+	</text>
+	<button label="Annulla" label_selected="Annulla" name="cancel_btn"/>
+	<button label="Segnala Bug" label_selected="Segnala Bug" name="send_btn"/>
+</floater>

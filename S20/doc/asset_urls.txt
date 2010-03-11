@@ -1,0 +1,5 @@
+SLASSET_LIBS_WIN32=http://secondlife.com/developers/opensource/downloads/2010/2.0/snowglobe-win32-libs-viewer-2.0.0-r0.zip
+SLASSET_MD5=http://secondlife.com/developers/opensource/downloads/2010/2.0/md5sums-snowglobe-viewer-2.0.0-r0.txt
+SLASSET_LIBS_DARWIN=http://secondlife.com/developers/opensource/downloads/2010/2.0/snowglobe-darwin-libs-viewer-2.0.0-r0.tar.gz
+SLASSET_ART=http://secondlife.com/developers/opensource/downloads/2010/2.0/snowglobe-artwork-viewer-2.0.0-r0.zip
+SLASSET_LIBS_LINUXI386=http://secondlife.com/developers/opensource/downloads/2010/2.0/snowglobe-linux-libs-viewer-2.0.0-r0.tar.gz

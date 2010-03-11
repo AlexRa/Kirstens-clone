@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!-- Appears unused. JC 2009-09-08 -->
+<panel name="Panel Avatar" width="470">
+	<panel.string name="ShowOnMapNonFriend">
+		Voir sur la carte.
+Ceci n&apos;est pas possible car vous
+n&apos;êtes pas ami avec cette personne.
+	</panel.string>
+	<panel.string name="ShowOnMapFriendOffline">
+		Voir sur la carte.
+    Ceci n&apos;est pas possible car le résident
+    en question n&apos;est pas connecté.
+	</panel.string>
+	<panel.string name="ShowOnMapFriendOnline">
+		Voir sur la carte.
+	</panel.string>
+	<panel.string name="TeleportGod">
+		Téléporter le résident là où vous êtes de force.
+	</panel.string>
+	<panel.string name="TeleportPrelude">
+		Proposer au résident d&apos;être téléporté là où vous êtes.
+Ceci n&apos;est pas possible tant que vous êtes sur l&apos;île d&apos;orientation.
+	</panel.string>
+	<panel.string name="TeleportNormal">
+		Offrir au résident d&apos;être téléporté là où vous êtes.
+	</panel.string>
+	<panel.string name="Loading">
+		Chargement...
+	</panel.string>
+	<tab_container name="tab" width="459">
+		<panel label="SL" name="2nd Life" width="458">
+			<panel.string name="CaptionTextAcctInfo">
+				[ACCTTYPE]
+[PAYMENTINFO]
+[AGEVERIFICATION]
+			</panel.string>
+			<panel.string name="AcctTypeResident">
+				Résident
+			</panel.string>
+			<panel.string name="AcctTypeTrial">
+				Essai
+			</panel.string>
+			<panel.string name="AcctTypeCharterMember">
+				Membre originaire
+			</panel.string>
+			<panel.string name="AcctTypeEmployee">
+				Employé(e) de Linden Lab
+			</panel.string>
+			<panel.string name="PaymentInfoUsed">
+				Infos de paiement utilisées
+			</panel.string>
+			<panel.string name="PaymentInfoOnFile">
+				Infos de paiement enregistrées
+			</panel.string>
+			<panel.string name="NoPaymentInfoOnFile">
+				Aucune info de paiement
+			</panel.string>
+			<panel.string name="AgeVerified">
+				Âge vérifié
+			</panel.string>
+			<panel.string name="NotAgeVerified">
+				Âge non vérifié
+			</panel.string>
+			<text name="Name:">
+				Nom :
+			</text>
+			<text name="online_yes" width="151">
+				Actuellement connecté(e)
+			</text>
+			<text name="label">
+				Né(e) le :
+			</text>
+			<line_editor name="born" width="161"/>
+			<text name="label2">
+				Compte :
+			</text>
+			<view_border name="acct_border" width="161"/>
+			<text name="acct" width="161"/>
+			<text name="partner_label" tool_tip="Partenaire [SECOND_LIFE]. Pour en savoir plus, consultez www.secondlife.com/partner">
+				Partenaire :
+			</text>
+			<button label="i" label_selected="i" left_delta="62" name="partner_info" tool_tip="Cliquez pour ouvrir le profil du partenaire"/>
+			<line_editor name="partner_edit" tool_tip="Partenaire [SECOND_LIFE]. Pour en savoir plus, consultez www.secondlife.com/partner" width="161">
+				[FIRST] [LAST]
+			</line_editor>
+			<text name="Photo:">
+				Photo :
+			</text>
+			<texture_picker label="" name="img" tool_tip="Cliquez pour sélectionner une image"/>
+			<text name="Groups:">
+				Groupes :
+			</text>
+			<scroll_list name="groups" width="361"/>
+			<text name="About:">
+				À propos :
+			</text>
+			<text name="(500 chars)">
+				(500 car.)
+			</text>
+			<text_editor name="about" width="361"/>
+			<text bottom="-397" height="20" name="Give item:">
+				Donner des 
+objets :
+			</text>
+			<view_border name="drop_target_rect_vis" width="361"/>
+			<text name="Give inventory" tool_tip="Placer les objets de l&apos;inventaire ici pour les donner à cette personne" width="361">
+				Mettez les objets à transférer ici.
+			</text>
+			<check_box label="Afficher dans la recherche" name="allow_publish" tool_tip="Publier des informations de profil supplémentaires, par ex. la description et l&apos;image dans les recherches"/>
+			<button label="Localiser" label_selected="Localiser" name="Find on Map"/>
+			<button label="Proposer téléportation..." label_selected="Proposer téléportation..." left_delta="117" name="Offer Teleport..." width="150"/>
+			<button label="Devenir amis..." label_selected="Devenir amis..." left_delta="167" name="Add Friend..."/>
+			<button label="Payer..." label_selected="Payer..." name="Pay..."/>
+			<button label="Message instantané..." label_selected="Message instantané..." left_delta="117" name="Instant Message..." tool_tip="Message instantané (IM)" width="150"/>
+			<button label="Ignorer" label_selected="Ignorer" left_delta="167" name="Mute"/>
+		</panel>
+		<panel label="Web" name="WebProfile" width="458">
+			<line_editor name="url_edit" width="440"/>
+			<flyout_button label="Charger" label_selected="Charger" name="load" tool_tip="Charger ce profil avec le navigateur Web incorporé"/>
+			<check_box label="Charger directement la page web" name="auto_load" tool_tip="Charger automatiquement toutes les pages Web de profil sans demander la permission"/>
+			<web_browser name="profile_html" width="440"/>
+		</panel>
+		<panel label="Intérêts" name="Interests" width="458">
+			<text left="2" name="I Want To:">
+				Je veux :
+			</text>
+			<check_box label="Construire" name="chk0"/>
+			<check_box label="Explorer" left_delta="160" name="chk1"/>
+			<check_box label="Faire des rencontres" left_delta="-160" name="chk2"/>
+			<check_box label="Être engagé" left_delta="160" name="chk6"/>
+			<check_box label="Rejoindre un groupe" left_delta="-160" name="chk3"/>
+			<check_box label="Acheter" left_delta="160" name="chk4"/>
+			<check_box label="Vendre" left_delta="-160" name="chk5"/>
+			<check_box label="Recruter" left_delta="160" name="chk7"/>
+			<line_editor name="want_to_edit" width="360"/>
+			<text left="2" name="Skills:">
+				Mes talents :
+			</text>
+			<check_box label="Textures" name="schk0"/>
+			<check_box label="Architecture" left_delta="160" name="schk1"/>
+			<check_box label="Organisation d&apos;événements" name="schk2"/>
+			<check_box label="Modélisation" left_delta="-160" name="schk3"/>
+			<check_box label="Rédaction de scripts" name="schk4"/>
+			<check_box label="Customisation de personnages" left_delta="160" name="schk5"/>
+			<line_editor name="skills_edit" width="360"/>
+			<text left="2" name="Languages:">
+				Langues :
+			</text>
+			<line_editor name="languages_edit" width="360"/>
+		</panel>
+		<panel label="Favoris" name="Picks" width="458">
+			<text left="10" name="Tell everyone about your favorite places in Second Life." width="412">
+				Faites connaître aux autres résidents vos endroits favoris dans [SECOND_LIFE].
+			</text>
+			<button label="Créer..." label_selected="Créer..." name="New..."/>
+			<button label="Supprimer..." label_selected="Supprimer..." name="Delete..." width="85"/>
+			<tab_container name="picks tab" width="452"/>
+			<text name="loading_text">
+				Chargement...
+			</text>
+		</panel>
+		<panel label="Annonces" name="Classified" width="458">
+			<text name="Place an ad in Second Life&apos;s classified listings.">
+				Passez une petite annonce sur [SECOND_LIFE].
+			</text>
+			<button label="Créer..." label_selected="Créer..." name="New..."/>
+			<button label="Supprimer..." label_selected="Supprimer..." name="Delete..." width="85"/>
+			<tab_container name="classified tab" width="452"/>
+			<text name="loading_text">
+				Chargement...
+			</text>
+		</panel>
+		<panel label="Monde physique" name="Real World" width="458">
+			<text name="Photo:">
+				Photo :
+			</text>
+			<texture_picker label="" name="img" tool_tip="Cliquez pour sélectionner une image"/>
+			<text name="Info:">
+				Infos :
+			</text>
+			<text name="(250 chars)">
+				(250 car.)
+			</text>
+			<text_editor name="about" width="370"/>
+		</panel>
+		<panel label="Mes notes" name="My Notes" width="458">
+			<panel.string name="Loading">
+				Chargement...
+			</panel.string>
+			<text name="label" width="452">
+				Dans cet espace, vous pouvez enregistrer vos remarques au sujet de ce résident ou
+prendre des notes sur certains projets. Vous êtes le seul à pouvoir accéder à cette
+page et même le résident dont vous consultez le profil ne pourra pas voir ce que
+vous avez écrit.
+			</text>
+			<text_editor bottom_delta="-260" height="240" name="notes edit" width="430"/>
+		</panel>
+	</tab_container>
+	<button label="OK" label_selected="OK" name="OK"/>
+	<button label="Annuler" label_selected="Annuler" name="Cancel"/>
+	<button label="Éjecter" label_selected="Éjecter" name="Kick"/>
+	<button label="Geler" label_selected="Geler" name="Freeze" tool_tip="Bloquer les mouvements et le chat de ce résident"/>
+	<button label="Dégeler" label_selected="Dégeler" name="Unfreeze" tool_tip="Dégeler le résident"/>
+	<button label="Admin" label_selected="Admin" name="csr_btn" tool_tip="Contacter le Service Clientèle pour ce résident"/>
+</panel>

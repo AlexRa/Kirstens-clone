@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="Linden Land, Da Boom (154, 135, 35)"
+     title="  LINDEN LAND, DA BOOM (154, 135, 35)">
+	<text name="desc txt">
+		Description :
+	</text>
+	<button label="Téléportation" label_selected="" name="Teleport btn" />
+	<button label="Localiser" label_selected="" name="Show on Map btn" />
+</floater>

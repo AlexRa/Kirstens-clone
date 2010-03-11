@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="bug_reporter" title="ZGŁOŚ BŁĘDY KLIENTA">
+	<texture_picker label="" name="screenshot" />
+	<check_box label="Załącz Zdjęcie Ekranu" name="screen_check" />
+	<text name="reporter_title">
+		Reporter:
+	</text>
+	<text name="sim_title">
+		Region:
+	</text>
+	<text name="pos_title">
+		Pozycja:
+	</text>
+	<text name="select_object_label">
+		Kliknij na przycisk później na obiekt:
+	</text>
+	<button label="" label_selected="" name="pick_btn"
+	     tool_tip="Wybór obiektu - wybierz obiekt, którego dotyczy raport." />
+	<text name="object_name_label">
+		Nazwa:
+	</text>
+	<text name="object_name">
+		Consetetur Sadipscing
+	</text>
+	<text name="owner_name_label">
+		Właściciel:
+	</text>
+	<text name="owner_name">
+		Hendrerit Vulputate
+	</text>
+	<combo_box name="category_combo"
+	     tool_tip="Wybór kategorii - wybierz kategorię, której dotyczy raport">
+		<combo_box.item name="Selectcategory" label="Wybierz Kategorię" />
+		<combo_box.item name="Building" label="Budowanie" />
+		<combo_box.item name="Character" label="Awatar" />
+		<combo_box.item name="Chat/IM" label="Czat/IM" />
+		<combo_box.item name="Documentation" label="Dokumentacja" />
+		<combo_box.item name="Exploit" label="Eksploatacja" />
+		<combo_box.item name="Graphics" label="Grafika" />
+		<combo_box.item name="Inventory" label="Szafa" />
+		<combo_box.item name="Lag" label="Lag" />
+		<combo_box.item name="MissingContent" label="Brakujący Element" />
+		<combo_box.item name="LindenDollars(L$)" label="Linden Dollars (L$)" />
+		<combo_box.item name="Permissions" label="Prawa" />
+		<combo_box.item name="Physics" label="Fizyka" />
+		<combo_box.item name="Script" label="Skrypty" />
+		<combo_box.item name="Sound" label="Dźwięk" />
+		<combo_box.item name="Stipends" label="Uposażenie" />
+		<combo_box.item name="Userinterface" label="Interfejs Użytkownika" />
+		<combo_box.item name="Miscellaneous" label="Różne/Inne" />
+	</combo_box>
+	<text name="sum_title">
+		Podsumowanie:
+	</text>
+	<text name="dscr_title">
+		Detale: (Proszę dostarczyć możliwie jak najwięcej szczegółów)
+	</text>
+	<text_editor name="details_edit">
+		Procedura usuwania błędów klienta:
+
+Zaobserwowane rezultaty:
+
+Oczekiwane rezultaty:
+	</text_editor>
+	<text name="bug_aviso">
+		Pamiętaj: Niedokończone raporty nie będą analizowane!
+Jeżeli ten błąd pozwala Ci na dokonywanie niedozwolonych operacji, 
+zwłaszcza związanych z bezpieczeństwem i działanością systemu wybierz kategorię Eksploatacja. Dziękujemy!
+	</text>
+	<button label="Anuluj" label_selected="Anuluj" name="cancel_btn" />
+	<button label="Zgłoś Błąd" label_selected="Zgłoś Błąd" name="send_btn" />
+</floater>

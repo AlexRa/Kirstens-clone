@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="bug_reporter" title="INFORMAR BUG">
+	<text name="reporter_title">
+		Relator:
+	</text>
+	<text name="sim_title">
+		Simulador:
+	</text>
+	<text name="pos_title">
+		Posición:
+	</text>
+	<text name="select_object_label">
+		Haga clic en el botón y en el objeto para seleccionar:
+	</text>
+	<button label="" label_selected="" name="pick_btn"
+	     tool_tip="Selector de objeto - Identifica un objeto con el asunto de este relato" />
+	<text name="object_name_label">
+		Nombre:
+	</text>
+	<text name="owner_name_label">
+		Propietario:
+	</text>
+	<check_box label="Incluir foto instantánea" name="screen_check" />
+	<texture_picker label="Trabajando..." name="screenshot" />
+	<text name="category_label">
+		Categoría:
+	</text>
+	<combo_box name="category_combo"
+	     tool_tip="Category -- select the category that best describes this report">
+		<combo_box.item name="Selectcategory" label="Elige la categoría" />
+		<combo_box.item name="Building" label="Construyendo" />
+		<combo_box.item name="Character" label="Personaje" />
+		<combo_box.item name="Chat/IM" label="Chat/MI" />
+		<combo_box.item name="Documentation" label="Documentación" />
+		<combo_box.item name="Exploit" label="Hazaña" />
+		<combo_box.item name="Graphics" label="Gráficos" />
+		<combo_box.item name="Inventory" label="Inventario" />
+		<combo_box.item name="Lag" label="Atraso" />
+		<combo_box.item name="MissingContent" label="Contenido perdido" />
+		<combo_box.item name="LindenDollars(L$)" label="Linden Dólares (L$)" />
+		<combo_box.item name="Permissions" label="Permisos" />
+		<combo_box.item name="Physics" label="Física" />
+		<combo_box.item name="Script" label="Script" />
+		<combo_box.item name="Sound" label="Sonido" />
+		<combo_box.item name="Stipends" label="Salario" />
+		<combo_box.item name="Userinterface" label="Pantalla del usuario" />
+		<combo_box.item name="Miscellaneous" label="Miscelánea" />
+	</combo_box>
+	<text name="sum_title">
+		Resumen:
+	</text>
+	<text name="dscr_title">
+		Detalles:
+	</text>
+	<text_editor name="details_edit">
+		Pasos para reproducir el bug:
+
+Resultados observados:
+
+Resultados esperados:
+	</text_editor>
+	<text name="bug_aviso">
+		If this bug allows you to do something you should not be able 
+to do, especially if it impacts performance or security, please 
+select the &apos;Exploit&apos; category. Thank you!
+	</text>
+	<button label="Informar Bug" label_selected="Informar Bug" name="send_btn" />
+	<button label="Cancelar" label_selected="Cancelar" name="cancel_btn" />
+</floater>

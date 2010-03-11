@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<panel label="Evento" name="Event" title="Evento">
+	<panel.string name="none">
+		nenhum
+	</panel.string>
+	<panel.string name="notify">
+		Avisar
+	</panel.string>
+	<panel.string name="dont_notify">
+		Não avisar
+	</panel.string>
+	<text name="event_name_label">
+		Nome:
+	</text>
+	<text left="140" name="event_name">
+		(nenhum)
+	</text>
+	<text name="event_category_label">
+		Tipo:
+	</text>
+	<text left="140" name="event_category">
+		(nenhum)
+	</text>
+	<text name="event_mature_label">
+		Conteúdo Mature:
+	</text>
+	<text left="140" name="event_mature_yes">
+		Sim
+	</text>
+	<text left="140" name="event_mature_no">
+		Não
+	</text>
+	<text name="event_date_label">
+		Data:
+	</text>
+	<text left="140" name="event_date">
+		(nenhum)
+	</text>
+	<text name="event_duration_label">
+		Duração do evento:
+	</text>
+	<text left="140" name="event_duration">
+		(nenhum)
+	</text>
+	<text name="event_runby_label">
+		Executado por:
+	</text>
+	<text left="140" name="event_runby">
+		(nenhum)
+	</text>
+	<text name="event_location_label">
+		Localização:
+	</text>
+	<text left="140" name="event_location">
+		(nenhum)
+	</text>
+	<text name="event_cover_label">
+		Taxa de Cobertura:
+	</text>
+	<text left="140" name="event_cover">
+		(nenhum)
+	</text>
+	<text name="event_desc_label">
+		Descrição:
+	</text>
+	<button label="Tele-transportar" name="teleport_btn"/>
+	<button label="Mapa" name="map_btn"/>
+	<button label="Notificar" name="notify_btn"/>
+	<button label="Criar Evento..." name="create_event_btn"/>
+</panel>

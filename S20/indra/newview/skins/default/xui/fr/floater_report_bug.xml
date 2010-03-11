@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<floater name="bug_reporter" title="SIGNALER UN BUG">
+	<text name="reporter_title">
+		Signalant :
+	</text>
+	<text name="sim_title">
+		Sim :
+	</text>
+	<text name="pos_title">
+		Position :
+	</text>
+	<text name="select_object_label">
+		Cliquez sur le bouton puis l&apos;objet :
+	</text>
+	<button label="" label_selected="" name="pick_btn" tool_tip="Le sélecteur d&apos;objet vous permet d&apos;identifier un objet comme sujet du rapport."/>
+	<text name="object_name_label">
+		Nom :
+	</text>
+	<text name="object_name">
+		Consetetur Sadipscing
+	</text>
+	<text name="owner_name_label">
+		Propriétaire :
+	</text>
+	<check_box label="Inclure une capture d&apos;écran" name="screen_check"/>
+	<texture_picker label="Instantané en cours..." name="screenshot"/>
+	<text name="category_label">
+		Catégorie :
+	</text>
+	<text name="owner_name">
+		Hendrerit Vulputate
+	</text>
+	<combo_box name="category_combo" tool_tip="Choisissez la catégorie qui décrit le mieux ce rapport">
+		<combo_box.item name="Selectcategory" label="Sélectionnez une catégorie" />
+		<combo_box.item name="Building" label="Construire" />
+		<combo_box.item name="Character" label="Personnage" />
+		<combo_box.item name="Chat/IM" label="Chat/IM" />
+		<combo_box.item name="Documentation" label="Documentation" />
+		<combo_box.item name="Exploit" label="Exploit" />
+		<combo_box.item name="Graphics" label="Graphiques" />
+		<combo_box.item name="Inventory" label="Inventaire" />
+		<combo_box.item name="Lag" label="Lag" />
+		<combo_box.item name="MissingContent" label="Contenu manquant" />
+		<combo_box.item name="LindenDollars(L$)" label="Dollar Linden (L$)" />
+		<combo_box.item name="Permissions" label="Autorisations" />
+		<combo_box.item name="Physics" label="Propriétés physiques" />
+		<combo_box.item name="Script" label="Script" />
+		<combo_box.item name="Sound" label="Son" />
+		<combo_box.item name="Stipends" label="Subsides" />
+		<combo_box.item name="Userinterface" label="Interface utilisateur" />
+		<combo_box.item name="Miscellaneous" label="Divers" />
+	</combo_box>
+	<text name="sum_title">
+		Récapitulatif :
+	</text>
+	<text name="dscr_title">
+		Détails (soyez aussi précis que possible) :
+	</text>
+	<text_editor name="details_edit">
+		Étapes pour reproduire le bug :
+
+Résultats observés :
+
+Résultats attendus :
+	</text_editor>
+	<text name="bug_aviso">
+		Remarque : les rapports incomplets ne feront pas l&apos;objet d&apos;une enquête.
+Si ce bug vous permet de faire quelque chose que vous ne devriez pas pouvoir faire, surtout s&apos;il a des conséquences sur la sécurité et la performance, veuillez sélectionner la catégorie Exploit. Merci !
+	</text>
+	<button label="Signaler un bug" label_selected="Signaler un bug" name="send_btn"/>
+	<button label="Annuler" label_selected="Annuler" name="cancel_btn"/>
+</floater>

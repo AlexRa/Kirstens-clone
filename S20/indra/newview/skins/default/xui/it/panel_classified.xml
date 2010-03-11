@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<panel label="Annuncio" name="Classified" title="Inserzioni">
+	<panel.string name="ad_placed_paid">
+		Inserzione accettata: [DATE], Pagati [AMT] L$ per l&apos;inserzione.
+	</panel.string>
+	<panel.string name="update_txt">
+		Aggiorna
+	</panel.string>
+	<panel.string name="publish_txt">
+		Publica...
+	</panel.string>
+	<panel.string name="dateStr">
+		[mthnum,datetime,slt]/[day,datetime,slt]/[year,datetime,slt]
+	</panel.string>
+	<line_editor name="given_name_editor" tool_tip="Il nome deve iniziare con una lettera o numero, non con segni di punteggiatura"/>
+	<line_editor name="location_editor" tool_tip="Imposta il luogo con la tua attuale posizione per questo annuncio"/>
+	<button label="Imposta luogo" name="set_location_btn"/>
+	<button label="Teleport" name="classified_teleport_btn"/>
+	<button label="Mappa" name="classified_map_btn" width="130"/>
+	<button label="Profilo" left="260" name="classified_profile_btn"/>
+	<combo_box name="classified_mature_check">
+		<combo_box.item label="- Seleziona uno -" name="select_mature"/>
+		<combo_box.item label="Contenuto Mature" name="mature"/>
+		<combo_box.item label="Contenuto PG" name="pg"/>
+	</combo_box>
+	<button label="Aggiorna" name="classified_update_btn"/>
+</panel>
