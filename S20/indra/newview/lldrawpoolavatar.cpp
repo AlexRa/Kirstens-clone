@@ -459,7 +459,7 @@ void LLDrawPoolAvatar::endDeferredImpostor()
 
 void LLDrawPoolAvatar::beginDeferredRigid()
 {
-	sVertexProgram = &gDeferredDiffuseProgram;
+	sVertexProgram = &gObjectSimpleProgram; //&gDeferredDiffuseProgram; Until alpha mask is sorted KL
 				
 	sVertexProgram->bind();
 }

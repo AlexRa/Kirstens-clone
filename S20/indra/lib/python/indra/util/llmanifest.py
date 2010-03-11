@@ -93,13 +93,13 @@ def get_channel(srctree):
     for p in paths:
         if os.path.exists(p):
             contents = open(p, 'r').read()
-            channel = re.search("LL_CHANNEL\s=\s\"(.+)\";\s*$", contents, flags = re.M).group(1)
+            channel = "Kirstens S20" #re.search("LL_CHANNEL\s=\s\"(.+)\";\s*$", contents, flags = re.M).group(1)
             return channel
     
 
 DEFAULT_SRCTREE = os.path.dirname(sys.argv[0])
-DEFAULT_CHANNEL = 'Second Life Release'
-DEFAULT_CHANNEL_SNOWGLOBE = 'Snowglobe Release'
+DEFAULT_CHANNEL = 'Kirstens S20'
+#DEFAULT_CHANNEL_SNOWGLOBE = 'Snowglobe Release'
 
 ARGUMENTS=[
     dict(name='actions',
@@ -122,8 +122,8 @@ ARGUMENTS=[
     dict(name='build', description='Build directory.', default=DEFAULT_SRCTREE),
     dict(name='buildtype', description='Build type (i.e. Debug, Release, RelWithDebInfo).', default=None),
     dict(name='branding_id', description="""Identifier for the branding set to 
-        use.  Currently, 'secondlife' or 'snowglobe')""", 
-         default='secondlife'),
+        use.  Currently, 'Kirstens S20')""", 
+         default='Kirstens S20'),
     dict(name='configuration',
          description="""The build configuration used.""",
          default="Release"),
@@ -281,10 +281,8 @@ class LLManifest(object):
         return self.args.get('channel', None) == DEFAULT_CHANNEL
     
     def default_channel_for_brand(self):
-        if self.viewer_branding_id()=='secondlife':
+        if self.viewer_branding_id()=='Kirstens S20':
             return self.args.get('channel', None) == DEFAULT_CHANNEL
-        elif self.viewer_branding_id()=="snowglobe":
-            return self.args.get('channel', None) == DEFAULT_CHANNEL_SNOWGLOBE
         raise ValueError, "Invalid branding id: " + self.viewer_branding_id()
 
     def construct(self):

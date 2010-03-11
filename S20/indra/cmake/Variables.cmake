@@ -97,19 +97,16 @@ endif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 # Default deploy grid
 set(GRID agni CACHE STRING "Target Grid")
 
-set(VIEWER ON CACHE BOOL "Build Second Life viewer.")
-set(VIEWER_CHANNEL "CommunityDeveloper" CACHE STRING "Viewer Channel Name")
-set(VIEWER_LOGIN_CHANNEL ${VIEWER_CHANNEL} CACHE STRING "Fake login channel for A/B Testing")
-set(VIEWER_BRANDING_ID "snowglobe" CACHE STRING "Viewer branding id (currently secondlife|snowglobe)")
+set(VIEWER ON CACHE BOOL "Build Kirstens viewer.")
+set(VIEWER_CHANNEL "Kirstens S20" CACHE STRING "Viewer Channel Name")
+set(VIEWER_LOGIN_CHANNEL ${VIEWER_CHANNEL} CACHE STRING "Kirstens S20")
+set(VIEWER_BRANDING_ID "Kirstens S20" CACHE STRING "Viewer branding id")
 
 # *TODO: break out proper Branding-secondlife.cmake, Branding-snowglobe.cmake, etc
-if (${VIEWER_BRANDING_ID} MATCHES "secondlife")
-  set(VIEWER_BRANDING_NAME "Second Life")
-  set(VIEWER_BRANDING_NAME_CAMELCASE "SecondLife")
-elseif (${VIEWER_BRANDING_ID} MATCHES "snowglobe")
-  set(VIEWER_BRANDING_NAME "Snowglobe")
-  set(VIEWER_BRANDING_NAME_CAMELCASE "Snowglobe")
-endif (${VIEWER_BRANDING_ID} MATCHES "secondlife")
+if (${VIEWER_BRANDING_ID} MATCHES "Kirstens S20")
+  set(VIEWER_BRANDING_NAME "Kirstens S20")
+  set(VIEWER_BRANDING_NAME_CAMELCASE "Kirstens S20")
+endif (${VIEWER_BRANDING_ID} MATCHES "Kirstens S20")
 
 set(STANDALONE OFF CACHE BOOL "Do not use Linden-supplied prebuilt libraries.")
 

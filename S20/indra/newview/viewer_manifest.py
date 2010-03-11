@@ -123,7 +123,7 @@ class ViewerManifest(LLManifest):
     def channel(self):
         return self.args['channel']
     def channel_unique(self):
-        return self.channel().replace("Second Life", "").strip()
+        return self.channel().replace("Kirstens S20", "").strip()
     def channel_oneword(self):
         return "".join(self.channel_unique().split())
     def channel_lowerword(self):
@@ -131,8 +131,7 @@ class ViewerManifest(LLManifest):
     def viewer_branding_id(self):
         return self.args['branding_id']
     def installer_prefix(self):
-        mapping={"secondlife":'SecondLife_',
-                 "snowglobe":'Snowglobe_'}
+        mapping={"Kirstens S20":'Kirstens_S20_'}
         return mapping[self.viewer_branding_id()]
 
     def flags_list(self):
@@ -251,7 +250,7 @@ class WindowsManifest(ViewerManifest):
 
         if self.is_packaging_viewer():
             # Find secondlife-bin.exe in the 'configuration' dir, then rename it to the result of final_exe.
-            self.path(src='%s/secondlife-bin.exe' % self.args['configuration'], dst=self.final_exe())
+            self.path(src='%s/Kirstens-S20.exe' % self.args['configuration'], dst=self.final_exe())
 
         # Plugin host application
         self.path(os.path.join(os.pardir,
@@ -482,61 +481,24 @@ class WindowsManifest(ViewerManifest):
         !define VERSION_LONG "%(version)s"
         !define VERSION_DASHES "%(version_dashes)s"
         """ % substitution_strings
-        if self.default_channel() and self.viewer_branding_id()=="secondlife":
+        if self.default_channel() and self.viewer_branding_id()=="Kirstens S20":
             if self.default_grid():
                 # release viewer
-                installer_file = "Second_Life_%(version_dashes)s_Setup.exe"
+                installer_file = "Kirstens_S20_%(version_dashes)s_Setup.exe"
                 grid_vars_template = """
                 OutFile "%(installer_file)s"
-                !define VIEWERNAME "Second Life"
+                !define VIEWERNAME "Kirstens S20"
                 !define INSTFLAGS "%(flags)s"
-                !define INSTNAME   "SecondLife"
-                !define SHORTCUT   "Second Life"
+                !define INSTNAME   "Kirstens S20"
+                !define SHORTCUT   "Kirstens S20"
                 !define URLNAME   "secondlife"
                 !define INSTALL_ICON "install_icon.ico"
                 !define UNINSTALL_ICON "uninstall_icon.ico"
-                Caption "Second Life ${VERSION}"
+                Caption "Kirstens S20 ${VERSION}"
                 """
-            else:
-                # beta grid viewer
-                installer_file = "Second_Life_%(version_dashes)s_(%(grid_caps)s)_Setup.exe"
-                grid_vars_template = """
-                OutFile "%(installer_file)s"
-                !define VIEWERNAME "Second Life"
-                !define INSTFLAGS "%(flags)s"
-                !define INSTNAME   "SecondLife%(grid_caps)s"
-                !define SHORTCUT   "Second Life (%(grid_caps)s)"
-                !define URLNAME   "secondlife%(grid)s"
-                !define INSTALL_ICON "install_icon.ico"
-                !define UNINSTALL_ICON "uninstall_icon.ico"
-                !define UNINSTALL_SETTINGS 1
-                Caption "Second Life %(grid)s ${VERSION}"
-                """
-        elif self.viewer_branding_id()=="snowglobe":
-                installer_file = "Snowglobe_%(version_dashes)s_Setup.exe"
-                grid_vars_template = """
-                OutFile "%(installer_file)s"
-                !define VIEWERNAME "Snowglobe"
-                !define INSTFLAGS "%(flags)s"
-                !define INSTNAME   "Snowglobe"
-                !define SHORTCUT   "Snowglobe"
-                !define URLNAME   "secondlife"
-                !define INSTALL_ICON "install_icon_snowglobe.ico"
-                !define UNINSTALL_ICON "uninstall_icon_snowglobe.ico"
-                Caption "Snowglobe ${VERSION}"
-                """
-        else:
-            # some other channel on some grid
-            installer_file = "Second_Life_%(version_dashes)s_%(channel_oneword)s_Setup.exe"
-            grid_vars_template = """
-            OutFile "%(installer_file)s"
-            !define INSTFLAGS "%(flags)s"
-            !define INSTNAME   "SecondLife%(channel_oneword)s"
-            !define SHORTCUT   "%(channel)s"
-            !define URLNAME   "secondlife"
-            !define UNINSTALL_SETTINGS 1
-            Caption "%(channel)s ${VERSION}"
-            """
+            
+       
+       
         if 'installer_name' in self.args:
             installer_file = self.args['installer_name']
         else:
@@ -602,15 +564,13 @@ class DarwinManifest(ViewerManifest):
                 self.path("featuretable_mac.txt")
                 self.path("SecondLife.nib")
 
-                if self.viewer_branding_id()=='secondlife':
+                if self.viewer_branding_id()=='Kirstens S20':
                     # If we are not using the default channel, use the 'Firstlook
                     # icon' to show that it isn't a stable release.
                     if self.default_channel() and self.default_grid():
-                        self.path("secondlife.icns")
-                    else:
-                        self.path("secondlife_firstlook.icns", "secondlife.icns")
-                elif self.viewer_branding_id()=="snowglobe":
-                    self.path("snowglobe.icns")
+                        self.path("snowglobe.icns")
+                   
+				   
                 self.path("SecondLife.nib")
                 
                 # Translations

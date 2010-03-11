@@ -45,7 +45,7 @@
          layout="topleft"
          left="0"
          min_height="23"
-         width="510"
+         width="810"
          top="4"
          min_width="216"
          name="chat_bar"

@@ -6893,6 +6893,8 @@ void LLPipeline::renderDeferredLighting()
 		U32 render_mask = mRenderTypeMask;
 		mRenderTypeMask =	mRenderTypeMask & 
 							((1 << LLPipeline::RENDER_TYPE_ALPHA) |
+							(1 << LLPipeline::RENDER_TYPE_AVATAR) |
+							(1 << LLPipeline::RENDER_TYPE_WATER) |
 							(1 << LLPipeline::RENDER_TYPE_FULLBRIGHT) |
 							(1 << LLPipeline::RENDER_TYPE_VOLUME) |
 							(1 << LLPipeline::RENDER_TYPE_GLOW) |
@@ -6908,14 +6910,13 @@ void LLPipeline::renderDeferredLighting()
 							(1 << LLPipeline::RENDER_TYPE_PASS_GRASS) |
 							(1 << LLPipeline::RENDER_TYPE_PASS_SHINY) |
 							(1 << LLPipeline::RENDER_TYPE_PASS_INVISIBLE) |
-							(1 << LLPipeline::RENDER_TYPE_PASS_INVISI_SHINY) |
-							(1 << LLPipeline::RENDER_TYPE_AVATAR));
+							(1 << LLPipeline::RENDER_TYPE_PASS_INVISI_SHINY));
 		
 		renderGeomPostDeferred(*LLViewerCamera::getInstance());
 		mRenderTypeMask = render_mask;
 	}
 
-	mScreen.flush();
+	mScreen.flush(); // We are FLUSHED alright ! end of deferred render YAY!
 						
 }
 

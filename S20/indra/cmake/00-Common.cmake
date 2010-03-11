@@ -1,6 +1,6 @@
 # -*- cmake -*-
 #
-# Compilation options shared by all Second Life components.
+# Compilation options shared by all KirstensViewer components.
 
 include(Variables)
 

@@ -541,7 +541,7 @@ set(viewer_SOURCE_FILES
     pipeline.cpp
     )
 
-set(VIEWER_BINARY_NAME "secondlife-bin" CACHE STRING
+set(VIEWER_BINARY_NAME "Kirstens-S20" CACHE STRING
     "The name of the viewer executable to create.")
 
 if (LINUX)
