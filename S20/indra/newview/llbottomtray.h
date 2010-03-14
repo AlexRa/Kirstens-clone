@@ -93,6 +93,9 @@ public:
 	void showMoveButton(BOOL visible);
 	void showCameraButton(BOOL visible);
 	void showSnapshotButton(BOOL visible);
+	void showMapButton(BOOL visible);
+	void showNetmapButton(BOOL visible);
+	void showInventoryButton(BOOL visible);
 
 	void toggleMovementControls();
 	void toggleCameraControls();
@@ -116,12 +119,15 @@ private:
 		, RS_BUTTON_MOVEMENT	= 0x0010
 		, RS_BUTTON_GESTURES	= 0x0020
 		, RS_BUTTON_SPEAK		= 0x0040
+		,RS_BUTTON_MAP			= 0x0080
+		,RS_BUTTON_NETMAP		= 0x0100
+		,RS_BUTTON_INVENTORY	= 0x0120
 
 		/**
 		 * Specifies buttons which can be hidden when bottom tray is shrunk.
 		 * They are: Gestures, Movement (Move), Camera (View), Snapshot
 		 */
-		, RS_BUTTONS_CAN_BE_HIDDEN = RS_BUTTON_SNAPSHOT | RS_BUTTON_CAMERA | RS_BUTTON_MOVEMENT | RS_BUTTON_GESTURES
+		, RS_BUTTONS_CAN_BE_HIDDEN = RS_BUTTON_SNAPSHOT | RS_BUTTON_CAMERA | RS_BUTTON_MOVEMENT | RS_BUTTON_GESTURES | RS_BUTTON_MAP | RS_BUTTON_NETMAP | RS_BUTTON_INVENTORY
 	}EResizeState;
 
 	S32 processWidthDecreased(S32 delta_width);
@@ -215,9 +221,15 @@ protected:
 	LLMenuGL*			mBottomTrayContextMenu;
 	LLPanel*			mMovementPanel;
 	LLPanel*			mCamPanel;
+	LLPanel*			mMapPanel;
+	LLPanel*			mNetmapPanel;
+	LLPanel*			mInventoryPanel;
 	LLPanel*			mSnapshotPanel;
 	LLPanel*			mGesturePanel;
 	LLButton*			mCamButton;
+	LLButton*			mMapButton;
+	LLButton*			mNetmapButton;
+	LLButton*			mInventoryButton;
 	LLButton*			mMovementButton;
 	LLBottomTrayLite*   mBottomTrayLite;
 	bool                mIsInLiteMode;

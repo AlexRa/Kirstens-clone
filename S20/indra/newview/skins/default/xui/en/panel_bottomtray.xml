@@ -12,7 +12,7 @@
  top="28"
  chrome="true"
  border_visible="false"
- width="1000">
+ width="1400">
   <string name="SpeakBtnToolTip">Turns microphone on/off</string>
   <string name="VoiceControlBtnToolTip">Shows/hides voice control panel</string>
     <layout_stack
@@ -26,7 +26,7 @@
      name="toolbar_stack"
      orientation="horizontal"
      top="0"
-     width="1000">
+     width="1400">
         <icon
          auto_resize="false"
          follows="left|right"
@@ -45,7 +45,7 @@
          layout="topleft"
          left="0"
          min_height="23"
-         width="810"
+         width="480"
          top="4"
          min_width="216"
          name="chat_bar"
@@ -208,7 +208,7 @@
                  parameter="camera" />
             </button>
         </layout_panel>
-        <icon
+         <icon
          auto_resize="false"
          color="0 0 0 0"
          follows="left|right"
@@ -218,6 +218,135 @@
          left="0"
          min_width="3"
          name="after_cam_panel"
+         top="0"
+         width="3"/>
+	 <layout_panel
+         mouse_opaque="false"
+         auto_resize="false"
+         follows="left|right"
+         height="28"
+         layout="topleft"
+         min_height="28"
+         min_width="49"
+         name="map_panel"
+         user_resize="false"
+         width="80">
+            <button
+                 image_selected="PushButton_Selected_Press"
+                 image_pressed="PushButton_Press"
+		 image_pressed_selected="PushButton_Selected_Press"
+             follows="left|right"
+             height="23"
+             use_ellipses="true"
+             is_toggle="true"
+             label="Map"
+             layout="topleft"
+             left="0"
+             tool_tip="Shows/hides World Map"
+             top="5"
+             name="world_map_btn"
+             width="80">
+                <button.init_callback
+                 function="Button.SetDockableFloaterToggle"
+                 parameter="world_map" />
+            </button>
+	 </layout_panel>
+         <icon
+         auto_resize="false"
+         color="0 0 0 0"
+         follows="left|right"
+         height="10"
+         image_name="spacer24.tga"
+         layout="topleft"
+         left="0"
+         min_width="3"
+         name="after_map_panel"
+         top="0"
+         width="3"/>
+	 <layout_panel
+         mouse_opaque="false"
+         auto_resize="false"
+         follows="left|right"
+         height="28"
+         layout="topleft"
+         min_height="28"
+         min_width="59"
+         name="netmap_panel"
+         user_resize="false"
+         width="90">
+            <button
+                 image_selected="PushButton_Selected_Press"
+                 image_pressed="PushButton_Press"
+		 image_pressed_selected="PushButton_Selected_Press"
+             follows="left|right"
+             height="23"
+             use_ellipses="true"
+             is_toggle="true"
+             label="Mini-Map"
+             layout="topleft"
+             left="0"
+             tool_tip="Shows/hides Mini-Map"
+             top="5"
+             name="mini_map_btn"
+             width="90">
+                <button.init_callback
+                 function="Button.SetDockableFloaterToggle"
+                 parameter="mini_map" />
+            </button>
+	</layout_panel>    
+        <icon
+         auto_resize="false"
+         color="0 0 0 0"
+         follows="left|right"
+         height="10"
+         image_name="spacer24.tga"
+         layout="topleft"
+         left="0"
+         min_width="3"
+         name="after_netmap_panel"
+         top="0"
+         width="3"/>
+	 <layout_panel
+         mouse_opaque="false"
+         auto_resize="false"
+         follows="left|right"
+         height="28"
+         layout="topleft"
+         min_height="28"
+         min_width="59"
+         name="inventory_panel"
+         user_resize="false"
+         width="90">
+            <button
+                 image_selected="PushButton_Selected_Press"
+                 image_pressed="PushButton_Press"
+		 image_pressed_selected="PushButton_Selected_Press"
+             follows="left|right"
+             height="23"
+             use_ellipses="true"
+             is_toggle="true"
+             label="Inventory"
+             layout="topleft"
+             left="0"
+             tool_tip="Shows/hides Inventory"
+             top="5"
+             name="inventory_btn"
+             width="90">
+                <button.init_callback
+                 function="Button.SetDockableFloaterToggle"
+                 parameter="inventory" />
+            </button>
+	</layout_panel>   
+        <icon
+         auto_resize="false"
+         color="0 0 0 0"
+         follows="left|right"
+         height="10"
+         image_name="spacer24.tga"
+         layout="topleft"
+         left="0"
+         min_width="3"
+         name="after_inventory_panel"
          top="0"
          width="3"/>
         <layout_panel

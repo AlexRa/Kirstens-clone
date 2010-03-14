@@ -59,6 +59,9 @@ namespace
 	const std::string& PANEL_CHATBAR_NAME	= "chat_bar";
 	const std::string& PANEL_MOVEMENT_NAME	= "movement_panel";
 	const std::string& PANEL_CAMERA_NAME	= "cam_panel";
+	const std::string& PANEL_MAP_NAME		= "map_panel";
+	const std::string& PANEL_NETMAP_NAME	= "netmap_panel";
+	const std::string& PANEL_INVENTORY_NAME	= "inventory_panel";
 	const std::string& PANEL_GESTURE_NAME	= "gesture_panel";
 
 	S32 get_panel_min_width(LLLayoutStack* stack, LLPanel* panel)
@@ -138,6 +141,9 @@ LLBottomTray::LLBottomTray(const LLSD&)
 ,	mSnapshotPanel(NULL)
 ,	mGesturePanel(NULL)
 ,	mCamButton(NULL)
+,   mMapButton(NULL)
+,   mNetmapButton(NULL)
+,   mInventoryButton(NULL)
 ,	mBottomTrayLite(NULL)
 ,	mIsInLiteMode(false)
 {
@@ -422,6 +428,21 @@ void LLBottomTray::showSnapshotButton(BOOL visible)
 	setTrayButtonVisibleIfPossible(RS_BUTTON_SNAPSHOT, visible);
 }
 
+void LLBottomTray::showMapButton(BOOL visible)
+{
+	setTrayButtonVisibleIfPossible(RS_BUTTON_MAP, visible);
+}
+
+void LLBottomTray::showNetmapButton(BOOL visible)
+{
+	setTrayButtonVisibleIfPossible(RS_BUTTON_NETMAP, visible);
+}
+
+void LLBottomTray::showInventoryButton(BOOL visible)
+{
+	setTrayButtonVisibleIfPossible(RS_BUTTON_INVENTORY, visible);
+}
+
 void LLBottomTray::toggleMovementControls()
 {
 	if (mMovementButton)
@@ -451,6 +472,12 @@ BOOL LLBottomTray::postBuild()
 	mGesturePanel = getChild<LLPanel>("gesture_panel");
 	mCamPanel = getChild<LLPanel>("cam_panel");
 	mCamButton = mCamPanel->getChild<LLButton>("camera_btn");
+	mMapPanel = getChild<LLPanel>("map_panel");
+	mMapButton = mMapPanel->getChild<LLButton>("world_map_btn");
+	mNetmapPanel = getChild<LLPanel>("netmap_panel");
+	mNetmapButton = mMapPanel->getChild<LLButton>("mini_map_btn");
+	mInventoryPanel = getChild<LLPanel>("inventory_panel");
+	mInventoryButton = mInventoryPanel->getChild<LLButton>("inventory_btn");
 	mSnapshotPanel = getChild<LLPanel>("snapshot_panel");
 	setRightMouseDownCallback(boost::bind(&LLBottomTray::showBottomTrayContextMenu,this, _2, _3,_4));
 
@@ -472,6 +499,9 @@ BOOL LLBottomTray::postBuild()
 	mObjectDefaultWidthMap[RS_BUTTON_GESTURES] = mGesturePanel->getRect().getWidth();
 	mObjectDefaultWidthMap[RS_BUTTON_MOVEMENT] = mMovementPanel->getRect().getWidth();
 	mObjectDefaultWidthMap[RS_BUTTON_CAMERA]   = mCamPanel->getRect().getWidth();
+	mObjectDefaultWidthMap[RS_BUTTON_MAP] = mMapButton->getRect().getWidth();
+	mObjectDefaultWidthMap[RS_BUTTON_NETMAP] = mNetmapButton->getRect().getWidth();
+	mObjectDefaultWidthMap[RS_BUTTON_INVENTORY] = mInventoryButton->getRect().getWidth();
 	mObjectDefaultWidthMap[RS_BUTTON_SPEAK]	   = mSpeakPanel->getRect().getWidth();
 
 	mNearbyChatBar->getChatBox()->setContextMenu(NULL);
@@ -720,6 +750,19 @@ S32 LLBottomTray::processWidthDecreased(S32 delta_width)
 		{
 			processHideButton(RS_BUTTON_GESTURES, &delta_width, &buttons_freed_width);
 		}
+        if (delta_width < 0)
+		{
+			processHideButton(RS_BUTTON_MAP, &delta_width, &buttons_freed_width);
+		}
+		if (delta_width < 0)
+		{
+			processHideButton(RS_BUTTON_NETMAP, &delta_width, &buttons_freed_width);
+		}
+		if (delta_width < 0)
+		{
+			processHideButton(RS_BUTTON_INVENTORY, &delta_width, &buttons_freed_width);
+		}
+
 
 		if (delta_width < 0)
 		{
@@ -782,6 +825,18 @@ void LLBottomTray::processWidthIncreased(S32 delta_width)
 	if (available_width > 0)
 	{
 		processShowButton(RS_BUTTON_SNAPSHOT, &available_width);
+	}
+	if (available_width > 0)
+	{
+		processShowButton(RS_BUTTON_MAP, &available_width);
+	}
+	if (available_width > 0)
+	{
+		processShowButton(RS_BUTTON_NETMAP, &available_width);
+	}
+	if (available_width > 0)
+	{
+		processShowButton(RS_BUTTON_INVENTORY, &available_width);
 	}
 
 	processExtendButtons(&available_width);
@@ -905,6 +960,9 @@ void LLBottomTray::processHideButton(EResizeState processed_object_type, S32* re
 void LLBottomTray::processShrinkButtons(S32* required_width, S32* buttons_freed_width)
 {
 	processShrinkButton(RS_BUTTON_CAMERA, required_width);
+	processShrinkButton(RS_BUTTON_MAP, required_width);
+	processShrinkButton(RS_BUTTON_NETMAP, required_width);
+	processShrinkButton(RS_BUTTON_INVENTORY, required_width);
 
 	if (*required_width < 0)
 	{
@@ -1011,6 +1069,18 @@ void LLBottomTray::processExtendButtons(S32* available_width)
 	}
 	if (*available_width > 0)
 	{
+		processExtendButton(RS_BUTTON_MAP, available_width);
+	}
+	if (*available_width > 0)
+	{
+		processExtendButton(RS_BUTTON_NETMAP, available_width);
+	}
+	if (*available_width > 0)
+	{
+		processExtendButton(RS_BUTTON_INVENTORY, available_width);
+	}
+	if (*available_width > 0)
+	{
 		processExtendButton(RS_BUTTON_MOVEMENT, available_width);
 	}
 	if (*available_width > 0)
@@ -1079,7 +1149,11 @@ bool LLBottomTray::canButtonBeShown(EResizeState processed_object_type) const
 	{
 		static MASK MOVEMENT_PREVIOUS_BUTTONS_MASK = RS_BUTTON_GESTURES;
 		static MASK CAMERA_PREVIOUS_BUTTONS_MASK = RS_BUTTON_GESTURES | RS_BUTTON_MOVEMENT;
-		static MASK SNAPSHOT_PREVIOUS_BUTTONS_MASK = RS_BUTTON_GESTURES | RS_BUTTON_MOVEMENT | RS_BUTTON_CAMERA;
+		static MASK MAP_PREVIOUS_BUTTONS_MASK = RS_BUTTON_GESTURES | RS_BUTTON_MOVEMENT | RS_BUTTON_CAMERA;
+        static MASK NETMAP_PREVIOUS_BUTTONS_MASK = RS_BUTTON_GESTURES | RS_BUTTON_MOVEMENT | RS_BUTTON_CAMERA | RS_BUTTON_MAP;
+		static MASK INVENTORY_PREVIOUS_BUTTONS_MASK = RS_BUTTON_GESTURES | RS_BUTTON_MOVEMENT | RS_BUTTON_CAMERA | RS_BUTTON_MAP | RS_BUTTON_NETMAP;
+		static MASK SNAPSHOT_PREVIOUS_BUTTONS_MASK = RS_BUTTON_GESTURES | RS_BUTTON_MOVEMENT | RS_BUTTON_CAMERA | RS_BUTTON_MAP | RS_BUTTON_NETMAP
+			   | RS_BUTTON_INVENTORY;
 
 		switch(processed_object_type)
 		{
@@ -1091,7 +1165,16 @@ bool LLBottomTray::canButtonBeShown(EResizeState processed_object_type) const
 		case RS_BUTTON_CAMERA:
 			can_be_shown = !(CAMERA_PREVIOUS_BUTTONS_MASK & mResizeState);
 			break;
-		case RS_BUTTON_SNAPSHOT:
+        case RS_BUTTON_MAP:
+			can_be_shown = !(MAP_PREVIOUS_BUTTONS_MASK & mResizeState);
+			break;
+		case RS_BUTTON_NETMAP:
+			can_be_shown = !(NETMAP_PREVIOUS_BUTTONS_MASK & mResizeState);
+			break;
+		case RS_BUTTON_INVENTORY:
+			can_be_shown = !(INVENTORY_PREVIOUS_BUTTONS_MASK & mResizeState);
+			break;
+        case RS_BUTTON_SNAPSHOT:
 			can_be_shown = !(SNAPSHOT_PREVIOUS_BUTTONS_MASK & mResizeState);
 			break;
 		default: // nothing to do here
@@ -1106,11 +1189,17 @@ void LLBottomTray::initStateProcessedObjectMap()
 	mStateProcessedObjectMap.insert(std::make_pair(RS_BUTTON_GESTURES, mGesturePanel));
 	mStateProcessedObjectMap.insert(std::make_pair(RS_BUTTON_MOVEMENT, mMovementPanel));
 	mStateProcessedObjectMap.insert(std::make_pair(RS_BUTTON_CAMERA, mCamPanel));
+	mStateProcessedObjectMap.insert(std::make_pair(RS_BUTTON_MAP, mMapPanel));
+	mStateProcessedObjectMap.insert(std::make_pair(RS_BUTTON_NETMAP, mNetmapPanel));
+	mStateProcessedObjectMap.insert(std::make_pair(RS_BUTTON_INVENTORY, mInventoryPanel));
 	mStateProcessedObjectMap.insert(std::make_pair(RS_BUTTON_SNAPSHOT, mSnapshotPanel));
 
 	mDummiesMap.insert(std::make_pair(RS_BUTTON_GESTURES, getChild<LLUICtrl>("after_gesture_panel")));
 	mDummiesMap.insert(std::make_pair(RS_BUTTON_MOVEMENT, getChild<LLUICtrl>("after_movement_panel")));
 	mDummiesMap.insert(std::make_pair(RS_BUTTON_CAMERA,   getChild<LLUICtrl>("after_cam_panel")));
+	mDummiesMap.insert(std::make_pair(RS_BUTTON_MAP,   getChild<LLUICtrl>("after_map_panel")));
+	mDummiesMap.insert(std::make_pair(RS_BUTTON_MAP,   getChild<LLUICtrl>("after_netmap_panel")));
+	mDummiesMap.insert(std::make_pair(RS_BUTTON_MAP,   getChild<LLUICtrl>("after_inventory_panel")));
 	mDummiesMap.insert(std::make_pair(RS_BUTTON_SPEAK,    getChild<LLUICtrl>("after_speak_panel")));
 }
 
@@ -1191,12 +1280,18 @@ bool LLBottomTray::setVisibleAndFitWidths(EResizeState object_type, bool visible
 
 			const S32 sum_of_min_widths =
 				get_panel_min_width(mToolbarStack, mStateProcessedObjectMap[RS_BUTTON_CAMERA])   +
+				get_panel_min_width(mToolbarStack, mStateProcessedObjectMap[RS_BUTTON_MAP])   +
+				get_panel_min_width(mToolbarStack, mStateProcessedObjectMap[RS_BUTTON_NETMAP])   +
+				get_panel_min_width(mToolbarStack, mStateProcessedObjectMap[RS_BUTTON_INVENTORY])   +
 				get_panel_min_width(mToolbarStack, mStateProcessedObjectMap[RS_BUTTON_MOVEMENT]) +
 				get_panel_min_width(mToolbarStack, mStateProcessedObjectMap[RS_BUTTON_GESTURES]) +
 				get_panel_min_width(mToolbarStack, mSpeakPanel);
 
 			const S32 sum_of_curr_widths =
 				get_curr_width(mStateProcessedObjectMap[RS_BUTTON_CAMERA])   +
+                get_curr_width(mStateProcessedObjectMap[RS_BUTTON_MAP])   +
+				get_curr_width(mStateProcessedObjectMap[RS_BUTTON_NETMAP])   +
+				get_curr_width(mStateProcessedObjectMap[RS_BUTTON_INVENTORY])   +
 				get_curr_width(mStateProcessedObjectMap[RS_BUTTON_MOVEMENT]) +
 				get_curr_width(mStateProcessedObjectMap[RS_BUTTON_GESTURES]) +
 				get_curr_width(mSpeakPanel);

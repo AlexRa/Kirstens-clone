@@ -9,6 +9,27 @@
  name="Display panel"
  top="1"
  width="517">
+<tab_container
+     follows="left|top"
+     height="410"
+     halign="center"
+     left="0"
+     name="Object Info Tabs"
+     tab_max_width="70"
+     tab_min_width="40"
+     tab_position="top"
+     tab_height="25"
+     top="408"
+     width="517">
+	<panel
+	 border="true"
+	 follows="all"
+	 label="General"
+	 layout="topleft"
+	 mouse_opaque="false"
+	 name="General"
+	 top="16"
+	 width="280">
     <text
      type="string"
      length="1"
@@ -17,7 +38,7 @@
      layout="topleft"
      left="30"
      name="UI Size:"
-     top="10"
+     top="-5"
      width="300">
         UI size:
     </text>
@@ -30,7 +51,7 @@
      increment="0.025"
      initial_value="1"
      layout="topleft"
-     left_delta="52"
+     left_delta="0"
      max_val="1.4"
      min_val="0.75"
      name="ui_scale_slider"
@@ -42,52 +63,27 @@
      follows="left|top"
      height="12"
      layout="topleft"
-     left="30"
+     left="250"
      name="QualitySpeed"
-     top_pad="4"
+     top_pad="-27"
      width="400">
         Quality and speed:
-    </text>
-    <text
-     type="string"
-     length="1"
-     follows="left|top"
-     halign="right"
-     height="12"
-     layout="topleft"
-     left="35"
-     name="FasterText"
-     top_pad="4"
-     width="80">
-        Faster
-    </text>
-    <text
-     type="string"
-     length="1"
-     follows="left|top"
-     height="12"
-     layout="topleft"
-     left_delta="360"
-     name="BetterText"
-     top_delta="0"
-     width="100">
-        Better
     </text>
     <icon
      color="0.12 0.12 0.12 1"
      height="14"
      image_name="Rounded_Square"
      layout="topleft"
-     left="128"
+     left="276"
      name="LowGraphicsDivet"
-     top_delta="-2"
+     top_delta="15"
      width="2" />
     <icon
      color="0.12 0.12 0.12 1"
      height="14"
      image_name="Rounded_Square"
      layout="topleft"
-     left_pad="83"
+     left_pad="43"
      name="MidGraphicsDivet"
      top_delta="0"
      width="2" />
@@ -96,7 +92,7 @@
      height="14"
      image_name="Rounded_Square"
      layout="topleft"
-     left_pad="85"
+     left_pad="43"
      name="HighGraphicsDivet"
      top_delta="0"
      width="2" />
@@ -105,7 +101,7 @@
      height="14"
      image_name="Rounded_Square"
      layout="topleft"
-     left_pad="83"
+     left_pad="43"
      name="UltraGraphicsDivet"
      top_delta="0"
      width="2" />
@@ -117,12 +113,12 @@
      increment="1"
      initial_value="0"
      layout="topleft"
-     left="120"
+     left="270"
      max_val="3"
      name="QualityPerformanceSelection"
      show_text="false"
-     top_delta="-2"
-     width="275">
+     top_delta="0"
+     width="150">
 	 <slider.commit_callback
 			function="Pref.QualityPerformance"/>
 	</slider>		
@@ -133,11 +129,11 @@
      halign="center"
      height="12"
      layout="topleft"
-     left="88"
-     name="ShadersPrefText"
-     top_delta="20"
+     left="218"
+     name="Mintext"
+     top_delta="2"
      width="80">
-        Low
+        Min.
     </text>
     <text
      type="string"
@@ -146,48 +142,22 @@
      halign="center"
      height="12"
      layout="topleft"
-     left_delta="87"
-     name="ShadersPrefText2"
+     left_delta="178"
+     name="Maxtext"
      top_delta="0"
      width="80">
-        Mid
-    </text>
-    <text
-     type="string"
-     length="1"
-     follows="left|top"
-     halign="center"
-     height="12"
-     layout="topleft"
-     left_delta="87"
-     name="ShadersPrefText3"
-     top_delta="0"
-     width="80">
-        High
-    </text>
-    <text
-     type="string"
-     length="1"
-     follows="left|top"
-     halign="center"
-     height="12"
-     layout="topleft"
-     left_delta="85"
-     name="ShadersPrefText4"
-     top_delta="0"
-     width="80">
-        Ultra
+        Max.
     </text>
     <panel
 	 visiblity_control="ShowAdvancedGraphicsSettings"
      border="false"
 	 follows="top|left"
-     height="260"
+     height="325"
      label="CustomGraphics"
      layout="topleft"
      left="5"
      name="CustomGraphics Panel"
-     top="124"
+     top="42"
      width="485">
 		<text
 		type="string"
@@ -238,13 +208,40 @@
 			<check_box.commit_callback
 			function="Pref.VertexShaderEnable" />
 		</check_box>
+		<check_box 
+   		control_name="RenderUseFBO"  
+   		height="16"
+   		initial_value="true"
+   		label="->"
+   		layout="topleft"
+   		top_pad="1"
+   		name="fbo" 
+   		tool_tip="Enabling this will use OpenGL Framebuffer objects for some dynamic textures.  Prerequisite for deferred rendering."
+   		width="315">
+			<check_box.commit_callback
+			function="Pref.RenderAvatarVP" />
+		</check_box>
+  		<check_box 
+   		control_name="RenderDeferred" enabled="true" follows="left|top"
+   		height="16" 
+   		initial_value="true"
+   		label="Deferred Renderer"
+   		layout="topleft"
+		left_delta="32"
+   		top_pad="-16"
+   		name="deferred" 
+   		tool_tip="Enabling this will perform lighting calculations in screen space, enabling per pixel lighting for all lights and shadows from the sun/moon.  Requires a fast graphics card.  Might not be compatible with FSAA."
+   		width="315">
+			<check_box.commit_callback
+			function="Pref.RenderUseFBO" />
+		</check_box>
 		<check_box
 		control_name="RenderWaterReflections"
 		height="16"
 		initial_value="true"
 		label="Water reflections"
 		layout="topleft"
-		left_delta="0"
+		left_delta="-32"
 		name="Reflections"
 		top_pad="1"
 		width="256">
@@ -362,23 +359,38 @@
 		label_width="140"
 		layout="topleft"
 		left="216"
-		max_val="512"
+		max_val="1024"
 		min_val="64"
 		name="DrawDistance"
 		top="3"
-		width="255" />
+		width="265" />
 		<text
 		type="string"
 		length="1"
 		follows="left|top"
 		height="12"
 		layout="topleft"
-		left_delta="250"
+		left_delta="255"
 		name="DrawDistanceMeterText2"
 		top_delta="0"
 		width="128">
 			m
 		</text>
+		<slider
+		control_name="RenderAvatarMaxVisible"
+		decimal_digits="0"
+		follows="left|top"
+		height="16"
+		increment="1"
+		initial_value="35"
+		label="Max. Avatar count:"
+		label_width="140"
+		layout="topleft"
+		left="216"
+		max_val="100"
+		name="MaxAvatarCount"
+		top_pad="6"
+		width="262" />
 		<slider
 		control_name="RenderMaxPartCount"
 		decimal_digits="0"
@@ -392,7 +404,7 @@
 		left="216"
 		max_val="8192"
 		name="MaxParticleCount"
-		top_pad="7"
+		top_pad="2"
 		width="262" />
 		<slider
 		control_name="RenderGlowResolutionPow"
@@ -409,12 +421,46 @@
 		min_val="8"
 		name="RenderPostProcess"
 		show_text="false"
-		top_pad="4"
+		top_pad="2"
 		width="223">
 			<slider.commit_callback
 			function="Pref.UpdateSliderText"
 			parameter="PostProcessText" />
 		</slider>
+		<slider
+		control_name="RenderTerrainScale"
+		decimal_digits="0"
+		follows="left|top"
+		height="16"
+		increment="1"
+		initial_value="6"
+		label="Terrain Texture Quality:"
+		label_width="140"
+		layout="topleft"
+		left_delta="0"
+		max_val="12"
+		min_val="1"
+		name="RenderTerrainTexture"
+		tool_tip="Needs restart of Kirsten! (Lower is sharper)"
+		show_text="true"
+		top_pad="2"
+		width="260" />
+		<slider
+		control_name="RenderShadowResolutionScale"
+		decimal_digits="1"
+		follows="left|top"
+		height="16"
+		increment="0.1"
+		initial_value="1"
+		label="Shadow Quality:"
+		label_width="140"
+		layout="topleft"
+		left="216"
+		min_val="0.1"
+		max_val="4"
+		name="ShadowResolution"
+		top_pad="2"
+		width="260" />
 		<text
 		type="string"
 		length="1"
@@ -549,7 +595,7 @@
         layout="topleft"
         left="444"
         name="PostProcessText"
-        top="305"
+        top="383"
         width="128">
            Low
         </text>
@@ -561,7 +607,7 @@
         layout="topleft"
         left_delta="0"
         name="ObjectMeshDetailText"
-        top_pad="26"
+        top_pad="64"
         width="128">
            Low
         </text>
@@ -626,101 +672,22 @@
         width="128">
            Low
         </text>
-        <text
-        type="string"
-        length="1"
-        follows="left|top"
-        height="12"
-        layout="topleft"
-        left_delta="-230"
-        name="LightingDetailText"
-        top_pad="8"
-        width="128">
-           Lighting detail:
-        </text>
-        <radio_group
-        control_name="RenderLightingDetail"
-        draw_border="false"
-        height="38"
-        layout="topleft"
-        left_delta="0"
-        name="LightingDetailRadio"
-        top_pad="5"
-        width="321">
-           <radio_item
-            height="16"
-            label="Sun and moon only"
-            layout="topleft"
-            left="3"
-            name="SunMoon"
-            value="0"
-            top="3"
-            width="156" />
-           <radio_item
-            height="16"
-            label="Nearby local lights"
-            layout="topleft"
-            left_delta="0"
-            name="LocalLights"
-            value="1"
-            top_delta="16"
-            width="156" />
-        </radio_group>
-        <text
-        type="string"
-        length="1"
-        follows="left|top"
-        height="12"
-        layout="topleft"
-        left="360"
-        name="TerrainDetailText"
-        top="465"
-        width="128">
-           Terrain detail:
-        </text>
-        <radio_group
-        control_name="RenderTerrainDetail"
-        draw_border="false"
-        height="38"
-        layout="topleft"
-        left_delta="0"
-        name="TerrainDetailRadio"
-        top_pad="5"
-        width="321">
-           <radio_item
-            height="16"
-            label="Low"
-            layout="topleft"
-            left="3"
-            name="0"
-            top="3"
-            width="315" />
-           <radio_item
-            height="16"
-            label="High"
-            layout="topleft"
-            left_delta="0"
-            name="2"
-            top_delta="16"
-            width="315" />
-        </radio_group>
 	</panel>
-	
-        <button
+	</panel>
+	<button
      follows="left|bottom"
      height="23"
      label="Apply"
      label_selected="Apply"
      layout="topleft"
-     left="10"
+     left="7"
      name="Apply"
      top="383"
-     width="115"
-      >
+     width="115">
         <button.commit_callback
          function="Pref.Apply" />
     </button>
-    <button
+        <button
      follows="left|bottom"
      height="23"
      label="Reset"
@@ -756,4 +723,281 @@
         <button.commit_callback
          function="Pref.HardwareSettings" />
     </button>
+	<panel
+	 border="true"
+	 follows="all"
+	 label="Advanced"
+	 layout="topleft"
+	 mouse_opaque="false"
+	 name="Advanced"
+	 top="16"
+	 width="280">
+<tab_container
+     follows="left|top"
+     height="390"
+     halign="center"
+     left="0"
+     name="Object Info Tabs"
+     tab_max_width="80"
+     tab_min_width="40"
+     tab_position="top"
+     tab_height="17"
+     top="0"
+     width="517">
+	<panel
+	 border="true"
+	 follows="all"
+	 label="Lightning"
+	 layout="topleft"
+	 mouse_opaque="false"
+	 name="General"
+	 top="16"
+	 width="400">
+	
+	<check_box 
+   	control_name="RenderDeferredGI" enabled="true" follows="left|top"
+   	height="16" 
+   	initial_value="true"
+   	label="Global Illumination"
+   	layout="topleft"
+	left="200"
+   	top_pad="17"
+   	name="deferred" 
+   	tool_tip="Enabling this renders Global Illumination in Second Life, this will make more Contrast between Dark and Bright, which will cause Shadows appear on Water too, but will need much Performance!"
+   	width="315">
+			<check_box.commit_callback
+			function="Pref.RenderUseFBO" />
+	</check_box>
+
+	<text
+        type="string"
+        length="1"
+        follows="left|top"
+        height="12"
+        layout="topleft"
+        left="25"
+        name="LightingDetailText"
+        top_pad="17"
+        width="128">
+           Lighting detail:
+        </text>
+        <radio_group
+        control_name="RenderLightingDetail"
+        draw_border="false"
+        height="38"
+        layout="topleft"
+        left_delta="0"
+        name="LightingDetailRadio"
+        top_pad="5"
+        width="321">
+           <radio_item
+            height="16"
+            label="Sun and moon only"
+            layout="topleft"
+            left="3"
+            name="SunMoon"
+            value="0"
+            top="3"
+            width="156" />
+           <radio_item
+            height="16"
+            label="Nearby local lights"
+            layout="topleft"
+            left_delta="0"
+            name="LocalLights"
+            value="1"
+            top_delta="16"
+            width="156" />
+        </radio_group>
+	<check_box
+	control_name="RenderDeferredFullscreenLights"
+	height="16"
+	initial_value="true"
+	label="Deferred Fullscreen Lights"
+	layout="topleft"
+	left_delta="3"
+	name="DeferredFullscreenlights"
+	top_pad="1"
+	width="256" />
+	
+	</panel>
+	<panel
+	 border="true"
+	 follows="all"
+	 label="Textures"
+	 layout="topleft"
+	 mouse_opaque="false"
+	 name="Textures"
+	 top="16"
+	 width="400">
+	
+	<text
+        type="string"
+        length="1"
+        follows="left|top"
+        height="12"
+        layout="topleft"
+        left="25"
+        name="TerrainDetailText"
+        top="17"
+        width="128">
+           Terrain detail:
+        </text>
+        <radio_group
+        control_name="RenderTerrainDetail"
+        draw_border="false"
+        height="38"
+        layout="topleft"
+        left_delta="0"
+        name="TerrainDetailRadio"
+        top_pad="5"
+        width="321">
+           <radio_item
+            height="16"
+            label="Low"
+            layout="topleft"
+            left="3"
+            name="0"
+            top="3"
+            width="315" />
+           <radio_item
+            height="16"
+            label="High"
+            layout="topleft"
+            left_delta="0"
+            name="2"
+            top_delta="16"
+            width="315" />
+        </radio_group>
+
+	</panel>
+	<panel
+	 border="true"
+	 follows="all"
+	 label="Shadows"
+	 layout="topleft"
+	 mouse_opaque="false"
+	 name="Shadows"
+	 top="16"
+	 width="400">
+	
+	<check_box 
+   	control_name="RenderDeferredSunShadow" enabled="true" follows="left|top"
+   	height="16" 
+   	initial_value="true"
+   	label="Shadows and Texture-projection"
+   	layout="topleft"
+	left="160"
+   	top_pad="17"
+   	name="deferred" 
+   	tool_tip="This Option seperatly controls wether Shadows from Sun/Moon should be rendered or not."
+   	width="315">
+			<check_box.commit_callback
+			function="Pref.RenderUseFBO" />
+	</check_box>
+	
+	</panel>
+	<panel
+	 border="true"
+	 follows="all"
+	 label="Viewer"
+	 layout="topleft"
+	 mouse_opaque="false"
+	 name="Viewer"
+	 top="16"
+	 width="400">
+
+	<check_box
+	control_name="ShowNavbarNavigationPanel"
+	height="16"
+	initial_value="true"
+	label="Enable Navigation Bar"
+	layout="topleft"
+	left_delta="3"
+	name="NaviBar"
+	top_pad="5"
+	width="256" />
+	<check_box
+	control_name="ShowNavbarFavoritesPanel"
+	height="16"
+	initial_value="true"
+	label="Enable Favorites Bar"
+	layout="topleft"
+	left_delta="3"
+	name="FavoBar"
+	top_pad="1"
+	width="256" />
+	<!--check_box
+	control_name="ShowNetStats"
+	height="16"
+	initial_value="true"
+	label="Enable NetStats"
+	layout="topleft"
+	left_delta="3"
+	name="NetStats"
+	top_pad="1"
+	width="256" /-->
+	<check_box
+	control_name="ShowMoveButton"
+	height="16"
+	initial_value="true"
+	label="Enable Move Button"
+	layout="topleft"
+	left_delta="3"
+	name="MoveButton"
+	top_pad="1"
+	width="256" />
+	<check_box
+	control_name="ShowGestureButton"
+	height="16"
+	initial_value="true"
+	label="Enable Gesture Button"
+	layout="topleft"
+	left_delta="3"
+	name="GestureButton"
+	top_pad="1"
+	width="256" />
+	<check_box
+	control_name="ShowCameraButton"
+	height="16"
+	initial_value="true"
+	label="Enable Camera Button"
+	layout="topleft"
+	left_delta="3"
+	name="CameraButton"
+	top_pad="1"
+	width="256" />
+	
+	</panel>
+
+	<panel
+	 border="true"
+	 follows="all"
+	 label="Performance"
+	 layout="topleft"
+	 mouse_opaque="false"
+	 name="Performance"
+	 top="16"
+	 width="400">
+	
+	<slider
+	control_name="BackgroundYieldTime"
+	decimal_digits="0"
+	follows="left|top"
+	height="16"
+	increment="1"
+	initial_value="40"
+	label="Background Yield Time:"
+	label_width="140"
+	layout="topleft"
+	left="10"
+	max_val="60"
+	min_val="0"
+	name="BackgroundYieldTime"
+	top_pad="5"
+	width="262" />
+	
+	</panel>
+	</tab_container>
+    </tab_container>
 </panel>

@@ -7,12 +7,12 @@
  left="0"
  name="chat_bar"
  top="21"
- width="310">
+ width="510">
     <string name="min_width">
-        188
+        388
     </string>
     <string name="max_width">
-        320
+        480
     </string>
     <line_editor
      border_style="line"
@@ -24,11 +24,11 @@
      left_delta="3"
      text_pad_right="25"
      left="0"
-     max_length="512"
+     max_length="480"
      name="chat_box"
      tool_tip="Press Enter to say, Ctrl+Enter to shout"
      top="2"
-     width="283" />
+     width="480" />
     <output_monitor
      auto_update="true"
      follows="right"

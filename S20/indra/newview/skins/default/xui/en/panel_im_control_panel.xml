@@ -6,7 +6,7 @@
  width="110">
     <avatar_icon
      follows="left|top"
-     height="105"
+     height="100"
      left_delta="5"
      name="avatar_icon"
      top="-5"
@@ -15,13 +15,13 @@
      mouse_opaque="false"
      border_size="0"
      clip="false"
-     follows="all"
+     follows="left|top"
      height="168"
      layout="topleft"
      left="5"
      name="button_stack"
      orientation="vertical"
-     top_pad="5"
+     top_pad="1"
      width="105">
         <layout_panel
          mouse_opaque="false"
