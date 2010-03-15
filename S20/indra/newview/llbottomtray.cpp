@@ -61,7 +61,7 @@ namespace
 	const std::string& PANEL_CAMERA_NAME	= "cam_panel";
 	const std::string& PANEL_MAP_NAME		= "map_panel";
 	const std::string& PANEL_NETMAP_NAME	= "netmap_panel";
-	const std::string& PANEL_INVENTORY_NAME	= "inventory_panel";
+	const std::string& PANEL_INVENTORY_NAME	= "inventorybutton_panel";
 	const std::string& PANEL_GESTURE_NAME	= "gesture_panel";
 
 	S32 get_panel_min_width(LLLayoutStack* stack, LLPanel* panel)
@@ -476,7 +476,7 @@ BOOL LLBottomTray::postBuild()
 	mMapButton = mMapPanel->getChild<LLButton>("world_map_btn");
 	mNetmapPanel = getChild<LLPanel>("netmap_panel");
 	mNetmapButton = mMapPanel->getChild<LLButton>("mini_map_btn");
-	mInventoryPanel = getChild<LLPanel>("inventory_panel");
+	mInventoryPanel = getChild<LLPanel>("inventorybutton_panel");
 	mInventoryButton = mInventoryPanel->getChild<LLButton>("inventory_btn");
 	mSnapshotPanel = getChild<LLPanel>("snapshot_panel");
 	setRightMouseDownCallback(boost::bind(&LLBottomTray::showBottomTrayContextMenu,this, _2, _3,_4));
@@ -1152,8 +1152,7 @@ bool LLBottomTray::canButtonBeShown(EResizeState processed_object_type) const
 		static MASK MAP_PREVIOUS_BUTTONS_MASK = RS_BUTTON_GESTURES | RS_BUTTON_MOVEMENT | RS_BUTTON_CAMERA;
         static MASK NETMAP_PREVIOUS_BUTTONS_MASK = RS_BUTTON_GESTURES | RS_BUTTON_MOVEMENT | RS_BUTTON_CAMERA | RS_BUTTON_MAP;
 		static MASK INVENTORY_PREVIOUS_BUTTONS_MASK = RS_BUTTON_GESTURES | RS_BUTTON_MOVEMENT | RS_BUTTON_CAMERA | RS_BUTTON_MAP | RS_BUTTON_NETMAP;
-		static MASK SNAPSHOT_PREVIOUS_BUTTONS_MASK = RS_BUTTON_GESTURES | RS_BUTTON_MOVEMENT | RS_BUTTON_CAMERA | RS_BUTTON_MAP | RS_BUTTON_NETMAP
-			   | RS_BUTTON_INVENTORY;
+		static MASK SNAPSHOT_PREVIOUS_BUTTONS_MASK = RS_BUTTON_GESTURES | RS_BUTTON_MOVEMENT | RS_BUTTON_CAMERA | RS_BUTTON_MAP | RS_BUTTON_NETMAP | RS_BUTTON_INVENTORY;
 
 		switch(processed_object_type)
 		{
@@ -1198,8 +1197,8 @@ void LLBottomTray::initStateProcessedObjectMap()
 	mDummiesMap.insert(std::make_pair(RS_BUTTON_MOVEMENT, getChild<LLUICtrl>("after_movement_panel")));
 	mDummiesMap.insert(std::make_pair(RS_BUTTON_CAMERA,   getChild<LLUICtrl>("after_cam_panel")));
 	mDummiesMap.insert(std::make_pair(RS_BUTTON_MAP,   getChild<LLUICtrl>("after_map_panel")));
-	mDummiesMap.insert(std::make_pair(RS_BUTTON_MAP,   getChild<LLUICtrl>("after_netmap_panel")));
-	mDummiesMap.insert(std::make_pair(RS_BUTTON_MAP,   getChild<LLUICtrl>("after_inventory_panel")));
+	mDummiesMap.insert(std::make_pair(RS_BUTTON_NETMAP,   getChild<LLUICtrl>("after_netmap_panel")));
+	mDummiesMap.insert(std::make_pair(RS_BUTTON_INVENTORY,   getChild<LLUICtrl>("after_inventory_panel")));
 	mDummiesMap.insert(std::make_pair(RS_BUTTON_SPEAK,    getChild<LLUICtrl>("after_speak_panel")));
 }
 

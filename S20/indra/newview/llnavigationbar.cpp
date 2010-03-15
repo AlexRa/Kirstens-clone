@@ -273,6 +273,7 @@ LLNavigationBar::LLNavigationBar()
 	mBtnBack(NULL),
 	mBtnForward(NULL),
 	mBtnHome(NULL),
+	mBtnAbout(NULL),
 	mCmbLocation(NULL),
 	mSearchComboBox(NULL),
 	mPurgeTPHistoryItems(false),
@@ -298,7 +299,8 @@ BOOL LLNavigationBar::postBuild()
 	mBtnBack	= getChild<LLPullButton>("back_btn");
 	mBtnForward	= getChild<LLPullButton>("forward_btn");
 	mBtnHome	= getChild<LLButton>("home_btn");
-	
+	mBtnAbout   = getChild<LLButton>("about_land");
+
 	mCmbLocation= getChild<LLLocationInputCtrl>("location_combo"); 
 	mSearchComboBox	= getChild<LLSearchComboBox>("search_combo_box");
 
@@ -315,6 +317,7 @@ BOOL LLNavigationBar::postBuild()
 	mBtnForward->setClickDraggingCallback(boost::bind(&LLNavigationBar::showTeleportHistoryMenu, this,_1));
 
 	mBtnHome->setClickedCallback(boost::bind(&LLNavigationBar::onHomeButtonClicked, this));
+    mBtnAbout->setClickedCallback(boost::bind(&LLNavigationBar::onAboutButtonClicked, this));
 
 	mCmbLocation->setCommitCallback(boost::bind(&LLNavigationBar::onLocationSelection, this));
 	
@@ -421,6 +424,11 @@ void LLNavigationBar::onForwardButtonClicked()
 void LLNavigationBar::onHomeButtonClicked()
 {
 	gAgent.teleportHome();
+}
+
+void LLNavigationBar::onAboutButtonClicked()
+{
+	return; // KL do nothing atm...
 }
 
 void LLNavigationBar::onSearchCommit()

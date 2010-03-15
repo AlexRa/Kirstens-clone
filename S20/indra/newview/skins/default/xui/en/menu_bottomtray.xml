@@ -31,6 +31,39 @@
              parameter="ShowMoveButton" />
     </menu_item_check>
     <menu_item_check
+         label="Inventory button"
+         layout="topleft"
+         name="ShowInventoryButton">
+    <menu_item_check.on_click
+      function="ToggleControl"
+      parameter="ShowInventoryButton" />
+    <menu_item_check.on_check
+    function="CheckControl"
+    parameter="ShowInventoryButton" />
+     </menu_item_check>
+  <menu_item_check
+         label="WorldMap button"
+         layout="topleft"
+         name="ShowMapButton">
+    <menu_item_check.on_click
+      function="ToggleControl"
+      parameter="ShowMapButton" />
+    <menu_item_check.on_check
+    function="CheckControl"
+    parameter="ShowMapButton" />
+  </menu_item_check>
+  <menu_item_check
+         label="Mini-Map button"
+         layout="topleft"
+         name="ShowNetmapButton">
+    <menu_item_check.on_click
+      function="ToggleControl"
+      parameter="ShowNetmapButton" />
+    <menu_item_check.on_check
+    function="CheckControl"
+    parameter="ShowNetmapButton" />
+  </menu_item_check>
+    <menu_item_check
          label="View button"
          layout="topleft"
          name="ShowCameraButton">

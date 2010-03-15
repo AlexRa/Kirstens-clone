@@ -12,7 +12,7 @@
  top="28"
  chrome="true"
  border_visible="false"
- width="1400">
+ width="1600">
   <string name="SpeakBtnToolTip">Turns microphone on/off</string>
   <string name="VoiceControlBtnToolTip">Shows/hides voice control panel</string>
     <layout_stack
@@ -26,7 +26,7 @@
      name="toolbar_stack"
      orientation="horizontal"
      top="0"
-     width="1400">
+     width="1600">
         <icon
          auto_resize="false"
          follows="left|right"
@@ -273,7 +273,7 @@
          min_width="59"
          name="netmap_panel"
          user_resize="false"
-         width="90">
+         width="80">
             <button
                  image_selected="PushButton_Selected_Press"
                  image_pressed="PushButton_Press"
@@ -288,7 +288,7 @@
              tool_tip="Shows/hides Mini-Map"
              top="5"
              name="mini_map_btn"
-             width="90">
+             width="80">
                 <button.init_callback
                  function="Button.SetDockableFloaterToggle"
                  parameter="mini_map" />
@@ -314,9 +314,9 @@
          layout="topleft"
          min_height="28"
          min_width="59"
-         name="inventory_panel"
+         name="inventorybutton_panel"
          user_resize="false"
-         width="90">
+         width="80">
             <button
                  image_selected="PushButton_Selected_Press"
                  image_pressed="PushButton_Press"
@@ -331,7 +331,7 @@
              tool_tip="Shows/hides Inventory"
              top="5"
              name="inventory_btn"
-             width="90">
+             width="80">
                 <button.init_callback
                  function="Button.SetDockableFloaterToggle"
                  parameter="inventory" />

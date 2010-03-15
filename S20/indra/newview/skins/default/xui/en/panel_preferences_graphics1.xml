@@ -815,11 +815,79 @@
 	initial_value="true"
 	label="Deferred Fullscreen Lights"
 	layout="topleft"
-	left_delta="3"
+	left_delta="-3"
 	name="DeferredFullscreenlights"
 	top_pad="1"
 	width="256" />
-	
+	<check_box
+	control_name="RenderGlow"
+	height="16"
+	initial_value="true"
+	label="Render Glow Effects"
+	layout="topleft"
+	left_delta="-3"
+	name="RenderGlow"
+	top_pad="10"
+	width="200" />
+	<check_box
+	control_name="RenderHoverGlowEnable"
+	height="16"
+	initial_value="true"
+	label="Render Touch Highlighting"
+	layout="topleft"
+	left_delta="0"
+	name="RenderHoverGlow"
+	top_pad="15"
+	width="200" />
+	<spinner
+     	control_name="RenderHighlightBrightness"
+     	decimal_digits="1"
+     	follows="left|top"
+     	height="16"
+     	increment="0.1"
+     	initial_value="1"
+     	label="Brightness"
+     	label_width="80"
+     	layout="topleft"
+     	left="25"
+     	max_val="10"
+	min_val="0.5"
+     	name="Brightness"
+    	top_pad="10"
+     	width="150" />
+	<spinner
+     	control_name="RenderHighlightFadeTime"
+     	decimal_digits="1"
+     	follows="left|top"
+     	height="16"
+     	increment="0.01"
+     	initial_value="1"
+     	label="Fade Time"
+     	label_width="80"
+     	layout="topleft"
+     	left="25"
+     	max_val="5"
+	min_val="0.1"
+     	name="FadeTime"
+    	top_pad="10"
+     	width="150" />	
+	<spinner
+     	control_name="RenderHighlightThickness"
+     	decimal_digits="1"
+     	follows="left|top"
+     	height="16"
+     	increment="1"
+     	initial_value="1"
+     	label="Thickness"
+     	label_width="80"
+     	layout="topleft"
+     	left="25"
+     	max_val="10"
+	min_val="1"
+     	name="Thickness"
+    	top_pad="10"
+     	width="150" />	
+
 	</panel>
 	<panel
 	 border="true"
@@ -831,6 +899,66 @@
 	 top="16"
 	 width="400">
 	
+	<check_box
+	control_name="ImagePipelineUseHTTP"
+	height="16"
+	initial_value="true"
+	label="HTTP Get Textures"
+	layout="topleft"
+	left="25"
+	name="HTTPGet"
+	top_pad="10"
+	width="256" />
+	<check_box
+	control_name="AnimateTextures"
+	height="16"
+	initial_value="true"
+	label="Animate Textures"
+	layout="topleft"
+	left="25"
+	name="AnimTextures"
+	top_pad="1"
+	width="256" />
+	<check_box
+	control_name="AuditTexture"
+	height="16"
+	initial_value="true"
+	label="Texture Auditing"
+	layout="topleft"
+	left="25"
+	name="TexAudit"
+	top_pad="1"
+	width="256" />
+	<check_box
+	control_name="TextureLoadFullRes"
+	height="16"
+	initial_value="true"
+	label="Full Resolution Textures"
+	layout="topleft"
+	left="25"
+	name="FullResTextures"
+	top_pad="1"
+	width="256" />
+	<check_box
+	control_name="RenderAnisotropic"
+	height="16"
+	initial_value="true"
+	label="Anosotropic Filtering"
+	layout="topleft"
+	left="25"
+	name="Anosotropic"
+	top_pad="1"
+	width="256" />
+	<check_box
+	control_name="RenderWaterMipNormal"
+	height="16"
+	initial_value="true"
+	label="Water Mip Maps"
+	layout="topleft"
+	left="25"
+	name="MipMaps"
+	top_pad="1"
+	width="256" />
 	<text
         type="string"
         length="1"
@@ -839,7 +967,7 @@
         layout="topleft"
         left="25"
         name="TerrainDetailText"
-        top="17"
+        top_pad="1"
         width="128">
            Terrain detail:
         </text>
@@ -908,12 +1036,42 @@
 	 width="400">
 
 	<check_box
+	control_name="AllowMultipleViewers"
+	height="16"
+	initial_value="true"
+	label="Allow Multiple Viewers"
+	layout="topleft"
+	left="5"
+	name="MultiViewers"
+	top_pad="5"
+	width="256" />
+	<check_box
+	control_name="SafeMode"
+	height="16"
+	initial_value="true"
+	label="Run in Safe Mode"
+	layout="topleft"
+	left="5"
+	name="SafeMode"
+	top_pad="5"
+	width="256" />
+	<check_box
+	control_name="RenderUnloadedAvatar"
+	height="16"
+	initial_value="true"
+	label="Render Unloaded Avatars"
+	layout="topleft"
+	left="5"
+	name="UnloadedAvatars"
+	top_pad="5"
+	width="256" />
+	<check_box
 	control_name="ShowNavbarNavigationPanel"
 	height="16"
 	initial_value="true"
 	label="Enable Navigation Bar"
 	layout="topleft"
-	left_delta="3"
+	left="5"
 	name="NaviBar"
 	top_pad="5"
 	width="256" />
@@ -967,6 +1125,76 @@
 	name="CameraButton"
 	top_pad="1"
 	width="256" />
+	<check_box
+	control_name="ShowMapButton"
+	height="16"
+	initial_value="true"
+	label="Enable WorldMap Button"
+	layout="topleft"
+	left_delta="3"
+	name="MapButton"
+	top_pad="1"
+	width="256" />
+  <check_box
+  control_name="ShowNetmapButton"
+  height="16"
+  initial_value="true"
+  label="Enable Mini-Map Button"
+  layout="topleft"
+  left_delta="3"
+  name="NetmapButton"
+  top_pad="1"
+  width="256" />
+  <check_box
+  control_name="ShowInventoryButton"
+  height="16"
+  initial_value="true"
+  label="Enable Inventory Button"
+  layout="topleft"
+  left_delta="3"
+  name="InventoryButton"
+  top_pad="1"
+  width="256" />
+	<check_box
+	control_name="ShowSnapshotButton"
+	height="16"
+	initial_value="true"
+	label="Enable Snapshot Button"
+	layout="topleft"
+	left_delta="3"
+	name="SnapshotButton"
+	top_pad="1"
+	width="256" />
+	<check_box
+	control_name="ShowHoverTips"
+	height="16"
+	initial_value="true"
+	label="Show SL 2.0 Hovertips"
+	layout="topleft"
+	left="5"
+	name="ShowHoverTips"
+	top_pad="7"
+	width="256" />
+	<check_box
+	control_name="ShowAllObjectHoverTip"
+	height="16"
+	initial_value="true"
+	label="on EVERYTHING"
+	layout="topleft"
+	left="155"
+	name="ShowAllHoverTips"
+	top_pad="-15"
+	width="256" />
+	<check_box
+	control_name="ShowSelectionBeam"
+	height="16"
+	initial_value="true"
+	label="Show Selection Beam"
+	layout="topleft"
+	left="5"
+	name="ShowBeam"
+	top_pad="7"
+	width="256" />
 	
 	</panel>
 
@@ -980,6 +1208,56 @@
 	 top="16"
 	 width="400">
 	
+	<check_box
+	control_name="RunMultipleThreads"
+	height="16"
+	initial_value="true"
+	label="Allow Multiple Threads"
+	layout="topleft"
+	left_delta="3"
+	name="MultipleThreads"
+	top_pad="10"
+	width="256" />
+	<check_box
+	control_name="RenderFastAlpha"
+	height="16"
+	initial_value="true"
+	label="Fast Alpha"
+	layout="topleft"
+	left_delta="0"
+	name="FastAlpha"
+	top_pad="10"
+	width="256" />
+	<check_box
+	control_name="NoPreload"
+	height="16"
+	initial_value="true"
+	label="Disable Texture/Sound Preload"
+	layout="topleft"
+	left_delta="0"
+	name="NoPreload"
+	top_pad="10"
+	width="256" />
+	<check_box
+	control_name="DisableVerticalSync"
+	height="16"
+	initial_value="true"
+	label="Disable VSync"
+	layout="topleft"
+	left_delta="0"
+	name="DisableVerticalSync"
+	top_pad="10"
+	width="256" />
+	<check_box
+	control_name="RenderGammaFull"
+	height="16"
+	initial_value="true"
+	label="Full Gamma/Hardcoded 2 Gamma"
+	layout="topleft"
+	left_delta="0"
+	name="RenderGammaFull"
+	top_pad="10"
+	width="256" />
 	<slider
 	control_name="BackgroundYieldTime"
 	decimal_digits="0"

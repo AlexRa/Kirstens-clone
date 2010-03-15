@@ -1669,6 +1669,21 @@ void LLViewerWindow::initWorldUI()
 	{
 		LLBottomTray::getInstance()->showCameraButton(FALSE);
 	}
+	
+	if (!gSavedSettings.getBOOL("ShowMapButton"))
+	{
+		LLBottomTray::getInstance()->showMapButton(FALSE);
+	}
+
+	if (!gSavedSettings.getBOOL("ShowNetmapButton"))
+	{
+		LLBottomTray::getInstance()->showNetmapButton(FALSE);
+	}
+
+	if (!gSavedSettings.getBOOL("ShowInventoryButton"))
+	{
+		LLBottomTray::getInstance()->showInventoryButton(FALSE);
+	}
 
 	if (!gSavedSettings.getBOOL("ShowSnapshotButton"))
 	{

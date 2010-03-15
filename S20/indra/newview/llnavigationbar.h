@@ -122,6 +122,7 @@ private:
 	void onNavigationButtonHeldUp(LLButton* nav_button);
 	void onForwardButtonClicked();
 	void onHomeButtonClicked();
+	void onAboutButtonClicked();
 	void onLocationSelection();
 	void onLocationPrearrange(const LLSD& data);
 	void onSearchCommit();
@@ -140,6 +141,7 @@ private:
 	LLPullButton*				mBtnBack;
 	LLPullButton*				mBtnForward;
 	LLButton*					mBtnHome;
+	LLButton*					mBtnAbout;
 	LLSearchComboBox*			mSearchComboBox;
 	LLLocationInputCtrl*		mCmbLocation;
 	LLRect						mDefaultNbRect;
