@@ -4108,15 +4108,28 @@ void LLObjectBridge::performAction(LLFolderView* folder, LLInventoryModel* model
 void LLObjectBridge::openItem()
 {
 	LLViewerInventoryItem* item = getItem();
+	
+    LLVOAvatarSelf* avatar = gAgent.getAvatarObject();   // KL doubleclick patch then for viewer 2.0 check its avatar
 
-	if (item)
+    if (item)
 	{
 		LLInvFVBridgeAction::doAction(item->getType(),mUUID,getInventoryModel());
+
+	    if (avatar->isWearingAttachment(mUUID))
+	    {
+		    performAction(NULL, NULL, "detach");
+		}
+	    else
+	    {
+		performAction(NULL, NULL, "attach");
+		}   // End of patch!
+		
 	}
 
-	LLSD key;
-	key["id"] = mUUID;
-	LLSideTray::getInstance()->showPanel("sidepanel_inventory", key);
+	//LLSD key;
+	//key["id"] = mUUID;
+	//LLSideTray::getInstance()->showPanel("sidepanel_inventory", key); // KL only show on context menu thanks :)
+	
 
 	// Disable old properties floater; this is replaced by the sidepanel.
 	/*
@@ -4605,7 +4618,19 @@ void LLWearableBridge::openItem()
 
 	if (item)
 	{
-		LLInvFVBridgeAction::doAction(item->getType(),mUUID,getInventoryModel());
+
+	  LLInvFVBridgeAction::doAction(item->getType(),mUUID,getInventoryModel());
+	
+	    if(gAgentWearables.isWearingItem( mUUID )) // KL applying the double click inventory patch here was !gAgent
+		{
+			//wearOnAvatar();
+			performAction(NULL, NULL, "take_off");
+		}
+		else
+		{
+            performAction(NULL, NULL, "wear");
+		} // End of patch
+		
 	}
 	/*
 	if( isItemInTrash() )
