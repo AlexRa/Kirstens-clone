@@ -162,7 +162,7 @@ void LLFloaterCamera::resetCameraMode()
 {
 	LLFloaterCamera* floater_camera = LLFloaterCamera::findInstance();
 	if (!floater_camera) return;
-	floater_camera->switchMode(CAMERA_CTRL_MODE_ORBIT);
+	floater_camera->switchMode(CAMERA_CTRL_MODE);
 }
 
 void LLFloaterCamera::update()
@@ -216,24 +216,24 @@ void LLFloaterCamera::onClose(bool app_quitting)
 	//We don't care of camera mode if app is quitting
 	if(app_quitting)
 		return;
-	// When mCurrMode is in CAMERA_CTRL_MODE_ORBIT
+	// When mCurrMode is in CAMERA_CTRL_MODE
 	// switchMode won't modify mPrevMode, so force it here.
 	// It is needed to correctly return to previous mode on open, see EXT-2727.
-	if (mCurrMode == CAMERA_CTRL_MODE_ORBIT)
-		mPrevMode = CAMERA_CTRL_MODE_ORBIT;
+	if (mCurrMode == CAMERA_CTRL_MODE)
+		mPrevMode = CAMERA_CTRL_MODE;
 
 	// HACK: Should always close as docked to prevent toggleInstance without calling onOpen.
 	if ( !isDocked() )
 		setDocked(true);
-	switchMode(CAMERA_CTRL_MODE_ORBIT);
+	switchMode(CAMERA_CTRL_MODE);
 	mClosed = TRUE;
 }
 
 LLFloaterCamera::LLFloaterCamera(const LLSD& val)
 :	LLTransientDockableFloater(NULL, true, val),
 	mClosed(FALSE),
-	mCurrMode(CAMERA_CTRL_MODE_ORBIT),
-	mPrevMode(CAMERA_CTRL_MODE_ORBIT)
+	mCurrMode(CAMERA_CTRL_MODE),
+	mPrevMode(CAMERA_CTRL_MODE)
 {
 }
 
@@ -246,8 +246,8 @@ BOOL LLFloaterCamera::postBuild()
 	mZoom = getChild<LLPanelCameraZoom>(ZOOM);
 	mTrack = getChild<LLJoystickCameraTrack>(PAN);
 
-	assignButton2Mode(CAMERA_CTRL_MODE_ORBIT,			"orbit_btn");
-	assignButton2Mode(CAMERA_CTRL_MODE_PAN,				"pan_btn");
+	assignButton2Mode(CAMERA_CTRL_MODE,			"orbit_btn");
+	assignButton2Mode(CAMERA_CTRL_MODE,				"pan_btn");
 	assignButton2Mode(CAMERA_CTRL_MODE_FREE_CAMERA,		"freecamera_btn");
 	assignButton2Mode(CAMERA_CTRL_MODE_AVATAR_VIEW,		"avatarview_btn");
 
@@ -269,7 +269,7 @@ ECameraControlMode LLFloaterCamera::determineMode()
 		return CAMERA_CTRL_MODE_AVATAR_VIEW;
 	}
 
-	return CAMERA_CTRL_MODE_ORBIT;
+	return CAMERA_CTRL_MODE;
 }
 
 
@@ -301,11 +301,7 @@ void LLFloaterCamera::switchMode(ECameraControlMode mode)
 
 	switch (mode)
 	{
-	case CAMERA_CTRL_MODE_ORBIT:
-		clear_camera_tool();
-		break;
-
-	case CAMERA_CTRL_MODE_PAN:
+	case CAMERA_CTRL_MODE:
 		clear_camera_tool();
 		break;
 
@@ -349,8 +345,8 @@ void LLFloaterCamera::updateState()
 		iter->second->setToggleState(iter->first == mCurrMode);
 	}
 
-	childSetVisible(ORBIT, CAMERA_CTRL_MODE_ORBIT == mCurrMode);
-	childSetVisible(PAN, CAMERA_CTRL_MODE_PAN == mCurrMode);
+	childSetVisible(ORBIT, CAMERA_CTRL_MODE == mCurrMode);
+	childSetVisible(PAN, CAMERA_CTRL_MODE == mCurrMode);
 	childSetVisible(ZOOM, CAMERA_CTRL_MODE_AVATAR_VIEW != mCurrMode);
 	childSetVisible(PRESETS, CAMERA_CTRL_MODE_AVATAR_VIEW == mCurrMode);
 
