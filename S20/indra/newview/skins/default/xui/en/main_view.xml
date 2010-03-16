@@ -74,14 +74,14 @@
                    mouse_opaque="false"
                 name="hud container"
                    width="500">
-              <panel follows="right|top|bottom"
+              <!--panel follows="right|top|bottom"
                      height="500"
                      mouse_opaque="false"
                      name="side_bar_tabs"
                      right="500"
                      tab_stop="false"
                      top="0"
-                     width="32"/>
+                     width="32"/-->
               <panel bottom="500"
                      follows="left|right|bottom"
                      height="25"
@@ -101,7 +101,7 @@
           </layout_stack>
         </layout_panel>
         <!-- side tray -->
-        <layout_panel auto_resize="false"
+        <!--layout_panel auto_resize="false"
                       follows="all"
                       height="500"
                       min_width="333"
@@ -110,7 +110,7 @@
                       name="side_tray_container"
                       user_resize="false"
                       visible="false"
-                      width="333"/>
+                      width="333"/-->
       </layout_stack>
       <panel follows="all"
                     height="500"
@@ -131,6 +131,34 @@
                       top="0"
                       width="1024"/>
       </panel>
+      	  <layout_stack border_size="0"
+                    follows="all"
+                   height="470"
+                    left="0"
+                    mouse_opaque="false"
+                    name="sidebar"
+                    orientation="horizontal"
+                    top="0"
+                    width="1024">
+		<panel follows="right|top|bottom"
+                     height="500"
+                     mouse_opaque="false"
+                     name="side_bar_tabs"
+                     right="500"
+                     tab_stop="false"
+                     top="0"
+                     width="32"/>
+        <layout_panel auto_resize="false"
+                      follows="all"
+                      height="470"
+                      min_width="333"
+                      mouse_opaque="false"
+                      tab_stop="false"
+                      name="side_tray_container"
+                      user_resize="false"
+                      visible="false"
+                      width="333"/>
+	   </layout_stack>
       <debug_view follows="all"
                   left="0"
                   top="0"
