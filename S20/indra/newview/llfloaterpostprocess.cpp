@@ -85,11 +85,11 @@ BOOL LLFloaterPostProcess::postBuild()
 
 	// Effect loading and saving.
 	LLComboBox* comboBox = getChild<LLComboBox>("PPEffectsCombo");
-	getChild<LLComboBox>("PPLoadEffect")->setCommitCallback(boost::bind(&LLFloaterPostProcess::onLoadEffect, this, comboBox));
+	getChild<LLButton>("PPLoadEffect")->setCommitCallback(boost::bind(&LLFloaterPostProcess::onLoadEffect, this, comboBox));
 	comboBox->setCommitCallback(boost::bind(&LLFloaterPostProcess::onChangeEffectName, this, _1));
 
 	LLLineEditor* editBox = getChild<LLLineEditor>("PPEffectNameEditor");
-	getChild<LLComboBox>("PPSaveEffect")->setCommitCallback(boost::bind(&LLFloaterPostProcess::onSaveEffect, this, editBox));
+	getChild<LLButton>("PPSaveEffect")->setCommitCallback(boost::bind(&LLFloaterPostProcess::onSaveEffect, this, editBox));
 
 	syncMenu();
 	return TRUE;
@@ -150,6 +150,7 @@ void LLFloaterPostProcess::onLoadEffect(LLComboBox* comboBox)
 	LLSD::String effectName(comboBox->getSelectedValue().asString());
 
 	gPostProcess->setSelectedEffect(effectName);
+	llinfos << "Loading Effect: " << effectName << llendl; // KL for testing
 
 	syncMenu();
 }
@@ -167,6 +168,7 @@ void LLFloaterPostProcess::onSaveEffect(LLLineEditor* editBox)
 	else
 	{
 		gPostProcess->saveEffect(effectName);
+		llinfos << "Saving Effect: " << effectName << llendl; // KL for testing
 		syncMenu();
 	}
 }
@@ -196,7 +198,7 @@ bool LLFloaterPostProcess::saveAlertCallback(const LLSD& notification, const LLS
 
 void LLFloaterPostProcess::syncMenu()
 {
-	// add the combo boxe contents
+	// add the combo box contents
 	LLComboBox* comboBox = getChild<LLComboBox>("PPEffectsCombo");
 
 	comboBox->removeall();
