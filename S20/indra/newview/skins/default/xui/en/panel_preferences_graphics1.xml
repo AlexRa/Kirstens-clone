@@ -1062,7 +1062,7 @@
 	left="160"
    	top_pad="17"
    	name="deferred" 
-   	tool_tip="This Option seperatly controls wether Shadows from Sun/Moon should be rendered or not."
+   	tool_tip="This Option separately controls if Shadows from Sun/Moon should be rendered or not."
    	width="315">
 			<check_box.commit_callback
 			function="Pref.RenderUseFBO" />
@@ -1113,18 +1113,18 @@
 	top_pad="5"
 	width="262" />
 	<spinner
-     	control_name="RenderShadowBlurSamples" enabled="false"
+     	control_name="RenderShadowBlurSamples" enabled="true"
      	decimal_digits="0"
      	follows="left|top"
      	height="16"
      	increment="1"
-     	initial_value="1"
+     	initial_value="4"
      	label="Blur Samples"
      	label_width="80"
      	layout="topleft"
      	left="25"
      	max_val="10"
-	min_val="0"
+	    min_val="0"
      	name="Samples"
     	top_pad="2"
      	width="110" />
@@ -1359,7 +1359,7 @@
 	label_width="110"
 	layout="topleft"
 	left="10"
-	max_val="1000000"
+	max_val="512"
 	min_val="100"
 	name="NearMeRange"
 	top_pad="5"
