@@ -482,6 +482,40 @@
                  function="World.EnvSettings"
                  parameter="editor" />
             </menu_item_call>
+	    <menu_item_separator
+             layout="topleft" />
+            <menu_item_call
+             label="Water Settings"
+             layout="topleft"
+             name="Water Settings">
+                <menu_item_call.on_click
+                 function="World.WaterSettings"
+                 parameter="default" />
+	     </menu_item_call>	 
+	     <menu_item_call
+             label="Sky Settings"
+             layout="topleft"
+             name="Sky settings">
+                <menu_item_call.on_click
+                 function="World.SkySettings"
+                 parameter="default" />
+	     </menu_item_call>
+	     <menu_item_call
+             label="Day Cycle"
+             layout="topleft"
+             name="Day Cycle">
+                <menu_item_call.on_click
+                 function="World.DayCycle"
+                 parameter="default" />
+	      </menu_item_call>	 
+	      <menu_item_call
+             label="Post Process"
+             layout="topleft"
+             name="Post Process">
+                <menu_item_call.on_click
+                 function="World.PostProcess"
+                 parameter="default" />
+            </menu_item_call>
         </menu>
     </menu>
     <menu

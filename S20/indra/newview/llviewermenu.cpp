@@ -7622,6 +7622,18 @@ class LLWorldPostProcess : public view_listener_t
 	}
 };
 
+/// Sky Menu callbacks added by Kirstenlee ^^
+class LLWorldSkySettings : public view_listener_t
+{	
+	bool handleEvent(const LLSD& userdata)
+	{
+	    
+      LLFloaterReg::showInstance("env_windlight"); // KL find the sky instance..
+	  return true;
+	  
+	}
+};
+
 /// Day Cycle callbacks
 class LLWorldDayCycle : public view_listener_t
 {
@@ -7768,7 +7780,8 @@ void initialize_menus()
 	view_listener_t::addMenu(new LLWorldWaterSettings(), "World.WaterSettings");
 	view_listener_t::addMenu(new LLWorldPostProcess(), "World.PostProcess");
 	view_listener_t::addMenu(new LLWorldDayCycle(), "World.DayCycle");
-
+    view_listener_t::addMenu(new LLWorldSkySettings(), "World.SkySettings"); // KL
+	
 	view_listener_t::addMenu(new LLWorldToggleMovementControls(), "World.Toggle.MovementControls");
 	view_listener_t::addMenu(new LLWorldToggleCameraControls(), "World.Toggle.CameraControls");
 
