@@ -747,7 +747,7 @@
 	<panel
 	 border="true"
 	 follows="all"
-	 label="Lightning"
+	 label="Lighting"
 	 layout="topleft"
 	 mouse_opaque="false"
 	 name="General"
@@ -829,16 +829,58 @@
 	name="RenderGlow"
 	top_pad="10"
 	width="200" />
-	<check_box
-	control_name="RenderHoverGlowEnable"
-	height="16"
-	initial_value="true"
-	label="Render Touch Highlighting"
-	layout="topleft"
-	left_delta="0"
-	name="RenderHoverGlow"
-	top_pad="15"
-	width="200" />
+	<radio_group
+        control_name="RenderHoverGlowEnable"
+        draw_border="false"
+        height="38"
+        layout="topleft"
+        left_delta="0"
+        name="HoverGlow"
+        top_pad="70"
+        width="321">
+           <radio_item
+            height="16"
+            label="On"
+            layout="topleft"
+            left="21"
+            name="On"
+            value="1"
+            top="3"
+            width="156" />
+           <radio_item
+            height="16"
+            label="Off"
+            layout="topleft"
+            left_delta="78"
+            name="Off"
+            value="0"
+            top_delta="0"
+            width="156" />
+        </radio_group>
+	<icon
+	 follows="left|top"
+	 height="73"
+	 image_name="glowtouchables.tga"
+         layout="topleft"
+	 name="glowables_icon"
+	 mouse_opaque="false"
+	 visible="true"
+	 width="150"
+         left="10"
+         top="220"/>
+	<color_swatch
+	can_apply_immediately="true"
+	control_name="RenderHighlightColor"
+     	follows="left|top"
+     	height="60"
+     	layout="topleft"
+	label="Glow Color"
+     	label_width="55"
+     	left="380"
+     	name="effect_color_swatch"
+	top="210"
+     	tool_tip="Click to set your Hover Glow Color"
+     	width="47" />
 	<spinner
      	control_name="RenderHighlightBrightness"
      	decimal_digits="1"
@@ -849,23 +891,23 @@
      	label="Brightness"
      	label_width="80"
      	layout="topleft"
-     	left="25"
+     	left="200"
      	max_val="10"
 	min_val="0.5"
      	name="Brightness"
-    	top_pad="10"
+    	top="210"
      	width="150" />
 	<spinner
      	control_name="RenderHighlightFadeTime"
      	decimal_digits="1"
      	follows="left|top"
      	height="16"
-     	increment="0.01"
+     	increment="0.1"
      	initial_value="1"
      	label="Fade Time"
      	label_width="80"
      	layout="topleft"
-     	left="25"
+     	left="200"
      	max_val="5"
 	min_val="0.1"
      	name="FadeTime"
@@ -876,14 +918,14 @@
      	decimal_digits="1"
      	follows="left|top"
      	height="16"
-     	increment="1"
+     	increment="0.1"
      	initial_value="1"
      	label="Thickness"
      	label_width="80"
      	layout="topleft"
-     	left="25"
+     	left="200"
      	max_val="10"
-	min_val="1"
+	min_val="0.1"
      	name="Thickness"
     	top_pad="10"
      	width="150" />	
@@ -1010,7 +1052,9 @@
 	 width="400">
 	
 	<check_box 
-   	control_name="RenderDeferredSunShadow" enabled="true" follows="left|top"
+   	control_name="RenderDeferredSunShadow" 
+	enabled="true" 
+	follows="left|top"
    	height="16" 
    	initial_value="true"
    	label="Shadows and Texture-projection"
@@ -1023,6 +1067,115 @@
 			<check_box.commit_callback
 			function="Pref.RenderUseFBO" />
 	</check_box>
+	
+	<check_box 
+   	control_name="RenderDeferredBlurLight" 
+	enabled="true" 
+	follows="left|top"
+   	height="16" 
+   	initial_value="true"
+   	label="Shadow Softening"
+   	layout="topleft"
+	left="160"
+   	top_pad="7"
+   	name="SoftShadows" 
+   	width="315" />
+	<slider
+	control_name="RenderShadowBlurSize"
+	decimal_digits="1"
+	follows="left|top"
+	height="16"
+	increment="0.1"
+	initial_value="1"
+	label="Shadow Blur Size:"
+	label_width="140"
+	layout="topleft"
+	left="10"
+	max_val="4"
+	min_val="0"
+	name="BlurSize"
+	top_pad="16"
+	width="262" />
+	<slider
+	control_name="RenderShadowBlurDistFactor"
+	decimal_digits="1"
+	follows="left|top"
+	height="16"
+	increment="0.05"
+	initial_value="1"
+	label="Blur on Distance:"
+	label_width="140"
+	layout="topleft"
+	left="10"
+	max_val="1"
+	min_val="0"
+	name="BlurSize"
+	top_pad="5"
+	width="262" />
+	<spinner
+     	control_name="RenderShadowBlurSamples" enabled="false"
+     	decimal_digits="0"
+     	follows="left|top"
+     	height="16"
+     	increment="1"
+     	initial_value="1"
+     	label="Blur Samples"
+     	label_width="80"
+     	layout="topleft"
+     	left="25"
+     	max_val="10"
+	min_val="0"
+     	name="Samples"
+    	top_pad="2"
+     	width="110" />
+	<slider
+	control_name="RenderSSAOScale"
+	decimal_digits="0"
+	follows="left|top"
+	height="16"
+	increment="1"
+	initial_value="40"
+	label="SSAO Scale:"
+	label_width="140"
+	layout="topleft"
+	left="10"
+	max_val="1000"
+	min_val="0"
+	name="SSAOScale"
+	top_pad="15"
+	width="262" />
+	<slider
+	control_name="RenderSSAOMaxScale"
+	decimal_digits="0"
+	follows="left|top"
+	height="16"
+	increment="1"
+	initial_value="40"
+	label="SSAO Max Scale:"
+	label_width="140"
+	layout="topleft"
+	left="10"
+	max_val="200"
+	min_val="0"
+	name="SSAOMaxScale"
+	top_pad="5"
+	width="262" />
+	<slider
+	control_name="RenderSSAOFactor"
+	decimal_digits="0"
+	follows="left|top"
+	height="16"
+	increment="0.5"
+	initial_value="40"
+	label="SSAO Factor:"
+	label_width="140"
+	layout="topleft"
+	left="10"
+	max_val="40"
+	min_val="0"
+	name="SSAOFactor"
+	top_pad="5"
+	width="262" />
 	
 	</panel>
 	<panel
@@ -1085,16 +1238,36 @@
 	name="FavoBar"
 	top_pad="1"
 	width="256" />
-	<!--check_box
-	control_name="ShowNetStats"
+	<check_box
+	control_name="ShowMapButton"
 	height="16"
 	initial_value="true"
-	label="Enable NetStats"
+	label="Enable WorldMap Button"
 	layout="topleft"
 	left_delta="3"
-	name="NetStats"
+	name="MapButton"
 	top_pad="1"
-	width="256" /-->
+	width="256" />
+  	<check_box
+  	control_name="ShowNetmapButton"
+  	height="16"
+  	initial_value="true"
+  	label="Enable Mini-Map Button"
+  	layout="topleft"
+  	left_delta="3"
+  	name="NetmapButton"
+  	top_pad="1"
+  	width="256" />
+  	<check_box
+  	control_name="ShowInventoryButton"
+  	height="16"
+  	initial_value="true"
+  	label="Enable Inventory Button"
+  	layout="topleft"
+  	left_delta="3"
+ 	name="InventoryButton"
+ 	top_pad="1"
+  	width="256" />
 	<check_box
 	control_name="ShowMoveButton"
 	height="16"
@@ -1126,36 +1299,6 @@
 	top_pad="1"
 	width="256" />
 	<check_box
-	control_name="ShowMapButton"
-	height="16"
-	initial_value="true"
-	label="Enable WorldMap Button"
-	layout="topleft"
-	left_delta="3"
-	name="MapButton"
-	top_pad="1"
-	width="256" />
-  <check_box
-  control_name="ShowNetmapButton"
-  height="16"
-  initial_value="true"
-  label="Enable Mini-Map Button"
-  layout="topleft"
-  left_delta="3"
-  name="NetmapButton"
-  top_pad="1"
-  width="256" />
-  <check_box
-  control_name="ShowInventoryButton"
-  height="16"
-  initial_value="true"
-  label="Enable Inventory Button"
-  layout="topleft"
-  left_delta="3"
-  name="InventoryButton"
-  top_pad="1"
-  width="256" />
-	<check_box
 	control_name="ShowSnapshotButton"
 	height="16"
 	initial_value="true"
@@ -1186,6 +1329,16 @@
 	top_pad="-15"
 	width="256" />
 	<check_box
+	control_name="CheesyBeacon"
+	height="16"
+	initial_value="true"
+	label="Cheesy Beacon"
+	layout="topleft"
+	left="5"
+	name="CheesyBeacon"
+	top_pad="7"
+	width="256" />
+	<check_box
 	control_name="ShowSelectionBeam"
 	height="16"
 	initial_value="true"
@@ -1195,6 +1348,22 @@
 	name="ShowBeam"
 	top_pad="7"
 	width="256" />
+	<slider
+	control_name="NearMeRange"
+	decimal_digits="0"
+	follows="left|top"
+	height="16"
+	increment="100"
+	initial_value="40"
+	label="Near Me Range(m):"
+	label_width="110"
+	layout="topleft"
+	left="10"
+	max_val="1000000"
+	min_val="100"
+	name="NearMeRange"
+	top_pad="5"
+	width="300" />
 	
 	</panel>
 
@@ -1239,6 +1408,16 @@
 	top_pad="10"
 	width="256" />
 	<check_box
+	control_name="RenderDynamicLOD"
+	height="16"
+	initial_value="true"
+	label="Dynamic Level of Detail"
+	layout="topleft"
+	left_delta="0"
+	name="RenderDynamicLOD"
+	top_pad="10"
+	width="256" />
+	<check_box
 	control_name="DisableVerticalSync"
 	height="16"
 	initial_value="true"
@@ -1246,6 +1425,16 @@
 	layout="topleft"
 	left_delta="0"
 	name="DisableVerticalSync"
+	top_pad="10"
+	width="256" />
+	<check_box
+	control_name="RenderAnimateTrees"
+	height="16"
+	initial_value="true"
+	label="Animate Trees"
+	layout="topleft"
+	left_delta="0"
+	name="AnimateTrees"
 	top_pad="10"
 	width="256" />
 	<check_box
