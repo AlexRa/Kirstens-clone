@@ -121,7 +121,7 @@ private:
 		, RS_BUTTON_SPEAK		= 0x0040
 		,RS_BUTTON_MAP			= 0x0080
 		,RS_BUTTON_NETMAP		= 0x0100
-		,RS_BUTTON_INVENTORY	= 0x0120
+		,RS_BUTTON_INVENTORY	= 0x0200
 
 		/**
 		 * Specifies buttons which can be hidden when bottom tray is shrunk.
