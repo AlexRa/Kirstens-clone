@@ -561,7 +561,7 @@ LLMotion::LLMotionInitStatus LLKeyframeMotion::onInitialize(LLCharacter *charact
 
 	if (!sVFS)
 	{
-		llerrs << "Must call LLKeyframeMotion::setVFS() first before loading a keyframe file!" << llendl;
+		llwarns << "Must call LLKeyframeMotion::setVFS() first before loading a keyframe file!" << llendl;
 	}
 
 	BOOL success = FALSE;
@@ -1202,7 +1202,7 @@ BOOL LLKeyframeMotion::deserialize(LLDataPacker& dp)
 		llwarns << "Bad animation version " << version << "." << sub_version << llendl;
 		return FALSE;
 #else
-		llerrs << "Bad animation version " << version << "." << sub_version << llendl;
+		llwarns << "Bad animation version " << version << "." << sub_version << llendl;
 #endif
 	}
 
@@ -1243,6 +1243,12 @@ BOOL LLKeyframeMotion::deserialize(LLDataPacker& dp)
 		return FALSE;
 	}
 
+	if(mJointMotionList->mEmoteName==mID.asString())
+	{
+		llwarns << "Malformed animation mEmoteName==mID" << llendl;
+		return FALSE;
+	}
+	
 	//-------------------------------------------------------------------------
 	// get loop
 	//-------------------------------------------------------------------------

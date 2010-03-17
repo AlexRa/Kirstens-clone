@@ -775,29 +775,51 @@
 		Glow Options:
 	</text>
 	
-	<slider  can_edit_text="false" control_name="RenderGlowIterations"
-	     decimal_digits="1" enabled="true" follows="left|top" height="16"
-	     increment="1" initial_val="1" label="Strength:"
+	<slider  
+      control_name="RenderGlowIterations"
+	    decimal_digits="1"
+       enabled="true"
+       follows="left|top"
+        height="16"
+	     increment="1" 
+      initial_val="1" 
+      label="Strength:"
 	     label_width="100" left="200" max_val="5" min_val="0" mouse_opaque="true"
 	     name="Strength" show_text="true" width="200" />
-	<slider  can_edit_text="false" control_name="RenderGlowMinLuminance"
-	     decimal_digits="1" enabled="true" follows="left|top" height="16"
-	     increment="0.1" initial_val="3" label="Min. Luminance:"
+	<slider  
+     control_name="RenderGlowMinLuminance"
+	     decimal_digits="1" enabled="true" follows="left|top"
+     height="16"
+	     increment="0.1" 
+     initial_val="3" 
+     label="Min. Luminance:"
 	     label_width="100" left="200" max_val="3" min_val="0" mouse_opaque="true"
 	     name="MinLuminance" show_text="true" width="204" />
-	<slider  can_edit_text="false" control_name="RenderGlowWarmthAmount"
-	     decimal_digits="1" enabled="true" follows="left|top" height="16"
-	     increment="0.1" initial_val="3" label="Glow Warmth:"
+	<slider  
+     control_name="RenderGlowWarmthAmount"
+	     decimal_digits="1" enabled="true" follows="left|top"
+     height="16"
+	     increment="0.1" 
+     initial_val="3" 
+     label="Glow Warmth:"
 	     label_width="100" left="200" max_val="20" min_val="0" mouse_opaque="true"
 	     name="Warmth" show_text="true" width="210" />
-	<slider  can_edit_text="false" control_name="RenderGlowWidth"
-	     decimal_digits="1" enabled="true" follows="left|top" height="16"
-	     increment="0.1" initial_val="3" label="Glow Width:"
+	<slider  
+     control_name="RenderGlowWidth"
+	     decimal_digits="1" enabled="true" follows="left|top"
+     height="16"
+	     increment="0.1" 
+     initial_val="3" 
+     label="Glow Width:"
 	     label_width="100" left="200" max_val="4" min_val="0" mouse_opaque="true"
 	     name="Width" show_text="true" width="203" />
-	<slider  can_edit_text="false" control_name="RenderGlowMaxExtractAlpha"
-	     decimal_digits="3" enabled="true" follows="left|top" height="16"
-	     increment="0.001" initial_val="0.065" label="Glow MaxAlpha:"
+	<slider  
+     control_name="RenderGlowMaxExtractAlpha"
+	     decimal_digits="3" enabled="true" follows="left|top" 
+     height="16"
+	     increment="0.001" 
+     initial_val="0.065" 
+     label="Glow MaxAlpha:"
 	     label_width="100" left="200" max_val="0.1" min_val="0" mouse_opaque="true"
 	     name="MaxAlpha" show_text="true" width="210" />
 	<text
@@ -1513,5 +1535,4 @@
 	
 	</panel>
 	</tab_container>
-    </tab_container>
 </panel>
