@@ -763,7 +763,7 @@
 	left="200"
    	top_pad="17"
    	name="deferred" 
-   	tool_tip="Enabling this renders Global Illumination in Second Life, this will make more Contrast between Dark and Bright, which will cause Shadows appear on Water too, but will need much Performance!"
+   	tool_tip="Enabling this renders Global Illumination in Second Life, this will make more Contrast between Dark and Bright, will cause Shadows to appear on Water too, but will need heaps of Computer Power!"
    	width="315">
 			<check_box.commit_callback
 			function="Pref.RenderUseFBO" />
@@ -875,7 +875,7 @@
      	height="60"
      	layout="topleft"
 	label="Glow Color"
-     	label_width="55"
+     	label_width="65"
      	left="380"
      	name="effect_color_swatch"
 	top="210"
@@ -967,10 +967,26 @@
 	initial_value="true"
 	label="Texture Auditing"
 	layout="topleft"
-	left="25"
+	left="250"
 	name="TexAudit"
 	top_pad="1"
 	width="256" />
+    <spinner
+     	control_name="RenderResolutionDivisor" enabled="true"
+     	decimal_digits="0"
+     	follows="left|top"
+     	height="16"
+     	increment="1"
+     	initial_value="0"
+     	label="Resolution Divisor"
+     	label_width="100"
+     	layout="topleft"
+      top="10" 
+     	left="250"
+     	max_val="10"
+	    min_val="0"
+     	name="resdivisor"
+    	width="150" />
 	<check_box
 	control_name="TextureLoadFullRes"
 	height="16"
@@ -979,7 +995,7 @@
 	layout="topleft"
 	left="25"
 	name="FullResTextures"
-	top_pad="1"
+	top_pad="17"
 	width="256" />
 	<check_box
 	control_name="RenderAnisotropic"
@@ -1009,7 +1025,7 @@
         layout="topleft"
         left="25"
         name="TerrainDetailText"
-        top_pad="1"
+        top_pad="2"
         width="128">
            Terrain detail:
         </text>
