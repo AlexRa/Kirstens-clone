@@ -30,12 +30,19 @@
  * $/LicenseInfo$
  */
 
+#include "llviewerprecompiledheaders.h"
+
 #include "linden_common.h"
 
 #include "llpostprocess.h"
 #include "llglslshader.h"
 #include "llsdserialize.h"
 #include "llrender.h"
+
+#include "llviewershadermgr.h" // KL
+#include "pipeline.h"
+#include "llimagegl.h"
+
 
 
 LLPostProcess * gPostProcess = NULL;
@@ -59,10 +66,9 @@ LLPostProcess::LLPostProcess(void) :
 	mSceneRenderTexture = NULL ; 
 	mNoiseTexture = NULL ;
 	mTempBloomTexture = NULL ;
-
 	noiseTextureScale = 1.0f;
 					
-	/*  Do nothing.  Needs to be updated to use our current shader system, and to work with the move into llrender.
+	//  Do nothing.  Needs to be updated to use our current shader system, and to work with the move into llrender.
 	std::string pathName(gDirUtilp->getExpandedFilename(LL_PATH_APP_SETTINGS, "windlight", XML_FILENAME));
 	LL_DEBUGS2("AppInit", "Shaders") << "Loading PostProcess Effects settings from " << pathName << LL_ENDL;
 
@@ -110,7 +116,7 @@ LLPostProcess::LLPostProcess(void) :
 	}
 
 	setSelectedEffect("default");
-	*/
+	
 }
 
 LLPostProcess::~LLPostProcess(void)
@@ -147,7 +153,7 @@ void LLPostProcess::setSelectedEffect(std::string const & effectName)
 
 void LLPostProcess::saveEffect(std::string const & effectName)
 {
-	/*  Do nothing.  Needs to be updated to use our current shader system, and to work with the move into llrender.
+	//  Do nothing.  Needs to be updated to use our current shader system, and to work with the move into llrender.
 	mAllEffects[effectName] = tweaks;
 
 	std::string pathName(gDirUtilp->getExpandedFilename(LL_PATH_APP_SETTINGS, "windlight", XML_FILENAME));
@@ -158,7 +164,7 @@ void LLPostProcess::saveEffect(std::string const & effectName)
 	LLPointer<LLSDFormatter> formatter = new LLSDXMLFormatter();
 
 	formatter->format(mAllEffects, effectsXML);
-	*/
+	
 }
 void LLPostProcess::invalidate()
 {
@@ -230,13 +236,14 @@ void LLPostProcess::applyShaders(void)
 
 void LLPostProcess::applyColorFilterShader(void)
 {	
-	/*  Do nothing.  Needs to be updated to use our current shader system, and to work with the move into llrender.
+	//  KL
 	gPostColorFilterProgram.bind();
 
 	gGL.getTexUnit(0)->activate();
 	gGL.getTexUnit(0)->enable(LLTexUnit::TT_RECT_TEXTURE);
 
-	gGL.getTexUnit(0)->bindManual(LLTexUnit::TT_RECT_TEXTURE, sceneRenderTexture);
+    U32 tex = mSceneRenderTexture->getTexName() ; // KL this may need checking in viewer 2.0
+	gGL.getTexUnit(0)->bindManual(LLTexUnit::TT_RECT_TEXTURE, tex);
 
 	getShaderUniforms(colorFilterUniforms, gPostColorFilterProgram.mProgramObject);
 	glUniform1iARB(colorFilterUniforms["RenderTexture"], 0);
@@ -258,7 +265,7 @@ void LLPostProcess::applyColorFilterShader(void)
 	/// Draw a screen space quad
 	drawOrthoQuad(screenW, screenH, QUAD_NORMAL);
 	gPostColorFilterProgram.unbind();
-	*/
+	
 }
 
 void LLPostProcess::createColorFilterShader(void)
@@ -274,19 +281,20 @@ void LLPostProcess::createColorFilterShader(void)
 
 void LLPostProcess::applyNightVisionShader(void)
 {	
-	/*  Do nothing.  Needs to be updated to use our current shader system, and to work with the move into llrender.
+	//  KL re-enabled and moved back to newview
 	gPostNightVisionProgram.bind();
 
 	gGL.getTexUnit(0)->activate();
 	gGL.getTexUnit(0)->enable(LLTexUnit::TT_RECT_TEXTURE);
 
 	getShaderUniforms(nightVisionUniforms, gPostNightVisionProgram.mProgramObject);
+	U32 sceneRenderTexture = mSceneRenderTexture->getTexName() ; // KL
 	gGL.getTexUnit(0)->bindManual(LLTexUnit::TT_RECT_TEXTURE, sceneRenderTexture);
 	glUniform1iARB(nightVisionUniforms["RenderTexture"], 0);
 
 	gGL.getTexUnit(1)->activate();
 	gGL.getTexUnit(1)->enable(LLTexUnit::TT_TEXTURE);	
-
+    U32 noiseTexture = mNoiseTexture->getTexName(); //KL
 	gGL.getTexUnit(1)->bindManual(LLTexUnit::TT_TEXTURE, noiseTexture);
 	glUniform1iARB(nightVisionUniforms["NoiseTexture"], 1);
 
@@ -307,7 +315,7 @@ void LLPostProcess::applyNightVisionShader(void)
 	drawOrthoQuad(screenW, screenH, QUAD_NOISE);
 	gPostNightVisionProgram.unbind();
 	gGL.getTexUnit(0)->activate();
-	*/
+	
 }
 
 void LLPostProcess::createNightVisionShader(void)
@@ -396,7 +404,7 @@ void LLPostProcess::copyFrameBuffer(U32 & texture, unsigned int width, unsigned 
 
 void LLPostProcess::drawOrthoQuad(unsigned int width, unsigned int height, QuadType type)
 {
-#if 0
+
 	float noiseX = 0.f;
 	float noiseY = 0.f;
 	float screenRatio = 1.0f;
@@ -467,7 +475,7 @@ void LLPostProcess::drawOrthoQuad(unsigned int width, unsigned int height, QuadT
 		}
 		glVertex2f((GLfloat) width, (GLfloat) screenH - height);
 	glEnd();
-#endif
+
 }
 
 void LLPostProcess::viewOrthogonal(unsigned int width, unsigned int height)

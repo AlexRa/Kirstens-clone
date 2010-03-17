@@ -349,6 +349,7 @@ set(viewer_SOURCE_FILES
     llplacesinventorypanel.cpp
     llpolymesh.cpp
     llpolymorph.cpp
+    llpostprocess.cpp
     llpreview.cpp
     llpreviewanim.cpp
     llpreviewgesture.cpp
@@ -844,6 +845,7 @@ set(viewer_HEADER_FILES
     llplacesinventorypanel.h
     llpolymesh.h
     llpolymorph.h
+    llpostprocess.h
     llpreview.h
     llpreviewanim.h
     llpreviewgesture.h
