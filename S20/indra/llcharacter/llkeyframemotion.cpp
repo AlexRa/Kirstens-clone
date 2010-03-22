@@ -1347,7 +1347,7 @@ BOOL LLKeyframeMotion::deserialize(LLDataPacker& dp)
 
 		if (joint_name == "mScreen" || joint_name == "mRoot")
 		{
-			llwarns << "attempted to animate special " << joint_name << " joint" << llendl;
+			llwarns << "attempted to animate special joint" << llendl;
 			return FALSE;
 		}
 				
@@ -1361,8 +1361,9 @@ BOOL LLKeyframeMotion::deserialize(LLDataPacker& dp)
 		}
 		else
 		{
-			llwarns << "joint not found: " << joint_name << llendl;
-			//return FALSE;
+			llwarns << "joint not found! possible client exploit. watch for repeated animation UUID's" << llendl;
+			joint_name="";  // KL std::string should cope with exploit, no harm in clearing joint_name
+		//	return FALSE;   // Also not sending to the log as it causes alot of spam when its an exploit, should it return false?
 		}
 
 		joint_motion->mJointName = joint_name;
@@ -1583,6 +1584,7 @@ BOOL LLKeyframeMotion::deserialize(LLDataPacker& dp)
 	if (num_constraints > MAX_CONSTRAINTS)
 	{
 		llwarns << "Too many constraints... ignoring" << llendl;
+		//return FALSE;
 	}
 	else
 	{
@@ -2098,6 +2100,7 @@ void LLKeyframeMotion::onLoadComplete(LLVFS *vfs,
 			{
 				llwarns << "Failed to decode asset for animation " << motionp->getName() << ":" << motionp->getID() << llendl;
 				motionp->mAssetStatus = ASSET_FETCH_FAILED;
+				delete[] buffer; 
 			}
 			
 			delete[] buffer;
@@ -2106,7 +2109,9 @@ void LLKeyframeMotion::onLoadComplete(LLVFS *vfs,
 		{
 			llwarns << "Failed to load asset for animation " << motionp->getName() << ":" << motionp->getID() << llendl;
 			motionp->mAssetStatus = ASSET_FETCH_FAILED;
+			
 		}
+		
 	}
 	else
 	{

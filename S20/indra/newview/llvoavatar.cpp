@@ -4454,7 +4454,7 @@ LLVector3 LLVOAvatar::getVolumePos(S32 joint_index, LLVector3& volume_offset)
 //-----------------------------------------------------------------------------
 LLJoint* LLVOAvatar::findCollisionVolume(U32 volume_id)
 {
-	if ((S32)volume_id > mNumCollisionVolumes)
+	if ((S32)volume_id > mNumCollisionVolumes || (S32)volume_id<0)  // yet another possible vector for client crashing picked up from snowglobe 1.3 KL
 	{
 		return NULL;
 	}
@@ -5485,6 +5485,7 @@ LLViewerJointAttachment* LLVOAvatar::getTargetAttachmentPoint(LLViewerObject* vi
 	if (!attachment)
 	{
 		llwarns << "Object attachment point invalid: " << attachmentID << llendl;
+		return 0; // this may be quite cute KL
 	}
 
 	return attachment;

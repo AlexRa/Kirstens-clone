@@ -228,12 +228,11 @@ BOOL LLVorbisDecodeState::initDecode()
 	size_guess *= 2;
 	size_guess += 2048;
 
-	// X makes problem , People get pissed because they crash , Y adds fix to emerald
-	// People Love Emerald.... Btw X & Y are either the same person or best buddies
+	// Client exploit seems to be on the rise
 
 	if(size_guess >= 157286400)
 	{
-		llwarns << "Lameness happens here...Somebody wants to screw up audio apparently" << llendl;
+		llwarns << "Audio file 157286400...Somebody wants to crash client via audio apparently" << llendl;
 		delete mInFilep;
 		mInFilep = NULL;
 		return FALSE;
@@ -407,7 +406,9 @@ BOOL LLVorbisDecodeState::finishDecode()
 {
 	if (!isValid())
 	{
-		llwarns << "Bogus vorbis decode state for " << getUUID() << ", aborting!" << llendl;
+		llwarns << "Bogus vorbis decode state for aborting! Possible client exploit KL" << llendl;
+		delete mInFilep;
+		mInFilep = NULL; // No harm in clearing mInFilep if the decode is bad
 		return TRUE; // We've finished
 	}
 
