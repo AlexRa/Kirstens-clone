@@ -344,7 +344,7 @@
      value="0.92 0.92 1 0.78" />
     <color
      name="GridlineColor"
-     reference="Red" />
+     reference="White" />
     <color
      name="GridlineShadowColor"
      value="0 0 0 0.31" />

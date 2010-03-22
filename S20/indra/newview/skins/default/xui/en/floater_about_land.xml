@@ -46,7 +46,7 @@
          top="0">
             <panel.string
              name="new users only">
-                New users only
+                New Residents only
             </panel.string>
             <panel.string
              name="anyone">
@@ -395,7 +395,7 @@ Leyla Linden               </text>
              name="Cancel Land Sale"
              left_pad="5"
              top_pad="-25"
-             width="145" />
+             width="155" />
             <text
              type="string"
              length="1"
@@ -1107,7 +1107,7 @@ Leyla Linden               </text>
                  label="Type"
                  name="type"
                  sort_column="online_status"
-                 width="24" />
+                 width="50" />
                 <name_list.columns
                  name="online_status"
                  width="-1" />
@@ -1504,7 +1504,7 @@ Only large parcels can be listed in search.
              name="Clear"
              tool_tip="Clear the landing point"
              right="-10"
-             width="50" />
+             width="55" />
             <text
              type="string"
              length="1"
