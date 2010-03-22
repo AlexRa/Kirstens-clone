@@ -220,8 +220,8 @@ BOOL LLEditingMotion::onUpdate(F32 time, U8* joint_mask)
 	target = target * target_dist;
 	if (!target.isFinite())
 	{
-		llerrs << "Non finite target in editing motion with target distance of " << target_dist << 
-			" and focus point " << focus_pt << llendl;
+		llwarns << "Non finite target in editing motion with target distance of " << target_dist << 
+			" and focus point " << focus_pt << llendl; // KL warning client may still crash.. but hey ho
 	}
 	
 	mTarget.setPosition( target + mParentJoint.getPosition());
