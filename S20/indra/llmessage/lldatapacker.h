@@ -202,6 +202,7 @@ inline BOOL LLDataPackerBinaryBuffer::verifyLength(const S32 data_size, const ch
 	{
 		llwarns << "Buffer overflow in BinaryBuffer length verify, field name " << name << "!" << llendl;
 		llwarns << "Current pos: " << (int)(mCurBufferp - mBufferp) << " Buffer size: " << mBufferSize << " Data size: " << data_size << llendl;
+		
 		return FALSE;
 	}
 

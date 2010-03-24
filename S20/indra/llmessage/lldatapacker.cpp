@@ -201,15 +201,34 @@ BOOL LLDataPackerBinaryBuffer::packString(const std::string& value, const char *
 
 BOOL LLDataPackerBinaryBuffer::unpackString(std::string& value, const char *name)
 {
-	BOOL success = TRUE;
-	S32 length = (S32)strlen((char *)mCurBufferp) + 1; /*Flawfinder: ignore*/
+	// KL could this fix the exploits?
+	 // Verify that the buffer members are meaningful
+    llassert(mBufferp != NULL);
+    llassert(mBufferSize > 0);
+    llassert(mCurBufferp >= mBufferp);
+    llassert(mCurBufferp < (mBufferp + mBufferSize));
 
-	success &= verifyLength(length, name);
+	// Compute the length of the mCurBufferp string *without* assuming NULL termination of that string (avoids attempt to read beyond mBufferp boundary)
+	U8 *pos;
+	for (pos = mCurBufferp; pos < (mBufferp+mBufferSize); pos++)
+	{
+		if ((*pos) == 0)
+			break;
+	}
+    S32 length = pos - mCurBufferp + 1;                         // mCurBufferp length
+    S32 max_length = mBufferSize - (mCurBufferp - mBufferp);    // Possible max length of mCurBufferp in mBufferp
 
-	value = std::string((char*)mCurBufferp); // We already assume NULL termination calling strlen()
-	
+	if (length > max_length)
+	{
+		llwarns << "Buffer overflow in BinaryBuffer unpackString, field name, possible client exploit KL " << name << "!" << llendl;
+		llwarns << "Null termination not found" << llendl;
+		llwarns << "Current pos in buffer: " << (int)(mCurBufferp - mBufferp) << " Buffer size: " << mBufferSize << llendl;
+		return false; // Boo!
+	}
+
+	value = std::string((char*)mCurBufferp);
 	mCurBufferp += length;
-	return success;
+	return true; // Yay!
 }
 
 BOOL LLDataPackerBinaryBuffer::packBinaryData(const U8 *value, S32 size, const char *name)
@@ -342,12 +361,20 @@ BOOL LLDataPackerBinaryBuffer::packU32(const U32 value, const char *name)
 
 BOOL LLDataPackerBinaryBuffer::unpackU32(U32 &value, const char *name)
 {
-	BOOL success = TRUE;
-	success &= verifyLength(sizeof(U32), name);
+	
+	if(!verifyLength(sizeof(U32), name))
+	{
+		     llwarns << "BAD data unpack U32 KL" << llendl;
+             return false;
+	}
+	else
+	{
 
 	htonmemcpy(&value, mCurBufferp, MVT_U32, 4);
 	mCurBufferp += 4;
-	return success;
+	return true;
+	}
+   
 }
 
 
@@ -367,12 +394,19 @@ BOOL LLDataPackerBinaryBuffer::packS32(const S32 value, const char *name)
 
 BOOL LLDataPackerBinaryBuffer::unpackS32(S32 &value, const char *name)
 {
-	BOOL success = TRUE;
-	success &= verifyLength(sizeof(S32), name);
-
+	
+	if(!verifyLength(sizeof(S32), name))
+	{
+		llwarns << "BAD data unpack S32 KL" << llendl;
+		return false;
+	}
+	else
+	{
 	htonmemcpy(&value, mCurBufferp, MVT_S32, 4);
 	mCurBufferp += 4;
-	return success;
+	return true;
+	}
+   
 }
 
 
@@ -392,12 +426,18 @@ BOOL LLDataPackerBinaryBuffer::packF32(const F32 value, const char *name)
 
 BOOL LLDataPackerBinaryBuffer::unpackF32(F32 &value, const char *name)
 {
-	BOOL success = TRUE;
-	success &= verifyLength(sizeof(F32), name);
-
+	if(!verifyLength(sizeof(F32), name))
+	{
+		llwarns << "BAD data unpack F32 KL" << llendl;
+		return false;
+	}
+	else
+	{
 	htonmemcpy(&value, mCurBufferp, MVT_F32, 4);
 	mCurBufferp += 4;
-	return success;
+	return true;
+	} 
+
 }
 
 
