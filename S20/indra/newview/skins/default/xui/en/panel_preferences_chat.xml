@@ -14,6 +14,7 @@
    layout="topleft"
    left="30"
    height="12"
+   name="font_size"
    width="120"
    top="10">
     Font size:
@@ -60,6 +61,7 @@
       layout="topleft"
       left="30"
       height="12"
+      name="font_colors" 
       top_pad="10" 
       width="120"
       >
@@ -335,6 +337,7 @@
      top_pad="5"
      width="400" />
     <text
+     name="show_ims_in_label"
      follows="left|top"
      layout="topleft"
      left="30"
@@ -344,6 +347,7 @@
      Show IMs in:
     </text>
     <text
+     name="requires_restart_label"
      follows="left|top"
      layout="topleft"
      top_delta="0" 

@@ -12,13 +12,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -28,6 +28,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 
 #include "linden_common.h"
@@ -67,11 +68,11 @@ static void gluiCallbackWrapper( int control_id );
 static bool isTexture( GLuint texture )
 {
 	bool result = false;
-	
+
 	// glIsTexture will sometimes return false for real textures... do this instead.
 	if(texture != 0)
 		result = true;
-	
+
 	return result;
 }
 
@@ -96,24 +97,24 @@ mediaPanel::~mediaPanel()
 		glDeleteTextures( 1, &mPickTextureHandle );
 		mPickTextureHandle = 0;
 	}
-	
+
 	if ( isTexture( mMediaTextureHandle ) )
 	{
 		std::cerr << "remMediaPanel: deleting media texture " << mMediaTextureHandle << std::endl;
 		glDeleteTextures( 1, &mMediaTextureHandle );
 		mMediaTextureHandle = 0;
 	}
-	
+
 	if(mPickTexturePixels)
 	{
 		delete mPickTexturePixels;
 	}
-	
+
 	if(mMediaSource)
 	{
 		delete mMediaSource;
 	}
-	
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -129,6 +130,7 @@ LLMediaPluginTest::LLMediaPluginTest( int app_window, int window_width, int wind
 	mCurMouseY( 0 ),
 	mFuzzyMedia( true ),
 	mSelectedPanel( 0 ),
+	mDistanceCameraToSelectedGeometry( 0.0f ),
 	mMediaBrowserControlEnableCookies( 0 ),
 	mMediaBrowserControlBackButton( 0 ),
 	mMediaBrowserControlForwardButton( 0 ),
@@ -152,7 +154,7 @@ LLMediaPluginTest::LLMediaPluginTest( int app_window, int window_width, int wind
 	//mBookmarks.push_back( std::pair< std::string, std::string >( "description", "url" ) );
 
 	// read bookmarks from file.
-	// note: uses command in ./CmakeLists.txt which copies bookmmarks file from source directory 
+	// note: uses command in ./CmakeLists.txt which copies bookmmarks file from source directory
 	//       to app directory (WITHOUT build configuration dir) (this is cwd in Windows within MSVC)
 	//		 For example, test_apps\llplugintest and not test_apps\llplugintest\Release
 	//		 This may need to be changed for Mac/Linux builds.
@@ -194,7 +196,7 @@ LLMediaPluginTest::LLMediaPluginTest( int app_window, int window_width, int wind
 	// initialize linden lab APR module
 	ll_init_apr();
 
-	// Set up llerror logging 
+	// Set up llerror logging
 	{
 		LLError::initForApplication(".");
 		LLError::setDefaultLevel(LLError::LEVEL_INFO);
@@ -274,7 +276,7 @@ void LLMediaPluginTest::reshape( int width, int height )
 void LLMediaPluginTest::bindTexture(GLuint texture, GLint row_length, GLint alignment)
 {
 	glEnable( GL_TEXTURE_2D );
-	
+
 	glBindTexture( GL_TEXTURE_2D, texture );
 	glPixelStorei( GL_UNPACK_ROW_LENGTH, row_length );
 	glPixelStorei( GL_UNPACK_ALIGNMENT, alignment );
@@ -286,27 +288,57 @@ bool LLMediaPluginTest::checkGLError(const char *name)
 {
 	bool result = false;
 	GLenum error = glGetError();
-	
+
 	if(error != GL_NO_ERROR)
 	{
 		// For some reason, glGenTextures is returning GL_INVALID_VALUE...
 		std::cout << name << " ERROR 0x" << std::hex << error << std::dec << std::endl;
 		result = true;
 	}
-	
+
 	return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-void LLMediaPluginTest::drawGeometry( int panel )
+GLfloat LLMediaPluginTest::distanceToCamera( GLfloat point_x, GLfloat point_y, GLfloat point_z )
+{
+	GLdouble camera_pos_x = 0.0f;
+	GLdouble camera_pos_y = 0.0f;
+	GLdouble camera_pos_z = 0.0f;
+
+	GLdouble modelMatrix[16];
+	GLdouble projMatrix[16];
+	GLint viewport[4];
+
+	glGetDoublev(GL_MODELVIEW_MATRIX, modelMatrix);
+	glGetDoublev(GL_PROJECTION_MATRIX, projMatrix);
+	glGetIntegerv(GL_VIEWPORT, (GLint*)(viewport));
+
+	gluUnProject(
+		(viewport[2]-viewport[0])/2 , (viewport[3]-viewport[1])/2,
+		0.0,
+		modelMatrix, projMatrix,  (GLint*)(viewport),
+		&camera_pos_x, &camera_pos_y, &camera_pos_z );
+
+	GLfloat distance =
+		sqrt( ( camera_pos_x - point_x ) * ( camera_pos_x - point_x ) +
+			  ( camera_pos_y - point_y ) * ( camera_pos_y - point_y ) +
+			  ( camera_pos_z - point_z ) * ( camera_pos_z - point_z ) );
+
+	return distance;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+//
+void LLMediaPluginTest::drawGeometry( int panel, bool selected )
 {
 	// texture coordinates for each panel
 	GLfloat non_opengl_texture_coords[ 8 ] = { 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f };
 	GLfloat opengl_texture_coords[ 8 ] =     { 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f };
-	
+
 	GLfloat *texture_coords = mMediaPanels[ panel ]->mAppTextureCoordsOpenGL?opengl_texture_coords:non_opengl_texture_coords;
-	
+
 	// base coordinates for each panel
 	GLfloat base_vertex_pos[ 8 ] = { 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f };
 
@@ -317,31 +349,35 @@ void LLMediaPluginTest::drawGeometry( int panel )
 	const int panel_x = ( panel / num_rows );
 	const int panel_y = ( panel % num_rows );
 
-	const float spacing = 0.1f;
+	// default spacing is small - make it larger if checkbox set - for testing positional audio
+	float spacing = 0.1f;
+	if ( mLargePanelSpacing )
+		spacing = 2.0f;
+
 	const GLfloat offset_x = num_cols * ( 1.0 + spacing ) / 2;
 	const GLfloat offset_y = num_rows * ( 1.0 + spacing ) / 2;
-	
+
 	// Adjust for media aspect ratios
-	{		
+	{
 		float aspect = 1.0f;
 
 		if(mMediaPanels[ panel ]->mMediaHeight != 0)
 		{
 			aspect = (float)mMediaPanels[ panel ]->mMediaWidth / (float)mMediaPanels[ panel ]->mMediaHeight;
 		}
-		
+
 		if(aspect > 1.0f)
 		{
 			// media is wider than it is high -- adjust the top and bottom in
 			for( int corner = 0; corner < 4; ++corner )
 			{
 				float temp = base_vertex_pos[corner * 2 + 1];
-				
+
 				if(temp < 0.5f)
 					temp += 0.5 - (0.5f / aspect);
 				else
 					temp -= 0.5 - (0.5f / aspect);
-				
+
 				base_vertex_pos[corner * 2 + 1] = temp;
 			}
 		}
@@ -351,7 +387,7 @@ void LLMediaPluginTest::drawGeometry( int panel )
 			for( int corner = 0; corner < 4; ++corner )
 			{
 				float temp = base_vertex_pos[corner * 2];
-				
+
 				if(temp < 0.5f)
 					temp += 0.5f - (0.5f * aspect);
 				else
@@ -372,6 +408,15 @@ void LLMediaPluginTest::drawGeometry( int panel )
 		glVertex3f( x, y, 0.0f );
 	};
 	glEnd();
+
+	// calculate distance to this panel if it's selected
+	if ( selected )
+	{
+		GLfloat point_x = base_vertex_pos[ 0 ] + panel_x * ( 1.0 + spacing ) - offset_x + spacing / 2.0f;
+		GLfloat point_y = base_vertex_pos[ 0 + 1 ] + panel_y * ( 1.0 + spacing ) - offset_y + spacing / 2.0f;
+		GLfloat point_z = 0.0f;
+		mDistanceCameraToSelectedGeometry = distanceToCamera( point_x, point_y, point_z );
+	};
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -404,7 +449,7 @@ void LLMediaPluginTest::draw( int draw_type )
 		if ( draw_type == DrawTypePickTexture )
 		{
 			// only bother with pick if we have something to render
-			// Actually, we need to pick even if we're not ready to render.  
+			// Actually, we need to pick even if we're not ready to render.
 			// Otherwise you can't select and remove a panel which has gone bad.
 			//if ( mMediaPanels[ panel ]->mReadyToRender )
 			{
@@ -421,7 +466,7 @@ void LLMediaPluginTest::draw( int draw_type )
 				glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
 
 				// draw geometry using pick texture
-				drawGeometry( panel );
+				drawGeometry( panel, false );
 
 				glMatrixMode( GL_TEXTURE );
 				glPopMatrix();
@@ -432,13 +477,13 @@ void LLMediaPluginTest::draw( int draw_type )
 		{
 			bool texture_valid = false;
 			bool plugin_exited = false;
-			
+
 			if(mMediaPanels[ panel ]->mMediaSource)
 			{
 				texture_valid = mMediaPanels[ panel ]->mMediaSource->textureValid();
 				plugin_exited = mMediaPanels[ panel ]->mMediaSource->isPluginExited();
 			}
-			
+
 			// save texture matrix (changes for each panel)
 			glMatrixMode( GL_TEXTURE );
 			glPushMatrix();
@@ -466,14 +511,14 @@ void LLMediaPluginTest::draw( int draw_type )
 							mMediaPanels[ panel ]->mTextureScaleY,
 								1.0f );
 			};
-			
+
 			float intensity = plugin_exited?0.25f:1.0f;
-			
+
 			// highlight the selected panel
 			if ( mSelectedPanel && ( mMediaPanels[ panel ]->mId == mSelectedPanel->mId ) )
 			{
 				startPanelHighlight( intensity, intensity, 0.0f, 5.0f );
-				drawGeometry( panel );
+				drawGeometry( panel, true );
 				endPanelHighlight();
 			}
 			else
@@ -482,21 +527,21 @@ void LLMediaPluginTest::draw( int draw_type )
 			if ( !mMediaPanels[ panel ]->mReadyToRender )
 			{
 				startPanelHighlight( intensity, 0.0f, 0.0f, 2.0f );
-				drawGeometry( panel );
+				drawGeometry( panel, false );
 				endPanelHighlight();
 			}
 			else
-			// just display a border around the media 
+			// just display a border around the media
 			{
 				startPanelHighlight( 0.0f, intensity, 0.0f, 2.0f );
-				drawGeometry( panel );
+				drawGeometry( panel, false );
 				endPanelHighlight();
 			};
-			
+
 			if ( mMediaPanels[ panel ]->mReadyToRender && texture_valid )
 			{
 				// draw visual geometry
-				drawGeometry( panel );
+				drawGeometry( panel, false );
 			}
 
 			// restore texture matrix (changes for each panel)
@@ -552,7 +597,7 @@ void LLMediaPluginTest::idle()
 	// GLUI requires this
 	if ( glutGetWindow() != mAppWindow )
 		glutSetWindow( mAppWindow );
-	
+
 	// random creation/destruction of panels enabled?
 	const time_t panel_timeout_time = 5;
 	if ( mRandomPanelCount )
@@ -705,7 +750,7 @@ void LLMediaPluginTest::idle()
 	for( int panel_index = 0; panel_index < (int)mMediaPanels.size(); ++panel_index )
 	{
 		mediaPanel *panel = mMediaPanels[ panel_index ];
-		
+
 		// call plugins idle function so it can potentially update itself
 		panel->mMediaSource->idle();
 
@@ -718,7 +763,7 @@ void LLMediaPluginTest::idle()
 			//std::cout << "texture invalid, skipping update..." << std::endl;
 		}
 		else
-		if ( panel && 
+		if ( panel &&
 			 ( panel->mMediaWidth != panel->mMediaSource->getWidth() ||
 			   panel->mMediaHeight != panel->mMediaSource->getHeight() ) )
 		{
@@ -734,7 +779,7 @@ void LLMediaPluginTest::idle()
 				int y_offset = dirty_rect.mBottom;
 				int width = dirty_rect.mRight - dirty_rect.mLeft;
 				int height = dirty_rect.mTop - dirty_rect.mBottom;
-				
+
 				if((dirty_rect.mRight <= panel->mTextureWidth) && (dirty_rect.mTop <= panel->mTextureHeight))
 				{
 					// Offset the pixels pointer properly
@@ -753,23 +798,23 @@ void LLMediaPluginTest::idle()
 						glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
 						glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
 					};
-					
+
 					checkGLError("glTexParameteri");
-					
+
 					if(panel->mMediaSource->getTextureFormatSwapBytes())
 					{
 						glPixelStorei(GL_UNPACK_SWAP_BYTES, 1);
 						checkGLError("glPixelStorei");
 					}
-					
+
 					// draw portion that changes into texture
-					glTexSubImage2D( GL_TEXTURE_2D, 0, 
-						x_offset, 
+					glTexSubImage2D( GL_TEXTURE_2D, 0,
+						x_offset,
 						y_offset,
-						width, 
+						width,
 						height,
-						panel->mMediaSource->getTextureFormatPrimary(), 
-						panel->mMediaSource->getTextureFormatType(), 
+						panel->mMediaSource->getTextureFormatPrimary(),
+						panel->mMediaSource->getTextureFormatType(),
 						pixels );
 
 					if(checkGLError("glTexSubImage2D"))
@@ -789,9 +834,9 @@ void LLMediaPluginTest::idle()
 						glPixelStorei(GL_UNPACK_SWAP_BYTES, 0);
 						checkGLError("glPixelStorei");
 					}
-					
+
 					panel->mMediaSource->resetDirty();
-					
+
 					panel->mReadyToRender = true;
 				}
 				else
@@ -812,8 +857,8 @@ void LLMediaPluginTest::idle()
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-void LLMediaPluginTest::windowPosToTexturePos( int window_x, int window_y, 
-											   int& media_x, int& media_y, 
+void LLMediaPluginTest::windowPosToTexturePos( int window_x, int window_y,
+											   int& media_x, int& media_y,
 											   int& id )
 {
 	if ( ! mSelectedPanel )
@@ -829,7 +874,7 @@ void LLMediaPluginTest::windowPosToTexturePos( int window_x, int window_y,
 	// OpenGL app == coordinate system this way
 	// NOTE: unrelated to settings in plugin - this
 	// is just for this app
-	mCurMouseY = mWindowHeight - window_y;  
+	mCurMouseY = mWindowHeight - window_y;
 
 	// extract x (0..1023, y (0..1023) and id (0..15) from RGB components
 	unsigned long pixel_read_color_bits = ( mPixelReadColor[ 0 ] << 16 ) | ( mPixelReadColor[ 1 ] << 8 ) | mPixelReadColor[ 2 ];
@@ -881,14 +926,14 @@ void LLMediaPluginTest::selectPanel( mediaPanel* panel )
 		mSelectedPanel->mMediaSource->setVolume( 0.0f );
 		mSelectedPanel->mMediaSource->setPriority( LLPluginClassMedia::PRIORITY_LOW );
 	};
-		
+
 	mSelectedPanel = panel;
 
 	if( mSelectedPanel && mSelectedPanel->mMediaSource )
 	{
 		mSelectedPanel->mMediaSource->setVolume( (float)mMediaTimeControlVolume / 100.0f );
 		mSelectedPanel->mMediaSource->setPriority( LLPluginClassMedia::PRIORITY_NORMAL );
-		
+
 		if(!mSelectedPanel->mStartUrl.empty())
 		{
 			mUrlEdit->set_text(const_cast<char*>(mSelectedPanel->mStartUrl.c_str()) );
@@ -901,7 +946,7 @@ void LLMediaPluginTest::selectPanel( mediaPanel* panel )
 mediaPanel*  LLMediaPluginTest::findMediaPanel( LLPluginClassMedia* source )
 {
 	mediaPanel *result = NULL;
-	
+
 	for( int panel = 0; panel < (int)mMediaPanels.size(); ++panel )
 	{
 		if ( mMediaPanels[ panel ]->mMediaSource == source )
@@ -909,7 +954,7 @@ mediaPanel*  LLMediaPluginTest::findMediaPanel( LLPluginClassMedia* source )
 			result = mMediaPanels[ panel ];
 		}
 	}
-	
+
 	return result;
 }
 
@@ -1067,7 +1112,7 @@ void LLMediaPluginTest::gluiCallback( int control_id )
 	{
 		if ( mSelectedPanel )
 		{
-			// get value from spinner	
+			// get value from spinner
 			float seconds_to_seek = mMediaTimeControlSeekSeconds;
 			mSelectedPanel->mMediaSource->seek( seconds_to_seek );
 			mSelectedPanel->mMediaSource->start();
@@ -1195,7 +1240,7 @@ void LLMediaPluginTest::mouseButton( int button, int state, int x, int y )
 			windowPosToTexturePos( x, y, media_x, media_y, id );
 
 			// only select a panel if we're on a panel
-			// (HACK: strictly speaking this rules out clicking on 
+			// (HACK: strictly speaking this rules out clicking on
 			// the origin of a panel but that's very unlikely)
 			if ( media_x > 0 && media_y > 0 )
 			{
@@ -1328,18 +1373,18 @@ void LLMediaPluginTest::makeChrome()
 	mGluiMediaTimeControlWindow->add_column( false );
 	mIdMediaTimeControlVolume = start_id++;
 	GLUI_Spinner* spinner = mGluiMediaTimeControlWindow->add_spinner( "Volume", 2, &mMediaTimeControlVolume, mIdMediaTimeControlVolume, gluiCallbackWrapper);
-	spinner->set_float_limits( 0, 100 );		
+	spinner->set_float_limits( 0, 100 );
 	mGluiMediaTimeControlWindow->add_column( true );
 	mIdMediaTimeControlSeekSeconds = start_id++;
 	spinner = mGluiMediaTimeControlWindow->add_spinner( "", 2, &mMediaTimeControlSeekSeconds, mIdMediaTimeControlSeekSeconds, gluiCallbackWrapper);
-	spinner->set_float_limits( 0, 200 );		
+	spinner->set_float_limits( 0, 200 );
 	spinner->set_w( 32 );
 	spinner->set_speed( 0.025f );
 	mGluiMediaTimeControlWindow->add_column( false );
 	mIdMediaTimeControlSeek = start_id++;
 	mGluiMediaTimeControlWindow->add_button( "SEEK", mIdMediaTimeControlSeek, gluiCallbackWrapper );
 	mGluiMediaTimeControlWindow->add_column( false );
-	
+
 
 	// top window - media controls for "browser" media types (e.g. web browser)
 	mGluiMediaBrowserControlWindow = GLUI_Master.create_glui_subwindow( mAppWindow, GLUI_SUBWINDOW_TOP );
@@ -1386,6 +1431,13 @@ void LLMediaPluginTest::makeChrome()
 	mDisableTimeout = 0;
 	glui_window_misc_control->add_checkbox( "Disable plugin timeout", &mDisableTimeout, mIdDisableTimeout, gluiCallbackWrapper );
 	glui_window_misc_control->set_main_gfx_window( mAppWindow );
+	glui_window_misc_control->add_column( true );
+
+	mIdLargePanelSpacing = start_id++;
+	mLargePanelSpacing = 0;
+	glui_window_misc_control->add_checkbox( "Large Panel Spacing", &mLargePanelSpacing, mIdLargePanelSpacing, gluiCallbackWrapper );
+	glui_window_misc_control->set_main_gfx_window( mAppWindow );
+	glui_window_misc_control->add_column( true );
 
 	// bottom window - status
 	mBottomGLUIWindow = GLUI_Master.create_glui_subwindow( mAppWindow, GLUI_SUBWINDOW_BOTTOM );
@@ -1450,7 +1502,7 @@ void LLMediaPluginTest::makePickTexture( int id, GLuint* texture_handle, unsigne
 //
 std::string LLMediaPluginTest::mimeTypeFromUrl( std::string& url )
 {
-	// default to web 
+	// default to web
 	std::string mime_type = "text/html";
 
 	// we may need a more advanced MIME type accessor later :-)
@@ -1480,7 +1532,7 @@ std::string LLMediaPluginTest::pluginNameFromMimeType( std::string& mime_type )
 	else
 	if ( mime_type == "text/html" )
 		plugin_name = "media_plugin_webkit.dylib";
-	
+
 #elif LL_WINDOWS
 	std::string plugin_name( "media_plugin_null.dll" );
 
@@ -1524,7 +1576,7 @@ void LLMediaPluginTest::addMediaPanel( std::string url )
 	// tell the plugin what size we asked for
 	media_source->setSize( media_width, media_height );
 
-	// Use the launcher start and initialize the plugin 
+	// Use the launcher start and initialize the plugin
 #if LL_DARWIN || LL_LINUX
 	std::string launcher_name( "SLPlugin" );
 #elif LL_WINDOWS
@@ -1543,8 +1595,8 @@ void LLMediaPluginTest::addMediaPanel( std::string url )
 	}
 	std::string user_data_path = std::string( cwd ) + "/";
 #endif
-
-	media_source->init( launcher_name, plugin_name, false, user_data_path );
+	std::string language_code="";
+	media_source->init( launcher_name, plugin_name, false, user_data_path, language_code );
 	media_source->setDisableTimeout(mDisableTimeout);
 
 	// make a new panel and save parameters
@@ -1581,7 +1633,7 @@ void LLMediaPluginTest::addMediaPanel( std::string url )
 		// id wasn't found so we can use it
 		if ( ! id_exists )
 		{
-			panel->mId = nid; 
+			panel->mId = nid;
 			break;
 		};
 	};
@@ -1593,7 +1645,7 @@ void LLMediaPluginTest::addMediaPanel( std::string url )
 	}
 	else
 	{
-		// now we have the ID we can use it to make the 
+		// now we have the ID we can use it to make the
 		// pick texture (id is baked into texture pixels)
 		makePickTexture( panel->mId, &panel->mPickTextureHandle, &panel->mPickTexturePixels );
 
@@ -1616,17 +1668,17 @@ void LLMediaPluginTest::addMediaPanel( std::string url )
 void LLMediaPluginTest::updateMediaPanel( mediaPanel* panel )
 {
 //	checkGLError("LLMediaPluginTest::updateMediaPanel");
-	
-	if ( ! panel ) 
+
+	if ( ! panel )
 		return;
-	
+
 	if(!panel->mMediaSource || !panel->mMediaSource->textureValid())
 	{
 		panel->mReadyToRender = false;
 		return;
 	}
-		
-	// take a reference copy of the plugin values since they 
+
+	// take a reference copy of the plugin values since they
 	// might change during this lifetime of this function
 	int plugin_media_width = panel->mMediaSource->getWidth();
 	int plugin_media_height = panel->mMediaSource->getHeight();
@@ -1634,18 +1686,18 @@ void LLMediaPluginTest::updateMediaPanel( mediaPanel* panel )
 	int plugin_texture_height = panel->mMediaSource->getBitsHeight();
 
 	// If the texture isn't created or the media or texture dimensions changed AND
-	// the sizes are valid then we need to delete the old media texture (if necessary) 
+	// the sizes are valid then we need to delete the old media texture (if necessary)
 	// then make a new one.
 	if ((panel->mMediaTextureHandle == 0 ||
 		 panel->mMediaWidth != plugin_media_width ||
-		 panel->mMediaHeight != plugin_media_height ||		 
+		 panel->mMediaHeight != plugin_media_height ||
 		 panel->mTextureWidth != plugin_texture_width ||
 		 panel->mTextureHeight != plugin_texture_height) &&
-		( plugin_media_width > 0 && plugin_media_height > 0 && 
+		( plugin_media_width > 0 && plugin_media_height > 0 &&
 		  plugin_texture_width > 0 && plugin_texture_height > 0 ) )
 	{
-		std::cout << "Valid media size (" <<  plugin_media_width << " x " << plugin_media_height 
-				<< ") and texture size (" <<  plugin_texture_width << " x " << plugin_texture_height 
+		std::cout << "Valid media size (" <<  plugin_media_width << " x " << plugin_media_height
+				<< ") and texture size (" <<  plugin_texture_width << " x " << plugin_texture_height
 				<< ") for panel with ID=" << panel->mId << " - making texture" << std::endl;
 
 		// delete old GL texture
@@ -1655,13 +1707,13 @@ void LLMediaPluginTest::updateMediaPanel( mediaPanel* panel )
 			glDeleteTextures( 1, &panel->mMediaTextureHandle );
 			panel->mMediaTextureHandle = 0;
 		}
-		
+
 		std::cerr << "before: pick texture is " << panel->mPickTextureHandle << ", media texture is " << panel->mMediaTextureHandle << std::endl;
-		
+
 		// make a GL texture based on the dimensions the plugin told us
 		GLuint new_texture = 0;
 		glGenTextures( 1, &new_texture );
-		
+
 		checkGLError("glGenTextures");
 
 		std::cout << "glGenTextures returned " << new_texture << std::endl;
@@ -1680,7 +1732,7 @@ void LLMediaPluginTest::updateMediaPanel( mediaPanel* panel )
 
 		std::cerr << "after: pick texture is " << panel->mPickTextureHandle << ", media texture is " << panel->mMediaTextureHandle << std::endl;
 	};
-	
+
 	// update our record of the media and texture dimensions
 	// NOTE: do this after we we check for sizes changes
 	panel->mMediaWidth = plugin_media_width;
@@ -1700,7 +1752,7 @@ void LLMediaPluginTest::updateMediaPanel( mediaPanel* panel )
 	panel->mAppTextureCoordsOpenGL = panel->mMediaSource->getTextureCoordsOpenGL();
 
 	// Check to see if we have enough to render this panel.
-	// If we do, set a flag that the display functions use so 
+	// If we do, set a flag that the display functions use so
 	// they only render a panel with media if it's ready.
 	if ( panel->mMediaWidth < 0 ||
 		 panel->mMediaHeight < 0 ||
@@ -1717,26 +1769,26 @@ void LLMediaPluginTest::updateMediaPanel( mediaPanel* panel )
 void LLMediaPluginTest::replaceMediaPanel( mediaPanel* panel, std::string url )
 {
 	// no media panels so we can't change anything - have to add
-	if ( mMediaPanels.size() == 0 ) 
+	if ( mMediaPanels.size() == 0 )
 		return;
 
 	// sanity check
-	if ( ! panel ) 
+	if ( ! panel )
 		return;
-	
+
 	int index;
 	for(index = 0; index < (int)mMediaPanels.size(); index++)
 	{
 		if(mMediaPanels[index] == panel)
 			break;
 	}
-	
+
 	if(index >= (int)mMediaPanels.size())
 	{
 		// panel isn't in mMediaPanels
 		return;
 	}
-			
+
 	std::cout << "Replacing media panel with index " << panel->mId << std::endl;
 
 	int panel_id = panel->mId;
@@ -1761,7 +1813,7 @@ void LLMediaPluginTest::replaceMediaPanel( mediaPanel* panel, std::string url )
 	// tell the plugin what size we asked for
 	media_source->setSize( media_width, media_height );
 
-	// Use the launcher start and initialize the plugin 
+	// Use the launcher start and initialize the plugin
 #if LL_DARWIN || LL_LINUX
 	std::string launcher_name( "SLPlugin" );
 #elif LL_WINDOWS
@@ -1780,8 +1832,8 @@ void LLMediaPluginTest::replaceMediaPanel( mediaPanel* panel, std::string url )
 	}
 	std::string user_data_path = std::string( cwd ) + "/";
 #endif
-
-	media_source->init( launcher_name, plugin_name, false, user_data_path );
+	std::string language_code="";
+	media_source->init( launcher_name, plugin_name, false, user_data_path,language_code );
 	media_source->setDisableTimeout(mDisableTimeout);
 
 	// make a new panel and save parameters
@@ -1800,12 +1852,12 @@ void LLMediaPluginTest::replaceMediaPanel( mediaPanel* panel, std::string url )
 	panel->mAppTextureCoordsOpenGL = false;	// really need an 'undefined' state here too
 	panel->mReadyToRender = false;
 
-	panel->mId = panel_id; 
-	
+	panel->mId = panel_id;
+
 	// Replace the entry in the panels array
 	mMediaPanels[index] = panel;
 
-	// now we have the ID we can use it to make the 
+	// now we have the ID we can use it to make the
 	// pick texture (id is baked into texture pixels)
 	makePickTexture( panel->mId, &panel->mPickTextureHandle, &panel->mPickTexturePixels );
 
@@ -1821,7 +1873,7 @@ void LLMediaPluginTest::replaceMediaPanel( mediaPanel* panel, std::string url )
 //
 void LLMediaPluginTest::getRandomMediaSize( int& width, int& height, std::string mime_type )
 {
-	// Make a new media source with a random size which we'll either 
+	// Make a new media source with a random size which we'll either
 	// directly or the media plugin will tell us what it wants later.
 	// Use a random size so we can test support for weird media sizes.
 	// (Almost everything else will get filled in later once the
@@ -1830,8 +1882,8 @@ void LLMediaPluginTest::getRandomMediaSize( int& width, int& height, std::string
 	width = ( ( rand() % 170 ) + 30 ) * 4;
 	height = ( ( rand() % 170 ) + 30 ) * 4;
 
-	// adjust this random size if it's a browser so we get 
-	// a more useful size for testing.. 
+	// adjust this random size if it's a browser so we get
+	// a more useful size for testing..
 	if ( mime_type == "text/html" || mime_type == "example/example"  )
 	{
 		width = ( ( rand() % 100 ) + 100 ) * 4;
@@ -1844,11 +1896,11 @@ void LLMediaPluginTest::getRandomMediaSize( int& width, int& height, std::string
 void LLMediaPluginTest::remMediaPanel( mediaPanel* panel )
 {
 	// always leave one panel
-	if ( mMediaPanels.size() == 1 ) 
+	if ( mMediaPanels.size() == 1 )
 		return;
 
 	// sanity check - don't think this can happen but see above for a case where it might...
-	if ( ! panel ) 
+	if ( ! panel )
 		return;
 
 	std::cout << "Removing media panel with index " << panel->mId << " - total panels = " << mMediaPanels.size() - 1 << std::endl;
@@ -1856,7 +1908,7 @@ void LLMediaPluginTest::remMediaPanel( mediaPanel* panel )
 	if(mSelectedPanel == panel)
 		mSelectedPanel = NULL;
 
-	delete panel;	
+	delete panel;
 
 	// remove from storage list
 	for( int i = 0; i < (int)mMediaPanels.size(); ++i )
@@ -1868,7 +1920,7 @@ void LLMediaPluginTest::remMediaPanel( mediaPanel* panel )
 		};
 	};
 
-	// select the first panel 
+	// select the first panel
 	selectPanel( mMediaPanels[ 0 ] );
 }
 
@@ -1888,18 +1940,20 @@ void LLMediaPluginTest::updateStatusBar()
 	static bool cached_supports_browser_media = true;
 	static bool cached_supports_time_media = false;
 	static int cached_movie_time = -1;
+	static GLfloat cached_distance = -1.0f;
 
 	static std::string cached_plugin_version = "";
-	if ( 
+	if (
 		 cached_id == mSelectedPanel->mId &&
 		 cached_media_width == mSelectedPanel->mMediaWidth &&
 		 cached_media_height  == mSelectedPanel->mMediaHeight &&
 		 cached_texture_width == mSelectedPanel->mTextureWidth &&
 		 cached_texture_height == mSelectedPanel->mTextureHeight &&
-		 cached_supports_browser_media == mSelectedPanel->mMediaSource->pluginSupportsMediaBrowser() && 
+		 cached_supports_browser_media == mSelectedPanel->mMediaSource->pluginSupportsMediaBrowser() &&
 		 cached_supports_time_media == mSelectedPanel->mMediaSource->pluginSupportsMediaTime() &&
 		 cached_plugin_version == mSelectedPanel->mMediaSource->getPluginVersion() &&
-		 cached_movie_time == (int)mSelectedPanel->mMediaSource->getCurrentTime()
+		 cached_movie_time == (int)mSelectedPanel->mMediaSource->getCurrentTime() &&
+		 cached_distance == mDistanceCameraToSelectedGeometry
 	   )
 	{
 		// nothing changed so don't spend time in this shitty function
@@ -1907,7 +1961,7 @@ void LLMediaPluginTest::updateStatusBar()
 	};
 
 	std::ostringstream stream( "" );
-	
+
 	stream.str( "" );
 	stream.clear();
 
@@ -1928,7 +1982,15 @@ void LLMediaPluginTest::updateStatusBar()
 	stream << " x ";
 	stream << std::setw( 4 ) << std::setfill( '0' );
 	stream << mSelectedPanel->mTextureHeight;
+
 	stream << " | ";
+	stream << "Distance: ";
+	stream << std::setw( 6 );
+	stream << std::setprecision( 3 );
+	stream << std::setprecision( 3 );
+	stream << mDistanceCameraToSelectedGeometry;
+	stream << " | ";
+
 	if ( mSelectedPanel->mMediaSource->pluginSupportsMediaBrowser() )
 		stream << "BROWSER";
 	else
@@ -2006,7 +2068,7 @@ void LLMediaPluginTest::handleMediaEvent(LLPluginClassMedia* self, EMediaEvent e
 {
 	// Uncomment this to make things much, much quieter.
 //	return;
-	
+
 	switch(event)
 	{
 		case MEDIA_EVENT_CONTENT_UPDATED:
@@ -2066,11 +2128,11 @@ void LLMediaPluginTest::handleMediaEvent(LLPluginClassMedia* self, EMediaEvent e
 		case MEDIA_EVENT_CLICK_LINK_HREF:
 			std::cerr <<  "Media event:  MEDIA_EVENT_CLICK_LINK_HREF, uri is " << self->getClickURL() << std::endl;
 		break;
-		
+
 		case MEDIA_EVENT_CLICK_LINK_NOFOLLOW:
 			std::cerr <<  "Media event:  MEDIA_EVENT_CLICK_LINK_NOFOLLOW, uri is " << self->getClickURL() << std::endl;
 		break;
-		
+
 		case MEDIA_EVENT_PLUGIN_FAILED:
 			std::cerr <<  "Media event:  MEDIA_EVENT_PLUGIN_FAILED" << std::endl;
 		break;
@@ -2196,13 +2258,13 @@ int main( int argc, char* argv[] )
 	glutSetWindow( app_window_handle );
 
 	gApplication = new LLMediaPluginTest( app_window_handle, app_window_width, app_window_height );
-	
+
 	// update at approximately 60hz
 	int update_ms = 1000 / 60;
-	
+
 	GLUI_Master.set_glutTimerFunc( update_ms, glutIdle, update_ms);
 
 	glutMainLoop();
-	
+
 	delete gApplication;
 }

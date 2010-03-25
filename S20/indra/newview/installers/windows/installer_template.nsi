@@ -25,17 +25,6 @@ RequestExecutionLevel admin	; on Vista we must be admin because we write to Prog
 %%VERSION%%
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Tweak for different servers/builds (this placeholder is replaced by viewer_manifest.py)
-;; For example:
-;; !define INSTFLAGS "%(flags)s"
-;; !define INSTNAME   "SecondLife%(grid_caps)s"
-;; !define SHORTCUT   "Second Life (%(grid_caps)s)"
-;; !define URLNAME   "secondlife%(grid)s"
-;; !define UNINSTALL_SETTINGS 1
-
-%%GRID_VARS%%
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; - language files - one for each language (or flavor thereof)
 ;; (these files are in the same place as the nsi template but the python script generates a new nsi file in the 
 ;; application directory so we have to add a path to these include files)
@@ -63,13 +52,24 @@ LangString LanguageCode ${LANG_DUTCH}    "nl"
 LangString LanguageCode ${LANG_PORTUGUESEBR} "pt"
 LangString LanguageCode ${LANG_SIMPCHINESE}  "zh"
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Tweak for different servers/builds (this placeholder is replaced by viewer_manifest.py)
+;; For example:
+;; !define INSTFLAGS "%(flags)s"
+;; !define INSTNAME   "SecondLife%(grid_caps)s"
+;; !define SHORTCUT   "Second Life (%(grid_caps)s)"
+;; !define URLNAME   "secondlife%(grid)s"
+;; !define UNINSTALL_SETTINGS 1
+
+%%GRID_VARS%%
+
 Name ${INSTNAME}
 
 SubCaption 0 $(LicenseSubTitleSetup)	; override "license agreement" text
 
 BrandingText " "						; bottom of window text
-Icon          %%SOURCE%%\installers\windows\${INSTALL_ICON}
-UninstallIcon %%SOURCE%%\installers\windows\${UNINSTALL_ICON}
+Icon          %%SOURCE%%\installers\windows\install_icon.ico
+UninstallIcon %%SOURCE%%\installers\windows\uninstall_icon.ico
 WindowIcon on							; show our icon in left corner
 BGGradient off							; no big background window
 CRCCheck on								; make sure CRC is OK
@@ -346,16 +346,6 @@ Delete "$INSTDIR\releasenotes.txt"
 
 FunctionEnd
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Delete a xui file that causes crash in Silver skin in cases where it was
-;;; left behind by an older installer.
-;;; See SNOW-348
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-Function RemoveOldAboutLandSilver
-
-Delete "$INSTDIR\skins\silver\xui\en-us\floater_about_land.xml"
-
-FunctionEnd
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Delete files in Documents and Settings\<user>\SecondLife
@@ -508,7 +498,8 @@ RMDir "$INSTDIR"
 IfFileExists "$INSTDIR" FOLDERFOUND NOFOLDER
 
 FOLDERFOUND:
-  MessageBox MB_YESNO $(DeleteProgramFilesMB) IDNO NOFOLDER
+  ; Silent uninstall always removes all files (/SD IDYES)
+  MessageBox MB_YESNO $(DeleteProgramFilesMB) /SD IDYES IDNO NOFOLDER
   RMDir /r "$INSTDIR"
 
 NOFOLDER:
@@ -749,10 +740,6 @@ Call RemoveOldXUI
 Call RemoveOldReleaseNotes
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Remove an old xui file that should not be in Silver skin
-Call RemoveOldAboutLandSilver
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Files
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; This placeholder is replaced by the complete list of all the files in the installer, by viewer_manifest.py
@@ -771,7 +758,7 @@ CreateShortCut	"$SMPROGRAMS\$INSTSHORTCUT\$INSTSHORTCUT.lnk" \
 
 WriteINIStr		"$SMPROGRAMS\$INSTSHORTCUT\SL Create Account.url" \
 				"InternetShortcut" "URL" \
-				"http://www.secondlife.com/registration/"
+				"http://join.secondlife.com/"
 WriteINIStr		"$SMPROGRAMS\$INSTSHORTCUT\SL Your Account.url" \
 				"InternetShortcut" "URL" \
 				"http://www.secondlife.com/account/"

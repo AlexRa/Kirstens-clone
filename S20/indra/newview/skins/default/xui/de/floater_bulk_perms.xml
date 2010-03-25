@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<floater name="floaterbulkperms" title="INHALTS-BERECHTIGUNGEN BEARBEITEN">
+<floater name="floaterbulkperms" title="BERECHTIGUNGEN BEARBEITEN">
 	<floater.string name="nothing_to_modify_text">
 		Auswahl enthält keinen Inhalt, der bearbeitet werden kann.
 	</floater.string>
@@ -43,7 +43,7 @@
 		Jeder:
 	</text>
 	<check_box label="Kopieren" name="everyone_copy"/>
-	<text name="NextOwnerLabel" top="160" left="10">
+	<text name="NextOwnerLabel" top="160" left="10" width="200">
 		Nächster Eigentümer:
 	</text>
 	<check_box label="Bearbeiten" name="next_owner_modify"/>

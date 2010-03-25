@@ -12,13 +12,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -28,6 +28,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 
 // A control that displays the name of the chosen item, which when clicked
@@ -150,7 +151,7 @@ public:
 	// Get name of current item. Returns an empty string if not found.
 	const std::string	getSimple() const;
 	// Get contents of column x of selected row
-	const std::string getSelectedItemLabel(S32 column = 0) const;
+	virtual const std::string getSelectedItemLabel(S32 column = 0) const;
 
 	// Sets the label, which doesn't have to exist in the label.
 	// This is probably a UI abuse.
@@ -221,6 +222,7 @@ protected:
 	LLPointer<LLUIImage>	mArrowImage;
 	LLUIString			mLabel;
 	BOOL				mHasAutocompletedText;
+	S32                 mLastSelectedIndex;
 
 private:
 	BOOL				mAllowTextEntry;
@@ -230,6 +232,38 @@ private:
 	commit_callback_t	mPrearrangeCallback;
 	commit_callback_t	mTextEntryCallback;
 	commit_callback_t	mSelectionCallback;
-	S32                 mLastSelectedIndex;
+        boost::signals2::connection mTopLostSignalConnection;
 };
+
+// A combo box with icons for the list of items.
+class LLIconsComboBox
+:	public LLComboBox
+{
+public:
+	struct Params
+	:	public LLInitParam::Block<Params, LLComboBox::Params>
+	{
+		Optional<S32>		icon_column,
+							label_column;
+		Params();
+	};
+
+	/*virtual*/ void setValue(const LLSD& value);
+	/*virtual*/ const std::string getSelectedItemLabel(S32 column = 0) const;
+
+private:
+	enum EColumnIndex
+	{
+		ICON_COLUMN = 0,
+		LABEL_COLUMN
+	};
+
+	friend class LLUICtrlFactory;
+	LLIconsComboBox(const Params&);
+	virtual ~LLIconsComboBox() {};
+
+	S32			mIconColumnIndex;
+	S32			mLabelColumnIndex;
+};
+
 #endif

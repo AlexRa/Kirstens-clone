@@ -18,7 +18,7 @@
 				<text name="resident_name">
 					Rumplstiltskin Califragilistic
 				</text>
-				<button label="" name="mute_btn" tool_tip="Silenciar la voz a este residente"/>
+				<button label="" name="mute_btn" tool_tip="Ignorar la voz de este Residente"/>
 				<check_box label="Silenciar el texto" name="mute_text_btn"/>
 			</panel>
 		</layout_panel>

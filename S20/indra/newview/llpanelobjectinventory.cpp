@@ -770,8 +770,8 @@ BOOL LLTaskCategoryBridge::startDrag(EDragAndDropType* type, LLUUID* id) const
 		LLViewerObject* object = gObjectList.findObject(mPanel->getTaskUUID());
 		if(object)
 		{
-			LLInventoryItem* inv = NULL;
-			if((inv = (LLInventoryItem*)object->getInventoryObject(mUUID)))
+			const LLInventoryItem *inv = dynamic_cast<LLInventoryItem*>(object->getInventoryObject(mUUID));
+			if (inv)
 			{
 				const LLPermissions& perm = inv->getPermissions();
 				bool can_copy = gAgent.allowOperation(PERM_COPY, perm,
@@ -1583,10 +1583,16 @@ void LLPanelObjectInventory::reset()
 	mFolders->getFilter()->setShowFolderState(LLInventoryFilter::SHOW_ALL_FOLDERS);
 	mFolders->setCallbackRegistrar(&mCommitCallbackRegistrar);
 
+	if (hasFocus())
+	{
+		LLEditMenuHandler::gEditMenuHandler = mFolders;
+	}
+
 	LLRect scroller_rect(0, getRect().getHeight(), getRect().getWidth(), 0);
 	LLScrollContainer::Params scroll_p;
 	scroll_p.name("task inventory scroller");
 	scroll_p.rect(scroller_rect);
+	scroll_p.tab_stop(true);
 	scroll_p.follows.flags(FOLLOWS_ALL);
 	mScroller = LLUICtrlFactory::create<LLScrollContainer>(scroll_p);
 	addChild(mScroller);
@@ -1636,7 +1642,7 @@ void LLPanelObjectInventory::updateInventory()
 	// We're still interested in this task's inventory.
 	std::set<LLUUID> selected_items;
 	BOOL inventory_has_focus = FALSE;
-	if (mHaveInventory && mFolders->getNumSelectedDescendants())
+	if (mHaveInventory)
 	{
 		mFolders->getSelectionList(selected_items);
 		inventory_has_focus = gFocusMgr.childHasKeyboardFocus(mFolders);

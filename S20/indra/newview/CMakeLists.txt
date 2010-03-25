@@ -347,6 +347,7 @@ set(viewer_SOURCE_FILES
     llpatchvertexarray.cpp
     llplacesinventorybridge.cpp
     llplacesinventorypanel.cpp
+    llpopupview.cpp
     llpolymesh.cpp
     llpolymorph.cpp
     llpostprocess.cpp
@@ -845,6 +846,7 @@ set(viewer_HEADER_FILES
     llplacesinventorypanel.h
     llpolymesh.h
     llpolymorph.h
+    llpopupview.h
     llpostprocess.h
     llpreview.h
     llpreviewanim.h

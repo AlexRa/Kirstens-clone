@@ -44,11 +44,22 @@
 #include "llpluginmessageclasses.h"
 #include "media_plugin_base.h"
 
-#if LL_WINDOWS
-#include <direct.h>
+// set to 1 if you're using the version of llqtwebkit that's QPixmap-ified
+#if LL_LINUX
+# define LL_QTWEBKIT_USES_PIXMAPS 0
 #else
-#include <unistd.h>
-#include <stdlib.h>
+# define LL_QTWEBKIT_USES_PIXMAPS 0
+#endif // LL_LINUX
+
+#if LL_LINUX
+# include "linux_volume_catcher.h"
+#endif // LL_LINUX
+
+#if LL_WINDOWS
+# include <direct.h>
+#else
+# include <unistd.h>
+# include <stdlib.h>
 #endif
 
 #if LL_WINDOWS
@@ -103,6 +114,10 @@ private:
 	F32 mBackgroundG;
 	F32 mBackgroundB;
 	
+#if LL_LINUX
+	LinuxVolumeCatcher mLinuxVolumeCatcher;
+#endif // LL_LINUX
+
 	void setInitState(int state)
 	{
 //		std::cerr << "changing init state to " << state << std::endl;
@@ -115,6 +130,10 @@ private:
 	{
 		LLQtWebKit::getInstance()->pump( milliseconds );
 		
+#if LL_LINUX
+		mLinuxVolumeCatcher.pump();
+#endif // LL_LINUX
+
 		checkEditState();
 		
 		if(mInitState == INIT_STATE_NAVIGATE_COMPLETE)
@@ -131,7 +150,11 @@ private:
 		{
 			const unsigned char* browser_pixels = LLQtWebKit::getInstance()->grabBrowserWindow( mBrowserWindowId );
 
-			unsigned int buffer_size = LLQtWebKit::getInstance()->getBrowserRowSpan( mBrowserWindowId ) * LLQtWebKit::getInstance()->getBrowserHeight( mBrowserWindowId );
+			unsigned int rowspan = LLQtWebKit::getInstance()->getBrowserRowSpan( mBrowserWindowId );
+			unsigned int height = LLQtWebKit::getInstance()->getBrowserHeight( mBrowserWindowId );
+#if !LL_QTWEBKIT_USES_PIXMAPS
+			unsigned int buffer_size = rowspan * height;
+#endif // !LL_QTWEBKIT_USES_PIXMAPS
 			
 //			std::cerr << "webkit plugin: updating" << std::endl;
 			
@@ -139,7 +162,16 @@ private:
 			if ( mPixels && browser_pixels )
 			{
 //				std::cerr << "    memcopy of " << buffer_size << " bytes" << std::endl;
+
+#if LL_QTWEBKIT_USES_PIXMAPS
+				// copy the pixel data upside-down because of the co-ord system
+				for (int y=0; y<height; ++y)
+				{
+					memcpy( &mPixels[(height-y-1)*rowspan], &browser_pixels[y*rowspan], rowspan );
+				}
+#else
 				memcpy( mPixels, browser_pixels, buffer_size );
+#endif // LL_QTWEBKIT_USES_PIXMAPS
 			}
 
 			if ( mWidth > 0 && mHeight > 0 )
@@ -247,8 +279,10 @@ private:
 			// append details to agent string
 			LLQtWebKit::getInstance()->setBrowserAgentId( "LLPluginMedia Web Browser" );
 
+#if !LL_QTWEBKIT_USES_PIXMAPS
 			// don't flip bitmap
 			LLQtWebKit::getInstance()->flipWindow( mBrowserWindowId, true );
+#endif // !LL_QTWEBKIT_USES_PIXMAPS
 			
 			// set background color
 			// convert background color channels from [0.0, 1.0] to [0, 255];
@@ -282,6 +316,7 @@ private:
 		return false;
 	};
 
+	void setVolume(F32 vol);
 
 	////////////////////////////////////////////////////////////////////////////////
 	// virtual
@@ -665,7 +700,11 @@ void MediaPluginWebKit::receiveMessage(const char *message_string)
 				message.setValueS32("default_height", 1024);
 				message.setValueS32("depth", mDepth);
 				message.setValueU32("internalformat", GL_RGBA);
+#if LL_QTWEBKIT_USES_PIXMAPS
+				message.setValueU32("format", GL_BGRA_EXT); // I hope this isn't system-dependant... is it?  If so, we'll have to check the root window's pixel layout or something... yuck.
+#else
 				message.setValueU32("format", GL_RGBA);
+#endif // LL_QTWEBKIT_USES_PIXMAPS
 				message.setValueU32("type", GL_UNSIGNED_BYTE);
 				message.setValueBoolean("coords_opengl", true);
 				sendMessage(message);
@@ -731,6 +770,14 @@ void MediaPluginWebKit::receiveMessage(const char *message_string)
 			else
 			{
 //				std::cerr << "MediaPluginWebKit::receiveMessage: unknown base message: " << message_name << std::endl;
+			}
+		}
+                else if(message_class == LLPLUGIN_MESSAGE_CLASS_MEDIA_TIME)
+		{
+			if(message_name == "set_volume")
+			{
+				F32 volume = message_in.getValueReal("volume");
+				setVolume(volume);
 			}
 		}
 		else if(message_class == LLPLUGIN_MESSAGE_CLASS_MEDIA)
@@ -997,6 +1044,13 @@ void MediaPluginWebKit::receiveMessage(const char *message_string)
 //			std::cerr << "MediaPluginWebKit::receiveMessage: unknown message class: " << message_class << std::endl;
 		};
 	}
+}
+
+void MediaPluginWebKit::setVolume(F32 volume)
+{
+#if LL_LINUX
+	mLinuxVolumeCatcher.setVolume(volume);
+#endif // LL_LINUX
 }
 
 int init_media_plugin(LLPluginInstance::sendMessageFunction host_send_func, void *host_user_data, LLPluginInstance::sendMessageFunction *plugin_send_func, void **plugin_user_data)

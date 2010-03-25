@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <floater
  legacy_header_height="18"
- height="400"
+ height="418"
  layout="topleft"
  name="Post-Process Floater"
  help_topic="post_process_floater"

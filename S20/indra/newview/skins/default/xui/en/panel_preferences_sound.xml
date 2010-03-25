@@ -49,9 +49,9 @@
      label="Mute when minimized"
      layout="topleft"
      name="mute_when_minimized"
-	 top_delta="3"
+	   top_delta="3"
      left_pad="5"
-     width="215" />
+     width="235" />
 	<slider
 		control_name="AudioLevelUI"
 		disabled_control="MuteAudio"
@@ -316,7 +316,7 @@
      height="20"
      layout="topleft"
      left="25"
-     name="Listen from"
+     name="voice_chat_settings"
      width="200"
      top="210">
 	  Voice Chat Settings
@@ -326,10 +326,10 @@
      length="1"
      follows="left|top"
      layout="topleft"
-	 left="80"
-	 top_delta="16"
+	   left="80"
+	   top_delta="16"
      name="Listen from"
-     width="80">
+     width="142">
         Listen from:
     </text>
 	<icon

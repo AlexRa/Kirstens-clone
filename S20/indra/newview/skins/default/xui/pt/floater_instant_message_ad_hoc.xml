@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <floater label="(desconhecido)" name="im_floater" title="(DESCONHECIDO)">
 	<string name="ringing">
-		Juntar-se à Conversa por Voz...
+		Entrando em ligação de voz...
 	</string>
 	<string name="connected">
 		Conectado, clique Encerrar Chamada para deixar em espera
 	</string>
 	<string name="hang_up">
-		Deixar a Conversa por Voz
+		Saiu da ligação de voz
 	</string>
 	<string name="voice_icon">
 		icn_voice-groupfocus.tga
@@ -34,6 +34,9 @@
 		</layout_panel>
 	</layout_stack>
 	<string name="live_help_dialog">
-		*** Bem Vindo à Solicitação de Ajuda *** Por favor, verifique primeiro nossas páginas de Ajuda do Second Life pressionando F1 ou acessando a Base de Conhecimento em http://secondlife.com/knowledgebase/. Se suas respostas não estiverem ali, por favor entre com sua pergunta para iniciar e aguarde alguns minutos para que algum Ajudante responda.-=-=- O tempo de resposta pode variar, especialmente em horários de pico -=-=-
+		*** Sistema de pedido de ajuda ***
+Antes de pedir ajuda, consulte a Ajuda do Second Life pressionando F1 ou acessando a base de conhecimento, em http://secondlife.com/knowledgebase/
+Se você não encontrar a resposta, digite a sua pergunta e aguarde alguns instantes para a equipe responder.
+-=-=- O tempo da resposta varia, e pode ser maior no horário de pico -=-=-
 	</string>
 </floater>

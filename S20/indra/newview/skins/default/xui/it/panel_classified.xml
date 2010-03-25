@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<panel label="Annuncio" name="Classified" title="Inserzioni">
+<panel label="Inserzione" name="Classified" title="Inserzioni">
 	<panel.string name="ad_placed_paid">
 		Inserzione accettata: [DATE], Pagati [AMT] L$ per l&apos;inserzione.
 	</panel.string>
@@ -12,8 +12,8 @@
 	<panel.string name="dateStr">
 		[mthnum,datetime,slt]/[day,datetime,slt]/[year,datetime,slt]
 	</panel.string>
-	<line_editor name="given_name_editor" tool_tip="Il nome deve iniziare con una lettera o numero, non con segni di punteggiatura"/>
-	<line_editor name="location_editor" tool_tip="Imposta il luogo con la tua attuale posizione per questo annuncio"/>
+	<line_editor name="given_name_editor" tool_tip="Il nome deve iniziare con una lettera o una cifra, non con segni di punteggiatura"/>
+	<line_editor name="location_editor" tool_tip="Imposta  la tua posizione attuale come luogo per questo annuncio"/>
 	<button label="Imposta luogo" name="set_location_btn"/>
 	<button label="Teleport" name="classified_teleport_btn"/>
 	<button label="Mappa" name="classified_map_btn" width="130"/>

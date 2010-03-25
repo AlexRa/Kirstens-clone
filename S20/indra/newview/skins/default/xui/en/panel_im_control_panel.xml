@@ -6,7 +6,7 @@
  width="110">
     <avatar_icon
      follows="left|top"
-     height="100"
+     height="105"
      left_delta="5"
      name="avatar_icon"
      top="-5"
@@ -111,7 +111,7 @@
          layout="topleft"
          min_height="25"
          width="100"
-         name="share_btn_panel"
+         name="pay_btn_panel"
          user_resize="false">
            <button
              auto_resize="true"

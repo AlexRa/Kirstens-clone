@@ -18,7 +18,7 @@
 	<combo_box label="" name="classified_mature_check">
 		<combo_box.item label="-- Auswählen --" name="select_mature"/>
 		<combo_box.item label="Moderater Inhalt" name="mature"/>
-		<combo_box.item label="Allgemeiner Inhalt" name="pg"/>
+		<combo_box.item label="Genereller Inhalt" name="pg"/>
 	</combo_box>
 	<text name="classified_info_text" tool_tip="Je mehr Sie für die Anzeige bezahlen, desto weiter oben in der Liste erscheint sie.">
 		Anzeige: Noch nicht veröffentlicht

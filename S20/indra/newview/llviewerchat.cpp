@@ -37,6 +37,7 @@
 #include "llagent.h" 	// gAgent		
 #include "lluicolortable.h"
 #include "llviewercontrol.h" // gSavedSettings
+#include "llinstantmessage.h" //SYSTEM_FROM
 
 // LLViewerChat
 

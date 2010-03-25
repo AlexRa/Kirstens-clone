@@ -88,7 +88,7 @@ bool LLScriptFloater::toggle(const LLUUID& notification_id)
 		else
 		{
 			floater->setVisible(TRUE);
-			floater->setFocus(TRUE);
+			floater->setFocus(FALSE);
 		}
 	}
 	// create and show new floater
@@ -107,6 +107,9 @@ LLScriptFloater* LLScriptFloater::show(const LLUUID& notification_id)
 	floater->setNotificationId(notification_id);
 	floater->createForm(notification_id);
 
+	//LLDialog(LLGiveInventory and LLLoadURL) should no longer steal focus (see EXT-5445)
+	floater->setAutoFocus(FALSE);
+
 	if(LLScriptFloaterManager::OBJ_SCRIPT == LLScriptFloaterManager::getObjectType(notification_id))
 	{
 		floater->setSavePosition(true);
@@ -117,7 +120,8 @@ LLScriptFloater* LLScriptFloater::show(const LLUUID& notification_id)
 		floater->dockToChiclet(true);
 	}
 
-	LLFloaterReg::showTypedInstance<LLScriptFloater>("script_floater", notification_id, TRUE);
+	//LLDialog(LLGiveInventory and LLLoadURL) should no longer steal focus (see EXT-5445)
+	LLFloaterReg::showTypedInstance<LLScriptFloater>("script_floater", notification_id, FALSE);
 
 	return floater;
 }
@@ -131,7 +135,7 @@ void LLScriptFloater::setNotificationId(const LLUUID& id)
 
 void LLScriptFloater::getAllowedRect(LLRect& rect)
 {
-	rect = gViewerWindow->getWorldViewRectRaw();
+	rect = gViewerWindow->getWorldViewRectScaled();
 }
 
 void LLScriptFloater::createForm(const LLUUID& notification_id)
@@ -150,14 +154,17 @@ void LLScriptFloater::createForm(const LLUUID& notification_id)
 	}
 
 	// create new form
-	mScriptForm = new LLToastNotifyPanel(notification);
+	LLRect toast_rect = getRect();
+	// LLToastNotifyPanel will fit own content in vertical direction,
+	// but it needs an initial rect to properly calculate  its width
+ 	// Use an initial rect of the script floater to make the floater window more configurable.
+	mScriptForm = new LLToastNotifyPanel(notification, toast_rect); 
 	addChild(mScriptForm);
 
 	// position form on floater
 	mScriptForm->setOrigin(0, 0);
 
 	// make floater size fit form size
-	LLRect toast_rect = getRect();
 	LLRect panel_rect = mScriptForm->getRect();
 	toast_rect.setLeftTopAndSize(toast_rect.mLeft, toast_rect.mTop, panel_rect.getWidth(), panel_rect.getHeight() + getHeaderHeight());
 	setShape(toast_rect);
@@ -279,7 +286,9 @@ void LLScriptFloater::dockToChiclet(bool dock)
 		setSavePosition(false);
 
 		setDockControl(new LLDockControl(chiclet, this, getDockTongue(),
-			LLDockControl::TOP,  boost::bind(&LLScriptFloater::getAllowedRect, this, _1)), dock);
+			LLDockControl::TOP,  boost::bind(&LLScriptFloater::getAllowedRect, this, _1)));
+
+		setDocked(dock);
 
 		// Restore saving
 		setSavePosition(save);

@@ -53,9 +53,10 @@ public:
 	/*virtual*/ void draw();
 	/*virtual*/ void onMouseEnter(S32 x, S32 y, MASK mask);
 	/*virtual*/ void onMouseLeave(S32 x, S32 y, MASK mask);
+	/*virtual*/ void onTopLost();
 	/*virtual*/ void handleVisibilityChange ( BOOL new_visibility );
-	/*virtual*/ void onTopLost ();
 	/*virtual*/ void reshape(S32 width, S32 height, BOOL called_from_parent);
+	/*virtual*/ BOOL handleHover(S32 x, S32 y, MASK mask);
 
 	// this is part of the nearby media *dialog* so we can track whether
 	// the user *implicitly* wants audio on or off via their *explicit*
@@ -149,7 +150,6 @@ private:
 	void onClickSelectedMediaUnzoom();
 	
 	LLUICtrl*			mNearbyMediaPanel;
-	LLTextBox*			mItemCountText;
 	LLScrollListCtrl*		mMediaList;
 	LLUICtrl*			mEnableAllCtrl;
 	LLUICtrl*			mDisableAllCtrl;

@@ -183,6 +183,15 @@ void LLAvatarList::sortByName()
 	sort();
 }
 
+void LLAvatarList::setDirty(bool val /*= true*/, bool force_refresh /*= false*/)
+{
+	mDirty = val;
+	if(mDirty && force_refresh)
+	{
+		refresh();
+	}
+}
+
 //////////////////////////////////////////////////////////////////////////
 // PROTECTED SECTION
 //////////////////////////////////////////////////////////////////////////
@@ -329,7 +338,7 @@ void LLAvatarList::addNewItem(const LLUUID& id, const std::string& name, BOOL is
 {
 	LLAvatarListItem* item = new LLAvatarListItem();
 	item->setName(name);
-	item->setAvatarId(id, mIgnoreOnlineStatus);
+	item->setAvatarId(id, mSessionID, mIgnoreOnlineStatus);
 	item->setOnline(mIgnoreOnlineStatus ? true : is_online);
 	item->showLastInteractionTime(mShowLastInteractionTime);
 

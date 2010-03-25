@@ -21,11 +21,11 @@
 					<button label="-" name="remove_from_look_btn"/>
 				</panel>
 			</accordion_tab>
-			<accordion_tab name="inventory_group" title="マイ 持ち物">
+			<accordion_tab name="inventory_group" title="持ち物">
 				<panel name="lower_look_accordion">
 					<panel name="inventory_bar">
 						<text name="inventory_info_text">
-							マイ 持ち物
+							持ち物
 						</text>
 						<combo_box name="inventory_filter" tool_tip="選択した持ち物の種類だけ表示"/>
 					</panel>

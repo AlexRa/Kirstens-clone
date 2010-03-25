@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <floater label="(ukendt)" name="im_floater" title="(UKENDT)">
 	<string name="ringing">
-		Tilslutter til stemme chat...
+		Tilslutter stemme opkald...
 	</string>
 	<string name="connected">
 		Tilsluttet, Tryk Afslut for at lægge på
 	</string>
 	<string name="hang_up">
-		Afsluttet stemme chat
+		Har forlads stemme opkald
 	</string>
 	<string name="voice_icon">
 		icn_voice-groupfocus.tga
@@ -34,9 +34,9 @@
 		</layout_panel>
 	</layout_stack>
 	<string name="live_help_dialog">
-		*** Velkommen til hjælp *** 
-       Check venligst først vores Second Life hjælpesider ved at trykke F1, eller via vidensdatabasen på http://secondlife.com/knowledgebase/ 
-       Hvis du ikke finder svar der, indtast dit spørgsmål for at starte og vent så lidt, så tilgængelige hjælpere kan svare. 
-       -=-=- Svartiderne kan variere, specielt i travle perioder -=-=-
+		*** Velkommen til hjælpesystem ***
+Undersøg venligst først Second Life hjælpesiderne ved at trykke F1 eller ved at besøge vidensdatabasen http://secondlife.com/knowledgebase/
+Hvis ikke du kan finde svaret der, så indtast venligst dit spørgsmål og vent lidt på at tilgångelige hjælpere kan svare.
+-=-=- Svartiderne kan variere, specielt i travle perioder. *BEMÆRK*: Hjælp vil normalt altid foregå på engelsk. -=-=-
 	</string>
 </floater>

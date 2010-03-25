@@ -116,7 +116,6 @@ const F32 BACKLIGHT_DAY_MAGNITUDE_AVATAR = 0.2f;
 const F32 BACKLIGHT_NIGHT_MAGNITUDE_AVATAR = 0.1f;
 const F32 BACKLIGHT_DAY_MAGNITUDE_OBJECT = 0.1f;
 const F32 BACKLIGHT_NIGHT_MAGNITUDE_OBJECT = 0.08f;
-const S32 MAX_ACTIVE_OBJECT_QUIET_FRAMES = 40;
 const S32 MAX_OFFSCREEN_GEOMETRY_CHANGES_PER_FRAME = 10;
 const U32 REFLECTION_MAP_RES = 128;
 
@@ -271,6 +270,7 @@ BOOL	LLPipeline::sDelayVBUpdate = TRUE;
 BOOL	LLPipeline::sFastAlpha = TRUE;
 BOOL	LLPipeline::sDisableShaders = FALSE;
 BOOL	LLPipeline::sRenderBump = TRUE;
+BOOL	LLPipeline::sUseTriStrips = TRUE;
 BOOL	LLPipeline::sUseFarClip = TRUE;
 BOOL	LLPipeline::sShadowRender = FALSE;
 BOOL	LLPipeline::sWaterReflections = FALSE;
@@ -359,6 +359,7 @@ void LLPipeline::init()
 
 	sDynamicLOD = gSavedSettings.getBOOL("RenderDynamicLOD");
 	sRenderBump = gSavedSettings.getBOOL("RenderObjectBump");
+	sUseTriStrips = gSavedSettings.getBOOL("RenderUseTriStrips");
 	sRenderAttachedLights = gSavedSettings.getBOOL("RenderAttachedLights");
 	sRenderAttachedParticles = gSavedSettings.getBOOL("RenderAttachedParticles");
 
@@ -1410,38 +1411,26 @@ void LLPipeline::updateMove()
 
 	assertInitialized();
 
-	for (LLDrawable::drawable_set_t::iterator iter = mRetexturedList.begin();
-		 iter != mRetexturedList.end(); ++iter)
 	{
-		LLDrawable* drawablep = *iter;
-		if (drawablep && !drawablep->isDead())
-		{
-			drawablep->updateTexture();
-		}
-	}
-	mRetexturedList.clear();
+		static LLFastTimer::DeclareTimer ftm("Retexture");
+		LLFastTimer t(ftm);
 
-	updateMovedList(mMovedList);
-
-	for (LLDrawable::drawable_set_t::iterator iter = mActiveQ.begin();
-		 iter != mActiveQ.end(); )
-	{
-		LLDrawable::drawable_set_t::iterator curiter = iter++;
-		LLDrawable* drawablep = *curiter;
-		if (drawablep && !drawablep->isDead()) 
+		for (LLDrawable::drawable_set_t::iterator iter = mRetexturedList.begin();
+			 iter != mRetexturedList.end(); ++iter)
 		{
-			if (drawablep->isRoot() && 
-				drawablep->mQuietCount++ > MAX_ACTIVE_OBJECT_QUIET_FRAMES && 
-				(!drawablep->getParent() || !drawablep->getParent()->isActive()))
+			LLDrawable* drawablep = *iter;
+			if (drawablep && !drawablep->isDead())
 			{
-				drawablep->makeStatic(); // removes drawable and its children from mActiveQ
-				iter = mActiveQ.upper_bound(drawablep); // next valid entry
+				drawablep->updateTexture();
 			}
 		}
-		else
-		{
-			mActiveQ.erase(curiter);
-		}
+		mRetexturedList.clear();
+	}
+
+	{
+		static LLFastTimer::DeclareTimer ftm("Moved List");
+		LLFastTimer t(ftm);
+		updateMovedList(mMovedList);
 	}
 
 	//balance octrees
@@ -3055,12 +3044,6 @@ void LLPipeline::renderGeom(LLCamera& camera, BOOL forceVBOUpdate)
 		}
 	}
 
-	if (gPipeline.hasRenderDebugMask(LLPipeline::RENDER_DEBUG_PICKING))
-	{
-		LLAppViewer::instance()->pingMainloopTimeout("Pipeline:RenderForSelect");
-		gObjectList.renderObjectsForSelect(camera, gViewerWindow->getWindowRectScaled());
-	}
-	else
 	{
 		LLFastTimer t(FTM_POOLS);
 		
@@ -3509,9 +3492,19 @@ void LLPipeline::renderGeomShadow(LLCamera& camera)
 }
 
 
-void LLPipeline::addTrianglesDrawn(S32 count)
+void LLPipeline::addTrianglesDrawn(S32 index_count, U32 render_type)
 {
 	assertInitialized();
+	S32 count = 0;
+	if (render_type == LLRender::TRIANGLE_STRIP)
+	{
+		count = index_count-2;
+	}
+	else
+	{
+		count = index_count/3;
+	}
+
 	mTrianglesDrawn += count;
 	mBatchCount++;
 	mMaxBatchSize = llmax(mMaxBatchSize, count);
@@ -4792,10 +4785,6 @@ void LLPipeline::findReferences(LLDrawable *drawablep)
 		llinfos << "In mRetexturedList" << llendl;
 	}
 	
-	if (mActiveQ.find(drawablep) != mActiveQ.end())
-	{
-		llinfos << "In mActiveQ" << llendl;
-	}
 	if (std::find(mBuildQ1.begin(), mBuildQ1.end(), drawablep) != mBuildQ1.end())
 	{
 		llinfos << "In mBuildQ1" << llendl;
@@ -4949,19 +4938,6 @@ void LLPipeline::setLight(LLDrawable *drawablep, BOOL is_light)
 			drawablep->clearState(LLDrawable::LIGHT);
 			mLights.erase(drawablep);
 		}
-	}
-}
-
-void LLPipeline::setActive(LLDrawable *drawablep, BOOL active)
-{
-	assertInitialized();
-	if (active)
-	{
-		mActiveQ.insert(drawablep);
-	}
-	else
-	{
-		mActiveQ.erase(drawablep);
 	}
 }
 
@@ -5380,6 +5356,7 @@ void LLPipeline::resetVertexBuffers(LLDrawable* drawable)
 void LLPipeline::resetVertexBuffers()
 {
 	sRenderBump = gSavedSettings.getBOOL("RenderObjectBump");
+	sUseTriStrips = gSavedSettings.getBOOL("RenderUseTriStrips");
 
 	for (LLWorld::region_list_t::const_iterator iter = LLWorld::getInstance()->getRegionList().begin(); 
 			iter != LLWorld::getInstance()->getRegionList().end(); ++iter)
@@ -6893,8 +6870,6 @@ void LLPipeline::renderDeferredLighting()
 		U32 render_mask = mRenderTypeMask;
 		mRenderTypeMask =	mRenderTypeMask & 
 							((1 << LLPipeline::RENDER_TYPE_ALPHA) |
-							(1 << LLPipeline::RENDER_TYPE_AVATAR) |
-							(1 << LLPipeline::RENDER_TYPE_WATER) |
 							(1 << LLPipeline::RENDER_TYPE_FULLBRIGHT) |
 							(1 << LLPipeline::RENDER_TYPE_VOLUME) |
 							(1 << LLPipeline::RENDER_TYPE_GLOW) |
@@ -6910,7 +6885,8 @@ void LLPipeline::renderDeferredLighting()
 							(1 << LLPipeline::RENDER_TYPE_PASS_GRASS) |
 							(1 << LLPipeline::RENDER_TYPE_PASS_SHINY) |
 							(1 << LLPipeline::RENDER_TYPE_PASS_INVISIBLE) |
-							(1 << LLPipeline::RENDER_TYPE_PASS_INVISI_SHINY));
+							(1 << LLPipeline::RENDER_TYPE_PASS_INVISI_SHINY) |
+							(1 << LLPipeline::RENDER_TYPE_AVATAR));
 		
 		renderGeomPostDeferred(*LLViewerCamera::getInstance());
 		mRenderTypeMask = render_mask;
@@ -7832,6 +7808,11 @@ void LLPipeline::generateGI(LLCamera& camera, LLVector3& lightDir, std::vector<L
 
 void LLPipeline::renderHighlight(const LLViewerObject* obj, F32 fade)
 {
+   if (!gSavedSettings.getBOOL("RenderHoverGlowEnable")) //  KL need this to make the mouseover Highlights toggle ^^
+	{
+		return;
+	}
+	
 	if (obj && obj->getVolume())
 	{
 		for (LLViewerObject::child_list_t::const_iterator iter = obj->getChildren().begin(); iter != obj->getChildren().end(); ++iter)
@@ -7856,6 +7837,10 @@ void LLPipeline::renderHighlight(const LLViewerObject* obj, F32 fade)
 
 void LLPipeline::generateHighlight(LLCamera& camera)
 {
+   if (!gSavedSettings.getBOOL("RenderHoverGlowEnable")) //  KL need this to make the mouseover Highlights toggle ^^
+	{
+		return;
+	}
 	//render highlighted object as white into offscreen render target
 	
 	if (mHighlightObject.notNull())

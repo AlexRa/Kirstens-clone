@@ -695,7 +695,7 @@
      value="0.4 0.4 0.4 1" />
     <color
      name="TimeTextColor"
-     reference="LtGray" />
+     reference="White" />
     <color
      name="TitleBarFocusColor"
      reference="White_10" />

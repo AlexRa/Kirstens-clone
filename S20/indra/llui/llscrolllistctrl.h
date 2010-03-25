@@ -14,13 +14,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -30,6 +30,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 
 #ifndef LL_SCROLLLISTCTRL_H
@@ -73,6 +74,30 @@ public:
 
 	// *TODO: Add callbacks to Params
 	typedef boost::function<void (void)> callback_t;
+
+	template<typename T> struct maximum
+	{
+		typedef T result_type;
+
+		template<typename InputIterator>
+		T operator()(InputIterator first, InputIterator last) const
+		{
+			// If there are no slots to call, just return the
+			// default-constructed value
+			if(first == last ) return T();
+			T max_value = *first++;
+			while (first != last) {
+				if (max_value < *first)
+				max_value = *first;
+				++first;
+			}
+
+			return max_value;
+		}
+	};
+
+	
+	typedef boost::signals2::signal<S32 (S32,const LLScrollListItem*,const LLScrollListItem*),maximum<S32> > sort_signal_t;
 	
 	struct Params : public LLInitParam::Block<Params, LLUICtrl::Params>
 	{
@@ -195,7 +220,10 @@ public:
 	void			deselectAllItems(BOOL no_commit_on_change = FALSE);	// by default, go ahead and commit on selection change
 
 	void			clearHighlightedItems();
-	void			mouseOverHighlightNthItem( S32 index );
+	
+	virtual void	mouseOverHighlightNthItem( S32 index );
+
+	S32				getHighlightedItemInx() const { return mHighlightedItem; } 
 	
 	void			setDoubleClickCallback( callback_t cb ) { mOnDoubleClickCallback = cb; }
 	void			setMaximumSelectCallback( callback_t cb) { mOnMaximumSelectCallback = cb; }
@@ -362,6 +390,13 @@ public:
 	void			setNeedsSort(bool val = true) { mSorted = !val; }
 	void			dirtyColumns(); // some operation has potentially affected column layout or ordering
 
+	boost::signals2::connection setSortCallback(sort_signal_t::slot_type cb )
+	{
+		if (!mSortCallback) mSortCallback = new sort_signal_t();
+		return mSortCallback->connect(cb);
+	}
+
+
 protected:
 	// "Full" interface: use this when you're creating a list that has one or more of the following:
 	// * contains icons
@@ -474,6 +509,8 @@ private:
 
 	typedef std::pair<S32, BOOL> sort_column_t;
 	std::vector<sort_column_t>	mSortColumns;
+
+	sort_signal_t*	mSortCallback;
 }; // end class LLScrollListCtrl
 
 #endif  // LL_SCROLLLISTCTRL_H

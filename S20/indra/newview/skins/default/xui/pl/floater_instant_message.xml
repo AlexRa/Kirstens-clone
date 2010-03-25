@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<floater label="(nieznany)" name="im_floater" title="(NIEZNANY)">
+<floater label="(nieznany)" name="im_floater" title="(NIEZNANE)">
 	<string name="ringing">
 		Dzwonię...
 	</string>
@@ -37,7 +37,7 @@
 	<button label="Dzwoń" name="start_call_btn"/>
 	<button label="Skończ" name="end_call_btn"/>
 	<panel name="speaker_controls">
-		<button label="" name="mute_btn" tool_tip="Wycisz głos"/>
+		<button label="" name="mute_btn" tool_tip="Zablokuj głos"/>
 	</panel>
 	<line_editor label="Wpisz treść wiadomości" name="chat_editor"/>
 	<button label="Wyślij" name="send_btn"/>

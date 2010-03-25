@@ -17,8 +17,8 @@
 	<combo_box label="" name="classified_category_combo"/>
 	<combo_box label="" name="classified_mature_check">
 		<combo_box.item label="- 1つ選択 -" name="select_mature"/>
-		<combo_box.item label="控えめコンテンツ" name="mature"/>
-		<combo_box.item label="一般コンテンツ" name="pg"/>
+		<combo_box.item label="「Moderate」コンテンツ" name="mature"/>
+		<combo_box.item label="「General」コンテンツ" name="pg"/>
 	</combo_box>
 	<text name="classified_info_text" tool_tip="広告費を多く支払うほど、一覧の上位に表示されます。">
 		広告掲載：未発行

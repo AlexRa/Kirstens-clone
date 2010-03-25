@@ -12,13 +12,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -28,6 +28,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 
 // Opaque view with a background and a border.  Can contain LLUICtrls.
@@ -80,6 +81,8 @@ LLPanel::Params::Params()
 	background_opaque("background_opaque", false),
 	bg_opaque_color("bg_opaque_color"),
 	bg_alpha_color("bg_alpha_color"),
+	bg_opaque_image_overlay("bg_opaque_image_overlay"),
+	bg_alpha_image_overlay("bg_alpha_image_overlay"),
 	bg_opaque_image("bg_opaque_image"),
 	bg_alpha_image("bg_alpha_image"),
 	min_width("min_width", 100),
@@ -103,6 +106,8 @@ LLPanel::LLPanel(const LLPanel::Params& p)
 	mBgOpaque(p.background_opaque),
 	mBgOpaqueColor(p.bg_opaque_color()),
 	mBgAlphaColor(p.bg_alpha_color()),
+	mBgOpaqueImageOverlay(p.bg_opaque_image_overlay),
+	mBgAlphaImageOverlay(p.bg_alpha_image_overlay),
 	mBgOpaqueImage(p.bg_opaque_image()),
 	mBgAlphaImage(p.bg_alpha_image()),
 	mDefaultBtn(NULL),
@@ -199,7 +204,7 @@ void LLPanel::draw()
 			// opaque, in-front look
 			if (mBgOpaqueImage.notNull())
 			{
-				mBgOpaqueImage->draw( local_rect, UI_VERTEX_COLOR % alpha );
+				mBgOpaqueImage->draw( local_rect, mBgOpaqueImageOverlay % alpha );
 			}
 			else
 			{
@@ -212,7 +217,7 @@ void LLPanel::draw()
 			// transparent, in-back look
 			if (mBgAlphaImage.notNull())
 			{
-				mBgAlphaImage->draw( local_rect, UI_VERTEX_COLOR % alpha );
+				mBgAlphaImage->draw( local_rect, mBgAlphaImageOverlay % alpha );
 			}
 			else
 			{
@@ -481,6 +486,8 @@ void LLPanel::initFromParams(const LLPanel::Params& p)
 	setTransparentColor(p.bg_alpha_color().get());
 	mBgOpaqueImage = p.bg_opaque_image();
 	mBgAlphaImage = p.bg_alpha_image();
+	mBgOpaqueImageOverlay = p.bg_opaque_image_overlay;
+	mBgAlphaImageOverlay = p.bg_alpha_image_overlay;
 }
 
 static LLFastTimer::DeclareTimer FTM_PANEL_SETUP("Panel Setup");

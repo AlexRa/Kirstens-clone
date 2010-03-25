@@ -1,5 +1,5 @@
 The pristine version of Qt corresponding to this build is available at:
-http://viewer-source-downloads.s3.amazonaws.com/install_pkgs/qt-all-opensource-src-4.6.0.tar.bz2
+http://get.qt.nokia.com/qt/source/qt-everywhere-opensource-src-4.6.0.zip
 
-The patches we applied to the above package to get this build are available at:
-http://hg.secondlife.com/llqtwebkit/src/tip/qt_patches/
+The modifications we applied to the above package to get this build are available at:
+http://gitorious.org/+lindenqt/qt/lindenqt

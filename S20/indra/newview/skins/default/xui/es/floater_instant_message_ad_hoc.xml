@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <floater label="(desconocido)" name="im_floater" title="(DESCONOCIDO)">
 	<string name="ringing">
-		Conectando el chat de voz...
+		Haciendo la llamada de voz...
 	</string>
 	<string name="connected">
 		Conectado, pulse Colgar para acabar
 	</string>
 	<string name="hang_up">
-		Salir del chat de voz
+		Llamada de voz colgada
 	</string>
 	<string name="voice_icon">
 		icn_voice-groupfocus.tga
@@ -34,9 +34,9 @@
 		</layout_panel>
 	</layout_stack>
 	<string name="live_help_dialog">
-		*** Bienvenido a la Petición de Ayuda *** 
-Por favor, en primer lugar revise nuestras páginas de ayuda de SL pulsando F1, o acceda a la Knowledge Base http://secondlife.com/knowledgebase/ 
-Si no encuentra allí la respuesta que busca, por favor, empiece el proceso escribiendo su pregunta, y espere unos momentos a que responda algunos de los ayudantes disponibles.
--=-=- El tiempo de respuesta puede variar, especialmente durante las horas punta -=-=-
+		*** Bienvenido/a a la petición de ayuda ***
+Por favor, repasa primero nuestras Páginas de Ayuda para SL pulsando  F1 o yendo a la Base de Conocimientos http://secondlife.com/knowledgebase/
+Si no encuentras allí la respuesta, escribe tu pregunta y espera unos momentos a que te conteste uno de los asistentes disponibles.
+-=-=- El tiempo de respuesta puede variar, especialmente en las horas punta -=-=-
 	</string>
 </floater>

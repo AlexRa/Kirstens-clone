@@ -1,35 +1,41 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <floater label="(unknown)" name="im_floater" title="(DESCONHECIDO)">
-	<string name="ringing">
-		Entrando em bate-papo de Voz...
-	</string>
-	<string name="connected">
+	<floater.string name="ringing">
+		Entrando em ligação de voz...
+	</floater.string>
+	<floater.string name="connected">
 		Conectado, clique em Terminar Chamada para finalizar
-	</string>
-	<string name="hang_up">
-		Deixou o bate-papo de voz
-	</string>
-	<string name="voice_icon">
+	</floater.string>
+	<floater.string name="hang_up">
+		Saiu da ligação de voz
+	</floater.string>
+	<floater.string name="voice_icon">
 		icn_voice-groupfocus.tga
-	</string>
-	<string name="title_string">
+	</floater.string>
+	<floater.string name="live_help_dialog">
+		*** Sistema de pedido de ajuda ***
+    	Antes de pedir ajuda, consulte a Ajuda do Second Life pressionando F1 ou acessando a base de conhecimento, em http://secondlife.com/knowledgebase/
+    	Se você não encontrar a resposta, digite a sua pergunta e aguarde alguns instantes para a equipe responder.
+    	-=-=- O tempo da resposta varia, e pode ser maior no horário de pico -=-=-
+	</floater.string>
+	<floater.string name="title_string">
 		Mensagem Instantânea com [NAME]
-	</string>
-	<string name="typing_start_string">
+	</floater.string>
+	<floater.string name="typing_start_string">
 		[NAME] está digitando...
-	</string>
-	<string name="session_start_string">
+	</floater.string>
+	<floater.string name="session_start_string">
 		Iniciando sessão com [NAME], por favor aguarde.
-	</string>
-	<string name="moderated_chat_label">
+	</floater.string>
+	<floater.string name="moderated_chat_label">
 		(Moderado: Vozes desligadas por default)
-	</string>
-	<string name="default_text_label">
+	</floater.string>
+	<floater.string name="default_text_label">
 		Clique aqui para mensagem instantânea.
-	</string>
-	<string name="muted_text_label">
+	</floater.string>
+	<floater.string name="muted_text_label">
 		Sua conversa de texto foi desabilitada por um Moderador do Grupo.
-	</string>
+	</floater.string>
 	<layout_stack name="panels">
 		<layout_panel name="im_contents_panel">
 			<button label="Informação do Grupo" name="group_info_btn" width="130"/>

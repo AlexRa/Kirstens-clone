@@ -18,6 +18,6 @@
 	</text>
 	<button label="Modifier" label_selected="Modifier" name="set_cache"/>
 	<button label="Réinitialiser" label_selected="Réinitialiser" name="reset_cache"/>
-	<check_box label="Port de connexion personnalisé" name="connection_port_enabled"/>
-	<spinner label="Numéro de port :" label_width="95" name="connection_port" width="170"/>
+	<check_box label="Port de connexion" name="connection_port_enabled"/>
+	<spinner label="Numéro :" label_width="95" name="connection_port" width="170"/>
 </panel>

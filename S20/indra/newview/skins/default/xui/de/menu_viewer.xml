@@ -9,8 +9,8 @@
 		<menu_item_call label="Mein Profil" name="Profile"/>
 		<menu_item_call label="Mein Aussehen" name="Appearance"/>
 		<menu_item_check label="Mein Inventar" name="Inventory"/>
-		<menu_item_call label="Inventar auf Seitenleiste anzeigen" name="ShowSidetrayInventory"/>
-		<menu_item_call label="Meine Gesten" name="Gestures"/>
+		<menu_item_check label="Mein Inventar" name="ShowSidetrayInventory"/>
+		<menu_item_check label="Meine Gesten" name="Gestures"/>
 		<menu label="Mein Status" name="Status">
 			<menu_item_call label="Abwesend" name="Set Away"/>
 			<menu_item_call label="Beschäftigt" name="Set Busy"/>
@@ -24,7 +24,6 @@
 		<menu_item_call label="Meine Gruppen" name="My Groups"/>
 		<menu_item_check label="Chat in der Nähe" name="Nearby Chat"/>
 		<menu_item_call label="Leute in der Nähe" name="Active Speakers"/>
-		<menu_item_check label="Medien in der Nähe" name="Nearby Media"/>
 	</menu>
 	<menu label="Welt" name="World">
 		<menu_item_check label="Minikarte" name="Mini-Map"/>
@@ -40,6 +39,12 @@
 		<menu label="Anzeigen" name="LandShow">
 			<menu_item_check label="Bewegungssteuerung" name="Movement Controls"/>
 			<menu_item_check label="Ansichtsteuerung" name="Camera Controls"/>
+			<menu_item_check label="Bannlinien" name="Ban Lines"/>
+			<menu_item_check label="Strahlen" name="beacons"/>
+			<menu_item_check label="Grundstücksgrenzen" name="Property Lines"/>
+			<menu_item_check label="Landeigentümer" name="Land Owners"/>
+			<menu_item_check label="Koordinaten" name="Coordinates"/>
+			<menu_item_check label="Parzelleneigenschaften" name="Parcel Properties"/>
 		</menu>
 		<menu_item_call label="Teleport nach Hause" name="Teleport Home"/>
 		<menu_item_call label="Hier als Zuhause wählen" name="Set Home to Here"/>
@@ -55,11 +60,11 @@
 	<menu label="Bauen" name="BuildTools">
 		<menu_item_check label="Bauen" name="Show Build Tools"/>
 		<menu label="Bauwerkzeug auswählen" name="Select Tool">
-			<menu_item_call label="Fokus-Werkzeug" name="Focus"/>
-			<menu_item_call label="Werkzeug „Bewegen“" name="Move"/>
+			<menu_item_call label="Fokus" name="Focus"/>
+			<menu_item_call label="Verschieben" name="Move"/>
 			<menu_item_call label="Bearbeiten" name="Edit"/>
-			<menu_item_call label="Werkzeug „Erstellen&quot;" name="Create"/>
-			<menu_item_call label="Land-Werkzeug" name="Land"/>
+			<menu_item_call label="Erstellen" name="Create"/>
+			<menu_item_call label="Land" name="Land"/>
 		</menu>
 		<menu label="Bearbeiten" name="Edit">
 			<menu_item_call label="Rückgängig" name="Undo"/>
@@ -78,7 +83,8 @@
 		<menu_item_call label="Fokus auf Auswahl" name="Focus on Selection"/>
 		<menu_item_call label="Auf Auswahl zoomen" name="Zoom to Selection"/>
 		<menu label="Objekt" name="Object">
-			<menu_item_call label="Kaufen" name="Menu Object Take"/>
+			<menu_item_call label="Kaufen" name="Menu Object Buy"/>
+			<menu_item_call label="Nehmen" name="Menu Object Take"/>
 			<menu_item_call label="Kopie nehmen" name="Take Copy"/>
 			<menu_item_call label="Objekt wieder in meinem Inventar speichern" name="Save Object Back to My Inventory"/>
 			<menu_item_call label="Wieder in Objektinhalt speichern" name="Save Object Back to Object Contents"/>
@@ -156,7 +162,7 @@
 			<menu_item_check label="Partikel" name="Particles"/>
 			<menu_item_check label="Unebenheiten" name="Bump"/>
 		</menu>
-		<menu label="Rederning-Eigenschaften" name="Rendering Features">
+		<menu label="Rendering-Eigenschaften" name="Rendering Features">
 			<menu_item_check label="UI" name="UI"/>
 			<menu_item_check label="Ausgewählt" name="Selected"/>
 			<menu_item_check label="Farblich hervorgehoben" name="Highlighted"/>
@@ -166,7 +172,7 @@
 			<menu_item_check label="FRInfo testen" name="Test FRInfo"/>
 			<menu_item_check label="Flexible Objekte" name="Flexible Objects"/>
 		</menu>
-		<menu_item_check label="Mehrer Threads ausführen" name="Run Multiple Threads"/>
+		<menu_item_check label="Mehrere Threads ausführen" name="Run Multiple Threads"/>
 		<menu_item_call label="Gruppen-Cache löschen" name="ClearGroupCache"/>
 		<menu_item_check label="Weiche Mausbewegung" name="Mouse Smoothing"/>
 		<menu label="Tastaturkürzel" name="Shortcuts">
@@ -379,7 +385,7 @@
 			<menu_item_call label="Temp-Asset-Daten ausgeben" name="Dump Temp Asset Data"/>
 			<menu_item_call label="Regions-Status speichern" name="Save Region State"/>
 		</menu>
-		<menu_item_call label="Gott-Tools" name="God Tools"/>
+		<menu_item_call label="Gott-Werkzeuge" name="God Tools"/>
 	</menu>
 	<menu label="Admin" name="Deprecated">
 		<menu label="Objekt anhängen" name="Attach Object"/>
@@ -402,7 +408,7 @@
 			<menu_item_call label="Offizielles Linden-Blog" name="Official Linden Blog"/>
 			<menu_item_call label="Scripting-Portal" name="Scripting Portal"/>
 			<menu label="Fehlermeldungen" name="Bug Reporting">
-				<menu_item_call label="Allgemeine Probleme-Tracker" name="Public Issue Tracker"/>
+				<menu_item_call label="Allgemeiner Probleme-Tracker" name="Public Issue Tracker"/>
 				<menu_item_call label="Hilfe zum Allgemeinen Probleme-Tracker" name="Publc Issue Tracker Help"/>
 				<menu_item_call label="Fehlermeldungs-1x1" name="Bug Reporing 101"/>
 				<menu_item_call label="Sicherheitsfragen" name="Security Issues"/>

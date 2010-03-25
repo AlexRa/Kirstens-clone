@@ -7,7 +7,7 @@
 	<!--Disable GL rendering and GUI (load testing)-->
 	<DisableRendering value="TRUE"/>
 	<!--Specifies that you have not successfully logged in since you installed the latest update-->
-	<FirstLoginThisInstall value="FALSE"/>
+	<FirstLoginThisInstall value="TRUE"/>
 	<!--Login first name-->
 	<FirstName value="drone_00000"/>
 	<!--Rectangle for build options window.-->
@@ -51,11 +51,11 @@
 	<!--Enables FirstStreamingMedia warning dialog-->
 	<WarnFirstStreamingMedia value="FALSE"/>
 	<!--SL viewer window height-->
-	<WindowHeight value="200"/>
+	<WindowHeight value="768"/>
 	<!--SL viewer window maximized on login-->
 	<WindowMaximized value="FALSE"/>
 	<!--SL viewer window width-->
-	<WindowWidth value="440"/>
+	<WindowWidth value="1024"/>
 	<!--X coordinate of lower left corner of SL viewer window, relative to primary display (pixels)-->
 	<WindowX value="820"/>
 	<!--Y coordinate of lower left corner of SL viewer window, relative to primary display (pixels)-->

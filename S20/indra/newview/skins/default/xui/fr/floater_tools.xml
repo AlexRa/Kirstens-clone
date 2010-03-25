@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<floater name="toolbox floater" short_title="OUTILS DE CONSTRUCTION" title="">
+<floater name="toolbox floater" short_title="OUTILS POUR LA CONSTRUCTION" title="">
 	<floater.string name="status_rotate">
 		Pour faire tourner l&apos;objet, faîtes glisser les bandes de couleur.
 	</floater.string>
@@ -179,9 +179,9 @@
 			<text name="Group:">
 				Groupe :
 			</text>
-			<button label="Définir..." label_selected="Définir..." name="button set group" tool_tip="Choisissez un groupe pour partager les permissions de cet objet"/>
+			<button label="Définir..." label_selected="Définir..." name="button set group" tool_tip="Choisissez un groupe pour partager les droits de cet objet"/>
 			<name_box initial_value="Chargement..." name="Group Name Proxy"/>
-			<button label="Céder" label_selected="Céder" name="button deed" tool_tip="En cédant un objet, vous donnez aussi les permissions au prochain propriétaire. Seul un officier peut céder les objets d&apos;un groupe."/>
+			<button label="Céder" label_selected="Céder" name="button deed" tool_tip="En cédant un objet, vous donnez aussi les droits au prochain propriétaire. Seul un officier peut céder les objets d&apos;un groupe."/>
 			<check_box label="Partager" name="checkbox share with group" tool_tip="Autorisez tous les membres du groupe choisi à utiliser et à partager vos droits pour cet objet. Pour activer les restrictions de rôles, vous devez d&apos;abord cliquer sur Transférer."/>
 			<text name="label click action">
 				Cliquer pour :
@@ -474,7 +474,7 @@
 		<text name="label_area">
 			Surface : [AREA] m²
 		</text>
-		<button label="À propos des terrains" label_selected="À propos des terrains" name="button about land" width="142"/>
+		<button label="À propos du terrain" label_selected="À propos du terrain" name="button about land" width="142"/>
 		<check_box label="Afficher les propriétaires" name="checkbox show owners" tool_tip="Colorier les parcelles en fonction du type de leur propriétaire :   Vert = votre terrain  Turquoise = le terrain de votre groupe  Rouge = appartenant à d&apos;autres  Jaune = en vente  Mauve = aux enchères  Gris = public"/>
 		<text name="label_parcel_modify">
 			Modifier la parcelle

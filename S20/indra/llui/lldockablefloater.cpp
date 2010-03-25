@@ -12,13 +12,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -28,6 +28,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 
 #include "linden_common.h"
@@ -202,10 +203,6 @@ void LLDockableFloater::setDocked(bool docked, bool pop_on_undock)
 			translate(0, UNDOCK_LEAP_HEIGHT);
 		}
 	}
-	else
-	{
-		docked = false;
-	}
 
 	LLFloater::setDocked(docked, pop_on_undock);
 }
@@ -223,10 +220,10 @@ void LLDockableFloater::draw()
 	LLFloater::draw();
 }
 
-void LLDockableFloater::setDockControl(LLDockControl* dockControl, bool docked /* = true */)
+void LLDockableFloater::setDockControl(LLDockControl* dockControl)
 {
 	mDockControl.reset(dockControl);
-	setDocked(docked && mDockControl.get() != NULL && mDockControl.get()->isDockVisible());
+	setDocked(isDocked());
 }
 
 const LLUIImagePtr& LLDockableFloater::getDockTongue()

@@ -12,13 +12,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -28,6 +28,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 #include "linden_common.h"
 
@@ -118,7 +119,6 @@ BOOL LLAccordionCtrl::postBuild()
 		scrollbar_size,
 		getRect().getHeight() - 1);
 	
-
 	LLScrollbar::Params sbparams;
 	sbparams.name("scrollable vertical");
 	sbparams.rect(scroll_rect);
@@ -338,36 +338,55 @@ void LLAccordionCtrl::addCollapsibleCtrl(LLView* view)
 
 }
 
-
-void LLAccordionCtrl::arrange()
+void	LLAccordionCtrl::arrangeSinge()
 {
-	if( mAccordionTabs.size() == 0)
+	S32 panel_left = BORDER_MARGIN;	  // Margin from left side of Splitter
+	S32 panel_top = getRect().getHeight() - BORDER_MARGIN;		  // Top coordinate of the first panel
+	S32 panel_width = getRect().getWidth() - 4;		  // Top coordinate of the first panel
+	S32 panel_height;
+
+	S32 collapsed_height = 0;
+
+	for(size_t i=0;i<mAccordionTabs.size();++i)
 	{
-		//We do not arrange if we do not have what should be arranged
-		return;
+		LLAccordionCtrlTab* accordion_tab = dynamic_cast<LLAccordionCtrlTab*>(mAccordionTabs[i]);
+		
+		if(accordion_tab->getVisible() == false) //skip hidden accordion tabs
+			continue;
+		if(!accordion_tab->isExpanded() )
+		{
+			collapsed_height+=mAccordionTabs[i]->getRect().getHeight();
+		}
 	}
 
-	//Calculate params	
+	S32 expanded_height = getRect().getHeight() - BORDER_MARGIN - collapsed_height;
+	
+	for(size_t i=0;i<mAccordionTabs.size();++i)
+	{
+		LLAccordionCtrlTab* accordion_tab = dynamic_cast<LLAccordionCtrlTab*>(mAccordionTabs[i]);
+		
+		if(accordion_tab->getVisible() == false) //skip hidden accordion tabs
+			continue;
+		if(!accordion_tab->isExpanded() )
+		{
+			panel_height = accordion_tab->getRect().getHeight();
+		}
+		else
+		{
+			panel_height = expanded_height;
+		}
+		ctrlSetLeftTopAndSize(mAccordionTabs[i], panel_left, panel_top, panel_width, panel_height);
+		panel_top-=mAccordionTabs[i]->getRect().getHeight();
+	}
+}
+
+void	LLAccordionCtrl::arrangeMultiple()
+{
 	S32 panel_left = BORDER_MARGIN;	  // Margin from left side of Splitter
 	S32 panel_top = getRect().getHeight() - BORDER_MARGIN;		  // Top coordinate of the first panel
 	S32 panel_width = getRect().getWidth() - 4;		  // Top coordinate of the first panel
 
-	
-	if(mAccordionTabs.size() == 1)
-	{
-		LLAccordionCtrlTab* accordion_tab = dynamic_cast<LLAccordionCtrlTab*>(mAccordionTabs[0]);
-		
-		LLRect panel_rect = accordion_tab->getRect();
-		
-		S32 panel_height = getRect().getHeight() - 2*BORDER_MARGIN;
-
-		ctrlSetLeftTopAndSize(accordion_tab,panel_rect.mLeft,panel_top,panel_width,panel_height);
-		
-		show_hide_scrollbar(getRect().getWidth(),getRect().getHeight());
-		return;
-
-	}
-
+	//Calculate params	
 	for(size_t i = 0; i < mAccordionTabs.size(); i++ )
 	{
 		LLAccordionCtrlTab* accordion_tab = dynamic_cast<LLAccordionCtrlTab*>(mAccordionTabs[i]);
@@ -415,7 +434,40 @@ void LLAccordionCtrl::arrange()
 	show_hide_scrollbar(getRect().getWidth(),getRect().getHeight());
 
 	updateLayout(getRect().getWidth(),getRect().getHeight());
+}
 
+
+void LLAccordionCtrl::arrange()
+{
+	if( mAccordionTabs.size() == 0)
+	{
+		//We do not arrange if we do not have what should be arranged
+		return;
+	}
+
+
+	if(mAccordionTabs.size() == 1)
+	{
+		S32 panel_top = getRect().getHeight() - BORDER_MARGIN;		  // Top coordinate of the first panel
+		S32 panel_width = getRect().getWidth() - 4;		  // Top coordinate of the first panel
+		
+		LLAccordionCtrlTab* accordion_tab = dynamic_cast<LLAccordionCtrlTab*>(mAccordionTabs[0]);
+		
+		LLRect panel_rect = accordion_tab->getRect();
+		
+		S32 panel_height = getRect().getHeight() - 2*BORDER_MARGIN;
+
+		ctrlSetLeftTopAndSize(accordion_tab,panel_rect.mLeft,panel_top,panel_width,panel_height);
+		
+		show_hide_scrollbar(getRect().getWidth(),getRect().getHeight());
+		return;
+
+	}
+
+	if(mSingleExpansion)
+		arrangeSinge ();
+	else
+		arrangeMultiple ();
 }
 
 //---------------------------------------------------------------------------------

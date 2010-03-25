@@ -117,7 +117,7 @@ LLPanelMainInventory::LLPanelMainInventory()
 
 	// Controls
 	// *TODO: Just use persistant settings for each of these
-	U32 sort_order = gSavedSettings.getU32("InventorySortOrder");
+	U32 sort_order = gSavedSettings.getU32(LLInventoryPanel::DEFAULT_SORT_ORDER);
 	BOOL sort_by_name = ! ( sort_order & LLInventoryFilter::SO_DATE );
 	BOOL sort_folders_by_name = ( sort_order & LLInventoryFilter::SO_FOLDERS_BY_NAME );
 	BOOL sort_system_folders_to_top = ( sort_order & LLInventoryFilter::SO_SYSTEM_FOLDERS_TO_TOP );
@@ -145,7 +145,7 @@ BOOL LLPanelMainInventory::postBuild()
 	if (mActivePanel)
 	{
 		// "All Items" is the previous only view, so it gets the InventorySortOrder
-		mActivePanel->setSortOrder(gSavedSettings.getU32("InventorySortOrder"));
+		mActivePanel->setSortOrder(gSavedSettings.getU32(LLInventoryPanel::DEFAULT_SORT_ORDER));
 		mActivePanel->getFilter()->markDefault();
 		mActivePanel->getRootFolder()->applyFunctorRecursively(*mSavedFolderState);
 		mActivePanel->setSelectCallback(boost::bind(&LLPanelMainInventory::onSelectionChange, this, mActivePanel, _1, _2));
@@ -420,10 +420,8 @@ void LLPanelMainInventory::onFilterEdit(const std::string& search_string )
 
 	gInventory.startBackgroundFetch();
 
-	std::string uppercase_search_string = search_string;
-	LLStringUtil::toUpper(uppercase_search_string);
-	mFilterSubString = uppercase_search_string;
-	if (mActivePanel->getFilterSubString().empty() && uppercase_search_string.empty())
+	mFilterSubString = search_string;
+	if (mActivePanel->getFilterSubString().empty() && mFilterSubString.empty())
 	{
 			// current filter and new filter empty, do nothing
 			return;
@@ -437,7 +435,7 @@ void LLPanelMainInventory::onFilterEdit(const std::string& search_string )
 	}
 
 	// set new filter string
-	mActivePanel->setFilterSubString(mFilterSubString);
+	setFilterSubString(mFilterSubString);
 }
 
 

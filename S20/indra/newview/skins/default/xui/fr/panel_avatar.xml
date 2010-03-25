@@ -170,7 +170,7 @@ objets :
 				Chargement...
 			</text>
 		</panel>
-		<panel label="Monde physique" name="Real World" width="458">
+		<panel label="Vie réelle" name="Real World" width="458">
 			<text name="Photo:">
 				Photo :
 			</text>
@@ -199,7 +199,7 @@ vous avez écrit.
 	<button label="OK" label_selected="OK" name="OK"/>
 	<button label="Annuler" label_selected="Annuler" name="Cancel"/>
 	<button label="Éjecter" label_selected="Éjecter" name="Kick"/>
-	<button label="Geler" label_selected="Geler" name="Freeze" tool_tip="Bloquer les mouvements et le chat de ce résident"/>
-	<button label="Dégeler" label_selected="Dégeler" name="Unfreeze" tool_tip="Dégeler le résident"/>
+	<button label="Figer" label_selected="Figer" name="Freeze" tool_tip="Bloquer les mouvements et le chat de ce résident"/>
+	<button label="Libérer" label_selected="Libérer" name="Unfreeze" tool_tip="Libérer le résident"/>
 	<button label="Admin" label_selected="Admin" name="csr_btn" tool_tip="Contacter le Service Clientèle pour ce résident"/>
 </panel>

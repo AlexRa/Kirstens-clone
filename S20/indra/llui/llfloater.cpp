@@ -12,13 +12,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -28,6 +28,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 
 // Floating "windows" within the GL display, like the inventory floater,
@@ -527,10 +528,7 @@ void LLFloater::setVisible( BOOL visible )
 
 	if( !visible )
 	{
-		if( gFocusMgr.childIsTopCtrl( this ) )
-		{
-			gFocusMgr.setTopCtrl(NULL);
-		}
+		LLUI::removePopup(this);
 
 		if( gFocusMgr.childHasMouseCapture( this ) )
 		{
@@ -704,10 +702,7 @@ void LLFloater::reshape(S32 width, S32 height, BOOL called_from_parent)
 
 void LLFloater::releaseFocus()
 {
-	if( gFocusMgr.childIsTopCtrl( this ) )
-	{
-		gFocusMgr.setTopCtrl(NULL);
-	}
+	LLUI::removePopup(this);
 
 	setFocus(FALSE);
 
@@ -1360,7 +1355,7 @@ void LLFloater::bringToFront( S32 x, S32 y )
 // virtual
 void LLFloater::setVisibleAndFrontmost(BOOL take_focus)
 {
-	gFocusMgr.setTopCtrl(NULL);
+	LLUI::clearPopups();
 	setVisible(TRUE);
 	setFrontmost(take_focus);
 }
@@ -1554,7 +1549,12 @@ void LLFloater::onClickClose( LLFloater* self )
 {
 	if (!self)
 		return;
-	self->closeFloater(false);
+	self->onClickCloseBtn();
+}
+
+void	LLFloater::onClickCloseBtn()
+{
+	closeFloater(false);
 }
 
 
@@ -1574,22 +1574,25 @@ void LLFloater::draw()
 
 		LLUIImage* image = NULL;
 		LLColor4 color;
+		LLColor4 overlay_color;
 		if (isBackgroundOpaque())
 		{
 			// NOTE: image may not be set
 			image = getBackgroundImage();
 			color = getBackgroundColor();
+			overlay_color = getBackgroundImageOverlay();
 		}
 		else
 		{
 			image = getTransparentImage();
 			color = getTransparentColor();
+			overlay_color = getTransparentImageOverlay();
 		}
 
 		if (image)
 		{
 			// We're using images for this floater's backgrounds
-			image->draw(getLocalRect(), UI_VERTEX_COLOR % alpha);
+			image->draw(getLocalRect(), overlay_color % alpha);
 		}
 		else
 		{
@@ -2500,10 +2503,7 @@ void LLFloaterView::syncFloaterTabOrder()
 	if (modal_dialog)
 	{
 		// If we have a visible modal dialog, make sure that it has focus
-		if( gFocusMgr.getTopCtrl() != modal_dialog )
-		{
-			gFocusMgr.setTopCtrl( modal_dialog );
-		}
+		LLUI::addPopup(modal_dialog);
 		
 		if( !gFocusMgr.childHasKeyboardFocus( modal_dialog ) )
 		{

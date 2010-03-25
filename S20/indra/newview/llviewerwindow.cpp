@@ -131,6 +131,7 @@
 #include "llmorphview.h"
 #include "llmoveview.h"
 #include "llnavigationbar.h"
+#include "llpopupview.h"
 #include "llpreviewtexture.h"
 #include "llprogressview.h"
 #include "llresmgr.h"
@@ -486,6 +487,10 @@ public:
 			}
             ypos += y_inc;
 
+			addText(xpos, ypos, llformat("UI Verts/Calls: %d/%d", LLRender::sUIVerts, LLRender::sUICalls));
+			LLRender::sUICalls = LLRender::sUIVerts = 0;
+			ypos += y_inc;
+
 			addText(xpos,ypos, llformat("%d/%d Nodes visible", gPipeline.mNumVisibleNodes, LLSpatialGroup::sNodeCount));
 			
 			ypos += y_inc;
@@ -686,30 +691,23 @@ BOOL LLViewerWindow::handleAnyMouseClick(LLWindow *window,  LLCoordGL pos, MASK 
 	}
 
 	// Topmost view gets a chance before the hierarchy
-	LLUICtrl* top_ctrl = gFocusMgr.getTopCtrl();
-	if (top_ctrl)
-	{
-		S32 local_x, local_y;
-		top_ctrl->screenPointToLocal( x, y, &local_x, &local_y );
-		if (down)
-		{
-			if (top_ctrl->pointInView(local_x, local_y))
-			{
-				return top_ctrl->handleAnyMouseClick(local_x, local_y, mask, clicktype, down)	;
-			}
-			else
-			{
-				gFocusMgr.setTopCtrl(NULL);
-			}
-		}
-		else
-		{
-			if (top_ctrl->pointInView(local_x, local_y) && top_ctrl->handleMouseUp(local_x, local_y, mask))
-			{
-				return TRUE;
-			}
-		}
-	}
+	//LLUICtrl* top_ctrl = gFocusMgr.getTopCtrl();
+	//if (top_ctrl)
+	//{
+	//	S32 local_x, local_y;
+	//	top_ctrl->screenPointToLocal( x, y, &local_x, &local_y );
+	//		if (top_ctrl->pointInView(local_x, local_y))
+	//		{
+	//			return top_ctrl->handleAnyMouseClick(local_x, local_y, mask, clicktype, down)	;
+	//		}
+	//		else
+	//		{
+	//		if (down)
+	//		{
+	//			gFocusMgr.setTopCtrl(NULL);
+	//		}
+	//	}
+	//}
 
 	// Give the UI views a chance to process the click
 	if( mRootView->handleAnyMouseClick(x, y, mask, clicktype, down) )
@@ -826,8 +824,10 @@ LLWindowCallbacks::DragNDropResult LLViewerWindow::handleDragNDrop( LLWindow *wi
 					
 				if (slurl_dnd_enabled)
 				{
+					
 					// special case SLURLs
-					if ( LLSLURL::isSLURL( data ) )
+					// isValidSLURL() call was added here to make sure that dragged SLURL is valid (EXT-4964)
+					if ( LLSLURL::isSLURL( data ) && LLSLURL::isValidSLURL( data ) )
 					{
 						if (drop)
 						{
@@ -1553,11 +1553,13 @@ void LLViewerWindow::initBase()
 	mWorldViewPlaceholder = main_view->getChildView("world_view_rect")->getHandle();
 	mNonSideTrayView = main_view->getChildView("non_side_tray_view")->getHandle();
 	mFloaterViewHolder = main_view->getChildView("floater_view_holder")->getHandle();
+	mPopupView = main_view->getChild<LLPopupView>("popup_holder");
 
 	// Constrain floaters to inside the menu and status bar regions.
 	gFloaterView = main_view->getChild<LLFloaterView>("Floater View");
 	gSnapshotFloaterView = main_view->getChild<LLSnapshotFloaterView>("Snapshot Floater View");
 	
+
 	// Console
 	llassert( !gConsole );
 	LLConsole::Params cp;
@@ -2019,21 +2021,24 @@ void LLViewerWindow::drawDebugText()
 {
 	gGL.color4f(1,1,1,1);
 	gGL.pushMatrix();
+	gGL.pushUIMatrix();
 	{
 		// scale view by UI global scale factor and aspect ratio correction factor
-		glScalef(mDisplayScale.mV[VX], mDisplayScale.mV[VY], 1.f);
+		gGL.scaleUI(mDisplayScale.mV[VX], mDisplayScale.mV[VY], 1.f);
 		mDebugText->draw();
 	}
+	gGL.popUIMatrix();
 	gGL.popMatrix();
+
 	gGL.flush();
 }
 
 void LLViewerWindow::draw()
 {
 	
-#if LL_DEBUG
+//#if LL_DEBUG
 	LLView::sIsDrawing = TRUE;
-#endif
+//#endif
 	stop_glerror();
 	
 	LLUI::setLineWidth(1.f);
@@ -2072,9 +2077,11 @@ void LLViewerWindow::draw()
 	// No translation needed, this view is glued to 0,0
 
 	gGL.pushMatrix();
+	LLUI::pushMatrix();
 	{
+		
 		// scale view by UI global scale factor and aspect ratio correction factor
-		glScalef(mDisplayScale.mV[VX], mDisplayScale.mV[VY], 1.f);
+		gGL.scaleUI(mDisplayScale.mV[VX], mDisplayScale.mV[VY], 1.f);
 
 		LLVector2 old_scale_factor = LLUI::sGLScaleFactor;
 		// apply camera zoom transform (for high res screenshots)
@@ -2140,11 +2147,12 @@ void LLViewerWindow::draw()
 
 		LLUI::sGLScaleFactor = old_scale_factor;
 	}
+	LLUI::popMatrix();
 	gGL.popMatrix();
 
-#if LL_DEBUG
+//#if LL_DEBUG
 	LLView::sIsDrawing = FALSE;
-#endif
+//#endif
 }
 
 // Takes a single keydown event, usually when UI is visible
@@ -2436,6 +2444,30 @@ void LLViewerWindow::handleScrollWheel(S32 clicks)
 	return;
 }
 
+void LLViewerWindow::addPopup(LLView* popup)
+{
+	if (mPopupView)
+	{
+		mPopupView->addPopup(popup);
+	}
+}
+
+void LLViewerWindow::removePopup(LLView* popup)
+{
+	if (mPopupView)
+	{
+		mPopupView->removePopup(popup);
+	}
+}
+
+void LLViewerWindow::clearPopups()
+{
+	if (mPopupView)
+	{
+		mPopupView->clearPopups();
+	}
+}
+
 void LLViewerWindow::moveCursorToCenter()
 {
 	if (! gSavedSettings.getBOOL("DisableMouseWarp"))
@@ -2492,6 +2524,9 @@ void append_xui_tooltip(LLView* viewp, LLToolTip::Params& params)
 // event processing.
 void LLViewerWindow::updateUI()
 {
+	static LLFastTimer::DeclareTimer ftm("Update UI");
+	LLFastTimer t(ftm);
+
 	static std::string last_handle_msg;
 
 	LLConsole::updateClass();
@@ -2561,6 +2596,33 @@ void LLViewerWindow::updateUI()
 	}
 
 	// aggregate visible views that contain mouse cursor in display order
+	LLPopupView::popup_list_t popups = mPopupView->getCurrentPopups();
+
+	for(LLPopupView::popup_list_t::iterator popup_it = popups.begin(); popup_it != popups.end(); ++popup_it)
+	{
+		LLView* popup = popup_it->get();
+		if (popup && popup->calcScreenBoundingRect().pointInRect(x, y))
+		{
+			// iterator over contents of top_ctrl, and throw into mouse_hover_set
+			for (LLView::tree_iterator_t it = popup->beginTreeDFS();
+				it != popup->endTreeDFS();
+				++it)
+			{
+				LLView* viewp = *it;
+				if (viewp->getVisible()
+					&& viewp->calcScreenBoundingRect().pointInRect(x, y))
+				{
+					// we have a view that contains the mouse, add it to the set
+					mouse_hover_set.insert(viewp->getHandle());
+				}
+				else
+				{
+					// skip this view and all of its children
+					it.skipDescendants();
+				}
+			}
+		}
+	}
 
 	// while the top_ctrl contains the mouse cursor, only it and its descendants will receive onMouseEnter events
 	if (top_ctrl && top_ctrl->calcScreenBoundingRect().pointInRect(x, y))
@@ -3023,17 +3085,16 @@ void LLViewerWindow::updateWorldViewRect(bool use_full_window)
 
 	if (mWorldViewRectRaw != new_world_rect)
 	{
-		LLRect old_world_rect = mWorldViewRectRaw;
 		mWorldViewRectRaw = new_world_rect;
 		gResizeScreenTexture = TRUE;
 		LLViewerCamera::getInstance()->setViewHeightInPixels( mWorldViewRectRaw.getHeight() );
 		LLViewerCamera::getInstance()->setAspect( getWorldViewAspectRatio() );
 
+		LLRect old_world_rect_scaled = mWorldViewRectScaled;
 		mWorldViewRectScaled = calcScaledRect(mWorldViewRectRaw, mDisplayScale);
 
 		// sending a signal with a new WorldView rect
-		old_world_rect = calcScaledRect(old_world_rect, mDisplayScale);
-		mOnWorldViewRectUpdated(old_world_rect, mWorldViewRectScaled);
+		mOnWorldViewRectUpdated(old_world_rect_scaled, mWorldViewRectScaled);
 	}
 }
 

@@ -60,6 +60,9 @@ public:
 	void shallowCopyCategory(const LLUUID& src_id, const LLUUID& dst_id,
 							 LLPointer<LLInventoryCallback> cb);
 
+	// Return whether this folder contains minimal contents suitable for making a full outfit.
+	BOOL getCanMakeFolderIntoOutfit(const LLUUID& folder_id);
+
 	// Copy all items in a category.
 	void shallowCopyCategoryContents(const LLUUID& src_id, const LLUUID& dst_id,
 									 LLPointer<LLInventoryCallback> cb);
@@ -150,6 +153,18 @@ public:
 	// Is this in the COF and can the user delete it from the COF?
 	BOOL getIsProtectedCOFItem(const LLUUID& obj_id) const;
 };
+
+class LLUpdateAppearanceOnDestroy: public LLInventoryCallback
+{
+public:
+	LLUpdateAppearanceOnDestroy();
+	virtual ~LLUpdateAppearanceOnDestroy();
+	/* virtual */ void fire(const LLUUID& inv_item);
+
+private:
+	U32 mFireCount;
+};
+
 
 #define SUPPORT_ENSEMBLES 0
 

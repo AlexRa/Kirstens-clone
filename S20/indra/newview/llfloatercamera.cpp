@@ -241,6 +241,7 @@ LLFloaterCamera::LLFloaterCamera(const LLSD& val)
 BOOL LLFloaterCamera::postBuild()
 {
 	setIsChrome(TRUE);
+	setTitleVisible(TRUE); // restore title visibility after chrome applying
 
 	mRotate = getChild<LLJoystickCameraRotate>(ORBIT);
 	mZoom = getChild<LLPanelCameraZoom>(ZOOM);
@@ -293,6 +294,31 @@ void LLFloaterCamera::setMode(ECameraControlMode mode)
 	}
 	
 	updateState();
+}
+
+void LLFloaterCamera::setModeTitle(const ECameraControlMode mode)
+{
+	std::string title; 
+	switch(mode)
+	{
+	case CAMERA_CTRL_MODE:
+		title = getString("orbit_mode_title");
+		break;
+   //
+   //  KL only one mode for camera adjust orbit_mode string to match
+   //
+	case CAMERA_CTRL_MODE_AVATAR_VIEW:
+		title = getString("avatar_view_mode_title");
+		break;
+	case CAMERA_CTRL_MODE_FREE_CAMERA:
+		title = getString("free_mode_title");
+		break;
+	default:
+		// title should be provided for all modes
+		llassert(false);
+		break;
+	}
+	setTitle(title);
 }
 
 void LLFloaterCamera::switchMode(ECameraControlMode mode)
@@ -350,6 +376,10 @@ void LLFloaterCamera::updateState()
 	childSetVisible(ZOOM, CAMERA_CTRL_MODE_AVATAR_VIEW != mCurrMode);
 	childSetVisible(PRESETS, CAMERA_CTRL_MODE_AVATAR_VIEW == mCurrMode);
 
+	updateCameraPresetButtons();
+	setModeTitle(mCurrMode);
+
+
 	//hiding or showing the panel with controls by reshaping the floater
 	bool showControls = CAMERA_CTRL_MODE_FREE_CAMERA != mCurrMode;
 	if (showControls == childIsVisible(CONTROLS)) return;
@@ -380,6 +410,16 @@ void LLFloaterCamera::updateState()
 	}
 }
 
+void LLFloaterCamera::updateCameraPresetButtons()
+{
+	ECameraPreset preset = (ECameraPreset) gSavedSettings.getU32("CameraPreset");
+	
+	childSetValue("rear_view",		preset == CAMERA_PRESET_REAR_VIEW);
+	childSetValue("group_view",		preset == CAMERA_PRESET_GROUP_VIEW);
+	childSetValue("front_view",		preset == CAMERA_PRESET_FRONT_VIEW);
+	childSetValue("mouselook_view",	gAgent.cameraMouselook());
+}
+
 void LLFloaterCamera::onClickCameraPresets(const LLSD& param)
 {
 	std::string name = param.asString();
@@ -401,4 +441,7 @@ void LLFloaterCamera::onClickCameraPresets(const LLSD& param)
 		gAgent.changeCameraToMouselook();
 	}
 
+	LLFloaterCamera* camera_floater = LLFloaterCamera::findInstance();
+	if (camera_floater)
+		camera_floater->updateCameraPresetButtons();
 }

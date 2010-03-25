@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<floater label="(nieznany)" name="im_floater" title="(NIEZNANY)">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<floater label="(nieznany)" name="im_floater" title="(NIEZNANE)">
 	<string name="ringing">
 		Dołączanie do czatu głosowego...
 	</string>
@@ -38,12 +38,11 @@
 	</string>
 	<layout_stack name="panels">
 		<layout_panel name="im_contents_panel">
-			<button label="O Grupie" name="group_info_btn" />
-			<button label="Dzwoń" name="start_call_btn" />
-			<button label="Skończ" name="end_call_btn" />
-			<button label="&lt; &lt;" label_selected="&gt; &gt;" name="toggle_active_speakers_btn"
-			     tool_tip="Kliknij tutaj by uzyskać listę wszystkich uczestników biorących udział w tej konkferencji." />
-			<button label="Wyślij" name="send_btn" />
+			<button label="O Grupie" name="group_info_btn"/>
+			<button label="Dzwoń" name="start_call_btn"/>
+			<button label="Skończ" name="end_call_btn"/>
+			<button label="&lt; &lt;" label_selected="&gt; &gt;" name="toggle_active_speakers_btn" tool_tip="Kliknij tutaj by zobaczyć listę aktywnych rozmówców tej konferencji"/>
+			<button label="Wyślij" name="send_btn"/>
 		</layout_panel>
 	</layout_stack>
 </floater>

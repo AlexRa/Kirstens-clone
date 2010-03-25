@@ -31,7 +31,7 @@
 	 top="0"
 	 height="50"
 	 width="600"/>
-  <panel
+	<panel
 	 background_visible="false"
 	 follows="left|top|right"
 	 top="3"
@@ -110,7 +110,6 @@
 	         width="20" />
 	      -->
     </location_input>
-    
     <!--     <button -->
     <!--      follows="right|top" -->
     <!--      height="20" -->
@@ -166,7 +165,6 @@
                width="590">
         <label
          follows="left|top"
-         font.style="BOLD"
          height="15"
          layout="topleft"
          left="10"

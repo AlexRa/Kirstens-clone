@@ -6,7 +6,7 @@
 			<column label="" name="speaking_status"/>
 		</scroll_list>
 		<panel name="volume_container">
-			<button label="" name="mute_btn" tool_tip="Blokér stemme for denne beboer"/>
+			<button label="" name="mute_btn" tool_tip="Blokér for stemme fra denne beboer"/>
 		</panel>
 	</panel>
 </floater>

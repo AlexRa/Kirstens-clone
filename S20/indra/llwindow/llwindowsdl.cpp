@@ -187,6 +187,47 @@ Display* LLWindowSDL::get_SDL_Display(void)
 }
 #endif // LL_X11
 
+// static
+S32 LLWindowSDL::getDisplayWidth()
+{
+#if LL_GTK
+	if (LLWindowSDL::ll_try_gtk_init())
+	{
+		return gdk_screen_width();
+	}
+#endif // LL_GTK
+
+#if LL_X11
+	Display *display = XOpenDisplay(NULL);
+	int screen_num = DefaultScreen(display);
+	S32 width = DisplayWidth(display, screen_num);
+	XCloseDisplay(display);
+	return width;
+#endif //LL_X11
+
+	return 1024;
+}
+
+// static
+S32 LLWindowSDL::getDisplayHeight()
+{
+#if LL_GTK
+	if (LLWindowSDL::ll_try_gtk_init())
+	{
+		return gdk_screen_height();
+	}
+#endif // LL_GTK
+
+#if LL_X11
+	Display *display = XOpenDisplay(NULL);
+	int screen_num = DefaultScreen(display);
+	S32 height = DisplayHeight(display, screen_num);
+	XCloseDisplay(display);
+	return height;
+#endif //LL_X11
+
+	return 768;
+}
 
 LLWindowSDL::LLWindowSDL(LLWindowCallbacks* callbacks,
 			 const std::string& title, S32 x, S32 y, S32 width,
@@ -909,7 +950,68 @@ BOOL LLWindowSDL::getMaximized()
 
 	if (mWindow)
 	{
-		// TODO
+#if LL_X11
+		if (mSDL_Display)
+		{
+			maybe_lock_display();
+
+			// Return data in the specified format, XA_ATOM.
+			U8*	prop;
+			// Actual format of the property.
+			int format;
+			// Actual number of items stored in the prop return data.
+			unsigned long nitems;
+			// Number of bytes remaining to be read in the property if a partial read was performed.
+			unsigned long bytes_after;
+			// Atom identifier that defines the actual type of the property.
+			Atom type;
+
+			// Atom used to obtain list of hints describing the window state.
+			Atom wm_state = XInternAtom(mSDL_Display, "_NET_WM_STATE", False);
+
+			// Atoms indicates that the window is vertically/horizontally maximized. 
+			Atom max_vert = XInternAtom(mSDL_Display, "_NET_WM_STATE_MAXIMIZED_VERT", False);
+			Atom max_horz = XInternAtom(mSDL_Display, "_NET_WM_STATE_MAXIMIZED_HORZ", False);
+
+			// How many atoms in which we interested are present in list of hints.
+			U32 pass = 0;
+
+			do
+			{
+				nitems = 0;
+				bytes_after = 0;
+				type = None;
+				if ( (XGetWindowProperty (mSDL_Display,
+										  mSDL_XWindowID,
+										  wm_state,
+										  0, UINT_MAX,
+										  False, XA_ATOM,
+										  &type, &format,
+										  &nitems, &bytes_after,
+										  &prop) == Success)
+					 && type != None )
+				{
+					Atom *atoms = (Atom *)prop;
+					for (unsigned long i=0; i<nitems; ++i)
+					{
+						if (atoms[i] == max_horz)
+							++pass;
+						else if (atoms[i] == max_vert)
+							++pass;
+					}
+					XFree (atoms);
+				}
+				else
+				{
+					break;
+				}
+			} while (bytes_after > 0);
+
+			result = (pass == 2);
+
+			maybe_unlock_display();
+		}
+#endif // LL_X11
 	}
 
 	return(result);
@@ -917,7 +1019,103 @@ BOOL LLWindowSDL::getMaximized()
 
 BOOL LLWindowSDL::maximize()
 {
-	// TODO
+#if LL_X11
+	if (mSDL_Display && !mFullscreen)
+	{
+		maybe_lock_display();
+
+		BOOL is_maximize_allowed = FALSE;
+
+		// Check if maximize is allowed
+		{
+			// Return data in the specified format, XA_ATOM.
+			U8*	prop;
+			// Actual format of the property.
+			int format;
+			// Actual number of items stored in the prop return data.
+			unsigned long nitems;
+			// Number of bytes remaining to be read in the property if a partial read was performed.
+			unsigned long bytes_after;
+			// Atom identifier that defines the actual type of the property.
+			Atom type;
+
+			// Atom used to obtain a list of atoms indicating user operations that the Window Manager supports for this window.
+			Atom allowed_act  = XInternAtom(mSDL_Display, "_NET_WM_ALLOWED_ACTIONS", False);
+
+			// Atoms that indicates that the window may be vertically/horizontally maximized.
+			Atom max_vert_act = XInternAtom(mSDL_Display, "_NET_WM_ACTION_MAXIMIZE_HORZ", False);
+			Atom max_horz_act = XInternAtom(mSDL_Display, "_NET_WM_ACTION_MAXIMIZE_VERT", False);
+
+			// How many atoms in which we interested are present in list of hints.
+			U32 pass = 0;
+
+			do
+			{
+				nitems = 0;
+				bytes_after = 0;
+				type = None;
+				if ( (XGetWindowProperty (mSDL_Display,
+										  mSDL_XWindowID,
+										  allowed_act,
+										  0, UINT_MAX,
+										  False, XA_ATOM,
+										  &type, &format,
+										  &nitems, &bytes_after,
+										  &prop) == Success)
+					 && type != None )
+				{
+					Atom *atoms = (Atom *)prop;
+					for (unsigned long i=0; i<nitems; ++i)
+					{
+						if (atoms[i] == max_vert_act)
+							++pass;
+						else if (atoms[i] == max_horz_act)
+							++pass;
+					}
+					XFree (atoms);
+				}
+				else
+				{
+					break;
+				}
+			} while (bytes_after > 0);
+
+			is_maximize_allowed = (pass == 2);
+		}
+
+		// Send maximize event to X11 system
+		if (is_maximize_allowed)
+		{
+			XEvent xev;
+
+			// Atom describing the window state.
+			Atom wm_state = XInternAtom(mSDL_Display, "_NET_WM_STATE", False);
+
+			// Atoms indicates that the window is vertically/horizontally maximized. 
+			Atom max_vert = XInternAtom(mSDL_Display, "_NET_WM_STATE_MAXIMIZED_VERT", False);
+			Atom max_horz = XInternAtom(mSDL_Display, "_NET_WM_STATE_MAXIMIZED_HORZ", False);
+
+			memset(&xev, 0, sizeof(xev));
+			xev.type = ClientMessage;
+			xev.xclient.window = mSDL_XWindowID;
+			xev.xclient.message_type = wm_state;
+			xev.xclient.format = 32;
+			xev.xclient.data.l[0] = 1;  // add/set property
+			xev.xclient.data.l[1] = max_vert;
+			xev.xclient.data.l[2] = max_horz;
+			xev.xclient.data.l[3] = 0;
+			xev.xclient.data.l[4] = 0;
+
+			XSendEvent(mSDL_Display,
+					   DefaultRootWindow(mSDL_Display),
+					   False,
+					   SubstructureNotifyMask, &xev);
+		}
+
+		maybe_unlock_display();
+		return is_maximize_allowed;
+	}
+#endif // LL_X11
 	return FALSE;
 }
 
@@ -1597,6 +1795,78 @@ U32 LLWindowSDL::SDLCheckGrabbyKeys(SDLKey keysym, BOOL gain)
 	return mGrabbyKeyFlags;
 }
 
+
+void check_vm_bloat()
+{
+#if LL_LINUX
+	// watch our own VM and RSS sizes, warn if we bloated rapidly
+	FILE *fp = fopen("/proc/self/stat", "r");
+	if (fp)
+	{
+		static long long last_vm_size = 0;
+		static long long last_rss_size = 0;
+		const long long significant_vm_difference = 250 * 1024*1024;
+		const long long significant_rss_difference = 50 * 1024*1024;
+
+		ssize_t res;
+		size_t dummy;
+		char *ptr;
+		for (int i=0; i<22; ++i) // parse past the values we don't want
+		{
+			ptr = NULL;
+			res = getdelim(&ptr, &dummy, ' ', fp);
+			free(ptr);
+		}
+		// 23rd space-delimited entry is vsize
+		ptr = NULL;
+		res = getdelim(&ptr, &dummy, ' ', fp);
+		llassert(ptr);
+		long long this_vm_size = atoll(ptr);
+		free(ptr);
+		// 24th space-delimited entry is RSS
+		ptr = NULL;
+		res = getdelim(&ptr, &dummy, ' ', fp);
+		llassert(ptr);
+		long long this_rss_size = getpagesize() * atoll(ptr);
+		free(ptr);
+
+		llinfos << "VM SIZE IS NOW " << (this_vm_size/(1024*1024)) << " MB, RSS SIZE IS NOW " << (this_rss_size/(1024*1024)) << " MB" << llendl;
+
+		if (llabs(last_vm_size - this_vm_size) >
+		    significant_vm_difference)
+		{
+			if (this_vm_size > last_vm_size)
+			{
+				llwarns << "VM size grew by " << (this_vm_size - last_vm_size)/(1024*1024) << " MB in last frame" << llendl;
+			}
+			else
+			{
+				llinfos << "VM size shrank by " << (last_vm_size - this_vm_size)/(1024*1024) << " MB in last frame" << llendl;
+			}
+		}
+
+		if (llabs(last_rss_size - this_rss_size) >
+		    significant_rss_difference)
+		{
+			if (this_rss_size > last_rss_size)
+			{
+				llwarns << "RSS size grew by " << (this_rss_size - last_rss_size)/(1024*1024) << " MB in last frame" << llendl;
+			}
+			else
+			{
+				llinfos << "RSS size shrank by " << (last_rss_size - this_rss_size)/(1024*1024) << " MB in last frame" << llendl;
+			}
+		}
+
+		last_rss_size = this_rss_size;
+		last_vm_size = this_vm_size;
+
+		fclose(fp);
+	}
+#endif // LL_LINUX
+}
+
+
 // virtual
 void LLWindowSDL::processMiscNativeEvents()
 {
@@ -1628,6 +1898,12 @@ void LLWindowSDL::processMiscNativeEvents()
 	    setlocale(LC_ALL, saved_locale.c_str() );
     }
 #endif // LL_GTK
+
+    // hack - doesn't belong here - but this is just for debugging
+    if (getenv("LL_DEBUG_BLOAT"))
+    {
+	    check_vm_bloat();
+    }
 }
 
 void LLWindowSDL::gatherInput()

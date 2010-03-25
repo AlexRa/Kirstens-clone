@@ -20,7 +20,7 @@
 				<text name="resident_name">
 					Rumplstiltskin Califragilistic
 				</text>
-				<button label="" name="mute_btn" tool_tip="Sluk for stemme chat for denne beboer"/>
+				<button label="" name="mute_btn" tool_tip="Sluk for tale fra denne beboer"/>
 				<check_box label="Sluk tekst" name="mute_text_btn"/>
 			</panel>
 		</layout_panel>

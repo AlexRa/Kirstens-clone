@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <floater name="price_for_listing" title="ANZEIGE VERÖFFENTLICHEN">
 	<text name="explanation_text">
-		Ihr Anzeige wird für eine Woche veröffentlicht.
+		Ihre Anzeige wird für eine Woche veröffentlicht.
 
-Die Position Ihrer Anzeigen hängt davon ab, wiewiel Sie dafür bezahlen möchten.
+Die Position Ihrer Anzeigen hängt davon ab, wieviel Sie dafür bezahlen möchten.
 
-Die Anzeigen, für die am meisten bezahlt wird, erscheinen oben in der Liste und in den Suchergebnissen.
+Die Anzeigen, für die am meisten bezahlt werden, erscheinen oben in der Liste und in den Suchergebnissen.
 	</text>
 	<text name="price_text">
-		Anzeigenpreis:
+		Preis:
 	</text>
 	<text name="price_symbol">
 		L$

@@ -12,13 +12,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -28,6 +28,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 
 #ifndef LL_ACCORDIONCTRLTAB_H_
@@ -41,6 +42,7 @@ class LLUICtrlFactory;
 class LLUIImage;
 class LLButton;
 class LLTextBox;
+class LLScrollbar;
 
 
 
@@ -84,6 +86,8 @@ public:
 
 		Optional<bool>			header_visible;
 
+		Optional<bool>			fit_panel;
+
 		Optional<S32>			padding_left;
 		Optional<S32>			padding_right;
 		Optional<S32>			padding_top;
@@ -107,7 +111,7 @@ public:
 
 	//set LLAccordionCtrlTab panel
 	void		setAccordionView(LLView* panel);
-	LLView*		getAccordionView();
+	LLView*		getAccordionView() { return mContainerPanel; };
 
 	bool getCollapsible() {return mCollapsible;};
 
@@ -122,6 +126,8 @@ public:
 	S32	notifyParent(const LLSD& info);
 	S32 notify(const LLSD& info);
 	bool notifyChildren(const LLSD& info);
+
+	void draw();
 
 	void    storeOpenCloseState		();
 	void    restoreOpenCloseState	();
@@ -164,9 +170,26 @@ public:
 
 	void showAndFocusHeader();
 
-private:
+	void setFitPanel( bool fit ) { mFitPanel = true; }
 
-	
+protected:
+	void adjustContainerPanel	(const LLRect& child_rect);
+	void adjustContainerPanel	();
+	S32	 getChildViewHeight		();
+
+	void onScrollPosChangeCallback(S32, LLScrollbar*);
+
+	void show_hide_scrollbar	(const LLRect& child_rect);
+	void showScrollbar			(const LLRect& child_rect);
+	void hideScrollbar			(const LLRect& child_rect);
+
+	void updateLayout			( const LLRect& child_rect );
+	void ctrlSetLeftTopAndSize	(LLView* panel, S32 left, S32 top, S32 width, S32 height);
+
+	void drawChild(const LLRect& root_rect,LLView* child);
+
+	LLView* findContainerView	();
+private:
 
 	class LLAccordionCtrlTabHeader;
 	LLAccordionCtrlTabHeader* mHeader; //Header
@@ -176,6 +199,7 @@ private:
 	bool mHeaderVisible;
 
 	bool mCanOpenClose;
+	bool mFitPanel;
 
 	S32	mPaddingLeft;
 	S32	mPaddingRight;
@@ -185,6 +209,8 @@ private:
 	bool mStoredOpenCloseState;
 	bool mWasStateStored;
 
+	LLScrollbar*	mScrollbar;
+	LLView*			mContainerPanel;
 
 	LLUIColor mDropdownBGColor;
 };

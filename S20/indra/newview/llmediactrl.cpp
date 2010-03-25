@@ -80,8 +80,8 @@ LLMediaCtrl::LLMediaCtrl( const Params& p) :
 	mForceUpdate( false ),
 	mOpenLinksInExternalBrowser( false ),
 	mOpenLinksInInternalBrowser( false ),
-	mTrusted( false ),
 	mHomePageUrl( "" ),
+	mTrusted(false),
 	mIgnoreUIScale( true ),
 	mAlwaysRefresh( false ),
 	mMediaSource( 0 ),
@@ -183,6 +183,10 @@ void LLMediaCtrl::setOpenInInternalBrowser( bool valIn )
 ////////////////////////////////////////////////////////////////////////////////
 void LLMediaCtrl::setTrusted( bool valIn )
 {
+	if(mMediaSource)
+	{
+		mMediaSource->setTrustedBrowser(valIn);
+	}
 	mTrusted = valIn;
 }
 
@@ -632,6 +636,7 @@ bool LLMediaCtrl::ensureMediaSourceExists()
 			mMediaSource->setVisible( getVisible() );
 			mMediaSource->addObserver( this );
 			mMediaSource->setBackgroundColor( getBackgroundColor() );
+			mMediaSource->setTrustedBrowser(mTrusted);
 			if(mClearCache)
 			{
 				mMediaSource->clearCache();
@@ -724,14 +729,14 @@ void LLMediaCtrl::draw()
 		LLGLSUIDefault gls_ui;
 		LLGLDisable gls_alphaTest( GL_ALPHA_TEST );
 
-		gGL.pushMatrix();
+		gGL.pushUIMatrix();
 		{
 			if (mIgnoreUIScale)
 			{
-				glLoadIdentity();
+				gGL.loadUIIdentity();
 				// font system stores true screen origin, need to scale this by UI scale factor
 				// to get render origin for this view (with unit scale)
-				gGL.translatef(floorf(LLFontGL::sCurOrigin.mX * LLUI::sGLScaleFactor.mV[VX]), 
+				gGL.translateUI(floorf(LLFontGL::sCurOrigin.mX * LLUI::sGLScaleFactor.mV[VX]), 
 							floorf(LLFontGL::sCurOrigin.mY * LLUI::sGLScaleFactor.mV[VY]), 
 							LLFontGL::sCurOrigin.mZ);
 			}
@@ -825,7 +830,7 @@ void LLMediaCtrl::draw()
 			gGL.end();
 			gGL.setSceneBlendType(LLRender::BT_ALPHA);
 		}
-		gGL.popMatrix();
+		gGL.popUIMatrix();
 	
 	}
 	else
@@ -946,7 +951,6 @@ void LLMediaCtrl::handleMediaEvent(LLPluginClassMedia* self, EMediaEvent event)
 		case MEDIA_EVENT_CLICK_LINK_NOFOLLOW:
 		{
 			LL_DEBUGS("Media") <<  "Media event:  MEDIA_EVENT_CLICK_LINK_NOFOLLOW, uri is " << self->getClickURL() << LL_ENDL;
-			onClickLinkNoFollow(self);
 		};
 		break;
 
@@ -1060,15 +1064,6 @@ void LLMediaCtrl::clickLinkWithTarget(const std::string& url, const S32& target_
 		// unsupported link target - shouldn't happen
 		LL_WARNS("LinkTarget") << "Unsupported link target type" << LL_ENDL;
 	}
-}
-
-////////////////////////////////////////////////////////////////////////////////
-// 
-void LLMediaCtrl::onClickLinkNoFollow( LLPluginClassMedia* self )
-{
-	// let the dispatcher handle blocking/throttling of SLURLs
-	std::string url = self->getClickURL();
-	LLURLDispatcher::dispatch(url, this, mTrusted);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <floater label="(nieznany)" name="im_floater" title="(NIEZNANY)">
 	<string name="ringing">
 		Łączenie Rozmowy...
@@ -26,12 +26,11 @@
 	</string>
 	<layout_stack name="panels">
 		<layout_panel name="im_contents_panel">
-			<button label="Dzwoń" name="start_call_btn" />
-			<button label="Skończ" name="end_call_btn" halign="right" />
-			<button label="&lt; &lt;" label_selected="&gt; &gt;" name="toggle_active_speakers_btn"
-			     tool_tip="Kliknij tutaj by zobaczyć listę osób biorących udział w czacie (IM)." />
-			<line_editor label="Kliknij tutaj by wyslać wiadomość (IM)" name="chat_editor" />
-			<button label="Wyślij" name="send_btn" />
+			<button label="Dzwoń" name="start_call_btn"/>
+			<button halign="right" label="Skończ" name="end_call_btn"/>
+			<button label="&lt; &lt;" label_selected="&gt; &gt;" name="toggle_active_speakers_btn" tool_tip="Kliknij tutaj by zobaczyć listę aktywnych rozmówców tej konferencji"/>
+			<line_editor label="Kliknij tutaj by wyslać wiadomość (IM)" name="chat_editor"/>
+			<button label="Wyślij" name="send_btn"/>
 		</layout_panel>
 	</layout_stack>
 	<string name="live_help_dialog">

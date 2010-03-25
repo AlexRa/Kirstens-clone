@@ -40,10 +40,11 @@
 #include "lltoastnotifypanel.h"
 #include "llviewercontrol.h"
 #include "llviewerwindow.h"
+#include "llnotificationmanager.h"
 
 using namespace LLNotificationsUI;
 
-class LLOnalineStatusToast : public LLToastPanel
+class LLOnlineStatusToast : public LLToastPanel
 {
 public:
 
@@ -56,9 +57,9 @@ public:
 		Params() {}
 	};
 
-	LLOnalineStatusToast(Params& p) : LLToastPanel(p.notification)
+	LLOnlineStatusToast(Params& p) : LLToastPanel(p.notification)
 	{
-		LLUICtrlFactory::getInstance()->buildPanel(this, "panel_online_status.xml");
+		LLUICtrlFactory::getInstance()->buildPanel(this, "panel_online_status_toast.xml");
 
 		childSetValue("avatar_icon", p.avatar_id);
 		childSetValue("message", p.message);
@@ -82,6 +83,10 @@ LLTipHandler::LLTipHandler(e_notification_type type, const LLSD& id)
 
 	// Getting a Channel for our notifications
 	mChannel = LLChannelManager::getInstance()->createNotificationChannel();
+
+	LLScreenChannel* channel = dynamic_cast<LLScreenChannel*>(mChannel);
+	if(channel)
+		channel->setOnRejectToastCallback(boost::bind(&LLTipHandler::onRejectToast, this, _1));
 }
 
 //--------------------------------------------------------------------------
@@ -148,11 +153,11 @@ bool LLTipHandler::processNotification(const LLSD& notify)
 		LLToastPanel* notify_box = NULL;
 		if("FriendOffline" == notification->getName() || "FriendOnline" == notification->getName())
 		{
-			LLOnalineStatusToast::Params p;
+			LLOnlineStatusToast::Params p;
 			p.notification = notification;
 			p.message = notification->getMessage();
 			p.avatar_id = notification->getPayload()["FROM_ID"];
-			notify_box = new LLOnalineStatusToast(p);
+			notify_box = new LLOnlineStatusToast(p);
 		}
 		else
 		{
@@ -167,6 +172,8 @@ bool LLTipHandler::processNotification(const LLSD& notify)
 		p.is_tip = true;
 		p.can_be_stored = false;
 		
+		removeExclusiveNotifications(notification);
+
 		LLScreenChannel* channel = dynamic_cast<LLScreenChannel*>(mChannel);
 		if(channel)
 			channel->addToast(p);
@@ -185,4 +192,14 @@ void LLTipHandler::onDeleteToast(LLToast* toast)
 
 //--------------------------------------------------------------------------
 
+void LLTipHandler::onRejectToast(const LLUUID& id)
+{
+	LLNotificationPtr notification = LLNotifications::instance().find(id);
 
+	if (notification
+			&& LLNotificationManager::getInstance()->getHandlerForNotification(
+					notification->getType()) == this)
+	{
+		LLNotifications::instance().cancel(notification);
+	}
+}

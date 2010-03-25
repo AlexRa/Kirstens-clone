@@ -75,6 +75,17 @@ namespace
 		return minimal_width;
 	}
 
+	S32 get_panel_max_width(LLLayoutStack* stack, LLPanel* panel)
+	{
+		S32 max_width = 0;
+		llassert(stack);
+		if ( stack && panel && panel->getVisible() )
+		{
+			stack->getPanelMaxSize(panel->getName(), &max_width, NULL);
+		}
+		return max_width;
+	}
+
 	S32 get_curr_width(LLUICtrl* ctrl)
 	{
 		S32 cur_width = 0;
@@ -702,7 +713,7 @@ S32 LLBottomTray::processWidthDecreased(S32 delta_width)
 	}
 
 	const S32 chatbar_panel_width = mNearbyChatBar->getRect().getWidth();
-	const S32 chatbar_panel_min_width = mNearbyChatBar->getMinWidth();
+	const S32 chatbar_panel_min_width = get_panel_min_width(mToolbarStack, mNearbyChatBar);
 	if (still_should_be_processed && chatbar_panel_width > chatbar_panel_min_width)
 	{
 		// we have some space to decrease chatbar panel
@@ -788,11 +799,11 @@ void LLBottomTray::processWidthIncreased(S32 delta_width)
 	if (delta_width <= 0) return;
 
 	const S32 chiclet_panel_width = mChicletPanel->getParent()->getRect().getWidth();
-	const S32 chiclet_panel_min_width = mChicletPanel->getMinWidth();
+	static const S32 chiclet_panel_min_width = mChicletPanel->getMinWidth();
 
 	const S32 chatbar_panel_width = mNearbyChatBar->getRect().getWidth();
-	const S32 chatbar_panel_min_width = mNearbyChatBar->getMinWidth();
-	const S32 chatbar_panel_max_width = mNearbyChatBar->getMaxWidth();
+	static const S32 chatbar_panel_min_width = get_panel_min_width(mToolbarStack, mNearbyChatBar);
+	static const S32 chatbar_panel_max_width = get_panel_max_width(mToolbarStack, mNearbyChatBar);
 
 	const S32 chatbar_available_shrink_width = chatbar_panel_width - chatbar_panel_min_width;
 	const S32 available_width_chiclet = chiclet_panel_width - chiclet_panel_min_width;
@@ -984,13 +995,12 @@ void LLBottomTray::processShrinkButtons(S32* required_width, S32* buttons_freed_
 		}
 		else
 		{
-			//
-			mSpeakBtn->setLabelVisible(false);
 			S32 panel_width = mSpeakPanel->getRect().getWidth();
 			S32 possible_shrink_width = panel_width - panel_min_width;
 
 			if (possible_shrink_width > 0)
 			{
+				mSpeakBtn->setLabelVisible(false);
 				mSpeakPanel->reshape(panel_width - possible_shrink_width, mSpeakPanel->getRect().getHeight());
 
 				*required_width += possible_shrink_width;
@@ -1275,7 +1285,7 @@ bool LLBottomTray::setVisibleAndFitWidths(EResizeState object_type, bool visible
 		{
 			// Calculate the possible shrunk width as difference between current and minimal widths
 			const S32 chatbar_shrunk_width =
-				mNearbyChatBar->getRect().getWidth() - mNearbyChatBar->getMinWidth();
+				mNearbyChatBar->getRect().getWidth() - get_panel_min_width(mToolbarStack, mNearbyChatBar);
 
 			const S32 sum_of_min_widths =
 				get_panel_min_width(mToolbarStack, mStateProcessedObjectMap[RS_BUTTON_CAMERA])   +
@@ -1305,8 +1315,8 @@ bool LLBottomTray::setVisibleAndFitWidths(EResizeState object_type, bool visible
 			if ( (available_width + possible_shrunk_width) >= minimal_width)
 			{
 				// There is enough space for minimal width, but set the result_width
-				// to current_width so buttons widths decreasing will be done in predefined order
-				result_width = current_width;
+				// to preferred_width so buttons widths decreasing will be done in predefined order
+				result_width = (preferred_width > 0) ? preferred_width : current_width;
 				decrease_width = true;
 			}
 			else

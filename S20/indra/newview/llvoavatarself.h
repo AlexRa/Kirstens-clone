@@ -222,6 +222,7 @@ protected:
 	//--------------------------------------------------------------------
 public:
 	void 				requestLayerSetUploads();
+	void				requestLayerSetUpload(LLVOAvatarDefines::EBakedTextureIndex i);
 	void				requestLayerSetUpdate(LLVOAvatarDefines::ETextureIndex i);
 	LLTexLayerSet*		getLayerSet(LLVOAvatarDefines::ETextureIndex index) const;
 	
@@ -231,7 +232,9 @@ public:
 public:
 	/* virtual */ void	invalidateComposite(LLTexLayerSet* layerset, BOOL upload_result);
 	/* virtual */ void	invalidateAll();
-	/* virtual */ void	setCompositeUpdatesEnabled(BOOL b); // only works for self
+	/* virtual */ void	setCompositeUpdatesEnabled(bool b); // only works for self
+	/* virtual */ void  setCompositeUpdatesEnabled(U32 index, bool b);
+	/* virtual */ bool 	isCompositeUpdateEnabled(U32 index);
 	void				setupComposites();
 	void				updateComposites();
 

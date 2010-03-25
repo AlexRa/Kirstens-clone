@@ -47,6 +47,7 @@
          min_height="23"
          width="480"
          top="4"
+         max_width="490"
          min_width="216"
          name="chat_bar"
          user_resize="false"
@@ -208,7 +209,7 @@
                  parameter="camera" />
             </button>
         </layout_panel>
-         <icon
+        <icon
          auto_resize="false"
          color="0 0 0 0"
          follows="left|right"
@@ -220,7 +221,7 @@
          name="after_cam_panel"
          top="0"
          width="3"/>
-	 <layout_panel
+        <layout_panel
          mouse_opaque="false"
          auto_resize="false"
          follows="left|right"

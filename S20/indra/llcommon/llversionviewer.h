@@ -36,7 +36,7 @@
 const S32 LL_VERSION_MAJOR = 2;
 const S32 LL_VERSION_MINOR = 0;
 const S32 LL_VERSION_PATCH = 0;
-const S32 LL_VERSION_BUILD = 7; // New branch new build numbers
+const S32 LL_VERSION_BUILD = 8; // New branch new build numbers
 
 const char * const LL_CHANNEL = "Kirstens S20";  // S19 for 1.23 based viewer S20 for new viewer 2.0 branch
 

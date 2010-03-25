@@ -20,8 +20,8 @@
 	<button label="プロフィール" name="classified_profile_btn"/>
 	<combo_box name="classified_mature_check" width="160">
 		<combo_box.item label="- 1つ選択 -" name="select_mature"/>
-		<combo_box.item label="控えめコンテンツ" name="mature"/>
-		<combo_box.item label="一般コンテンツ" name="pg"/>
+		<combo_box.item label="「Moderate」コンテンツ" name="mature"/>
+		<combo_box.item label="「General」コンテンツ" name="pg"/>
 	</combo_box>
 	<combo_box label="" name="classified_category_combo"/>
 	<button label="更新" name="classified_update_btn"/>

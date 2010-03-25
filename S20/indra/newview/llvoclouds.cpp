@@ -80,6 +80,9 @@ BOOL LLVOClouds::isActive() const
 
 BOOL LLVOClouds::idleUpdate(LLAgent &agent, LLWorld &world, const F64 &time)
 {
+	static LLFastTimer::DeclareTimer ftm("Idle Clouds");
+	LLFastTimer t(ftm);
+
 	if (!(gPipeline.hasRenderType(LLPipeline::RENDER_TYPE_CLOUDS)))
 	{
 		return TRUE;

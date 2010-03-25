@@ -1,7 +1,7 @@
 /* Localized versions of Info.plist keys */
 
-CFBundleName = "Snowglobe";
+CFBundleName = "Kirstens S20";
 
-CFBundleShortVersionString = "Snowglobe version 2.0.0.0";
-CFBundleGetInfoString = "Snowglobe version 2.0.0.0, Copyright 2004-2010 Linden Research, Inc.";
+CFBundleShortVersionString = "Kirstens S20 version 2.0.0.8";
+CFBundleGetInfoString = "SL version 2.0.0.202918, Copyright 2004-2010 Linden Research, Inc.";
 

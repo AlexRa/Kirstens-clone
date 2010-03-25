@@ -13,13 +13,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -29,6 +29,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 
 #ifndef LL_LLLAYOUTSTACK_H
@@ -74,7 +75,7 @@ public:
 		ANIMATE
 	} EAnimate;
 
-	void addPanel(LLPanel* panel, S32 min_width, S32 min_height, BOOL auto_resize, BOOL user_resize, EAnimate animate = NO_ANIMATE, S32 index = S32_MAX);
+	void addPanel(LLPanel* panel, S32 min_width, S32 min_height, S32 max_width, S32 max_height, BOOL auto_resize, BOOL user_resize, EAnimate animate = NO_ANIMATE, S32 index = S32_MAX);
 	void removePanel(LLPanel* panel);
 	void collapsePanel(LLPanel* panel, BOOL collapsed = TRUE);
 	S32 getNumPanels() { return mPanels.size(); }
@@ -89,6 +90,14 @@ public:
 	 * @returns true if specified by panel_name internal panel exists, false otherwise.
 	 */
 	bool getPanelMinSize(const std::string& panel_name, S32* min_widthp, S32* min_heightp);
+
+	/**
+	 * Gets maximal width and/or height of the specified by name panel.
+	 *
+	 * If it is necessary to get only the one dimension pass NULL for another one.
+	 * @returns true if specified by panel_name internal panel exists, false otherwise.
+	 */
+	bool getPanelMaxSize(const std::string& panel_name, S32* max_width, S32* max_height);
 	
 	void updateLayout(BOOL force_resize = FALSE);
 	

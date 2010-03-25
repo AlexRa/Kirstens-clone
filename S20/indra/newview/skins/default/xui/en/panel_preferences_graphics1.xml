@@ -1467,6 +1467,16 @@
 	top_pad="10"
 	width="256" />
 	<check_box
+	control_name="RenderUseTriStrips"
+	height="16"
+	initial_value="true"
+	label="Render Prims using Triangle Strip"
+	layout="topleft"
+	left_delta="-3"
+	name="TriangleStrip"
+	top_pad="10"
+	width="256" />
+	<check_box
 	control_name="NoPreload"
 	height="16"
 	initial_value="true"
