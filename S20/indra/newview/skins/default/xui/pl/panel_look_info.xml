@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<panel label="Info Wyglądu" name="look_info">
+	<panel.string name="not_available">
+		(N\A)
+	</panel.string>
+	<panel.string name="unknown">
+		(nieznane)
+	</panel.string>
+	<panel label="Ubranie" name="look_management_panel">
+		<accordion name="look_management_accordion">
+			<accordion_tab name="look_group" title="Ubranie Grupowe">
+				<panel name="look_info_group_bar">
+					<text name="curr_look_name">
+						Wygląd: [LOOK]
+					</text>
+					<button label="Ubierz" name="wear_look_btn"/>
+					<scroll_list name="look_items_list">
+						<scroll_list.columns label="Część Ubrania" name="look_item"/>
+						<scroll_list.columns label="Porządkuj Części Ubrania" name="look_item_sort"/>
+					</scroll_list>
+					<button label="-" name="remove_from_look_btn"/>
+				</panel>
+			</accordion_tab>
+			<accordion_tab name="inventory_group" title="Moja Szafa">
+				<panel name="lower_look_accordion">
+					<panel name="inventory_bar">
+						<text name="inventory_info_text">
+							Moja Szafa
+						</text>
+						<combo_box name="inventory_filter" tool_tip="Pokaż tylko wybrane elementy w szafie"/>
+					</panel>
+					<panel name="look_item_filter_bar">
+						<filter_editor label="Filtruj Części Ubrania" name="look_item_filter"/>
+					</panel>
+				</panel>
+			</accordion_tab>
+		</accordion>
+	</panel>
+	<panel name="button_bar">
+		<button label="Dodaj" name="add_item_btn"/>
+		<button label="Usuń" name="remove_item_btn"/>
+		<button label="DO GÓRY" name="up_btn"/>
+		<button label="W DÓŁ" name="down_btn"/>
+	</panel>
+</panel>
