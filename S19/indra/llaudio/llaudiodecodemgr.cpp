@@ -227,7 +227,7 @@ BOOL LLVorbisDecodeState::initDecode()
 
 	// X makes problem , People get pissed because they crash , Y adds fix to emerald
 	// People Love Emerald.... Btw X & Y are either the same person or best buddies
-	// Perhaps I should create more client crashes to fix so I look good also.... hey ho
+
 	if(size_guess >= 157286400)
 	{
 		llwarns << "Lameness happens here...Somebody wants to screw up audio apparently" << llendl;
