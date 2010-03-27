@@ -31,10 +31,6 @@
         Call ended
     </floater.string>
     <floater.string
-     name="inventory_item_offered">
-        Inventory item offered
-    </floater.string>
-    <floater.string
      name="voice_icon">
         icn_voice-pvtfocus.tga
     </floater.string>

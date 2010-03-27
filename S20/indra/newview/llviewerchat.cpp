@@ -56,7 +56,7 @@ void LLViewerChat::getChatColor(const LLChat& chat, LLColor4& r_color)
 				r_color = LLUIColorTable::instance().getColor("SystemChatColor"); 
 				break;
 			case CHAT_SOURCE_AGENT:
-				if (chat.mFromID.isNull())
+				if (chat.mFromID.isNull() || SYSTEM_FROM == chat.mFromName)
 				{
 					r_color = LLUIColorTable::instance().getColor("SystemChatColor");
 				}

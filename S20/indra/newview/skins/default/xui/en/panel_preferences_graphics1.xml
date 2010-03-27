@@ -776,52 +776,52 @@
 	</text>
 	
 	<slider  
-      control_name="RenderGlowIterations"
-	    decimal_digits="1"
-       enabled="true"
-       follows="left|top"
+      	control_name="RenderGlowIterations"
+	decimal_digits="1"
+       	enabled="true"
+       	follows="left|top"
         height="16"
-	     increment="1" 
-      initial_val="1" 
-      label="Strength:"
-	     label_width="100" left="200" max_val="5" min_val="0" mouse_opaque="true"
-	     name="Strength" show_text="true" width="200" />
+	increment="1" 
+      	initial_val="1" 
+      	label="Strength:"
+	label_width="100" left="200" max_val="5" min_val="0" mouse_opaque="true"
+	name="Strength" show_text="true" width="200" />
 	<slider  
-     control_name="RenderGlowMinLuminance"
-	     decimal_digits="1" enabled="true" follows="left|top"
-     height="16"
-	     increment="0.1" 
-     initial_val="3" 
-     label="Min. Luminance:"
-	     label_width="100" left="200" max_val="3" min_val="0" mouse_opaque="true"
-	     name="MinLuminance" show_text="true" width="204" />
+     	control_name="RenderGlowMinLuminance"
+	decimal_digits="1" enabled="true" follows="left|top"
+     	height="16"
+	increment="0.1" 
+     	initial_val="3" 
+     	label="Min. Luminance:"
+	label_width="100" left="200" max_val="3" min_val="0" mouse_opaque="true"
+	name="MinLuminance" show_text="true" width="204" />
 	<slider  
-     control_name="RenderGlowWarmthAmount"
-	     decimal_digits="1" enabled="true" follows="left|top"
-     height="16"
-	     increment="0.1" 
-     initial_val="3" 
-     label="Glow Warmth:"
-	     label_width="100" left="200" max_val="20" min_val="0" mouse_opaque="true"
-	     name="Warmth" show_text="true" width="210" />
+     	control_name="RenderGlowWarmthAmount"
+	decimal_digits="1" enabled="true" follows="left|top"
+     	height="16"
+	increment="0.1" 
+     	initial_val="3" 
+     	label="Glow Warmth:"
+	label_width="100" left="200" max_val="20" min_val="0" mouse_opaque="true"
+	name="Warmth" show_text="true" width="210" />
 	<slider  
-     control_name="RenderGlowWidth"
-	     decimal_digits="1" enabled="true" follows="left|top"
-     height="16"
-	     increment="0.1" 
-     initial_val="3" 
-     label="Glow Width:"
-	     label_width="100" left="200" max_val="4" min_val="0" mouse_opaque="true"
-	     name="Width" show_text="true" width="203" />
+     	control_name="RenderGlowWidth"
+	decimal_digits="1" enabled="true" follows="left|top"
+     	height="16"
+	increment="0.1" 
+     	initial_val="3" 
+     	label="Glow Width:"
+	label_width="100" left="200" max_val="4" min_val="0" mouse_opaque="true"
+	name="Width" show_text="true" width="203" />
 	<slider  
-     control_name="RenderGlowMaxExtractAlpha"
-	     decimal_digits="3" enabled="true" follows="left|top" 
-     height="16"
-	     increment="0.001" 
-     initial_val="0.065" 
-     label="Glow MaxAlpha:"
-	     label_width="100" left="200" max_val="0.1" min_val="0" mouse_opaque="true"
-	     name="MaxAlpha" show_text="true" width="210" />
+     	control_name="RenderGlowMaxExtractAlpha"
+	decimal_digits="3" enabled="true" follows="left|top" 
+     	height="16"
+	increment="0.001" 
+     	initial_val="0.065" 
+     	label="Glow MaxAlpha:"
+	label_width="100" left="200" max_val="0.1" min_val="0" mouse_opaque="true"
+	name="MaxAlpha" show_text="true" width="210" />
 	<text
         type="string"
         length="1"
@@ -830,7 +830,7 @@
         layout="topleft"
         left="25"
         name="LightingDetailText"
-        top="17"
+        top="25"
         width="128">
            Lighting detail:
         </text>
@@ -868,7 +868,7 @@
 	initial_value="true"
 	label="Deferred Fullscreen Lights"
 	layout="topleft"
-	left_delta="-3"
+	left_delta="-6"
 	name="DeferredFullscreenlights"
 	top_pad="1"
 	width="256" />
@@ -878,7 +878,7 @@
 	initial_value="true"
 	label="Render Glow Effects"
 	layout="topleft"
-	left_delta="-3"
+	left_delta="0"
 	name="RenderGlow"
 	top_pad="10"
 	width="200" />
@@ -889,7 +889,7 @@
         layout="topleft"
         left_delta="0"
         name="HoverGlow"
-        top_pad="70"
+        top_pad="84"
         width="321">
            <radio_item
             height="16"
@@ -1433,6 +1433,16 @@
 	name="NearMeRange"
 	top_pad="5"
 	width="300" />
+	<!--check_box
+	control_name="" enabled="false"
+	height="16"
+	initial_value="true"
+	label="Animate Rezzing Prims"
+	layout="topleft"
+	left="300"
+	name="RezPrims"
+	top="5"
+	width="256" /-->
 	
 	</panel>
 
@@ -1472,7 +1482,7 @@
 	initial_value="true"
 	label="Render Prims using Triangle Strip"
 	layout="topleft"
-	left_delta="-3"
+	left_delta="0"
 	name="TriangleStrip"
 	top_pad="10"
 	width="256" />

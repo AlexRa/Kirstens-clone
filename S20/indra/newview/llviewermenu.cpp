@@ -2994,7 +2994,7 @@ bool callback_eject(const LLSD& notification, const LLSD& response)
 	else if (ban_enabled)
 	{
 		// This is tricky. It is similar to say if it is not an 'Eject' button,
-		// and it is also not an 'Cancle' button, and ban_enabled==ture, 
+		// and it is also not an 'Cancel' button, and ban_enabled==true, 
 		// it should be the 'Eject and Ban' button.
 		LLMessageSystem* msg = gMessageSystem;
 		LLViewerObject* avatar = gObjectList.findObject(avatar_id);

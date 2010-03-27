@@ -386,4 +386,42 @@
       top_pad="5"
       width="150" />
     </radio_group>
+    <check_box
+     control_name="ShowScriptErrors"
+     follows="left|top"
+     height="20"
+     label="Show script errors in:"
+     layout="topleft"
+     left="250"
+     top="313"
+     name="show_script_errors"
+     width="256" />
+    <radio_group
+     enabled_control="ShowScriptErrors"
+     control_name="ShowScriptErrorsLocation"
+     follows="top|left"
+     draw_border="false"
+     height="16"
+     layout="topleft"
+     left_delta="15"
+     name="show_location"
+     top_pad="5"
+     width="364">
+        <radio_item
+         height="16"
+         label="Nearby chat"
+         layout="topleft"
+         left="3"
+         name="0"
+         top="0"
+         width="315" />
+        <radio_item
+         height="16"
+         label="Separate window"
+         layout="topleft"
+         top_pad="5"
+         name="1"
+         top_delta="0"
+         width="315" />
+    </radio_group>
 </panel>

@@ -1584,6 +1584,7 @@ void LLViewerWindow::initBase()
 #endif
 
 	gDebugView = getRootView()->getChild<LLDebugView>("DebugView");
+   
 	gDebugView->init();
 	gToolTipView = getRootView()->getChild<LLToolTipView>("tooltip view");
 

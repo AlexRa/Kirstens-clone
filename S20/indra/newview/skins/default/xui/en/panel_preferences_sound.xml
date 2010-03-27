@@ -329,7 +329,7 @@
 	   left="80"
 	   top_delta="16"
      name="Listen from"
-     width="142">
+     width="100">
         Listen from:
     </text>
 	<icon
@@ -352,22 +352,24 @@
 		mouse_opaque="false"
 		visible="true"
 		width="18"
-		top_delta="20" />
+		left_pad="140"
+		top_delta="0" />
    <radio_group
      enabled_control="EnableVoiceChat"
      control_name="VoiceEarLocation"
      draw_border="false"
      follows="left|top"
      layout="topleft"
-     left_pad="2"
+     left="0"
      width="221"
-     height="38"
+     height="17"
      name="ear_location">
     <radio_item
      height="16"
      label="Camera position"
      follows="left|top"
      layout="topleft"
+     left_pad="-20"
      name="0"
      width="200"/>
     <radio_item
@@ -375,6 +377,7 @@
      follows="left|top"
      label="Avatar position"
      layout="topleft"
+     left_pad="-45"
      name="1"
      width="200" />
    </radio_group>
@@ -385,8 +388,8 @@
    is_toggle="true"
    label="Input/Output devices"
    layout="topleft"
-   left="80"
-   top_pad="5"
+   left="10"
+   top_pad="-5"
    name="device_settings_btn"
    width="190">
   </button>
@@ -411,10 +414,10 @@
       <icon
              height="18"
              image_name="Microphone_On"
-             left="80"
+             left="10"
              name="microphone_icon"
              mouse_opaque="false"
-             top="7"
+             top="3"
              visible="true"
              width="18" />
     <text
@@ -433,7 +436,7 @@
      height="23"
      control_name="VoiceInputAudioDevice"
      layout="topleft"
-     left="165"
+     left="10"
      max_chars="128"
      name="voice_input_device"
      top_pad="-2"
@@ -444,7 +447,7 @@
      follows="left|top"
      height="16"
      layout="topleft"
-     left="165"
+     left="10"
      name="My volume label"
      top_pad="5"
      width="200">
@@ -457,12 +460,12 @@
      increment="0.05"
      initial_value="1.0"
      layout="topleft"
-     left="160"
+     left="10"
      max_val="2"
      name="mic_volume_slider"
      tool_tip="Change the volume using this slider"
      top_pad="-2"
-     width="220" />
+     width="130" />
     <text
      type="string"
      text_color="EmphasisColor"
@@ -477,47 +480,47 @@
         Please wait
     </text>
     <locate
-     height="20"
+     height="10"
      layout="topleft"
      left_delta="0"
      name="bar0"
-     top_delta="0"
-     width="20" />
+     top_delta="4"
+     width="8" />
     <locate
-     height="20"
+     height="12"
      layout="topleft"
      left_pad="5"
      name="bar1"
-     top_delta="0"
-     width="20" />
+     top_delta="-2"
+     width="8" />
     <locate
-     height="20"
+     height="14"
      layout="topleft"
      left_pad="5"
      name="bar2"
-     top_delta="0"
-     width="20" />
+     top_delta="-2"
+     width="8" />
     <locate
-     height="20"
+     height="16"
      layout="topleft"
      left_pad="5"
      name="bar3"
-     top_delta="0"
-     width="20" />
+     top_delta="-2"
+     width="8" />
     <locate
-     height="20"
+     height="18"
      layout="topleft"
      left_pad="5"
      name="bar4"
-     top_delta="0"
-     width="20" />
+     top_delta="-2"
+     width="8" />
           <icon
              height="18"
              image_name="Parcel_Voice_Light"
-             left="80"
+             left="10"
              name="speaker_icon"
              mouse_opaque="false"
-             top_pad="-8"
+             top_pad="0"
              visible="true"
              width="22" />
     <text
@@ -536,10 +539,60 @@
      control_name="VoiceOutputAudioDevice"
      height="23"
      layout="topleft"
-     left="165"
+     left="10"
      max_chars="128"
      name="voice_output_device"
-     top_pad="-2"
+     top_pad="0"
      width="200" />
+
+    <check_box
+     follows="top|left"
+     enabled_control="EnableVoiceChat"
+     control_name="PushToTalkToggle"
+     height="15"
+     label="Toggle speak on/off when I press:"
+     layout="topleft"
+     left="250"
+     top="10"
+     name="push_to_talk_toggle_check"
+     width="237"
+     tool_tip="When in toggle mode, press and release the trigger key ONCE to switch your microphone on or off. When not in toggle mode, the microphone broadcasts your voice only while the trigger is being held down."/>
+    <line_editor
+     follows="top|left"
+     control_name="PushToTalkButton"
+     enabled="false"
+     enabled_control="EnableVoiceChat"
+     height="23"
+     left="250"
+     max_length="200"
+     name="modifier_combo"
+     label="Push-to-Speak trigger"
+     top_pad="5"
+     width="200" />
+    <button
+     follows="top|left"
+     enabled_control="EnableVoiceChat"
+     height="23"
+     label="Set Key"
+     top_pad="5"
+     name="set_voice_hotkey_button"
+     width="100">
+          <button.commit_callback
+          function="Pref.VoiceSetKey" />
+    </button>
+    <button
+     enabled_control="EnableVoiceChat"
+     follows="top|left"
+     halign="center"
+     height="23"
+     image_overlay="Refresh_Off"
+     tool_tip="Reset to Middle Mouse Button"
+     mouse_opaque="true"
+     name="set_voice_middlemouse_button"
+     top_pad="5"
+     width="25">
+          <button.commit_callback
+          function="Pref.VoiceSetMiddleMouse" />
+    </button>
     </panel>
     </panel>

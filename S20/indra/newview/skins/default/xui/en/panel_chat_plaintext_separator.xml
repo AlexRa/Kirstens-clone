@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<panel
+ background_visible="false"
+ height="15"
+ width="0"
+ layout="topleft"
+ name="panel_chat_plaintext_separatorl" />
