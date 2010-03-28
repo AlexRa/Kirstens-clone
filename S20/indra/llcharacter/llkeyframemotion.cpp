@@ -1356,8 +1356,7 @@ BOOL LLKeyframeMotion::deserialize(LLDataPacker& dp)
 		else
 		{
 			llwarns << "joint not found! possible client exploit. watch for repeated animation UUID's" << llendl;
-			joint_name="";  // KL std::string should cope with exploit, no harm in clearing joint_name
-		//	return FALSE;   // Also not sending to the log as it causes alot of spam when its an exploit, should it return false?
+			return FALSE;   // Also not sending to the log as it causes alot of spam when its an exploit, should it return false?
 		}
 
 		joint_motion->mJointName = joint_name;

@@ -16,10 +16,10 @@
   <sidetray_tab
     name="sidebar_openclose"
     help_topic="sidebar_openclose"
-    tab_title="Toggle Sidebar"
+    tab_title="Toggle InfoPanel"
     description="Toggle Sidebar."
-    image="TabIcon_Open_Off"
-	image_selected="TabIcon_Close_Off"
+    image="TabIcon_Close_Off"
+	image_selected="TabIcon_Open_Off"
     mouse_opaque="false"
     background_visible="true"
   >

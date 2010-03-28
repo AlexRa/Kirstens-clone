@@ -74,13 +74,27 @@
                    mouse_opaque="false"
                 name="hud container"
                    width="500">
-              <panel follows="right|top|bottom"
-                     height="500"
+             
+              <!-- side tray -->
+              <panel        auto_resize="false"
+                            follows="right|top"
+                            height="650"
+                            right="499" 
+                            top="1" 
+                            min_width="333"
+                            mouse_opaque="false"
+                            tab_stop="false"
+                            name="side_tray_container"
+                            user_resize="false"
+                            visible="false"
+                            width="333"/>
+              <panel follows="left|top|bottom"
+                     height="600"
                      mouse_opaque="false"
                      name="side_bar_tabs"
-                     right="500"
+                     left="0"
                      tab_stop="false"
-                     top="0"
+                     top="150" 
                      width="32"/>
               <panel bottom="500"
                      follows="left|right|bottom"
@@ -92,25 +106,17 @@
                      visible="false"
                      width="500"/>
             </panel>
+            
             <layout_panel auto_resize="false"
                    follows="all"
                    min_height="33"
                    mouse_opaque="false"
                    name="bottom_tray_container"
                    visible="false"/>
+           
           </layout_stack>
         </layout_panel>
-        <!-- side tray -->
-        <layout_panel auto_resize="false"
-                      follows="all"
-                      height="500"
-                      min_width="333"
-                      mouse_opaque="false"
-                      tab_stop="false"
-                      name="side_tray_container"
-                      user_resize="false"
-                      visible="false"
-                      width="333"/>
+       
       </layout_stack>
       <panel follows="all"
                     height="500"

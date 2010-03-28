@@ -3,7 +3,7 @@
  background_opaque="true"
  background_visible="true"
  bg_opaque_color="MouseGray"
- chrome="true" 
+ chrome="true"
  follows="top|right"
  height="19"
  layout="topleft"
@@ -11,7 +11,7 @@
  mouse_opaque="false"
  name="status"
  top="19"
- tab_stop="false" 
+ tab_stop="false"
  width="1000">
     <panel.string
      name="StatBarDaysOfWeek">

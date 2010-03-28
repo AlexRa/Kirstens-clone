@@ -198,9 +198,15 @@ protected:
 
 inline BOOL LLDataPackerBinaryBuffer::verifyLength(const S32 data_size, const char *name)
 {
+	 
+	llassert(mBufferp != NULL);
+    llassert(mBufferSize > 0);
+    llassert(mCurBufferp >= mBufferp);
+    llassert(mCurBufferp < (mBufferp + mBufferSize));
+
 	if (mWriteEnabled && (mCurBufferp - mBufferp) > mBufferSize - data_size)
 	{
-		llwarns << "Buffer overflow in BinaryBuffer length verify, field name " << name << "!" << llendl;
+		llwarns << "Buffer overflow in BinaryBuffer length verify." << llendl; // KL
 		llwarns << "Current pos: " << (int)(mCurBufferp - mBufferp) << " Buffer size: " << mBufferSize << " Data size: " << data_size << llendl;
 		
 		return FALSE;

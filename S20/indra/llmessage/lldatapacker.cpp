@@ -12,13 +12,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -28,6 +28,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 
 #include "linden_common.h"
@@ -220,7 +221,7 @@ BOOL LLDataPackerBinaryBuffer::unpackString(std::string& value, const char *name
 
 	if (length > max_length)
 	{
-		llwarns << "Buffer overflow in BinaryBuffer unpackString, field name, possible client exploit KL " << name << "!" << llendl;
+		llwarns << "Buffer overflow in BinaryBuffer unpackString, field name, possible client exploit KL !" << llendl;
 		llwarns << "Null termination not found" << llendl;
 		llwarns << "Current pos in buffer: " << (int)(mCurBufferp - mBufferp) << " Buffer size: " << mBufferSize << llendl;
 		return false; // Boo!
@@ -252,22 +253,33 @@ BOOL LLDataPackerBinaryBuffer::packBinaryData(const U8 *value, S32 size, const c
 
 BOOL LLDataPackerBinaryBuffer::unpackBinaryData(U8 *value, S32 &size, const char *name)
 {
-	BOOL success = TRUE;
-	success &= verifyLength(4, name);
-	htonmemcpy(&size, mCurBufferp, MVT_S32, 4);
-	mCurBufferp += 4;
-	success &= verifyLength(size, name);
-	if (success)
+	
+	//success &= verifyLength(4, name);
+    if(!verifyLength(sizeof(4), name))
 	{
-		htonmemcpy(value, mCurBufferp, MVT_VARIABLE, size);
-		mCurBufferp += size;
+		     llwarns << "BAD data unpack U8 BinaryData Value KL" << llendl;
+             return false;
 	}
 	else
 	{
-		llwarns << "LLDataPackerBinaryBuffer::unpackBinaryData would unpack invalid data, aborting!" << llendl;
-		success = FALSE;
+	htonmemcpy(&size, mCurBufferp, MVT_S32, 4);
+	mCurBufferp += 4;
+	
 	}
-	return success;
+
+	//success &= verifyLength(size, name);
+    if(!verifyLength(sizeof(size), name))
+	{
+		llwarns << "BAD data unpack S32 BinaryData size KL" << llendl;
+        return false;
+	}
+	else
+	{
+		htonmemcpy(value, mCurBufferp, MVT_VARIABLE, size);
+		mCurBufferp += size;
+		return true;
+	}
+	
 }
 
 
