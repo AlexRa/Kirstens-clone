@@ -13,13 +13,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -29,6 +29,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 
 #include "llviewerprecompiledheaders.h"
@@ -491,6 +492,12 @@ bool toggle_show_inventory_button(const LLSD& newvalue)
 	return true;
 }
 
+bool toggle_show_sidebar_button(const LLSD& newvalue)
+{
+	LLBottomTray::getInstance()->showSidebarButton(newvalue.asBoolean());
+	return true;
+}
+
 bool toggle_show_snapshot_button(const LLSD& newvalue)
 {
 	LLBottomTray::getInstance()->showSnapshotButton(newvalue.asBoolean());
@@ -663,6 +670,7 @@ void settings_setup_listeners()
 	gSavedSettings.getControl("ShowMapButton")->getSignal()->connect(boost::bind(&toggle_show_map_button, _2));
 	gSavedSettings.getControl("ShowNetmapButton")->getSignal()->connect(boost::bind(&toggle_show_netmap_button, _2));
 	gSavedSettings.getControl("ShowInventoryButton")->getSignal()->connect(boost::bind(&toggle_show_inventory_button, _2));
+	gSavedSettings.getControl("ShowSidebarButton")->getSignal()->connect(boost::bind(&toggle_show_sidebar_button, _2));
 	gSavedSettings.getControl("ShowSnapshotButton")->getSignal()->connect(boost::bind(&toggle_show_snapshot_button, _2));
 	gSavedSettings.getControl("ShowNavbarNavigationPanel")->getSignal()->connect(boost::bind(&toggle_show_navigation_panel, _2));
 	gSavedSettings.getControl("ShowNavbarFavoritesPanel")->getSignal()->connect(boost::bind(&toggle_show_favorites_panel, _2));

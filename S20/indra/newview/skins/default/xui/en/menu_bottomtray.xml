@@ -63,6 +63,17 @@
     function="CheckControl"
     parameter="ShowNetmapButton" />
   </menu_item_check>
+   <menu_item_check
+         label="Sidebar Control button"
+         layout="topleft"
+         name="ShowSidebarButton">
+    <menu_item_check.on_click
+      function="ToggleControl"
+      parameter="ShowSidebarButton" />
+    <menu_item_check.on_check
+    function="CheckControl"
+    parameter="ShowSidebarButton" />
+  </menu_item_check>
     <menu_item_check
          label="View button"
          layout="topleft"

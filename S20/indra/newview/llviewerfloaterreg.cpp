@@ -54,6 +54,7 @@
 #include "llfloaterbulkpermission.h"
 #include "llfloaterbump.h"
 #include "llfloatercamera.h"
+#include "llfloatersidebarctrl.h" //KL
 #include "llfloaterdaycycle.h"
 #include "llfloaterevent.h"
 #include "llfloatersearch.h"
@@ -151,6 +152,7 @@ void LLViewerFloaterReg::registerFloaters()
 	LLFloaterReg::add("bumps", "floater_bumps.xml", (LLFloaterBuildFunc)&LLFloaterReg::build<LLFloaterBump>);
 
 	LLFloaterReg::add("camera", "floater_camera.xml", (LLFloaterBuildFunc)&LLFloaterReg::build<LLFloaterCamera>);
+	LLFloaterReg::add("sidebarctrl","floater_sidebarctrl.xml",(LLFloaterBuildFunc)&LLFloaterReg::build<LLFloaterSidebarctrl>); // KL
 	//LLFloaterReg::add("chat", "floater_chat_history.xml", (LLFloaterBuildFunc)&LLFloaterReg::build<LLFloaterChat>);
 	LLFloaterReg::add("nearby_chat", "floater_nearby_chat.xml", (LLFloaterBuildFunc)&LLFloaterReg::build<LLNearbyChat>);
 

@@ -12,13 +12,13 @@
 * ("GPL"), unless you have obtained a separate licensing agreement
 * ("Other License"), formally executed by you and Linden Lab.  Terms of
 * the GPL can be found in doc/GPL-license.txt in this distribution, or
-* online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+* online at http://secondlife.com/developers/opensource/gplv2
 * 
 * There are special exceptions to the terms and conditions of the GPL as
 * it is applied to this Source Code. View the full text of the exception
 * in the file doc/FLOSS-exception.txt in this software distribution, or
 * online at
-* http://secondlifegrid.net/programs/open_source/licensing/flossexception
+* http://secondlife.com/developers/opensource/flossexception
 * 
 * By copying, modifying or distributing this software, you acknowledge
 * that you have read and understood your obligations described above,
@@ -28,6 +28,7 @@
 * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
 * COMPLETENESS OR PERFORMANCE.
 * $/LicenseInfo$
+* 
 */
 
 #ifndef LL_LLBOTTOMPANEL_H
@@ -96,6 +97,7 @@ public:
 	void showMapButton(BOOL visible);
 	void showNetmapButton(BOOL visible);
 	void showInventoryButton(BOOL visible);
+	void showSidebarButton(BOOL visible);
 
 	void toggleMovementControls();
 	void toggleCameraControls();
@@ -122,12 +124,13 @@ private:
 		,RS_BUTTON_MAP			= 0x0080
 		,RS_BUTTON_NETMAP		= 0x0100
 		,RS_BUTTON_INVENTORY	= 0x0200
+		,RS_BUTTON_SIDEBAR		= 0x0400
 
 		/**
 		 * Specifies buttons which can be hidden when bottom tray is shrunk.
 		 * They are: Gestures, Movement (Move), Camera (View), Snapshot
 		 */
-		, RS_BUTTONS_CAN_BE_HIDDEN = RS_BUTTON_SNAPSHOT | RS_BUTTON_CAMERA | RS_BUTTON_MOVEMENT | RS_BUTTON_GESTURES | RS_BUTTON_MAP | RS_BUTTON_NETMAP | RS_BUTTON_INVENTORY
+		, RS_BUTTONS_CAN_BE_HIDDEN = RS_BUTTON_SNAPSHOT | RS_BUTTON_CAMERA | RS_BUTTON_MOVEMENT | RS_BUTTON_GESTURES | RS_BUTTON_MAP | RS_BUTTON_NETMAP | RS_BUTTON_INVENTORY | RS_BUTTON_SIDEBAR
 	}EResizeState;
 
 	S32 processWidthDecreased(S32 delta_width);
@@ -224,12 +227,14 @@ protected:
 	LLPanel*			mMapPanel;
 	LLPanel*			mNetmapPanel;
 	LLPanel*			mInventoryPanel;
+	LLPanel*			mSidebarControlPanel; // KL named so as not to be confused with the 'actual' Sidebarpanel itself!
 	LLPanel*			mSnapshotPanel;
 	LLPanel*			mGesturePanel;
 	LLButton*			mCamButton;
 	LLButton*			mMapButton;
 	LLButton*			mNetmapButton;
 	LLButton*			mInventoryButton;
+	LLButton*			mSidebarPanelButton;
 	LLButton*			mMovementButton;
 	LLBottomTrayLite*   mBottomTrayLite;
 	bool                mIsInLiteMode;

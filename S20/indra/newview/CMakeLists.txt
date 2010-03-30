@@ -199,6 +199,7 @@ set(viewer_SOURCE_FILES
     llfloatersearch.cpp
     llfloatersellland.cpp
     llfloatersettingsdebug.cpp
+    llfloatersidebarctrl.cpp
     llfloatersnapshot.cpp
     llfloatertelehub.cpp
     llfloatertestinspectors.cpp
@@ -701,6 +702,7 @@ set(viewer_HEADER_FILES
     llfloatersearch.h
     llfloatersellland.h
     llfloatersettingsdebug.h
+    llfloatersidebarctrl.h
     llfloatersnapshot.h
     llfloatertelehub.h
     llfloatertestinspectors.h

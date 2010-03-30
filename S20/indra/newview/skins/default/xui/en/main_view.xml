@@ -88,14 +88,14 @@
                             user_resize="false"
                             visible="false"
                             width="333"/>
-              <panel follows="left|top|bottom"
+              <!--panel follows="left|top|bottom"
                      height="600"
                      mouse_opaque="false"
                      name="side_bar_tabs"
                      left="0"
                      tab_stop="false"
                      top="150" 
-                     width="32"/>
+                     width="32"/-->
               <panel bottom="500"
                      follows="left|right|bottom"
                      height="25"

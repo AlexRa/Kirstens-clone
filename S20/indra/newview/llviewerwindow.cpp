@@ -12,13 +12,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -28,6 +28,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 
 #include "llviewerprecompiledheaders.h"
@@ -105,6 +106,7 @@
 #include "llfloaterbuildoptions.h"
 #include "llfloaterbuyland.h"
 #include "llfloatercamera.h"
+#include "llfloatersidebarctrl.h"
 #include "llfloatercustomize.h"
 #include "llfloaterland.h"
 #include "llfloaterinspect.h"
@@ -1584,7 +1586,6 @@ void LLViewerWindow::initBase()
 #endif
 
 	gDebugView = getRootView()->getChild<LLDebugView>("DebugView");
-   
 	gDebugView->init();
 	gToolTipView = getRootView()->getChild<LLToolTipView>("tooltip view");
 
@@ -1686,6 +1687,11 @@ void LLViewerWindow::initWorldUI()
 	if (!gSavedSettings.getBOOL("ShowInventoryButton"))
 	{
 		LLBottomTray::getInstance()->showInventoryButton(FALSE);
+	}
+	
+	if (!gSavedSettings.getBOOL("ShowSidebarButton"))
+	{
+		LLBottomTray::getInstance()->showSidebarButton(FALSE);
 	}
 
 	if (!gSavedSettings.getBOOL("ShowSnapshotButton"))
@@ -3135,7 +3141,6 @@ void LLViewerWindow::saveLastMouse(const LLCoordGL &point)
 // Must be called after displayObjects is called, which sets the mGLName parameter
 // NOTE: This function gets called 3 times:
 //  render_ui_3d: 			FALSE, FALSE, TRUE
-//  renderObjectsForSelect:	TRUE, pick_parcel_wall, FALSE
 //  render_hud_elements:	FALSE, FALSE, FALSE
 void LLViewerWindow::renderSelections( BOOL for_gl_pick, BOOL pick_parcel_walls, BOOL for_hud )
 {
