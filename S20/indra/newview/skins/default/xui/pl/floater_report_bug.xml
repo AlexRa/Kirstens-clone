@@ -30,7 +30,7 @@
 	</text>
 	<combo_box name="category_combo"
 	     tool_tip="Wybór kategorii - wybierz kategorię, której dotyczy raport">
-		<combo_box.item name="Selectcategory" label="Wybierz Kategorię" />
+		<combo_box.item name="Selectcategory" label="Wybierz kategorię" />
 		<combo_box.item name="Building" label="Budowanie" />
 		<combo_box.item name="Character" label="Awatar" />
 		<combo_box.item name="Chat/IM" label="Czat/IM" />
@@ -39,8 +39,8 @@
 		<combo_box.item name="Graphics" label="Grafika" />
 		<combo_box.item name="Inventory" label="Szafa" />
 		<combo_box.item name="Lag" label="Lag" />
-		<combo_box.item name="MissingContent" label="Brakujący Element" />
-		<combo_box.item name="LindenDollars(L$)" label="Linden Dollars (L$)" />
+		<combo_box.item name="MissingContent" label="Brakujący element" />
+		<combo_box.item name="LindenDollars(L$)" label="Linden Dolary (L$)" />
 		<combo_box.item name="Permissions" label="Prawa" />
 		<combo_box.item name="Physics" label="Fizyka" />
 		<combo_box.item name="Script" label="Skrypty" />

@@ -1,13 +1,22 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<panel name="GroupInfo" title="O Grupie">
-	<string name="default_needs_apply_text">
-		Niestety, zmiany nie zostały zastosowane.
-	</string>
-	<string name="want_apply_text">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<panel label="O Grupie" name="GroupInfo" title="O Grupie">
+	<panel.string name="default_needs_apply_text">
+		Zmiany nie zostały zastosowane.
+	</panel.string>
+	<panel.string name="want_apply_text">
 		Czy chcesz zastosować te zmiany?
-	</string>
-	<button label="Zastosuj" label_selected="Zastosuj" name="btn_apply" />
-	<button label="Anuluj" label_selected="Anuluj" name="btn_cancel" />
-	<button label="OK" label_selected="OK" name="btn_ok" />
-	<button label="Odśwież" label_selected="Odśwież" name="btn_refresh" />
+	</panel.string>
+	<line_editor label="Wpisz nazwę grupy tutaj" name="group_name_editor"/>
+	<texture_picker name="insignia" tool_tip="Kliknij aby wybrać teksturę"/>
+	<accordion name="groups_accordion">
+		<accordion_tab name="tab_general" title="Ogólne"/>
+		<accordion_tab name="tab_roles" title="Role"/>
+		<accordion_tab name="tab_notices" title="Ogłoszenia"/>
+		<accordion_tab name="tab_land" title="Land/Assets"/>
+	</accordion>
+	<button label="Anuluj" label_selected="Anuluj" name="btn_cancel"/>
+	<button label="Zapisz" label_selected="Zapisz" name="btn_ok"/>
+	<button label="Odśwież" label_selected="Odśwież" name="btn_refresh"/>
+	<button label="Dołącz (L$0)" label_selected="Dołącz (L$0)" name="join_button"/>
+	<button label="Szczegóły" label_selected="Szczegóły" name="info_button"/>
 </panel>

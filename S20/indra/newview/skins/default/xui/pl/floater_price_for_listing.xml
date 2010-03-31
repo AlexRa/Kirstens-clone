@@ -1,18 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<floater name="price_for_listing" title="UMIEŚĆ REKLAMĘ" min_width="360" width="380">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<floater min_width="360" name="price_for_listing" title="UMIEŚĆ REKLAMĘ" width="380">
 	<text name="explanation_text">
-		Twoja reklama będzie wyświetlać się przez jeden tydzień od
-daty publikacji. 
+		Twoja reklama będzie wyświetlać się przez jeden tydzień od daty publikacji.
 
-Pozycja Twojej reklamy w katalogu zdeterminowana jest kwotą
-jaką chcesz poświęcić za jej wyświetlanie się.
+Pozycja Twojej reklamy w katalogu zdeterminowana jest kwotą jaką chcesz poświęcić za jej wyświetlanie się.
 
 Im większa kwota tym reklama wyświetla się częściej i wyżej w katalogu.
 	</text>
-	<text name="price_text" width="140" bottom="42">
-		Opłata za reklamę: L$
+	<text bottom="42" name="price_text" width="140">
+		Opłata za reklamę:
 	</text>
-	<line_editor bottom_delta="2" left="148" name="price_edit" />
-	<button label="Anuluj" name="cancel_btn" left="265"/>
-	<button label="Ustaw opłatę" name="set_price_btn" />
+	<text name="price_symbol">
+		L$
+	</text>
+	<line_editor bottom_delta="2" left="148" name="price_edit"/>
+	<button label="OK" name="set_price_btn"/>
+	<button label="Anuluj" left="265" name="cancel_btn"/>
 </floater>

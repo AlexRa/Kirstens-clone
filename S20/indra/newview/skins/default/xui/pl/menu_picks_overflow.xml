@@ -2,5 +2,5 @@
 <toggleable_menu name="picks_overflow_menu">
 	<menu_item_call label="Info" name="info"/>
 	<menu_item_call label="Teleportuj" name="Teleport"/>
-	<menu_item_call label="Pokaż na Mapie" name="map"/>
+	<menu_item_call label="Pokaż na mapie" name="map"/>
 </toggleable_menu>

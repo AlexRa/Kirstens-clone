@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <floater label="(sconosciuto)" name="im_floater" title="(SCONOSCIUTO)">
 	<string name="ringing">
-		Connessione alla voice chat...
+		Collegamento alla chiamata vocale...
 	</string>
 	<string name="connected">
 		Connesso, clicca Fine Chiamata per riagganciare
 	</string>
 	<string name="hang_up">
-		Abbandona la Voice Chat
+		Chiusa la chiamata
 	</string>
 	<string name="voice_icon">
 		icn_voice-groupfocus.tga
@@ -34,9 +34,9 @@
 		</layout_panel>
 	</layout_stack>
 	<string name="live_help_dialog">
-		*** Benvenuto nelle Richieste di Aiuto *** 
-Per favore dai un&apos;occhiata prima alle nostre Pagine di Aiuto di SL premendo F1, o accedendo alle Nozioni di Base http://secondlife.com/knowledgebase/
-Se non trovi la risposta, inizia inserendo la tua domanda, quindi attendi alcuni istanti per consentire agli assistenti disponibili di rispondere.
--=-=- I tempi di risposta variano, specialmente nelle ore di punta -=-=-
+		*** Benvenuti alla richiesta di aiuto ***
+Consulta prima le pagine dell&apos;Aiuto di SL premendo F1, oppure accedi alla Base conoscenze http://secondlife.com/knowledgebase/
+Se non trovi una risposta, digita la tua domanda per iniziare, quindi attendi alcuni istanti affinché uno degli assistenti disponibili possa rispondere.
+-=-=- Il tempo di risposta puà variare, specialmente durante le ore di punta -=-=-
 	</string>
 </floater>

@@ -12,13 +12,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -28,6 +28,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 
 #include "llviewerprecompiledheaders.h"
@@ -383,22 +384,41 @@ std::string LLPanelLandmarkInfo::getFullFolderName(const LLViewerInventoryCatego
 	if (cat)
 	{
 		name = cat->getName();
-
-		// translate category name, if it's right below the root
-		// FIXME: it can throw notification about non existent string in strings.xml
-		if (cat->getParentUUID().notNull() && cat->getParentUUID() == gInventory.getRootFolderID())
-		{
-			LLTrans::findString(name, "InvFolder " + name);
-		}
+		parent_id = cat->getParentUUID();
+		bool is_under_root_category = parent_id == gInventory.getRootFolderID();
 
 		// we don't want "My Inventory" to appear in the name
-		while ((parent_id = cat->getParentUUID()).notNull() && parent_id != gInventory.getRootFolderID())
+		while ((parent_id = cat->getParentUUID()).notNull())
 		{
 			cat = gInventory.getCategory(parent_id);
 			llassert(cat);
 			if (cat)
 			{
-				name = cat->getName() + "/" + name;
+				if (is_under_root_category || cat->getParentUUID() == gInventory.getRootFolderID())
+				{
+					std::string localized_name;
+					if (is_under_root_category)
+					{
+						// translate category name, if it's right below the root
+						// FIXME: it can throw notification about non existent string in strings.xml
+						bool is_found = LLTrans::findString(localized_name, "InvFolder " + name);
+						name = is_found ? localized_name : name;
+					}
+					else
+					{
+						// FIXME: it can throw notification about non existent string in strings.xml
+						bool is_found = LLTrans::findString(localized_name, "InvFolder " + cat->getName());
+
+						// add translated category name to folder's full name
+						name = (is_found ? localized_name : cat->getName()) + "/" + name;
+					}
+
+					break;
+				}
+				else
+				{
+					name = cat->getName() + "/" + name;
+				}
 			}
 		}
 	}

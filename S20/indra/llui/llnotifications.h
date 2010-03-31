@@ -13,13 +13,13 @@
 * ("GPL"), unless you have obtained a separate licensing agreement
 * ("Other License"), formally executed by you and Linden Lab.  Terms of
 * the GPL can be found in doc/GPL-license.txt in this distribution, or
-* online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+* online at http://secondlife.com/developers/opensource/gplv2
 * 
 * There are special exceptions to the terms and conditions of the GPL as
 * it is applied to this Source Code. View the full text of the exception
 * in the file doc/FLOSS-exception.txt in this software distribution, or
 * online at
-* http://secondlifegrid.net/programs/open_source/licensing/flossexception
+* http://secondlife.com/developers/opensource/flossexception
 * 
 * By copying, modifying or distributing this software, you acknowledge
 * that you have read and understood your obligations described above,
@@ -29,6 +29,7 @@
 * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
 * COMPLETENESS OR PERFORMANCE.
 * $/LicenseInfo$
+* 
 */
 
 #ifndef LL_LLNOTIFICATIONS_H
@@ -296,6 +297,7 @@ public:
 		Optional<LLSD>							form_elements;
 		Optional<LLDate>						time_stamp;
 		Optional<LLNotificationContext*>		context;
+		Optional<void*>							responder;
 
 		struct Functor : public LLInitParam::Choice<Functor>
 		{
@@ -317,6 +319,7 @@ public:
 			form_elements("form_elements")
 		{
 			time_stamp = LLDate::now();
+			responder = NULL;
 		}
 
 		Params(const std::string& _name) 
@@ -329,6 +332,7 @@ public:
 			functor.name = _name;
 			name = _name;
 			time_stamp = LLDate::now();
+			responder = NULL;
 		}
 	};
 
@@ -341,9 +345,12 @@ private:
 	LLDate mExpiresAt;
 	bool mCancelled;
 	bool mRespondedTo; 	// once the notification has been responded to, this becomes true
+	LLSD mResponse;
 	bool mIgnored;
 	ENotificationPriority mPriority;
 	LLNotificationFormPtr mForm;
+	void* mResponderObj;
+	bool mIsReusable;
 	
 	// a reference to the template
 	LLNotificationTemplatePtr mTemplatep;
@@ -384,6 +391,8 @@ public:
 
 	void setResponseFunctor(std::string const &responseFunctorName);
 
+	void setResponseFunctor(const LLNotificationFunctorRegistry::ResponseFunctor& cb);
+
 	typedef enum e_response_template_type
 	{
 		WITHOUT_DEFAULT_BUTTON,
@@ -423,6 +432,10 @@ public:
 
 	void respond(const LLSD& sd);
 
+	void* getResponder() { return mResponderObj; }
+
+	void setResponder(void* responder) { mResponderObj = responder; }
+
 	void setIgnored(bool ignore);
 
 	bool isCancelled() const
@@ -434,6 +447,8 @@ public:
 	{
 		return mRespondedTo;
 	}
+
+	const LLSD& getResponse() { return mResponse; }
 
 	bool isIgnored() const
 	{
@@ -504,6 +519,10 @@ public:
 	{
 		return mId;
 	}
+
+	bool isReusable() { return mIsReusable; }
+
+	void setReusable(bool reusable) { mIsReusable = reusable; }
 	
 	// comparing two notifications normally means comparing them by UUID (so we can look them
 	// up quickly this way)

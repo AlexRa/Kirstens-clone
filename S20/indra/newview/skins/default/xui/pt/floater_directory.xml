@@ -29,9 +29,9 @@
 				<combo_box.item name="item5" label="Wiki"
 				/>
 			</combo_box>
-			<check_box label="Conteúdo PG" name="incpg"/>
-			<check_box label="Conteúdo Mature" name="incmature"/>
-			<check_box label="Conteúdo Adult" name="incadult"/>
+			<check_box label="Conteúdo público geral" name="incpg"/>
+			<check_box label="Conteúdo moderado" name="incmature"/>
+			<check_box label="Conteúdo adulto" name="incadult"/>
 			<button label="?" label_selected="?" name="?"/>
 			<string name="loading_text">
 				Carregando...
@@ -51,9 +51,9 @@
 				Encontrar:
 			</text>
 			<line_editor left="69" name="name" width="150"/>
-			<check_box label="Conteúdo PG" name="incpg"/>
-			<check_box label="Conteúdo Mature" name="incmature"/>
-			<check_box label="Conteúdo Adult" name="incadult"/>
+			<check_box label="Conteúdo público geral" name="incpg"/>
+			<check_box label="Conteúdo moderado" name="incmature"/>
+			<check_box label="Conteúdo adulto" name="incadult"/>
 			<combo_box name="Category">
 				<combo_box.item name="item0" label="Qualquer categoria"
 				/>
@@ -137,9 +137,9 @@
 				<combo_box.item name="item29" label="Variados"
 				/>
 			</combo_box>
-			<check_box label="Conteúdo PG" name="incpg"/>
-			<check_box label="Conteúdo Mature" name="incmature"/>
-			<check_box label="Conteúdo Adult" name="incadult"/>
+			<check_box label="Conteúdo público geral" name="incpg"/>
+			<check_box label="Conteúdo moderado" name="incmature"/>
+			<check_box label="Conteúdo adulto" name="incadult"/>
 			<button label="Buscar" label_selected="Buscar" name="Search" tool_tip="Buscar"/>
 			<button label="Apagar" label_selected="Apagar" name="Delete"/>
 			<scroll_list name="results">
@@ -180,9 +180,9 @@ Para comprar direto, visite a terra e clique no nome do lugar, na barra de títu
 			<text name="find" width="60">
 				Encontrar:
 			</text>
-			<check_box left="440" label="Conteúdo PG" name="incpg"/>
-			<check_box left="440" label="Conteúdo Mature" name="incmature"/>
-			<check_box left="440" label="Conteúdo Adulto" name="incadult"/>
+			<check_box left="440" label="Conteúdo público geral" name="incpg"/>
+			<check_box left="440" label="Conteúdo moderado" name="incmature"/>
+			<check_box left="440" label="Conteúdo adulto" name="incadult"/>
 			<combo_box name="type" width="148">
 				<combo_box.item name="AllTypes" label="Todos os tipos"
 				/>
@@ -225,9 +225,9 @@ Para comprar direto, visite a terra e clique no nome do lugar, na barra de títu
 				Encontrar:
 			</text>
 			<line_editor name="name" left="66" width="150"/>
-			<check_box label="Conteúdo PG" name="incpg"/>
-			<check_box label="Conteúdo Mature" name="incmature"/>
-			<check_box label="Conteúdo Adult" name="incadult"/>
+			<check_box label="Conteúdo público geral" name="incpg"/>
+			<check_box label="Conteúdo moderado" name="incmature"/>
+			<check_box label="Conteúdo adulto" name="incadult"/>
 			<combo_box name="Category">
 				<combo_box.item name="item0" label="Qualquer Categoria"
 				/>
@@ -322,9 +322,9 @@ Para comprar direto, visite a terra e clique no nome do lugar, na barra de títu
 			<button label="Voltar" name="back_btn"/>
 			<button label="Adiantar" name="forward_btn"/>
 			<button label="Buscar" name="search_btn"/>
-			<check_box label="Conteúdo PG" name="incpg"/>
-			<check_box label="Conteúdo Mature" name="incmature"/>
-			<check_box label="Conteúdo Adult" name="incadult"/>
+			<check_box label="Conteúdo público geral" name="incpg"/>
+			<check_box label="Conteúdo moderado" name="incmature"/>
+			<check_box label="Conteúdo adulto" name="incadult"/>
 			<string name="loading_text">
 				carregando...
 			</string>

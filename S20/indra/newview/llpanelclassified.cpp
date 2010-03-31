@@ -1894,7 +1894,7 @@ void LLPanelClassifiedEdit::resetControls()
 	LLPanelClassifiedInfo::resetControls();
 
 	getChild<LLComboBox>("category")->setCurrentByIndex(0);
-	getChild<LLIconsComboBox>("content_type")->setCurrentByIndex(0);
+	getChild<LLComboBox>("content_type")->setCurrentByIndex(0);
 	childSetValue("auto_renew", false);
 	childSetValue("price_for_listing", MINIMUM_PRICE_FOR_LISTING);
 	childSetEnabled("price_for_listing", TRUE);
@@ -1929,7 +1929,7 @@ U32 LLPanelClassifiedEdit::getContentType()
 
 void LLPanelClassifiedEdit::setContentType(U32 content_type)
 {
-	LLIconsComboBox* ct_cb = getChild<LLIconsComboBox>("content_type");
+	LLComboBox* ct_cb = getChild<LLComboBox>("content_type");
 	ct_cb->setCurrentByIndex(content_type);
 	ct_cb->resetDirty();
 }
@@ -1989,7 +1989,7 @@ U8 LLPanelClassifiedEdit::getFlags()
 {
 	bool auto_renew = childGetValue("auto_renew").asBoolean();
 
-	LLComboBox* content_cb = getChild<LLIconsComboBox>("content_type");
+	LLComboBox* content_cb = getChild<LLComboBox>("content_type");
 	bool mature = content_cb->getCurrentIndex() == CB_ITEM_MATURE;
 	
 	return pack_classified_flags_request(auto_renew, false, mature, false);

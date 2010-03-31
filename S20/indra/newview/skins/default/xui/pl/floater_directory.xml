@@ -16,7 +16,7 @@
 			<button label="Dalej" name="forward_btn"/>
 			<button label="Szukaj" name="search_btn"/>
 			<combo_box name="Category">
-				<combo_box.item name="item0" label="Każda Kategoria"
+				<combo_box.item name="item0" label="Każda kategoria"
 				/>
 				<combo_box.item name="item1" label="Imprezy"
 				/>
@@ -64,9 +64,9 @@
 				/>
 				<combo_box.item name="item1" label="Zakupy"
 				/>
-				<combo_box.item name="item2" label="Wynajm Posiadłości"
+				<combo_box.item name="item2" label="Wynajem Posiadłości"
 				/>
-				<combo_box.item name="item3" label="Wynajm Własności"
+				<combo_box.item name="item3" label="Wynajem Własności"
 				/>
 				<combo_box.item name="item4" label="Specjalne Atrakcje"
 				/>
@@ -91,8 +91,8 @@
 				<column label="Nazwa" name="name"/>
 				<column label="Cena" name="price"/>
 			</scroll_list>
-			<button label="Do Przodu &gt;" label_selected="Do Przodu &gt;" name="Next &gt;"/>
-			<button label="&lt; Do Tyłu" label_selected="&lt; Do Tyłu" name="&lt; Prev"/>
+			<button label="Do przodu &gt;" label_selected="Do przodu &gt;" name="Next &gt;"/>
+			<button label="&lt; Do tyłu" label_selected="&lt; Do tyłu" name="&lt; Prev"/>
 		</panel>
 		<panel label="Imprezy" name="events_panel">
 			<string name="searching_text">
@@ -228,8 +228,8 @@ By zakupić posiadłość bezpośrednio, odwiedź ją oraz kliknij na nazwę pos
 				<column label="m²" name="area"/>
 				<column label="L$/m²" name="per_meter"/>
 			</scroll_list>
-			<button label="Do Przodu &gt;" label_selected="Do Przodu &gt;" name="Next &gt;"/>
-			<button label="&lt; Do Tyłu" label_selected="&lt; Do Tyłu" name="&lt; Prev"/>
+			<button label="Do przodu &gt;" label_selected="Do przodu &gt;" name="Next &gt;"/>
+			<button label="&lt; Do tyłu" label_selected="&lt; Do tyłu" name="&lt; Prev"/>
 		</panel>
 		<panel label="Miejsca" name="places_panel">
 			<string name="searching_text">
@@ -245,11 +245,11 @@ By zakupić posiadłość bezpośrednio, odwiedź ją oraz kliknij na nazwę pos
 			<check_box label="Treść &apos;Mature&apos;" name="incmature"/>
 			<check_box label="Treść &apos;Adult&apos;" name="incadult"/>
 			<combo_box name="Category" width="170">
-				<combo_box.item name="item0" label="Każda Kategoria"
+				<combo_box.item name="item0" label="Każda kategoria"
 				/>
-				<combo_box.item name="item1" label="Lokacje Linden"
+				<combo_box.item name="item1" label="Linden Lokalizacja"
 				/>
-				<combo_box.item name="item3" label="Sztuka i Kultura"
+				<combo_box.item name="item3" label="Sztuka i kultura"
 				/>
 				<combo_box.item name="item4" label="Biznes"
 				/>
@@ -261,7 +261,7 @@ By zakupić posiadłość bezpośrednio, odwiedź ją oraz kliknij na nazwę pos
 				/>
 				<combo_box.item name="item8" label="Przyjazne dla nowych"
 				/>
-				<combo_box.item name="item9" label="Parki i Natura"
+				<combo_box.item name="item9" label="Parki i natura"
 				/>
 				<combo_box.item name="item10" label="Rezydencja"
 				/>
@@ -273,11 +273,11 @@ By zakupić posiadłość bezpośrednio, odwiedź ją oraz kliknij na nazwę pos
 			<combo_box name="Category_Adult">
 				<combo_box.item name="AnyCategory" label="Każda Kategoria"
 				/>
-				<combo_box.item name="LindenLocation" label="Lokacja Linden"
+				<combo_box.item name="LindenLocation" label="Linden Lokalizacja"
 				/>
 				<combo_box.item name="Adult" label="&apos;Adult&apos;"
 				/>
-				<combo_box.item name="Arts&amp;Culture" label="Sztuka i Kultura"
+				<combo_box.item name="Arts&amp;Culture" label="Sztuka i kultura"
 				/>
 				<combo_box.item name="Business" label="Biznes"
 				/>
@@ -289,7 +289,7 @@ By zakupić posiadłość bezpośrednio, odwiedź ją oraz kliknij na nazwę pos
 				/>
 				<combo_box.item name="NewcomerFriendly" label="Przyjazne dla nowych"
 				/>
-				<combo_box.item name="Parks&amp;Nature" label="Parki i Natura"
+				<combo_box.item name="Parks&amp;Nature" label="Parki i natura"
 				/>
 				<combo_box.item name="Residential" label="Rezydencja"
 				/>
@@ -324,8 +324,8 @@ By zakupić posiadłość bezpośrednio, odwiedź ją oraz kliknij na nazwę pos
 				<column label="" name="type"/>
 				<column label="Imię" name="name"/>
 			</scroll_list>
-			<button label="Do Przodu &gt;" label_selected="Do Przodu &gt;" name="Next &gt;"/>
-			<button label="&lt; Do Tyłu" label_selected="&lt; Do Tyłu" name="&lt; Prev"/>
+			<button label="Do przodu &gt;" label_selected="Do przodu &gt;" name="Next &gt;"/>
+			<button label="&lt; Do tyłu" label_selected="&lt; Do tyłu" name="&lt; Prev"/>
 		</panel>
 		<panel label="Grupy" name="groups_panel">
 			<string name="searching_text">

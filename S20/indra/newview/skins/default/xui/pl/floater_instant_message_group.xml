@@ -15,11 +15,11 @@
 	<string name="live_help_dialog">
 		*** Witamy w Serwisie Pomocy *** 
 		Proszę o zapoznanie się ze stroną pomocy Second Life poprzez wciśnięcie klawisza F1 lub skorzystanie z Bazy Wiedzy (Knowledge Base) na http://secondlife.com/knowledgebase/ 
-		Jeżeli nie znajdziesz tam poszukiwanej odpowiedzi, proszę wpisać swoje pytanie by rozpocząć konwersację z jednym z pomocników. Poczekaj kilka minut na odpowiedź z serwisu.
+		Jeżeli nie znajdziesz tam poszukiwanej odpowiedzi, proszę wpisać swoje pytanie aby rozpocząć konwersację z jednym z pomocników. Poczekaj kilka minut na odpowiedź z serwisu.
 		-=-=- Pamiętaj także, że czas odpowiedzi może się zmieniać, zwłaszcza w godzinach największej aktywności użytkowników. -=-=-
 	</string>
 	<string name="title_string">
-		Wiadomosc (IM) z [NAME]
+		Wiadomość (IM) z [NAME]
 	</string>
 	<string name="typing_start_string">
 		[NAME] pisze...
@@ -28,7 +28,7 @@
 		Rozpoczęcie rozmowy z [NAME]. Proszę czekać...
 	</string>
 	<string name="moderated_chat_label">
-		(Modernowane)
+		(Moderowane)
 	</string>
 	<string name="default_text_label">
 		Wpisz treść wiadomości

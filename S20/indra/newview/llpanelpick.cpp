@@ -12,13 +12,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -28,6 +28,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 
 // Display of a "Top Pick" used both for the global top picks in the 
@@ -71,10 +72,6 @@
 
 #define XML_BTN_ON_TXTR "edit_icon"
 #define XML_BTN_SAVE "save_changes_btn"
-
-#define SAVE_BTN_LABEL "[WHAT]"
-#define LABEL_PICK = "Pick"
-#define LABEL_CHANGES = "Changes"
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
@@ -147,8 +144,6 @@ void LLPanelPickInfo::onOpen(const LLSD& key)
 BOOL LLPanelPickInfo::postBuild()
 {
 	mSnapshotCtrl = getChild<LLTextureCtrl>(XML_SNAPSHOT);
-
-	childSetLabelArg(XML_BTN_SAVE, SAVE_BTN_LABEL, std::string("Pick"));
 
 	childSetAction("teleport_btn", boost::bind(&LLPanelPickInfo::onClickTeleport, this));
 	childSetAction("show_on_map_btn", boost::bind(&LLPanelPickInfo::onClickMap, this));

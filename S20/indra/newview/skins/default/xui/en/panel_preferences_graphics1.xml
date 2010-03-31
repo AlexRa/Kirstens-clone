@@ -360,7 +360,7 @@
 		layout="topleft"
 		left="216"
 		max_val="1024"
-		min_val="64"
+		min_val="32"
 		name="DrawDistance"
 		top="3"
 		width="265" />

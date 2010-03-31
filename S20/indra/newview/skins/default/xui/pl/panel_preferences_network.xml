@@ -7,14 +7,14 @@
 		kbps (kilobity na sekundę)
 	</text>
 	<text name="cache_size_label_l">
-		Rozmiar Bufora Danych:
+		Rozmiar bufora danych:
 	</text>
 	<text name="text_box5">
 		MB
 	</text>
 	<button label="Wyczyść" name="clear_cache" />
 	<text name="cache_location_label">
-		Lokacja Bufora Danych na Dysku:
+		Lokalizacja bufora danych na dysku:
 	</text>
 	<button label="Ustaw" label_selected="Ustaw" name="set_cache" />
 	<button label="Zresetuj" label_selected="Zresetuj" name="reset_cache" />

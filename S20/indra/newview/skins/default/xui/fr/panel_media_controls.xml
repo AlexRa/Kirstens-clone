@@ -12,7 +12,7 @@
 	<button name="mute_master" tool_tip="Volume principal coupé"/>
 	<button name="expand" tool_tip="Ajustez les niveaux de volume individuels"/>
 	<string name="play_label">
-		Jouer
+		Lire
 	</string>
 	<string name="stop_label">
 		Stop
@@ -27,10 +27,10 @@
 		(URL cachée par le propriétaire de la parcelle)
 	</string>
 	<string name="media_icon_tooltip_web">
-		Cet endroit propose du contenu Web. Cliquez sur Jouer pour afficher le contenu web.
+		Cet endroit propose du contenu Web. Cliquez sur Lire pour afficher le contenu web.
 	</string>
 	<string name="media_icon_tooltip_movie">
-		Cet endroit propose du contenu vidéo. Cliquez sur Jouer pour lire la vidéo.
+		Cet endroit propose du contenu vidéo. Cliquez sur Lire pour lire la vidéo.
 	</string>
 	<string name="media_play_tooltip">
 		Affichez le contenu web.

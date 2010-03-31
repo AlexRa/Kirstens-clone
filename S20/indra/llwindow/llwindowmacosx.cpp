@@ -12,13 +12,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -28,6 +28,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 
 #include "linden_common.h"
@@ -1122,33 +1123,7 @@ BOOL LLWindowMacOSX::getMaximized()
 
 BOOL LLWindowMacOSX::maximize()
 {
-	if (mWindow)
-	{
-		// *HACK: Because Mac OSX doesn't have a concept of a "maximized" window, we just
-		// stretch it out to the visible screen size.
-		Rect win_rect;
-
-		int visible_x;
-		int visible_y;
-		int visible_width;
-		int visible_height;
-		int screen_width;
-		int screen_height;
-
-		getScreenSize(&screen_width, &screen_height);
-		getVisibleScreen(&visible_x, &visible_y, &visible_width, &visible_height);
-
-		int mac_os_menu_bar_height = screen_height - (visible_height + visible_y);
-		::SetRect(&win_rect,
-				  visible_x,
-				  mac_os_menu_bar_height,
-				  visible_width + visible_x,
-				  visible_height + mac_os_menu_bar_height);
-
-		::SetWindowBounds(mWindow, kWindowStructureRgn, &win_rect);
-
-		return TRUE;
-	}
+	// TODO
 	return FALSE;
 }
 
@@ -2807,6 +2782,9 @@ const char* cursorIDToName(int id)
 		case UI_CURSOR_TOOLPAUSE:		return "UI_CURSOR_TOOLPAUSE";
 		case UI_CURSOR_TOOLMEDIAOPEN:	return "UI_CURSOR_TOOLMEDIAOPEN";
 		case UI_CURSOR_PIPETTE:			return "UI_CURSOR_PIPETTE";		
+		case UI_CURSOR_TOOLSIT:			return "UI_CURSOR_TOOLSIT";
+		case UI_CURSOR_TOOLBUY:			return "UI_CURSOR_TOOLBUY";
+		case UI_CURSOR_TOOLOPEN:		return "UI_CURSOR_TOOLOPEN";
 	}
 
 	llerrs << "cursorIDToName: unknown cursor id" << id << llendl;
@@ -2909,6 +2887,9 @@ void LLWindowMacOSX::setCursor(ECursorType cursor)
 	case UI_CURSOR_TOOLPLAY:
 	case UI_CURSOR_TOOLPAUSE:
 	case UI_CURSOR_TOOLMEDIAOPEN:
+	case UI_CURSOR_TOOLSIT:
+	case UI_CURSOR_TOOLBUY:
+	case UI_CURSOR_TOOLOPEN:
 		result = setImageCursor(gCursors[cursor]);
 		break;
 
@@ -2950,6 +2931,9 @@ void LLWindowMacOSX::initCursors()
 	initPixmapCursor(UI_CURSOR_TOOLPLAY, 1, 1);
 	initPixmapCursor(UI_CURSOR_TOOLPAUSE, 1, 1);
 	initPixmapCursor(UI_CURSOR_TOOLMEDIAOPEN, 1, 1);
+	initPixmapCursor(UI_CURSOR_TOOLSIT, 20, 15);
+	initPixmapCursor(UI_CURSOR_TOOLBUY, 20, 15);
+	initPixmapCursor(UI_CURSOR_TOOLOPEN, 20, 15);
 
 	initPixmapCursor(UI_CURSOR_SIZENWSE, 10, 10);
 	initPixmapCursor(UI_CURSOR_SIZENESW, 10, 10);

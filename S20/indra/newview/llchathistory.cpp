@@ -12,13 +12,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -28,6 +28,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 
 #include "llviewerprecompiledheaders.h"
@@ -447,6 +448,7 @@ LLChatHistory::LLChatHistory(const LLChatHistory::Params& p)
 :	LLUICtrl(p),
 	mMessageHeaderFilename(p.message_header),
 	mMessageSeparatorFilename(p.message_separator),
+	mMessagePlaintextSeparatorFilename(p.message_plaintext_separator),
 	mLeftTextPad(p.left_text_pad),
 	mRightTextPad(p.right_text_pad),
 	mLeftWidgetPad(p.left_widget_pad),
@@ -531,6 +533,12 @@ void LLChatHistory::initFromParams(const LLChatHistory::Params& p)
 LLView* LLChatHistory::getSeparator()
 {
 	LLPanel* separator = LLUICtrlFactory::getInstance()->createFromFile<LLPanel>(mMessageSeparatorFilename, NULL, LLPanel::child_registry_t::instance());
+	return separator;
+}
+
+LLView* LLChatHistory::getPlaintextSeparator()
+{
+	LLPanel* separator = LLUICtrlFactory::getInstance()->createFromFile<LLPanel>(mMessagePlaintextSeparatorFilename, NULL, LLPanel::child_registry_t::instance());
 	return separator;
 }
 
@@ -632,6 +640,16 @@ void LLChatHistory::appendMessage(const LLChat& chat, const LLSD &args, const LL
 
 	if (use_plain_text_chat_history)
 	{
+		// append plaintext separator
+		LLView* separator = getPlaintextSeparator();
+		LLInlineViewSegment::Params p;
+		p.force_newline = true;
+		p.left_pad = mLeftWidgetPad;
+		p.right_pad = mRightWidgetPad;
+		p.view = separator;
+		//mEditor->appendWidget(p, "\n", false);  // TODO: this is absolute minimal fix for EXT-3818 because it's late for 2.0
+		mEditor->appendWidget(p, "", false);      // This should be properly fixed in 2.1
+
 		mEditor->appendText("[" + chat.mTimeStr + "] ", mEditor->getText().size() != 0, style_params);
 
 		if (utf8str_trim(chat.mFromName).size() != 0)
@@ -734,7 +752,7 @@ void LLChatHistory::appendMessage(const LLChat& chat, const LLSD &args, const LL
 		LLNotificationPtr notification = LLNotificationsUtil::find(chat.mNotifId);
 		if (notification != NULL)
 		{
-			LLToastNotifyPanel* notify_box = new LLToastNotifyPanel(
+			LLIMToastNotifyPanel* notify_box = new LLIMToastNotifyPanel(
 					notification);
 			//we can't set follows in xml since it broke toasts behavior
 			notify_box->setFollowsLeft();
@@ -743,7 +761,9 @@ void LLChatHistory::appendMessage(const LLChat& chat, const LLSD &args, const LL
 
 			ctrl_list_t ctrls = notify_box->getControlPanel()->getCtrlList();
 			S32 offset = 0;
-			for (ctrl_list_t::iterator it = ctrls.begin(); it != ctrls.end(); it++)
+			// Children were added by addChild() which uses push_front to insert them into list,
+			// so to get buttons in correct order reverse iterator is used (EXT-5906) 
+			for (ctrl_list_t::reverse_iterator it = ctrls.rbegin(); it != ctrls.rend(); it++)
 			{
 				LLButton * button = dynamic_cast<LLButton*> (*it);
 				if (button != NULL)
@@ -758,7 +778,7 @@ void LLChatHistory::appendMessage(const LLChat& chat, const LLSD &args, const LL
 							button->getRect().mBottom));
 					button->setAutoResize(true);
 					button->autoResize();
-					offset += 2 * HPAD + button->getRect().getWidth();
+					offset += HPAD + button->getRect().getWidth();
 					button->setFollowsNone();
 				}
 			}
@@ -817,7 +837,6 @@ void LLChatHistory::appendMessage(const LLChat& chat, const LLSD &args, const LL
 			message = chat.mFromName + message;
 		}
 		
-
 		mEditor->appendText(message, FALSE, style_params);
 	}
 	mEditor->blockUndo();

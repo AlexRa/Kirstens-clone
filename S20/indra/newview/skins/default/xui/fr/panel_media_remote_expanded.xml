@@ -2,7 +2,7 @@
 <panel name="media_remote">
 	<panel label="Audio et vidéo" name="Volume Panel"/>
 	<string name="play_label">
-		Jouer
+		Lire
 	</string>
 	<string name="stop_label">
 		Stop
@@ -17,10 +17,10 @@
 		(URL cachée par le propriétaire de la parcelle)
 	</string>
 	<string name="media_icon_tooltip_web">
-		Il y a du contenu web à cet endroit. Cliquez sur Jouer pour afficher le contenu web.
+		Il y a du contenu web à cet endroit. Cliquez sur Lire pour afficher le contenu web.
 	</string>
 	<string name="media_icon_tooltip_movie">
-		Il y a du contenu vidéo à cet endroit. Cliquez sur Jouer pour lire la vidéo.
+		Il y a du contenu vidéo à cet endroit. Cliquez sur Lire pour lire la vidéo.
 	</string>
 	<string name="media_play_tooltip">
 		Afficher le contenu web qui se trouve ici.

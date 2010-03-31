@@ -15,13 +15,13 @@
 	<line_editor name="given_name_editor" tool_tip="Nomes devem começar com letras ou números, não sinais de pontuação."/>
 	<line_editor name="location_editor" tool_tip="Definir o local deste anúncio como a sua localização atual."/>
 	<button label="Ajuste" name="set_location_btn"/>
-	<button label="Tele-transporte" name="classified_teleport_btn"/>
+	<button label="Teletransporte" name="classified_teleport_btn"/>
 	<button label="Mapa" name="classified_map_btn" width="130"/>
 	<button label="Perfil" left="260" name="classified_profile_btn"/>
 	<combo_box name="classified_mature_check">
 		<combo_box.item label="- Selecione -" name="select_mature"/>
-		<combo_box.item label="Conteúdo Mature" name="mature"/>
-		<combo_box.item label="Conteúdo PG" name="pg"/>
+		<combo_box.item label="Conteúdo moderado" name="mature"/>
+		<combo_box.item label="Conteúdo público geral" name="pg"/>
 	</combo_box>
-	<button label="Update" name="classified_update_btn"/>
+	<button label="Atualizar" name="classified_update_btn"/>
 </panel>

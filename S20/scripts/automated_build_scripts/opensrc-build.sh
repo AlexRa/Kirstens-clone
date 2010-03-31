@@ -5,21 +5,19 @@
 
 set -x
 
-export INSTALL_USE_HTTP_FOR_SCP=true
 export PATH=/bin:/usr/bin:$PATH
 arch=`uname | cut -b-6`
 here=`echo $0 | sed 's:[^/]*$:.:'`
 year=`date +%Y`
 branch=`svn info | grep '^URL:' | sed 's:.*/::'`
 revision=`svn info | grep '^Revision:' | sed 's/.*: //'`
-top=`cd "$here/../../.." && pwd`
 
 [ x"$WGET_CACHE" = x ] && export WGET_CACHE=/var/tmp/parabuild/wget
 [ x"$S3GET_URL" = x ]  && export S3GET_URL=http://viewer-source-downloads.s3.amazonaws.com/$year
 [ x"$S3PUT_URL" = x ]  && export S3PUT_URL=https://s3.amazonaws.com/viewer-source-downloads/$year
-[ x"$S3SYMBOL_URL" = x ]  && export S3SYMBOL_URL=https://s3.amazonaws.com/automated-builds-secondlife-com/binaries
 [ x"$PUBLIC_URL" = x ] && export PUBLIC_URL=http://secondlife.com/developers/opensource/downloads/$year
 [ x"$PUBLIC_EMAIL" = x ] && export PUBLIC_EMAIL=sldev-commits@lists.secondlife.com
+
 # Make sure command worked and bail out if not, reporting failure to parabuild
 fail()
 {
@@ -86,8 +84,8 @@ get_asset()
   local tarball=`basename "$1"`
   test -r "$WGET_CACHE/$tarball" || ( cd "$WGET_CACHE" && curl --location --remote-name "$1" || fail getting $1 )
   case "$tarball" in
-  *.zip) unzip -qq -d "$top" -o "$WGET_CACHE/$tarball" || fail unzip $tarball ;;
-  *.tar.gz|*.tgz) tar -C "$top" -xzf  "$WGET_CACHE/$tarball" || fail untar $tarball ;;
+  *.zip) unzip -qq -d .. -o "$WGET_CACHE/$tarball" || fail unzip $tarball ;;
+  *.tar.gz|*.tgz) tar -C .. -xzf  "$WGET_CACHE/$tarball" || fail untar $tarball ;;
   *) fail unrecognized filetype: $tarball ;;
   esac
 }
@@ -141,7 +139,6 @@ test -x ../linden/scripts/automated_build_scripts/opensrc-build.sh\
 . doc/asset_urls.txt
 get_asset "$SLASSET_ART"
 
-update_version_files=
 
 # Set up platform specific stuff
 case "$arch" in
@@ -158,7 +155,7 @@ case "$arch" in
 #  from indra/build-darwin-universal/newview/SecondLife.build/Debug/Second Life.build/Objects-normal/ppc/llvoicevisualizer.o
 
 Darwin)
-  helpers=/usr/local/buildscripts/shared/latest
+  helpers=/usr/local/buildscripts/generic_vc
   variants="Release"
   cmake_generator="Xcode"
   fmod=fmodapi375mac
@@ -169,15 +166,13 @@ Darwin)
                libraries/universal-darwin/lib_release
                libraries/universal-darwin/lib_release_client"
   other_archs="$S3GET_URL/$branch/$revision/CYGWIN $S3GET_URL/$branch/$revision/Linux"
-  symbolfiles=
   mail="$helpers"/mail.py
   all_done="$helpers"/all_done.py
-  test -r "$helpers/update_version_files.py" && update_version_files="$helpers/update_version_files.py"
-  libs_asset="$SLASSET_LIBS_DARWIN"
+  get_asset "$SLASSET_LIBS_DARWIN"
   ;;
 
 CYGWIN)
-  helpers=/cygdrive/c/buildscripts/shared/latest
+  helpers=/cygdrive/c/buildscripts
   variants="Debug RelWithDebInfo Release"
   #variants="Release"
   cmake_generator="vc80"
@@ -188,32 +183,18 @@ CYGWIN)
   target_dirs="libraries/i686-win32/lib/debug
                libraries/i686-win32/lib/release"
   other_archs="$S3GET_URL/$branch/$revision/Darwin $S3GET_URL/$branch/$revision/Linux"
-  symbolfiles="newview/Release/secondlife-bin.pdb newview/Release/secondlife-bin.map newview/Release/secondlife-bin.exe"
   export PATH="/cygdrive/c/Python25:/cygdrive/c/Program Files/Cmake 2.6/bin":$PATH
   export PERL="/cygdrive/c/Perl/bin/perl.exe"
-  export S3CURL="C:\\buildscripts\\shared\\latest\\hg\\bin\\s3curl.py"
-  export SIGN_PY="C:\\buildscripts\\shared\\latest\\code-signing\\sign.py"
+  export S3CURL="C:\\buildscripts\s3curl.pl"
   export CURL="C:\\cygwin\\bin\\curl.exe"
-  mail="C:\\buildscripts\\shared\\latest\\mail.py"
-  all_done="C:\\buildscripts\\shared\\latest\\all_done.py"
-  test -r "$helpers/update_version_files.py" && update_version_files="C:\\buildscripts\\shared\\latest\\update_version_files.py"
-  libs_asset="$SLASSET_LIBS_WIN32"
+  mail="C:\\buildscripts\\mail.py"
+  all_done="C:\\buildscripts\\all_done.py"
+  get_asset "$SLASSET_LIBS_WIN32"
   ;;
 
 Linux)
-  helpers=/var/opt/parabuild/buildscripts/shared/latest
-  if [ x"$CXX" = x ]
-  then
-    if test -x /usr/bin/g++-4.1
-	then
-	  if test -x /usr/bin/distcc
-	  then
-	    export CXX="/usr/bin/distcc /usr/bin/g++-4.1"
-	  else
-	    export CXX=/usr/bin/g++-4.1
-	  fi
-	fi
-  fi
+  helpers=/var/opt/parabuild/buildscripts/generic_vc
+  [ x"$CXX" = x ] && test -x /usr/bin/g++-4.1 && export CXX=/usr/bin/g++-4.1
   acquire_lock
   variants="Debug RelWithDebInfo Release"
   #variants="Release"
@@ -226,31 +207,28 @@ Linux)
                libraries/i686-linux/lib_release
                libraries/i686-linux/lib_release_client"
   other_archs="$S3GET_URL/$branch/$revision/Darwin $S3GET_URL/$branch/$revision/CYGWIN"
-  symbolfiles=
   mail="$helpers"/mail.py
   all_done="$helpers"/all_done.py
-  test -r "$helpers/update_version_files.py" && update_version_files="$helpers/update_version_files.py"
   # Change the DISTCC_DIR to be somewhere that the parabuild process can write to
   if test -r /etc/debian_version
   then
     [ x"$DISTCC_DIR" = x ] && export DISTCC_DIR=/var/tmp/parabuild
     case `cat /etc/debian_version` in
     3.*) [ x"$DISTCC_HOSTS" = x ]\
-         && export DISTCC_HOSTS="build-linux-1/3
-                                  station30/2,lzo" ;;
+         && export DISTCC_HOSTS="build-linux-1
+                                 build-linux-2
+                                 build-linux-3
+                                 build-linux-4
+                                 build-linux-5" ;;
     4.*) [ x"$DISTCC_HOSTS" = x ]\
-         && export DISTCC_HOSTS="build-linux-6/2,lzo
-                                 build-linux-2/2,lzo
-                                 build-linux-3/2,lzo
-                                 build-linux-4/2,lzo
-                                 build-linux-5/2,lzo
-                                 build-linux-7/2,lzo
-                                 build-linux-8/2,lzo
-                                 build-linux-9/2,lzo" ;;
+         && export DISTCC_HOSTS="build-linux-6
+                                 build-linux-7
+                                 build-linux-8
+                                 build-linux-9" ;;
     esac
   fi
 
-  libs_asset="$SLASSET_LIBS_LINUXI386"
+  get_asset "$SLASSET_LIBS_LINUXI386"
   ;;
 
 *) fail undefined $arch ;;
@@ -258,10 +236,10 @@ esac
 
 get_asset "http://www.fmod.org/index.php/release/version/$fmod_tar"
 
+# Special case for Mac...
 case "$arch" in
 
 Darwin)
-  # Create fat binary on Mac...
   if lipo -create -output "../$fmod"/api/$fmod_lib/libfmod-universal.a\
      "../$fmod"/api/$fmod_lib/libfmod.a\
      "../$fmod"/api/$fmod_lib/libfmodx86.a
@@ -274,23 +252,10 @@ Darwin)
   fi
   ;;
 
-CYGWIN)
-  # install Quicktime.  This will fail outside of Linden's network
-  scripts/install.py quicktime
-  ;;
-
 esac
 
-# Only run this if the script exists
-if test x"$update_version_files" = x 
-then
-  echo "Private Build..." > indra/build.log
-  [ x"$VIEWER_CHANNEL" = x ] && export VIEWER_CHANNEL="CommunityDeveloper"
-else
-  # By right, this should be in the branched source tree, but for now it will be a helper
-  python "$update_version_files" --verbose --src-root=. --viewer > indra/build.log
-  [ x"$VIEWER_CHANNEL" = x ] && export VIEWER_CHANNEL="Snowglobe Test Build"
-fi
+# ensure helpers are up to date
+( cd "$helpers" && svn up )
 
 # First, go into the directory where the code was checked out by Parabuild
 cd indra
@@ -309,6 +274,7 @@ test -r "../../$fmod/api/fmod.dll" && cp -f "../../$fmod/api/fmod.dll" newview
 
 # Now run the build command over all variants
 succeeded=true
+cp /dev/null build.log
 
 ### TEST CODE - remove when done
 ### variants=
@@ -320,7 +286,6 @@ for variant in $variants
 do
   build_dir=`build_dir_$arch $variant`
   rm -rf "$build_dir"
-  get_asset "$libs_asset" # Thus plunks stuff into the build dir, so have to restore it now.
   # This is the way it will work in future
   #for target_dir in $target_dirs
   #do
@@ -336,8 +301,6 @@ do
     -t $variant \
     -G "$cmake_generator" \
    configure \
-    -DVIEWER_CHANNEL:STRING="$VIEWER_CHANNEL"\
-    -DVIEWER_LOGIN_CHANNEL:STRING="$VIEWER_CHANNEL"\
     -DPACKAGE:BOOL=ON >>build.log 2>&1
   then
     if ./develop.py\
@@ -345,20 +308,10 @@ do
          --incredibuild \
          -t $variant\
          -G "$cmake_generator" \
-       build prepare >>build.log 2>&1
+       build package >>build.log 2>&1
     then
-      if ./develop.py\
-           --unattended\
-           --incredibuild \
-           -t $variant\
-           -G "$cmake_generator" \
-         build package >>build.log 2>&1
-	  then
-        # run tests if needed
-        true
-	  else
-	    succeeded=false
-	  fi
+      # run tests if needed
+      true
     else
       succeeded=false
     fi
@@ -379,17 +332,11 @@ then
     echo "$PUBLIC_URL/$branch/$revision/$package_file" > "$arch"
     echo "$PUBLIC_URL/$branch/$revision/good-build.$arch" >> "$arch"
     "$helpers/s3put.sh" "$package" "$S3PUT_URL/$branch/$revision/$package_file"    binary/octet-stream\
-       || fail Uploading "$package"
+	   || fail Uploading "$package"
     "$helpers/s3put.sh" build.log  "$S3PUT_URL/$branch/$revision/good-build.$arch" text/plain\
-       || fail Uploading build.log
+	   || fail Uploading build.log
     "$helpers/s3put.sh" "$arch"    "$S3PUT_URL/$branch/$revision/$arch"            text/plain\
-       || fail Uploading token file
-    for symbolfile in $symbolfiles
-    do
-      targetfile="`echo $symbolfile | sed 's:.*/::'`"
-      "$helpers/s3put.sh" "$build_dir/$symbolfile" "$S3SYMBOL_URL/$revision/$targetfile" binary/octet-stream\
-        || fail Uploading "$symbolfile"
-    done
+	   || fail Uploading token file
     if python "$all_done"\
           curl\
          "$S3GET_URL/$branch/$revision/$arch"\
@@ -404,7 +351,7 @@ else
   if s3_available
   then
     "$helpers/s3put.sh" build.log "$S3PUT_URL/$branch/$revision/failed-build.$arch" text/plain\
-       || fail Uploading build.log
+	   || fail Uploading build.log
     subject="Failed Build for $branch ($revision) on $arch"
     cat >message <<EOF
 Build for $branch ($revision) failed for $arch.
@@ -429,13 +376,7 @@ then
   then
     ( cd .. && svn log --verbose --stop-on-copy --limit 50 ) >>message
   else
-    if [ "$PARABUILD_PREVIOUS_CHANGE_LIST_NUMBER" -lt "$PARABUILD_CHANGE_LIST_NUMBER" ]
-	then
-	  range=`expr 1 + "$PARABUILD_PREVIOUS_CHANGE_LIST_NUMBER"`:"$PARABUILD_CHANGE_LIST_NUMBER"
-	else
-	  range="$PARABUILD_CHANGE_LIST_NUMBER"
-	fi
-    ( cd .. && svn log --verbose -r"$range" ) >>message
+    ( cd .. && svn log --verbose -r"$PARABUILD_PREVIOUS_CHANGE_LIST_NUMBER":"$PARABUILD_CHANGE_LIST_NUMBER" ) >>message
   fi
   # $PUBLIC_EMAIL can be a list, so no quotes
   python "$mail" "$subject" $PUBLIC_EMAIL <message

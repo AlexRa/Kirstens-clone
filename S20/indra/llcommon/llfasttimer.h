@@ -36,7 +36,6 @@
 
 // pull in the actual class definition
 #include "llfasttimer_class.h"
-#include "lltimer.h" // KL for PPC builds
 
 #if LL_WINDOWS
 //

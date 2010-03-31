@@ -37,7 +37,7 @@
 	<button label="Chiama" name="start_call_btn"/>
 	<button label="Termina" name="end_call_btn"/>
 	<panel name="speaker_controls">
-		<button label="" name="mute_btn" tool_tip="Blocca voice"/>
+		<button label="" name="mute_btn" tool_tip="Blocca voce"/>
 	</panel>
 	<line_editor label="Clicca qui per un instant message" name="chat_editor"/>
 	<button label="Invia" name="send_btn"/>

@@ -389,10 +389,7 @@ if(NOT EXISTS ${internal_llkdu_path})
 endif (NOT EXISTS ${internal_llkdu_path})
 
 
-if(NOT STANDALONE)
 add_custom_target(stage_third_party_libs ALL
   DEPENDS 
     ${third_party_targets}
   )
-endif(NOT STANDALONE)
-

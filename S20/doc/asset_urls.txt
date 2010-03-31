@@ -1,3 +1,5 @@
-SLASSET_MD5=http://secondlife.com/developers/opensource/downloads/viewer-external/hg/repo/cg@univac34.lindenlab.com_viewer-2-0/rev/203000/md5sums-viewer-2-0-2.0.0.203000.txt
-SLASSET_ART=http://secondlife.com/developers/opensource/downloads/viewer-external/hg/repo/cg@univac34.lindenlab.com_viewer-2-0/rev/203000/slviewer-artwork-viewer-2-0-2.0.0.203000.zip
-SLASSET_LIBS_LINUXI386=http://secondlife.com/developers/opensource/downloads/viewer-external/hg/repo/cg@univac34.lindenlab.com_viewer-2-0/rev/203000/slviewer-linux-libs-viewer-2-0-2.0.0.203000.tar.gz
+SLASSET_MD5=http://secondlife.com/developers/opensource/downloads/viewer-external/hg/repo/cg_viewer-2-0/rev/203088/md5sums-viewer-2-0-2.0.0.203088.txt
+SLASSET_ART=http://secondlife.com/developers/opensource/downloads/viewer-external/hg/repo/cg_viewer-2-0/rev/203088/slviewer-artwork-viewer-2-0-2.0.0.203088.zip
+SLASSET_LIBS_LINUXI386=http://secondlife.com/developers/opensource/downloads/viewer-external/hg/repo/cg_viewer-2-0/rev/203088/slviewer-linux-libs-viewer-2-0-2.0.0.203088.tar.gz
+SLASSET_LIBS_DARWIN=http://secondlife.com/developers/opensource/downloads/viewer-external/hg/repo/cg_viewer-2-0/rev/203088/slviewer-darwin-libs-viewer-2-0-2.0.0.203088.tar.gz
+SLASSET_LIBS_WIN32=http://secondlife.com/developers/opensource/downloads/viewer-external/hg/repo/cg_viewer-2-0/rev/203088/slviewer-win32-libs-viewer-2-0-2.0.0.203088.zip

@@ -21,6 +21,6 @@
 	<text name="proxy_text_label">
 		Endereço:
 	</text>
-	<line_editor left="237" name="web_proxy_editor" tool_tip="Nome ou endereço de IP do proxy que você gostaria de usar"/>
-	<spinner label="Número da porta:" label_width="95" name="web_proxy_port" width="170"/>
+	<line_editor left="237" name="web_proxy_editor" tool_tip="Nome ou endereço de IP do proxy a usar"/>
+	<spinner label="Porta:" label_width="95" name="web_proxy_port" width="170"/>
 </panel>

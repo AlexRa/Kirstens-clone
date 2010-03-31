@@ -14,13 +14,13 @@
 # ("GPL"), unless you have obtained a separate licensing agreement
 # ("Other License"), formally executed by you and Linden Lab.  Terms of
 # the GPL can be found in doc/GPL-license.txt in this distribution, or
-# online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+# online at http://secondlife.com/developers/opensource/gplv2
 # 
 # There are special exceptions to the terms and conditions of the GPL as
 # it is applied to this Source Code. View the full text of the exception
 # in the file doc/FLOSS-exception.txt in this software distribution, or
 # online at
-# http://secondlifegrid.net/programs/open_source/licensing/flossexception
+# http://secondlife.com/developers/opensource/flossexception
 # 
 # By copying, modifying or distributing this software, you acknowledge
 # that you have read and understood your obligations described above,
@@ -30,6 +30,7 @@
 # WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
 # COMPLETENESS OR PERFORMANCE.
 # $/LicenseInfo$
+# 
 import sys
 import os.path
 import re
@@ -116,8 +117,6 @@ class ViewerManifest(LLManifest):
         # whether or not this is present
         return self.args.get('login_channel')
 
-    def buildtype(self):
-        return self.args['buildtype']
     def grid(self):
         return self.args['grid']
     def channel(self):
@@ -128,11 +127,6 @@ class ViewerManifest(LLManifest):
         return "".join(self.channel_unique().split())
     def channel_lowerword(self):
         return self.channel_oneword().lower()
-    def viewer_branding_id(self):
-        return self.args['branding_id']
-    def installer_prefix(self):
-        mapping={"Kirstens S20":'Kirstens_S20_'}
-        return mapping[self.viewer_branding_id()]
 
     def flags_list(self):
         """ Convenience function that returns the command-line flags
@@ -168,13 +162,11 @@ class ViewerManifest(LLManifest):
 
 class WindowsManifest(ViewerManifest):
     def final_exe(self):
-        if self.default_channel() and self.viewer_branding_id()=="secondlife":
+        if self.default_channel():
             if self.default_grid():
-                return "SecondLife.exe"
+                return "Kirstens-S20.exe"
             else:
-                return "SecondLifePreview.exe"
-        elif(self.viewer_branding_id=="snowglobe"):
-            return "Snowglobe.exe"
+                return "SecondLife.exe"
         else:
             return ''.join(self.channel().split()) + '.exe'
 
@@ -481,24 +473,42 @@ class WindowsManifest(ViewerManifest):
         !define VERSION_LONG "%(version)s"
         !define VERSION_DASHES "%(version_dashes)s"
         """ % substitution_strings
-        if self.default_channel() and self.viewer_branding_id()=="Kirstens S20":
+        if self.default_channel():
             if self.default_grid():
                 # release viewer
                 installer_file = "Kirstens_S20_%(version_dashes)s_Setup.exe"
                 grid_vars_template = """
                 OutFile "%(installer_file)s"
-                !define VIEWERNAME "Kirstens S20"
                 !define INSTFLAGS "%(flags)s"
                 !define INSTNAME   "Kirstens S20"
                 !define SHORTCUT   "Kirstens S20"
                 !define URLNAME   "secondlife"
-                !define INSTALL_ICON "install_icon.ico"
-                !define UNINSTALL_ICON "uninstall_icon.ico"
                 Caption "Kirstens S20 ${VERSION}"
                 """
-            
-       
-       
+            else:
+                # beta grid viewer
+                installer_file = "Kirstens_S20_%(version_dashes)s_(%(grid_caps)s)_Setup.exe"
+                grid_vars_template = """
+                OutFile "%(installer_file)s"
+                !define INSTFLAGS "%(flags)s"
+                !define INSTNAME   "Kirstens-S20%(grid_caps)s"
+                !define SHORTCUT   "Kirstens S20 (%(grid_caps)s)"
+                !define URLNAME   "secondlife%(grid)s"
+                !define UNINSTALL_SETTINGS 1
+                Caption "Kirstens S20 %(grid)s ${VERSION}"
+                """
+        else:
+            # some other channel on some grid
+            installer_file = "Second_Life_%(version_dashes)s_%(channel_oneword)s_Setup.exe"
+            grid_vars_template = """
+            OutFile "%(installer_file)s"
+            !define INSTFLAGS "%(flags)s"
+            !define INSTNAME   "SecondLife%(channel_oneword)s"
+            !define SHORTCUT   "%(channel)s"
+            !define URLNAME   "secondlife"
+            !define UNINSTALL_SETTINGS 1
+            Caption "%(channel)s ${VERSION}"
+            """
         if 'installer_name' in self.args:
             installer_file = self.args['installer_name']
         else:
@@ -544,10 +554,10 @@ class WindowsManifest(ViewerManifest):
 class DarwinManifest(ViewerManifest):
     def construct(self):
         # copy over the build result (this is a no-op if run within the xcode script)
-        self.path(self.args['configuration'] + "/" + self.app_name() + ".app", dst="")
+        self.path(self.args['configuration'] + "/Second Life.app", dst="")
 
         if self.prefix(src="", dst="Contents"):  # everything goes in Contents
-            self.path(self.info_plist_name(), dst="Info.plist")
+            self.path("Info-SecondLife.plist", dst="Info.plist")
 
             # copy additional libs in <bundle>/Contents/MacOS/
             self.path("../../libraries/universal-darwin/lib_release/libndofdev.dylib", dst="MacOS/libndofdev.dylib")
@@ -564,13 +574,12 @@ class DarwinManifest(ViewerManifest):
                 self.path("featuretable_mac.txt")
                 self.path("SecondLife.nib")
 
-                if self.viewer_branding_id()=='Kirstens S20':
-                    # If we are not using the default channel, use the 'Firstlook
-                    # icon' to show that it isn't a stable release.
-                    if self.default_channel() and self.default_grid():
+                # If we are not using the default channel, use the 'Firstlook
+                # icon' to show that it isn't a stable release.
+                if self.default_channel() and self.default_grid():
                         self.path("snowglobe.icns")
-                   
-				   
+                else:
+                    self.path("secondlife_firstlook.icns", "secondlife.icns")
                 self.path("SecondLife.nib")
                 
                 # Translations
@@ -671,35 +680,25 @@ class DarwinManifest(ViewerManifest):
         # annotated backtraces (i.e. function names in the crash log).  'strip' with no
         # arguments yields a slightly smaller binary but makes crash logs mostly useless.
         # This may be desirable for the final release.  Or not.
-        if self.buildtype().lower()=='release':
-            if ("package" in self.args['actions'] or 
-                "unpacked" in self.args['actions']):
-                self.run_command('strip -S "%(viewer_binary)s"' %
-                                 { 'viewer_binary' : self.dst_path_of('Contents/MacOS/'+self.app_name())})
+        if ("package" in self.args['actions'] or 
+            "unpacked" in self.args['actions']):
+            self.run_command('strip -S %(viewer_binary)r' %
+                             { 'viewer_binary' : self.dst_path_of('Contents/MacOS/Kirstens S20')})
 
-    def app_name(self):
-        mapping={"secondlife":"Second Life",
-                 "snowglobe":"Snowglobe"}
-        return mapping[self.viewer_branding_id()]
-        
-    def info_plist_name(self):
-        mapping={"secondlife":"Info-SecondLife.plist",
-                 "snowglobe":"Info-Snowglobe.plist"}
-        return mapping[self.viewer_branding_id()]
 
     def package_finish(self):
-        channel_standin = self.app_name()
-        if not self.default_channel_for_brand():
+        channel_standin = 'Kirstens S20'  # hah, our default channel is not usable on its own
+        if not self.default_channel():
             channel_standin = self.channel()
 
-        imagename=self.installer_prefix() + '_'.join(self.args['version'])
+        imagename="Kirstens-S20_" + '_'.join(self.args['version'])
 
         # MBW -- If the mounted volume name changes, it breaks the .DS_Store's background image and icon positioning.
         #  If we really need differently named volumes, we'll need to create multiple DS_Store file images, or use some other trick.
 
-        volname=self.app_name() + " Installer"  # DO NOT CHANGE without understanding comment above
+        volname="Kirstens S20 Installer"  # DO NOT CHANGE without understanding comment above
 
-        if self.default_channel_for_brand():
+        if self.default_channel():
             if not self.default_grid():
                 # beta case
                 imagename = imagename + '_' + self.args['grid'].upper()
@@ -723,8 +722,8 @@ class DarwinManifest(ViewerManifest):
 
         # Copy everything in to the mounted .dmg
 
-        if self.default_channel_for_brand() and not self.default_grid():
-            app_name = self.app_name() + " " + self.args['grid']
+        if self.default_channel() and not self.default_grid():
+            app_name = "Kirstens S20 " + self.args['grid']
         else:
             app_name = channel_standin.strip()
 
@@ -735,16 +734,10 @@ class DarwinManifest(ViewerManifest):
         # one for release candidate and one for first look. Any other channels
         # will use the release .DS_Store, and will look broken.
         # - Ambroff 2008-08-20
-        # Added a .DS_Store for snowglobe - Merov 2009-06-17
-
-        # We have a single branded installer for all snowglobe channels so snowglobe logic is a bit different
-        if (self.app_name()=="Snowglobe"):
-            dmg_template = os.path.join ('installers', 'darwin', 'snowglobe-dmg')
-        else:
-            dmg_template = os.path.join(
-                'installers', 
-                'darwin',
-                '%s-dmg' % "".join(self.channel_unique().split()).lower())
+        dmg_template = os.path.join(
+            'installers', 
+            'darwin',
+            '%s-dmg' % "".join(self.channel_unique().split()).lower())
 
         if not os.path.exists (self.src_path_of(dmg_template)):
             dmg_template = os.path.join ('installers', 'darwin', 'release-dmg')
@@ -784,13 +777,12 @@ class LinuxManifest(ViewerManifest):
     def construct(self):
         super(LinuxManifest, self).construct()
         self.path("licenses-linux.txt","licenses.txt")
-        
-        self.path("res/"+self.icon_name(),self.icon_name())
+        self.path("res/ll_icon.png","secondlife_icon.png")
         if self.prefix("linux_tools", dst=""):
             self.path("client-readme.txt","README-linux.txt")
             self.path("client-readme-voice.txt","README-linux-voice.txt")
             self.path("client-readme-joystick.txt","README-linux-joystick.txt")
-            self.path("wrapper.sh",self.wrapper_name())
+            self.path("wrapper.sh","secondlife")
             self.path("handle_secondlifeprotocol.sh", "etc/handle_secondlifeprotocol.sh")
             self.path("register_secondlifeprotocol.sh", "etc/register_secondlifeprotocol.sh")
             self.path("refresh_desktop_app_entry.sh", "etc/refresh_desktop_app_entry.sh")
@@ -800,33 +792,13 @@ class LinuxManifest(ViewerManifest):
 
         # Create an appropriate gridargs.dat for this package, denoting required grid.
         self.put_in_file(self.flags_list(), 'etc/gridargs.dat')
-        if self.buildtype().lower()=='release':
-            self.path("secondlife-stripped","bin/"+self.binary_name())
-            self.path("../linux_crash_logger/linux-crash-logger-stripped","linux-crash-logger.bin")
-        else:
-            self.path("secondlife-bin","bin/"+self.binary_name())
-            self.path("../linux_crash_logger/linux-crash-logger","linux-crash-logger.bin")
 
-    def wrapper_name(self):
-        mapping={"secondlife":"secondlife",
-                 "snowglobe":"snowglobe"}
-        return mapping[self.viewer_branding_id()]
-
-    def binary_name(self):
-        mapping={"secondlife":"do-not-directly-run-secondlife-bin",
-                 "snowglobe":"snowglobe-do-not-run-directly"}
-        return mapping[self.viewer_branding_id()]
-    
-    def icon_name(self):
-        mapping={"secondlife":"secondlife_icon.png",
-                 "snowglobe":"snowglobe_icon.png"}
-        return mapping[self.viewer_branding_id()]
 
     def package_finish(self):
         if 'installer_name' in self.args:
             installer_name = self.args['installer_name']
         else:
-            installer_name_components = [self.installer_prefix(), self.args.get('arch')]
+            installer_name_components = ['Kirstens-S20_', self.args.get('arch')]
             installer_name_components.extend(self.args['version'])
             installer_name = "_".join(installer_name_components)
             if self.default_channel():
@@ -883,7 +855,7 @@ class Linux_i686Manifest(LinuxManifest):
                 print "Skipping %s - not found" % libfile
                 pass
 
-
+        self.path("secondlife-bin","bin/do-not-directly-run-secondlife-bin")
 
         self.path("../linux_crash_logger/linux-crash-logger","bin/linux-crash-logger.bin")
         self.path("../linux_updater/linux-updater", "bin/linux-updater.bin")
@@ -945,13 +917,6 @@ class Linux_i686Manifest(LinuxManifest):
         if self.args['buildtype'].lower() == 'release':
             print "* Going strip-crazy on the packaged binaries, since this is a RELEASE build"
             self.run_command("find %(d)r/bin %(d)r/lib -type f | xargs --no-run-if-empty strip -S" % {'d': self.get_dst_prefix()} ) # makes some small assumptions about our packaged dir structure
-
-class Linux_x86_64Manifest(LinuxManifest):
-    def construct(self):
-        super(Linux_x86_64Manifest, self).construct()
-
-        # support file for valgrind debug tool
-        self.path("secondlife-i686.supp")
 
 ################################################################
 

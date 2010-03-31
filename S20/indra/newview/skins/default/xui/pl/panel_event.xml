@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<panel name="Event" title="Wydarzenie"> 
+<panel label="Atrakcja" name="Event" title="Wydarzenie">
+	<panel.string name="none">
+		brak
+	</panel.string>
+	<panel.string name="notify">
+		Zawiadom
+	</panel.string>
+	<panel.string name="dont_notify">
+		Nie zawiadamiaj
+	</panel.string>
 	<text name="event_name_label">
 		Nazwa:
 	</text>
@@ -28,7 +37,7 @@
 		(brak)
 	</text>
 	<text name="event_duration_label">
-		Czas Trwania:
+		Czas trwania:
 	</text>
 	<text name="event_duration">
 		(brak)
@@ -46,7 +55,7 @@
 		(brak)
 	</text>
 	<text name="event_cover_label">
-		Koszt Wstępu:
+		Koszt wstępu:
 	</text>
 	<text name="event_cover">
 		(brak)
@@ -55,16 +64,7 @@
 		Opis:
 	</text>
 	<button label="Teleportuj" name="teleport_btn"/>
-	<button label="Pokaż na Mapie" name="map_btn"/>
+	<button label="Mapa" name="map_btn"/>
 	<button label="Zawiadom" name="notify_btn"/>
 	<button label="Stwórz Impreze..." name="create_event_btn"/>
-	<string name="none">
-		brak
-	</string>
-	<string name="notify">
-		Zawiadom
-	</string>
-	<string name="dont_notify">
-		Nie Zawiadamiaj
-	</string>
 </panel>

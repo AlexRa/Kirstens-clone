@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <floater label="(sconosciuto)" name="im_floater" title="(SCONOSCIUTO)">
 	<string name="ringing">
-		In connessione alla voice chat...
+		Collegamento alla chiamata vocale...
 	</string>
 	<string name="connected">
 		Connesso, clicca &quot;Termina chiamata&quot; per riagganciare
 	</string>
 	<string name="hang_up">
-		Lasciata voice chat
+		Chiusa la chiamata
 	</string>
 	<string name="voice_icon">
 		icn_voice-groupfocus.tga
 	</string>
 	<string name="live_help_dialog">
-		*** Benvenuto nella Richiesta di Aiuto *** 
-    	Controlla prima le nostre pagine di aiuto su SL premendo F1 oppure accedendo alle Nozioni di Base su http://secondlife.com/knowledgebase/ 
-    	Se la risposta che cerchi non è presente, per iniziare digita per favore la tua domanda, poi attendi qualche attimo per permettere alla prima persona disponibile di aiutarti. 
-    	-=-=- Il tempo di risposta potrà variare, specialmente nei momenti di punta -=-=-
+		*** Benvenuti alla richiesta di aiuto ***
+    	Consulta prima le pagine dell&apos;Aiuto di SL premendo F1, oppure accedi alla Base conoscenze http://secondlife.com/knowledgebase/
+    	Se non trovi una risposta, digita la tua domanda per iniziare, quindi attendi alcuni istanti affinché uno degli assistenti disponibili possa rispondere.
+    	-=-=- Il tempo di risposta puà variare, specialmente durante le ore di punta -=-=-
 	</string>
 	<string name="title_string">
 		Instant Message (IM) con [NAME]

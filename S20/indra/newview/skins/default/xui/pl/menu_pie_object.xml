@@ -6,7 +6,7 @@
 	<menu_item_call label="Edytuj" name="Edit..."/>
 	<menu_item_call label="Buduj" name="Build"/>
 	<menu_item_call label="Otwórz" name="Open"/>
-	<menu_item_call label="Usiądź Tu" name="Object Sit">
+	<menu_item_call label="Usiądź tutaj" name="Object Sit">
 		<menu_item_call.on_enable name="EnableSitOrStand" userdata="Usiądź Tu,Wstań"/>
 	</menu_item_call>
 	<menu_item_call label="Sprawdź" name="Object Inspect"/>
@@ -17,12 +17,12 @@
 	</context_menu>
 	<context_menu label="Usuń &gt;" name="Remove">
 		<menu_item_call label="Usuń" name="Delete"/>
-		<menu_item_call label="Weż" name="Pie Object Take"/>
+		<menu_item_call label="Weź" name="Pie Object Take"/>
 		<menu_item_call label="Raport" name="Report Abuse..."/>
 		<menu_item_call label="Zablokuj" name="Object Mute"/>
 		<menu_item_call label="Zwróć" name="Return..."/>
 	</context_menu>
-	<menu_item_call label="Weź Kopię" name="Take Copy"/>
+	<menu_item_call label="Weź kopię" name="Take Copy"/>
 	<menu_item_call label="Zapłać" name="Pay..."/>
 	<menu_item_call label="Kup" name="Buy..."/>
 </context_menu>

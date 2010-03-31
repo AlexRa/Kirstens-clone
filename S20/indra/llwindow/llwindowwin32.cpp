@@ -12,13 +12,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -28,6 +28,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 
 #include "linden_common.h"
@@ -46,6 +47,7 @@
 #include "llerror.h"
 #include "llgl.h"
 #include "llstring.h"
+#include "lldir.h"
 
 // System includes
 #include <commdlg.h>
@@ -1545,6 +1547,11 @@ void LLWindowWin32::initCursors()
 	mCursor[ UI_CURSOR_PIPETTE ] = LoadCursor(module, TEXT("TOOLPIPETTE"));
 
 	// Color cursors
+	gDirUtilp->getExpandedFilename(LL_PATH_EXECUTABLE, "res", "toolbuy.cur");
+
+	mCursor[UI_CURSOR_TOOLSIT] = LoadCursorFromFile(utf8str_to_utf16str(gDirUtilp->getWorkingDir() + gDirUtilp->getDirDelimiter() + "res" + gDirUtilp->getDirDelimiter() + "toolsit.cur").c_str());
+	mCursor[UI_CURSOR_TOOLBUY] = LoadCursorFromFile(utf8str_to_utf16str(gDirUtilp->getWorkingDir() + gDirUtilp->getDirDelimiter() + "res" + gDirUtilp->getDirDelimiter() + "toolbuy.cur").c_str());
+	mCursor[UI_CURSOR_TOOLOPEN] = LoadCursorFromFile(utf8str_to_utf16str(gDirUtilp->getWorkingDir() + gDirUtilp->getDirDelimiter() + "res" + gDirUtilp->getDirDelimiter() + "toolopen.cur").c_str());
 	mCursor[UI_CURSOR_TOOLPLAY] = loadColorCursor(TEXT("TOOLPLAY"));
 	mCursor[UI_CURSOR_TOOLPAUSE] = loadColorCursor(TEXT("TOOLPAUSE"));
 	mCursor[UI_CURSOR_TOOLMEDIAOPEN] = loadColorCursor(TEXT("TOOLMEDIAOPEN"));
@@ -3714,16 +3721,5 @@ std::vector<std::string> LLWindowWin32::getDynamicFallbackFontList()
 	return std::vector<std::string>();
 }
 
-// static
-S32 LLWindowWin32::getDisplayWidth()
-{
-	return ::GetSystemMetrics(SM_CXVIRTUALSCREEN);
-}
-
-// static
-S32 LLWindowWin32::getDisplayHeight()
-{
-	return ::GetSystemMetrics(SM_CYVIRTUALSCREEN);
-}
 
 #endif // LL_WINDOWS

@@ -2,19 +2,12 @@
 //
 #include "resource.h"
 
-#ifdef IDC_STATIC
-#undef IDC_STATIC
-#endif
-#define IDC_STATIC (-1)
-#include "winresrc.h"
-
 #define APSTUDIO_READONLY_SYMBOLS
 /////////////////////////////////////////////////////////////////////////////
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-// Commented out because it only compiles if you have MFC installed.
-//#include "winres.h"
+#include "winres.h"
 
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
@@ -34,18 +27,18 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE
+1 TEXTINCLUDE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE
+2 TEXTINCLUDE 
 BEGIN
     "#include ""winres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE
+3 TEXTINCLUDE 
 BEGIN
     "\r\n"
     "\0"
@@ -127,6 +120,9 @@ TOOLPIPETTE             CURSOR                  "toolpipette.cur"
 TOOLPLAY                CURSOR                  "toolplay.cur"
 TOOLPAUSE               CURSOR                  "toolpause.cur"
 TOOLMEDIAOPEN           CURSOR                  "toolmediaopen.cur"
+TOOLOPEN                CURSOR                  "toolopen.cur"
+TOOLSIT                 CURSOR                  "toolsit.cur"
+TOOLBUY                 CURSOR                  "toolbuy.cur"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -134,8 +130,8 @@ TOOLMEDIAOPEN           CURSOR                  "toolmediaopen.cur"
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,0,0,0
- PRODUCTVERSION 2,0,0,0
+ FILEVERSION 2,0,0,203088
+ PRODUCTVERSION 2,0,0,203088
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -154,10 +150,10 @@ BEGIN
             VALUE "FileDescription", "Kirstens S20"
             VALUE "FileVersion", "2.0.0.2"
             VALUE "InternalName", "Second Life"
-            VALUE "LegalCopyright", "Copyright © 2001-2010, Linden Research, Inc."
+            VALUE "LegalCopyright", "Copyright © 2001-2010, Linden Research, Inc. & Kirstenlee Cinquetti"
             VALUE "OriginalFilename", "Secondlife.exe"
             VALUE "ProductName", "Kirstens S20"
-            VALUE "ProductVersion", "2.0.0.2"
+            VALUE "ProductVersion", "2.0.0.203088"
         END
     END
     BLOCK "VarFileInfo"
@@ -165,12 +161,6 @@ BEGIN
         VALUE "Translation", 0x409, 1200
     END
 END
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Bitmap
-//
 
 #endif    // English (U.S.) resources
 /////////////////////////////////////////////////////////////////////////////

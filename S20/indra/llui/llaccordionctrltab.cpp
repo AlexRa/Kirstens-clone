@@ -827,9 +827,6 @@ void LLAccordionCtrlTab::draw()
 			LLLocalClipRect clip(child_rect);
 			drawChild(root_rect,mContainerPanel);
 		}
-		
-
-		gGL.getTexUnit(0)->disable();
 	}
 }
 

@@ -6,8 +6,8 @@
 	<layout_stack name="panels">
 		<layout_panel name="moderation_mode_panel">
 			<combo_box name="moderation_mode">
-				<combo_box.item label="Voices on by default" name="OpenVoice"/>
-				<combo_box.item label="Voices off by default" name="ModeratedVoice"/>
+				<combo_box.item label="Voci disattivate di default" name="OpenVoice"/>
+				<combo_box.item label="Voci disattivate di default" name="ModeratedVoice"/>
 			</combo_box>
 		</layout_panel>
 		<layout_panel name="moderate_chat_panel">
@@ -18,7 +18,7 @@
 				<text name="resident_name">
 					Rumplstiltskin Califragilistic
 				</text>
-				<button label="" name="mute_btn" tool_tip="Muta il voice per questo residente"/>
+				<button label="" name="mute_btn" tool_tip="Disattiva voce di questo residente"/>
 				<check_box label="Muta la chat di testo" name="mute_text_btn"/>
 			</panel>
 		</layout_panel>

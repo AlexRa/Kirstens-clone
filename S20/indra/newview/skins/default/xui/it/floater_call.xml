@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<floater name="private_call" title="CHIAMATA: PERSONA SCONOSCIUTA">
+<floater name="private_call" title="CHIAMA PERSONA SCONOSCIUTA">
 	<floater.string name="unknown_person">
-		Persona Sconosciuta
+		Persona sconosciuta
 	</floater.string>
 	<floater.string name="call_prefix">
 		Chiama:

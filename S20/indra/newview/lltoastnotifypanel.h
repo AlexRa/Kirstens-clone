@@ -12,13 +12,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -28,6 +28,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 
 #ifndef LLTOASTNOTIFYPANEL_H_
@@ -65,6 +66,7 @@ public:
 	virtual ~LLToastNotifyPanel();
 	LLPanel * getControlPanel() { return mControlPanel; }
 
+	void setCloseNotificationOnDestroy(bool close) { mCloseNotificationOnDestroy = close; }
 protected:
 	LLButton* createButton(const LLSD& form_element, BOOL is_option);
 
@@ -76,7 +78,7 @@ protected:
 	};
 	std::vector<InstanceAndS32*> mBtnCallbackData;
 
-private:
+	bool mCloseNotificationOnDestroy;
 
 	typedef std::pair<int,LLButton*> index_button_pair_t; 
 	void adjustPanelForScriptNotice(S32 max_width, S32 max_height);
@@ -90,6 +92,13 @@ private:
 	 */
 	void updateButtonsLayout(const std::vector<index_button_pair_t>& buttons, S32 h_pad);
 
+	/**
+	 * Disable specific button(s) based on notification name and clicked button
+	 */
+	void disableButtons(const std::string& notification_name, const std::string& selected_button);
+
+	std::vector<index_button_pair_t> mButtons;
+
 	// panel elements
 	LLTextBase*		mTextBox;
 	LLPanel*		mInfoPanel;		// a panel, that contains an information
@@ -97,6 +106,21 @@ private:
 
 	// internal handler for button being clicked
 	static void onClickButton(void* data);
+
+	typedef boost::signals2::signal <void (const LLUUID& notification_id, const std::string btn_name)>
+		button_click_signal_t;
+	static button_click_signal_t sButtonClickSignal;
+	boost::signals2::connection mButtonClickConnection;
+
+	/**
+	 * handle sButtonClickSignal (to disable buttons) across all panels with given notification_id
+	 */
+	void onToastPanelButtonClicked(const LLUUID& notification_id, const std::string btn_name);
+
+	/**
+	 * Process response data. Will disable selected options
+	 */
+	void disableRespondedOptions(LLNotificationPtr& notification);
 
 	bool mIsTip;
 	bool mAddedDefaultBtn;
@@ -109,6 +133,15 @@ private:
 
 	static const LLFontGL* sFont;
 	static const LLFontGL* sFontSmall;
+};
+
+class LLIMToastNotifyPanel : public LLToastNotifyPanel
+{
+public:
+
+	LLIMToastNotifyPanel(LLNotificationPtr& pNotification, const LLRect& rect = LLRect::null);
+
+	/*virtual*/ void reshape(S32 width, S32 height, BOOL called_from_parent = TRUE);
 };
 
 #endif /* LLTOASTNOTIFYPANEL_H_ */

@@ -31,7 +31,7 @@
 		<panel name="parcel_media_ctrls">
 			<button name="parcel_media_play_btn" tool_tip="Tocar mídia do lote"/>
 			<button name="parcel_media_pause_btn" tool_tip="Pausar mídia do lote"/>
-			<button name="parcel_media_stop_btn" tool_tip="Para mídia do lote"/>
+			<button name="parcel_media_stop_btn" tool_tip="Parar mídia do lote"/>
 		</panel>
 		<panel name="parcel_audio_ctrls">
 			<button name="parcel_audio_play_btn" tool_tip="Tocar áudio do lote"/>

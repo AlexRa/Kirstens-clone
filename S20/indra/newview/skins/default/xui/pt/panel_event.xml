@@ -22,7 +22,7 @@
 		(nenhum)
 	</text>
 	<text name="event_mature_label">
-		Conteúdo Mature:
+		Conteúdo moderado:
 	</text>
 	<text left="140" name="event_mature_yes">
 		Sim
@@ -55,7 +55,7 @@
 		(nenhum)
 	</text>
 	<text name="event_cover_label">
-		Taxa de Cobertura:
+		Entrada:
 	</text>
 	<text left="140" name="event_cover">
 		(nenhum)
@@ -63,8 +63,8 @@
 	<text name="event_desc_label">
 		Descrição:
 	</text>
-	<button label="Tele-transportar" name="teleport_btn"/>
+	<button label="Teletransportar" name="teleport_btn"/>
 	<button label="Mapa" name="map_btn"/>
 	<button label="Notificar" name="notify_btn"/>
-	<button label="Criar Evento..." name="create_event_btn"/>
+	<button label="Criar evento..." name="create_event_btn"/>
 </panel>

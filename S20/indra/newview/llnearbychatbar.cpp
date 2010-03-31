@@ -12,13 +12,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -28,6 +28,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 
 #include "llviewerprecompiledheaders.h"
@@ -96,11 +97,7 @@ LLGestureComboList::LLGestureComboList(const LLGestureComboList::Params& p)
 	params.commit_on_keyboard_movement(false);
 
 	mList = LLUICtrlFactory::create<LLScrollListCtrl>(params);
-	
-	// *HACK: adding list as a child to FloaterViewHolder to make it fully visible without
-	// making it top control (because it would cause problems).
-	gViewerWindow->getFloaterViewHolder()->addChild(mList);
-	mList->setVisible(FALSE);
+	addChild(mList);
 
 	//****************************Gesture Part********************************/
 
@@ -115,7 +112,7 @@ LLGestureComboList::LLGestureComboList(const LLGestureComboList::Params& p)
 	setFocusLostCallback(boost::bind(&LLGestureComboList::hideList, this));
 }
 
-BOOL LLGestureComboList::handleKey(KEY key, MASK mask, BOOL called_from_parent)
+BOOL LLGestureComboList::handleKeyHere(KEY key, MASK mask)
 {
 	BOOL handled = FALSE;
 	
@@ -126,7 +123,7 @@ BOOL LLGestureComboList::handleKey(KEY key, MASK mask, BOOL called_from_parent)
 	}
 	else
 	{
-		handled = mList->handleKey(key, mask, called_from_parent);
+		handled = mList->handleKeyHere(key, mask);
 	}
 
 	return handled; 		
@@ -135,18 +132,17 @@ BOOL LLGestureComboList::handleKey(KEY key, MASK mask, BOOL called_from_parent)
 void LLGestureComboList::showList()
 {
 	LLRect rect = mList->getRect();
-	LLRect screen;
-	mButton->localRectToScreen(getRect(), &screen);
+	LLRect button_rect = mButton->getRect();
 	
 	// Calculating amount of space between the navigation bar and gestures combo
 	LLNavigationBar* nb = LLNavigationBar::getInstance();
 
 	S32 x, nb_bottom;
-	nb->localPointToScreen(0, 0, &x, &nb_bottom);
+	nb->localPointToOtherView(0, 0, &x, &nb_bottom, this);
 
-	S32 max_height = nb_bottom - screen.mTop;
+	S32 max_height = nb_bottom - button_rect.mTop;
 	mList->calcColumnWidths();
-	rect.setOriginAndSize(screen.mLeft, screen.mTop, llmax(mList->getMaxContentWidth(),mButton->getRect().getWidth()), max_height);
+	rect.setOriginAndSize(button_rect.mLeft, button_rect.mTop, llmax(mList->getMaxContentWidth(),mButton->getRect().getWidth()), max_height);
 
 	mList->setRect(rect);
 	mList->fitContents( llmax(mList->getMaxContentWidth(),mButton->getRect().getWidth()), max_height);
@@ -156,6 +152,7 @@ void LLGestureComboList::showList()
 	// Show the list and push the button down
 	mButton->setToggleState(TRUE);
 	mList->setVisible(TRUE);
+	LLUI::addPopup(mList);
 }
 
 void LLGestureComboList::onButtonCommit()
@@ -188,6 +185,7 @@ void LLGestureComboList::hideList()
 		mButton->setToggleState(FALSE);
 		mList->setVisible(FALSE);
 		mList->mouseOverHighlightNthItem(-1);
+		LLUI::removePopup(mList);
 		gFocusMgr.setKeyboardFocus(NULL);
 	}
 }

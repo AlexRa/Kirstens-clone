@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<floater name="nearby_media" title="MEDIA NEI DINTORNI">
+<floater name="nearby_media" title="MULTIMEDIA VICINI">
 	<string name="media_item_count_format">
-		(%ld media items)
+		(%ld oggetti multimediali)
 	</string>
 	<string name="default_location_text">
 		Sconosciuto
@@ -10,42 +10,42 @@
 		&lt;vuoto&gt;
 	</string>
 	<string name="default_parcel_media_name">
-		&lt;Media Non Disponibili&gt;
+		&lt;Media non disponibili&gt;
 	</string>
 	<string name="default_parcel_media_tool_tip">
-		Seleziona on/off i media nel parcel
+		Accendi/spegni media nel lotto
 	</string>
 	<panel name="nearby_media_panel">
 		<panel>
 			<text name="media_item_count">
-				(?? media items)
+				(?? oggetti multimediali)
 			</text>
-			<button name="all_nearby_media_enable_btn" tool_tip="Seleziona on/off tutti i media nei dintorni"/>
+			<button name="all_nearby_media_enable_btn" tool_tip="Accendi/spegni tutti i media nei dintorni"/>
 		</panel>
 		<panel>
-			<button name="parcel_media_enable_btn" tool_tip="Seleziona on/off i media nel parcel"/>
+			<button name="parcel_media_enable_btn" tool_tip="Accendi/spegni media nel lotto"/>
 			<text name="parcel_media_name">
-				&lt;Nessun Media Disponibile&gt;
+				&lt;Media non disponibili&gt;
 			</text>
 		</panel>
 		<panel name="parcel_media_ctrls">
-			<button name="parcel_media_play_btn" tool_tip="Riproduci media nel parcel"/>
-			<button name="parcel_media_pause_btn" tool_tip="Pause media nel parcel"/>
-			<button name="parcel_media_stop_btn" tool_tip="Stop media nel parcel"/>
+			<button name="parcel_media_play_btn" tool_tip="Riproduci media nel lotto"/>
+			<button name="parcel_media_pause_btn" tool_tip="Pausa supporti multimediali del lotto"/>
+			<button name="parcel_media_stop_btn" tool_tip="Interrompi supporti multimediali del lotto"/>
 		</panel>
 		<panel name="parcel_audio_ctrls">
-			<button name="parcel_audio_play_btn" tool_tip="Riproduci audio nel parcel"/>
-			<button name="parcel_audio_pause_btn" tool_tip="Pause audio nel parcel"/>
-			<button name="parcel_audio_stop_btn" tool_tip="Stop audio nel parcel"/>
+			<button name="parcel_audio_play_btn" tool_tip="Riproduci audio del lotto"/>
+			<button name="parcel_audio_pause_btn" tool_tip="Pausa audio del lotto"/>
+			<button name="parcel_audio_stop_btn" tool_tip="Interrompi audio del lotto"/>
 		</panel>
 		<panel>
 			<scroll_list name="media_list">
-				<scroll_list.columns label="On/Off" name="media_stop_ctrl"/>
+				<scroll_list.columns label="Accendi/spegni" name="media_stop_ctrl"/>
 				<scroll_list.columns label="Nome" name="media_name"/>
 			</scroll_list>
 		</panel>
 		<panel>
-			<check_box label="Permetti auto-play ai Media" name="media_auto_play_btn" tool_tip="Permetti auto-play ai Media" value="true"/>
+			<check_box label="Consenti riproduzione multimediale automatica" name="media_auto_play_btn" tool_tip="Consenti riproduzione multimediale automatica" value="true"/>
 		</panel>
 	</panel>
 </floater>

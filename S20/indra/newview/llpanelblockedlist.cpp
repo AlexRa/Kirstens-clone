@@ -12,13 +12,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -28,6 +28,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 
 #include "llviewerprecompiledheaders.h"
@@ -119,8 +120,13 @@ void LLPanelBlockedList::refreshBlockedList()
 	std::vector<LLMute>::iterator it;
 	for (it = mutes.begin(); it != mutes.end(); ++it)
 	{
-		std::string display_name = it->getDisplayName();
-		mBlockedList->addStringUUIDItem(display_name, it->mID, ADD_BOTTOM, TRUE);
+		LLScrollListItem::Params item_p;
+		item_p.enabled(TRUE);
+		item_p.value(it->mID); // link UUID of blocked item with ScrollListItem
+		item_p.columns.add().column("item_name").value(it->mName);//.type("text");
+		item_p.columns.add().column("item_type").value(it->getDisplayType());//.type("text").width(111);
+
+		mBlockedList->addRow(item_p, ADD_BOTTOM);
 	}
 }
 
@@ -145,9 +151,7 @@ void LLPanelBlockedList::onRemoveBtnClick()
 {
 	std::string name = mBlockedList->getSelectedItemLabel();
 	LLUUID id = mBlockedList->getStringUUIDSelectedItem();
-	LLMute mute(id);
-	mute.setFromDisplayName(name);
-	// now mute.mName has the suffix trimmed off
+	LLMute mute(id, name);
 	
 	S32 last_selected = mBlockedList->getFirstSelectedIndex();
 	if (LLMuteList::getInstance()->remove(mute))

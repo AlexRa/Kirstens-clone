@@ -26,12 +26,12 @@
 			</text>
 		</panel>
 		<panel name="parcel_media_ctrls">
-			<button name="parcel_media_play_btn" tool_tip="Jouer le média de la parcelle"/>
+			<button name="parcel_media_play_btn" tool_tip="Lire le média de la parcelle"/>
 			<button name="parcel_media_pause_btn" tool_tip="Pauser le média de la parcelle"/>
 			<button name="parcel_media_stop_btn" tool_tip="Arrêter le média de la parcelle"/>
 		</panel>
 		<panel name="parcel_audio_ctrls">
-			<button name="parcel_audio_play_btn" tool_tip="Jouer l&apos;audio de la parcelle"/>
+			<button name="parcel_audio_play_btn" tool_tip="Lire l&apos;audio de la parcelle"/>
 			<button name="parcel_audio_pause_btn" tool_tip="Pauser l&apos;audio de la parcelle"/>
 			<button name="parcel_audio_stop_btn" tool_tip="Arrêter l&apos;audio de la parcelle"/>
 		</panel>
