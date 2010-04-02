@@ -313,7 +313,7 @@
      type="string"
      length="1"
      follows="left|top"
-     height="20"
+     height="6"
      layout="topleft"
      left="25"
      name="voice_chat_settings"
@@ -326,34 +326,34 @@
      length="1"
      follows="left|top"
      layout="topleft"
-	   left="80"
-	   top_delta="16"
+       left="40"
+       top_delta="16"
      name="Listen from"
      width="100">
         Listen from:
     </text>
-	<icon
-		follows="left|top"
-		height="18"
-		image_name="Cam_FreeCam_Off"
-		layout="topleft"
-		name="camera_icon"
-		mouse_opaque="false"
-		visible="true"
-		width="18"
-		left_pad="0"
-		top_delta="-5"/>
-	<icon
-		follows="left|top"
-		height="18"
-		image_name="Move_Walk_Off"
-		layout="topleft"
-		name="avatar_icon"
-		mouse_opaque="false"
-		visible="true"
-		width="18"
-		left_pad="140"
-		top_delta="0" />
+
+    <icon
+        follows="left|top"
+        height="18"
+        image_name="Cam_FreeCam_Off"
+        layout="topleft"
+        name="camera_icon"
+        mouse_opaque="true"
+        visible="true"
+        width="18"
+        top_pad="-12"
+        left_pad="-15"/>
+    <icon
+        follows="left|top"
+        height="18"
+        image_name="Move_Walk_Off"
+        layout="topleft"
+        name="avatar_icon"
+        mouse_opaque="true"
+        visible="true"
+        width="18"
+        left_pad="140" />
    <radio_group
      enabled_control="EnableVoiceChat"
      control_name="VoiceEarLocation"
@@ -361,25 +361,27 @@
      follows="left|top"
      layout="topleft"
      left="0"
-     width="221"
-     height="17"
+     width="310"
+     height="18"
+     top_pad="-13"
      name="ear_location">
     <radio_item
      height="16"
      label="Camera position"
      follows="left|top"
      layout="topleft"
-     left_pad="-20"
+     left_pad="-170"
      name="0"
-     width="200"/>
+     top_pad="0"
+     width="100"/>
     <radio_item
      height="16"
      follows="left|top"
      label="Avatar position"
      layout="topleft"
-     left_pad="-45"
+     left_pad="55"
      name="1"
-     width="200" />
+     width="100" />
    </radio_group>
   <button
    control_name="ShowDeviceSettings"
@@ -389,7 +391,7 @@
    label="Input/Output devices"
    layout="topleft"
    left="10"
-   top_pad="-5"
+   top_pad="-2"
    name="device_settings_btn"
    width="190">
   </button>

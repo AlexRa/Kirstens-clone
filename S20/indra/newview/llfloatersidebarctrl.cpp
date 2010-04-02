@@ -29,6 +29,9 @@
 class LLPanelSidebarctrlControls
 :	public LLPanel
 {
+	friend class LLSideTray;
+    friend class LLSideTrayTab;
+
 	LOG_CLASS(LLPanelSidebarctrlControls);
 public:
 	LLPanelSidebarctrlControls();
