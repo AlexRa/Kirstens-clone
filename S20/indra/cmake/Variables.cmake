@@ -100,7 +100,7 @@ set(GRID agni CACHE STRING "Target Grid")
 set(VIEWER ON CACHE BOOL "Build Kirstens viewer.")
 set(VIEWER_CHANNEL "Kirstens S20" CACHE STRING "Viewer Channel Name")
 set(VIEWER_LOGIN_CHANNEL ${VIEWER_CHANNEL} CACHE STRING "Kirstens S20")
-set(VIEWER_BRANDING_ID "snowglobe" CACHE STRING "Viewer branding id (currently secondlife|snowglobe)")
+set(VIEWER_BRANDING_ID "Kirstens S20" CACHE STRING "Viewer branding id (currently Kirstens S20|Kirstens-S20)")
 
 # *TODO: break out proper Branding-secondlife.cmake, Branding-snowglobe.cmake, etc
 if (${VIEWER_BRANDING_ID} MATCHES "Kirstens S20")
@@ -109,7 +109,7 @@ if (${VIEWER_BRANDING_ID} MATCHES "Kirstens S20")
 elseif (${VIEWER_BRANDING_ID} MATCHES "Kirstens-S20")
   set(VIEWER_BRANDING_NAME "Kirstens-S20")
   set(VIEWER_BRANDING_NAME_CAMELCASE "Kirstens-S20")
-endif (${VIEWER_BRANDING_ID} MATCHES "Kirtens S20")
+endif (${VIEWER_BRANDING_ID} MATCHES "Kirstens S20")
 
 set(STANDALONE OFF CACHE BOOL "Do not use Linden-supplied prebuilt libraries.")
 
