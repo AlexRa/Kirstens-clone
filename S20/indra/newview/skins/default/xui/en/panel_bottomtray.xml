@@ -255,7 +255,7 @@
              name="world_map_btn"
              width="80">
                 <button.init_callback
-                 function="Button.SetDockableFloaterToggle"
+                 function="Button.SetFloaterToggle"
                  parameter="world_map" />
             </button>
 	    
@@ -301,7 +301,7 @@
              name="mini_map_btn"
              width="80">
                 <button.init_callback
-                 function="Button.SetDockableFloaterToggle"
+                 function="Button.SetFloaterToggle"
                  parameter="mini_map" />
             </button>
 	    
@@ -347,7 +347,7 @@
              name="inventory_btn"
              width="80">
                 <button.init_callback
-                 function="Button.SetDockableFloaterToggle"
+                 function="Button.SetFloaterToggle"
                  parameter="inventory" />
             </button>
 	    

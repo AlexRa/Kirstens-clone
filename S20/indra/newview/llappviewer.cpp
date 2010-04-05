@@ -661,7 +661,7 @@ bool LLAppViewer::init()
 	// *FIX: The following code isn't grouped into functions yet.
 
 	// Statistics / debug timer initialization
-	init_statistics();
+	//init_statistics(); // KL not for this viewer.
 	
 	//
 	// Various introspection concerning the libs we're using - particularly

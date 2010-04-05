@@ -3184,6 +3184,7 @@ void LLPipeline::renderGeom(LLCamera& camera, BOOL forceVBOUpdate)
 	{
 		// Render debugging beacons.
 		gObjectList.renderObjectBeacons();
+		LLHUDObject::renderAll();
 		gObjectList.resetObjectBeacons();
 	}
 
@@ -3415,6 +3416,7 @@ void LLPipeline::renderGeomPostDeferred(LLCamera& camera)
 	{
 		// Render debugging beacons.
 		gObjectList.renderObjectBeacons();
+		LLHUDObject::renderAll();
 		gObjectList.resetObjectBeacons();
 	}
 
