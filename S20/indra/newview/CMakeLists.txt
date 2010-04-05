@@ -1068,10 +1068,10 @@ if (DARWIN)
 
   # Add resource files to the project.
   set(viewer_RESOURCE_FILES
-    ${VIEWER_BRANDING_ID}.icns
+    Kirstens-S20.icns
     macview.r
     gpu_table.txt
-    Info-${VIEWER_BRANDING_NAME_CAMELCASE}.plist
+    Info-Kirstens-S20.plist
     SecondLife.nib/
     # CMake doesn't seem to support Xcode language variants well just yet
     English.lproj/InfoPlist.strings
