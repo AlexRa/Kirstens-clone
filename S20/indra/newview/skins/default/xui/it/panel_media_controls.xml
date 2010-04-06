@@ -8,7 +8,7 @@
 	<button label="" name="media_play" tool_tip="Suona/pausa media in streaming"/>
 	<button label="" name="media_pause" tool_tip="Pausa media streaming"/>
 	<button label="" name="media_stop" tool_tip="Stop media streaming"/>
-	<volume_slider name="volume_slider" tool_tip="Comando volume centrale"/>
+	<volume_slider name="volume_slider" tool_tip="Volume principale"/>
 	<button label="" name="mute_master" tool_tip="Comando disattivazione audio"/>
 	<button label="" name="expand" tool_tip="Aggiusta i livelli dei volumi individuali"/>
 	<string name="play_label">
@@ -21,18 +21,18 @@
 		Pausa
 	</string>
 	<string name="default_tooltip_label">
-		Nessun Media Specificato
+		Nessun media specificato
 	</string>
 	<string name="media_hidden_label">
-		(URL del media nascosto dal proprietario dell&apos;appezzamento)
+		(URL del media nascosto dal proprietario del lotto)
 	</string>
 	<string name="media_icon_tooltip_web">
-		Questo luogo mostra contenuto web. Clicca il bottone Play per vedere il contenuto web.
+		Questo luogo contiene contenuti Web. Fai clic sul pulsante Riproduci per vedere i contenuti web.
 	</string>
 	<string name="media_icon_tooltip_movie">
-		Questo luogo mostra contenuti video. Clicca il bottone Play per vedere i contenuti video
+		Questo luogo contiene contenuti video. Fai clic sul pulsante Riproduci per vedere i contenuti video
 	</string>
 	<string name="media_play_tooltip">
-		Mostra il contenuto web in questo posto.
+		Mostra i contenuti Web in questo luogo.
 	</string>
 </panel>

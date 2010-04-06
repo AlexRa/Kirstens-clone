@@ -2044,11 +2044,11 @@ void login_show()
 {
 	LL_INFOS("AppInit") << "Initializing Login Screen" << LL_ENDL;
 
-//#ifdef LL_RELEASE_FOR_DOWNLOAD
-//	BOOL bUseDebugLogin = gSavedSettings.getBOOL("UseDebugLogin");
-//#else
-	BOOL bUseDebugLogin = TRUE; // KL always uses a debug login style.
-//#endif
+#ifdef LL_RELEASE_FOR_DOWNLOAD
+	BOOL bUseDebugLogin = gSavedSettings.getBOOL("UseDebugLogin");
+#else
+	BOOL bUseDebugLogin = TRUE;
+#endif
 
 	LLPanelLogin::show(	gViewerWindow->getWindowRectScaled(),
 						bUseDebugLogin,
