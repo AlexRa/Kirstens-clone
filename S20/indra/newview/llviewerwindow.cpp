@@ -1526,8 +1526,8 @@ struct MainPanel : public LLPanel
 
 void LLViewerWindow::initBase()
 {
-	S32 height = getWindowHeightScaled();
-	S32 width = getWindowWidthScaled();
+	S32 height = getWindowHeightRaw();
+	S32 width = getWindowWidthRaw();
 
 	LLRect full_window(0, height, width, 0);
 

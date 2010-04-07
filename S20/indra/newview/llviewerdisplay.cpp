@@ -53,6 +53,7 @@
 #include "llselectmgr.h"
 #include "llsky.h"
 #include "llstartup.h"
+#include "llstatusbar.h" // KL
 #include "lltoolfocus.h"
 #include "lltoolmgr.h"
 #include "lltooldraganddrop.h"
@@ -955,6 +956,7 @@ void render_hud_attachments()
 		if (has_ui)
 		{
 			gPipeline.toggleRenderDebugFeature((void*) LLPipeline::RENDER_DEBUG_FEATURE_UI);
+			//gStatusBar->setVisibleForMouselook(false);	 // KL just here for testing
 		}
 
 		S32 use_occlusion = LLPipeline::sUseOcclusion;

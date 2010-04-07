@@ -15,6 +15,7 @@
                 name="menu_stack"
                 orientation="vertical"
                 top="19">
+    <!-- nav bar container LLViewerWindow::initWorldUI() -->
     <layout_panel auto_resize="false"
                   height="60"
                   mouse_opaque="false"
@@ -75,12 +76,13 @@
                 name="hud container"
                    width="500">
              
-              <!-- side tray -->
-              <panel        auto_resize="false"
-                            follows="right|top"
-                            height="650"
-                            right="499" 
-                            top="1" 
+              <!-- side panel now scales to top n bottom KL -->
+              <panel        auto_resize="true"
+                            follows="right|top|bottom"
+                            height="768"
+                            right="500" 
+                            bottom="800" 
+                            top="0" 
                             min_width="333"
                             mouse_opaque="false"
                             tab_stop="false"
@@ -88,6 +90,7 @@
                             user_resize="false"
                             visible="false"
                             width="333"/>
+              <!-- Redundant side tabs KL -->
               <!--panel follows="left|top|bottom"
                      height="600"
                      mouse_opaque="false"
@@ -146,6 +149,7 @@
                   width="1024"/>
     </layout_panel>
   </layout_stack>
+  <!-- status bar container LLViewerWindow::initWorldUI() -->
   <panel mouse_opaque="false"
          follows="left|right|top"
          name="status_bar_container"
@@ -155,7 +159,8 @@
          top="0" 
          width="1024"
          visible="false"/>
-  <view mouse_opaque="false"
+  <!--This is the actual menus LLViewermenu init_menus() KL -->
+  <view mouse_opaque="false"   
         follows="all"
         name="menu_bar_holder"
         left="0"
@@ -203,6 +208,7 @@
          name="popup_holder"
          class="popup_holder"
          width="1024"/>
+  <!-- menu holder is setup in the LLViewerWindow::initBase() KL -->
   <menu_holder top="0"
                follows="all"
                height="768"
