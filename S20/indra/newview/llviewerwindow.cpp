@@ -1654,6 +1654,7 @@ void LLViewerWindow::initWorldUI()
 	LLPanel* nav_bar_container = getRootView()->getChild<LLPanel>("nav_bar_container");
 
 	LLNavigationBar* navbar = LLNavigationBar::getInstance();
+	navbar->setFollows(FOLLOWS_TOP|FOLLOWS_LEFT);
 	navbar->setShape(nav_bar_container->getLocalRect());
 	navbar->setBackgroundColor(gMenuBarView->getBackgroundColor().get());
 	nav_bar_container->addChild(navbar);

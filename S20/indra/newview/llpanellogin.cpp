@@ -686,7 +686,7 @@ void LLPanelLogin::refreshLocation( bool force_visible )
 	sInstance->childSetVisible("start_location_combo", show_start);
 	sInstance->childSetVisible("start_location_text", show_start);
 
-	BOOL show_server = gSavedSettings.getBOOL("ForceShowGrid");
+	BOOL show_server = true; //gSavedSettings.getBOOL("ForceShowGrid"); // KL always displays server combo box
 	sInstance->childSetVisible("server_combo", show_server);
 
 #endif
