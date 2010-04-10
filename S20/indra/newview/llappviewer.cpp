@@ -2154,10 +2154,10 @@ bool LLAppViewer::initConfiguration()
 
     const LLControlVariable* skinfolder = gSavedSettings.getControl("SkinCurrent");
     if(skinfolder && LLStringUtil::null != skinfolder->getValue().asString())
-    {   
-		// hack to force the skin to default.
-        //gDirUtilp->setSkinFolder(skinfolder->getValue().asString());
-		gDirUtilp->setSkinFolder("default");
+    { 
+  	  gDirUtilp->setSkinFolder(skinfolder->getValue().asString());
+  	  // hack to force the skin to default.
+  	  // gDirUtilp->setSkinFolder("default");
     }
 
     mYieldTime = gSavedSettings.getS32("YieldTime");

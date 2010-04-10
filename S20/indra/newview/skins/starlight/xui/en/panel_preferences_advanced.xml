@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<panel
+ border="true"
+ follows="all"
+ height="408"
+ label="Advanced"
+ layout="topleft"
+ left="102"
+ name="advanced"
+ top="1"
+ width="517">
+	<panel.string
+     name="aspect_ratio_text">
+        [NUM]:[DEN]
+    </panel.string>
+         <icon
+	 follows="left|top"
+	 height="18"
+	 image_name="Cam_FreeCam_Off"
+         layout="topleft"
+	 name="camera_icon"
+	 mouse_opaque="false"
+	 visible="true"
+	 width="18"
+         left="30"
+         top="10"/>
+    <slider
+     can_edit_text="true"
+     control_name="CameraAngle"
+     decimal_digits="2"
+     follows="left|top"
+     height="16"
+     increment="0.025"
+     initial_value="1.57"
+     layout="topleft"
+     label_width="100"
+     label="View angle"
+     left_pad="30"
+     max_val="2.97"
+     min_val="0.17"
+     name="camera_fov"
+     show_text="false"
+     width="240" />
+    <slider
+     can_edit_text="true"
+     control_name="CameraOffsetScale"
+     decimal_digits="2"
+     follows="left|top"
+     height="16"
+     increment="0.025"
+     initial_value="1"
+     layout="topleft"
+     label="Distance"
+     left_delta="0"
+     label_width="100"
+     max_val="3"
+     min_val="0.5"
+     name="camera_offset_scale"
+     show_text="false"
+     width="240"
+     top_pad="5"/>
+     <slider
+     can_edit_text="true"
+     control_name="CameraPositionSmoothing"
+     decimal_digits="2"
+     follows="left|top"
+     height="16"
+     increment="0.025"
+     initial_value="1"
+     layout="topleft"
+     label="Smoothing"
+     left_delta="0"
+     label_width="100"
+     max_val="30"
+     min_val="0.5"
+     name="camera_position_smoothing"
+     show_text="false"
+     width="240"
+     top_pad="5"/>
+     <slider
+     can_edit_text="true"
+     control_name="ZoomTime"
+     decimal_digits="2"
+     follows="left|top"
+     height="16"
+     increment="0.05"
+     initial_value="1"
+     layout="topleft"
+     label="Zoom Time"
+     left_delta="0"
+     label_width="100"
+     max_val="10"
+     min_val="0"
+     name="zoomtime"
+     show_text="false"
+     width="240"
+     top_pad="5"/>
+     <text
+     follows="left|top"
+     type="string"
+     length="1"
+     height="10"
+     left="80"
+     name="heading2"
+     width="270"
+     top_pad="5">
+Automatic position for:
+	</text>
+        <check_box
+     control_name="EditCameraMovement"
+     height="20"
+     follows="left|top"
+     label="Build/Edit"
+     layout="topleft"
+     left_delta="30"
+     name="edit_camera_movement"
+     tool_tip="Use automatic camera positioning when entering and exiting edit mode"
+     width="280"
+     top_pad="5" />
+    <check_box
+     control_name="AppearanceCameraMovement"
+     follows="left|top"
+     height="16"
+     label="Appearance"
+     layout="topleft"
+     name="appearance_camera_movement"
+     tool_tip="Use automatic camera positioning while in edit mode"
+     width="242" />
+     	<icon
+	 follows="left|top"
+	 height="18"
+	 image_name="Move_Walk_Off"
+         layout="topleft"
+	 name="avatar_icon"
+	 mouse_opaque="false"
+	 visible="true"
+	 width="18"
+         top_pad="2"
+         left="30"
+         />
+    <check_box
+     control_name="FirstPersonAvatarVisible"
+     follows="left|top"
+     height="20"
+     label="Show me in Mouselook"
+     layout="topleft"
+     left_pad="30"
+     name="first_person_avatar_visible"
+     width="256" />
+    <check_box
+     control_name="ArrowKeysAlwaysMove"
+     follows="left|top"
+     height="20"
+     label="Arrow keys always move me"
+     layout="topleft"
+     left_delta="0"
+     name="arrow_keys_move_avatar_check"
+     width="237"
+     top_pad="0"/>
+    <check_box
+     control_name="AllowTapTapHoldRun"
+     follows="left|top"
+     height="20"
+     label="Tap-tap-hold to run"
+     layout="topleft"
+     left_delta="0"
+     name="tap_tap_hold_to_run"
+     width="237"
+     top_pad="0"/>
+    <check_box
+     control_name="LipSyncEnabled"
+     follows="left|top"
+     height="20"
+     label="Move avatar lips when speaking"
+     layout="topleft"
+     left_delta="0"
+     name="enable_lip_sync"
+     width="237"
+     top_pad="0" />
+        <check_box
+     control_name="UseChatBubbles"
+     follows="left|top"
+     height="16"
+     label="Bubble chat"
+     layout="topleft"
+     left="78"
+     top_pad="6"
+     name="bubble_text_chat"
+     width="150" />
+    <slider
+     control_name="ChatBubbleOpacity"
+     follows="left|top"
+     height="16"
+     increment="0.05"
+     initial_value="1"
+     label="Opacity"
+     layout="topleft"
+     left="80"
+     label_width="50"
+     name="bubble_chat_opacity"
+     width="200" />
+    <color_swatch
+     can_apply_immediately="true"
+     color="0 0 0 1"
+     control_name="BackgroundChatColor"
+     follows="left|top"
+     height="50"
+     layout="topleft"
+     left_pad="10"
+     top="238"
+     name="background"
+     tool_tip="Choose color for bubble chat"
+     width="38">
+        <color_swatch.init_callback
+		     function="Pref.getUIColor"
+		     parameter="BackgroundChatColor" />
+		    <color_swatch.commit_callback
+		     function="Pref.applyUIColor"
+		     parameter="BackgroundChatColor" />
+    </color_swatch>
+    <text
+   type="string"
+   length="1"
+   follows="left|top"
+   height="10"
+   layout="topleft"
+   left="30"
+   name="Mouselook:"
+   top_pad="17"
+   width="300">
+    Mouselook:
+  </text>
+  <text
+   type="string"
+   length="1"
+   follows="left|top"
+   height="10"
+   layout="topleft"
+   left_delta="50"
+   name=" Mouse Sensitivity"
+   top_pad="10"
+   width="150">
+    Mouse sensitivity
+  </text>
+  <slider
+   control_name="MouseSensitivity"
+   follows="left|top"
+   height="15"
+   initial_value="2"
+   layout="topleft"
+   show_text="false"
+   left_delta="150"
+   max_val="15"
+   name="mouse_sensitivity"
+   top_delta="0"
+   width="145" />
+  <check_box
+   control_name="InvertMouse"
+   height="16"
+   label="Invert"
+   layout="topleft"
+   left_pad="2"
+   name="invert_mouse"
+   top_delta="0"
+   width="128" />
+</panel>

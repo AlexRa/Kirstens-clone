@@ -86,6 +86,7 @@
 #include "llfontgl.h"
 #include "llrect.h"
 #include "llstring.h"
+#include "llsdserialize.h"
 
 // project includes
 
@@ -536,7 +537,7 @@ void LLFloaterPreference::onOpen(const LLSD& key)
 	// Enabled/disabled popups, might have been changed by user actions
 	// while preferences floater was closed.
 	buildPopupLists();
-
+	
 	LLPanelLogin::setAlwaysRefresh(true);
 	refresh();
 	
@@ -730,15 +731,104 @@ void LLFloaterPreference::onClickSkin(LLUICtrl* ctrl, const LLSD& userdata)
 
 void LLFloaterPreference::onSelectSkin()
 {
-	std::string skin_selection = getChild<LLRadioGroup>("skin_selection")->getValue().asString();
+	std::string skin_selection = getChild<LLComboBox>("skin_selection")->getValue().asString();
+	llinfos << "skin selected " << skin_selection << llendl;
 	gSavedSettings.setString("SkinCurrent", skin_selection);
+	LLFloaterPreference::refreshSkin(this);
 }
 
 void LLFloaterPreference::refreshSkin(void* data)
 {
 	LLPanel*self = (LLPanel*)data;
+	std::string delim(gDirUtilp->getDirDelimiter()); 
 	sSkin = gSavedSettings.getString("SkinCurrent");
-	self->getChild<LLRadioGroup>("skin_selection", true)->setValue(sSkin);
+
+	LLComboBox* comboBox = self->getChild<LLComboBox>("skin_selection");
+	if (comboBox != NULL) 
+	{
+		std::string name;
+		gDirUtilp->getNextFileInDir(gDirUtilp->getChatLogsDir(),"*", name, false); // stupid hack to clear last file search
+		std::string path_name(gDirUtilp->getSkinBaseDir() + delim);
+		// TODO: we might also want to do this for 'user skins' that can be installed in user_settings folders
+		llinfos << " reading skin folders from "<< path_name << llendl;
+		comboBox->removeall();
+		while (gDirUtilp->getNextFileInDir(path_name, "*", name, false))
+		{
+			std::string skin_path(path_name + name + delim);
+			// skipping non-dir entries
+			// skipping directory traversal filenames
+			if ((name == ".") || (name == "..") || (! gDirUtilp->fileExists(skin_path + ".")))
+			{
+				continue;
+			}
+			else if (name == "paths.xml") // Simple yet crude way of ignoring this file KL
+			{
+				comboBox->setValue("");
+				continue;
+			}
+			// add this folder to the list of available skins
+			// TODO also get the descriptive name and set the combobox item's label / value
+			comboBox->add(name);
+		}
+		// set the selection to the current
+		comboBox->setSimple(sSkin);
+	}
+	
+	// check if we have a skininfo.xml file and/or a skinpreview.png
+	std::string skin_path(gDirUtilp->getSkinBaseDir() + delim + sSkin + delim);
+	if (gDirUtilp->fileExists(skin_path + "skininfo.xml"))
+	{
+		// read the info and display it on the UI
+		LLSD data;
+		llifstream importer(skin_path + "skininfo.xml");
+		LLSDSerialize::fromXMLDocument(data, importer);
+		if (data.has("skin_name"))
+		{
+			self->childSetValue("skin_name", data["skin_name"].asString());
+		} else
+		{
+			self->childSetValue("skin_name", sSkin);
+		}
+		if (data.has("authors"))
+		{
+			self->childSetValue("skin_authors", data["authors"].asString());
+		} else
+		{
+			self->childSetValue("skin_authors", "");
+		}
+		if (data.has("description"))
+		{
+			self->childSetValue("skin_description", data["description"].asString());
+		} else
+		{
+			self->childSetValue("skin_description", "");
+		}
+	} else 
+	{
+		llinfos << "No skininfo.xml found for " << skin_path << llendl;
+		self->childSetValue("skin_name", sSkin);
+		self->childSetValue("skin_authors", "");
+		self->childSetValue("skin_description", "");
+	}
+	
+	LLIconCtrl* preview_icon = self->getChild<LLIconCtrl>("skin_preview_icon");
+	if (preview_icon != NULL) 
+	{
+		// preview image
+		std::string image_path(skin_path + "skinpreview.png");
+		if (gDirUtilp->fileExists(image_path))
+		{
+			// add the preview image to the UI
+			// llinfos << " skinpreview.png found" << llendl;
+			// we need a relative path
+			std::string image_rel_path(".." + delim + ".." + delim + sSkin + delim + "skinpreview.png");
+			preview_icon->setValue(image_rel_path);
+		} else 
+		{
+			// llinfos << "No skinpreview.png found for " << skin_path << llendl;
+			preview_icon->setValue("");
+		}
+	}
 }
 
 
@@ -1268,14 +1358,14 @@ BOOL LLPanelPreference::postBuild()
 	if (hasChild("skin_selection"))
 	{
 		LLFloaterPreference::refreshSkin(this);
-
-		// if skin is set to a skin that no longer exists (silver) set back to default
+		/*
+		 // if skin is set to a skin that no longer exists (silver) set back to default
 		if (getChild<LLRadioGroup>("skin_selection")->getSelectedIndex() < 0)
 		{
 			gSavedSettings.setString("SkinCurrent", "default");
 			LLFloaterPreference::refreshSkin(this);
 		}
-
+		*/
 	}
 
 	if(hasChild("online_visibility") && hasChild("send_im_to_email"))
