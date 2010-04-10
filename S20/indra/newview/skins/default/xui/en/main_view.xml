@@ -113,25 +113,26 @@
         </layout_panel>
        
       </layout_stack>
-      <panel follows="all"
-                    height="500"
-                    left="0"
-                    mouse_opaque="false"
-                    name="floater_view_holder"
-                    tab_group="-1"
-                    tab_stop="false"
-                    top="0"
-                    width="1024">
-        <floater_view follows="all"
-                      height="500"
-                      left="0"
-                      mouse_opaque="false"
-                      name="Floater View"
-                      tab_group="-1"
-                      tab_stop="false"
-                      top="19"
-                      width="1024"/>
-               
+       <panel follows="all"
+                     height="500"
+                     left="0"
+                     mouse_opaque="false"
+                     name="floater_view_holder"
+                     tab_group="-1"
+                     tab_stop="false"
+                     top="0"
+                     width="1024">
+         <floater_view follows="all"
+                       height="1"
+                       left="0"
+                       mouse_opaque="false"
+                       name="Floater View"
+                       tab_group="-1"
+                       tab_stop="false"
+                       top="59"
+                       bottom="499" 
+                       width="1024"/>
+       
         <!-- status bar container LLViewerWindow::initWorldUI() -->
         <panel mouse_opaque="false"
                follows="left|right|top"
@@ -146,7 +147,7 @@
 
         <!-- nav bar container LLViewerWindow::initWorldUI() -->
         <panel  follows="left|right|top" 
-                height="60"
+                height="50"
                 left="0" 
                 top="19" 
                 mouse_opaque="false"
@@ -155,10 +156,10 @@
                 width="1024"
                 visible="false">
         </panel>
-        
+       <!-- Debug view like fast timers -->
       <debug_view follows="all"
                   left="0"
-                  top="0"
+                  top="60"
                   mouse_opaque="false"
                   height="500"
                   name="DebugView"

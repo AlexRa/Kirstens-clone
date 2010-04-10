@@ -770,7 +770,7 @@ void LLNavigationBar::showNavigationPanel(BOOL visible)
 			reshape(nbRect.getWidth(), nbRect.getHeight());
 			setRect(nbRect);
 			// propagate size to parent container
-			getParent()->reshape(nbRect.getWidth(), 60);
+			getParent()->reshape(nbRect.getWidth(), 50);
 
 			fb->reshape(fbRect.getWidth(), fbRect.getHeight());
 			fb->setRect(fbRect);
@@ -784,7 +784,7 @@ void LLNavigationBar::showNavigationPanel(BOOL visible)
 
 			reshape(nbRect.getWidth(), nbRect.getHeight());
 			setRect(nbRect);
-			getParent()->reshape(nbRect.getWidth(), 60);
+			getParent()->reshape(nbRect.getWidth(), 50);
 		}
 	}
 	else
@@ -799,7 +799,7 @@ void LLNavigationBar::showNavigationPanel(BOOL visible)
 			// this is duplicated in 'else' section because it should be called BEFORE fb->reshape
 			reshape(nbRect.getWidth(), nbRect.getHeight());
 			setRect(nbRect);
-			getParent()->reshape(nbRect.getWidth(), 60);
+			getParent()->reshape(nbRect.getWidth(), 50);
 
 			fb->reshape(fbRect.getWidth(), fbRect.getHeight());
 			fb->setRect(fbRect);
@@ -852,7 +852,7 @@ void LLNavigationBar::showFavoritesPanel(BOOL visible)
 
 		reshape(nbRect.getWidth(), nbRect.getHeight());
 		setRect(nbRect);
-		getParent()->reshape(nbRect.getWidth(), 60);
+		getParent()->reshape(nbRect.getWidth(), 50);
 
 		fb->reshape(fbRect.getWidth(), fbRect.getHeight());
 		fb->setRect(fbRect);
@@ -877,7 +877,7 @@ void LLNavigationBar::showFavoritesPanel(BOOL visible)
 
 		reshape(nbRect.getWidth(), nbRect.getHeight());
 		setRect(nbRect);
-		getParent()->reshape(nbRect.getWidth(), 60);
+		getParent()->reshape(nbRect.getWidth(), 50);
 	}
 
 	childSetVisible("bg_icon", visible);

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <panel
- background_opaque="false"
+ background_opaque="true"
  background_visible="false"
  bg_opaque_color="MouseGray"
  follows="left|top|right"
@@ -12,7 +12,7 @@
 	<icon
 	 follows="all"
 	 image_name="NavBar_BG"
-	 mouse_opaque="false"
+	 mouse_opaque="true"
 	 name="bg_icon"
 	 scale_image="true"
 	 visible="true"
@@ -23,7 +23,7 @@
 	<icon
 	 follows="all"
 	 image_name="NavBar_BG_NoFav"
-	 mouse_opaque="false"
+	 mouse_opaque="true"
 	 name="bg_icon_no_fav"
 	 scale_image="true"
 	 visible="false"
