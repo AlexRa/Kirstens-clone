@@ -1675,7 +1675,6 @@ void LLWindowSDL::processMiscNativeEvents()
 {
 #if LL_GTK
 	// Pump GTK events to avoid starvation for:
-	// * Embedded Gecko
 	// * DBUS servicing
 	// * Anything else which quietly hooks into the default glib/GTK loop
     if (ll_try_gtk_init())
@@ -2545,6 +2544,7 @@ std::vector<std::string> LLWindowSDL::getDynamicFallbackFontList()
 	// Use libfontconfig to find us a nice ordered list of fallback fonts
 	// specific to this system.
 	std::string final_fallback("/usr/share/fonts/truetype/kochi/kochi-gothic.ttf");
+	const int max_font_count_cutoff = 40; // fonts are expensive in the current system, don't enumerate an arbitrary number of them
 	// Our 'ideal' font properties which define the sorting results.
 	// slant=0 means Roman, index=0 means the first face in a font file
 	// (the one we actually use), weight=80 means medium weight,
@@ -2560,7 +2560,6 @@ std::vector<std::string> LLWindowSDL::getDynamicFallbackFontList()
 	std::vector<std::string> rtns;
 	FcFontSet *fs = NULL;
 	FcPattern *sortpat = NULL;
-	int font_count = 0;
 
 	llinfos << "Getting system font list from FontConfig..." << llendl;
 
@@ -2604,12 +2603,13 @@ std::vector<std::string> LLWindowSDL::getDynamicFallbackFontList()
 		FcPatternDestroy(sortpat);
 	}
 
+	int found_font_count = 0;
 	if (fs)
 	{
 		// Get the full pathnames to the fonts, where available,
 		// which is what we really want.
-		int i;
-		for (i=0; i<fs->nfont; ++i)
+		found_font_count = fs->nfont;
+		for (int i=0; i<fs->nfont; ++i)
 		{
 			FcChar8 *filename;
 			if (FcResultMatch == FcPatternGetString(fs->fonts[i],
@@ -2618,7 +2618,8 @@ std::vector<std::string> LLWindowSDL::getDynamicFallbackFontList()
 			    && filename)
 			{
 				rtns.push_back(std::string((const char*)filename));
-				++font_count;
+				if (rtns.size() >= max_font_count_cutoff)
+					break; // hit limit
 			}
 		}
 		FcFontSetDestroy (fs);
@@ -2631,7 +2632,7 @@ std::vector<std::string> LLWindowSDL::getDynamicFallbackFontList()
 	{
 		lldebugs << "  file: " << *it << llendl;
 	}
-	llinfos << "Using " << font_count << " system font(s)." << llendl;
+	llinfos << "Using " << rtns.size() << "/" << found_font_count << " system fonts." << llendl;
 
 	rtns.push_back(final_fallback);
 	return rtns;
