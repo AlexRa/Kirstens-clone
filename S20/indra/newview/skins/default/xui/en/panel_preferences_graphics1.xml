@@ -1564,7 +1564,7 @@
 	name="BackgroundYieldTime"
 	top_pad="5"
 	width="262" />
-	
-	</panel>
+
+  </panel>
 	</tab_container>
-</panel>
+ </panel>
