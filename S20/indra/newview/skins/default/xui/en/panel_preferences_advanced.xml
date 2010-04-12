@@ -218,6 +218,43 @@ Automatic position for:
 		     function="Pref.applyUIColor"
 		     parameter="BackgroundChatColor" />
     </color_swatch>
+    <check_box
+      control_name="ShowScriptErrors" 
+      follows="left|top"
+      height="20"
+      label="Show script errors in:" 
+      layout="topleft" 
+      left="30"
+      name="show_script_errors" 
+      width="256" />
+  <radio_group 
+    control_name="ShowScriptErrorsLocation" 
+    draw_border="false"
+    enabled_control="ShowScriptErrors" 
+    follows="top|left"
+    height="16" 
+    layout="topleft" 
+    left_delta="50"
+    name="show_location" 
+    top_pad="5"
+    width="364">
+    <radio_item
+      height="16" 
+      label="Nearby chat"
+      layout="topleft" 
+      left="3"
+      name="0" 
+      top="0" 
+      width="315" />
+    <radio_item 
+      height="16" 
+      label="Separate window" 
+      layout="topleft"
+      left_delta="175"
+      name="1" 
+      top_delta="0" 
+      width="315" />
+  </radio_group>
     <text
    type="string"
    length="1"
