@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# This is the build script used by Linden Lab's autmated build system.
+# This is the build script used by Linden Lab's automated build system.
 #
 
 set -x
@@ -213,18 +213,27 @@ Linux)
   if test -r /etc/debian_version
   then
     [ x"$DISTCC_DIR" = x ] && export DISTCC_DIR=/var/tmp/parabuild
-    case `cat /etc/debian_version` in
-    3.*) [ x"$DISTCC_HOSTS" = x ]\
-         && export DISTCC_HOSTS="build-linux-1
-                                 build-linux-2
-                                 build-linux-3
-                                 build-linux-4
-                                 build-linux-5" ;;
-    4.*) [ x"$DISTCC_HOSTS" = x ]\
-         && export DISTCC_HOSTS="build-linux-6
-                                 build-linux-7
-                                 build-linux-8
-                                 build-linux-9" ;;
+    #case `cat /etc/debian_version` in
+    #3.*) [ x"$DISTCC_HOSTS" = x ]\
+    #     && export DISTCC_HOSTS="build-linux-1/3
+    #                              station30/2,lzo" ;;
+    #4.*) [ x"$DISTCC_HOSTS" = x ]\
+    #     && export DISTCC_HOSTS="build-linux-6/2,lzo
+    #                             build-linux-2/2,lzo
+    #                             build-linux-3/2,lzo
+    #                             build-linux-4/2,lzo
+    #                             build-linux-5/2,lzo
+    #                             build-linux-7/2,lzo
+    #                             build-linux-8/2,lzo
+    #                             build-linux-9/2,lzo" ;;
+    #esac
+    # Temp fix for Linux so that parabuild passes: use the new Linux build farm
+    export hostname=`hostname -f`
+    export phx_DISTCC_HOSTS="build-linux0.phx.lindenlab.com/2 build-linux1.phx.lindenlab.com/2 build-linux2.phx.lindenlab.com/2 build-linux3.phx.lindenlab.com/2 build-linux5.phx.lindenlab.com/2 build-linux5.phx.lindenlab.com/2 build-linux6.phx.lindenlab.com/2 "
+    export dfw_DISTCC_HOSTS="build-linux7.dfw.lindenlab.com/2 build-linux8.dfw.lindenlab.com/2 build-linux9.dfw.lindenlab.com/2 build-linux10.dfw.lindenlab.com/2 build-linux11.dfw.lindenlab.com/2 build-linux12.dfw.lindenlab.com/2 build-linux13.dfw.lindenlab.com/2 build-linux14.dfw.lindenlab.com/2 build-linux15.dfw.lindenlab.com/2"
+    case "$hostname" in
+    *.dfw.*) export DISTCC_HOSTS="$dfw_DISTCC_HOSTS" ;;
+    *.phx.*) export DISTCC_HOSTS="$phx_DISTCC_HOSTS" ;;
     esac
   fi
 
@@ -234,7 +243,7 @@ Linux)
 *) fail undefined $arch ;;
 esac
 
-get_asset "http://www.fmod.org/index.php/release/version/$fmod_tar"
+get_asset "http://www.fmod.org/files/fmod3/$fmod_tar"
 
 # Special case for Mac...
 case "$arch" in
@@ -320,7 +329,7 @@ do
   fi
 done
 
-# check statuis and upload results to S3
+# Check status and upload results to S3
 subject=
 if $succeeded
 then
