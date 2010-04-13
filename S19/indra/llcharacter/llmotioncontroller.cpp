@@ -765,7 +765,8 @@ void LLMotionController::updateLoadingMotions()
 		LLMotion* motionp = *curiter;
 		if( !motionp)
 		{
-			continue; // maybe shouldn't happen but i've seen it -MG
+			return; // maybe shouldn't happen but i've seen it -MG 
+			// KL if its not motionp then why continue??
 		}
 		LLMotion::LLMotionInitStatus status = motionp->onInitialize(mCharacter);
 		if (status == LLMotion::STATUS_SUCCESS)
@@ -781,7 +782,7 @@ void LLMotionController::updateLoadingMotions()
 		}
 		else if (status == LLMotion::STATUS_FAILURE)
 		{
-			llinfos << "Motion " << motionp->getID() << " init failed." << llendl;
+			llwarns << "Motion " << motionp->getID() << " init failed." << llendl;
 			sRegistry.markBad(motionp->getID());
 			mLoadingMotions.erase(curiter);
 			motion_set_t::iterator found_it = mDeprecatedMotions.find(motionp);

@@ -1,10 +1,12 @@
-/** 
- * @file llversionviewer.h
- * @brief
- *
- * $LicenseInfo:firstyear=2002&license=viewergpl$
+/**
+ * @file   lllazy.cpp
+ * @author Nat Goodspeed
+ * @date   2009-01-28
+ * @brief  Implementation for lllazy.
  * 
- * Copyright (c) 2002-2009, Linden Research, Inc.
+ * $LicenseInfo:firstyear=2009&license=viewergpl$
+ * 
+ * Copyright (c) 2009-2010, Linden Research, Inc.
  * 
  * Second Life Viewer Source Code
  * The source code in this file ("Source Code") is provided by Linden Lab
@@ -30,18 +32,15 @@
  * $/LicenseInfo$
  */
 
-#ifndef LL_LLVERSIONVIEWER_H
-#define LL_LLVERSIONVIEWER_H
+// Precompiled header
+#include "linden_common.h"
+// associated header
+#include "lllazy.h"
+// STL headers
+// std headers
+// external library headers
+// other Linden headers
 
-const S32 LL_VERSION_MAJOR = 1;
-const S32 LL_VERSION_MINOR = 19;
-const S32 LL_VERSION_PATCH = 0;
-const S32 LL_VERSION_BUILD = 386; // Build version s18 (215) + s19 commits so far  = build number thats how KL rolls :)
-
-const char * const KL_CHANNEL = "Kirstens S19"; // KL my login channel, so grids can ident me from other viewers
-
-#if LL_DARWIN
-const char * const LL_VERSION_BUNDLE_ID = "com.secondlife.kirstens-S19.viewer";
-#endif
-
-#endif
+// lllazy.h is presently header-only. This file exists only because our CMake
+// test macro ADD_BUILD_TEST requires it.
+int dummy = 0;

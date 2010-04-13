@@ -182,9 +182,9 @@ void LLCharacter::requestStopMotion( LLMotion* motion)
 //-----------------------------------------------------------------------------
 void LLCharacter::updateMotions(e_update_t update_type)
 {
-	LLFastTimer t(LLFastTimer::FTM_UPDATE_ANIMATION);
 	if (update_type == HIDDEN_UPDATE)
 	{
+        LLFastTimer t(LLFastTimer::FTM_UPDATE_ANIMATION);
 		mMotionController.updateMotionsMinimal();
 	}
 	else
