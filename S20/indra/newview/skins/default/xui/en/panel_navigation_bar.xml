@@ -9,6 +9,7 @@
  name="navigation_bar"
  chrome="true"
  width="600">
+  <!--both these icons were WAYYY too big for the bars 23+15 don't equal 60! KL 55 is more sane-->
 	<icon
 	 follows="all"
 	 image_name="NavBar_BG"
@@ -18,7 +19,7 @@
 	 visible="true"
 	 left="0"
 	 top="0"
-	 height="60"
+	 height="55"
 	 width="600"/>
 	<icon
 	 follows="all"
@@ -152,12 +153,14 @@
           border.shadow_dark_color="FocusColor"/>
         </search_combo_box>
 	</panel>
+  <!--uncanny but top 27 is exactly 1 pixel more than the 26 pixels for status bar funny that! KL-->
     <favorites_bar
    follows="left|right|top"
    font="SansSerifSmall"
    height="15"
    layout="topleft"
    left="0"
+   top="27" 
    name="favorite"
    image_drag_indication="Accordion_ArrowOpened_Off"
    tool_tip="Drag Landmarks here for quick access to your favorite places in Second Life!"
