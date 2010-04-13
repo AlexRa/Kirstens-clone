@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <!-- Side tray cannot show background because it is always
-	partially on screen to hold tab buttons. -->
+	partially on screen to hold tab buttons. Not any more KL :) -->
 <side_tray
   name="sidebar"
-  background_visible="false"
+  background_visible="true"
   mouse_opaque="true"
   width="333"
   collapsed="true"

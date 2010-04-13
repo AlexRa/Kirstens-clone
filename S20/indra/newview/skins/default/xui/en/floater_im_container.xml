@@ -9,7 +9,7 @@
  help_topic="floater_im_box"
  save_rect="true"
  save_visibility="true"
- single_instance="false"
+ single_instance="true"
  title="CONVERSATIONS"
  width="392">
     <tab_container

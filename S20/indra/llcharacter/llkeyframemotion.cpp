@@ -468,7 +468,7 @@ LLMotion *LLKeyframeMotion::create(const LLUUID &id)
 //-----------------------------------------------------------------------------
 LLPointer<LLJointState>& LLKeyframeMotion::getJointState(U32 index)
 {
-	llassert_always (index < mJointStates.size());
+	llassert_always (index < (S32)mJointStates.size());
 	return mJointStates[index];
 }
 
@@ -477,7 +477,7 @@ LLPointer<LLJointState>& LLKeyframeMotion::getJointState(U32 index)
 //-----------------------------------------------------------------------------
 LLJoint* LLKeyframeMotion::getJoint(U32 index)
 {
-	llassert_always (index < mJointStates.size());
+	llassert_always (index < (S32)mJointStates.size());
 	LLJoint* joint = mJointStates[index]->getJoint();
 	llassert_always (joint);
 	return joint;
@@ -1243,6 +1243,12 @@ BOOL LLKeyframeMotion::deserialize(LLDataPacker& dp)
 		return FALSE;
 	}
 
+	if(mJointMotionList->mEmoteName==mID.asString())
+	{
+		llwarns << "Malformed animation mEmoteName==mID" << llendl;
+		return FALSE;
+	}
+	
 	//-------------------------------------------------------------------------
 	// get loop
 	//-------------------------------------------------------------------------
