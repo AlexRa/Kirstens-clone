@@ -13,13 +13,13 @@
  top="28"
  chrome="true"
  border_visible="false"
- width="1600">
+ width="1000">
   <icon
    scale_image="true"
    follows="left|right|bottom"
    height="33"
    image_name="BottomTray_BG.png"
-   width="1600" />
+   width="1000" />
   <string name="SpeakBtnToolTip">Turns microphone on/off</string>
   <string name="VoiceControlBtnToolTip">Shows/hides voice control panel</string>
     <layout_stack
@@ -33,7 +33,7 @@
      name="toolbar_stack"
      orientation="horizontal"
      top="0"
-     width="1600">
+     width="1000">
         <icon
          auto_resize="false"
          follows="left|right"

@@ -424,7 +424,7 @@ void LLChatBar::startChat(const char* line)
 	// *TODO Vadim: Why was this code commented out?
 
 // 	gChatBar->setVisible(TRUE);
-// 	gChatBar->setKeyboardFocus(TRUE);
+	gChatBar->setKeyboardFocus(TRUE);
 // 	gSavedSettings.setBOOL("ChatVisible", TRUE);
 // 
 // 	if (line && gChatBar->mInputEditor)
@@ -432,8 +432,8 @@ void LLChatBar::startChat(const char* line)
 // 		std::string line_string(line);
 // 		gChatBar->mInputEditor->setText(line_string);
 // 	}
-// 	// always move cursor to end so users don't obliterate chat when accidentally hitting WASD
-// 	gChatBar->mInputEditor->setCursorToEnd();
+	// always move cursor to end so users don't obliterate chat when accidentally hitting WASD
+	gChatBar->mInputEditor->setCursorToEnd();
 }
 
 
@@ -447,20 +447,19 @@ void LLChatBar::stopChat()
 	//	gBottomTray->getChatBox()->setFocus(FALSE);
 	//}
 
-	// *TODO Vadim: Why was this code commented out?
 
-// 	// In simple UI mode, we never release focus from the chat bar
-// 	gChatBar->setKeyboardFocus(FALSE);
-// 
-// 	// If we typed a movement key and pressed return during the
-// 	// same frame, the keyboard handlers will see the key as having
-// 	// gone down this frame and try to move the avatar.
-// 	gKeyboard->resetKeys();
-// 	gKeyboard->resetMaskKeys();
-// 
-// 	// stop typing animation
-// 	gAgent.stopTyping();
-// 
+	// In simple UI mode, we never release focus from the chat bar
+	gChatBar->setKeyboardFocus(FALSE);
+
+	// If we typed a movement key and pressed return during the
+	// same frame, the keyboard handlers will see the key as having
+	// gone down this frame and try to move the avatar.
+	gKeyboard->resetKeys();
+	gKeyboard->resetMaskKeys();
+
+	// stop typing animation
+	gAgent.stopTyping();
+
 // 	// hide chat bar so it doesn't grab focus back
 // 	gChatBar->setVisible(FALSE);
 // 	gSavedSettings.setBOOL("ChatVisible", FALSE);
@@ -576,8 +575,12 @@ void LLChatBar::sendChatFromViewer(const LLWString &wtext, EChatType type, BOOL 
 	S32 channel = 0;
 	LLWString out_text = stripChannelNumber(wtext, &channel);
 	std::string utf8_out_text = wstring_to_utf8str(out_text);
-	std::string utf8_text = wstring_to_utf8str(wtext);
+	if (!utf8_out_text.empty())
+	{
+		utf8_out_text = utf8str_truncate(utf8_out_text, 1023);
+	}
 
+	std::string utf8_text = wstring_to_utf8str(wtext);
 	utf8_text = utf8str_trim(utf8_text);
 	if (!utf8_text.empty())
 	{

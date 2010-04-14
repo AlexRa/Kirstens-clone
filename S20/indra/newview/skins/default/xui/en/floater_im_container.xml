@@ -22,7 +22,7 @@
      tab_width="130"
      tab_max_width = "134"
      tab_height="16"
-     use_custom_icon_ctrl="true"
+     use_custom_icon_ctrl="false"
      tab_icon_ctrl_pad="2"
      halign="left"
      use_ellipses="true"

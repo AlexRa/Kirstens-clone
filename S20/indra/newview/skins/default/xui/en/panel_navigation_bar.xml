@@ -160,7 +160,7 @@
    height="15"
    layout="topleft"
    left="0"
-   top="27" 
+   top="30" 
    name="favorite"
    image_drag_indication="Accordion_ArrowOpened_Off"
    tool_tip="Drag Landmarks here for quick access to your favorite places in Second Life!"

@@ -442,17 +442,17 @@ LLIMFloater* LLIMFloater::show(const LLUUID& session_id)
 	return floater;
 }
 
-void LLIMFloater::getAllowedRect(LLRect& rect)
+void LLIMFloater::getAllowedRect(LLRect& rect) //KL This little gem caused windowed IM's to have a Fit!
 {
-	rect = gViewerWindow->getWorldViewRectScaled();
+	rect = gViewerWindow->getWorldViewRectScaled(); // KL keep the original just to keep line numbering for patches merges easy :)
 	static S32 right_padding = 0;
 	if (right_padding == 0)
 	{
-		LLPanel* side_bar_tabs =
-				gViewerWindow->getRootView()->getChild<LLPanel> (
-						"side_bar_tabs");
-		right_padding = side_bar_tabs->getRect().getWidth();
-		LLTransientFloaterMgr::getInstance()->addControlView(side_bar_tabs);
+		//LLPanel* side_bar_tabs =
+		//		gViewerWindow->getRootView()->getChild<LLPanel> (
+		//				"side_bar_tabs");
+		right_padding = 32; //side_bar_tabs->getRect().getWidth();
+		//LLTransientFloaterMgr::getInstance()->addControlView(side_bar_tabs);
 	}
 	rect.mRight -= right_padding;
 }

@@ -4627,8 +4627,8 @@ void LLWearableBridge::openItem()
 
 	if (item)
 	{
-
-	  LLInvFVBridgeAction::doAction(item->getType(),mUUID,getInventoryModel());
+      // KL this line may be the reason why double click wear is getting borked
+	  //LLInvFVBridgeAction::doAction(item->getType(),mUUID,getInventoryModel());
 	
 	    if(gAgentWearables.isWearingItem( mUUID )) // KL applying the double click inventory patch here was !gAgent
 		{

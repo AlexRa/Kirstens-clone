@@ -693,7 +693,7 @@ void LLPanelStandStopFlying::onStandButtonClick()
 {
 	LLSelectMgr::getInstance()->deselectAllForStandingUp();
 	gAgent.setControlFlags(AGENT_CONTROL_STAND_UP);
-
+	gAgent.setFlying(FALSE); // Crazy Stuff but will this stop people flying after standing? KL
 	setFocus(FALSE); // EXT-482
 }
 
