@@ -135,6 +135,40 @@
                  function="World.SetBusy"/>
             </menu_item_call>
         </menu>
+        <menu_item_separator
+        	layout="topleft"/>
+        <menu_item_check
+         label="Sit Right Here!"
+         layout="topleft"
+         name="Sit On Ground"
+         shortcut="control|alt|shift|S">
+         	<menu_item_check.on_check
+          	function="World.CheckSitOnGround" />
+          <menu_item_check.on_click
+          	function="World.SitOnGround" />
+        </menu_item_check>
+				<menu_item_check
+				 label="Always Run"
+				 layout="topleft"
+				 name="Always Run"
+				 shortcut="control|R">
+						<menu_item_check.on_check
+						 function="World.CheckAlwaysRun" />
+						<menu_item_check.on_click
+						 function="World.AlwaysRun" />
+				</menu_item_check>
+				<menu_item_check
+				 label="Fly"
+				 layout="topleft"
+				 name="Fly"
+				 shortcut="Home">
+						<menu_item_check.on_check
+						 function="Agent.getFlying" />
+						<menu_item_check.on_click
+						 function="Agent.toggleFlying" />
+						<menu_item_check.on_enable
+						 function="Agent.enableFlying" />
+				</menu_item_check>
         <menu_item_call
          label="Request Admin Status"
          layout="topleft"

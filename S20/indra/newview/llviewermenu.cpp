@@ -5290,6 +5290,35 @@ class LLWorldCheckAlwaysRun : public view_listener_t
 		return new_value;
 	}
 };
+// S20
+class LLWorldSitOnGround : public view_listener_t
+{
+	bool handleEvent(const LLSD& userdata)
+	{
+		if (gAgent.getAvatarObject() && !gAgent.getAvatarObject()->isSitting())
+		{
+			gAgent.setControlFlags(AGENT_CONTROL_SIT_ON_GROUND);
+		} else
+		{
+			gAgent.setControlFlags(!AGENT_CONTROL_SIT_ON_GROUND);
+			gAgent.setControlFlags(AGENT_CONTROL_STAND_UP);
+		}
+		return true;
+	}
+};
+//S20
+class LLWorldCheckSitOnGround : public view_listener_t
+{
+	bool handleEvent(const LLSD& userdata)
+	{
+		bool sitting = FALSE;
+		if (gAgent.getAvatarObject())
+		{
+			sitting = gAgent.getAvatarObject()->isSitting();
+		}
+		return sitting;
+	}
+};
 
 class LLWorldSetAway : public view_listener_t
 {
@@ -7766,6 +7795,10 @@ void initialize_menus()
 	view_listener_t::addMenu(new LLWorldCreateLandmark(), "World.CreateLandmark");
 	view_listener_t::addMenu(new LLWorldSetHomeLocation(), "World.SetHomeLocation");
 	view_listener_t::addMenu(new LLWorldTeleportHome(), "World.TeleportHome");
+
+	view_listener_t::addMenu(new LLWorldSitOnGround(), "World.SitOnGround");
+	view_listener_t::addMenu(new LLWorldCheckSitOnGround(), "World.CheckSitOnGround");
+
 	view_listener_t::addMenu(new LLWorldSetAway(), "World.SetAway");
 	view_listener_t::addMenu(new LLWorldSetBusy(), "World.SetBusy");
 

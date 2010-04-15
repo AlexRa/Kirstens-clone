@@ -400,6 +400,11 @@ BOOL LLNearbyChatBar::handleKeyHere( KEY key, MASK mask )
 		// shout
 		sendChat(CHAT_TYPE_SHOUT);
 		handled = TRUE;
+	} else if( KEY_RETURN == key && mask == MASK_SHIFT)
+	{
+		// whisper
+		sendChat(CHAT_TYPE_WHISPER);
+		handled = TRUE;
 	}
 
 	return handled;
@@ -558,6 +563,36 @@ void LLNearbyChatBar::sendChat( EChatType type )
 			std::string utf8_revised_text;
 			if (0 == channel)
 			{
+				if (gSavedSettings.getBOOL("AutoCloseOOC"))
+				{
+					// Try to find any unclosed OOC chat (i.e. an opening
+					// double parenthesis without a matching closing double
+					// parenthesis.
+					if (utf8text.find("((") != -1 && utf8text.find("))") == -1)
+					{
+						if (utf8text.at(utf8text.length() - 1) == ')')
+						{
+							// cosmetic: add a space first to avoid a closing triple parenthesis
+							utf8text += " ";
+						}
+						// add the missing closing double parenthesis.
+						utf8text += "))";
+					}
+				}
+				
+				// Convert MU*s style poses into IRC emotes here.
+				if (gSavedSettings.getBOOL("AllowMUpose") && utf8text.find(":") == 0 && utf8text.length() > 3)
+				{
+					if (utf8text.find(":'") == 0)
+					{
+						utf8text.replace(0, 1, "/me");
+					}
+					else if (isalpha(utf8text.at(1)))	// Do not prevent smileys and such.
+					{
+						utf8text.replace(0, 1, "/me ");
+					}
+				}
+				
 				// discard returned "found" boolean
 				LLGestureManager::instance().triggerAndReviseString(utf8text, &utf8_revised_text);
 			}

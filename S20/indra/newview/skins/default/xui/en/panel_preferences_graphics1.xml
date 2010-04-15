@@ -1265,9 +1265,29 @@
 	layout="topleft"
 	left="200"
 	name="ShowNetStats"
-	top_pad="5"
+	top="25"
 	width="256" />
 
+	<check_box
+	control_name="AllowMUpose"
+	height="16"
+	initial_value="true"
+	label="Allow MU* pose style in chat and IM"
+	layout="topleft"
+	left="200"
+	name="AllowMUpose"
+	top_pad="5"
+	width="256" />
+	<check_box
+	control_name="AutoCloseOOC"
+	height="16"
+	initial_value="true"
+	label="Auto-close OOC chat (i.e. add '))'"
+	layout="topleft"
+	left="200"
+	name="AutoCloseOOC"
+	top_pad="5"
+	width="256" />
         
 	<check_box
 	control_name="AllowMultipleViewers"
