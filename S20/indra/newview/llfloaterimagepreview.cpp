@@ -630,6 +630,11 @@ LLImagePreviewAvatar::~LLImagePreviewAvatar()
 	mDummyAvatar->markDead();
 }
 
+//virtual
+S8 LLImagePreviewAvatar::getType() const
+{
+	return LLViewerDynamicTexture::LL_IMAGE_PREVIEW_AVATAR ;
+}
 
 void LLImagePreviewAvatar::setPreviewTarget(const std::string& joint_name, const std::string& mesh_name, LLImageRaw* imagep, F32 distance, BOOL male) 
 { 
@@ -809,6 +814,11 @@ LLImagePreviewSculpted::~LLImagePreviewSculpted()
 {
 }
 
+//virtual
+S8 LLImagePreviewSculpted::getType() const
+{
+	return LLViewerDynamicTexture::LL_IMAGE_PREVIEW_SCULPTED ;
+}
 
 void LLImagePreviewSculpted::setPreviewTarget(LLImageRaw* imagep, F32 distance)
 { 

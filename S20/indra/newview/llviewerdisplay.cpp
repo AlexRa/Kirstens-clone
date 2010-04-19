@@ -170,7 +170,7 @@ void display_startup()
 void display_update_camera()
 {
 	LLMemType mt_uc(LLMemType::MTYPE_DISPLAY_UPDATE_CAMERA);
-	llpushcallstacks ;
+	//llpushcallstacks ;
 	// TODO: cut draw distance down if customizing avatar?
 	// TODO: cut draw distance on per-parcel basis?
 
@@ -701,7 +701,7 @@ void display(BOOL rebuild, F32 zoom_factor, int subfield, BOOL for_snapshot)
 		// Doing this here gives hardware occlusion queries extra time to complete
 		LLAppViewer::instance()->pingMainloopTimeout("Display:UpdateImages");
 		LLError::LLCallStacks::clear() ;
-		llpushcallstacks ;
+		//llpushcallstacks ;
 
 		{
 			LLMemType mt_iu(LLMemType::MTYPE_DISPLAY_IMAGE_UPDATE);
@@ -720,7 +720,7 @@ void display(BOOL rebuild, F32 zoom_factor, int subfield, BOOL for_snapshot)
 			LLImageGL::deleteDeadTextures();
 			stop_glerror();
 		}
-		llpushcallstacks ;
+		//llpushcallstacks ;
 		///////////////////////////////////
 		//
 		// StateSort
@@ -956,7 +956,6 @@ void render_hud_attachments()
 		if (has_ui)
 		{
 			gPipeline.toggleRenderDebugFeature((void*) LLPipeline::RENDER_DEBUG_FEATURE_UI);
-			//gStatusBar->setVisibleForMouselook(false);	 // KL just here for testing
 		}
 
 		S32 use_occlusion = LLPipeline::sUseOcclusion;

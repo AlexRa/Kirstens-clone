@@ -77,9 +77,8 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO
+GUIDELINES DESIGNINFO 
 BEGIN
-
     "SPLASHSCREEN", DIALOG
     BEGIN
         LEFTMARGIN, 7
@@ -130,8 +129,8 @@ TOOLBUY                 CURSOR                  "toolbuy.cur"
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,0,0,203396
- PRODUCTVERSION 2,0,0,203396
+ FILEVERSION 2,0,0,203602
+ PRODUCTVERSION 2,0,0,203602
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -148,12 +147,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Kirstens Viewers"
             VALUE "FileDescription", "Kirstens S20"
-            VALUE "FileVersion", "2.0.0.17"
+            VALUE "FileVersion", "2.0.0.19"
             VALUE "InternalName", "Second Life"
             VALUE "LegalCopyright", "Copyright © 2001-2010, Linden Research, Inc. & Kirstenlee Cinquetti"
             VALUE "OriginalFilename", "Secondlife.exe"
             VALUE "ProductName", "Kirstens S20"
-            VALUE "ProductVersion", "2.0.0.203396"
+            VALUE "ProductVersion", "2.0.0.203602"
         END
     END
     BLOCK "VarFileInfo"

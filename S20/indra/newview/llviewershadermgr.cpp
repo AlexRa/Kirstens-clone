@@ -808,8 +808,8 @@ BOOL LLViewerShaderMgr::loadShadersEffects()
 	}
 	
 
-	// KL enabling loading of postprocess shaders
-	// ATI may still have issues
+	// KL enabling loading of postprocess shaders 
+	// S20
 	
 	//load Color Filter Shader
 	if (success)
@@ -850,7 +850,7 @@ BOOL LLViewerShaderMgr::loadShadersEffects()
 		gPostNightVisionProgram.mShaderLevel = mVertexShaderLevel[SHADER_EFFECT];
 		success = gPostNightVisionProgram.createShader(NULL, &shaderUniforms);
 	}
-	
+	// S20
 
 	return success;
 

@@ -7651,7 +7651,7 @@ class LLWorldPostProcess : public view_listener_t
 	}
 };
 
-/// Sky Menu callbacks added by Kirstenlee ^^
+/// S20 Sky Menu callbacks added by Kirstenlee ^^
 class LLWorldSkySettings : public view_listener_t
 {	
 	bool handleEvent(const LLSD& userdata)
@@ -7795,10 +7795,10 @@ void initialize_menus()
 	view_listener_t::addMenu(new LLWorldCreateLandmark(), "World.CreateLandmark");
 	view_listener_t::addMenu(new LLWorldSetHomeLocation(), "World.SetHomeLocation");
 	view_listener_t::addMenu(new LLWorldTeleportHome(), "World.TeleportHome");
-
+    //S20
 	view_listener_t::addMenu(new LLWorldSitOnGround(), "World.SitOnGround");
 	view_listener_t::addMenu(new LLWorldCheckSitOnGround(), "World.CheckSitOnGround");
-
+    // S20
 	view_listener_t::addMenu(new LLWorldSetAway(), "World.SetAway");
 	view_listener_t::addMenu(new LLWorldSetBusy(), "World.SetBusy");
 
@@ -7813,7 +7813,7 @@ void initialize_menus()
 	view_listener_t::addMenu(new LLWorldWaterSettings(), "World.WaterSettings");
 	view_listener_t::addMenu(new LLWorldPostProcess(), "World.PostProcess");
 	view_listener_t::addMenu(new LLWorldDayCycle(), "World.DayCycle");
-    view_listener_t::addMenu(new LLWorldSkySettings(), "World.SkySettings"); // KL
+    view_listener_t::addMenu(new LLWorldSkySettings(), "World.SkySettings"); // KL S20
 
 	view_listener_t::addMenu(new LLWorldToggleMovementControls(), "World.Toggle.MovementControls");
 	view_listener_t::addMenu(new LLWorldToggleCameraControls(), "World.Toggle.CameraControls");

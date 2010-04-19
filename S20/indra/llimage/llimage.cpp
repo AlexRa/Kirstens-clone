@@ -12,13 +12,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -28,6 +28,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 
 #include "linden_common.h"
@@ -93,9 +94,10 @@ LLImageBase::LLImageBase()
 	  mWidth(0),
 	  mHeight(0),
 	  mComponents(0),
+	  mBadBufferAllocation(false),
+	  mAllowOverSize(false),
 	  mMemType(LLMemType::MTYPE_IMAGEBASE)
 {
-	mBadBufferAllocation = FALSE ;
 }
 
 // virtual
@@ -134,8 +136,6 @@ void LLImageBase::sanityCheck()
 	}
 }
 
-BOOL LLImageBase::sSizeOverride = FALSE;
-
 // virtual
 void LLImageBase::deleteData()
 {
@@ -157,23 +157,32 @@ U8* LLImageBase::allocateData(S32 size)
 			llerrs << llformat("LLImageBase::allocateData called with bad dimensions: %dx%dx%d",mWidth,mHeight,mComponents) << llendl;
 		}
 	}
-	if (size < 1 || (size > 4096*4096*16 && sSizeOverride == FALSE))
+	
+	//make this function thread-safe.
+	static const U32 MAX_BUFFER_SIZE = 4096 * 4096 * 16 ; //256 MB
+	if (size < 1 || size > MAX_BUFFER_SIZE) 
 	{
 		llinfos << "width: " << mWidth << " height: " << mHeight << " components: " << mComponents << llendl ;
+		if(mAllowOverSize)
+		{
+			llinfos << "Oversize: " << size << llendl ;
+		}
+		else
+		{
 		llerrs << "LLImageBase::allocateData: bad size: " << size << llendl;
 	}
-	
+	}
 	if (!mData || size != mDataSize)
 	{
 		deleteData(); // virtual
-		mBadBufferAllocation = FALSE ;
+		mBadBufferAllocation = false ;
 		mData = new U8[size];
 		if (!mData)
 		{
 			llwarns << "allocate image data: " << size << llendl;
 			size = 0 ;
 			mWidth = mHeight = 0 ;
-			mBadBufferAllocation = TRUE ;
+			mBadBufferAllocation = true ;
 		}
 		mDataSize = size;
 	}
@@ -222,7 +231,7 @@ U8* LLImageBase::getData()
 	return mData; 
 }
 
-BOOL LLImageBase::isBufferInvalid()
+bool LLImageBase::isBufferInvalid()
 {
 	return mBadBufferAllocation || mData == NULL ;
 }
@@ -258,7 +267,11 @@ LLImageRaw::LLImageRaw(U16 width, U16 height, S8 components)
 	: LLImageBase()
 {
 	mMemType = LLMemType::MTYPE_IMAGERAW;
-	llassert( S32(width) * S32(height) * S32(components) <= MAX_IMAGE_DATA_SIZE );
+	//llassert( S32(width) * S32(height) * S32(components) <= MAX_IMAGE_DATA_SIZE );
+	if(S32(width) * S32(height) * S32(components) > MAX_IMAGE_DATA_SIZE)
+	{
+		llwarns << "over size: width: " << (S32)width << " height: " << (S32)height << " components: " << (S32)components << llendl ;
+	}
 	allocateDataSize(width, height, components);
 	++sRawImageCount;
 }

@@ -17,7 +17,6 @@ Agathos Frascati
 	CT-317
 	CT-352
 Aimee Trescothick
-	VWR-1813
 	VWR-3321
 	VWR-3336
 	VWR-3903
@@ -49,7 +48,6 @@ Aimee Trescothick
 	VWR-14087
 	VWR-14267
 	VWR-14278
-	VWR-14087
 Alejandro Rosenthal
 	VWR-1184
 Aleric Inglewood
@@ -59,7 +57,6 @@ Aleric Inglewood
 	VWR-12691
 	VWR-13996
 	VWR-14426
-	SNOW-84
 Ales Beaumont
 	VWR-9352
 Alissa Sabre
@@ -146,9 +143,6 @@ blino Nakamura
 	VWR-17
 Boroondas Gupte
 	SNOW-278
-	SNOW-501
-	SNOW-502
-	SNOW-503
 	VWR-233
 	WEB-262
 Bulli Schumann
@@ -511,10 +505,6 @@ Ringo Tuxing
 Robin Cornelius
 	SNOW-108
 	SNOW-204
-	SNOW-504
-	SNOW-507
-	SNOW-511
-	SNOW-512
 	VWR-2488
 	VWR-9557
 	VWR-11128
@@ -612,7 +602,6 @@ tenebrous pau
 Tharax Ferraris
 	VWR-605
 Thickbrick Sleaford
-	SNOW-513
 	VWR-7109
 	VWR-9287
 	VWR-13483

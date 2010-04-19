@@ -2702,7 +2702,13 @@ void LLViewerMediaImpl::calculateInterest()
 	if(!mObjectList.empty())
 	{
 		// Just use the first object in the list.  We could go through the list and find the closest object, but this should work well enough.
-		LLVector3d global_delta = gAgent.getPositionGlobal() - (*mObjectList.begin())->getPositionGlobal();
+		std::list< LLVOVolume* >::iterator iter = mObjectList.begin() ;
+		LLVOVolume* objp = *iter ;
+		llassert_always(objp != NULL) ;
+
+		LLVector3d obj_global = objp->getPositionGlobal() ;
+		LLVector3d agent_global = gAgent.getPositionGlobal() ;
+		LLVector3d global_delta = agent_global - obj_global ;
 		mProximityDistance = global_delta.magVecSquared();  // use distance-squared because it's cheaper and sorts the same.
 	}
 	
@@ -2980,8 +2986,9 @@ bool LLViewerMediaImpl::shouldShowBasedOnClass() const
 	//	" outside = " << (!inside_parcel && gSavedSettings.getBOOL(LLViewerMedia::SHOW_MEDIA_OUTSIDE_PARCEL_SETTING)) << llendl;
 	
 	// If it has focus, we should show it
-	if (hasFocus())
-		return true;
+	// This is incorrect, and causes EXT-6750 (disabled attachment media still plays)
+//	if (hasFocus())
+//		return true;
 	
 	// If it is attached to an avatar and the pref is off, we shouldn't show it
 	if (attached_to_another_avatar)

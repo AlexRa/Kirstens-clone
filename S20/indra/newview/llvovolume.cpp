@@ -3294,7 +3294,6 @@ static LLFastTimer::DeclareTimer FTM_REBUILD_VBO("VBO Rebuilt");
 
 void LLVolumeGeometryManager::rebuildGeom(LLSpatialGroup* group)
 {
-	llpushcallstacks ;
 	if (group->changeLOD())
 	{
 		group->mLastUpdateDistance = group->mDistance;
@@ -3525,9 +3524,8 @@ void LLVolumeGeometryManager::rebuildGeom(LLSpatialGroup* group)
 static LLFastTimer::DeclareTimer FTM_VOLUME_GEOM("Volume Geometry");
 void LLVolumeGeometryManager::rebuildMesh(LLSpatialGroup* group)
 {
-	llpushcallstacks ;
-	llassert(group);
-	if (group && group->isState(LLSpatialGroup::MESH_DIRTY) && !group->isState(LLSpatialGroup::GEOM_DIRTY))
+    //	llassert(group); // next line was if( group && etc etc
+	if (group->isState(LLSpatialGroup::MESH_DIRTY) && !group->isState(LLSpatialGroup::GEOM_DIRTY))
 	{
 		LLFastTimer tm(FTM_VOLUME_GEOM);
 		S32 num_mapped_veretx_buffer = LLVertexBuffer::sMappedCount ;
@@ -3608,16 +3606,15 @@ void LLVolumeGeometryManager::rebuildMesh(LLSpatialGroup* group)
 
 		group->clearState(LLSpatialGroup::MESH_DIRTY | LLSpatialGroup::NEW_DRAWINFO);
 	}
-
-	if (group && group->isState(LLSpatialGroup::NEW_DRAWINFO))
+      // was if(group && 
+	if (group->isState(LLSpatialGroup::NEW_DRAWINFO))
 	{
-		llerrs << "WTF?" << llendl;
+		llwarns << "WTF?" << llendl; // WTF is not helpful....
 	}
 }
 
 void LLVolumeGeometryManager::genDrawInfo(LLSpatialGroup* group, U32 mask, std::vector<LLFace*>& faces, BOOL distance_sort)
 {
-	llpushcallstacks ;
 	//calculate maximum number of vertices to store in a single buffer
 	U32 max_vertices = (gSavedSettings.getS32("RenderMaxVBOSize")*1024)/LLVertexBuffer::calcStride(group->mSpatialPartition->mVertexDataMask);
 	max_vertices = llmin(max_vertices, (U32) 65535);
@@ -3815,7 +3812,7 @@ void LLVolumeGeometryManager::genDrawInfo(LLSpatialGroup* group, U32 mask, std::
 					}
 					else
 					{
-						llassert(mask & LLVertexBuffer::MAP_NORMAL);
+					//	llassert(mask & LLVertexBuffer::MAP_NORMAL);
 						registerFace(group, facep, LLRenderPass::PASS_SIMPLE);
 					}
 				}
@@ -3846,7 +3843,7 @@ void LLVolumeGeometryManager::genDrawInfo(LLSpatialGroup* group, U32 mask, std::
 					}
 					else
 					{
-						llassert(mask & LLVertexBuffer::MAP_NORMAL);
+					//	llassert(mask & LLVertexBuffer::MAP_NORMAL);
 						registerFace(group, facep, LLRenderPass::PASS_SIMPLE);
 					}
 				}
@@ -3859,7 +3856,7 @@ void LLVolumeGeometryManager::genDrawInfo(LLSpatialGroup* group, U32 mask, std::
 			
 			if (!is_alpha && !LLPipeline::sRenderDeferred)
 			{
-				llassert((mask & LLVertexBuffer::MAP_NORMAL) || fullbright);
+			//	llassert((mask & LLVertexBuffer::MAP_NORMAL) || fullbright);
 				facep->setPoolType((fullbright) ? LLDrawPool::POOL_FULLBRIGHT : LLDrawPool::POOL_SIMPLE);
 				
 				if (!force_simple && te->getBumpmap() && LLPipeline::sRenderBump)
@@ -3939,7 +3936,7 @@ LLHUDPartition::LLHUDPartition()
 	mPartitionType = LLViewerRegion::PARTITION_HUD;
 	mDrawableType = LLPipeline::RENDER_TYPE_HUD;
 	mSlopRatio = 0.f;
-	mLODPeriod = 1;
+	mLODPeriod = 1;  // KL was 32 in original SD
 }
 
 void LLHUDPartition::shift(const LLVector3 &offset)

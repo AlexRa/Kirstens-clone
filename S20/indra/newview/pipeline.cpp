@@ -1799,7 +1799,7 @@ void LLPipeline::rebuildPriorityGroups()
 		
 void LLPipeline::rebuildGroups()
 {
-	llpushcallstacks ;
+	//llpushcallstacks ;
 	// Iterate through some drawables on the non-priority build queue
 	S32 size = (S32) mGroupQ2.size();
 	S32 min_count = llclamp((S32) ((F32) (size * size)/4096*0.25f), 1, size);
@@ -3184,7 +3184,6 @@ void LLPipeline::renderGeom(LLCamera& camera, BOOL forceVBOUpdate)
 	{
 		// Render debugging beacons.
 		gObjectList.renderObjectBeacons();
-		LLHUDObject::renderAll();
 		gObjectList.resetObjectBeacons();
 	}
 
@@ -3416,7 +3415,6 @@ void LLPipeline::renderGeomPostDeferred(LLCamera& camera)
 	{
 		// Render debugging beacons.
 		gObjectList.renderObjectBeacons();
-		LLHUDObject::renderAll();
 		gObjectList.resetObjectBeacons();
 	}
 

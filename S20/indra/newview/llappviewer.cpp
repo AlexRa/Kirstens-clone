@@ -1108,12 +1108,15 @@ bool LLAppViewer::mainLoop()
 					ms_sleep(500);
 				}
 
-
+				static const F64 FRAME_SLOW_THRESHOLD = 0.5; //2 frames per seconds				
 				const F64 min_frame_time = 0.0; //(.0333 - .0010); // max video frame rate = 30 fps
 				const F64 min_idle_time = 0.0; //(.0010); // min idle time = 1 ms
 				const F64 max_idle_time = run_multiple_threads ? min_idle_time : llmin(.005*10.0*gFrameTimeSeconds, 0.005); // 5 ms a second
 				idleTimer.reset();
-				while(1)
+				bool is_slow = (frameTimer.getElapsedTimeF64() > FRAME_SLOW_THRESHOLD) ;
+				S32 total_work_pending = 0;
+				S32 total_io_pending = 0;				
+				while(!is_slow)//do not unpause threads if the frame rates are very low.
 				{
 					S32 work_pending = 0;
 					S32 io_pending = 0;
@@ -1144,6 +1147,8 @@ bool LLAppViewer::mainLoop()
 						ms_sleep(llmin(io_pending/100,100)); // give the vfs some time to catch up
 					}
 
+					total_work_pending += work_pending ;
+					total_io_pending += io_pending ;
 					F64 frame_time = frameTimer.getElapsedTimeF64();
 					F64 idle_time = idleTimer.getElapsedTimeF64();
 					if (frame_time >= min_frame_time &&
@@ -1153,25 +1158,32 @@ bool LLAppViewer::mainLoop()
 						break;
 					}
 				}
+
+				 // Prevent the worker threads from running while rendering.
+				// if (LLThread::processorCount()==1) //pause() should only be required when on a single processor client...
+				if (run_multiple_threads == FALSE)
+				{
+					//LLFastTimer ftm(FTM_PAUSE_THREADS); //not necessary.
+	 				
+					if(!total_work_pending) //pause texture fetching threads if nothing to process.
+					{
+					LLAppViewer::getTextureCache()->pause();
+					LLAppViewer::getImageDecodeThread()->pause();
+						LLAppViewer::getTextureFetch()->pause(); 
+					}
+					if(!total_io_pending) //pause file threads if nothing to process.
+					{
+						LLVFSThread::sLocal->pause(); 
+						LLLFSThread::sLocal->pause(); 
+					}
+				}					
+
 				if ((LLStartUp::getStartupState() >= STATE_CLEANUP) &&
 					(frameTimer.getElapsedTimeF64() > FRAME_STALL_THRESHOLD))
 				{
 					gFrameStalls++;
 				}
 				frameTimer.reset();
-
-				 // Prevent the worker threads from running while rendering.
-				// if (LLThread::processorCount()==1) //pause() should only be required when on a single processor client...
-				if (run_multiple_threads == FALSE)
-				{
-					LLFastTimer ftm(FTM_PAUSE_THREADS);
-	 					
-					LLAppViewer::getTextureCache()->pause();
-					LLAppViewer::getImageDecodeThread()->pause();
-					// LLAppViewer::getTextureFetch()->pause(); // Don't pause the fetch (IO) thread
-				}
-				//LLVFSThread::sLocal->pause(); // Prevent the VFS thread from running while rendering.
-				//LLLFSThread::sLocal->pause(); // Prevent the LFS thread from running while rendering.
 
 				resumeMainloopTimeout();
 	
@@ -3001,25 +3013,42 @@ void LLAppViewer::migrateCacheDirectory()
 #endif // LL_WINDOWS || LL_DARWIN
 }
 
+//static
+S32 LLAppViewer::getCacheVersion() 
+{
+	static const S32 cache_version = 7;
+
+	return cache_version ;
+}
+
 bool LLAppViewer::initCache()
 {
 	mPurgeCache = false;
+	BOOL disable_texture_cache = FALSE ;
+	BOOL read_only = mSecondInstance ? TRUE : FALSE;
+	LLAppViewer::getTextureCache()->setReadOnly(read_only) ;
+
+	if (gSavedSettings.getS32("LocalCacheVersion") != LLAppViewer::getCacheVersion()) 
+	{
+		if(read_only) 
+		{
+			disable_texture_cache = TRUE ; //if the cache version of this viewer is different from the running one, this viewer can not use the texture cache.
+		}
+		else
+		{
+			mPurgeCache = true; // Purge cache if the version number is different.
+			gSavedSettings.setS32("LocalCacheVersion", LLAppViewer::getCacheVersion());
+		}
+	}
+
+	if(!read_only)
+	{
 	// Purge cache if user requested it
 	if (gSavedSettings.getBOOL("PurgeCacheOnStartup") ||
 		gSavedSettings.getBOOL("PurgeCacheOnNextStartup"))
 	{
 		gSavedSettings.setBOOL("PurgeCacheOnNextStartup", false);
 		mPurgeCache = true;
-	}
-	// Purge cache if it belongs to an old version
-	else
-	{
-		static const S32 cache_version = 6;
-		if (gSavedSettings.getS32("LocalCacheVersion") != cache_version)
-		{
-			mPurgeCache = true;
-			gSavedSettings.setS32("LocalCacheVersion", cache_version);
-		}
 	}
 	
 	// We have moved the location of the cache directory over time.
@@ -3035,6 +3064,7 @@ bool LLAppViewer::initCache()
 		gSavedSettings.setString("CacheLocation", new_cache_location);
 		gSavedSettings.setString("CacheLocationTopFolder", gDirUtilp->getBaseFileName(new_cache_location));
 	}
+	}
 	
 	if (!gDirUtilp->setCacheDir(gSavedSettings.getString("CacheLocation")))
 	{
@@ -3043,7 +3073,7 @@ bool LLAppViewer::initCache()
 		gSavedSettings.setString("CacheLocationTopFolder", "");
 	}
 	
-	if (mPurgeCache)
+	if (mPurgeCache && !read_only)
 	{
 		LLSplashScreen::update(LLTrans::getString("StartupClearingCache"));
 		purgeCache();
@@ -3053,13 +3083,12 @@ bool LLAppViewer::initCache()
 	
 	// Init the texture cache
 	// Allocate 80% of the cache size for textures
-	BOOL read_only = mSecondInstance ? TRUE : FALSE;
 	const S32 MB = 1024*1024;
 	S64 cache_size = (S64)(gSavedSettings.getU32("CacheSize")) * MB;
 	const S64 MAX_CACHE_SIZE = 1024*MB;
 	cache_size = llmin(cache_size, MAX_CACHE_SIZE);
 	S64 texture_cache_size = ((cache_size * 8)/10);
-	S64 extra = LLAppViewer::getTextureCache()->initCache(LL_PATH_CACHE, texture_cache_size, read_only);
+	S64 extra = LLAppViewer::getTextureCache()->initCache(LL_PATH_CACHE, texture_cache_size, disable_texture_cache);
 	texture_cache_size -= extra;
 
 	LLSplashScreen::update(LLTrans::getString("StartupInitializingVFS"));
@@ -3910,7 +3939,7 @@ void LLAppViewer::idleNetwork()
 	LLMemType mt_in(LLMemType::MTYPE_IDLE_NETWORK);
 	pingMainloopTimeout("idleNetwork");
 	LLError::LLCallStacks::clear() ;
-	llpushcallstacks ;
+	//llpushcallstacks ;
 
 	gObjectList.mNumNewObjects = 0;
 	S32 total_decoded = 0;
@@ -3921,7 +3950,7 @@ void LLAppViewer::idleNetwork()
 		
 		// deal with any queued name requests and replies.
 		gCacheName->processPending();
-		llpushcallstacks ;
+		//llpushcallstacks ;
 		LLTimer check_message_timer;
 		//  Read all available packets from network 
 		const S64 frame_count = gFrameCount;  // U32->S64
@@ -3991,16 +4020,16 @@ void LLAppViewer::idleNetwork()
 			gPrintMessagesThisFrame = FALSE;
 		}
 	}
-	llpushcallstacks ;
+	//llpushcallstacks ;
 	LLViewerStats::getInstance()->mNumNewObjectsStat.addValue(gObjectList.mNumNewObjects);
 
 	// Retransmit unacknowledged packets.
 	gXferManager->retransmitUnackedPackets();
 	gAssetStorage->checkForTimeouts();
-	llpushcallstacks ;
+	//llpushcallstacks ;
 	gViewerThrottle.updateDynamicThrottle();
 
-	llpushcallstacks ;
+	//llpushcallstacks ;
 	// Check that the circuit between the viewer and the agent's current
 	// region is still alive
 	LLViewerRegion *agent_region = gAgent.getRegion();
@@ -4016,7 +4045,7 @@ void LLAppViewer::idleNetwork()
 		mAgentRegionLastID = this_region_id;
 		mAgentRegionLastAlive = this_region_alive;
 	}
-	llpushcallstacks ;
+	//llpushcallstacks ;
 }
 
 void LLAppViewer::disconnectViewer()

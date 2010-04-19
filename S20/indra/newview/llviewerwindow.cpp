@@ -1654,7 +1654,7 @@ void LLViewerWindow::initWorldUI()
 	LLPanel* nav_bar_container = getRootView()->getChild<LLPanel>("nav_bar_container");
 
 	LLNavigationBar* navbar = LLNavigationBar::getInstance();
-	navbar->setFollows(FOLLOWS_TOP|FOLLOWS_LEFT|FOLLOWS_RIGHT);
+	navbar->setFollows(FOLLOWS_TOP|FOLLOWS_LEFT|FOLLOWS_RIGHT); // S20
 	navbar->setShape(nav_bar_container->getLocalRect());
 	navbar->setBackgroundColor(gMenuBarView->getBackgroundColor().get());
 	nav_bar_container->addChild(navbar);
@@ -1675,22 +1675,22 @@ void LLViewerWindow::initWorldUI()
 		LLBottomTray::getInstance()->showCameraButton(FALSE);
 	}
 	
-	if (!gSavedSettings.getBOOL("ShowMapButton"))
+	if (!gSavedSettings.getBOOL("ShowMapButton")) // S20
 	{
 		LLBottomTray::getInstance()->showMapButton(FALSE);
 	}
 
-	if (!gSavedSettings.getBOOL("ShowNetmapButton"))
+	if (!gSavedSettings.getBOOL("ShowNetmapButton")) // S20
 	{
 		LLBottomTray::getInstance()->showNetmapButton(FALSE);
 	}
 
-	if (!gSavedSettings.getBOOL("ShowInventoryButton"))
+	if (!gSavedSettings.getBOOL("ShowInventoryButton")) // S20
 	{
 		LLBottomTray::getInstance()->showInventoryButton(FALSE);
 	}
 	
-	if (!gSavedSettings.getBOOL("ShowSidebarButton"))
+	if (!gSavedSettings.getBOOL("ShowSidebarButton")) // S20
 	{
 		LLBottomTray::getInstance()->showSidebarButton(FALSE);
 	}

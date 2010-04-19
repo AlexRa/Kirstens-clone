@@ -12,13 +12,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -28,6 +28,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */ 
 
 #include "llviewerprecompiledheaders.h"
@@ -291,6 +292,7 @@ static OSStatus CarbonEventHandler(EventHandlerCallRef inHandlerCallRef,
 		if(os_result >= 0 && matching_psn)
 		{
 			sCrashReporterIsRunning = false;
+			QuitApplicationEventLoop();
 		}
     }
     return noErr;
@@ -326,7 +328,7 @@ void LLAppViewerMacOSX::handleCrashReporting(bool reportFreeze)
 			// *NOTE:Mani A better way - make a copy of the data that the crash reporter will send
 			// and let SL go about its business. This way makes the mac work like windows and linux
 			// and is the smallest patch for the issue. 
-			sCrashReporterIsRunning = true;
+			sCrashReporterIsRunning = false;
 			ProcessSerialNumber o_psn;
 
 			static EventHandlerRef sCarbonEventsRef = NULL;
@@ -356,15 +358,13 @@ void LLAppViewerMacOSX::handleCrashReporting(bool reportFreeze)
 			
 			if(os_result >= 0)
 			{	
-				EventRecord evt;
-				while(sCrashReporterIsRunning)
-				{
-					while(WaitNextEvent(osMask, &evt, 0, NULL))
-					{
-						// null op!?!
-					}
-				}
-			}	
+				sCrashReporterIsRunning = true;
+			}
+
+			while(sCrashReporterIsRunning)
+			{
+				RunApplicationEventLoop();
+			}
 
 			// Re-install the apps quit handler.
 			AEInstallEventHandler(kCoreEventClass, 
@@ -392,7 +392,12 @@ void LLAppViewerMacOSX::handleCrashReporting(bool reportFreeze)
 		_exit(1);
 	}
 	
-	// TODO:palmer REMOVE THIS VERY SOON.  THIS WILL NOT BE IN VIEWER 2.0
+	// TODO from palmer: Find a better way to handle managing old crash logs
+	// when this is a separate imbedable module.  Ideally just sort crash stack
+	// logs based on date, and grab the latest one as opposed to deleting them
+	// for thoughts on what the module would look like.
+	// See: https://wiki.lindenlab.com/wiki/Viewer_Crash_Reporter_Round_4
+	
 	// Remove the crash stack log from previous executions.
 	// Since we've started logging a new instance of the app, we can assume 
 	// The old crash stack is invalid for the next crash report.

@@ -12,13 +12,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -28,6 +28,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 
 
@@ -105,9 +106,9 @@ void check_all_images()
 	}
 }
 
-void LLImageGL::checkTexSize() const
+void LLImageGL::checkTexSize(bool forced) const
 {
-	if (gDebugGL && mTarget == GL_TEXTURE_2D)
+	if ((forced || gDebugGL) && mTarget == GL_TEXTURE_2D)
 	{
 		GLint texname;
 		glGetIntegerv(GL_TEXTURE_BINDING_2D, &texname);
@@ -129,6 +130,8 @@ void LLImageGL::checkTexSize() const
 		glGetTexLevelParameteriv(mTarget, 0, GL_TEXTURE_WIDTH, (GLint*)&x);
 		glGetTexLevelParameteriv(mTarget, 0, GL_TEXTURE_HEIGHT, (GLint*)&y) ;
 		stop_glerror() ;
+		llcallstacks << "w: " << x << " h: " << y << llcallstacksendl ;
+
 		if(!x || !y)
 		{
 			return ;
@@ -138,11 +141,13 @@ void LLImageGL::checkTexSize() const
 			error = TRUE;
 			if (gDebugSession)
 			{
-				gFailLog << "wrong texture size and discard level!" << std::endl;
+				gFailLog << "wrong texture size and discard level!" << 
+					mWidth << " Height: " << mHeight << " Current Level: " << mCurrentDiscardLevel << std::endl;
 			}
 			else
 			{
-				llerrs << "wrong texture size and discard level!" << llendl ;
+				llerrs << "wrong texture size and discard level: width: " << 
+					mWidth << " Height: " << mHeight << " Current Level: " << mCurrentDiscardLevel << llendl ;
 			}
 		}
 
@@ -1044,7 +1049,9 @@ BOOL LLImageGL::setSubImageFromFrameBuffer(S32 fb_x, S32 fb_y, S32 x_pos, S32 y_
 {
 	if (gGL.getTexUnit(0)->bind(this, false, true))
 	{
-		//checkTexSize() ;
+		checkTexSize(true) ;
+		llcallstacks << fb_x << " : " << fb_y << " : " << x_pos << " : " << y_pos << " : " << width << " : " << height << llcallstacksendl ;
+
 		glCopyTexSubImage2D(GL_TEXTURE_2D, 0, fb_x, fb_y, x_pos, y_pos, width, height);
 		mGLTextureCreated = true;
 		stop_glerror();
@@ -1699,8 +1706,8 @@ void LLImageGL::updatePickMask(S32 width, S32 height, const U8* data_in)
 	U32 size = pick_width * pick_height;
 	size = (size + 7) / 8; // pixelcount-to-bits
 	mPickMask = new U8[size];
-	mPickMaskWidth = pick_width;
-	mPickMaskHeight = pick_height;
+	mPickMaskWidth = pick_width - 1;
+	mPickMaskHeight = pick_height - 1;
 
 	memset(mPickMask, 0, sizeof(U8) * size);
 
@@ -1743,20 +1750,18 @@ BOOL LLImageGL::getMask(const LLVector2 &tc)
 			llassert(false);
 		}
 
-		llassert(mPickMaskWidth > 0 && mPickMaskHeight > 0);
-		
 		S32 x = llfloor(u * mPickMaskWidth);
 		S32 y = llfloor(v * mPickMaskHeight);
 
-		if (LL_UNLIKELY(x >= mPickMaskWidth))
+		if (LL_UNLIKELY(x > mPickMaskWidth))
 		{
 			LL_WARNS_ONCE("render") << "Ooh, width overrun on pick mask read, that coulda been bad." << LL_ENDL;
-			x = llmax(0, mPickMaskWidth-1);
+			x = llmax((U16)0, mPickMaskWidth);
 		}
-		if (LL_UNLIKELY(y >= mPickMaskHeight))
+		if (LL_UNLIKELY(y > mPickMaskHeight))
 		{
 			LL_WARNS_ONCE("render") << "Ooh, height overrun on pick mask read, that woulda been bad." << LL_ENDL;
-			y = llmax(0, mPickMaskHeight-1);
+			y = llmax((U16)0, mPickMaskHeight);
 		}
 
 		S32 idx = y*mPickMaskWidth+x;

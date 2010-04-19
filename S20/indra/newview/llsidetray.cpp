@@ -169,14 +169,14 @@ bool LLSideTrayTab::addChild(LLView* view, S32 tab_group)
 
 
 //virtual 
-BOOL LLSideTrayTab::postBuild() 
+BOOL LLSideTrayTab::postBuild()
 {
 	LLPanel* title_panel = LLUICtrlFactory::getInstance()->createFromFile<LLPanel>("panel_side_tray_tab_caption.xml",this, child_registry_t::instance());
-	
 	string name = title_panel->getName();
 	LLPanel::addChild(title_panel);
+	
 	title_panel->getChild<LLTextBox>(TAB_PANEL_CAPTION_TITLE_BOX)->setValue(mTabTitle);
-    
+
 	return true;
 }
 

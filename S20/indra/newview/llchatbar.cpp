@@ -581,6 +581,7 @@ void LLChatBar::sendChatFromViewer(const LLWString &wtext, EChatType type, BOOL 
 	}
 
 	std::string utf8_text = wstring_to_utf8str(wtext);
+
 	utf8_text = utf8str_trim(utf8_text);
 	if (!utf8_text.empty())
 	{

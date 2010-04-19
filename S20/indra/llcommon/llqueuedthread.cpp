@@ -11,13 +11,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -27,6 +27,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 
 #include "linden_common.h"
@@ -133,7 +134,10 @@ S32 LLQueuedThread::updateQueue(U32 max_time_ms)
 	if (mThreaded)
 	{
 		pending = getPending();
+		if(pending > 0)
+		{
 		unpause();
+	}
 	}
 	else
 	{
@@ -459,7 +463,7 @@ S32 LLQueuedThread::processNextRequest()
 			req->setStatus(STATUS_QUEUED);
 			mRequestQueue.insert(req);
 			unlockData();
-			if (mThreaded && start_priority <= PRIORITY_LOW)
+			if (mThreaded && start_priority < PRIORITY_NORMAL)
 			{
 				ms_sleep(1); // sleep the thread a little
 			}
