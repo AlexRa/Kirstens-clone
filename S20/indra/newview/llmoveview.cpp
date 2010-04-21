@@ -200,7 +200,12 @@ void LLFloaterMove::setFlyingMode(BOOL fly)
 	if (instance)
 	{
 		instance->setFlyingModeImpl(fly);
-		instance->showModeButtons(!fly);
+		LLVOAvatarSelf* avatar_object = gAgent.getAvatarObject();
+		BOOL is_sitting = avatar_object
+			&& (avatar_object->getRegion() != NULL)
+			&& (!avatar_object->isDead())
+			&& avatar_object->isSitting();
+		instance->showModeButtons(!fly && !is_sitting);
 	}
 	if (fly)
 	{
@@ -694,8 +699,9 @@ void LLPanelStandStopFlying::onStandButtonClick()
 {
 	LLSelectMgr::getInstance()->deselectAllForStandingUp();
 	gAgent.setControlFlags(AGENT_CONTROL_STAND_UP);
-	gAgent.setFlying(FALSE); // Crazy Stuff but will this stop people flying after standing? KL
+	gAgent.setFlying(FALSE); // And Why not... KL
 	setFocus(FALSE); // EXT-482
+	mStandButton->setVisible(FALSE); // force visibility changing to avoid seeing Stand & Move buttons at once.
 }
 
 void LLPanelStandStopFlying::onStopFlyingButtonClick()

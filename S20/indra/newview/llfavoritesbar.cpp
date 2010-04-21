@@ -12,13 +12,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -28,6 +28,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 
 #include "llviewerprecompiledheaders.h"
@@ -75,7 +76,9 @@ public:
 		mPosY(0),
 		mPosZ(0),
 		mLoaded(false) 
-	{}
+	{
+		mHandle.bind(this);
+	}
 
 	void setLandmarkID(const LLUUID& id) { mLandmarkID = id; }
 	const LLUUID& getLandmarkId() const { return mLandmarkID; }
@@ -122,17 +125,21 @@ private:
 		if(LLLandmarkActions::getLandmarkGlobalPos(mLandmarkID, g_pos))
 		{
 			LLLandmarkActions::getRegionNameAndCoordsFromPosGlobal(g_pos,
-				boost::bind(&LLLandmarkInfoGetter::landmarkNameCallback, this, _1, _2, _3, _4));
+				boost::bind(&LLLandmarkInfoGetter::landmarkNameCallback, static_cast<LLHandle<LLLandmarkInfoGetter> >(mHandle), _1, _2, _3, _4));
 		}
 	}
 
-	void landmarkNameCallback(const std::string& name, S32 x, S32 y, S32 z)
+	static void landmarkNameCallback(LLHandle<LLLandmarkInfoGetter> handle, const std::string& name, S32 x, S32 y, S32 z)
 	{
-		mPosX = x;
-		mPosY = y;
-		mPosZ = z;
-		mName = name;
-		mLoaded = true;
+		LLLandmarkInfoGetter* getter = handle.get();
+		if (getter)
+		{
+			getter->mPosX = x;
+			getter->mPosY = y;
+			getter->mPosZ = z;
+			getter->mName = name;
+			getter->mLoaded = true;
+		}
 	}
 
 	LLUUID mLandmarkID;
@@ -141,6 +148,7 @@ private:
 	S32 mPosY;
 	S32 mPosZ;
 	bool mLoaded;
+	LLRootHandle<LLLandmarkInfoGetter> mHandle;
 };
 
 /**

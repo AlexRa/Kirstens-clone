@@ -12,13 +12,13 @@
  * ("GPL"), unless you have obtained a separate licensing agreement
  * ("Other License"), formally executed by you and Linden Lab.  Terms of
  * the GPL can be found in doc/GPL-license.txt in this distribution, or
- * online at http://secondlifegrid.net/programs/open_source/licensing/gplv2
+ * online at http://secondlife.com/developers/opensource/gplv2
  * 
  * There are special exceptions to the terms and conditions of the GPL as
  * it is applied to this Source Code. View the full text of the exception
  * in the file doc/FLOSS-exception.txt in this software distribution, or
  * online at
- * http://secondlifegrid.net/programs/open_source/licensing/flossexception
+ * http://secondlife.com/developers/opensource/flossexception
  * 
  * By copying, modifying or distributing this software, you acknowledge
  * that you have read and understood your obligations described above,
@@ -28,6 +28,7 @@
  * WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
  * COMPLETENESS OR PERFORMANCE.
  * $/LicenseInfo$
+ * 
  */
 
 #ifndef LL_V2MATH_H
@@ -69,6 +70,8 @@ class LLVector2
 		void	setVec(F32 x, F32 y);	        // deprecated
 		void	setVec(const LLVector2 &vec);	// deprecated
 		void	setVec(const F32 *vec);			// deprecated
+
+		inline bool isFinite() const; // checks to see if all values of LLVector2 are finite
 
 		F32		length() const;				// Returns magnitude of LLVector2
 		F32		lengthSquared() const;		// Returns magnitude squared of LLVector2
@@ -215,6 +218,7 @@ inline void	LLVector2::setVec(const F32 *vec)
 	mV[VY] = vec[VY];
 }
 
+
 // LLVector2 Magnitude and Normalization Functions
 
 inline F32 LLVector2::length(void) const
@@ -245,6 +249,12 @@ inline F32		LLVector2::normalize(void)
 		mag = 0;
 	}
 	return (mag);
+}
+
+// checker
+inline bool LLVector2::isFinite() const
+{
+	return (llfinite(mV[VX]) && llfinite(mV[VY]));
 }
 
 // deprecated
