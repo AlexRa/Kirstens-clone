@@ -5648,6 +5648,31 @@ class LLFloaterVisible : public view_listener_t
 	}
 };
 
+// S20 MS Floater.enableToggleConversations
+class LLFloaterEnableToggleConversations  : public view_listener_t
+{
+	bool handleEvent(const LLSD& userdata)
+	{
+		// ChatWindow for 'Separate Windows' is 0
+		// and 1 for Tabbed view
+		bool is_single_window = gSavedSettings.getS32("ChatWindow") == 1;		
+		
+		if (is_single_window) // only makes sense if it's tabbed view
+		{
+			// find if there actually are any IM sessions open
+			// otherwise the panel will open and close again right away
+			S32 num_im_sessions = LLIMModel::getInstance()->mId2SessionMap.size();
+			// llinfos << " num_im_sessions " << num_im_sessions << llendl;
+			if (num_im_sessions > 0)
+				return true;
+			else
+				return false;
+		}
+		// otherwise disable this for now
+		return false; 
+	}
+};
+
 class LLShowHelp : public view_listener_t
 {
 	bool handleEvent(const LLSD& userdata)
@@ -8120,6 +8145,9 @@ void initialize_menus()
 	enable.add("VisibleBuild", boost::bind(&enable_object_build));
 
 	view_listener_t::addMenu(new LLFloaterVisible(), "FloaterVisible");
+	// S20 MS
+	view_listener_t::addMenu(new LLFloaterEnableToggleConversations(), "Floater.enableToggleConversations");
+	
 	view_listener_t::addMenu(new LLShowSidetrayPanel(), "ShowSidetrayPanel");
 	view_listener_t::addMenu(new LLSidetrayPanelVisible(), "SidetrayPanelVisible");
 	view_listener_t::addMenu(new LLSomethingSelected(), "SomethingSelected");
