@@ -1160,6 +1160,9 @@ if (WINDOWS)
         res/toolpickobject2.cur
         res/toolpickobject3.cur
         res/toolpipette.cur
+        res/toolbuy.cur
+        res/toolopen.cur
+        res/toolsit.cur
         )
 
     set_source_files_properties(${viewer_RESOURCE_FILES}
@@ -1564,11 +1567,11 @@ if (WINDOWS)
           --build=${CMAKE_CURRENT_BINARY_DIR}
           --buildtype=${CMAKE_BUILD_TYPE}
           --channel=${VIEWER_CHANNEL}
-          --branding_id=${VIEWER_BRANDING_ID}
           --configuration=${CMAKE_CFG_INTDIR}
           --dest=${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_CFG_INTDIR}
           --grid=${GRID}
           --login_channel=${VIEWER_LOGIN_CHANNEL}
+          --branding_id=${VIEWER_BRANDING_ID}
           --source=${CMAKE_CURRENT_SOURCE_DIR}
           --touch=${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_CFG_INTDIR}/touched.bat
         DEPENDS ${VIEWER_BINARY_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/viewer_manifest.py
@@ -1656,12 +1659,12 @@ if (LINUX)
 
   add_dependencies(${VIEWER_BINARY_NAME} SLPlugin media_plugin_gstreamer010 media_plugin_webkit)
 
-  if (NOT INSTALL)
+  if (PACKAGE)
     add_custom_target(package ALL DEPENDS ${product}.tar.bz2)
     add_dependencies(package linux-crash-logger-target)
     add_dependencies(package linux-updater-target)
     check_message_template(package)
-  endif (NOT INSTALL)
+  endif (PACKAGE)
 endif (LINUX)
 
 if (DARWIN)
