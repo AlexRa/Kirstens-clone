@@ -100,7 +100,7 @@
      type="string"
      length="1"
      height="10"
-     left="80"
+     left="30"
      name="heading2"
      width="270"
      top_pad="5">
@@ -112,7 +112,7 @@ Automatic position for:
      follows="left|top"
      label="Build/Edit"
      layout="topleft"
-     left_delta="30"
+     left_delta="110"
      name="edit_camera_movement"
      tool_tip="Use automatic camera positioning when entering and exiting edit mode"
      width="280"
@@ -167,6 +167,17 @@ Automatic position for:
      name="tap_tap_hold_to_run"
      width="237"
      top_pad="0"/>
+     <check_box 
+     control_name="DoubleClickTeleport"
+     follows="left|top"
+     height="20" initial_value="false"
+     label="Double click teleport"
+     layout="topleft"
+     left_delta="0"
+     name="DoubleclickTP"
+     tool_tip="Double Click anywhere to TP there instantly"
+     width="200"
+     top_pad="0"/>
     <check_box
      control_name="LipSyncEnabled"
      follows="left|top"
@@ -207,7 +218,7 @@ Automatic position for:
      height="50"
      layout="topleft"
      left_pad="10"
-     top="238"
+     top="255"
      name="background"
      tool_tip="Choose color for bubble chat"
      width="38">
