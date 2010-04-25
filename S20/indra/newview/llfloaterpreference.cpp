@@ -86,7 +86,7 @@
 #include "llfontgl.h"
 #include "llrect.h"
 #include "llstring.h"
-#include "llsdserialize.h"
+#include "llsdserialize.h" //S20
 
 // project includes
 
@@ -731,7 +731,7 @@ void LLFloaterPreference::onClickSkin(LLUICtrl* ctrl, const LLSD& userdata)
 	ctrl->setValue(userdata.asString());
 }
 
-void LLFloaterPreference::onSelectSkin()
+void LLFloaterPreference::onSelectSkin() //S20
 {
 	std::string skin_selection = getChild<LLComboBox>("skin_selection")->getValue().asString();
 	llinfos << "skin selected " << skin_selection << llendl;
@@ -739,7 +739,7 @@ void LLFloaterPreference::onSelectSkin()
 	LLFloaterPreference::refreshSkin(this);
 }
 
-void LLFloaterPreference::refreshSkin(void* data)
+void LLFloaterPreference::refreshSkin(void* data) // S20
 {
 	LLPanel*self = (LLPanel*)data;
 	std::string delim(gDirUtilp->getDirDelimiter()); 
@@ -1184,10 +1184,8 @@ void LLFloaterPreference::onClickLogPath()
 	{
 		return; //Canceled!
 	}
-	std::string chat_log_dir = picker.getDirName();
-	std::string chat_log_top_folder= gDirUtilp->getBaseFileName(chat_log_dir);
-	gSavedPerAccountSettings.setString("InstantMessageLogPath",chat_log_dir);
-	gSavedPerAccountSettings.setString("InstantMessageLogFolder",chat_log_top_folder);
+
+	gSavedPerAccountSettings.setString("InstantMessageLogPath", picker.getDirName());
 }
 
 void LLFloaterPreference::setPersonalInfo(const std::string& visibility, bool im_via_email, const std::string& email)
@@ -1356,7 +1354,7 @@ BOOL LLPanelPreference::postBuild()
 	}
 	
 	//////////////////////PanelSkins ///////////////////
-	
+	// S20
 	if (hasChild("skin_selection"))
 	{
 		LLFloaterPreference::refreshSkin(this);

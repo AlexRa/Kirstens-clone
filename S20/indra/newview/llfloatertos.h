@@ -68,8 +68,6 @@ public:
 
 private:
 
-	void			loadIfNeeded();
-	
 	std::string		mMessage;
 	int				mWebBrowserWindowId;
 	bool			mLoadingScreenLoaded;
