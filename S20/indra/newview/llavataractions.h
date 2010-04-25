@@ -94,6 +94,16 @@ public:
 	static void startConference(const std::vector<LLUUID>& ids);
 
 	/**
+	* Zoom in on avatar. S20 MS
+	*/
+	static void zoomIn(const LLUUID& id);
+
+	/**
+	* show / hide Zoom in on avatar. S20 MS
+	*/
+	static bool visibleZoomIn(const LLUUID& id);
+
+	/**
 	 * Show avatar profile.
 	 */
 	static void showProfile(const LLUUID& id);

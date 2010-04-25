@@ -418,6 +418,9 @@ LLContextMenu* LLParticipantList::LLParticipantListMenu::createMenu()
 	registrar.add("ParticipantList.ToggleAllowTextChat", boost::bind(&LLParticipantList::LLParticipantListMenu::toggleAllowTextChat, this, _2));
 	registrar.add("ParticipantList.ToggleMuteText", boost::bind(&LLParticipantList::LLParticipantListMenu::toggleMuteText, this, _2));
 
+	// S20 MS
+	registrar.add("Avatar.ZoomIn",	boost::bind(&LLAvatarActions::zoomIn, mUUIDs.front()));
+
 	registrar.add("Avatar.Profile",	boost::bind(&LLAvatarActions::showProfile, mUUIDs.front()));
 	registrar.add("Avatar.IM", boost::bind(&LLAvatarActions::startIM, mUUIDs.front()));
 	registrar.add("Avatar.AddFriend", boost::bind(&LLAvatarActions::requestFriendshipDialog, mUUIDs.front()));

@@ -64,6 +64,9 @@
 #include "lltrans.h"
 #include "llcallingcard.h"
 
+// S20 MS
+#include "llviewermenu.h"
+
 // static
 void LLAvatarActions::requestFriendshipDialog(const LLUUID& id, const std::string& name)
 {
@@ -294,6 +297,27 @@ void LLAvatarActions::startConference(const std::vector<LLUUID>& ids)
 	}
 	make_ui_sound("UISndStartIM");
 }
+
+// S20 MS
+// static
+void LLAvatarActions::zoomIn(const LLUUID& avatarId)
+{
+	if (avatarId.notNull())
+	{
+		handle_zoom_to_object(avatarId);
+	}
+}
+// static
+bool LLAvatarActions::visibleZoomIn(const LLUUID& avatarId)
+{
+	if (avatarId.notNull())
+	{
+		bool vis = gObjectList.findObject(avatarId);
+		return vis;
+	}
+	return false;
+}
+
 
 // static
 void LLAvatarActions::showProfile(const LLUUID& id)

@@ -120,6 +120,9 @@ LLContextMenu* NearbyMenu::createMenu()
 		// Set up for one person selected menu
 
 		const LLUUID& id = mUUIDs.front();
+
+		// S20 MS
+		registrar.add("Avatar.ZoomIn",			boost::bind(&LLAvatarActions::zoomIn,					id));
 		registrar.add("Avatar.Profile",			boost::bind(&LLAvatarActions::showProfile,				id));
 		registrar.add("Avatar.AddFriend",		boost::bind(&LLAvatarActions::requestFriendshipDialog,	id));
 		registrar.add("Avatar.RemoveFriend",	boost::bind(&LLAvatarActions::removeFriendDialog, 		id));
@@ -169,6 +172,13 @@ bool NearbyMenu::enableContextMenuItem(const LLSD& userdata)
 		const LLUUID& id = mUUIDs.front();
 		return LLAvatarActions::canBlock(id);
 	}
+	// S20 MS
+	else if (item == std::string("can_zoom"))
+	{
+		const LLUUID& id = mUUIDs.front();
+		return LLAvatarActions::visibleZoomIn(id);
+	}
+	
 	else if (item == std::string("can_add"))
 	{
 		// We can add friends if:
