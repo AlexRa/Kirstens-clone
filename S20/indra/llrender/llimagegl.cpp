@@ -122,7 +122,7 @@ void LLImageGL::checkTexSize(bool forced) const
 			}
 			else
 			{
-				llerrs << "Invalid texture bound!" << llendl;
+				llwarns << "Invalid texture bound!" << llendl; // Comments state its not used.. but it is! make this a warning on a release build
 			}
 		}
 		stop_glerror() ;
@@ -146,14 +146,14 @@ void LLImageGL::checkTexSize(bool forced) const
 			}
 			else
 			{
-				llerrs << "wrong texture size and discard level: width: " << 
+				llwarns << "wrong texture size and discard level: width: " << 
 					mWidth << " Height: " << mHeight << " Current Level: " << mCurrentDiscardLevel << llendl ;
 			}
 		}
 
 		if (error)
 		{
-			ll_fail("LLImageGL::checkTexSize failed.");
+			llwarns << "LLImageGL::checkTexSize failed." << llendl; // yeah no thanks! Dumping me to the desktop is not an option ;) KL
 		}
 	}
 }
@@ -1049,8 +1049,8 @@ BOOL LLImageGL::setSubImageFromFrameBuffer(S32 fb_x, S32 fb_y, S32 x_pos, S32 y_
 {
 	if (gGL.getTexUnit(0)->bind(this, false, true))
 	{
-		checkTexSize(true) ;
-		llcallstacks << fb_x << " : " << fb_y << " : " << x_pos << " : " << y_pos << " : " << width << " : " << height << llcallstacksendl ;
+		//checkTexSize(true) ; // KL according to code comments checkTexSize is for debugging and is no longer used... lets comment out for now see what gives.
+		//llcallstacks << fb_x << " : " << fb_y << " : " << x_pos << " : " << y_pos << " : " << width << " : " << height << llcallstacksendl ;
 
 		glCopyTexSubImage2D(GL_TEXTURE_2D, 0, fb_x, fb_y, x_pos, y_pos, width, height);
 		mGLTextureCreated = true;

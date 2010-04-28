@@ -683,10 +683,10 @@ void LLMultisampleBuffer::addColorAttachment(U32 color_fmt)
 		case GL_FRAMEBUFFER_COMPLETE_EXT:
 			break;
 		case GL_FRAMEBUFFER_UNSUPPORTED_EXT:
-			llerrs << "WTF?" << llendl;
+			llwarns << "GL_FRAMEBUFFER_UNSUPPORTED_EXT, LLMultisampleBuffer::addColorAttachment(U32 color_fmt)" << llendl; // Much more useful than a WTF. KL
 			break;
 		default:
-			llerrs << "WTF?" << llendl;
+			llwarns << "MultisampleBuffer Failure" << llendl; // x2 x4 and x8 work with FBO x16 is Fail ( a black screen beats a crash any day tho! )
 		}
 
 		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
